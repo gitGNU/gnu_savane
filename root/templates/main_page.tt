@@ -1,4 +1,114 @@
-Welcome to a whole new world of Savannah'ing.<p>
+[% INCLUDE templates/header.tt %]
 
-By the way, you seem to be connecting from [% remote_host %]
+<div class="indexcenter"><p>Welcome to <strong>Savannah</strong>, the software forge for people
+committed to <a href="http://www.gnu.org/philosophy/free-sw.html">Free
+Software</a>:</p>
+
+<p><ul>
+  <li>We host free projects that run on free operating systems and without
+  any proprietary software dependencies</li>
+  <li>Our service runs with 100% free software, including <a
+  href="/projects/savane-cleanup">itself</a></li>
+
+  <li><a href="http://savannah.gnu.org/maintenance/WhyChooseSavannah">More...</a></li>
+</ul></p>
+
+<p>Savannah aims to be a central point for development, maintenance and
+distribution of <a
+href="http://www.gnu.org/gnu/thegnuproject.html">official GNU
+software</a>.  In additions, for projects that are free software but not
+part of the GNU project we provide <a
+href="http://savannah.nongnu.org/">savannah.nongnu.org</a>.</p>
+
+<p>
+  If you would like to use these facilities to host your
+  project, then go to the <b>Register new project</b> menu entry.
+</p>
+
+<p>We provide two mailing lists that you may want to subscribe to:
+<ul>
+  <li><a href="http://lists.gnu.org/mailman/listinfo/savannah-announce">savannah-announce</a>:
+  low-volume notifications of important issues and changes at Savannah</li>
+  <li><a href="http://lists.gnu.org/mailman/listinfo/savannah-users">savannah-users</a>:
+  discussion of savannah-announce and any user-oriented topic</li>
+</ul>
+</p>
+
+<p>&nbsp;</p>
+<div class="box">
+  <div class="boxtitle"><a href="/news/" class="sortbutton">Latest News</a></div><!-- end boxtitle -->
+
+  <div class="boxitem"><a href="/forum/forum.php?forum_id=5615"><strong>Mail issues</strong></a><br />&nbsp;&nbsp;&nbsp;&nbsp; <span class="smaller"><em>posted by <a href="/users/Beuc">Beuc</a>, Tue 13 Jan 2009 09:27:20 AM UTC - 0 replies</em></span><p>Due to a recent change in the GNU mail system, some of the mails could not be delivered between the 7th and the 12th. This is now fixed and handled differently so that the savannah and gnu mails won't lost sync again.
+  <br />
+  Commit notifications sent to lists.gnu.org in that interval were lost.
+  <br />
+  Trackers notifications could be recovered and have been reinjected in the mail system - you should be receiving them.<br />
+  </p></div><div class="boxitemalt"><a href="/forum/forum.php?forum_id=5613"><strong>Please report slow mirrors</strong></a><br />&nbsp;&nbsp;&nbsp;&nbsp; <span class="smaller"><em>posted by <a href="/users/Beuc">Beuc</a>, Mon 12 Jan 2009 06:41:11 AM UTC - 0 replies</em></span><p>Let us know if one of the download mirrors is slow!
+
+  <br />
+</p>
+<p>Our tools allow us to check if a mirror is up-to-date, but can't check if it has bandwidth issues.  We'll retire slow mirrors and contact their maintainers to see if this can be improved.<br />
+</p></div><div class="boxitem"><a href="/forum/forum.php?forum_id=5607"><strong>New git browser: cgit</strong></a><br />&nbsp;&nbsp;&nbsp;&nbsp; <span class="smaller"><em>posted by <a href="/users/Beuc">Beuc</a>, Tue 06 Jan 2009 08:22:33 PM UTC - 2 replies</em></span><p>We installed a new git repository browser at:
+<br />
+<a href="http://git.savannah.gnu.org/cgit/">http://git.savannah.gnu.org/cgit/</a>
+<br />
+</p>
+<p>It's written in C, uses a static library rather than forking git, has a cache system, and hence is pretty fast!
+
+<br />
+</p>
+<p>Let us know how it works for you.<br />
+</p></div><div class="boxitemalt"><a href="/forum/forum.php?forum_id=5600"><strong>Admin membership issue [fixed]</strong></a><br />&nbsp;&nbsp;&nbsp;&nbsp; <span class="smaller"><em>posted by <a href="/users/Beuc">Beuc</a>, Sat 03 Jan 2009 08:07:54 PM UTC - 0 replies</em></span><p>Following an UTF-8 fix-up of the MySQL database, some users were not considered admin of their projects anymore. This was due to some SQL comparison for fields like CHAR(16) not working anymore when not properly converted to UTF-8. This is fixed now.<br />
+</p></div><div class="boxitem"><a href="/forum/forum.php?forum_id=5574"><strong>Download mirrors</strong></a><br />&nbsp;&nbsp;&nbsp;&nbsp; <span class="smaller"><em>posted by <a href="/users/Beuc">Beuc</a>, Tue 16 Dec 2008 07:28:09 PM UTC - 0 replies</em></span><p>Savannah now has 12 mirrors covering 8 countries and 4 continents!
+
+<br />
+</p>
+<p>To take advantage of these, we setup a GeoIP-based nearest-mirror redirection system. The old URL (without redirection) is still available at download.savannah.gnu.org/releases-noredirect/ .
+...<br />
+</p><br /><a href="/forum/forum.php?forum_id=5574">[Read more]</a></div><div class="boxitemalt"><a href="/forum/forum.php?forum_id=5573"><strong>SVN upgrade</strong></a><br />&nbsp;&nbsp;&nbsp;&nbsp; <span class="smaller"><em>posted by <a href="/users/Beuc">Beuc</a>, Tue 16 Dec 2008 07:21:50 PM UTC - 0 replies</em></span><p>We upgraded subversion from v1.4 to v1.5.
+<br />
+Let us know if there's any problem.
+<br />
+</p>
+<p>If you want to upgrade the repository from fsfs2 to fsfs3, we can do that for you - open an authenticated support request stating so.
+<br />
+
+</p>
+<p>Thanks again to <a href="http://www.backports.org/">http://www.backports.org/</a> for the packages.<br />
+</p></div><div class="boxitem"><a href="/forum/forum.php?forum_id=5455"><strong>CAcert.org https certificates</strong></a><br />&nbsp;&nbsp;&nbsp;&nbsp; <span class="smaller"><em>posted by <a href="/users/Beuc">Beuc</a>, Tue 16 Sep 2008 05:49:31 PM UTC - 0 replies</em></span><p>We've switched to CAcert.org https certificates instead of the previously self-signed certificated. CAcert.org offers an alternative way to deliver https certificates based on a web of trust - and their software is GPL'd. More information at <a href="http://savannah.gnu.org/tls/">http://savannah.gnu.org/tls/</a><br />
+</p></div><div class="boxitemalt"><a href="/forum/forum.php?forum_id=5417"><strong>Webpages replication</strong></a><br />&nbsp;&nbsp;&nbsp;&nbsp; <span class="smaller"><em>posted by <a href="/users/Beuc">Beuc</a>, Wed 20 Aug 2008 09:37:50 AM UTC - 1 reply</em></span><p>All webpages now immediately synchronize to gnu.org and nongnu.org on CVS commit. Previously this wasn't installed for all projects, and some group type (such as translation teams) didn't update to the right place.
+
+<br />
+</p>
+<p>On other news we upgraded the Linux VServer kernel :)<br />
+</p></div><div class="boxitem"><a href="/forum/forum.php?forum_id=5345"><strong>Mercurial</strong></a><br />&nbsp;&nbsp;&nbsp;&nbsp; <span class="smaller"><em>posted by <a href="/users/Beuc">Beuc</a>, Mon 02 Jun 2008 06:30:06 PM UTC - 1 reply</em></span><p>Thanks to the work of Aleix Conchillo Flaqué, Mercurial is now available at Savannah!
+<br />
+</p>
+<p>You can enable it in your project through the top menu:
+<br />
+Main -&gt; Select Features -&gt; Mercurial
+
+<br />
+</p>
+<p>Repositories will be created within 1/2 hour and visible at
+<br />
+<a href="http://hg.savannah.gnu.org/hgweb/">http://hg.savannah.gnu.org/hgweb/</a>
+<br />
+</p>
+<p>You can also read an introduction at:
+<br />
+<a href="http://savannah.gnu.org/maintenance/UsingHg">http://savannah.gnu.org/maintenance/UsingHg</a><br />
+</p><br /> <a href="/news/?group_id=5802"><span class="smaller">[91 news in archive]</span></a></div><!-- end boxitem -->
+</div><!-- end box -->
+
+</div><!-- end indexcenter -->
+
+<p class="backtotop">
+  <a href="#top"><img src="static/images/Savannah.theme/arrows/top.orig.png" border="0" alt="Back to the top" /></a>
+</p>
+</div><!-- end main -->
+<br class="clear" />
+</div><!-- end realbody -->
+
+[% INCLUDE templates/footer.tt %]
 
