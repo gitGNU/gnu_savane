@@ -31,6 +31,11 @@ __PACKAGE__->config( name => 'Savane' );
 # Start the application
 __PACKAGE__->setup(qw/-Debug ConfigLoader Static::Simple/);
 
+__PACKAGE__->config->{static}->{dirs} = [
+    'static',
+    qr/^(images|css)/,
+    ];
+
 =head1 NAME
 
 Savane - Web framework for Savane interface.
