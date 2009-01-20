@@ -32,8 +32,8 @@ __PACKAGE__->config( name => 'Savane' );
 __PACKAGE__->setup(qw/-Debug ConfigLoader Static::Simple/);
 
 __PACKAGE__->config->{static}->{dirs} = [
-    'static',
-    qr/^(images|css)/,
+        'static',
+        qr/^(images|css)/,
     ];
 
 =head1 NAME
