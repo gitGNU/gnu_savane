@@ -38,16 +38,16 @@ sub default :Path {
     my ( $self, $c ) = @_;
     $c->response->body( 'Page not found' );
     $c->response->status(404);
-    
+
 }
 
-=head2 end 
+=head2 end
 
 Allow for "post processing" of in our application.
 * Write some code for handling "server errors".
 * Also, attempt to render a view, if needed.
 
-=cut 
+=cut
 
 sub end : Private {
     my ( $self, $c ) = @_;
