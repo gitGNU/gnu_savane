@@ -1,0 +1,29 @@
+* Directory Description
+
+savane directory containts all the python(django) code.
+
+media all the css and images
+
+template all the templates that are necessary to run savane
+
+
+* Debian Packages
+
+mysql-server
+python-mysqldb
+python-django
+
+* Install process
+
+
+You will need to create the mysql user (fill? )
+
+Edit the the file savane/settings.py and edit:
+
+SAVANE_ROOT to the proper absolute path of your savane installed
+
+DATABASE_USER, DATABASE_PASSWORD, DATABASE_HOST to the proper data
+needed to connect to the MySQL database.
+
+
+

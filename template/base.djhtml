@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US.UTF-8" xml:lang="en-US.UTF-8">
+  <head>
+    <title>Welcome [Savannah]</title>
+    <meta name="Generator" content="Savane 3.1-cleanup, see http://savannah.nongnu.org/projects/savane-cleanup" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <link rel="stylesheet" type="text/css" href="css/Savannah.css" />
+    <link rel="icon" type="image/png" href="static/images/Savannah.theme/icon.png" />
+    <meta name="Author" content="Copyright (C) 2000, 2001, 2002, 2003 Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111, USA Verbatim copying and distribution of this entire article is permitted in any medium, provided this notice is preserved" />
+    <meta name="Keywords" content="Savannah,GNU, FSF, Free Software Foundation, GNU/Linux, Linux, Emacs, GCC, Unix, Free Software, Operating System, GNU Kernel, HURD, gnus, SourceForge" />
+    <meta name="Description" content="Savannah is a central point for development, distribution and maintainance of Free Software. It allows contributors to easily join existing Free Software projects." />
+
+  </head>
+
+  <body>
+
+    <div class="main_menu">
+      <a href="/"><img src="images/Savannah.theme/floating.png" alt="Back to Savannah Homepage" border="0" width="118" height="100" /></a>
+      <a href="">Hosted Projects</a>
+      <a href="">Help</a>
+
+      <div class="menu_search">
+	<form action="/search/#options" method="get" >
+	  <input type="text" size="15" name="words" value="" />
+	  <em>in</em>
+	  <select name="type_of_search">
+	    <option value="soft" selected="selected">Projects</option>
+	    <option value="people">People</option>
+	    <option value="cookbook">Cookbook</option>
+
+	    <option value="support">Support</option>
+	    <option value="bugs">Bugs</option>
+	    <option value="task">Tasks</option>
+	    <option value="patch">Patches</option>
+	  </select>
+	  <input type="submit" name="Search" value="Search" /><input type="hidden" name="exact" value="1" />
+	</form>
+      </div>
+    </div>
+
+    <div class="menu_login">
+      <form action="/account/login" method="post">
+	<input type="hidden" name="uri" value="/" />
+	<dl>
+	  <dt>Login Name:</dt>
+	  <dd><input type="text" name="form_loginname" value="" size="12" /></dd>
+	  <dt>Password:</dt>
+	  <dd><input type="password" name="form_pw" size="12" /></dd>
+	  <dd><input type="submit" name="login" value="Login" /></dd>
+	</dl>
+      </form>
+    </div>
+    <div class="root">
+      <div class="body">
+        <div class="content">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <!-- footer start here -->
+    <p class="footer">
+      <span style="float:right">
+        <a href="http://git.sv.gnu.org/gitweb/?p=savane-cleanup.git;a=blob;f=frontend/php/index.php">Source<br />Code</a>
+      </span>
+
+      Copyright (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008 &nbsp;Free Software
+      Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+      02110-1301, USA
+
+      <br />
+
+      Verbatim copying and distribution of this entire article is
+      permitted in any medium, provided this notice is preserved.
+
+      <br />
+
+      The <a href="http://www.gnu.org/graphics/meditate.html">Levitating,
+        Meditating, Flute-playing Gnu</a> logo is a GNU GPL'ed image provided
+      by the Nevrax Design Team.
+    </p>
+
+    <div align="right">
+      <a href="http://savannah.nongnu.org/projects/savane-cleanup">Powered by Savane 3.1-cleanup</a>
+    </div>
+    <!-- footer ends here -->
+
+  </body>
+</html>
