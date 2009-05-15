@@ -26,4 +26,10 @@ DATABASE_USER, DATABASE_PASSWORD, DATABASE_HOST to the proper data
 needed to connect to the MySQL database.
 
 
+* Run
+
+You can test your install using:
+ $ python manage.py runserver
+
+
 
