@@ -5,7 +5,7 @@
     <title>Welcome [Savannah]</title>
     <meta name="Generator" content="Savane 3.1-cleanup, see http://savannah.nongnu.org/projects/savane-cleanup" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
-    <link rel="stylesheet" type="text/css" href="css/Savannah.css" />
+    <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/Savannah.css" />
     <link rel="icon" type="image/png" href="static/images/Savannah.theme/icon.png" />
     <meta name="Author" content="Copyright (C) 2000, 2001, 2002, 2003 Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111, USA Verbatim copying and distribution of this entire article is permitted in any medium, provided this notice is preserved" />
     <meta name="Keywords" content="Savannah,GNU, FSF, Free Software Foundation, GNU/Linux, Linux, Emacs, GCC, Unix, Free Software, Operating System, GNU Kernel, HURD, gnus, SourceForge" />
@@ -16,7 +16,7 @@
   <body>
 
     <div class="main_menu">
-      <a href="/"><img src="images/Savannah.theme/floating.png" alt="Back to Savannah Homepage" border="0" width="118" height="100" /></a>
+      <a href="/"><img src="{{MEDIA_URL}}/images/Savannah.theme/floating.png" alt="Back to Savannah Homepage" border="0" width="118" height="100" /></a>
       <a href="">Hosted Projects</a>
       <a href="">Help</a>
 
