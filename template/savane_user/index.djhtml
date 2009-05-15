@@ -1,0 +1,22 @@
+{% extends "base.djhtml" %}
+
+{% block content %}
+<div class="root">
+<div class="body">
+<div class="menu_left">
+  asdfasdf
+</div>
+<div class="content">
+  <form action="/login" method="post">
+  <dl>
+    <dt>Login Name:</dt>
+    <dd><input type="text" name="form_loginname" value="" size="12" /></dd>
+    <dt>Password:</dt>
+    <dd><input type="password" name="form_pw" size="12" /></dd>
+    <dd><input type="submit" name="login" value="Login" /></dd>
+  </dl>
+  </form>
+</div>
+</div>
+</div>
+{% endblock %}
