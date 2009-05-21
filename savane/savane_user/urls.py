@@ -5,6 +5,8 @@ from savane_user import views
 urlpatterns = patterns ('',
                         url('^$',
                             views.index,
-                            name='test'
+                            ),
+                        url('^login$',
+                            views.sv_login,
                             ),
                         )
