@@ -28,7 +28,6 @@
 	    <option value="soft" selected="selected">Projects</option>
 	    <option value="people">People</option>
 	    <option value="cookbook">Cookbook</option>
-
 	    <option value="support">Support</option>
 	    <option value="bugs">Bugs</option>
 	    <option value="task">Tasks</option>
@@ -39,24 +38,31 @@
       </div>
     </div>
 
+    {% if authenticated %}
+    <div class="fast_menu_user">
+      <a href="">My Items</a>
+      <a href="">My Groups</a>
+      <a href="">Account Conf</a>
+      <a href="user/logout">Logout</a>
+    </div>
+    {% else %}
     <div class="menu_login">
-      <form action="/account/login" method="post">
+      <form action="/user/login" method="post">
 	<input type="hidden" name="uri" value="/" />
 	<dl>
 	  <dt>Login Name:</dt>
-	  <dd><input type="text" name="form_loginname" value="" size="12" /></dd>
+	  <dd><input type="text" name="username" value="" size="12" /></dd>
 	  <dt>Password:</dt>
-	  <dd><input type="password" name="form_pw" size="12" /></dd>
+	  <dd><input type="password" name="password" size="12" /></dd>
 	  <dd><input type="submit" name="login" value="Login" /></dd>
 	</dl>
       </form>
     </div>
+    {% endif %}
     <div class="root">
       <div class="body">
-        <div class="content">
-          {% block content %}
-          {% endblock %}
-        </div>
+        {% block content %}
+        {% endblock %}
       </div>
     </div>
 

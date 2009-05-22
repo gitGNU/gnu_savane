@@ -161,3 +161,14 @@ a:hover {
 }
 
 /* End Content*/
+
+/* Menu User */
+.fast_menu_user {
+   float: right;
+   width: auto;
+   margin-top: -30px;
+   display: block;
+   margin-right: 10px;
+   font-size: small;
+}
+/* End Menu User */
