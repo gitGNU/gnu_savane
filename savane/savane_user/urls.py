@@ -9,4 +9,7 @@ urlpatterns = patterns ('',
                         url('^login$',
                             views.sv_login,
                             ),
+                        url('^logout$',
+                            views.sv_logout,
+                            ),
                         )

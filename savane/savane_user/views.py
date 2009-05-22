@@ -1,7 +1,7 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import authenticate, login, logout
 
 def index( request ):
 
@@ -21,3 +21,10 @@ def sv_login( request ):
         return render_to_response( 'error.djhtml',
                                    {'error' : login_error
                                     } )
+
+    return HttpResponseRedirect ( '/' )
+
+def sv_logout( request ):
+    logout( request )
+
+    return HttpResponseRedirect( '/' )
