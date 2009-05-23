@@ -93,16 +93,23 @@ a:hover {
 .box {
    float: left;
    display: block;
-   width: 210px;
+   min-width: 210px;
+   /* width: 210px; */
    margin-left: 5px;
    padding-top: 5px;
-
-   background-color: #ffe4b7;
+   background-color: white;
 }
 
 .boxtitle {
    margin-top: -5px;
-   background-color: white;
+   background-color: #ffe4b7;
+}
+
+.boxitem {
+   border: thin dotted #E0C080;
+   border-top: none;
+   color:#333333;
+   padding:1%;
 }
 
 /* End Boxes */
