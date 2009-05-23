@@ -34,6 +34,12 @@ def sv_conf( request ):
                                RequestContext( request,
                                                ) )
 def sv_identity( request ):
+
+    if 'action' in request.POST and request.user.is_authenticated():
+        request.user.first_name = request.POST['new_name']
+        request.user.last_name = request.POST['new_last_name']
+        request.user.save()
+
     return render_to_response( 'savane_user/identity.djhtml',
                                RequestContext( request,
                                                ) )
