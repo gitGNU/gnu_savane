@@ -33,8 +33,10 @@
     <div class="boxitem">
       <form url?method="post">
       <dl>
-        <dt>New Name</dt>
+        <dt>Name</dt>
         <dd><input type="text" name="new_name" /></dd>
+        <dt>Last Name</dt>
+        <dd><input type="text" name="new_last_name" /></dd>
         <dd><input type="submit" value="Update" name="Update" /></dd>
       </dl>
       </form>
