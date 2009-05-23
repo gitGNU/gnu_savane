@@ -14,7 +14,6 @@
   </head>
 
   <body>
-
     <div class="main_menu">
       <a href="/"><img src="{{MEDIA_URL}}/images/Savannah.theme/floating.png" alt="Back to Savannah Homepage" border="0" width="118" height="100" /></a>
       <a href="">Hosted Projects</a>
@@ -37,13 +36,12 @@
 	</form>
       </div>
     </div>
-
-    {% if authenticated %}
+    {% if user.is_authenticated %}
     <div class="fast_menu_user">
-      <a href="">My Items</a>
-      <a href="">My Groups</a>
-      <a href="">Account Conf</a>
-      <a href="user/logout">Logout</a>
+      <a href="">Items</a>
+      <a href="">Groups</a>
+      <a href="/user/conf">Account Conf</a>
+      <a href="/user/logout">Logout</a>
     </div>
     {% else %}
     <div class="menu_login">
