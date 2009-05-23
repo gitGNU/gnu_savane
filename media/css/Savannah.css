@@ -162,6 +162,21 @@ a:hover {
 
 /* End Content*/
 
+/* Sections */
+
+.section {
+   width: 60%;
+}
+
+.section li {
+   display: inline;
+   margin-left: 10px;
+   border-top: medium groove #ffe4b7;
+   border-left: medium groove #ffe4b7;
+}
+
+/* End Sections */
+
 /* Menu User */
 .fast_menu_user {
    float: right;

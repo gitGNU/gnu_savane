@@ -12,4 +12,7 @@ urlpatterns = patterns ('',
                         url('^logout$',
                             views.sv_logout,
                             ),
+                        url('^conf$',
+                            views.sv_conf,
+                            ),
                         )

@@ -4,7 +4,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 
 def index( request ):
-
     return render_to_response( 'savane_user/index.djhtml',
                                RequestContext( request,
                                                ) )
@@ -28,3 +27,10 @@ def sv_logout( request ):
     logout( request )
 
     return HttpResponseRedirect( '/' )
+
+
+def sv_conf( request ):
+    return render_to_response( 'savane_user/conf.djhtml',
+                               RequestContext( request,
+                                               ) )
+
