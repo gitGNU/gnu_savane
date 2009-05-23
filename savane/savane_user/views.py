@@ -33,4 +33,7 @@ def sv_conf( request ):
     return render_to_response( 'savane_user/conf.djhtml',
                                RequestContext( request,
                                                ) )
-
+def sv_identity( request ):
+    return render_to_response( 'savane_user/identity.djhtml',
+                               RequestContext( request,
+                                               ) )
