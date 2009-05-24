@@ -1,35 +1,95 @@
 * Directory Description
 
-savane directory containts all the python(django) code.
+- 'savane/' directory containts all the python(django) code.
 
-media all the css and images
+- 'media/' all the css and images
 
-template all the templates that are necessary to run savane
+- 'template/' all the templates that are necessary to run savane
 
 
 * Debian Packages
 
-mysql-server
-python-mysqldb
-python-django
+apt-get install mysql-server python-django python-mysqldb 
+
 
 * Install process
 
+You will need to create the mysql user:
 
-You will need to create the mysql user (fill? )
+  mysql -e "CREATE DATABASE savane DEFAULT CHARACTER SET utf8;"
+  mysql -e "GRANT ALL PRIVILEGES ON savane.* TO 'savane' IDENTIFIED BY 'yourpass';"
 
 Edit the the file savane/settings.py and edit:
-
-SAVANE_ROOT to the proper absolute path of your savane installed
-
 DATABASE_USER, DATABASE_PASSWORD, DATABASE_HOST to the proper data
 needed to connect to the MySQL database.
 
 
-* Run
+* Run for testing:
 
 You can test your install using:
  $ python manage.py runserver
 
 
+* Run with Apache (to be tested):
 
+** Dedicated server:
+
+  <Location "/">
+    SetHandler python-program
+    PythonHandler django.core.handlers.modpython
+    SetEnv DJANGO_SETTINGS_MODULE savane.settings
+    #PythonOption django.root /myapp
+    PythonDebug On
+    PythonPath "['/var/www/framework/savane/'] + sys.path"
+  </Location>
+  <Location "/media">
+    SetHandler None
+  </Location>
+  <Location "/css">
+    SetHandler None
+  </Location>
+  <Location "/images">
+    SetHandler None
+  </Location>
+  Alias /media /usr/share/python-support/python-django/django/contrib/admin/media
+  Alias /css /var/www/framework/media/css
+  Alias /images /var/www/framework/media/images
+ 
+** FCGI + suExec (shared hosting):
+
+apt-get install libapache2-mod-fcgid
+(_not_ mod-fastcgi which is non-free)
+
+httpd.conf:
+
+  DocumentRoot /var/www/framework/savane
+  SuexecUserGroup myuser mygroup
+ 
+  Alias /media /usr/share/python-support/python-django/django/contrib/admin/media
+  Alias /css /var/www/framework/media/css
+  Alias /images /var/www/framework/media/images
+ 
+  <Directory "/var/www/framework/savane">
+    RewriteEngine On
+    RewriteRule ^/(media.*)$ /$1 [QSA,L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ savane.fcgi/$1 [QSA,L]
+  </Directory>
+ 
+ 
+savane.fcgi:
+
+#!/usr/bin/python
+import sys, os
+ 
+# Add a custom Python path.
+sys.path.insert(0, "/var/www/framework/savane")
+ 
+# Switch to the directory of your project. (Optional.)
+# os.chdir("/home/user/myproject")
+ 
+# Set the DJANGO_SETTINGS_MODULE environment variable.
+os.environ['DJANGO_SETTINGS_MODULE'] = "savane.settings"
+ 
+from django.core.servers.fastcgi import runfastcgi
+runfastcgi(method="threaded", daemonize="false")
