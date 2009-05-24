@@ -42,7 +42,7 @@ MEDIA_ROOT = ''
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = 'http://savannah.local:8000'
+MEDIA_URL = ''
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -75,12 +75,14 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'savane.urls'
 
+import os
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    SAVANE_ROOT + 'template/',
+    os.path.dirname(__file__) + '/../template',
 )
+STATIC_ROOT = '../media/'
 
 INSTALLED_APPS = (
     'django.contrib.auth',

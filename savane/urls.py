@@ -7,13 +7,18 @@ from django.conf import settings
 
 urlpatterns = patterns('',
                        (r'^$', "main.views.index"),
-                       (r'^css/(?P<path>.*)$', 'django.views.static.serve',
-                        {'document_root' : settings.SAVANE_ROOT + 'media/css/'}),
-                       (r'^images/(?P<path>.*)$', 'django.views.static.serve',
-                        {'document_root' : settings.SAVANE_ROOT + 'media/images/'}),
 
                        (r'^user/', include('savane_user.urls')),
 
                        # Uncomment the next line to enable the admin:
                        # (r'^admin/(.*)', admin.site.root),
                        )
+
+# Static content
+if settings.DEBUG:
+    urlpatterns += patterns('django.views.static',
+        (r'^css/(?P<path>.*)$', 'serve',
+         {'document_root' : settings.STATIC_ROOT + 'css/', 'show_indexes' : True}),
+        (r'^images/(?P<path>.*)$', 'serve',
+         {'document_root' : settings.STATIC_ROOT + 'images/', 'show_indexes' : True}),
+    )
