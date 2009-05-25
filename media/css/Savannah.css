@@ -170,6 +170,12 @@ a:hover {
    width: 80%;
 }
 
+.error {
+   width: 80%;
+   margin: 5px;
+   background-color: red;
+}
+
 /* End Content*/
 
 /* Sections */

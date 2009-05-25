@@ -64,6 +64,10 @@
         </div>
         {% endifequal %}
         <div class="content">
+          {% if error_message %}
+          <div class="error">
+          </div>
+          {% endif %}
         {% block content %}
         {% endblock %}
         </div>
