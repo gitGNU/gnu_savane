@@ -156,6 +156,8 @@ a:hover {
    height: 300px;
    background-color: #ffe4b7;
    float: left;
+   margin: 4px;
+   border: thin dotted #E0C080;
 }
 
 /* End Menu */

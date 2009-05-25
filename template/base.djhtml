@@ -59,8 +59,14 @@
     {% endif %}
     <div class="root">
       <div class="body">
+        {% ifequal has_left_menu None %}
+        <div class="menu_left">
+        </div>
+        {% endifequal %}
+        <div class="content">
         {% block content %}
         {% endblock %}
+        </div>
       </div>
     </div>
 
