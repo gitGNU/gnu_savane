@@ -1,9 +1,6 @@
 {% extends "base.djhtml" %}
 
 {% block content %}
-<div class="menu_left">
-</div>
-<div class="content">
 <form action="login" method="post">
 <dl>
   <dt>Login Name:</dt>
@@ -13,5 +10,4 @@
   <dd><input type="submit" name="login" value="Login" /></dd>
 </dl>
 </form>
-</div>
 {% endblock %}

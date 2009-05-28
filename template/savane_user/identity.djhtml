@@ -1,37 +1,34 @@
 {% extends "base.djhtml" %}
 
 {% block content %}
-<div class="menu_left">
-</div>
 
-<div class="content">
-  <ul class="section">
-    <li><a href="identity">Identity</a></li>
-    <li><a href="authentication">Authentication</a></li>
-    <li><a href="mail">Mail</a></li>
-  </ul>
+<ul class="section">
+  <li><a href="identity">Identity</a></li>
+  <li><a href="authentication">Authentication</a></li>
+  <li><a href="mail">Mail</a></li>
+</ul>
 
-  <div class="box">
-    <div class="boxtitle">General Information</div>
-    <div class="boxitem">
-      <dl>
-        <dt>Name</dt>
-        <dd>{{ user.first_name }} {{ user.last_name }}</dd>
-        <dt>Login</dt>
-        <dd>{{ user }}</dd>
-        <dt>Id</dt>
-        <dd></dd>
-        <dt>Email Address</dt>
-        <dd></dd>
-        <dt>Member Since</dt>
-        <dd></dd>
-      </dl>
-    </div>
+<div class="box">
+  <div class="boxtitle">General Information</div>
+  <div class="boxitem">
+    <dl>
+      <dt>Name</dt>
+      <dd>{{ user.first_name }} {{ user.last_name }}</dd>
+      <dt>Login</dt>
+      <dd>{{ user }}</dd>
+      <dt>Id</dt>
+      <dd></dd>
+      <dt>Email Address</dt>
+      <dd></dd>
+      <dt>Member Since</dt>
+      <dd></dd>
+    </dl>
   </div>
-  <div class="box">
-    <div class="boxtitle">Change Name</div>
-    <div class="boxitem">
-      <form method="post">
+</div>
+<div class="box">
+  <div class="boxtitle">Change Name</div>
+  <div class="boxitem">
+    <form method="post">
       <input type="hidden" name="action" value="update" />
       <dl>
         <dt>Name</dt>
@@ -40,8 +37,7 @@
         <dd><input type="text" name="new_last_name" /></dd>
         <dd><input type="submit" value="Update" name="Update" /></dd>
       </dl>
-      </form>
-    </div>
+    </form>
   </div>
 </div>
 

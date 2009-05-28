@@ -1,16 +1,10 @@
 {% extends "base.djhtml" %}
 
 {% block content %}
-<div class="menu_left">
-</div>
-
-<div class="content">
 <ul class="section">
   <li><a href="identity">Identity</a></li>
   <li><a href="authentication">Authentication</a></li>
   <li><a href="mail">Mail</a></li>
 </ul>
-
-</div>
 
 {% endblock %}
