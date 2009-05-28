@@ -1,0 +1,21 @@
+{% extends "base.djhtml" %}
+
+{% block content %}
+  <div class="box">
+    <div class="boxtitle">Change Password</div>
+    <div class="boxitem">
+      <form method="post">
+        <input type="hidden" name="action" value="update" />
+      <dl>
+        <dt>Old Password</dt>
+        <dd><input type="password" name="old_password" /></dd>
+        <dt>New Password</dt>
+        <dd><input type="password" name="new_password" /></dd>
+        <dt>Repeate Password</dt>
+        <dd><input type="passworD" name="repeated_password" /></dd>
+        <dd><input type="submit" value="Update" name="Update" /></dd>
+      </dl>
+      </form>
+    </div>
+  </div>
+{% endblock %}

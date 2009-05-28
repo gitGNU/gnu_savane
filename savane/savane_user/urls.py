@@ -18,4 +18,7 @@ urlpatterns = patterns ('',
                         url('^conf/identity$',
                             views.sv_identity,
                             ),
+                        url('^conf/authentication$',
+                            views.sv_authentication,
+                            ),
                         )

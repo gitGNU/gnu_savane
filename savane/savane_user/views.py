@@ -43,3 +43,16 @@ def sv_identity( request ):
     return render_to_response( 'savane_user/identity.djhtml',
                                RequestContext( request,
                                                ) )
+def sv_authentication( request ):
+    if request.user.is_authenticated() is False:
+        return HttpResponseRedirect( '/' )
+
+    if 'action' in request.POST:
+        old_password = request.POST['old_password']
+        new_password = request.POST['new_password']
+        repeated_password = request.POST['repeated_password']
+
+    return render_to_response( 'savane_user/authentication.djhtml',
+                               RequestContext( request,
+                                               ) )
+
