@@ -2,6 +2,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
+from django import forms
 
 def index( request ):
     return render_to_response( 'savane_user/index.djhtml',
@@ -46,13 +47,31 @@ def sv_identity( request ):
 def sv_authentication( request ):
     if request.user.is_authenticated() is False:
         return HttpResponseRedirect( '/' )
+    error = ''
+    if request.method == 'POST':
+        form = PasswordForm( request.POST )
 
-    if 'action' in request.POST:
-        old_password = request.POST['old_password']
-        new_password = request.POST['new_password']
-        repeated_password = request.POST['repeated_password']
+        if form.is_valid():
+            success = u"Valid Form"
+            form = PasswordForm( )
+            return render_to_response( 'savane_user/authentication.djhtml',
+                                       RequestContext( request,
+                                                       { 'form' : form,
+                                                         'success_message' : success,}
+                                                       ) )
+        else:
+            error = u"Isn't valid"
+    else:
+        form = PasswordForm()
 
     return render_to_response( 'savane_user/authentication.djhtml',
                                RequestContext( request,
+                                               {'form' : form,
+                                                'error_message' : error,}
                                                ) )
 
+class PasswordForm( forms.Form ):
+    old_password = forms.CharField(widget=forms.PasswordInput,required=True)
+    new_password = forms.CharField(widget=forms.PasswordInput,required=True)
+    repated_password = forms.CharField(widget=forms.PasswordInput,required=True)
+    accion = forms.CharField( widget=forms.HiddenInput, required=True, initial='update' )
