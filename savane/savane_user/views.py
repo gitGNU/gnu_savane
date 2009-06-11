@@ -47,18 +47,25 @@ def sv_identity( request ):
 def sv_authentication( request ):
     if request.user.is_authenticated() is False:
         return HttpResponseRedirect( '/' )
+
     error = ''
     if request.method == 'POST':
         form = PasswordForm( request.POST )
 
         if form.is_valid():
-            success = u"Valid Form"
-            form = PasswordForm( )
-            return render_to_response( 'savane_user/authentication.djhtml',
-                                       RequestContext( request,
-                                                       { 'form' : form,
-                                                         'success_message' : success,}
-                                                       ) )
+            if request.user.check_password( request.POST['old_password'] ):
+                form = PasswordForm( )
+                return render_to_response( 'savane_user/authentication.djhtml',
+                                           RequestContext( request,
+                                                           { 'form' : form,
+                                                             'success_message' : success,}
+                                                           ) )
+            else:
+                return render_to_response( 'savane_user/authentication.djhtml',
+                                           RequestContext( request,
+                                                           { 'form' : form,
+                                                             'error_message' : "Current password doesn't match",}
+                                                           ))
         else:
             error = u"Isn't valid"
     else:
@@ -70,8 +77,42 @@ def sv_authentication( request ):
                                                 'error_message' : error,}
                                                ) )
 
+
+
 class PasswordForm( forms.Form ):
     old_password = forms.CharField(widget=forms.PasswordInput,required=True)
     new_password = forms.CharField(widget=forms.PasswordInput,required=True)
     repated_password = forms.CharField(widget=forms.PasswordInput,required=True)
     accion = forms.CharField( widget=forms.HiddenInput, required=True, initial='update' )
+
+def sv_mail( request ):
+
+    if request.method == 'POST':
+        form = MailForm( request.POST )
+
+        if form.is_valid():
+            request.user.email = request.POST['email']
+            request.user.save()
+            return render_to_response( 'savane_user/mail.djhtml',
+                                       RequestContext( request,
+                                                       { 'form' : form,
+                                                         'success_message' : 'The E-mail address was succesfully changed'
+                                                         }
+                                                       ) )
+        else:
+            return render_to_response( 'savane_user/mail.djhtml',
+                                       RequestContext( request,
+                                                       { 'form' : form,
+                                                         'error_message' : 'Could not change the e-mail address'
+                                                         }
+                                                       ) )
+    else:
+        form = MailForm()
+
+    return render_to_response( 'savane_user/mail.djhtml',
+                               RequestContext( request,
+                                               { 'form' : form }
+                                               ) )
+
+class MailForm( forms.Form ):
+    email = forms.CharField(required=True)
