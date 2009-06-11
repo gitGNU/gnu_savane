@@ -14,9 +14,10 @@
 
   </head>
 
+  {{request.GET.test}}
   <body>
     <div class="main_menu">
-      <a href="/"><img src="{{MEDIA_URL}}/images/Savannah.theme/floating.png" alt="Back to Savannah Homepage" border="0" width="118" height="100" /></a>
+      <a href="/"><img src="{{MEDIA_URL}}/images/floating.png" alt="Back to Savannah Homepage" border="0" width="118" height="100" /></a>
       <a href="">Hosted Projects</a>
       <a href="">Help</a>
 
