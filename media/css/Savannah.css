@@ -156,6 +156,8 @@ a:hover {
    height: 300px;
    background-color: #ffe4b7;
    float: left;
+   margin: 4px;
+   border: thin dotted #E0C080;
 }
 
 /* End Menu */
@@ -166,6 +168,12 @@ a:hover {
    margin-left: 10px;
    float: left;
    width: 80%;
+}
+
+.error {
+   width: 80%;
+   margin: 5px;
+   background-color: red;
 }
 
 /* End Content*/

@@ -1,0 +1,22 @@
+{% extends "base.djhtml" %}
+
+{% block content %}
+<div class="box">
+  <div class="boxtitle">Change Password</div>
+  <div class="boxitem">
+    <form method="post">
+      <dl>
+        {% for field in form %}
+        {% if field.is_hidden %}
+        {{field}}
+        {% else %}
+        <dt>{{ field.label_tag }} {{ field.error }}</dt>
+        <dd>{{ field }}</dd>
+        {% endif %}
+        {% endfor %}
+        <dd><input type="submit" value="Update" name="Update" /></dd>
+      </dl>
+    </form>
+  </div>
+</div>
+{% endblock %}

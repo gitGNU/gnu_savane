@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US.UTF-8" xml:lang="en-US.UTF-8">
@@ -13,9 +14,10 @@
 
   </head>
 
+  {{request.GET.test}}
   <body>
     <div class="main_menu">
-      <a href="/"><img src="{{MEDIA_URL}}/images/Savannah.theme/floating.png" alt="Back to Savannah Homepage" border="0" width="118" height="100" /></a>
+      <a href="/"><img src="{{MEDIA_URL}}/images/floating.png" alt="Back to Savannah Homepage" border="0" width="118" height="100" /></a>
       <a href="">Hosted Projects</a>
       <a href="">Help</a>
 
@@ -59,8 +61,24 @@
     {% endif %}
     <div class="root">
       <div class="body">
+        {% ifequal has_left_menu None %}
+        <div class="menu_left">
+        </div>
+        {% endifequal %}
+        <div class="content">
+          {% if error_message %}
+          <div class="error">
+            {{ error_message }}
+          </div>
+          {% endif %}
+          {% if success_message %}
+          <div class="success">
+            {{ success_message }}
+          </div>
+          {% endif %}
         {% block content %}
         {% endblock %}
+        </div>
       </div>
     </div>
 
