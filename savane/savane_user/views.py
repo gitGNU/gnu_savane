@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django import forms
 
 def index( request ):
-    return render_to_response( 'savane_user/index.djhtml',
+    return render_to_response( 'savane_user/index.html',
                                RequestContext( request,
                                                ) )
 def sv_login( request ):
@@ -18,7 +18,7 @@ def sv_login( request ):
         login( request, user )
     else:
         login_error = u"User or password didn't match"
-        return render_to_response( 'error.djhtml',
+        return render_to_response( 'error.html',
                                    {'error' : login_error
                                     } )
 
@@ -31,8 +31,15 @@ def sv_logout( request ):
 
 
 def sv_conf( request ):
-    return render_to_response( 'savane_user/conf.djhtml',
+
+    form_pass = PasswordForm ()
+    form_mail = MailForm ()
+
+    return render_to_response( 'savane_user/conf.html',
                                RequestContext( request,
+                                               { 'form_pass' : form_pass,
+                                                 'form_mail' : form_mail,
+                                                 }
                                                ) )
 def sv_identity( request ):
 
@@ -41,7 +48,7 @@ def sv_identity( request ):
         request.user.last_name = request.POST['new_last_name']
         request.user.save()
 
-    return render_to_response( 'savane_user/identity.djhtml',
+    return render_to_response( 'savane_user/identity.html',
                                RequestContext( request,
                                                ) )
 def sv_authentication( request ):
@@ -55,13 +62,13 @@ def sv_authentication( request ):
         if form.is_valid():
             if request.user.check_password( request.POST['old_password'] ):
                 form = PasswordForm( )
-                return render_to_response( 'savane_user/authentication.djhtml',
+                return render_to_response( 'savane_user/authentication.html',
                                            RequestContext( request,
                                                            { 'form' : form,
                                                              'success_message' : success,}
                                                            ) )
             else:
-                return render_to_response( 'savane_user/authentication.djhtml',
+                return render_to_response( 'savane_user/authentication.html',
                                            RequestContext( request,
                                                            { 'form' : form,
                                                              'error_message' : "Current password doesn't match",}
@@ -71,7 +78,7 @@ def sv_authentication( request ):
     else:
         form = PasswordForm()
 
-    return render_to_response( 'savane_user/authentication.djhtml',
+    return render_to_response( 'savane_user/authentication.html',
                                RequestContext( request,
                                                {'form' : form,
                                                 'error_message' : error,}
@@ -83,7 +90,12 @@ class PasswordForm( forms.Form ):
     old_password = forms.CharField(widget=forms.PasswordInput,required=True)
     new_password = forms.CharField(widget=forms.PasswordInput,required=True)
     repated_password = forms.CharField(widget=forms.PasswordInput,required=True)
-    accion = forms.CharField( widget=forms.HiddenInput, required=True, initial='update' )
+    accion = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_password' )
+
+    def clean( self ):
+        cleaned_data = self.cleaned_data
+        new_password = cleaned_data.get('new_password')
+        old_password = cleaned_data.get('old_password')
 
 def sv_mail( request ):
 
@@ -93,14 +105,14 @@ def sv_mail( request ):
         if form.is_valid():
             request.user.email = request.POST['email']
             request.user.save()
-            return render_to_response( 'savane_user/mail.djhtml',
+            return render_to_response( 'savane_user/mail.html',
                                        RequestContext( request,
                                                        { 'form' : form,
                                                          'success_message' : 'The E-mail address was succesfully changed'
                                                          }
                                                        ) )
         else:
-            return render_to_response( 'savane_user/mail.djhtml',
+            return render_to_response( 'savane_user/mail.html',
                                        RequestContext( request,
                                                        { 'form' : form,
                                                          'error_message' : 'Could not change the e-mail address'
@@ -109,7 +121,7 @@ def sv_mail( request ):
     else:
         form = MailForm()
 
-    return render_to_response( 'savane_user/mail.djhtml',
+    return render_to_response( 'savane_user/mail.html',
                                RequestContext( request,
                                                { 'form' : form }
                                                ) )
