@@ -34,11 +34,13 @@ def sv_conf( request ):
 
     form_pass = PasswordForm ()
     form_mail = MailForm ()
+    form_identity = IdentityForm ()
 
     return render_to_response( 'savane_user/conf.html',
                                RequestContext( request,
                                                { 'form_pass' : form_pass,
                                                  'form_mail' : form_mail,
+                                                 'form_identity' : form_identity,
                                                  }
                                                ) )
 def sv_identity( request ):
@@ -85,18 +87,6 @@ def sv_authentication( request ):
                                                ) )
 
 
-
-class PasswordForm( forms.Form ):
-    old_password = forms.CharField(widget=forms.PasswordInput,required=True)
-    new_password = forms.CharField(widget=forms.PasswordInput,required=True)
-    repated_password = forms.CharField(widget=forms.PasswordInput,required=True)
-    accion = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_password' )
-
-    def clean( self ):
-        cleaned_data = self.cleaned_data
-        new_password = cleaned_data.get('new_password')
-        old_password = cleaned_data.get('old_password')
-
 def sv_mail( request ):
 
     if request.method == 'POST':
@@ -128,3 +118,18 @@ def sv_mail( request ):
 
 class MailForm( forms.Form ):
     email = forms.CharField(required=True)
+
+class PasswordForm( forms.Form ):
+    old_password = forms.CharField(widget=forms.PasswordInput,required=True)
+    new_password = forms.CharField(widget=forms.PasswordInput,required=True)
+    repated_password = forms.CharField(widget=forms.PasswordInput,required=True)
+    accion = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_password' )
+
+    def clean( self ):
+        cleaned_data = self.cleaned_data
+        new_password = cleaned_data.get('new_password')
+        old_password = cleaned_data.get('old_password')
+
+class IdentityForm( forms.Form ):
+    name = forms.CharField( required = True )
+    last_name = forms.CharField( required = False )

@@ -1,13 +1,6 @@
-{# -*- Mode: django-html; -*- #}
 {% extends "base.html" %}
 
 {% block content %}
-<ul class="section">
-  <li><a href="identity">Identity</a></li>
-  <li><a href="authentication">Authentication</a></li>
-  <li><a href="mail">Mail</a></li>
-</ul>
-
 <div class="box">
   <div class="boxtitle">Change Password</div>
   <div class="boxitem">
@@ -31,10 +24,45 @@
   <div class="boxtitle">Change E-Mail</div>
   <div class="boxitem">
     <form method="post">
-    {{form_mail.as_p}}
-    <input type="submit" value="Update" />
+      <dl>
+        {% for field in form_mail %}
+        {% if field.is_hidden %}
+        {{field}}
+        {% else %}
+        <dt>{{ field.label_tag }} {{ field.error }}</dt>
+        <dd>{{ field }}</dd>
+        {% endif %}
+        {% endfor %}
+        <dd><input type="submit" value="Update" name="Update" /></dd>
+      </dl>
+    </form>
+  </div>
+</div>
+
+<div class="box">
+  <div class="boxtitle">Change Name</div>
+  <div class="boxitem">
+    <form method="post">
+      <dl>
+        {% for field in form_identity %}
+        {% if field.is_hidden %}
+        {{field}}
+        {% else %}
+        <dt>{{ field.label_tag }} {{ field.error }}</dt>
+        <dd>{{ field }}</dd>
+        {% endif %}
+        {% endfor %}
+        <dd><input type="submit" value="Update" name="Update" /></dd>
+      </dl>
     </form>
   </div>
 </div>
 
 {% endblock %}
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}
