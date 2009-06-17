@@ -1,4 +1,3 @@
-{# -*- Mode: django-html; -*- #}
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US.UTF-8" xml:lang="en-US.UTF-8">
@@ -22,20 +21,20 @@
       <a href="">Help</a>
 
       <div class="menu_search">
-	<form action="/search/#options" method="get" >
-	  <input type="text" size="15" name="words" value="" />
-	  <em>in</em>
-	  <select name="type_of_search">
-	    <option value="soft" selected="selected">Projects</option>
-	    <option value="people">People</option>
-	    <option value="cookbook">Cookbook</option>
-	    <option value="support">Support</option>
-	    <option value="bugs">Bugs</option>
-	    <option value="task">Tasks</option>
-	    <option value="patch">Patches</option>
-	  </select>
-	  <input type="submit" name="Search" value="Search" /><input type="hidden" name="exact" value="1" />
-	</form>
+        <form action="/search/#options" method="get" >
+          <input type="text" size="15" name="words" value="" />
+          <em>in</em>
+          <select name="type_of_search">
+            <option value="soft" selected="selected">Projects</option>
+            <option value="people">People</option>
+            <option value="cookbook">Cookbook</option>
+            <option value="support">Support</option>
+            <option value="bugs">Bugs</option>
+            <option value="task">Tasks</option>
+            <option value="patch">Patches</option>
+          </select>
+          <input type="submit" name="Search" value="Search" /><input type="hidden" name="exact" value="1" />
+        </form>
       </div>
     </div>
     {% if user.is_authenticated %}
@@ -48,14 +47,14 @@
     {% else %}
     <div class="menu_login">
       <form action="/user/login" method="post">
-	<input type="hidden" name="uri" value="/" />
-	<dl>
-	  <dt>Login Name:</dt>
-	  <dd><input type="text" name="username" value="" size="12" /></dd>
-	  <dt>Password:</dt>
-	  <dd><input type="password" name="password" size="12" /></dd>
-	  <dd><input type="submit" name="login" value="Login" /></dd>
-	</dl>
+        <input type="hidden" name="uri" value="/" />
+        <dl>
+          <dt>Login Name:</dt>
+          <dd><input type="text" name="username" value="" size="12" /></dd>
+          <dt>Password:</dt>
+          <dd><input type="password" name="password" size="12" /></dd>
+          <dd><input type="submit" name="login" value="Login" /></dd>
+        </dl>
       </form>
     </div>
     {% endif %}
@@ -76,8 +75,8 @@
             {{ success_message }}
           </div>
           {% endif %}
-        {% block content %}
-        {% endblock %}
+          {% block content %}
+          {% endblock %}
         </div>
       </div>
     </div>
@@ -108,6 +107,12 @@
       <a href="http://savannah.nongnu.org/projects/savane-cleanup">Powered by Savane 3.1-cleanup</a>
     </div>
     <!-- footer ends here -->
-
   </body>
 </html>
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}
