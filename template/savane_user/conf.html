@@ -10,7 +10,7 @@
         {% if field.is_hidden %}
         {{field}}
         {% else %}
-        <dt>{{ field.label_tag }} {{ field.error }}</dt>
+        <dt>{{ field.label_tag }} {{ field.errors }}</dt>
         <dd>{{ field }}</dd>
         {% endif %}
         {% endfor %}
@@ -29,7 +29,7 @@
         {% if field.is_hidden %}
         {{field}}
         {% else %}
-        <dt>{{ field.label_tag }} {{ field.error }}</dt>
+        <dt>{{ field.label_tag }} {{ field.errors }}</dt>
         <dd>{{ field }}</dd>
         {% endif %}
         {% endfor %}
@@ -48,7 +48,7 @@
         {% if field.is_hidden %}
         {{field}}
         {% else %}
-        <dt>{{ field.label_tag }} {{ field.error }}</dt>
+        <dt>{{ field.label_tag }} {{ field.errors }}</dt>
         <dd>{{ field }}</dd>
         {% endif %}
         {% endfor %}
