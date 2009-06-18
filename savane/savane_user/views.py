@@ -32,9 +32,28 @@ def sv_logout( request ):
 
 def sv_conf( request ):
 
+    error = ''
     form_pass = PasswordForm ()
     form_mail = MailForm ()
     form_identity = IdentityForm ()
+    form = None
+
+    if request.method == 'POST':
+        action = request.POST['action']
+        if action is 'update_password':
+            form_pass = PasswordForm( request.POST )
+            form = form_pass
+        elif action == 'update_mail':
+            form_mail = MailForm( request.POST )
+            form = form_mail
+        elif action is 'update_identity':
+            form_identity = MailForm( request.POST )
+            form = form_identity
+
+        if form is not None and form.is_valid():
+            pass
+        else:
+            pass
 
     return render_to_response( 'savane_user/conf.html',
                                RequestContext( request,
@@ -117,13 +136,14 @@ def sv_mail( request ):
                                                ) )
 
 class MailForm( forms.Form ):
-    email = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
+    action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_mail' )
 
 class PasswordForm( forms.Form ):
     old_password = forms.CharField(widget=forms.PasswordInput,required=True)
     new_password = forms.CharField(widget=forms.PasswordInput,required=True)
     repated_password = forms.CharField(widget=forms.PasswordInput,required=True)
-    accion = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_password' )
+    action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_password' )
 
     def clean( self ):
         cleaned_data = self.cleaned_data
@@ -133,3 +153,4 @@ class PasswordForm( forms.Form ):
 class IdentityForm( forms.Form ):
     name = forms.CharField( required = True )
     last_name = forms.CharField( required = False )
+    action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_identity' )
