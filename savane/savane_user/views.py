@@ -49,7 +49,7 @@ def sv_conf( request ):
             form_mail = MailForm( request.POST )
             form = form_mail
         elif action == 'update_identity':
-            form_identity = MailForm( request.POST )
+            form_identity = IdentityForm( request.POST )
             form = form_identity
 
         if form is not None and form.is_valid():
@@ -61,7 +61,10 @@ def sv_conf( request ):
                 request.user.save()
                 success_msg = 'The E-Mail address was succesfully updated. New E-Mail address is <'+new_email+'>'
             elif action == 'update_identity':
-                pass
+                request.user.first_name = request.POST['name']
+                request.user.last_name = request.POST['last_name']
+                request.user.save()
+                success_msg = 'Personal information changed.'
 
     return render_to_response( 'savane_user/conf.html',
                                RequestContext( request,
