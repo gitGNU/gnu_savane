@@ -65,14 +65,14 @@
         </div>
         {% endifequal %}
         <div class="content">
-          {% if error_message %}
+          {% if error_msg %}
           <div class="error">
-            {{ error_message }}
+            {{ error_msg }}
           </div>
           {% endif %}
-          {% if success_message %}
+          {% if success_msg %}
           <div class="success">
-            {{ success_message }}
+            {{ success_msg }}
           </div>
           {% endif %}
           {% block content %}
