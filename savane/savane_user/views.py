@@ -32,7 +32,9 @@ def sv_logout( request ):
 
 def sv_conf( request ):
 
-    error = ''
+    error_msg = ''
+    success_msg = ''
+
     form_pass = PasswordForm ()
     form_mail = MailForm ()
     form_identity = IdentityForm ()
@@ -40,26 +42,33 @@ def sv_conf( request ):
 
     if request.method == 'POST':
         action = request.POST['action']
-        if action is 'update_password':
+        if action == 'update_password':
             form_pass = PasswordForm( request.POST )
             form = form_pass
         elif action == 'update_mail':
             form_mail = MailForm( request.POST )
             form = form_mail
-        elif action is 'update_identity':
+        elif action == 'update_identity':
             form_identity = MailForm( request.POST )
             form = form_identity
 
         if form is not None and form.is_valid():
-            pass
-        else:
-            pass
+            if action == 'update_password':
+                pass
+            elif action == 'update_mail':
+                request.user.email = request.POST['email']
+                request.user.save()
+                success_msg = 'The E-Mail address was succesfully updated.'
+            elif action == 'update_identity':
+                pass
 
     return render_to_response( 'savane_user/conf.html',
                                RequestContext( request,
                                                { 'form_pass' : form_pass,
                                                  'form_mail' : form_mail,
                                                  'form_identity' : form_identity,
+                                                 'error_msg' : error_msg,
+                                                 'success_msg' : success_msg,
                                                  }
                                                ) )
 def sv_identity( request ):
