@@ -75,16 +75,7 @@ def sv_conf( request ):
                                                  'success_msg' : success_msg,
                                                  }
                                                ) )
-def sv_identity( request ):
 
-    if 'action' in request.POST and request.user.is_authenticated():
-        request.user.first_name = request.POST['new_name']
-        request.user.last_name = request.POST['new_last_name']
-        request.user.save()
-
-    return render_to_response( 'savane_user/identity.html',
-                               RequestContext( request,
-                                               ) )
 def sv_authentication( request ):
     if request.user.is_authenticated() is False:
         return HttpResponseRedirect( '/' )
