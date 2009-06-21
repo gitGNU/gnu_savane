@@ -56,9 +56,10 @@ def sv_conf( request ):
             if action == 'update_password':
                 pass
             elif action == 'update_mail':
-                request.user.email = request.POST['email']
+                new_email = request.POST['email']
+                request.user.email = new_email
                 request.user.save()
-                success_msg = 'The E-Mail address was succesfully updated.'
+                success_msg = 'The E-Mail address was succesfully updated. New E-Mail address is <'+new_email+'>'
             elif action == 'update_identity':
                 pass
 
@@ -114,35 +115,6 @@ def sv_authentication( request ):
                                                 'error_message' : error,}
                                                ) )
 
-
-def sv_mail( request ):
-
-    if request.method == 'POST':
-        form = MailForm( request.POST )
-
-        if form.is_valid():
-            request.user.email = request.POST['email']
-            request.user.save()
-            return render_to_response( 'savane_user/mail.html',
-                                       RequestContext( request,
-                                                       { 'form' : form,
-                                                         'success_message' : 'The E-mail address was succesfully changed'
-                                                         }
-                                                       ) )
-        else:
-            return render_to_response( 'savane_user/mail.html',
-                                       RequestContext( request,
-                                                       { 'form' : form,
-                                                         'error_message' : 'Could not change the e-mail address'
-                                                         }
-                                                       ) )
-    else:
-        form = MailForm()
-
-    return render_to_response( 'savane_user/mail.html',
-                               RequestContext( request,
-                                               { 'form' : form }
-                                               ) )
 
 class MailForm( forms.Form ):
     email = forms.EmailField(required=True)
