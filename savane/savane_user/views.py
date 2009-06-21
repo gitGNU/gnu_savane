@@ -54,7 +54,11 @@ def sv_conf( request ):
 
         if form is not None and form.is_valid():
             if action == 'update_password':
-                pass
+                if request.user.check_password( request.POST['old_password'] ):
+                    request.user.set_password( request.POST['new_password'] );
+                    success_msg = "Password was successfully changed."
+                else:
+                    error_msg = "Old password didn't match."
             elif action == 'update_mail':
                 new_email = request.POST['email']
                 request.user.email = new_email
