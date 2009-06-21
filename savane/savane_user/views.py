@@ -80,40 +80,6 @@ def sv_conf( request ):
                                                  }
                                                ) )
 
-def sv_authentication( request ):
-    if request.user.is_authenticated() is False:
-        return HttpResponseRedirect( '/' )
-
-    error = ''
-    if request.method == 'POST':
-        form = PasswordForm( request.POST )
-
-        if form.is_valid():
-            if request.user.check_password( request.POST['old_password'] ):
-                form = PasswordForm( )
-                return render_to_response( 'savane_user/authentication.html',
-                                           RequestContext( request,
-                                                           { 'form' : form,
-                                                             'success_message' : success,}
-                                                           ) )
-            else:
-                return render_to_response( 'savane_user/authentication.html',
-                                           RequestContext( request,
-                                                           { 'form' : form,
-                                                             'error_message' : "Current password doesn't match",}
-                                                           ))
-        else:
-            error = u"Isn't valid"
-    else:
-        form = PasswordForm()
-
-    return render_to_response( 'savane_user/authentication.html',
-                               RequestContext( request,
-                                               {'form' : form,
-                                                'error_message' : error,}
-                                               ) )
-
-
 class MailForm( forms.Form ):
     email = forms.EmailField(required=True)
     action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_mail' )

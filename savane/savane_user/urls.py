@@ -15,7 +15,4 @@ urlpatterns = patterns ('',
                         url('^conf/$',
                             views.sv_conf,
                             ),
-                        url('^conf/authentication$',
-                            views.sv_authentication,
-                            ),
                         )
