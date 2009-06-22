@@ -57,18 +57,21 @@ def sv_conf( request ):
                 if request.user.check_password( request.POST['old_password'] ):
                     request.user.set_password( request.POST['new_password'] );
                     success_msg = "Password was successfully changed."
+                    form_pass = PasswordForm()
                 else:
                     error_msg = "Old password didn't match."
             elif action == 'update_mail':
                 new_email = request.POST['email']
                 request.user.email = new_email
                 request.user.save()
+                form_mail = MilForm()
                 success_msg = 'The E-Mail address was succesfully updated. New E-Mail address is <'+new_email+'>'
             elif action == 'update_identity':
                 request.user.first_name = request.POST['name']
                 request.user.last_name = request.POST['last_name']
                 request.user.save()
                 success_msg = 'Personal information changed.'
+                form_identity = IdentityForm()
 
     return render_to_response( 'savane_user/conf.html',
                                RequestContext( request,
