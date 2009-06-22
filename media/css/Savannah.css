@@ -96,6 +96,7 @@ a:hover {
    min-width: 210px;
    /* width: 210px; */
    margin-left: 5px;
+   margin-top: 10px;
    padding-top: 5px;
    background-color: white;
 }
@@ -166,6 +167,7 @@ a:hover {
 
 .content {
    margin-left: 10px;
+   margin-top: 10px;
    float: left;
    width: 80%;
 }
