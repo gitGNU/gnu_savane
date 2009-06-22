@@ -46,7 +46,7 @@
     </div>
     {% else %}
     <div class="menu_login">
-      <form action="/user/login" method="post">
+      <form action="{% url savane_user.views.sv_login %}" method="post">
         <input type="hidden" name="uri" value="/" />
         <dl>
           <dt>Login Name:</dt>
