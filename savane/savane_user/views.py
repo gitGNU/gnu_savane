@@ -88,6 +88,11 @@ def sv_resume_skill( request ):
                                RequestContext( request,
                                                ) )
 
+def sv_ssh_gpg( request ):
+    return render_to_response( 'savane_user/ssh_gpg.html',
+                               RequestContext( request,
+                                               ) )
+
 class MailForm( forms.Form ):
     email = forms.EmailField(required=True)
     action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_mail' )
