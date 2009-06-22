@@ -15,4 +15,7 @@ urlpatterns = patterns ('',
                         url('^conf/$',
                             views.sv_conf,
                             ),
+                        url('^conf/resume_skill$',
+                            views.sv_resume_skill,
+                        ),
                         )

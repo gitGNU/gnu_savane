@@ -83,6 +83,11 @@ def sv_conf( request ):
                                                  }
                                                ) )
 
+def sv_resume_skill( request ):
+    return render_to_response( 'savane_user/resume_skill.html',
+                               RequestContext( request,
+                                               ) )
+
 class MailForm( forms.Form ):
     email = forms.EmailField(required=True)
     action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_mail' )

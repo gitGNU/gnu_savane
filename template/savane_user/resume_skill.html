@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul class="section">
+  <li><a href="{% url savane_user.views.sv_conf %}">General Configuration</a></li>
+  <li><a href="{% url savane_user.views.sv_resume_skill %}">Resume &amp; Skill</a></li>
+</ul>
+
+
+{% endblock %}
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}
