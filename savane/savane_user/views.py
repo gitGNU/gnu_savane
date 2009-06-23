@@ -108,9 +108,29 @@ def sv_ssh_gpg( request ):
 
         if form is not None and form.is_valid():
             if action == 'update_ssh':
-                pass
+                keys = list()
+                for i in range( 1, 6 ):
+                    key_str = 'key_'+str(i)
+                    key = request.POST[ key_str ]
+                    if key != '':
+                        keys.append( key )
+                keys_str = str('###').join( keys )
+
+                request.user.authorized_keys = keys_str
+                request.user.save()
+                success_msg = 'Authorized keys stored.'
             elif action == 'update_gpg':
                 pass
+    else:
+        keys_data = dict({'action':'update_ssh'})
+        keys = request.user.authorized_keys.split('###')
+        i = 1
+        for key in keys:
+            key_str = 'key_'+str(i)
+            keys_data[ key_str ] = key
+            i += 1
+
+        form_ssh = SSHForm( keys_data )
 
     return render_to_response( 'savane_user/ssh_gpg.html',
                                RequestContext( request,
@@ -144,9 +164,10 @@ class GPGForm( forms.Form ):
     action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_gpg' )
 
 class SSHForm( forms.Form ):
-    key_1 = forms.CharField( widget=forms.TextInput( attrs={'size':'60'} ), required=False )
-    key_2 = forms.CharField( widget=forms.TextInput( attrs={'size':'60'} ), required=False )
-    key_3 = forms.CharField( widget=forms.TextInput( attrs={'size':'60'} ), required=False )
-    key_4 = forms.CharField( widget=forms.TextInput( attrs={'size':'60'} ), required=False )
-    key_5 = forms.CharField( widget=forms.TextInput( attrs={'size':'60'} ), required=False )
+    widget = forms.TextInput( attrs={'size':'60'} )
+    key_1 = forms.CharField( widget=widget, required=False )
+    key_2 = forms.CharField( widget=widget, required=False )
+    key_3 = forms.CharField( widget=widget, required=False )
+    key_4 = forms.CharField( widget=widget, required=False )
+    key_5 = forms.CharField( widget=widget, required=False )
     action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_ssh' )
