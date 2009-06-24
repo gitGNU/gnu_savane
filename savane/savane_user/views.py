@@ -1,7 +1,8 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django import forms
 from savane_user.models import User
 
@@ -10,27 +11,33 @@ def index( request ):
                                RequestContext( request,
                                                ) )
 def sv_login( request ):
-    username = request.POST['username']
-    password = request.POST['password']
 
-    user = authenticate( username=username, password=password )
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
 
-    if user is not None:
-        login( request, user )
-    else:
-        login_error = u"User or password didn't match"
-        return render_to_response( 'error.html',
-                                   {'error' : login_error
-                                    } )
+        if username != '' and password != '':
+            user = authenticate( username=username, password=password )
+        else:
+            user = None
 
-    return HttpResponseRedirect ( '/' )
+        if user is not None:
+            login( request, user )
+        else:
+            login_error = u"User or password didn't match"
+            return render_to_response( 'error.html',
+                                       {'error' : login_error
+                                        } )
 
+    return HttpResponseRedirect ( '/user/' )
+
+@login_required()
 def sv_logout( request ):
     logout( request )
 
     return HttpResponseRedirect( '/' )
 
-
+@login_required()
 def sv_conf( request ):
 
     error_msg = ''
@@ -84,11 +91,12 @@ def sv_conf( request ):
                                                  }
                                                ) )
 
+@login_required()
 def sv_resume_skill( request ):
     return render_to_response( 'savane_user/resume_skill.html',
                                RequestContext( request,
                                                ) )
-
+@login_required()
 def sv_ssh_gpg( request ):
 
     error_msg = None
