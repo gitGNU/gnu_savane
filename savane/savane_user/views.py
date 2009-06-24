@@ -94,11 +94,11 @@ def sv_ssh_gpg( request ):
     error_msg = None
     success_msg = None
 
-    form_gpg = GPGForm()
     form_ssh = SSHForm()
-    form = None
+    form_gpg = GPGForm()
 
     if request.method == 'POST':
+        form = None
         action = request.POST['action']
         if action == 'update_ssh':
             form_ssh = SSHForm( request.POST )
@@ -122,15 +122,24 @@ def sv_ssh_gpg( request ):
             elif action == 'update_gpg':
                 pass
     else:
-        keys_data = dict({'action':'update_ssh'})
-        keys = request.user.authorized_keys.split('###')
-        i = 1
-        for key in keys:
-            key_str = 'key_'+str(i)
-            keys_data[ key_str ] = key
-            i += 1
+        if request.user.authorized_keys != '':
+            keys_data = dict({'action':'update_ssh'})
+            keys = request.user.authorized_keys.split('###')
+            i = 1
+            for key in keys:
+                key_str = 'key_'+str(i)
+                keys_data[ key_str ] = key
+                i += 1
+                form_ssh = SSHForm( keys_data )
+        else:
+            form_ssh = SSHForm()
 
-        form_ssh = SSHForm( keys_data )
+        if request.user.gpg_key != '':
+            gpg_data = dict({'action':'update_gpg', 'gpg_key':request.user.gpg_key})
+            form_gpg = GPGForm( gpg_data )
+        else:
+            form_gpg = GPGForm()
+
 
     return render_to_response( 'savane_user/ssh_gpg.html',
                                RequestContext( request,
