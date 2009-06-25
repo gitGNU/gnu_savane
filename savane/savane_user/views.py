@@ -177,7 +177,7 @@ class IdentityForm( forms.Form ):
     action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_identity' )
 
 class GPGForm( forms.Form ):
-    gpg_key = forms.CharField( widget=forms.Textarea, required=False )
+    gpg_key = forms.CharField( widget=forms.Textarea( attrs={'cols':'70','rows':'15'} ), required=False )
     action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_gpg' )
 
 class SSHForm( forms.Form ):
