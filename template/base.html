@@ -12,8 +12,6 @@
     <meta name="Description" content="Savannah is a central point for development, distribution and maintainance of Free Software. It allows contributors to easily join existing Free Software projects." />
 
   </head>
-
-  {{request.GET.test}}
   <body>
     <div class="main_menu">
       <a href="/"><img src="{{MEDIA_URL}}/images/floating.png" alt="Back to Savannah Homepage" border="0" width="118" height="100" /></a>
@@ -62,6 +60,30 @@
       <div class="body">
         {% ifequal has_left_menu None %}
         <div class="menu_left">
+          <strong>Site Help</strong>
+          <ul>
+            <li><a>User Docs: Cookbook</a></li>
+            <li><a>User Docs: In Depth Guide</a></li>
+            <li><a>Get Support</a></li>
+            <li><a href="{% url main.views.contact %}">Contact Us</a></li>
+            <li><a href="http://savannah.gnu.org/maintenance/CvsAnonymous">CVS Instructions</a></li>
+            <li><a href="http://savannah.gnu.org/maintenance/FaQ">FAQ</a></li>
+          </ul>
+          <strong>GNU Project</strong>
+          <ul>
+            <li><a href="http://www.gnu.org/help/help.html" target="_blank">Help GNU</a></li>
+            <li><a href="http://www.gnu.org/directory/GNU" target="_blank">All GNU Packages</a></li>
+            <li><a href="http://www.gnu.org/software/devel.html" target="_blank">Dev Resources</a></li>
+            <li><a href="http://www.gnu.org/licenses/license-list.html" target="_blank">License List</a></li>
+            <li><a href="http://www.gnu.org/prep/ftp.htm" target="_blank">GNU Mirrors</a></li>
+          </ul>
+          <strong>Free Software Foundation</strong>
+          <ul>
+            <li><a href="http://www.fsf.org/events/" target="_blank">Coming Events</a></li>
+            <li><a href="http://gplv3.fsf.org/" target="_blank">GNU GPL v3</a></li>
+            <li><a href="http://www.fsf.org/directory/" target="_blank">Free Software Directory</a></li>
+            <li><a href="http://savannah.gnu.org/maintenance/SavannahCryptographicRestrictions" target="_blank">Cryptographic software legal notice</a></li>
+          </ul>
         </div>
         {% endifequal %}
         <div class="content">
