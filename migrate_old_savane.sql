@@ -1,0 +1,3 @@
+insert into auth_user (id, username, first_name, email, password, last_login, date_joined) select user_id, user_name, trim(convert(realname using latin1)), email, user_pw, now(), from_unixtime(add_date) from savane_old.user;
+
+insert into user (user_ptr_id, status,spamscore, confirm_hash, authorized_keys, authorized_keys_count, people_view_skills, people_resume, timezone, theme, email_hide, gpg_key, gpg_key_count) select user_id, status,spamscore, confirm_hash, authorized_keys, authorized_keys_count, people_view_skills, convert(people_resume using latin1), timezone, theme, email_hide, gpg_key, gpg_key_count from  savane_old.user;
