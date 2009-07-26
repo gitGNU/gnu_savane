@@ -39,13 +39,12 @@
     <div class="fast_menu_user">
 <!--      <a href="">Items</a> -->
 <!--      <a href="">Groups</a> -->
-      <a href="/user/conf">Account Conf</a>
-      <a href="/user/logout">Logout</a>
+      <a href="{% url my.views.sv_conf %}">Account Conf</a>
+      | <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
     </div>
     {% else %}
     <div class="menu_login">
-      <form action="{% url savane_user.views.sv_login %}" method="post">
-        <input type="hidden" name="uri" value="/" />
+      <form action="{% url django.contrib.auth.views.login %}" method="post">
         <dl>
           <dt>Login Name:</dt>
           <dd><input type="text" name="username" value="" size="12" /></dd>
@@ -65,7 +64,7 @@
             <li><a>User Docs: Cookbook</a></li>
             <li><a>User Docs: In Depth Guide</a></li>
             <li><a>Get Support</a></li>
-            <li><a href="{% url main.views.contact %}">Contact Us</a></li>
+            <li><a href="{% url contact %}">Contact Us</a></li>
             <li><a href="http://savannah.gnu.org/maintenance/CvsAnonymous">CVS Instructions</a></li>
             <li><a href="http://savannah.gnu.org/maintenance/FaQ">FAQ</a></li>
           </ul>

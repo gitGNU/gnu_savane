@@ -1,4 +1,4 @@
-# URL dispatching for presentation pages
+# Accounts URLs
 # Copyright (C) 2009  Sylvain Beucler
 # Copyright (C) 2009  Jonathan Gonzalez V.
 #
@@ -18,13 +18,26 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls.defaults import *
+from django.contrib.auth.decorators import login_required
+from django.views.generic.simple import direct_to_template
+import views
+
+@login_required
+def direct_to_template__login_required(*args, **kwargs):
+    return direct_to_template(*args, **kwargs)
+
 
 urlpatterns = patterns ('',
-  url(r'^$', 'django.views.generic.simple.direct_to_template',
-      { 'template' : 'index.html',
-        'extra_context' : { 'has_left_menu': False } },
-      name='homepage'),
-  url(r'^contact$', 'django.views.generic.simple.direct_to_template',
-      { 'template' : 'contact.html' },
-      name='contact'),
+  url(r'^$', direct_to_template__login_required,
+      { 'template' : 'savane_user/index.html' },
+      name='my.views.index'),
+  url('^conf/$',
+      views.sv_conf,
+      ),
+  url('^conf/resume_skill$',
+      views.sv_resume_skill,
+      ),
+  url('^conf/ssh_gpg$',
+      views.sv_ssh_gpg,
+      ),
 )

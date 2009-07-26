@@ -30,17 +30,19 @@ You can test your install using:
  $ python manage.py runserver
 
 
-* Run with Apache (to be tested):
+* Run with Apache:
 
 ** Dedicated server:
 
-  <Location "/">
+apt-get install libapache2-mod-python
+
+ <Location "/">
     SetHandler python-program
     PythonHandler django.core.handlers.modpython
-    SetEnv DJANGO_SETTINGS_MODULE savane.settings
+    SetEnv DJANGO_SETTINGS_MODULE settings
     #PythonOption django.root /myapp
     PythonDebug On
-    PythonPath "['/var/www/framework/savane/'] + sys.path"
+    PythonPath "['/var/www/framework/savane'] + sys.path"
   </Location>
   <Location "/media">
     SetHandler None
@@ -52,13 +54,15 @@ You can test your install using:
     SetHandler None
   </Location>
   Alias /media /usr/share/python-support/python-django/django/contrib/admin/media
+  #Alias /media /usr/share/pyshared/django/contrib/admin/media
   Alias /css /var/www/framework/media/css
   Alias /images /var/www/framework/media/images
- 
-** FCGI + suExec (shared hosting):
 
-apt-get install libapache2-mod-fcgid
-(_not_ mod-fastcgi which is non-free)
+** FCGI + suExec (shared hosting):
+http://docs.djangoproject.com/en/dev/howto/deployment/fastcgi/
+
+apt-get install libapache2-mod-fcgid  # _not_ mod-fastcgi which is non-free
+apt-get install python-flup
 
 httpd.conf:
 
@@ -66,17 +70,17 @@ httpd.conf:
   SuexecUserGroup myuser mygroup
  
   Alias /media /usr/share/python-support/python-django/django/contrib/admin/media
+  #Alias /media /usr/share/pyshared/django/contrib/admin/media
   Alias /css /var/www/framework/media/css
   Alias /images /var/www/framework/media/images
  
   <Directory "/var/www/framework/savane">
     RewriteEngine On
-    RewriteRule ^/(media.*)$ /$1 [QSA,L]
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ savane.fcgi/$1 [QSA,L]
+    RewriteRule ^(.*)$ savane.fcgi/$1 [qsappend,last]
   </Directory>
  
- 
+
 savane.fcgi:
 
 #!/usr/bin/python
@@ -89,7 +93,7 @@ sys.path.insert(0, "/var/www/framework/savane")
 # os.chdir("/home/user/myproject")
  
 # Set the DJANGO_SETTINGS_MODULE environment variable.
-os.environ['DJANGO_SETTINGS_MODULE'] = "savane.settings"
+os.environ['DJANGO_SETTINGS_MODULE'] = "settings"
  
 from django.core.servers.fastcgi import runfastcgi
 runfastcgi(method="threaded", daemonize="false")
