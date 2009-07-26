@@ -7,6 +7,20 @@
   <li><a href="{% url savane_user.views.sv_ssh_gpg %}">SSH/GPG Keys</a></li>
 </ul>
 
+<h3>SSH Keys</h3>
+<form method="post">
+  {{ form_ssh.as_p }}
+  <br /><input type="submit" value="Save" name="Save" />
+</form>
+
+
+
+<h3>GPG Key</h3>
+<form method="post">
+  {{ form_gpg.as_p }}
+  <br /><input type="submit" value="Update" name="Update" />
+</form>
+
 
 {% endblock %}
 {% comment %}

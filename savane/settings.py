@@ -84,6 +84,12 @@ TEMPLATE_DIRS = (
 )
 STATIC_ROOT = '../media/'
 
+AUTHENTICATION_BACKENDS = (
+    'savane.savane_user.backend.SavaneAuthBackend',
+)
+
+LOGIN_URL = '/user/'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -6,8 +6,8 @@ from django.conf import settings
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-                       (r'^$', "main.views.index"),
-
+#                       (r'^$', "main.views.index"),
+                       (r'', include('main.urls')),
                        (r'^user/', include('savane_user.urls')),
 
                        # Uncomment the next line to enable the admin:

@@ -1,10 +1,8 @@
 from django.db import models
-#from django.db.models import Manager
 from django.contrib.auth.models import User, UserManager
-#from django.contrib.auth.models import User
 
 class User(User):
-    realname = models.CharField(max_length=96)
+#    realname = models.CharField(max_length=96)
     status = models.CharField(max_length=48)
     spamscore = models.IntegerField(null=True, blank=True)
     confirm_hash = models.CharField(max_length=96, blank=True, null=True)
