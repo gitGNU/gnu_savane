@@ -2,7 +2,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="login" method="post">
+Please login:
+<form action="{% url django.contrib.auth.views.login %}" method="post">
 <dl>
   <dt>Login Name:</dt>
   <dd><input type="text" name="username" value="" size="12" /></dd>

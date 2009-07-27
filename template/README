@@ -1,0 +1,8 @@
+Django's generic views look for templates with a path built after the
+application name, e.g. '<template_dir>/savane/my/' <- 'savane.my'.
+
+Let's store the Savane templates in 'savane/'.
+
+
+Base templates (base.html, etc.) are specific to each installation and
+can be stored at the top-level.

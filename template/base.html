@@ -5,8 +5,8 @@
     <title>Welcome [Savannah]</title>
     <meta name="Generator" content="Savane 3.1-cleanup, see http://savannah.nongnu.org/projects/savane-cleanup" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
-    <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/Savannah.css" />
-    <link rel="icon" type="image/png" href="{{MEDIA_URL}}/images/icon.png" />
+    <link rel="stylesheet" type="text/css" href="{{STATIC_MEDIA_URL}}/savane/css/Savannah.css" />
+    <link rel="icon" type="image/png" href="{{STATIC_MEDIA_URL}}/savane/images/icon.png" />
     <meta name="Author" content="Copyright (C) 2000, 2001, 2002, 2003 Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111, USA Verbatim copying and distribution of this entire article is permitted in any medium, provided this notice is preserved" />
     <meta name="Keywords" content="Savannah,GNU, FSF, Free Software Foundation, GNU/Linux, Linux, Emacs, GCC, Unix, Free Software, Operating System, GNU Kernel, HURD, gnus, SourceForge" />
     <meta name="Description" content="Savannah is a central point for development, distribution and maintainance of Free Software. It allows contributors to easily join existing Free Software projects." />
@@ -14,7 +14,7 @@
   </head>
   <body>
     <div class="main_menu">
-      <a href="/"><img src="{{MEDIA_URL}}/images/floating.png" alt="Back to Savannah Homepage" border="0" width="118" height="100" /></a>
+      <a href="/"><img src="{{STATIC_MEDIA_URL}}/savane/images/floating.png" alt="Back to Savannah Homepage" border="0" width="118" height="100" /></a>
       <a href="">Hosted Projects</a>
       <a href="">Help</a>
 
@@ -39,13 +39,12 @@
     <div class="fast_menu_user">
 <!--      <a href="">Items</a> -->
 <!--      <a href="">Groups</a> -->
-      <a href="/user/conf">Account Conf</a>
-      <a href="/user/logout">Logout</a>
+      <a href="{% url savane.my.views.sv_conf %}">Account Conf</a>
+      | <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
     </div>
     {% else %}
     <div class="menu_login">
-      <form action="{% url savane_user.views.sv_login %}" method="post">
-        <input type="hidden" name="uri" value="/" />
+      <form action="{% url django.contrib.auth.views.login %}" method="post">
         <dl>
           <dt>Login Name:</dt>
           <dd><input type="text" name="username" value="" size="12" /></dd>
@@ -65,7 +64,7 @@
             <li><a>User Docs: Cookbook</a></li>
             <li><a>User Docs: In Depth Guide</a></li>
             <li><a>Get Support</a></li>
-            <li><a href="{% url main.views.contact %}">Contact Us</a></li>
+            <li><a href="{% url contact %}">Contact Us</a></li>
             <li><a href="http://savannah.gnu.org/maintenance/CvsAnonymous">CVS Instructions</a></li>
             <li><a href="http://savannah.gnu.org/maintenance/FaQ">FAQ</a></li>
           </ul>

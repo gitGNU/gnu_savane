@@ -1,0 +1,5 @@
+It is considered good practice for reusable apps to place their data
+in a subdirectory of '/media'.
+
+We're placing everything in '/media/savane' and more precisely in
+'/media/savane/<appname>' for app-specific media.

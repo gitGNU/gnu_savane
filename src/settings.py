@@ -3,8 +3,6 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-SAVANE_ROOT = '/home/zeus/framework.git/';
-
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
@@ -35,20 +33,6 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = False
 
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
-
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
-
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'r0u=mcmr$46vf6y3x4!lti5pza)p-3y@*u%5k!71)ie)1dha@$'
 
@@ -65,6 +49,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
+    'savane.context_processors.media',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -73,7 +58,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'savane.urls'
+ROOT_URLCONF = 'urls'
 
 import os
 TEMPLATE_DIRS = (
@@ -82,13 +67,22 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.dirname(__file__) + '/../template',
 )
-STATIC_ROOT = '../media/'
 
-AUTHENTICATION_BACKENDS = (
-    'savane.savane_user.backend.SavaneAuthBackend',
-)
 
-LOGIN_URL = '/user/'
+# Applications media
+STATIC_MEDIA_ROOT = os.path.dirname(__file__) + '/../media/'
+STATIC_MEDIA_URL = '/media/'
+
+# Media for Django auto-admin
+ADMIN_MEDIA_PREFIX = '/media/admin/'
+
+# User-uploaded media (with trailing slashes)
+MEDIA_ROOT = ''
+MEDIA_URL = ''
+
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/my/'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -96,5 +90,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
 #    'django.contrib.admin',
-    'savane.savane_user',
+#    'savane.my',
+#    'savane.main',
 )

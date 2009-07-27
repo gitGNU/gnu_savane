@@ -1,41 +1,29 @@
+# Manage user attributes
+# Copyright (C) 2009  Sylvain Beucler
+# Copyright (C) 2009  Jonathan Gonzalez V.
+#
+# This file is part of Savane.
+# 
+# Savane is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# 
+# Savane is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django import forms
-from savane_user.models import User
-
-def index( request ):
-    return render_to_response( 'savane_user/index.html',
-                               RequestContext( request,
-                                               ) )
-def sv_login( request ):
-
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
-        if username != '' and password != '':
-            user = authenticate( username=username, password=password )
-        else:
-            user = None
-
-        if user is not None:
-            login( request, user )
-        else:
-            login_error = u"User or password didn't match"
-            return render_to_response( 'error.html',
-                                       {'error' : login_error
-                                        } )
-
-    return HttpResponseRedirect ( '/user/' )
-
-@login_required()
-def sv_logout( request ):
-    logout( request )
-
-    return HttpResponseRedirect( '/' )
+from models import ExtendedUser
 
 @login_required()
 def sv_conf( request ):
@@ -81,23 +69,22 @@ def sv_conf( request ):
                 success_msg = 'Personal information changed.'
                 form_identity = IdentityForm()
 
-    return render_to_response( 'savane_user/conf.html',
-                               RequestContext( request,
-                                               { 'form_pass' : form_pass,
-                                                 'form_mail' : form_mail,
-                                                 'form_identity' : form_identity,
-                                                 'error_msg' : error_msg,
-                                                 'success_msg' : success_msg,
-                                                 }
-                                               ) )
+    return render_to_response('savane/my/conf.html',
+                              { 'form_pass' : form_pass,
+                                'form_mail' : form_mail,
+                                'form_identity' : form_identity,
+                                'error_msg' : error_msg,
+                                'success_msg' : success_msg,
+                                },
+                              context_instance=RequestContext(request))
 
 @login_required()
 def sv_resume_skill( request ):
-    return render_to_response( 'savane_user/resume_skill.html',
-                               RequestContext( request,
-                                               ) )
+    return render_to_response('savane/my/resume_skill.html',
+                               context_instance=RequestContext(request))
 @login_required()
 def sv_ssh_gpg( request ):
+    eu = ExtendedUser.objects.get(pk=request.user.pk)
 
     error_msg = None
     success_msg = None
@@ -124,15 +111,15 @@ def sv_ssh_gpg( request ):
                         keys.append( key )
                 keys_str = str('###').join( keys )
 
-                request.user.authorized_keys = keys_str
-                request.user.save()
+                eu.authorized_keys = keys_str
+                eu.save()
                 success_msg = 'Authorized keys stored.'
             elif action == 'update_gpg':
                 pass
     else:
-        if request.user.authorized_keys != '':
+        if eu.authorized_keys != '':
             keys_data = dict({'action':'update_ssh'})
-            keys = request.user.authorized_keys.split('###')
+            keys = (eu.authorized_keys or '').split('###')
             i = 1
             for key in keys:
                 key_str = 'key_'+str(i)
@@ -142,19 +129,18 @@ def sv_ssh_gpg( request ):
         else:
             form_ssh = SSHForm()
 
-        if request.user.gpg_key != '':
-            gpg_data = dict({'action':'update_gpg', 'gpg_key':request.user.gpg_key})
+        if eu.gpg_key != '':
+            gpg_data = dict({'action':'update_gpg', 'gpg_key':eu.gpg_key})
             form_gpg = GPGForm( gpg_data )
         else:
             form_gpg = GPGForm()
 
 
-    return render_to_response( 'savane_user/ssh_gpg.html',
-                               RequestContext( request,
-                                               { 'form_gpg' : form_gpg,
-                                                 'form_ssh' : form_ssh,
-                                                 }
-                                               ) )
+    return render_to_response('savane/my/ssh_gpg.html',
+                              { 'form_gpg' : form_gpg,
+                                'form_ssh' : form_ssh,
+                                },
+                              context_instance=RequestContext(request))
 
 class MailForm( forms.Form ):
     email = forms.EmailField(required=True)
