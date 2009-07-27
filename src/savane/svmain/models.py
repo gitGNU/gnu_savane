@@ -36,7 +36,7 @@ class ExtendedUser(auth_models.User):
         ('S', 'Suspended'),
         #('SQD', 'Squad'), # TODO: implement squads more cleanly
         )
-    status = models.CharField(max_length=3)
+    status = models.CharField(max_length=3, choices=status_CHOICES)
 
     # Used by trackers only but it could be used more widely
     spamscore = models.IntegerField(null=True, blank=True)
@@ -54,10 +54,10 @@ class ExtendedUser(auth_models.User):
     people_resume = models.TextField()
 
     # Preferences - /!\ some are also in the user_preferences table
-    people_view_skills = models.IntegerField(null=True)
+    people_view_skills = models.BooleanField(default=False)
+    email_hide = models.BooleanField(default=False)
     timezone = models.CharField(max_length=192, blank=True, null=True)
     theme = models.CharField(max_length=45, blank=True, null=True)
-    email_hide = models.CharField(max_length=9, blank=True, null=True)
 
 
     # Inherit specialized models.Manager with convenience functions
@@ -74,34 +74,68 @@ class License(models.Model):
     name = models.CharField(max_length=255)
     url = models.CharField(max_length=255)
 
+    def __unicode__(self):
+        return self.slug + ": " + self.name
+
+    class Meta:
+        ordering = ['slug']
+
 class DevelopmentStatus(models.Model):
     """Describe the development status of a project"""
     name = models.CharField(max_length=255)
 
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+        verbose_name_plural='Development statuses'
+
 class GroupConfiguration(models.Model):
     """Group configuration and main category (previously group_type)"""
     name = models.CharField(max_length=255)
-    # Text added to each project page
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True,
+      help_text='Will be added on each project main page')
 
     #admin_email_adress = models.CharField(max_length=128, null=True) # unused
 
     # Redirect to this host when visiting project page
     base_host = models.CharField(max_length=128, null=True)
-    # Mailing lists are hosted there
-    mailing_list_host = models.CharField(max_length=255, null=True)
+
+    # Mailing lists
+    mailing_list_address = models.CharField(max_length=255, default='@',
+      help_text='would be %LIST@gnu.org for GNU projects at sv.gnu.org')
+    mailing_list_virtual_host = models.CharField(max_length=255, default='',
+      help_text='would be lists.gnu.org or lists.nongnu.org at sv.gnu.org [BACKEND SPECIFIC]')
+    mailing_list_format = models.CharField(max_length=255, default='%NAME',
+      help_text='With this, you can force projects to follow a specific policy'
+        + ' for the name of the %LIST. Here you should use the special wildcard'
+        + ' %NAME, which is the part the of the mailing list name that the'
+        + ' project admin can define (would be %PROJECT-%NAME for non-GNU'
+        + ' projects at sv.gnu.org). Do no add any @hostname here!')
+    #mailing_list_host = models.CharField(max_length=255, null=True, help_text='DEPRECATED')
 
     # Permissions
     can_use_homepage     = models.BooleanField(default=True)
-    can_use_download     = models.BooleanField(default=True)
+    can_use_download     = models.BooleanField(default=True,
+      help_text='This is useful if you provide directly download areas (created'
+        + ' by the backend) or if you want to allow projects to configure the'
+        + ' related menu entry (see below).')
     can_use_cvs          = models.BooleanField(default=True)
     can_use_arch         = models.BooleanField(default=False)
     can_use_svn          = models.BooleanField(default=False)
     can_use_git          = models.BooleanField(default=False)
     can_use_hg           = models.BooleanField(default=False)
     can_use_bzr          = models.BooleanField(default=False)
-    can_use_license      = models.BooleanField(default=True)
-    can_use_devel_status = models.BooleanField(default=True)
+    can_use_license      = models.BooleanField(default=True,
+      help_text='This is useful if you want project to select a license'
+        + ' on submission.')
+    can_use_devel_status = models.BooleanField(default=True,
+      help_text='This is useful if you want project to be able to defines their'
+        + ' development status that will be shown on their main page. This is'
+        + ' purely a matter of cosmetics. This option is mainly here just to'
+        + ' remove this content in case it is useless (it does not makes sense'
+        + ' for organizational projects).')
     can_use_forum        = models.BooleanField(default=False)
     can_use_mailing_list = models.BooleanField(default=True)
     can_use_patch        = models.BooleanField(default=False)
@@ -109,7 +143,8 @@ class GroupConfiguration(models.Model):
     can_use_news         = models.BooleanField(default=True)
     can_use_support      = models.BooleanField(default=True)
     can_use_bug          = models.BooleanField(default=True)
-    is_menu_configurable_homepage                = models.BooleanField(default=False)
+    is_menu_configurable_homepage                = models.BooleanField(default=False,
+                                                                       help_text='the homepage link can be modified')
     is_menu_configurable_download                = models.BooleanField(default=False)
     is_menu_configurable_forum                   = models.BooleanField(default=False)
     is_menu_configurable_support                 = models.BooleanField(default=False)
@@ -131,7 +166,11 @@ class GroupConfiguration(models.Model):
     is_menu_configurable_task                    = models.BooleanField(default=False)
     is_menu_configurable_patch                   = models.BooleanField(default=False)
     is_menu_configurable_extralink_documentation = models.BooleanField(default=False)
-    is_configurable_download_dir                 = models.BooleanField(default=False)
+    is_configurable_download_dir = models.BooleanField(default=False,
+      help_text="the download _directory_ can be modified -- beware, if the"
+        + " backend is running and creating download dir, it can be used"
+        + " maliciously. don't activate this feature unless you truly know"
+        + "what you're doing")
 
     # Directory creation config
     SCM_CHOICES = (
@@ -164,7 +203,7 @@ class GroupConfiguration(models.Model):
     dir_type_bzr      = models.CharField(max_length=15, choices=DIR_TYPE_CHOICES, default='basicbzr')
     dir_type_homepage = models.CharField(max_length=15, choices=DIR_TYPE_CHOICES, default='basicdirectory')
     dir_type_download = models.CharField(max_length=15, choices=DIR_TYPE_CHOICES, default='basicdirectory')
-    dir_homepage = models.CharField(max_length=255, default='/'),
+    dir_homepage = models.CharField(max_length=255, default='/')
     dir_cvs      = models.CharField(max_length=255, default='/')
     dir_arch     = models.CharField(max_length=255, default='/')
     dir_svn      = models.CharField(max_length=255, default='/')
@@ -174,16 +213,16 @@ class GroupConfiguration(models.Model):
     dir_download = models.CharField(max_length=255, default='/')
 
     # Default URLs
-    url_homepage             = models.CharField(max_length=255, default='http://'),
-    url_download             = models.CharField(max_length=255, default='http://')
+    url_homepage             = models.CharField(max_length=255, default='http://')
+    url_cvs_viewcvs_homepage = models.CharField(max_length=255, default='http://')
     url_cvs_viewcvs          = models.CharField(max_length=255, default='http://')
     url_arch_viewcvs         = models.CharField(max_length=255, default='http://') 
     url_svn_viewcvs          = models.CharField(max_length=255, default='http://')
     url_git_viewcvs          = models.CharField(max_length=255, default='http://')
     url_hg_viewcvs           = models.CharField(max_length=255, default='http://')
     url_bzr_viewcvs          = models.CharField(max_length=255, default='http://')
-    url_cvs_viewcvs_homepage = models.CharField(max_length=255, default='http://')
-    url_mailing_list_listinfo         = models.CharField(max_length=255, default='http://'),
+    url_download             = models.CharField(max_length=255, default='http://')
+    url_mailing_list_listinfo         = models.CharField(max_length=255, default='http://')
     url_mailing_list_subscribe        = models.CharField(max_length=255, default='http://')
     url_mailing_list_unsubscribe      = models.CharField(max_length=255, default='http://')
     url_mailing_list_archives         = models.CharField(max_length=255, default='http://')
@@ -193,12 +232,7 @@ class GroupConfiguration(models.Model):
 
     # Unused
     #license_array = models.TextField()
-
-    devel_status_array = models.ForeignKey(DevelopmentStatus),
-
-    mailing_list_address = models.CharField(max_length=255, default='@'),
-    mailing_list_virtual_host = models.CharField(max_length=255, default=''),
-    mailing_list_format = models.CharField(max_length=255, default='%NAME'),
+    #devel_status_array = models.TextField()
 
     # TODO: split forum and news config
     #forum_flags     = IntegerField(default='2')
@@ -232,7 +266,7 @@ class ExtendedGroup(auth_models.Group):
         ('M', 'Maintenance (accessible only to superuser)'),
         ('I', 'Incomplete (failure during registration)'),
         )
-    status = models.CharField(max_length=1, default='A')
+    status = models.CharField(max_length=1, choices=status_CHOICES, default='A')
     short_description = models.CharField(max_length=255, blank=True)
     long_description = models.TextField()
     license = models.ForeignKey(License, null=True)

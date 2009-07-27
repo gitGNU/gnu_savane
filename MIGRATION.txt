@@ -1,0 +1,9 @@
+- users:
+  - cf. migrate_old_savane.sql
+  - fill-in is_staff and is_superuser
+- groups:
+  - SQL
+  - licenses: content/hashes.txt -> svmain_license
+  - develompent_status: content/hashes.txt -> svmain_develomentstatus
+- group configurations (group_type):
+  - 

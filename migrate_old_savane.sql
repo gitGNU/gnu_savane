@@ -12,7 +12,7 @@ INSERT INTO auth_user
     WHERE user_id != 100;
 
 -- Import all extended information except for the 'None' user (#100)
-INSERT INTO my_extendeduser
+INSERT INTO svmain_extendeduser
     (user_ptr_id, status, spamscore, authorized_keys,
      authorized_keys_count, people_view_skills, people_resume,
      timezone, theme, email_hide, gpg_key, gpg_key_count)

@@ -22,7 +22,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.simple import direct_to_template
 from django.views.generic.list_detail import object_list
 import views
-import models as my_models
+import savane.svmain.models as svmain_models
 from decorator import decorator
 
 @decorator
@@ -52,6 +52,6 @@ urlpatterns = patterns ('',
   url('^conf/ssh_gpg$', views.sv_ssh_gpg),
   url('^conf/ssh_gpg$', views.sv_ssh_gpg),
   url(r'^groups/$', object_list__only_mine,
-      { 'queryset' : my_models.ExtendedGroup.objects.all() },
+      { 'queryset' : svmain_models.ExtendedGroup.objects.all() },
       name='savane.my.generic.group_list'),
 )

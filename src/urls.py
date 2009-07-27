@@ -22,7 +22,7 @@ from django.conf import settings
 
 # Home/presentation pages
 urlpatterns = patterns('',
-  (r'', include('savane.main.urls')),
+  (r'', include('savane.svmain.urls')),
 )
 
 # User account
@@ -34,16 +34,16 @@ urlpatterns += patterns('',
   (r'^accounts/', include('django.contrib.auth.urls')),
 )
 
+# Enable the auto-admin:
+from django.contrib import admin
+admin.autodiscover()
+urlpatterns += patterns('',
+  (r'^admin/(.*)', admin.site.root),
+)
+
 # Static content
 if settings.DEBUG:
     urlpatterns += patterns('django.views.static',
         (r'^' + settings.STATIC_MEDIA_URL[1:] + '(?P<path>.*)$', 'serve',
          {'document_root' : settings.STATIC_MEDIA_ROOT, 'show_indexes' : True}),
     )
-
-# Uncomment the next lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
-# urlpatterns += patterns(
-#   (r'^admin/(.*)', admin.site.root),
-# )
