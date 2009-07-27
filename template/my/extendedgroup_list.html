@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if object_list %}
+    <ul>
+    {% for object in object_list %}
+        <li><a href="{{object.id}}">{{ object }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>You are not part of any group.</p>
+{% endif %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

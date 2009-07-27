@@ -84,12 +84,13 @@ MEDIA_URL = ''
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/my/'
 
+# Used by syncdb, etc.
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
 #    'django.contrib.admin',
-#    'savane.my',
-#    'savane.main',
+    'savane.my',
+    'savane.main',
 )
