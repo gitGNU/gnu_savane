@@ -69,21 +69,19 @@ def sv_conf( request ):
                 success_msg = 'Personal information changed.'
                 form_identity = IdentityForm()
 
-    return render_to_response( 'savane_user/conf.html',
-                               RequestContext( request,
-                                               { 'form_pass' : form_pass,
-                                                 'form_mail' : form_mail,
-                                                 'form_identity' : form_identity,
-                                                 'error_msg' : error_msg,
-                                                 'success_msg' : success_msg,
-                                                 }
-                                               ) )
+    return render_to_response('savane/my/conf.html',
+                              { 'form_pass' : form_pass,
+                                'form_mail' : form_mail,
+                                'form_identity' : form_identity,
+                                'error_msg' : error_msg,
+                                'success_msg' : success_msg,
+                                },
+                              context_instance=RequestContext(request))
 
 @login_required()
 def sv_resume_skill( request ):
-    return render_to_response( 'savane_user/resume_skill.html',
-                               RequestContext( request,
-                                               ) )
+    return render_to_response('savane/my/resume_skill.html',
+                               context_instance=RequestContext(request))
 @login_required()
 def sv_ssh_gpg( request ):
     eu = ExtendedUser.objects.get(pk=request.user.pk)
@@ -138,12 +136,11 @@ def sv_ssh_gpg( request ):
             form_gpg = GPGForm()
 
 
-    return render_to_response( 'savane_user/ssh_gpg.html',
-                               RequestContext( request,
-                                               { 'form_gpg' : form_gpg,
-                                                 'form_ssh' : form_ssh,
-                                                 }
-                                               ) )
+    return render_to_response('savane/my/ssh_gpg.html',
+                              { 'form_gpg' : form_gpg,
+                                'form_ssh' : form_ssh,
+                                },
+                              context_instance=RequestContext(request))
 
 class MailForm( forms.Form ):
     email = forms.EmailField(required=True)

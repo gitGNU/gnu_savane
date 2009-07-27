@@ -22,12 +22,12 @@ from django.conf import settings
 
 # Home/presentation pages
 urlpatterns = patterns('',
-  (r'', include('main.urls')),
+  (r'', include('savane.main.urls')),
 )
 
 # User account
 urlpatterns += patterns('',
-  (r'^my/', include('my.urls')),
+  (r'^my/', include('savane.my.urls')),
   # Generic login/logout/change_pass/etc.
   (r'^accounts/logout/$', 'django.contrib.auth.views.logout',
     {'next_page' : '/'}),  # redirect to '/' instead of login page
@@ -37,10 +37,8 @@ urlpatterns += patterns('',
 # Static content
 if settings.DEBUG:
     urlpatterns += patterns('django.views.static',
-        (r'^css/(?P<path>.*)$', 'serve',
-         {'document_root' : settings.STATIC_ROOT + 'css/', 'show_indexes' : True}),
-        (r'^images/(?P<path>.*)$', 'serve',
-         {'document_root' : settings.STATIC_ROOT + 'images/', 'show_indexes' : True}),
+        (r'^' + settings.STATIC_MEDIA_URL[1:] + '(?P<path>.*)$', 'serve',
+         {'document_root' : settings.STATIC_MEDIA_ROOT, 'show_indexes' : True}),
     )
 
 # Uncomment the next lines to enable the admin:

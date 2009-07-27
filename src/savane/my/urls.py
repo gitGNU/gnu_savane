@@ -29,7 +29,7 @@ def direct_to_template__login_required(*args, **kwargs):
 
 urlpatterns = patterns ('',
   url(r'^$', direct_to_template__login_required,
-      { 'template' : 'savane_user/index.html' },
+      { 'template' : 'savane/my/index.html' },
       name='my.views.index'),
   url('^conf/$',
       views.sv_conf,
