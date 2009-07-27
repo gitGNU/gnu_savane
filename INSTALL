@@ -1,13 +1,13 @@
 * Directory Description
 
-- 'savane/' directory containts all the python(django) code.
+- 'src/' directory containts all the python(django) code.
 
 - 'media/' all the css and images
 
 - 'template/' all the templates that are necessary to run savane
 
 
-* Debian Packages
+* Dependencies as Debian packages
 
 apt-get install mysql-server python-django python-mysqldb 
 
@@ -27,6 +27,7 @@ needed to connect to the MySQL database.
 * Run for testing:
 
 You can test your install using:
+ $ cd src/
  $ python manage.py runserver
 
 
@@ -42,7 +43,7 @@ apt-get install libapache2-mod-python
     SetEnv DJANGO_SETTINGS_MODULE settings
     #PythonOption django.root /myapp
     PythonDebug On
-    PythonPath "['/var/www/framework/savane'] + sys.path"
+    PythonPath "['/var/www/framework/src'] + sys.path"
   </Location>
   <Location "/media">
     SetHandler None
@@ -66,7 +67,7 @@ apt-get install python-flup
 
 httpd.conf:
 
-  DocumentRoot /var/www/framework/savane
+  DocumentRoot /var/www/framework/src
   SuexecUserGroup myuser mygroup
  
   Alias /media /usr/share/python-support/python-django/django/contrib/admin/media
@@ -74,7 +75,7 @@ httpd.conf:
   Alias /css /var/www/framework/media/css
   Alias /images /var/www/framework/media/images
  
-  <Directory "/var/www/framework/savane">
+  <Directory "/var/www/framework/src">
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ savane.fcgi/$1 [qsappend,last]
@@ -87,7 +88,7 @@ savane.fcgi:
 import sys, os
  
 # Add a custom Python path.
-sys.path.insert(0, "/var/www/framework/savane")
+sys.path.insert(0, "/var/www/framework/src")
  
 # Switch to the directory of your project. (Optional.)
 # os.chdir("/home/user/myproject")

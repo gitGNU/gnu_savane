@@ -90,6 +90,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
 #    'django.contrib.admin',
-    'savane.my',
-    'savane.main',
+#    'savane.my',
+#    'savane.main',
 )
