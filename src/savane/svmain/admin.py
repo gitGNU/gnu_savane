@@ -32,13 +32,6 @@ class ExtendedUserAdmin(admin.ModelAdmin):
     ordering = ('username',)
     filter_horizontal = ('user_permissions',)
 
-class ExtendedGroupAdmin(admin.ModelAdmin):
-    # Copy/pasted from django.contrib.auth.admin; inheritance fails
-    # when you attempt to display extended fields..
-    search_fields = ('name',)
-    ordering = ('name',)
-    filter_horizontal = ('permissions',)
-
 class GroupConfigurationAdmin(admin.ModelAdmin):
     fieldsets = (
         (_('General Settings'), {'fields': ('name', 'base_host', 'description')}),
@@ -83,6 +76,15 @@ class GroupConfigurationAdmin(admin.ModelAdmin):
                      )}),
         
         )
+
+class ExtendedGroupAdmin(admin.ModelAdmin):
+    # Copy/pasted from django.contrib.auth.admin; inheritance fails
+    # when you attempt to display extended fields..
+    search_fields = ('name',)
+    ordering = ('name',)
+    filter_horizontal = ('permissions',)
+    list_display  = ('name', 'pk', 'full_name', 'type', 'license',)
+    list_filter = ('type', 'license', 'devel_status',)
 
 admin.site.register(svmain_models.ExtendedUser, ExtendedUserAdmin)
 admin.site.register(svmain_models.ExtendedGroup, ExtendedGroupAdmin)

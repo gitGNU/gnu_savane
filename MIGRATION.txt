@@ -1,9 +1,232 @@
 - users:
+  - clean-up duplicate users
   - cf. migrate_old_savane.sql
   - fill-in is_staff and is_superuser
 - groups:
   - SQL
   - licenses: content/hashes.txt -> svmain_license
-  - develompent_status: content/hashes.txt -> svmain_develomentstatus
+    + there's a special 'none' ('N/A') value
+    group field type: slug (e.g. 'gpl', 'gplv3orlater')
+  - development_status: content/hashes.txt -> svmain_develomentstatus (ids)
+    group field type: id (e.g. '4')
+    I think we can ignore the hashes.txt comment about id=7 for 'N/A'
 - group configurations (group_type):
   - 
+
+Users
+=====
+
+To remove duplicate users *FOR TESTING*:
+(TODO: need to remove only the duplicate, not both)
+DELETE FROM user WHERE user_name IN ('adiebald','alkana','andersgh','andrenix','animalfarm','antigerme','baravalle','Bassslinger','blitzkerk','bolek11','brawil1','brijesh_gadhiya','caribe','caterkiller2001','cce','chawil','conan','cux221','dave_san','ddavies','doudou61','dungeon','elektroland','emil5','ericclaassen','espahr','fcattoen','gauntlet','Gerardoco','Gonzalvez','GOOS','grubthosch','hans-peter','heikorah','helen','jaguaryou','jezdikm','JonGretar','kodion','kpc82','kumud','lamborghini0102','markm','mbaruchel','mdopheide','moocha','Netsnipe','osia','otello','pepex82','phgbest007','planetstar','plijnzaad','plomo00','Progenator','pthom','puyo','qemm','quaxter','rafaelrt','rdunphy','realshitok','roeles','rubenperez','scorbeau','seb_cante','SeeksTheMoon','shezAbrat','shiau','shyguy','siman','sjh0320','sorenoid','Steve_Stanfield','surfnix54','suydam','Sweethrt758','taroo','tdp','The_WABBIT','thresher','tklein','tontonraoul','tony-rs','treker','tt3','vdemart','vinod','vka3','wbrown','Webb','wertzu','willou','wutzkem');
+
+Warnings during import:
+
+TODO: I don't really understand why three are illegal UTF-8 strings,
+this was taken care of during the savane-cleanup UTF-8 upgrade,
+cf. savane/update/clean-up/09-utf-8.php
+
+| Warning | 1265 | Data truncated for column 'first_name' at row 370                                          | 
+| Warning | 1366 | Incorrect string value: '\xC2\x8Eeljk...' for column 'first_name' at row 1080              | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 1207                                         | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 1297                                         | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 1701                                         | 
+| Warning | 1366 | Incorrect string value: '\xC5\x82' for column 'first_name' at row 2117                     | 
+| Warning | 1366 | Incorrect string value: '\xC2\x82\xC2\x95\xC2\x9A' for column 'first_name' at row 2656     | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 3182                                         | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 3310                                         | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 3430                                         | 
+| Warning | 1366 | Incorrect string value: '\xC2\x9Aa Bo...' for column 'first_name' at row 3798              | 
+| Warning | 1366 | Incorrect string value: '\xC2\x9Aan F...' for column 'first_name' at row 4404              | 
+| Warning | 1366 | Incorrect string value: '\xC5\x9Eent\xC3...' for column 'first_name' at row 4823           | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 5045                                         | 
+| Warning | 1366 | Incorrect string value: '\xC5\x84ski' for column 'first_name' at row 5613                  | 
+| Warning | 1366 | Incorrect string value: '\xC5\x82 Mu\xC5...' for column 'first_name' at row 5793           | 
+| Warning | 1366 | Incorrect string value: '\xE0\xA6\xB6\xE0\xA7\x81...' for column 'first_name' at row 6116  | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 6604                                         | 
+| Warning | 1366 | Incorrect string value: '\xC2\x9Aa Du...' for column 'first_name' at row 7648              | 
+| Warning | 1366 | Incorrect string value: '\xC2\x8A\xC2\xB1?G...' for column 'first_name' at row 7695        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 7855                                         | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 8105                                         | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 8422                                         | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 9033                                         | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 9045                                         | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 9488                                         | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 9863                                         | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 10394                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 10760                                        | 
+| Warning | 1366 | Incorrect string value: '\xC2\x8Aegan' for column 'first_name' at row 11949                | 
+| Warning | 1366 | Incorrect string value: '\xC2\x91P\xC2\x8Ee' for column 'first_name' at row 11987          | 
+| Warning | 1366 | Incorrect string value: '\xD0\x90\xD0\xBB\xD0\xB5...' for column 'first_name' at row 13137 | 
+| Warning | 1366 | Incorrect string value: '\xC2\x9Cnik' for column 'first_name' at row 13151                 | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 13674                                        | 
+| Warning | 1366 | Incorrect string value: '\xC4\x83' for column 'first_name' at row 13997                    | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 14114                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 14200                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 14287                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 14579                                        | 
+| Warning | 1366 | Incorrect string value: '\xC2\x9A' for column 'first_name' at row 14794                    | 
+| Warning | 1366 | Incorrect string value: '\xC2\x93@?G\xC2...' for column 'first_name' at row 15408          | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 15819                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 16444                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 16587                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 16798                                        | 
+| Warning | 1366 | Incorrect string value: '\xC2\x9Ain' for column 'first_name' at row 16956                  | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 17909                                        | 
+| Warning | 1366 | Incorrect string value: '\xD0\x94\xD0\xB0\xD0\xBD...' for column 'first_name' at row 18031 | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 18064                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 18134                                        | 
+| Warning | 1366 | Incorrect string value: '\xC2\x9Eek' for column 'first_name' at row 19360                  | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 19720                                        | 
+| Warning | 1366 | Incorrect string value: '\xC5\x88uk' for column 'first_name' at row 19744                  | 
+| Warning | 1366 | Incorrect string value: '\xC5\x99enek...' for column 'first_name' at row 19749             | 
+| Warning | 1366 | Incorrect string value: '\xC4\x9Fda\xC5\x9F...' for column 'first_name' at row 19780       | 
+| Warning | 1366 | Incorrect string value: '\xE5\x86\xAF\xE6\x98\x8E...' for column 'first_name' at row 20033 | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 21228                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 21553                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 21762                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 21797                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 22367                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 22464                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 23013                                        | 
+| Warning | 1265 | Data truncated for column 'first_name' at row 24967                                        | 
+
+----
+
+| Warning | 1366 | Incorrect string value: '\xC2\x9198\x0D\x0A...' for column 'people_resume' at row 1197          | 
+| Warning | 1366 | Incorrect string value: '\xC2\x95 Des...' for column 'people_resume' at row 4592                | 
+| Warning | 1366 | Incorrect string value: '\xC2\x95 C, ...' for column 'people_resume' at row 5390                | 
+| Warning | 1366 | Incorrect string value: '\xC2\x92s de...' for column 'people_resume' at row 9639                | 
+| Warning | 1366 | Incorrect string value: '\xC2\x96 200...' for column 'people_resume' at row 10729               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x96 Phi...' for column 'people_resume' at row 11448               | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1366 | Incorrect string value: '\xC2\x95\x09Str...' for column 'people_resume' at row 15267            | 
+| Warning | 1366 | Incorrect string value: '\xC2\x91A\xC2\x92 ...' for column 'people_resume' at row 17491         | 
+| Warning | 1366 | Incorrect string value: '\xC2\x95 Dat...' for column 'people_resume' at row 18044               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x92Intr...' for column 'people_resume' at row 19923               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x91Netw...' for column 'people_resume' at row 21149               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x96 Apr...' for column 'people_resume' at row 23126               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x95\x09Chi...' for column 'people_resume' at row 23274            | 
+| Warning | 1366 | Incorrect string value: '\xC2\x95 (43...' for column 'people_resume' at row 25042               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x92t ha...' for column 'people_resume' at row 25253               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x95 COL...' for column 'people_resume' at row 25484               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x92s ma...' for column 'people_resume' at row 26162               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x92 exp...' for column 'people_resume' at row 27182               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x96 Pre...' for column 'people_resume' at row 28369               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x96 Lee...' for column 'people_resume' at row 28853               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x96 91-...' for column 'people_resume' at row 29208               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x92s We...' for column 'people_resume' at row 31392               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x96a di...' for column 'people_resume' at row 31490               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x9E/?~W...' for column 'gpg_key' at row 31866                     | 
+| Warning | 1366 | Incorrect string value: '\xC2\x96 01 ...' for column 'people_resume' at row 32776               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x95\x09Pre...' for column 'people_resume' at row 33378            | 
+| Warning | 1366 | Incorrect string value: '\xC2\x80STER...' for column 'authorized_keys' at row 33546             | 
+| Warning | 1366 | Incorrect string value: '\xC2\x93seei...' for column 'people_resume' at row 34256               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x96 pre...' for column 'people_resume' at row 34387               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x92m a ...' for column 'people_resume' at row 34810               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x92s Co...' for column 'people_resume' at row 35162               | 
+| Warning | 1366 | Incorrect string value: '\xC2\x92s\x0D\x0A ...' for column 'people_resume' at row 35163         | 
+| Warning | 1366 | Incorrect string value: '\xEF\x83\x92 Mi...' for column 'people_resume' at row 38675            | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1366 | Incorrect string value: '\xD1\x85\xD0\xBC' for column 'people_resume' at row 39772              | 
+| Warning | 1366 | Incorrect string value: '\xEF\x82\xA7\x09B....' for column 'people_resume' at row 39894         | 
+| Warning | 1366 | Incorrect string value: '\xC4\xB1n\xC4\xB1f...' for column 'people_resume' at row 40734         | 
+| Warning | 1366 | Incorrect string value: '\xE5\xBD\xAD\xE7\x95\x85...' for column 'authorized_keys' at row 41167 | 
+| Warning | 1366 | Incorrect string value: '\xEF\x82\xA7\x09Hi...' for column 'people_resume' at row 41332         | 
+| Warning | 1366 | Incorrect string value: '\xEF\xBB\xBF\x0D\x0AI...' for column 'people_resume' at row 41438      | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+| Warning | 1366 | Incorrect string value: '\xC5\x84sk U...' for column 'people_resume' at row 45091               | 
+| Warning | 1366 | Incorrect string value: '\xEF\x83\x98\x09Pl...' for column 'people_resume' at row 48021         | 
+| Warning | 1048 | Column 'email_hide' cannot be null                                                              | 
+
+
+----
+
+Groups:
++---------+------+-------------------------------------------------------------------------------+
+| Level   | Code | Message                                                                       |
++---------+------+-------------------------------------------------------------------------------+
+| Warning | 1048 | Column 'short_description' cannot be null                                     | 
+| Warning | 1048 | Column 'long_description' cannot be null                                      | 
+| Warning | 1048 | Column 'license_other' cannot be null                                         | 
+| Warning | 1048 | Column 'required_software' cannot be null                                     | 
+| Warning | 1048 | Column 'other_comments' cannot be null                                        | 
+| Warning | 1048 | Column 'registered_gpg_keys' cannot be null                                   | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_homepage' at row 1                | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_mail' at row 1                    | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_patch' at row 1                   | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_task' at row 1                    | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_forum' at row 1                   | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_cvs' at row 1                     | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_news' at row 1                    | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_support' at row 1                 | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_bugs' at row 1                    | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_extralink_documentation' at row 1 | 
+| Warning | 1048 | Column 'long_description' cannot be null                                      | 
+| Warning | 1048 | Column 'required_software' cannot be null                                     | 
+| Warning | 1048 | Column 'other_comments' cannot be null                                        | 
+| Warning | 1264 | Out of range value adjusted for column 'register_time' at row 2               | 
+| Warning | 1048 | Column 'long_description' cannot be null                                      | 
+| Warning | 1048 | Column 'required_software' cannot be null                                     | 
+| Warning | 1048 | Column 'other_comments' cannot be null                                        | 
+| Warning | 1264 | Out of range value adjusted for column 'register_time' at row 3               | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_homepage' at row 3                | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_extralink_documentation' at row 3 | 
+| Warning | 1048 | Column 'required_software' cannot be null                                     | 
+| Warning | 1048 | Column 'other_comments' cannot be null                                        | 
+| Warning | 1264 | Out of range value adjusted for column 'register_time' at row 4               | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_homepage' at row 4                | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_extralink_documentation' at row 4 | 
+| Warning | 1048 | Column 'required_software' cannot be null                                     | 
+| Warning | 1048 | Column 'other_comments' cannot be null                                        | 
+| Warning | 1264 | Out of range value adjusted for column 'register_time' at row 5               | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_homepage' at row 5                | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_extralink_documentation' at row 5 | 
+| Warning | 1048 | Column 'required_software' cannot be null                                     | 
+| Warning | 1048 | Column 'other_comments' cannot be null                                        | 
+| Warning | 1264 | Out of range value adjusted for column 'register_time' at row 6               | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_homepage' at row 6                | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_extralink_documentation' at row 6 | 
+| Warning | 1048 | Column 'long_description' cannot be null                                      | 
+| Warning | 1048 | Column 'required_software' cannot be null                                     | 
+| Warning | 1048 | Column 'other_comments' cannot be null                                        | 
+| Warning | 1264 | Out of range value adjusted for column 'register_time' at row 7               | 
+| Warning | 1048 | Column 'required_software' cannot be null                                     | 
+| Warning | 1048 | Column 'other_comments' cannot be null                                        | 
+| Warning | 1264 | Out of range value adjusted for column 'register_time' at row 8               | 
+| Warning | 1048 | Column 'long_description' cannot be null                                      | 
+| Warning | 1048 | Column 'required_software' cannot be null                                     | 
+| Warning | 1048 | Column 'other_comments' cannot be null                                        | 
+| Warning | 1264 | Out of range value adjusted for column 'register_time' at row 9               | 
+| Warning | 1048 | Column 'registered_gpg_keys' cannot be null                                   | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_homepage' at row 9                | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_extralink_documentation' at row 9 | 
+| Warning | 1048 | Column 'required_software' cannot be null                                     | 
+| Warning | 1048 | Column 'other_comments' cannot be null                                        | 
+| Warning | 1264 | Out of range value adjusted for column 'register_time' at row 10              | 
+| Warning | 1048 | Column 'long_description' cannot be null                                      | 
+| Warning | 1048 | Column 'required_software' cannot be null                                     | 
+| Warning | 1048 | Column 'other_comments' cannot be null                                        | 
+| Warning | 1264 | Out of range value adjusted for column 'register_time' at row 11              | 
+| Warning | 1048 | Column 'registered_gpg_keys' cannot be null                                   | 
+| Warning | 1366 | Incorrect integer value: '' for column 'use_homepage' at row 11               | 
++---------+------+-------------------------------------------------------------------------------+

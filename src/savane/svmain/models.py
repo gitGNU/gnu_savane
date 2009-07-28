@@ -20,8 +20,6 @@
 from django.db import models
 from django.contrib.auth import models as auth_models
 
-# TODO: these models probably don't belong to the 'my' application
-
 class ExtendedUser(auth_models.User):
     """Django base User class + extra Savane fields"""
 
@@ -144,7 +142,7 @@ class GroupConfiguration(models.Model):
     can_use_support      = models.BooleanField(default=True)
     can_use_bug          = models.BooleanField(default=True)
     is_menu_configurable_homepage                = models.BooleanField(default=False,
-                                                                       help_text='the homepage link can be modified')
+      help_text='the homepage link can be modified')
     is_menu_configurable_download                = models.BooleanField(default=False)
     is_menu_configurable_forum                   = models.BooleanField(default=False)
     is_menu_configurable_support                 = models.BooleanField(default=False)
@@ -252,12 +250,16 @@ class GroupConfiguration(models.Model):
     #cookbook_rflags = IntegerField(default='5')
     #support_rflags  = IntegerField(default='2')
 
+    def __unicode__(self):
+        return self.name
+
 
 class ExtendedGroup(auth_models.Group):
     """Django base Group class + extra Savane fields"""
     
     type = models.ForeignKey(GroupConfiguration)
-    name = models.CharField(max_length=30, blank=True)
+    full_name = models.CharField(max_length=30, blank=True,
+      help_text="Full project name (not Unix system name)")
     is_public = models.BooleanField(default=False)
     status_CHOICES = (
         ('A', 'Active'),
@@ -272,7 +274,7 @@ class ExtendedGroup(auth_models.Group):
     license = models.ForeignKey(License, null=True)
     license_other = models.TextField()
 
-    devel_status = models.ForeignKey(DevelopmentStatus),
+    devel_status = models.ForeignKey(DevelopmentStatus)
 
     # Registration-specific
     register_purpose = models.TextField()
@@ -365,3 +367,10 @@ class ExtendedGroup(auth_models.Group):
     #support_private_exclude_address text
     #patch_private_exclude_address text
     #cookbook_private_exclude_address text
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+
