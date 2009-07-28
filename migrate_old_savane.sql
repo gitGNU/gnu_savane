@@ -171,11 +171,13 @@ INSERT INTO auth_group
 -- license_id <- license+1 (django counts from 1, not from 0)
 -- devel_status_id <- devel_status+1 (django counts from 1, not from 0)
 -- type_id <- type
+-- register_time <- FROM_UNIXTIME(register_time)
 --
 -- Using LEFT JOIN so that if the license isn't known, the project is
 -- not ignored (with license_id=NULL).
 INSERT INTO svmain_extendedgroup
     (group_ptr_id, full_name, license_id, devel_status_id, type_id,
+     register_time,
      is_public,
      status,
      short_description,
@@ -184,7 +186,6 @@ INSERT INTO svmain_extendedgroup
      register_purpose,
      required_software,
      other_comments,
-     register_time,
      registered_gpg_keys,
      use_homepage,
      use_mail,
@@ -225,6 +226,7 @@ INSERT INTO svmain_extendedgroup
      url_patch,
      url_extralink_documentation)
   SELECT group_id, group_name, svmain_license.id, devel_status+1, type,
+      FROM_UNIXTIME(register_time),
       is_public,
       status,
       short_description,
@@ -233,7 +235,6 @@ INSERT INTO svmain_extendedgroup
       register_purpose,
       required_software,
       other_comments,
-      register_time,
       registered_gpg_keys,
       use_homepage,
       use_mail,

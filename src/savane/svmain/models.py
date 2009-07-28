@@ -43,9 +43,9 @@ class ExtendedUser(auth_models.User):
     #confirm_hash = models.CharField(max_length=96, blank=True, null=True)
 
     # Keys
-    authorized_keys = models.TextField(blank=True, null=True)
+    authorized_keys = models.TextField(blank=True)
     authorized_keys_count = models.IntegerField(null=True, blank=True)
-    gpg_key = models.TextField(blank=True, null=True)
+    gpg_key = models.TextField(blank=True)
     gpg_key_count = models.IntegerField(null=True, blank=True)
 
     # Personal info
@@ -54,8 +54,8 @@ class ExtendedUser(auth_models.User):
     # Preferences - /!\ some are also in the user_preferences table
     people_view_skills = models.BooleanField(default=False)
     email_hide = models.BooleanField(default=False)
-    timezone = models.CharField(max_length=192, blank=True, null=True)
-    theme = models.CharField(max_length=45, blank=True, null=True)
+    timezone = models.CharField(max_length=192, blank=True)
+    theme = models.CharField(max_length=45, blank=True)
 
 
     # Inherit specialized models.Manager with convenience functions
@@ -98,7 +98,7 @@ class GroupConfiguration(models.Model):
     #admin_email_adress = models.CharField(max_length=128, null=True) # unused
 
     # Redirect to this host when visiting project page
-    base_host = models.CharField(max_length=128, null=True)
+    base_host = models.CharField(max_length=128)
 
     # Mailing lists
     mailing_list_address = models.CharField(max_length=255, default='@',
@@ -111,7 +111,7 @@ class GroupConfiguration(models.Model):
         + ' %NAME, which is the part the of the mailing list name that the'
         + ' project admin can define (would be %PROJECT-%NAME for non-GNU'
         + ' projects at sv.gnu.org). Do no add any @hostname here!')
-    #mailing_list_host = models.CharField(max_length=255, null=True, help_text='DEPRECATED')
+    #mailing_list_host = models.CharField(max_length=255, help_text='DEPRECATED')
 
     # Permissions
     can_use_homepage     = models.BooleanField(default=True)
@@ -270,21 +270,21 @@ class ExtendedGroup(auth_models.Group):
         )
     status = models.CharField(max_length=1, choices=status_CHOICES, default='A')
     short_description = models.CharField(max_length=255, blank=True)
-    long_description = models.TextField()
-    license = models.ForeignKey(License, null=True)
-    license_other = models.TextField()
+    long_description = models.TextField(blank=True)
+    license = models.ForeignKey(License, blank=True, null=True)
+    license_other = models.TextField(blank=True)
 
     devel_status = models.ForeignKey(DevelopmentStatus)
 
     # Registration-specific
-    register_purpose = models.TextField()
-    required_software = models.TextField()
-    other_comments = models.TextField()
+    register_purpose = models.TextField(blank=True)
+    required_software = models.TextField(blank=True)
+    other_comments = models.TextField(blank=True)
 
     register_time = models.DateTimeField()
     #rand_hash text,
     
-    registered_gpg_keys = models.TextField()
+    registered_gpg_keys = models.TextField(blank=True)
 
     # Project "Features"
     use_homepage                = models.BooleanField(default=False)
@@ -304,39 +304,39 @@ class ExtendedGroup(auth_models.Group):
     use_bugs                    = models.BooleanField(default=False)
     use_extralink_documentation = models.BooleanField(default=False)
 
-    # 'null' means 'use default'
-    url_homepage                = models.CharField(max_length=255, null=True)
-    url_download                = models.CharField(max_length=255, null=True)
-    url_forum                   = models.CharField(max_length=255, null=True)
-    url_support                 = models.CharField(max_length=255, null=True)
-    url_mail                    = models.CharField(max_length=255, null=True)
-    url_cvs                     = models.CharField(max_length=255, null=True)
-    url_cvs_viewcvs             = models.CharField(max_length=255, null=True)
-    url_cvs_viewcvs_homepage    = models.CharField(max_length=255, null=True)
-    url_arch                    = models.CharField(max_length=255, null=True)
-    url_arch_viewcvs            = models.CharField(max_length=255, null=True)
-    url_svn                     = models.CharField(max_length=255, null=True)
-    url_svn_viewcvs             = models.CharField(max_length=255, null=True)
-    url_git                     = models.CharField(max_length=255, null=True)
-    url_git_viewcvs             = models.CharField(max_length=255, null=True)
-    url_hg                      = models.CharField(max_length=255, null=True)
-    url_hg_viewcvs              = models.CharField(max_length=255, null=True)
-    url_bzr                     = models.CharField(max_length=255, null=True)
-    url_bzr_viewcvs             = models.CharField(max_length=255, null=True)
-    url_bugs                    = models.CharField(max_length=255, null=True)
-    url_task                    = models.CharField(max_length=255, null=True)
-    url_patch                   = models.CharField(max_length=255, null=True)
-    url_extralink_documentation = models.CharField(max_length=255, null=True)
+    # blank means 'use default'
+    url_homepage                = models.CharField(max_length=255, blank=True)
+    url_download                = models.CharField(max_length=255, blank=True)
+    url_forum                   = models.CharField(max_length=255, blank=True)
+    url_support                 = models.CharField(max_length=255, blank=True)
+    url_mail                    = models.CharField(max_length=255, blank=True)
+    url_cvs                     = models.CharField(max_length=255, blank=True)
+    url_cvs_viewcvs             = models.CharField(max_length=255, blank=True)
+    url_cvs_viewcvs_homepage    = models.CharField(max_length=255, blank=True)
+    url_arch                    = models.CharField(max_length=255, blank=True)
+    url_arch_viewcvs            = models.CharField(max_length=255, blank=True)
+    url_svn                     = models.CharField(max_length=255, blank=True)
+    url_svn_viewcvs             = models.CharField(max_length=255, blank=True)
+    url_git                     = models.CharField(max_length=255, blank=True)
+    url_git_viewcvs             = models.CharField(max_length=255, blank=True)
+    url_hg                      = models.CharField(max_length=255, blank=True)
+    url_hg_viewcvs              = models.CharField(max_length=255, blank=True)
+    url_bzr                     = models.CharField(max_length=255, blank=True)
+    url_bzr_viewcvs             = models.CharField(max_length=255, blank=True)
+    url_bugs                    = models.CharField(max_length=255, blank=True)
+    url_task                    = models.CharField(max_length=255, blank=True)
+    url_patch                   = models.CharField(max_length=255, blank=True)
+    url_extralink_documentation = models.CharField(max_length=255, blank=True)
 
     # Admin override (unused)
-    #dir_cvs = models.CharField(max_length=255, null=True)
-    #dir_arch = models.CharField(max_length=255, null=True)
-    #dir_svn = models.CharField(max_length=255, null=True)
-    #dir_git = models.CharField(max_length=255, null=True)
-    #dir_hg = models.CharField(max_length=255, null=True)
-    #dir_bzr = models.CharField(max_length=255, null=True)
-    #dir_homepage = models.CharField(max_length=255, null=True)
-    #dir_download = models.CharField(max_length=255, null=True)
+    #dir_cvs = models.CharField(max_length=255)
+    #dir_arch = models.CharField(max_length=255)
+    #dir_svn = models.CharField(max_length=255)
+    #dir_git = models.CharField(max_length=255)
+    #dir_hg = models.CharField(max_length=255)
+    #dir_bzr = models.CharField(max_length=255)
+    #dir_homepage = models.CharField(max_length=255)
+    #dir_download = models.CharField(max_length=255)
 
     # TODO: split trackers configuration
     #bugs_preamble = models.TextField()
