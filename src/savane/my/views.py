@@ -23,7 +23,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django import forms
-from models import ExtendedUser
+from savane.svmain.models import ExtendedUser
 
 @login_required()
 def sv_conf( request ):

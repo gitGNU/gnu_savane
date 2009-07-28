@@ -1,88 +1,134 @@
 - fields:
+    slug: 'none'
+    name: 'N/A'
+  model: svmain.license
+  pk: 1
+- fields:
     slug: 'gpl'
     name: 'GNU General Public License V2 or later'
     url: 'http://www.gnu.org/copyleft/gpl.html'
-  model: my.license
-  pk: 1
+  model: svmain.license
+  pk: 2
 - fields:
     slug: 'lgpl'
     name: 'GNU Lesser General Public License'
     url: 'http://www.gnu.org/copyleft/lesser.html'
-  model: my.license
-  pk: 2
+  model: svmain.license
+  pk: 3
 - fields:
     slug: 'fdl'
     name: 'GNU Free Documentation License'
     url: 'http://www.gnu.org/copyleft/fdl.html'
-  model: my.license
-  pk: 3
+  model: svmain.license
+  pk: 4
 - fields:
     slug: 'mbsd'
     name: 'Modified BSD License'
     url: 'http://www.xfree86.org/3.3.6/COPYRIGHT2.html#5'
-  model: my.license
-  pk: 4
+  model: svmain.license
+  pk: 5
 - fields:
     slug: 'x11'
     name: 'X11 license'
     url: 'http://www.x.org/terms.htm'
-  model: my.license
-  pk: 5
+  model: svmain.license
+  pk: 6
 - fields:
     slug: 'cryptix'
     name: 'Cryptix General License'
     url: 'http://www.cryptix.org/docs/license.html'
-  model: my.license
-  pk: 6
+  model: svmain.license
+  pk: 7
 - fields:
     slug: 'zlib'
     name: 'The license of ZLib'
     url: 'ftp://ftp.freesoftware.com/pub/infozip/zlib/zlib_license.html'
-  model: my.license
-  pk: 7
+  model: svmain.license
+  pk: 8
 - fields:
     slug: 'imatrix'
     name: 'The license of the iMatix Standard Function Library'
-  model: my.license
-  pk: 8
+  model: svmain.license
+  pk: 9
 - fields:
     slug: 'w3c'
     name: 'The W3C Software Notice and License'
     url: 'http://www.w3.org/Consortium/Legal/copyright-software.html'
-  model: my.license
-  pk: 9
+  model: svmain.license
+  pk: 10
 - fields:
     slug: 'berkeley'
     name: 'The Berkeley Database License'
     url: 'http://www.sleepycat.com/license.net'
-  model: my.license
-  pk: 10
+  model: svmain.license
+  pk: 11
 - fields:
     slug: 'python16'
     name: 'The License of Python 1.6a2 and earlier versions'
     url: 'http://www.python.org/doc/Copyright.html'
-  model: my.license
-  pk: 11
+  model: svmain.license
+  pk: 12
 - fields:
     slug: 'cartistic'
     name: 'The Clarified Artistic License'
     url: 'http://www.statistica.unimib.it/utenti/dellavedova/software/artistic2.html'
-  model: my.license
-  pk: 12
+  model: svmain.license
+  pk: 13
 - fields:
     slug: 'expat'
     name: 'Expat License (sometime refered to as MIT License)'
     url: 'http://www.gnu.org/licenses/license-list.html#Expat'
-  model: my.license
-  pk: 13
+  model: svmain.license
+  pk: 14
 - fields:
     slug: 'affero'
     name: 'Affero General Public License V1 or later'
     url: 'http://www.affero.org/oagpl.html'
-  model: my.license
-  pk: 14
+  model: svmain.license
+  pk: 15
 - fields:
     slug: 'website'
     name: 'WebSite Only'
-  model: my.license
-  pk: 15
+  model: svmain.license
+  pk: 16
+- fields:
+    slug: 'python2'
+    name: 'The License of Python 2.0.1, 2.1.1, and newer versions'
+    url: 'http://www.python.org/2.0.1/license.html'
+  model: svmain.license
+  pk: 17
+- fields:
+    slug: 'perl'
+    name: 'The license of Perl (disjunction of the Artistic License and the GNU GPL)'
+    url: 'http://www.gnu.org/philosophy/license-list.html#PerlLicense'
+  model: svmain.license
+  pk: 18
+- fields:
+    slug: 'classpath'
+    name: 'GNU General Public License v2 or later with GNU Classpath special exception'
+    url: 'http://www.gnu.org/software/classpath/license.html'
+  model: svmain.license
+  pk: 19
+- fields:
+    slug: 'public domain'
+    name: 'Public domain'
+  model: svmain.license
+  pk: 20
+- fields:
+    slug: 'dual-gpl'
+    name: 'GNU General Public License v2 or later (+ dual licensing)'
+    url: 'http://www.gnu.org/licenses/gpl.html'
+  model: svmain.license
+  pk: 21
+- fields:
+    slug: 'gplv3orlater'
+    name: 'GNU General Public License v3 or later'
+    url: 'http://www.gnu.org/licenses/gpl.html'
+  model: svmain.license
+  pk: 22
+- fields:
+    slug: 'agpl'
+    name: 'GNU Affero General Public License v3 or later'
+    url: 'http://www.gnu.org/licenses/agpl-3.0.html'
+  model: svmain.license
+  pk: 23
