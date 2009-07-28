@@ -62,8 +62,11 @@ class GroupConfigurationAdmin(admin.ModelAdmin):
         (_('Licenses'), {'fields': ('can_use_license',)}),
         (_('Development Status'), {'fields': ('can_use_devel_status',)}),
         (_('Mailing List'),
-         {'fields': ('can_use_mailing_list', 'mailing_list_address',
-                     'mailing_list_virtual_host', 'mailing_list_format')}),
+         {'fields': ('can_use_mailing_list', 'mailing_list_virtual_host',
+                     'mailing_list_address', 'mailing_list_format',
+                     'url_mailing_list_listinfo', 'url_mailing_list_subscribe',
+                     'url_mailing_list_unsubscribe', 'url_mailing_list_archives',
+                     'url_mailing_list_archives_private', 'url_mailing_list_admin')}),
         # TODO: finish
         (_('News Manager'), {'fields': ('can_use_news',)}),
         (_('Project Menu Settings'),

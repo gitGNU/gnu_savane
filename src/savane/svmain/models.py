@@ -1,5 +1,7 @@
-# User extra attributes
-# Copyright (C) 2009  Sylvain Beucler
+# User/group extra attributes
+# Copyright (C) 2002-2006 Mathieu Roy <yeupou--gnu.org>
+# Copyright (C) 2007, 2008, 2009  Sylvain Beucler
+# Copyright (C) 2008  Aleix Conchillo Flaque
 # Copyright (C) 2009  Jonathan Gonzalez V.
 #
 # This file is part of Savane.
@@ -70,7 +72,7 @@ class License(models.Model):
     """
     slug = models.CharField(max_length=32)
     name = models.CharField(max_length=255)
-    url = models.CharField(max_length=255)
+    url = models.CharField(max_length=255, blank=True)
 
     def __unicode__(self):
         return self.slug + ": " + self.name
@@ -98,19 +100,20 @@ class GroupConfiguration(models.Model):
     #admin_email_adress = models.CharField(max_length=128, null=True) # unused
 
     # Redirect to this host when visiting project page
-    base_host = models.CharField(max_length=128)
+    base_host = models.CharField(max_length=128, blank=True)
 
     # Mailing lists
     mailing_list_address = models.CharField(max_length=255, default='@',
       help_text='would be %LIST@gnu.org for GNU projects at sv.gnu.org')
-    mailing_list_virtual_host = models.CharField(max_length=255, default='',
+    mailing_list_virtual_host = models.CharField(max_length=255, blank=True,
       help_text='would be lists.gnu.org or lists.nongnu.org at sv.gnu.org [BACKEND SPECIFIC]')
     mailing_list_format = models.CharField(max_length=255, default='%NAME',
       help_text='With this, you can force projects to follow a specific policy'
         + ' for the name of the %LIST. Here you should use the special wildcard'
         + ' %NAME, which is the part the of the mailing list name that the'
         + ' project admin can define (would be %PROJECT-%NAME for non-GNU'
-        + ' projects at sv.gnu.org). Do no add any @hostname here!')
+        + ' projects at sv.gnu.org). Do no add any @hostname here!'
+        + ' You can specify multiple formats separated by a "," comma.')
     #mailing_list_host = models.CharField(max_length=255, help_text='DEPRECATED')
 
     # Permissions
@@ -119,7 +122,7 @@ class GroupConfiguration(models.Model):
       help_text='This is useful if you provide directly download areas (created'
         + ' by the backend) or if you want to allow projects to configure the'
         + ' related menu entry (see below).')
-    can_use_cvs          = models.BooleanField(default=True)
+    can_use_cvs          = models.BooleanField(default=False)
     can_use_arch         = models.BooleanField(default=False)
     can_use_svn          = models.BooleanField(default=False)
     can_use_git          = models.BooleanField(default=False)
@@ -134,17 +137,17 @@ class GroupConfiguration(models.Model):
         + ' purely a matter of cosmetics. This option is mainly here just to'
         + ' remove this content in case it is useless (it does not makes sense'
         + ' for organizational projects).')
-    can_use_forum        = models.BooleanField(default=False)
-    can_use_mailing_list = models.BooleanField(default=True)
-    can_use_patch        = models.BooleanField(default=False)
-    can_use_task         = models.BooleanField(default=True)
-    can_use_news         = models.BooleanField(default=True)
+    can_use_mailing_list = models.BooleanField(default=True,
+      help_text='This is one of the main issue tracker of Savane.'
+        + ' Projects are supposed to use it as primary interface with end user.')
     can_use_support      = models.BooleanField(default=True)
     can_use_bug          = models.BooleanField(default=True)
+    can_use_task         = models.BooleanField(default=True)
+    can_use_patch        = models.BooleanField(default=False)
+    can_use_news         = models.BooleanField(default=True)
     is_menu_configurable_homepage                = models.BooleanField(default=False,
       help_text='the homepage link can be modified')
     is_menu_configurable_download                = models.BooleanField(default=False)
-    is_menu_configurable_forum                   = models.BooleanField(default=False)
     is_menu_configurable_support                 = models.BooleanField(default=False)
     is_menu_configurable_mail                    = models.BooleanField(default=False)
     is_menu_configurable_cvs                     = models.BooleanField(default=False)
@@ -228,14 +231,20 @@ class GroupConfiguration(models.Model):
     url_mailing_list_admin            = models.CharField(max_length=255, default='http://')
     url_extralink_documentation = models.CharField(max_length=255, blank=True)
 
+    # Deprecated
+    # "Forum is a deprecated feature of Savane. We do not recommend
+    #  using it and we do not maintain this code any longer."
+    #can_use_forum = models.BooleanField(default=False)
+    #is_menu_configurable_forum = models.BooleanField(default=False)
+    #forum_flags = IntegerField(default='2')
+    #forum_rflags = IntegerField(default='2')
+
     # Unused
     #license_array = models.TextField()
     #devel_status_array = models.TextField()
 
     # TODO: split forum and news config
-    #forum_flags     = IntegerField(default='2')
     #news_flags      = IntegerField(default='3')
-    #forum_rflags    = IntegerField(default='2')
     #news_rflags     = IntegerField(default='2')
 
     # TODO: split tracker config
@@ -291,7 +300,6 @@ class ExtendedGroup(auth_models.Group):
     use_mail                    = models.BooleanField(default=False)
     use_patch                   = models.BooleanField(default=False)
     use_task                    = models.BooleanField(default=False)
-    use_forum                   = models.BooleanField(default=False)
     use_cvs                     = models.BooleanField(default=False)
     use_arch                    = models.BooleanField(default=False)
     use_svn                     = models.BooleanField(default=False)
@@ -307,7 +315,6 @@ class ExtendedGroup(auth_models.Group):
     # blank means 'use default'
     url_homepage                = models.CharField(max_length=255, blank=True)
     url_download                = models.CharField(max_length=255, blank=True)
-    url_forum                   = models.CharField(max_length=255, blank=True)
     url_support                 = models.CharField(max_length=255, blank=True)
     url_mail                    = models.CharField(max_length=255, blank=True)
     url_cvs                     = models.CharField(max_length=255, blank=True)
@@ -337,6 +344,10 @@ class ExtendedGroup(auth_models.Group):
     #dir_bzr = models.CharField(max_length=255)
     #dir_homepage = models.CharField(max_length=255)
     #dir_download = models.CharField(max_length=255)
+
+    # Deprecated
+    #url_forum = models.CharField(max_length=255, blank=True)
+    #use_forum = models.BooleanField(default=False)
 
     # TODO: split trackers configuration
     #bugs_preamble = models.TextField()
