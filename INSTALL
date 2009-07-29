@@ -9,7 +9,7 @@
 
 * Dependencies as Debian packages
 
-apt-get install mysql-server python-django python-mysqldb python-decorator
+apt-get install mysql-server python-django python-mysqldb
 
 
 * Install process

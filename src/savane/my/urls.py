@@ -23,34 +23,25 @@ from django.views.generic.simple import direct_to_template
 from django.views.generic.list_detail import object_list
 import views
 import savane.svmain.models as svmain_models
-from decorator import decorator
 
-@decorator
-def only_mine(f, *args, **kwargs):
+def only_mine(f):
     """Filter a generic query_set to only display objets related to
     the current user"""
-    request = args[0]
-    user = request.user
-    kwargs['queryset'] = kwargs['queryset'].filter(user=user.id)
-    return f(*args, **kwargs)
-
-@only_mine
-def object_list__only_mine(*args, **kwargs):
-    return object_list(*args, **kwargs)
-
-@login_required
-def direct_to_template__login_required(*args, **kwargs):
-    return direct_to_template(*args, **kwargs)
+    def _dec(request, queryset, *args, **kwargs):
+        user = request.user
+        queryset = queryset.filter(user=user.id)
+        return f(request, queryset, *args, **kwargs)
+    return _dec
 
 urlpatterns = patterns ('',
-  url(r'^$', direct_to_template__login_required,
+  url(r'^$', login_required(direct_to_template),
       { 'template' : 'my/index.html' },
       name='savane.my.views.index'),
   url('^conf/$', views.sv_conf),
   url('^conf/resume_skill$', views.sv_resume_skill),
   url('^conf/ssh_gpg$', views.sv_ssh_gpg),
   url('^conf/ssh_gpg$', views.sv_ssh_gpg),
-  url(r'^groups/$', object_list__only_mine,
+  url(r'^groups/$', only_mine(object_list),
       { 'queryset' : svmain_models.ExtendedGroup.objects.all() },
       name='savane.my.group_list'),
 )
