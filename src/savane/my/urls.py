@@ -33,8 +33,27 @@ def only_mine(f):
         return f(request, queryset, *args, **kwargs)
     return _dec
 
-urlpatterns = patterns ('',
-  url(r'^$', login_required(direct_to_template),
+# Batch-decorator for urlpatterns
+# http://www.djangosnippets.org/snippets/532/
+from django.core.urlresolvers import RegexURLPattern
+class DecoratedURLPattern(RegexURLPattern):
+    def resolve(self, *args, **kwargs):
+        result = RegexURLPattern.resolve(self, *args, **kwargs)
+        if result:
+            result = list(result)
+            result[0] = self._decorate_with(result[0])
+        return result
+def decorated_patterns(prefix, func, *args):
+    result = patterns(prefix, *args)
+    if func:
+        for p in result:
+            if isinstance(p, RegexURLPattern):
+                p.__class__ = DecoratedURLPattern
+                p._decorate_with = func
+    return result
+
+urlpatterns = decorated_patterns ('', login_required,
+  url(r'^$', direct_to_template,
       { 'template' : 'my/index.html' },
       name='savane.my.views.index'),
   url('^conf/$', views.sv_conf),
