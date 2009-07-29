@@ -20,6 +20,7 @@
 from django.conf.urls.defaults import *
 
 from savane.svmain import models as svmain_models
+import views
 
 urlpatterns = patterns ('',
   url(r'^$', 'django.views.generic.simple.direct_to_template',
@@ -33,15 +34,19 @@ urlpatterns = patterns ('',
   # TODO: not sure about the views naming convention - all this
   # "models in 'svmain', views in 'my'" is getting messy, probably a
   # mistake from me (Beuc) :P
-  url(r'^projects/(?P<slug>[-\w]+)$', 'django.views.generic.list_detail.object_detail',
+  url(r'^p/(?P<slug>[-\w]+)$', 'django.views.generic.list_detail.object_detail',
       { 'queryset' : svmain_models.ExtendedGroup.objects.all(),
         'slug_field' : 'name' },
       name='savane.svmain.group_detail'),
+  url(r'^pr/(?P<slug>[-\w]+)$', views.group_redir),
+  url(r'^projects/(?P<slug>[-\w]+)$', views.group_redir),
 
-  url(r'^users/(?P<slug>[-\w]+)$', 'django.views.generic.list_detail.object_detail',
+  url(r'^u/(?P<slug>[-\w]+)$', 'django.views.generic.list_detail.object_detail',
       { 'queryset' : svmain_models.ExtendedUser.objects.all(),
         'slug_field' : 'username' },
       name='savane.svmain.user_detail'),
+  url(r'^us/(?P<slug>[-\w]+)$', views.user_redir),
+  url(r'^users/(?P<slug>[-\w]+)$', views.user_redir),
 
   url(r'^license/$', 'django.views.generic.list_detail.object_list',
       { 'queryset' : svmain_models.License.objects.all(), },
