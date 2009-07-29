@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>
+Name: {{object.name}}<br />
+License: <a href="{{object.license.get_absolute_url}}">{{object.license.name}}</a><br />
+Development status: {{object.devel_status}}<br />
+</p>
+
+<p>Members:</p>
+
+{% if object.user_set.all %}
+<ul>
+  {% for user in object.user_set.all %}
+  <li><a href="{{ user.extendeduser.get_absolute_url }}">{{ user.username }}</a></li>
+  {% endfor %}
+  </ul>
+{% else %}
+  No members!
+{% endif %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

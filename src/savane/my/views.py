@@ -84,7 +84,7 @@ def sv_resume_skill( request ):
                                context_instance=RequestContext(request))
 @login_required()
 def sv_ssh_gpg( request ):
-    eu = ExtendedUser.objects.get(pk=request.user.pk)
+    eu = get_object_or_404(ExtendedUser, pk=request.user.pk)
 
     error_msg = None
     success_msg = None

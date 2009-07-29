@@ -31,7 +31,6 @@ def only_mine(f, *args, **kwargs):
     the current user"""
     request = args[0]
     user = request.user
-    print kwargs
     kwargs['queryset'] = kwargs['queryset'].filter(user=user.id)
     return f(*args, **kwargs)
 
@@ -53,5 +52,5 @@ urlpatterns = patterns ('',
   url('^conf/ssh_gpg$', views.sv_ssh_gpg),
   url(r'^groups/$', object_list__only_mine,
       { 'queryset' : svmain_models.ExtendedGroup.objects.all() },
-      name='savane.my.generic.group_list'),
+      name='savane.my.group_list'),
 )

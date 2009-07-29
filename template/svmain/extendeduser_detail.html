@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>Name: {{object.username}}</p>
+
+<p>Is a member of (using Django user.groups):</p>
+
+{% if object.groups.all %}
+<ul>
+  {% for group in object.groups.all %}
+  <li>
+    <a href="{{ group.extendedgroup.get_absolute_url }}">{{ group.name }}</a>
+  </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  Not part of any group yet
+{% endif %}
+
+<p>Is a member of (using Membership):</p>
+
+{% if object.membership_set.all %}
+<ul>
+  {% for membership in object.membership_set.all %}
+  <li>
+    <a href="{{ membership.group.get_absolute_url }}">{{ membership.group.name }}</a> {{ membership.admin_flags}}
+  </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  Not part of any group yet
+{% endif %}
+
+
+<p>Is a member of (using Membership + direct field):</p>
+
+{% if object.extendedgroup_set.all %}
+<ul>
+  {% for group in object.extendedgroup_set.all %}
+  <li>
+    <a href="{{ group.get_absolute_url }}">{{ group.name }}</a>
+  </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  Not part of any group yet
+{% endif %}
+
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

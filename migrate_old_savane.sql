@@ -270,3 +270,48 @@ INSERT INTO svmain_extendedgroup
       url_extralink_documentation
     FROM savane_old.groups LEFT JOIN savane.svmain_license ON savane_old.groups.license = savane.svmain_license.slug
     WHERE savane_old.groups.group_id != 100;
+
+-- Import users<->groups relationships
+-- Get rid of duplicates (long: several minutes):
+DELETE FROM savane_old.user_group
+  WHERE user_group_id IN (
+    SELECT A.user_group_id
+      FROM savane_old.user_group A, savane_old.user_group B
+      WHERE A.user_id = B.user_id AND A.group_id = B.group_id
+      GROUP BY A.user_id, A.group_id HAVING count(*) > 1
+  );
+-- Actual import
+INSERT INTO auth_user_groups
+    (user_id, group_id)
+  SELECT user_id, group_id
+    FROM savane_old.user_group;
+INSERT INTO svmain_membership
+    (user_id, group_id, admin_flags, onduty)
+  SELECT user_id, group_id, admin_flags, onduty
+    FROM savane_old.user_group;
+-- Get rid of ghost relationships (deleted group)
+DELETE FROM svmain_membership
+  WHERE group_id IN (
+    SELECT group_id FROM (
+      SELECT group_id
+        FROM svmain_membership
+          LEFT JOIN svmain_extendedgroup ON svmain_membership.group_id = svmain_extendedgroup.group_ptr_id
+        WHERE group_ptr_id IS NULL
+      ) AS temp
+    );
+-- Get rid of ghost relationships (deleted user)
+DELETE FROM svmain_membership WHERE user_id IN (
+  SELECT user_id FROM (
+    SELECT user_id
+      FROM svmain_membership
+        LEFT JOIN svmain_extendeduser ON svmain_membership.user_id = svmain_extendeduser.user_ptr_id
+      WHERE user_ptr_id IS NULL
+    ) AS temp
+  );
+-- Set members of 'administration' as superusers
+-- TODO: get the supergroup name from the old Savane configuration
+UPDATE auth_user SET is_staff=1, is_superuser=1
+  WHERE id IN (
+    SELECT user_id
+    FROM auth_user_groups JOIN auth_group ON auth_user_groups.group_id = auth_group.id
+    WHERE auth_group.name='administration');
