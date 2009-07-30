@@ -27,7 +27,7 @@ class ExtendedUserAdmin(admin.ModelAdmin):
                      'people_view_skills', 'email_hide', 'timezone', 'theme',)}),
         )
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff')
-    list_filter = ('is_staff', 'is_superuser')
+    list_filter = ('is_staff', 'is_superuser', 'status')
     search_fields = ('username', 'first_name', 'last_name', 'email')
     ordering = ('username',)
     filter_horizontal = ('user_permissions',)

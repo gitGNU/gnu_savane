@@ -18,7 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.template import RequestContext
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -84,7 +84,7 @@ def sv_resume_skill( request ):
                                context_instance=RequestContext(request))
 @login_required()
 def sv_ssh_gpg( request ):
-    eu = ExtendedUser.objects.get(pk=request.user.pk)
+    eu = get_object_or_404(ExtendedUser, pk=request.user.pk)
 
     error_msg = None
     success_msg = None

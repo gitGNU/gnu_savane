@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p><a href="{% url savane.svmain.license_list %}">License list</a></p>
+
+<p>
+Name: {{object.slug}}<br />
+URL: <a href="{{object.license.url}}">{{object.url}}</a><br />
+</p>
+
+<p>Projects that use it:</p>
+
+{{ object.extendedgroup_set.count }} project(s) use this license<br />
+
+{% for eg in object.extendedgroup_set.all %}
+<a href="{{eg.get_absolute_url}}">{{eg.name}}</a>{% if forloop.last %}{%else%},{% endif %}
+{% endfor %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

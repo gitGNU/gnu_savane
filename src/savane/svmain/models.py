@@ -19,6 +19,42 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+"""
+User/group extra attributes
+
+This may look like reinventing the User.get_profile() that comes with
+Django;
+http://www.b-list.org/weblog/2006/jun/06/django-tips-extending-user-model/
+http://mirobetm.blogspot.com/2007/04/en-django-extending-user_2281.html
+
+However profiles were mainly useful in Django < 1.0 where you couldn't
+subclass User as we do.
+
+Profiles also have a few drawbacks, namely they are site-specific,
+which means you cannot have multiple applications have different
+profiles in the same website, while with subclassing you only need to
+user different class names (to avoid parent->child fieldname clash).
+
+Moreover splitting the information in two different models can be
+cumbersome when using ModelForms.
+
+Subclassing drawback: there's apparently a technique to use a
+vhost-based profile class (with django.contrib.site and multiples
+settings.py). But it's not useful for Savane IMHO.
+
+In addition, it seems impossible to convert an existing User to a
+derived class from Python (this can be done through DB but that's
+ugly). This apparently prevents auto-creating our derived class when a
+new User is directly created (and sends a post_save signal).
+
+Profiles vs. inheritance is also described at
+http://scottbarnham.com/blog/2008/08/21/extending-the-django-user-model-with-inheritance/
+
+Note that Scott's authentication backend has the same issue than
+profiles: only one profile class can be used on a single website, so
+we don't use it.
+"""
+
 from django.db import models
 from django.contrib.auth import models as auth_models
 
@@ -59,9 +95,35 @@ class ExtendedUser(auth_models.User):
     timezone = models.CharField(max_length=192, blank=True)
     theme = models.CharField(max_length=45, blank=True)
 
+    # Non-field link to extended groups
+    extendedgroup_set = models.ManyToManyField('ExtendedGroup', through='Membership')
 
     # Inherit specialized models.Manager with convenience functions
     objects = auth_models.UserManager()
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('savane.svmain.user_detail', [self.username])
+
+# FIXME
+# Let's make sure extendeduser is always created, even if somehow a
+# normal User is created (from the admin interface, e.g.)
+# This currently fails, and this doesn't support creating a model if
+# another apps creates a derived class.
+#from django.contrib.auth.models import User
+#from django.db.models.signals import post_save
+#def user_post_save_handler(sender, **kwargs):
+#    """
+#    Create an ExtendedUser when a User is directly created
+#
+#    Called when User is created
+#    (but not called when a ExtendedUser is created)
+#    """
+#    u = kwargs['instance']
+#    if kwargs['created'] == True:
+#        eu = ExtendedUser(user_ptr=u)
+#        eu.save()  # ERROR
+#post_save.connect(user_post_save_handler, sender=User)
 
 class License(models.Model):
     """
@@ -76,6 +138,10 @@ class License(models.Model):
 
     def __unicode__(self):
         return self.slug + ": " + self.name
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('savane.svmain.license_detail', [self.slug])
 
     class Meta:
         ordering = ['slug']
@@ -382,6 +448,50 @@ class ExtendedGroup(auth_models.Group):
     def __unicode__(self):
         return self.name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('savane.svmain.group_detail', [self.name])
+
     class Meta:
         ordering = ['name']
 
+
+class Membership(models.Model):
+    """
+    Extra attributes about a User<->Group relationship
+    (e.g. "is the user an admin?")
+    """
+    user = models.ForeignKey(ExtendedUser)
+    group = models.ForeignKey(ExtendedGroup)
+
+    admin_flags_CHOICES = (
+        ('A', 'Admin'),
+        # IMHO we need to put 'P' in a separate table, like 'pending
+        # membership', otherwise it's too easy to make mistakes
+        ('P', 'Pending moderation'),
+        ('SQD', 'Squad'), # FIXME: I dislike squad=user
+        )
+    admin_flags = models.CharField(max_length=3, choices=admin_flags_CHOICES,
+      blank=True, help_text="membership properties")
+    onduty = models.BooleanField(default=True,
+      help_text="Untick to hide emeritous members from the project page")
+
+    # TODO: split news params
+    #news_flags int(11) default NULL
+    
+    # Trackers-related
+    #privacy_flags = models.BooleanField(default=True)
+    #bugs_flags int(11) default NULL
+    #task_flags int(11) default NULL
+    #patch_flags int(11) default NULL
+    #support_flags int(11) default NULL
+    #cookbook_flags int(11) default NULL
+
+    # Deprecated
+    #forum_flags int(11) default NULL
+
+    def __unicode__(self):
+        return "[%s is a member of %s]" % (self.user.username, self.group.name)
+
+    class Meta:
+        unique_together = (('user', 'group'),)

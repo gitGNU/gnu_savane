@@ -89,8 +89,10 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.admin',
     'savane.svmain',
     'savane.my',
+# Disabled: we're not using it currently, and there are issues with
+# login when no site is defined
+#    'django.contrib.sites',
 )
