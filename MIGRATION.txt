@@ -16,10 +16,6 @@
 Users
 =====
 
-To remove duplicate users *FOR TESTING*:
-(TODO: need to remove only the duplicate, not both)
-DELETE FROM user WHERE user_name IN ('adiebald','alkana','andersgh','andrenix','animalfarm','antigerme','baravalle','Bassslinger','blitzkerk','bolek11','brawil1','brijesh_gadhiya','caribe','caterkiller2001','cce','chawil','conan','cux221','dave_san','ddavies','doudou61','dungeon','elektroland','emil5','ericclaassen','espahr','fcattoen','gauntlet','Gerardoco','Gonzalvez','GOOS','grubthosch','hans-peter','heikorah','helen','jaguaryou','jezdikm','JonGretar','kodion','kpc82','kumud','lamborghini0102','markm','mbaruchel','mdopheide','moocha','Netsnipe','osia','otello','pepex82','phgbest007','planetstar','plijnzaad','plomo00','Progenator','pthom','puyo','qemm','quaxter','rafaelrt','rdunphy','realshitok','roeles','rubenperez','scorbeau','seb_cante','SeeksTheMoon','shezAbrat','shiau','shyguy','siman','sjh0320','sorenoid','Steve_Stanfield','surfnix54','suydam','Sweethrt758','taroo','tdp','The_WABBIT','thresher','tklein','tontonraoul','tony-rs','treker','tt3','vdemart','vinod','vka3','wbrown','Webb','wertzu','willou','wutzkem');
-
 Warnings during import:
 
 TODO: I don't really understand why three are illegal UTF-8 strings,

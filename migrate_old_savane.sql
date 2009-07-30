@@ -1,6 +1,22 @@
--- USE savane;
+-- Some clean-up is done on the savane_old database.  It may sound
+-- better to leave savane_old read-only, but at the same time this
+-- means we can experiment the clean-ups on live "old savane" installs
+-- before the migration.
+
 
 -- Import all users except for the 'None' user (#100)
+-- Get rid of duplicates (old mysql/php/savane bug?)
+USE savane_old;
+DELETE FROM user
+  WHERE user_id IN (
+    SELECT user_id FROM (
+      SELECT B.user_id FROM user A, user B
+        WHERE A.user_id < B.user_id AND A.user_name = B.user_name
+      ) AS temp
+    );
+USE savane;
+-- Actual import
+TRUNCATE auth_user;
 INSERT INTO auth_user
     (id, username, first_name, last_name, email,
      password, last_login, date_joined, is_active,
@@ -13,6 +29,7 @@ INSERT INTO auth_user
 
 -- Import all extended information except for the 'None' user (#100)
 -- (X or 0) means 'if V==NULL then 0 else V'
+TRUNCATE svmain_extendeduser;
 INSERT INTO svmain_extendeduser
     (user_ptr_id, status, spamscore, authorized_keys,
      authorized_keys_count, people_view_skills, people_resume,
@@ -26,6 +43,7 @@ INSERT INTO svmain_extendeduser
 
 -- Import group configurations
 -- type_id -> id
+TRUNCATE svmain_groupconfiguration;
 INSERT INTO svmain_groupconfiguration
     (id, name, description, base_host,
      mailing_list_address, mailing_list_virtual_host, mailing_list_format,
@@ -153,6 +171,7 @@ INSERT INTO svmain_groupconfiguration
 -- Import groups
 -- id <- group_id
 -- name <- unix_group_name
+TRUNCATE auth_group;
 INSERT INTO auth_group
     (id, name)
   SELECT group_id, unix_group_name
@@ -272,15 +291,48 @@ INSERT INTO svmain_extendedgroup
     WHERE savane_old.groups.group_id != 100;
 
 -- Import users<->groups relationships
--- Get rid of duplicates (long: several minutes):
-DELETE FROM savane_old.user_group
+-- Get rid of duplicates
+USE savane_old;
+-- Give priority to non-pending memberships
+DELETE FROM user_group
   WHERE user_group_id IN (
-    SELECT A.user_group_id
-      FROM savane_old.user_group A, savane_old.user_group B
-      WHERE A.user_id = B.user_id AND A.group_id = B.group_id
-      GROUP BY A.user_id, A.group_id HAVING count(*) > 1
+    SELECT user_group_id FROM (
+      SELECT B.user_group_id FROM user_group A, user_group B
+        WHERE A.admin_flags <> 'P' AND B.admin_flags = 'P'
+          AND A.user_id = B.user_id AND A.group_id = B.group_id
+      ) AS temp
+    );
+-- Delete other duplicates, give priority to the first one
+DELETE FROM user_group
+  WHERE user_group_id IN (
+    SELECT user_group_id FROM (
+      SELECT B.user_group_id FROM user_group A, user_group B
+        WHERE A.user_group_id < B.user_group_id
+          AND A.user_id = B.user_id AND A.group_id = B.group_id
+      ) AS temp
+    );
+-- Get rid of ghost relationships (deleted group)
+DELETE FROM user_group
+  WHERE group_id IN (
+    SELECT group_id FROM (
+      SELECT user_group.group_id
+        FROM user_group
+          LEFT JOIN groups ON user_group.group_id = groups.group_id
+        WHERE groups.group_id IS NULL
+      ) AS temp
+    );
+-- Get rid of ghost relationships (deleted user)
+DELETE FROM user_group WHERE user_id IN (
+  SELECT user_id FROM (
+    SELECT user_group.user_id
+      FROM user_group
+        LEFT JOIN user ON user_group.user_id = user.user_id
+      WHERE user.user_id IS NULL
+    ) AS temp
   );
+USE savane;
 -- Actual import
+TRUNCATE auth_user_groups;
 INSERT INTO auth_user_groups
     (user_id, group_id)
   SELECT user_id, group_id
@@ -289,29 +341,11 @@ INSERT INTO svmain_membership
     (user_id, group_id, admin_flags, onduty)
   SELECT user_id, group_id, admin_flags, onduty
     FROM savane_old.user_group;
--- Get rid of ghost relationships (deleted group)
-DELETE FROM svmain_membership
-  WHERE group_id IN (
-    SELECT group_id FROM (
-      SELECT group_id
-        FROM svmain_membership
-          LEFT JOIN svmain_extendedgroup ON svmain_membership.group_id = svmain_extendedgroup.group_ptr_id
-        WHERE group_ptr_id IS NULL
-      ) AS temp
-    );
--- Get rid of ghost relationships (deleted user)
-DELETE FROM svmain_membership WHERE user_id IN (
-  SELECT user_id FROM (
-    SELECT user_id
-      FROM svmain_membership
-        LEFT JOIN svmain_extendeduser ON svmain_membership.user_id = svmain_extendeduser.user_ptr_id
-      WHERE user_ptr_id IS NULL
-    ) AS temp
-  );
 -- Set members of 'administration' as superusers
 -- TODO: get the supergroup name from the old Savane configuration
 UPDATE auth_user SET is_staff=1, is_superuser=1
   WHERE id IN (
     SELECT user_id
     FROM auth_user_groups JOIN auth_group ON auth_user_groups.group_id = auth_group.id
-    WHERE auth_group.name='administration');
+    WHERE auth_group.name='administration'
+  );
