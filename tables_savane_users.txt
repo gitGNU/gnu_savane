@@ -1,0 +1,65 @@
+-- Good reason to keep the user
+-- Also: if the referenced user doesn't exist, it should be set to
+--   100/None (and converted to Null when migrate to the new frontend)
+--   unless stated otherwise below
+SELECT COUNT(DISTINCT user_id) FROM user_group;
+SELECT COUNT(DISTINCT mod_by) FROM group_history;
+
+SELECT COUNT(DISTINCT submitted_by) FROM support;
+SELECT COUNT(DISTINCT added_by) FROM support_cc;
+SELECT COUNT(DISTINCT mod_by) FROM support_history;
+
+SELECT COUNT(DISTINCT submitted_by) FROM bugs;
+SELECT COUNT(DISTINCT added_by) FROM bugs_cc;
+SELECT COUNT(DISTINCT mod_by) FROM bugs_history;
+
+SELECT COUNT(DISTINCT submitted_by) FROM task;
+SELECT COUNT(DISTINCT added_by) FROM task_cc;
+SELECT COUNT(DISTINCT mod_by) FROM task_history;
+
+SELECT COUNT(DISTINCT submitted_by) FROM patch;
+SELECT COUNT(DISTINCT added_by) FROM patch_cc;
+SELECT COUNT(DISTINCT mod_by) FROM patch_history;
+
+SELECT COUNT(DISTINCT submitted_by) FROM cookbook;
+SELECT COUNT(DISTINCT added_by) FROM cookbook_cc;
+SELECT COUNT(DISTINCT mod_by) FROM cookbook_history;
+
+SELECT COUNT(DISTINCT submitted_by) FROM trackers_file;
+
+SELECT COUNT(DISTINCT posted_by) FROM forum;
+
+SELECT COUNT(DISTINCT submitted_by) FROM news_bytes;
+
+SELECT COUNT(DISTINCT created_by) FROM people_job;
+
+
+-- Rows to also remove if we remove the user
+DELETE FROM user WHERE user_id=...; -- hmmm
+DELETE FROM people_skill_inventory WHERE user_id=...;
+DELETE FROM form WHERE user_id=...;
+DELETE FROM trackers_watcher WHERE user_id=...;
+DELETE FROM trackers_watcher WHERE watchee_id=...;
+DELETE FROM trackers_notification WHERE user_id=...;
+DELETE FROM user_bookmarks WHERE user_id=...;
+DELETE FROM user_preferences WHERE user_id=...;
+DELETE FROM user_squad WHERE user_id=...;
+DELETE FROM user_votes WHERE vote_id=...;
+DELETE FROM task_filter WHERE user_id=...;
+DELETE FROM trackers_spamscore WHERE reporter_user_id=...;
+DELETE FROM trackers_spamscore WHERE affected_user_id=...;
+SELECT COUNT(DISTINCT user_id) FROM forum_monitored_forums;
+SELECT COUNT(DISTINCT user_id) FROM forum_saved_place;
+
+DELETE FROM user_group WHERE user_id=...;
+
+
+-- Rows to reset to user 'None' if the user is removed
+-- (user information is not crucial)
+UPDATE task_report SET user_id=100 WHERE user_id=...;
+UPDATE mail_group_list SET list_admin=100 WHERE list_admin=...;
+SELECT COUNT(DISTINCT assigned_to) FROM support;
+SELECT COUNT(DISTINCT assigned_to) FROM bugs;
+SELECT COUNT(DISTINCT assigned_to) FROM task;
+SELECT COUNT(DISTINCT assigned_to) FROM patch;
+SELECT COUNT(DISTINCT assigned_to) FROM cookbook;
