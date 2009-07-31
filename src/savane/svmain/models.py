@@ -333,7 +333,7 @@ class ExtendedGroup(auth_models.Group):
     """Django base Group class + extra Savane fields"""
     
     type = models.ForeignKey(GroupConfiguration)
-    full_name = models.CharField(max_length=30, blank=True,
+    full_name = models.CharField(max_length=255, blank=True,
       help_text="Full project name (not Unix system name)")
     is_public = models.BooleanField(default=False)
     status_CHOICES = (
