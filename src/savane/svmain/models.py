@@ -105,6 +105,9 @@ class ExtendedUser(auth_models.User):
     def get_absolute_url(self):
         return ('savane.svmain.user_detail', [self.username])
 
+    class Meta:
+        ordering = ['username']
+
 # FIXME
 # Let's make sure extendeduser is always created, even if somehow a
 # normal User is created (from the admin interface, e.g.)
@@ -503,3 +506,4 @@ class Membership(models.Model):
 
     class Meta:
         unique_together = (('user', 'group'),)
+        ordering = ('group', 'user', )
