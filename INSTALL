@@ -9,7 +9,11 @@
 
 * Dependencies as Debian packages
 
-apt-get install mysql-server python-django python-mysqldb
+- Django >= 1.1
+- MySQLdb (mysql-python)
+- MySQL
+
+apt-get install python-django python-mysqldb mysql-server
 
 
 * Install process

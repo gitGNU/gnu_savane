@@ -136,6 +136,14 @@ class License(models.Model):
     name = models.CharField(max_length=255)
     url = models.CharField(max_length=255, blank=True)
 
+    def get_group_names(self):
+        """
+        Return a list of groups with only the 'name' attribute
+        retrieved for efficiency (retrieving all informations, namely
+        long_description, is quite long).  Used by the license template.
+        """
+        return self.extendedgroup_set.only("name")
+
     def __unicode__(self):
         return self.slug + ": " + self.name
 
@@ -333,7 +341,7 @@ class ExtendedGroup(auth_models.Group):
     """Django base Group class + extra Savane fields"""
     
     type = models.ForeignKey(GroupConfiguration)
-    full_name = models.CharField(max_length=30, blank=True,
+    full_name = models.CharField(max_length=255, blank=True,
       help_text="Full project name (not Unix system name)")
     is_public = models.BooleanField(default=False)
     status_CHOICES = (
