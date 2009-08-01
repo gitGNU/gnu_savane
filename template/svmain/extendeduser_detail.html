@@ -2,7 +2,8 @@
 
 {% block content %}
 
-<p>Name: {{object.username}}</p>
+<p>Name: {{object.username}}<br />
+Real name: {{object.first_name}} {{object.last_name}}</p>
 
 <p>Is a member of (using Django user.groups):</p>
 
