@@ -1,0 +1,9 @@
+- now we need the screens for users to modify them
+- work on the web design
+- export to LDAP and reimplement .ssh replication and VCS creation
+- implement mod_rewrite URL migration list
+
+
+* Work on the web design
+ - Maybe we can change the colors.
+ - We needs to define a CSS class for buttons
