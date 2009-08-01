@@ -136,6 +136,14 @@ class License(models.Model):
     name = models.CharField(max_length=255)
     url = models.CharField(max_length=255, blank=True)
 
+    def get_group_names(self):
+        """
+        Return a list of groups with only the 'name' attribute
+        retrieved for efficiency (retrieving all informations, namely
+        long_description, is quite long).  Used by the license template.
+        """
+        return self.extendedgroup_set.only("name")
+
     def __unicode__(self):
         return self.slug + ": " + self.name
 

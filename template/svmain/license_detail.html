@@ -13,7 +13,7 @@ URL: <a href="{{object.license.url}}">{{object.url}}</a><br />
 
 {{ object.extendedgroup_set.count }} project(s) use this license<br />
 
-{% for eg in object.extendedgroup_set.all %}
+{% for eg in object.get_group_names %}
 <a href="{{eg.get_absolute_url}}">{{eg.name}}</a>{% if forloop.last %}{%else%},{% endif %}
 {% endfor %}
 
