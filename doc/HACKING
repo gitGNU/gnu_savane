@@ -1,0 +1,8 @@
+Debugging
+=========
+
+To autoload Django models when running './manage.py shell', check:
+http://www.djangosnippets.org/snippets/549/
+
+This requires IPython, which adds completion and other niceties to the
+Python shell.
