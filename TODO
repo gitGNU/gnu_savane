@@ -1,7 +1,6 @@
 - models
 
-  - add DB indexes (db_model=True - but is that possible for
-    auth_user.username? :/)
+  - add DB indexes (db_model=True)
 
 - now we need the screens for users to modify them
 

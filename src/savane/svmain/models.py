@@ -106,6 +106,18 @@ class ExtendedUser(auth_models.User):
     # Inherit specialized models.Manager with convenience functions
     objects = auth_models.UserManager()
 
+    @staticmethod
+    def query_active_users_raw(conn, fields):
+        """
+        Return efficient query with all the users; used by LDIF export
+        """
+        return conn.query("SELECT "
+                          + ",".join(fields)
+                          + " FROM auth_user JOIN svmain_extendeduser"
+                          + " ON auth_user.id = svmain_extendeduser.user_ptr_id"
+                          + " WHERE status = 'A'"
+                          )
+
     @models.permalink
     def get_absolute_url(self):
         return ('savane.svmain.user_detail', [self.username])
@@ -463,6 +475,18 @@ class ExtendedGroup(auth_models.Group):
     #patch_private_exclude_address text
     #cookbook_private_exclude_address text
 
+    @staticmethod
+    def query_active_groups_raw(conn, fields):
+        """
+        Return efficient query with all the users; used by LDIF export
+        """
+        return conn.query("SELECT "
+                          + ",".join(fields)
+                          + " FROM auth_group JOIN svmain_extendedgroup"
+                          + " ON auth_group.id = svmain_extendedgroup.group_ptr_id"
+                          + " WHERE status = 'A'"
+                          )
+
     def __unicode__(self):
         return self.name
 
@@ -507,6 +531,18 @@ class Membership(models.Model):
 
     # Deprecated
     #forum_flags int(11) default NULL
+
+    @staticmethod
+    def query_active_memberships_raw(conn):
+        """
+        Return efficient query with all the users; used by LDIF export
+        """
+        return conn.query("SELECT "
+                          + ",".join(fields)
+                          + " FROM svmain_membership JOIN auth_user"
+                          + " ON user_id = auth_user.id"
+                          + " WHERE admin_flags<>'P'"
+                          )
 
     def __unicode__(self):
         return "[%s is a member of %s]" % (self.user.username, self.group.name)
