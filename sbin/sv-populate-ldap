@@ -1,0 +1,7 @@
+#!/bin/bash
+/etc/init.d/slapd stop
+rm -f /var/lib/ldap/*
+# '-q' disables integrity checks and is nearly 30x faster
+./sv auth_ldif_export | slapadd -q
+chown -R openldap: /var/lib/ldap/*
+/etc/init.d/slapd start

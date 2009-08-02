@@ -1,6 +1,14 @@
+- models
+
+  - add DB indexes (db_model=True - but is that possible for
+    auth_user.username? :/)
+
 - now we need the screens for users to modify them
+
 - work on the web design
+
 - export to LDAP and reimplement .ssh replication and VCS creation
+
 - implement mod_rewrite URL migration list
 
 

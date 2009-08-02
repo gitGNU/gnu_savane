@@ -58,10 +58,11 @@ we don't use it.
 from django.db import models
 from django.contrib.auth import models as auth_models
 
+
 class ExtendedUser(auth_models.User):
     """Django base User class + extra Savane fields"""
 
-    # Migrated to 'firstname' in auth.User
+    # Migrated to 'first_name' and 'last_name' in auth.User
     #realname = models.CharField(max_length=96)
 
     # Old Savane can be Active/Deleted/Pending/Suspended/SQuaD
@@ -73,6 +74,10 @@ class ExtendedUser(auth_models.User):
         #('SQD', 'Squad'), # TODO: implement squads more cleanly
         )
     status = models.CharField(max_length=3, choices=status_CHOICES)
+
+    # Unix mapping, used when populating a LDAP directory
+    uidNumber = models.IntegerField(default=0)
+    gidNumber = models.IntegerField(default=0)
 
     # Used by trackers only but it could be used more widely
     spamscore = models.IntegerField(null=True, blank=True)
@@ -355,6 +360,8 @@ class ExtendedGroup(auth_models.Group):
         ('I', 'Incomplete (failure during registration)'),
         )
     status = models.CharField(max_length=1, choices=status_CHOICES, default='A')
+    gidNumber = models.IntegerField(default=0)
+
     short_description = models.CharField(max_length=255, blank=True)
     long_description = models.TextField(blank=True)
     license = models.ForeignKey(License, blank=True, null=True)
