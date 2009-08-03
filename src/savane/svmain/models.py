@@ -533,7 +533,7 @@ class Membership(models.Model):
     #forum_flags int(11) default NULL
 
     @staticmethod
-    def query_active_memberships_raw(conn):
+    def query_active_memberships_raw(conn, fields):
         """
         Return efficient query with all the users; used by LDIF export
         """

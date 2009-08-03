@@ -28,6 +28,7 @@
 # - min gid: 1000
 # - default group: cn=svusers / gid=1000
 # - loginShell: /usr/local/bin/sv_membersh
+# - homedir: 2-level /home/u/us/username
 
 import sys
 import codecs
@@ -210,7 +211,7 @@ structuralObjectClass: posixGroup"""
 
 # Dump groups
 group_saves = []
-svmain_models.ExtendedGroup.query_active_groups_raw(conn, ('group_id', 'name', 'gidNumber'))
+svmain_models.ExtendedGroup.query_active_groups_raw(conn, ('group_ptr_id', 'name', 'gidNumber'))
 res = conn.store_result()
 #for group in svmain_models.ExtendedGroup.objects.only('name'):
 for row in res.fetch_row(maxrows=0):

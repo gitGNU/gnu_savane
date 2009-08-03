@@ -1,4 +1,102 @@
+Django
+======
+
 Backend:
 http://code.djangoproject.com/ticket/11526
 Synchro:
 http://www.djangosnippets.org/snippets/893/
+
+It looks like a truly synchronized LDAP Django auth backend is
+difficult. In a first step we'll just export the Django userbase to
+LDAP (instead of the other way around).
+
+In addition, Django's "sha1$" passwords are ridiculously incompatible
+with SSHA passwords used by LDAP (among others).  A solution is to
+implement a custom Django auth backend with support for SSHA
+passwords.
+
+
+OpenLDAP
+========
+
+# - domain: savannah.gnu.org
+# - organisation: (whatever)
+# - Allow LDAPv2 protocol: no
+# - HDB
+
+cat <<EOF | debconf-set-selections
+slapd slapd/no_configuration boolean false
+slapd slapd/domain string savannah.gnu.org
+slapd shared/organization string GNU
+slapd slapd/password2 password admin
+slapd slapd/password1 password admin
+EOF
+
+apt-get --assume-yes install slapd
+#dpkg-reconfigure slapd
+
+# Test:
+#ldapsearch -b 'dc=savannah,dc=gnu,dc=org' -D 'cn=admin,dc=savannah,dc=gnu,dc=org' -w admin -x
+
+# Alternatively: minimal config:
+cat <<EOF > /etc/ldap/slapd.conf:
+pidfile /var/run/slapd/slapd.pid
+modulepath /usr/lib/ldap
+moduleload back_bdb
+include /etc/ldap/schema/core.schema
+sizelimit unlimited
+
+index uid,uidNumber,gidNumber,memberUid,shadowExpire eq
+
+# DB n1
+database bdb
+directory /var/lib/ldap
+suffix "dc=savannah,dc=gnu,dc=org"
+rootdn "cn=admin,dc=savannah,dc=gnu,dc=org"
+rootpw admin
+
+access to attrs=userPassword,shadowLastChange
+        by dn="cn=admin,dc=gnu,dc=org" write
+	by anonymous auth
+        by self write
+        by * none
+EOF
+
+(in all case add the indexes)
+
+Unix auth
+=========
+
+# Enable user lookup with libnss-ldap.  For additional passwords
+# support you'll need libpam-ldap but we don't need it for Savane,
+# since we're using SSH keys instead of passwords.
+
+cat <<EOF | debconf-set-selections
+libnss-ldap shared/ldapns/ldap-server string ldap://127.0.0.1/
+libnss-ldap shared/ldapns/base-dn string dc=savannah,dc=gnu,dc=org
+libnss-ldap libnss-ldap/rootbinddn string cn=admin,dc=savannah,dc=gnu,dc=org
+libnss-ldap libnss-ldap/rootbindpw password admin
+libnss-ldap shared/ldapns/ldap_version select 3
+EOF
+
+apt-get --assume-yes install libnss-ldap
+cat <<EOF >> /etc/libnss-ldap.conf
+nss_base_passwd ou=users,dc=savannah,dc=gnu,dc=org
+nss_base_shadow ou=users,dc=savannah,dc=gnu,dc=org
+nss_base_group  ou=groups,dc=savannah,dc=gnu,dc=org
+EOF
+
+sed -i -e 's/^\(passwd:.*$\)/\1 ldap/' \
+       -e 's/^\(group:.*$\)/\1 ldap/'  \
+       -e 's/^\(shadow:.*$\)/\1 ldap/' \
+    /etc/nsswitch.conf
+
+# Fetching a user's groups is sadly pretty inefficient (e.g. try 'id
+# yourusername').  To compensate, you can install the Name Service
+# Caching Daemon:
+apt-get --assume-yes install nscd
+
+# To avoid user listings to be too long, you can either limit the
+# number of result entries in slapd (sizelimit), or filter out some
+# users, e.g. with nss_base_passwd
+# ou=users,dc=savannah,dc=gnu,dc=org?sub?!(shadowExpire=10)

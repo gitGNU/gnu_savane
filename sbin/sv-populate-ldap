@@ -1,7 +1,49 @@
 #!/bin/bash
+# Populate slapd from Savane's LDIF export, with minimum downtime
+# Copyright (C) 2009  Sylvain Beucler
+#
+# This file is part of Savane.
+# 
+# Savane is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# 
+# Savane is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# Tested on Debian >= Lenny
+. /etc/default/slapd
+
+# Create the new database in a different directory to reduce the slapd
+# downtime - better if /tmp is on the same filesystem than
+# /var/lib/ldap
+tmpdir=$(mktemp -d -p /var/lib/ldap)
+conf=$(mktemp)
+sed 's,^directory\s.*,directory "'$tmpdir'",' /etc/ldap/slapd.conf > $conf
+
+# Rebuild the LDAP database from scratch.  '-q' disables integrity
+# checks and is nearly 30x faster.  Still needs ~30s just for bare
+# slapadd - and more for the Python string substitutions and other
+# computings (the MySQL query itself requires only 1-2s).
+./sv auth_ldif_export | slapadd -f $conf -q
+rm -f $conf
+
+# Efficiently switch slapd database
 /etc/init.d/slapd stop
 rm -f /var/lib/ldap/*
-# '-q' disables integrity checks and is nearly 30x faster
-./sv auth_ldif_export | slapadd -q
-chown -R openldap: /var/lib/ldap/*
+mv $tmpdir/* /var/lib/ldap/
+chown -R $SLAPD_USER:$SLAPD_GROUP /var/lib/ldap/*
+rmdir $tmpdir
 /etc/init.d/slapd start
+
+# Invalidate nscd cache if used
+if [ which nscd > /dev/null ]; then
+    nscd --invalidate passwd
+    nscd --invalidate group
+fi
