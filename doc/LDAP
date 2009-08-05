@@ -100,3 +100,25 @@ apt-get --assume-yes install nscd
 # number of result entries in slapd (sizelimit), or filter out some
 # users, e.g. with nss_base_passwd
 # ou=users,dc=savannah,dc=gnu,dc=org?sub?!(shadowExpire=10)
+
+
+Django and LDAP
+===============
+
+After some discussion at #savannah some problems came up with  on
+using LDAP with Django, here is part of the things that needs to be
+fixed:
+
+    * Too slow to get the user information from the LDAP, the solution
+    proposed by Beuc was use nscd.
+    * Django doesn't support LDAP authentication a patch needs to be
+    apply for this purpose.
+    * There's no transparent way to read/write against the LDAP
+    database with Django.
+
+Some solutions were proposed:
+
+     * A cron job to sync the Django database with the LDAP database.
+     * Trigger some update against the LDAP when is necessary.
+     * Use slapd-sql (http://linux.die.net/man/5/slapd-sql).
+
