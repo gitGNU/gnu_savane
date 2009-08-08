@@ -5,17 +5,17 @@
 # Copyright (C) 2009  Jonathan Gonzalez V.
 #
 # This file is part of Savane.
-# 
+#
 # Savane is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
-# 
+#
 # Savane is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -57,6 +57,11 @@ we don't use it.
 
 from django.db import models
 from django.contrib.auth import models as auth_models
+
+
+class SshKey(models.Model):
+    user = models.ForeignKey('ExtendedUser')
+    ssh_key = models.TextField(blank=False)
 
 
 class ExtendedUser(auth_models.User):
@@ -311,7 +316,7 @@ class GroupConfiguration(models.Model):
     url_homepage             = models.CharField(max_length=255, default='http://')
     url_cvs_viewcvs_homepage = models.CharField(max_length=255, default='http://')
     url_cvs_viewcvs          = models.CharField(max_length=255, default='http://')
-    url_arch_viewcvs         = models.CharField(max_length=255, default='http://') 
+    url_arch_viewcvs         = models.CharField(max_length=255, default='http://')
     url_svn_viewcvs          = models.CharField(max_length=255, default='http://')
     url_git_viewcvs          = models.CharField(max_length=255, default='http://')
     url_hg_viewcvs           = models.CharField(max_length=255, default='http://')
@@ -359,7 +364,7 @@ class GroupConfiguration(models.Model):
 
 class ExtendedGroup(auth_models.Group):
     """Django base Group class + extra Savane fields"""
-    
+
     type = models.ForeignKey(GroupConfiguration)
     full_name = models.CharField(max_length=255, blank=True,
       help_text="Full project name (not Unix system name)")
@@ -388,7 +393,7 @@ class ExtendedGroup(auth_models.Group):
 
     register_time = models.DateTimeField()
     #rand_hash text,
-    
+
     registered_gpg_keys = models.TextField(blank=True)
 
     # Project "Features"
@@ -520,7 +525,7 @@ class Membership(models.Model):
 
     # TODO: split news params
     #news_flags int(11) default NULL
-    
+
     # Trackers-related
     #privacy_flags = models.BooleanField(default=True)
     #bugs_flags int(11) default NULL
