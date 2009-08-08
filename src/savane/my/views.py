@@ -3,17 +3,17 @@
 # Copyright (C) 2009  Jonathan Gonzalez V.
 #
 # This file is part of Savane.
-# 
+#
 # Savane is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
-# 
+#
 # Savane is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -23,7 +23,13 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django import forms
-from savane.svmain.models import ExtendedUser
+from savane.svmain.models import ExtendedUser, SshKey
+
+import random
+import time
+import os
+import re
+from subprocess import Popen, PIPE
 
 @login_required()
 def sv_conf( request ):
@@ -91,54 +97,76 @@ def sv_ssh_gpg( request ):
 
     form_ssh = SSHForm()
     form_gpg = GPGForm()
+    ssh_keys = None
+
+    if request.method == 'GET' and 'action' in request.GET:
+        action = request.GET['action']
+        if action == 'delete_key':
+            key_pk = request.GET['key_pk']
+            try:
+                ssh_key = eu.sshkey_set.get(pk=key_pk)
+                ssh_key.delete()
+            except:
+                error_msg = 'Cannot remove the selected key'
 
     if request.method == 'POST':
         form = None
         action = request.POST['action']
-        if action == 'update_ssh':
-            form_ssh = SSHForm( request.POST )
+        if action == 'add_ssh':
+            form_ssh = SSHForm( request.POST, request.FILES )
             form = form_ssh
         elif action == 'update_gpg':
             form_gpg = GPGForm( request.POST )
 
         if form is not None and form.is_valid():
-            if action == 'update_ssh':
-                keys = list()
-                for i in range( 1, 6 ):
-                    key_str = 'key_'+str(i)
-                    key = request.POST[ key_str ]
-                    if key != '':
-                        keys.append( key )
-                keys_str = str('###').join( keys )
+            if action == 'add_ssh':
+                if 'key' in request.POST:
+                    key = request.POST['key'].strip()
+                    if len(key) > 0:
+                        ssh_key = SshKey(ssh_key=key)
+                        eu.sshkey_set.add(ssh_key)
+                        success_msg = 'Authorized keys stored.'
 
-                eu.authorized_keys = keys_str
-                eu.save()
-                success_msg = 'Authorized keys stored.'
+                if 'key_file' in request.FILES:
+                    ssh_key_file = request.FILES['key_file']
+                    if ssh_key_file is not None:
+                        key = ''
+                        for chunk in ssh_key_file.chunks():
+                            key = key + chunk
+
+                            if len(key) > 0:
+                                ssh_key = SshKey(ssh_key=key)
+                                eu.sshkey_set.add(ssh_key)
+                                success_msg = 'Authorized keys stored.'
+
+                form_ssh = SSHForm()
+
+                if len( success_msg ) == 0:
+                    error_msg = 'Cannot added the public key'
+
             elif action == 'update_gpg':
                 pass
     else:
-        if eu.authorized_keys != '':
-            keys_data = dict({'action':'update_ssh'})
-            keys = (eu.authorized_keys or '').split('###')
-            i = 1
-            for key in keys:
-                key_str = 'key_'+str(i)
-                keys_data[ key_str ] = key
-                i += 1
-                form_ssh = SSHForm( keys_data )
-        else:
-            form_ssh = SSHForm()
+       if eu.gpg_key != '':
+           gpg_data = dict({'action':'update_gpg', 'gpg_key':eu.gpg_key})
+           form_gpg = GPGForm( gpg_data )
+       else:
+           form_gpg = GPGForm()
 
-        if eu.gpg_key != '':
-            gpg_data = dict({'action':'update_gpg', 'gpg_key':eu.gpg_key})
-            form_gpg = GPGForm( gpg_data )
-        else:
-            form_gpg = GPGForm()
+    keys =  eu.sshkey_set.all()
+    if keys is not None:
+        ssh_keys = dict()
+        for key in keys:
+            ssh_keys[key.pk] = key.ssh_key
+
 
 
     return render_to_response('my/ssh_gpg.html',
                               { 'form_gpg' : form_gpg,
                                 'form_ssh' : form_ssh,
+                                'ssh_keys' : ssh_keys,
+                                'error_msg' : error_msg,
+                                'success_msg' : success_msg,
                                 },
                               context_instance=RequestContext(request))
 
@@ -167,10 +195,49 @@ class GPGForm( forms.Form ):
     action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_gpg' )
 
 class SSHForm( forms.Form ):
-    widget = forms.TextInput( attrs={'size':'60'} )
-    key_1 = forms.CharField( widget=widget, required=False )
-    key_2 = forms.CharField( widget=widget, required=False )
-    key_3 = forms.CharField( widget=widget, required=False )
-    key_4 = forms.CharField( widget=widget, required=False )
-    key_5 = forms.CharField( widget=widget, required=False )
-    action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_ssh' )
+    key_file = forms.FileField( required=False )
+    key = forms.CharField( widget=forms.TextInput( attrs={'size':'60'} ), required=False )
+
+    action = forms.CharField( widget=forms.HiddenInput, required=True, initial='add_ssh' )
+
+    def clean_key( self ):
+        ssh_key = self.cleaned_data['key']
+
+        if ssh_key is None or len(ssh_key) == 0:
+            return ssh_key
+
+        file_name = '/tmp/%d' % random.randint(0, int(time.time()))
+
+        tmp_file = open( file_name, 'wb+' )
+        tmp_file.write( ssh_key )
+        tmp_file.close()
+
+        cmd = 'ssh-keygen -l -f %s' % file_name
+        pipe = Popen( cmd, shell=True, stdout=PIPE).stdout
+        res = re.search("not a public key file", pipe.readline())
+        if res is not None:
+            raise forms.ValidationError( "The uploaded string is not a public key file" )
+
+        return ssh_key
+
+    def clean_key_file( self ):
+        ssh_key_file = self.cleaned_data['key_file']
+
+        if ssh_key_file is None:
+            return ssh_key_file
+
+        file_name = '/tmp/%d' % random.randint(0, int(time.time()))
+
+        tmp_file = open( file_name, 'wb+' )
+        for chunk in ssh_key_file.chunks():
+            tmp_file.write(chunk)
+        tmp_file.close()
+
+        cmd = 'ssh-keygen -l -f %s' % file_name
+        pipe = Popen( cmd, shell=True, stdout=PIPE).stdout
+        res = re.search("not a public key file", pipe.readline())
+
+        if res is not None:
+            raise forms.ValidationError( "The uploaded file is not a public key file" )
+
+        return ssh_key_file
