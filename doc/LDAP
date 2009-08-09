@@ -1,23 +1,88 @@
-Django
+Goal
+====
+
+LDAP is supported by several 3rd-party applications to connect to an
+existing users/groups base.  Using LDAP natively in our project would
+allow to maintain a users/groups base that other projects could use,
+with real-time updates.
+
+Ideally Savane could connect to an existing LDAP, either pre-existing
+or dedicated to Savane, have a separate app for write accesses to
+LDAP,
+
+
+Issues
 ======
 
-Backend:
-http://code.djangoproject.com/ticket/11526
-Synchro:
-http://www.djangosnippets.org/snippets/893/
+There are a few issues with using LDAP+Django+Unix:
 
-It looks like a truly synchronized LDAP Django auth backend is
-difficult. In a first step we'll just export the Django userbase to
-LDAP (instead of the other way around).
+- (Open)LDAP is much slower than MySQL (20s to list 60000 users, < 1s
+  in MySQL without cache).  Increasing slapd's cache didn't help.  We
+  didn't find any way to improve this, and even then, this would mean
+  it's hard to install properly and poorly documented.  389DS, another
+  free LDAP server implementation, doesn't advertise improved
+  performances, and praises OpenLDAP's, so there's little hope there.
+  http://directory.fedoraproject.org/wiki/FAQ#How_is_Fedora_Directory_Server_different_from_OpenLDAP.3F
 
-In addition, Django's "sha1$" passwords are ridiculously incompatible
-with SSHA passwords used by LDAP (among others).  A solution is to
-implement a custom Django auth backend with support for SSHA
-passwords.
+- There's no ORM for LDAP, so much User-related Django code would need
+  to be replaced
+
+- There's no official support for LDAP in Django, and what's planned
+  is a low-quality, replication based backend (instead of direct,
+  synchronized use without caching), that needs to be complemented
+  with a cron'd refresh of user profile data (email, real name, etc.)
+
+  Backend: http://code.djangoproject.com/ticket/11526
+  Synchro: http://www.djangosnippets.org/snippets/893/
+
+- Django's "sha1$" passwords are ridiculously incompatible with SSHA
+  passwords used by LDAP (among others).
+
+- LDAP queries are limited.  For example you cannot use the '<'
+  operator on shadowExpire or uidNumber, because you need to alter the
+  schema for this, and this is considered bad practice since you're
+  diverging from the RFC.  This means it's difficult to implement
+  sanity checks such as uidNumber >= 1000 when importing system users.
+
+Some solutions:
+
+- Use slapd-sql so LDAP fetchs the data transparently in SQL. But it's
+  experimental, we did test.
+  http://www.openldap.org/software/man.cgi?query=slapd-sql
+
+- Export the database to LDAP (instead of the other way around).  This
+  involves a replication delay.  Possible Savane could update LDAP
+  when a user ou group information is changed.  This means however
+  than LDAP isn't the canonical users/groups base anymore - just a
+  convenience copy.  Also implement a custom Django auth backend with
+  support for CRYPT or SSHA passwords.
+
+- Modify 3rd-party apps so they use an external database for
+  authentication, instead of using an external LDAP directory.
+
+- Is LDAP is used for the system (Unix) through libnss-ldap(d), the
+  performances issues are not fixed.  Either you need to rely on nscd
+  (but this means you'll get a cache delay before changes are taken
+  into account, which defeats the point of using libnss-*), either you
+  rely on libnss-mysql-bg, which is more efficient (cf. NSS-MYSQL).
+
+
+Plan
+====
+
+Currently we plan to:
+
+- Use libnss-mysql-bg (possible switch to libnss-pgsql later) for the
+  system.
+
+- Export the DB to LDAP if we need a 3rd-party app with LDAP support
+  in the future.
 
 
 OpenLDAP
 ========
+
+# Installation notes
 
 # - domain: savannah.gnu.org
 # - organisation: (whatever)
@@ -64,6 +129,7 @@ EOF
 
 (in all case add the indexes)
 
+
 Unix auth
 =========
 
@@ -100,25 +166,3 @@ apt-get --assume-yes install nscd
 # number of result entries in slapd (sizelimit), or filter out some
 # users, e.g. with nss_base_passwd
 # ou=users,dc=savannah,dc=gnu,dc=org?sub?!(shadowExpire=10)
-
-
-Django and LDAP
-===============
-
-After some discussion at #savannah some problems came up with  on
-using LDAP with Django, here is part of the things that needs to be
-fixed:
-
-    * Too slow to get the user information from the LDAP, the solution
-    proposed by Beuc was use nscd.
-    * Django doesn't support LDAP authentication a patch needs to be
-    apply for this purpose.
-    * There's no transparent way to read/write against the LDAP
-    database with Django.
-
-Some solutions were proposed:
-
-     * A cron job to sync the Django database with the LDAP database.
-     * Trigger some update against the LDAP when is necessary.
-     * Use slapd-sql (http://linux.die.net/man/5/slapd-sql).
-

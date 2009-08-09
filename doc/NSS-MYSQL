@@ -1,0 +1,35 @@
+Status
+======
+
+libnss-mysql-bg was installed at Savannah and configured against the
+old Savane MySQL database.  It works :)  This means we can avoid
+reimplementing sv_users, as well as a part of sv_groups.
+
+Next step is converting the libnss-mysql.cfg file to the new Savane DB
+schema.
+
+libnss-mysql is an alternative, but it's less flexible, since you can
+only configure fields instead of complete SQL queries.
+
+libnss-mysql-bg has 2 annoying bugs:
+
+- When listing users or groups, it may skip large entries. Report:
+  http://sourceforge.net/tracker/?func=detail&aid=2833844&group_id=56073&atid=479258
+
+- The list of group members is implemented inefficiently (1 MySQL
+  query per group).  This is mainly a problem when listing groups, but
+  so a real problem when authenticating.  Solution suggested at:
+  http://lists.gnu.org/archive/html/savannah-hackers-public/2009-08/msg00004.html
+
+For sanity we should fix those bugs.  However, if libnss-pgsql is
+better, we could just move to PostgreSQL.
+
+
+Segfault FAQ
+============
+
+- Check /var/log/syslog - maybe you just got an error in your SQL
+  query.
+
+- Check that the svusers group is present (libnss-mysql-bg dislikes
+  NULLs).
