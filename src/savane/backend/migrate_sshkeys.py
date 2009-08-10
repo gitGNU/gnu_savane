@@ -1,4 +1,4 @@
-# Replicate users and groups to an OpenLDAP directory
+# Migrate users' SSH keys from old Savane to new Savane
 # Copyright (C) 2009  Jonathan Gonzalez
 #
 # This file is part of Savane.

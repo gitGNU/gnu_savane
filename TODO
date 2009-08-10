@@ -1,16 +1,129 @@
-- models
+Roadmap
+=======
 
-  - add DB indexes (db_model=True)
+The roadmap is based on the previous Savane incarnation.
 
-- now we need the screens for users to modify them
-
-- work on the web design
-
-- export to LDAP and reimplement .ssh replication and VCS creation
-
-- implement mod_rewrite URL migration list
+However we can't guarantee we'll rewrite 100% of its features.  In
+addition, the goal is to get something we can install like at Savannah
+quickly, which means we may delay some features in a first step.
 
 
-* Work on the web design
- - Maybe we can change the colors.
- - We needs to define a CSS class for buttons
+[/] Implement web screens (higher priority)
+
+    [/] User page
+
+    [/] Group page
+
+    [ ] Members list + GPG keyring
+
+    [/] Account conf ([X] e-mail, [X] password, [X] real name, [/] SSH
+        keys, [X] GPG key)
+
+    [/] My Groups
+
+    [ ] Group membership (manage members, manage permissions, request
+        inclusion)
+
+    [ ] Delete account (clean-up data but keep User+user_id if past
+        history)
+
+[ ] Implement web screens (lower priority)
+
+    [ ] Account conf 2 ([ ] profile, [ ] skills, [ ] timezone)
+
+    [ ] Bookmarks? Was considered for deletion at a point in Savane:
+        http://gna.org/task/?1412 - note that yeupou is a bit partial
+        towards trackers in that discussion
+
+[ ] News management (+ comments)
+
+[/] Work on the web design
+
+    [X] Do something different
+
+    [ ] Maybe we can change the colors.
+
+    [ ] We needs to define a CSS class for buttons
+
+[/] Rewrite backend (or have them work on a replicate that uses the
+    old DB schema)
+
+    [/] Link the system to the DB more directly (no cron'd
+        replication) - currently we use libnss-mysql-bg, it's in test
+        live at Savannah using the old DB schema.
+
+        TODO: adapt to new DB schema, and either fix libnss-mysql-bg
+        bugs or switch to libnss-pgsql - cf. doc/NSS-SQL
+
+    [/] homedirs and .ssh replication (done in savane-cleanup, and in
+        Python - just adapt the DB schema)
+
+    [ ] GPG keyrings
+
+    [ ] Group resources (Download, CVS, SVN, Arch, Git, Mercurial,
+        Bazaar)
+
+    [ ] CVS notifications (commit_prep+log_accum - Savannah-specific)
+
+    [ ] Mailing lists (Mailman)
+
+[/] Write migration scripts
+
+    [X] Users, groups, group types, memberships
+
+    [X] SSH keys (with new, separate table):
+        src/savane/backend/migrate_sshkeys.py
+
+    [ ] User preferences (table user_preferences)
+
+[ ] Implement mod_rewrite URL migration list
+
+[/] Separate the trackers in the old code so they can work
+    independently.  Some work was done in the 'split' branch.  TODO:
+    test more and add a new->old replication for users/groups so the
+    trackers can use it, until we rewrite them.  Possible do the same
+    for jobs and news.
+
+[ ] Add some tests
+
+=====
+
+Goal #1: use it live at Savannah :)
+
+=====
+
+Uncharted territories - and wild ideas.
+
+[ ] Optimize models - add DB indexes: db_index=True or unique=True
+    (with MySQL) or primary_key=True
+
+[/] Export users/groups to LDAP
+
+    [X] Populate a LDAP directory from the DB
+
+    [ ] Sync the LDAP directory when there are changes (e.g. password,
+        mail...)
+
+    [ ] Implement a Django backend that supports SSHA or CRYPT (CRYPT
+        may be better since all PAM modules would support it)
+
+[ ] Migration to PostgreSQL?
+
+[ ] Rewrite trackers in Django?
+
+[ ] Rewrite /people (request for contribution / jobs) in Django?
+
+[ ] Add more non-members<->groups and users<->users interactions (aka
+    "social features")
+
+[ ] List/retrieve more stats (namely commit stats)
+
+[ ] Create a timeline for projects with the latest project events
+    (commits, memberships, news, bugs...).  Possible for users too.
+
+[ ] Wikis
+
+[ ] Improve/suppress delays (e.g. ping a daemon that creates project
+    repositories and mailing lists, with a job queue system)
+
+[ ] Your Ideas Here
