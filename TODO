@@ -7,6 +7,9 @@ However we can't guarantee we'll rewrite 100% of its features.  In
 addition, the goal is to get something we can install like at Savannah
 quickly, which means we may delay some features in a first step.
 
+This roadmap is not immutable, feel free to discuss it with others and
+improve it.
+
 
 [/] Implement web screens (higher priority)
 
@@ -100,9 +103,9 @@ quickly, which means we may delay some features in a first step.
     for jobs and news.
 
 [ ] Avoid using Django-specific sha1$ password format - cf. LDAP
-    section below
-
-[ ] Add some tests
+    section below; to the minimum stick with MD5 hashes until this is
+    dealt with (so avoid the automatic conversion to sha1$ that Django
+    does at each login)
 
 =====
 
@@ -111,6 +114,10 @@ Goal #1: use it live at Savannah :)
 =====
 
 Uncharted territories - and wild ideas.
+
+[ ] Add some tests
+
+[ ] i18n
 
 [ ] Optimize models - add DB indexes: db_index=True or unique=True
     (with MySQL) or primary_key=True
@@ -145,5 +152,13 @@ Uncharted territories - and wild ideas.
 
 [ ] Improve/suppress delays (e.g. ping a daemon that creates project
     repositories and mailing lists, with a job queue system)
+
+[ ] Translations
+
+[ ] pastebin
+
+[ ] Snippets?
+
+[ ] World clock
 
 [ ] Your Ideas Here
