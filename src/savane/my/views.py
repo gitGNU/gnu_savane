@@ -158,7 +158,10 @@ def sv_ssh_gpg( request ):
     if keys is not None:
         ssh_keys = dict()
         for key in keys:
-            ssh_keys[key.pk] = key.ssh_key
+            key_len = len(key.ssh_key)
+            head_key = key.ssh_key[0:20]
+            tail_key = key.ssh_key[key_len-20:key_len]
+            ssh_keys[key.pk] = head_key+'[...stripped..]'+tail_key
 
 
 
