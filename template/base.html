@@ -37,6 +37,7 @@
     </div>
     {% if user.is_authenticated %}
     <div class="fast_menu_user">
+      {{ user.username}} ({{ user.first_name }} {{ user.last_name }})
 <!--      <a href="">Items</a> -->
 <!--      <a href="">Groups</a> -->
       <a href="{% url savane.my.views.sv_conf %}">Account Conf</a>
