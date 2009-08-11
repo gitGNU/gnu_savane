@@ -60,11 +60,11 @@ INSERT INTO auth_user
 -- Import all extended information except for the 'None' user (#100)
 TRUNCATE svmain_extendeduser;
 INSERT INTO svmain_extendeduser
-    (user_ptr_id, status, spamscore, authorized_keys,
-     authorized_keys_count, people_view_skills, people_resume,
+    (user_ptr_id, status, spamscore,
+     people_view_skills, people_resume,
      timezone, theme, email_hide, gpg_key, gpg_key_count)
-  SELECT user_id, status, spamscore, IFNULL(authorized_keys, ''),
-      authorized_keys_count, people_view_skills,
+  SELECT user_id, status, spamscore,
+      people_view_skills,
       people_resume, IFNULL(timezone, ''), IFNULL(theme, ''),
       IFNULl(email_hide, 0), IFNULL(gpg_key, ''), gpg_key_count
     FROM savane_old.user

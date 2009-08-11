@@ -61,8 +61,10 @@ from django.contrib.auth import models as auth_models
 
 class SshKey(models.Model):
     user = models.ForeignKey('ExtendedUser')
+    # Could a CharField with max_length=3000 or something similar, as
+    # it's a single line of text, but it sounds safer to use a
+    # TextField for such a long text.  Too bad for the admin/ area.
     ssh_key = models.TextField(blank=False)
-
 
 class ExtendedUser(auth_models.User):
     """Django base User class + extra Savane fields"""
@@ -91,10 +93,9 @@ class ExtendedUser(auth_models.User):
     #confirm_hash = models.CharField(max_length=96, blank=True, null=True)
 
     # Keys
-    authorized_keys = models.TextField(blank=True)
-    authorized_keys_count = models.IntegerField(null=True, blank=True)
     gpg_key = models.TextField(blank=True)
     gpg_key_count = models.IntegerField(null=True, blank=True)
+    # SSH keys: cf. SshKey above
 
     # Personal info
     people_resume = models.TextField()
@@ -157,7 +158,7 @@ class License(models.Model):
     TODO: support several licenses per project (mixed-licensed code,
     documentation, ...)
     """
-    slug = models.CharField(max_length=32)
+    slug = models.SlugField(max_length=32)
     name = models.CharField(max_length=255)
     url = models.CharField(max_length=255, blank=True)
 

@@ -36,10 +36,18 @@ urlpatterns += patterns('',
 
 # Enable the auto-admin:
 from django.contrib import admin
+import django
 admin.autodiscover()
-urlpatterns += patterns('',
-  (r'^admin/(.*)', admin.site.root),
-)
+
+if django.VERSION[0] > 1 or (django.VERSION[0] == 1 and django.VERSION[1] >= 1):
+    urlpatterns += patterns('',
+      (r'^admin/', include(admin.site.urls)),
+    )
+else:
+    urlpatterns += patterns('',
+      (r'^admin/(.*)', admin.site.root),
+    )
+
 
 # Static content
 if settings.DEBUG:

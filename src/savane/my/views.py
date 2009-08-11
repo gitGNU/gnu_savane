@@ -58,6 +58,7 @@ def sv_conf( request ):
             if action == 'update_password':
                 if request.user.check_password( request.POST['old_password'] ):
                     request.user.set_password( request.POST['new_password'] );
+                    request.user.save()
                     success_msg = "Password was successfully changed."
                     form_pass = PasswordForm()
                 else:
@@ -66,7 +67,7 @@ def sv_conf( request ):
                 new_email = request.POST['email']
                 request.user.email = new_email
                 request.user.save()
-                form_mail = MilForm()
+                form_mail = MailForm()
                 success_msg = 'The E-Mail address was succesfully updated. New E-Mail address is <'+new_email+'>'
             elif action == 'update_identity':
                 request.user.first_name = request.POST['name']
