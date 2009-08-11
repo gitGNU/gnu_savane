@@ -31,6 +31,8 @@
   <div class="boxitem">
     <form method="post">
       <dl>
+        <dt>Current</dt>
+        <dd>{{ user.email }}</dd>
         {% for field in form_mail %}
         {% if field.is_hidden %}
         {{field}}
