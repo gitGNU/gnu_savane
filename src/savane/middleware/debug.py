@@ -139,7 +139,8 @@ class DebugFooter:
 
         if hasattr(view_func,'view_func'):
             # it the view_func has a view_func then its a decorator
-            co = view_func.view_func.func_code
+            if hasattr(view_func.view_func, 'func_code'):
+                co = view_func.view_func.func_code
         else:
             co = view_func.func_code
             

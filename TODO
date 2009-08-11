@@ -16,8 +16,19 @@ quickly, which means we may delay some features in a first step.
 
     [ ] Members list + GPG keyring
 
-    [/] Account conf ([X] e-mail, [X] password, [X] real name, [/] SSH
-        keys, [X] GPG key)
+    [/] Account conf
+
+        [/] e-mail TODO: send mail to verify it, pre-fill the field
+	    with the current value
+
+        [X] password
+
+        [X] real name
+
+        [/] SSH keys TODO: maybe display existing keys better; avoid
+	    using GET for deletions (use POST instead)
+
+        [X] GPG key
 
     [/] My Groups
 
@@ -27,13 +38,17 @@ quickly, which means we may delay some features in a first step.
     [ ] Delete account (clean-up data but keep User+user_id if past
         history)
 
+[ ] Project registration
+
 [ ] Implement web screens (lower priority)
 
-    [ ] Account conf 2 ([ ] profile, [ ] skills, [ ] timezone)
+    [ ] Account conf 2 ([ ] profile/resume, [ ] skills, [ ] timezone)
 
     [ ] Bookmarks? Was considered for deletion at a point in Savane:
         http://gna.org/task/?1412 - note that yeupou is a bit partial
         towards trackers in that discussion
+
+[X] Admin interface (implemented via Django admin)
 
 [ ] News management (+ comments)
 
@@ -84,6 +99,9 @@ quickly, which means we may delay some features in a first step.
     trackers can use it, until we rewrite them.  Possible do the same
     for jobs and news.
 
+[ ] Avoid using Django-specific sha1$ password format - cf. LDAP
+    section below
+
 [ ] Add some tests
 
 =====
@@ -105,7 +123,9 @@ Uncharted territories - and wild ideas.
         mail...)
 
     [ ] Implement a Django backend that supports SSHA or CRYPT (CRYPT
-        may be better since all PAM modules would support it)
+        may be better since all PAM modules would support it.  We mean
+        glibc2-crypt, as documented in crypt(3), with salted MD5
+        digests, among others)
 
 [ ] Migration to PostgreSQL?
 

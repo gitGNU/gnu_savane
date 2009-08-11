@@ -11,6 +11,10 @@ class DevelopmentStatusAdmin(admin.ModelAdmin):
     list_display  = ['name', 'pk']
     search_fields = ['name']
 
+class SshKeyInline(admin.TabularInline):
+    model = svmain_models.SshKey
+    extra = 2  # to add several keys in the ExtendedUser page
+
 class ExtendedUserAdmin(admin.ModelAdmin):
     # Copy/pasted from django.contrib.auth.admin; inheritance fails
     # when you attempt to display extended fields..
@@ -22,7 +26,6 @@ class ExtendedUserAdmin(admin.ModelAdmin):
         (_('Groups'), {'fields': ('groups',)}),
         (_('Savane'),
          {'fields': ('status', 'spamscore',
-                     'authorized_keys', 'authorized_keys_count',
                      'gpg_key', 'gpg_key_count',
                      'people_view_skills', 'email_hide', 'timezone', 'theme',)}),
         )
@@ -31,6 +34,7 @@ class ExtendedUserAdmin(admin.ModelAdmin):
     search_fields = ('username', 'first_name', 'last_name', 'email')
     ordering = ('username',)
     filter_horizontal = ('user_permissions',)
+    inlines = [SshKeyInline]
 
 class GroupConfigurationAdmin(admin.ModelAdmin):
     fieldsets = (
