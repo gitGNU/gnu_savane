@@ -6,3 +6,19 @@ http://www.djangosnippets.org/snippets/549/
 
 This requires IPython, which adds completion and other niceties to the
 Python shell.
+
+
+Git
+===
+
+Do avoid messy merges whenever you forgot to make a 'git pull' before
+starting to work, check:
+
+  git config branch.autosetuprebase always
+
+This makes your latest changes much clearer.
+
+Source:
+- http://tumbl.strelau.net/post/47338904/git-pull-rebase-by-default
+More in-depth explanation with examples:
+- http://www.gitready.com/advanced/2009/02/11/pull-with-rebase.html
