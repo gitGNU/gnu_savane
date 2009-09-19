@@ -17,6 +17,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import random
+import time
+import re
 from subprocess import Popen, PIPE
 
 def ssh_key_fingerprint( ssh_key ):
@@ -31,9 +34,14 @@ def ssh_key_fingerprint( ssh_key ):
 
     cmd = 'ssh-keygen -l -f %s' % file_name
     pipe = Popen( cmd, shell=True, stdout=PIPE).stdout
-    res = re.search("not a public key file", pipe.readline())
-    if res is not None:
-        raise forms.ValidationError( "The uploaded string is not a public key file" )
+    ssh_fp = pipe.readline()
 
-    return ssh_key
+    cmd = 'rm %s' % file_name
+    piep = Popen( cmd, shell=True, stdout=PIPE)
+
+    res = re.search("not a public key file", ssh_fp)
+    if res is not None:
+        raise 'Not a public key'
+
+    return ssh_fp
 
