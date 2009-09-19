@@ -147,13 +147,16 @@ def sv_ssh_gpg( request ):
                     error_msg = 'Cannot added the public key'
 
             elif action == 'update_gpg':
-                pass
+                if 'gpg_key' in request.POST:
+                    gpg_key = request.POST['gpg_key']
+                    eu.gpg_key = gpg_key
+                    success_msg = 'GPG Key stored.'
+
+    if eu.gpg_key != '':
+        gpg_data = dict({'action':'update_gpg', 'gpg_key':eu.gpg_key})
+        form_gpg = GPGForm( gpg_data )
     else:
-       if eu.gpg_key != '':
-           gpg_data = dict({'action':'update_gpg', 'gpg_key':eu.gpg_key})
-           form_gpg = GPGForm( gpg_data )
-       else:
-           form_gpg = GPGForm()
+        form_gpg = GPGForm()
 
     keys =  eu.sshkey_set.all()
     if keys is not None:
