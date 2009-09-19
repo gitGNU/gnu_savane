@@ -24,6 +24,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django import forms
 from savane.svmain.models import ExtendedUser, SshKey
+from savane.utils import *
 
 import random
 import time
@@ -158,11 +159,7 @@ def sv_ssh_gpg( request ):
     if keys is not None:
         ssh_keys = dict()
         for key in keys:
-            key_len = len(key.ssh_key)
-            head_key = key.ssh_key[0:20]
-            tail_key = key.ssh_key[key_len-20:key_len]
-            ssh_keys[key.pk] = head_key+'[...stripped..]'+tail_key
-
+            ssh_keys[key.pk] =  ssh_key_fingerprint( key.ssh_key )
 
 
     return render_to_response('my/ssh_gpg.html',
