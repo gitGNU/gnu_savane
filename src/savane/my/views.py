@@ -204,19 +204,9 @@ class SSHForm( forms.Form ):
     def clean_key( self ):
         ssh_key = self.cleaned_data['key']
 
-        if ssh_key is None or len(ssh_key) == 0:
-            return ssh_key
-
-        file_name = '/tmp/%d' % random.randint(0, int(time.time()))
-
-        tmp_file = open( file_name, 'wb+' )
-        tmp_file.write( ssh_key )
-        tmp_file.close()
-
-        cmd = 'ssh-keygen -l -f %s' % file_name
-        pipe = Popen( cmd, shell=True, stdout=PIPE).stdout
-        res = re.search("not a public key file", pipe.readline())
-        if res is not None:
+        try:
+            ssh_key_fingerprint( ssh_key )
+        except:
             raise forms.ValidationError( "The uploaded string is not a public key file" )
 
         return ssh_key
@@ -227,18 +217,13 @@ class SSHForm( forms.Form ):
         if ssh_key_file is None:
             return ssh_key_file
 
-        file_name = '/tmp/%d' % random.randint(0, int(time.time()))
-
-        tmp_file = open( file_name, 'wb+' )
+        ssh_key = str()
         for chunk in ssh_key_file.chunks():
-            tmp_file.write(chunk)
-        tmp_file.close()
+            ssh_key = ssh_key + chunk
 
-        cmd = 'ssh-keygen -l -f %s' % file_name
-        pipe = Popen( cmd, shell=True, stdout=PIPE).stdout
-        res = re.search("not a public key file", pipe.readline())
-
-        if res is not None:
+        try:
+            ssh_key_fingerprint( ssh_key )
+        except:
             raise forms.ValidationError( "The uploaded file is not a public key file" )
 
         return ssh_key_file
