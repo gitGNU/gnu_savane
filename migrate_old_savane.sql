@@ -70,6 +70,16 @@ INSERT INTO svmain_extendeduser
     FROM savane_old.user
     WHERE savane_old.user.user_id != 100;
 
+-- Import the ssh into the new model, the python code should care about make
+-- the proper migration after a login or with a python code
+TRUNCATE svmain_sshkey;
+INSERT INTO svmain_sshkey
+        (user_id, ssh_key)
+  SELECT user_id, authorized_keys
+  FROM savane_old.user
+  WHERE authorized_keys != ''
+  and savane_old.user.user_id != 100;
+
 -- Import group configurations
 -- type_id -> id
 TRUNCATE svmain_groupconfiguration;
