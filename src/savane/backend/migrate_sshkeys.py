@@ -21,22 +21,19 @@
 
 from savane.svmain.models import ExtendedUser, SshKey
 
-sv_users = ExtendedUser.objects.all().exclude(authorized_keys='')
+sv_users = ExtendedUser.objects.all()
 for sv_user in sv_users:
-    keys = (sv_user.authorized_keys or '').split('###')
-    sv_user.sshkey_set.all().delete()
-    remove = False
-    for key in keys:
-        if len(key) > 0:
-            try:
-                ssh_key = SshKey(ssh_key=key)
-                sv_user.sshkey_set.add(ssh_key)
-                remove = True
-            except:
-                print "User: %s Failed" % sv_user.username
-
-    if remove:
-        sv_user.authorized_keys = ''
-        sv_user.save()
+    keys = sv_user.sshkey_set.all()
+    if keys is not None and len( keys ) == 1:
+        keys = (keys[0].ssh_key or '').split('###')
+        sv_user.sshkey_set.all().delete()
+        for key in keys:
+            if len(key) > 0:
+                try:
+                    ssh_key = SshKey(ssh_key=key)
+                    sv_user.sshkey_set.add(ssh_key)
+                    remove = True
+                except:
+                    print "User: %s Failed" % sv_user.username
 
 
