@@ -34,6 +34,11 @@ urlpatterns += patterns('',
   (r'^accounts/', include('django.contrib.auth.urls')),
 )
 
+# Registration
+urlpatterns += patterns('',
+  (r'^register/', include('savane.register.urls')),
+)
+
 # Enable the auto-admin:
 from django.contrib import admin
 import django

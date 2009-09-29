@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="{% url savane.register.views.register %}" method="post">
+<dl>
+  {% for field in form %}
+  {% if field.is_hidden %}
+  {{field}}
+  {% else %}
+  <dt>{{ field.label_tag }} {{ field.errors }}</dt>
+  <dd>{{ field }}</dd>
+  {% endif %}
+  {% endfor %}
+<input type="submit" name="Register" value="Register" />
+</table>
+</form>
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}
