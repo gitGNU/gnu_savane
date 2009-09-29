@@ -26,12 +26,6 @@ from django import forms
 from savane.svmain.models import ExtendedUser, SshKey
 from savane.utils import *
 
-import random
-import time
-import os
-import re
-from subprocess import Popen, PIPE
-
 @login_required()
 def sv_conf( request ):
 
