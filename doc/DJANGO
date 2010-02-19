@@ -1,0 +1,26 @@
+Stuff of interest:
+
+- There's a way to delegate authentication to Apache:
+  http://docs.djangoproject.com/en/dev/howto/auth-remote-user/#howto-auth-remote-user
+
+  This is a good thing, and we probably should have a look at it, in
+  the prospect of similarly supporting authentication for other
+  applications.
+
+- Django does not offer user registration by default, but
+  django-registration fills the gap:
+  http://bitbucket.org/ubernostrum/django-registration/
+
+  Note that django-registration creates a normal user.  Either we
+  modify it to create an ExtendedUser too, or we may adapt our code so
+  that any normal user (created by django-registration, or maybe also
+  imported from another Django app) gets promoted to ExtendedUser;
+  this could be done using a middleware, or by replacing our
+  "get_object_or_404(ExtendedUser, pk=request.user.pk)" calls with
+  something that actually creates the ExtendedUser if the user is just
+  a basic user.
+
+- As for 2010-02 Django 1.1 does not have a messaging framework for
+  anonymous users (only for logged-in users), but this will change in
+  Django 1.2, planned for 2010-03:
+  http://docs.djangoproject.com/en/dev/ref/contrib/messages/
