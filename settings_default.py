@@ -63,12 +63,12 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.dirname(__file__) + '/templates',
+    os.path.join(os.path.dirname(__file__), 'templates'),
 )
 
 
 # Applications media
-STATIC_MEDIA_ROOT = os.path.dirname(__file__) + '/static_media/'
+STATIC_MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'static_media/')
 STATIC_MEDIA_URL = '/static_media/'
 
 # Media for Django auto-admin

@@ -24,6 +24,9 @@ def wrapper():
     Load python savane.backend submodule specified on the first
     argument of the command line
     """
+    if len(sys.argv) == 1:
+        print "Usage: %s command" % sys.argv[0]
+        sys.exit(1)
     command_name = sys.argv[1]
     (f, path, descr) = imp.find_module(command_name, __path__)
     imp.load_module(command_name, f, path, descr)
