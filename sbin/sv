@@ -24,8 +24,8 @@ import os, sys
 if not os.environ.has_key('DJANGO_SETTINGS_MODULE'):
     os.environ['DJANGO_SETTINGS_MODULE'] = 'settings';
 
-if os.path.exists('../src'): # debug
-    sys.path.insert(0, '../src')
+if os.path.exists('../savane'): # debug
+    sys.path.insert(0, '..')
 
 import savane.backend
 savane.backend.wrapper()

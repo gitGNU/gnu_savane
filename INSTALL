@@ -1,10 +1,20 @@
+* Define your settings.py:
+
+- Base it on 'settings_default.py':
+  (already done if you're downloading an official release)
+
+  echo 'from settings_default import *' > settings.py
+
+- Modify if necessary, e.g.: DATABASE_PASSWORD='...'
+
+
 * Directory Description
 
-- 'src/' directory containts all the python(django) code.
+- 'savane/' directory containts all the python(django) code.
 
 - 'media/' all the css and images
 
-- 'template/' all the templates that are necessary to run savane
+- 'templates/' all the templates that are necessary to run savane
 
 
 * Dependencies as Debian packages
@@ -31,8 +41,7 @@ needed to connect to the MySQL database.
 * Run for testing:
 
 You can test your install using:
- $ cd src/
- $ python manage.py runserver
+ $ ./manage.py runserver
 
 
 * Run with Apache:

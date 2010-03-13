@@ -1,6 +1,7 @@
 # Django settings for savane project.
 
 from django.conf import global_settings
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -58,21 +59,20 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'urls'
 
-import os
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.dirname(__file__) + '/../template',
+    os.path.dirname(__file__) + '/templates',
 )
 
 
 # Applications media
-STATIC_MEDIA_ROOT = os.path.dirname(__file__) + '/../media/'
-STATIC_MEDIA_URL = '/media/'
+STATIC_MEDIA_ROOT = os.path.dirname(__file__) + '/static_media/'
+STATIC_MEDIA_URL = '/static_media/'
 
 # Media for Django auto-admin
-ADMIN_MEDIA_PREFIX = '/media/admin/'
+ADMIN_MEDIA_PREFIX = '/admin_media/'
 
 # User-uploaded media (with trailing slashes)
 MEDIA_ROOT = ''
