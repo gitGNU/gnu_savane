@@ -18,7 +18,19 @@
 
 from django.db import models
 
+# TODO: default '100' (aka 'nobody' or 'None', depending on
+# fields) -> change to NULL?
+
+
 class Tracker(models.Model):
+    """
+    Historically 4 trackers are hard-coded.
+
+    The current implementation reduces the duplication to the
+    Item.bugs_id / Item.patch_id / Item.support_id / Item.task_id
+    (previous PHP implementation duplicated all tables).
+    """
+
     NAME_CHOICES = (('bugs', 'bugs'),
                     ('patches', 'patches'),
                     ('support', 'support'),
@@ -109,8 +121,9 @@ class FieldValue(models.Model):
     bug_field = models.ForeignKey('Field')
     group = models.ForeignKey('auth.Group') # =100 for system-wide values
     value_id = models.IntegerField(db_index=True) # group_specific value identifier
-      # not a duplicate of 'id', as it's the value referenced by Item
-      # fields, and the configuration of that value can be customized per-project.
+      # It's not a duplicate of 'id', as it's the value referenced by
+      # Item fields, and the configuration of that value can be
+      # customized per-project.
     value = models.CharField(max_length=255) # label
     description = models.TextField()
     order_id = models.IntegerField() # new:rank
@@ -123,14 +136,17 @@ class FieldValue(models.Model):
     send_all_flag = models.BooleanField("send on all updates", default=True)
 
 # Auto_increment counters
+# We could make this more generic, but we'd have to implement
+# per-tracker atomic ID increment manually.
 class BugsPublicId   (models.Model): pass
 class PatchPublicId  (models.Model): pass
 class SupportPublicId(models.Model): pass
 class TaskPublicId   (models.Model): pass
 
 class Item(models.Model):
-    # TODO: default '100' (aka 'nobody' or 'None', depending on
-    # fields) -> change to NULL?
+    """
+    One tracker item: a bug report, a support request...
+    """
 
     class Meta:
         unique_together = (('tracker', 'bugs_id'),
@@ -150,12 +166,17 @@ class Item(models.Model):
     support_id = models.ForeignKey(SupportPublicId, blank=True, null=True)
     patch_id   = models.ForeignKey(PatchPublicId,   blank=True, null=True)
 
+    # Non-fields values
     group = models.ForeignKey('auth.Group')
     spamscore = models.IntegerField(default=0)
     ip = IPAddressField(blank=True, null=True)
     submitted_by = models.ForeignKey('auth.User', default=100)
     date = models.DateTimeField()
     close_date = models.DateTimeField(blank=True, null=True)
+
+    # Forward dependencies
+    dependencies = ManyToManyField('self', symmetrical=False,
+                                   related_name='reverse_dependencies')
 
     ##
     # Field values
@@ -202,7 +223,7 @@ class Item(models.Model):
     category_version_id = models.IntegerField(default=100)
     component_version = models.CharField(max_length=255)
     originator_name = models.CharField(max_length=255)
-    originator_email = models.CharField(max_length=255)
+    originator_email = models.EmailField(max_length=255)
     originator_phone = models.CharField(max_length=255)
 
     # - fields dedicated to user customization
@@ -256,6 +277,11 @@ class ItemMsgId(models.Model):
 
 
 class ItemHistory(models.Model):
+    """
+    This stores 2 kinds of values:
+    - item comments (field_name='details')
+    - value changes, for fields that have history tracking enabled
+    """
     item = models.ForeignKey('Item')
     field_name = models.CharField(max_length=255)
        # Should be: field_name = models.ForeignKey('Field', to_field='name')
@@ -276,4 +302,70 @@ class ItemHistory(models.Model):
       #        + constraint(same group or 100) + constraint(field_name='comment_type_id')
       # The purpose is to add <strong>[$comment_type]</strong> when
       # displaying an item comment.
-    spamscore = models.IntegerField()
+    spamscore = models.IntegerField("total spamscore for this comment")
+
+class ItemCc(models.Model):
+    """
+    Item carbon copies for mail notifications
+    """
+    item = models.ForeignKey('Item')
+    email = models.EmailField(max_length=255)
+    added_by = models.ForeignKey('auth.User')
+    comment = models.TextField()
+    date = models.DateTimeField()
+
+#class ItemDependencies:
+# => cf. Item.dependencies
+
+class ItemFile(models.Model):
+    """
+    One file attached to an item.
+    """
+    item = models.ForeignKey('Item')
+    submitted_by = models.ForeignKey('auth.User')
+    date = models.DateTimeField()
+    description = models.TextField()
+    filename = models.TextField()
+    filesize = models.IntegerField(default=0)
+    filetype = models.TextField()
+    # /!\ `file` longblob NOT NULL - if not savane-cleanup
+
+class ItemSpamScore(models.Model):
+    """
+    Spam reports
+
+    Score is summed in ItemHistory.spamscore.
+    """
+    score = models.IntegerField(default=1)
+    affected_user = models.ForeignKey('auth.User')
+    reporter_user = models.ForeignKey('auth.User')
+    item = models.ForeignKey('Item')
+    comment_id = models.ForeignKey('ItemHistory', null=True)
+
+
+# TODO:
+# - trackers_notification_event  # site-wide static kinds of notifications (9 rows)
+# - trackers_notification_role   # site-wide static roles (4 rows)
+# - trackers_notification        # yes/no configuration depending on the above
+# - bugs_canned_responses
+# - user_votes
+
+# Re-implement?  Not much used:
+# - user_squad
+# - trackers_field_transition
+# - trackers_field_transition_other_field_update
+# - trackers_watcher
+# - trackers_export  # to implement differently
+# - trackers_spamban  # spamassassin gateway
+# - trackers_spamcheck_queue
+# - trackers_spamcheck_queue_notification
+
+# Depends if we display in a compatible manner:
+# - user_preferences # per-tracker browse configuration
+# - bugs_report
+# - bugs_report_field
+
+# Feature disabled in 2004 by yeupou, empty tables:
+# http://svn.gna.org/viewcvs/savane?view=rev&rev=3094
+# http://svn.gna.org/viewcvs/savane/savane/trunk/frontend/php/include/trackers_run/index.php?rev=3094&view=diff&r1=3094&r2=3093&p1=savane/trunk/frontend/php/include/trackers_run/index.php&p2=/savane/trunk/frontend/php/include/trackers_run/index.php
+# - bugs_filter
