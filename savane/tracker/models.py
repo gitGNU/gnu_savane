@@ -22,6 +22,47 @@ from django.db import models
 # fields) -> change to NULL?
 
 
+RESTRICTION_CHOICES = (('2', 'anonymous'),
+                       ('3', 'logged-in user'),
+                       ('5', 'project member'),)
+NEW_ITEM_POSTING_RESTRICTION_CHOICES = PERMISSION_CHOICES + (('', 'group type default'),)
+COMMENT_POSTING_RESTRICTION_CHOICES = PERMISSION_CHOICES + (('', 'same as new item'),)
+PERMISSION_CHOICES = (('', 'group type default'),
+                      ('9', 'none'),
+                      ('1', 'technician'),
+                      ('3', 'manager'),
+                      ('2', 'technician & manager'),)
+
+
+NOTIFICATION_ROLES = (
+    {'id': 1, 'label': 'SUBMITTER', 'short': 'Submitter', 'description': 'The person who submitted the item'},
+    {'id': 2, 'label': 'ASSIGNEE',  'short': 'Assignee' , 'description': 'The person to whom the item was assigned'},
+    {'id': 3, 'label': 'CC',        'short': 'CC'       , 'description': 'The person who is in the CC list'},
+    {'id': 4, 'label': 'SUBMITTER', 'short': 'Submitter', 'description': 'A person who once posted a follow-up comment'},
+)
+
+NOTIFICATION_EVENTS = (
+    {'id': 1, 'label': 'ROLE_CHANGE'     , 'short': 'Role has changed',
+     'description': "I'm added to or removed from this role"},
+    {'id': 2, 'label': 'NEW_COMMENT'     , 'short': 'New comment',
+     'description': 'A new followup comment is added'},
+    {'id': 3, 'label': 'NEW_FILE'        , 'short': 'New attachment',
+     'description': 'A new file attachment is added'},
+    {'id': 4, 'label': 'CC_CHANGE'       , 'short': 'CC Change',
+     'description': 'A new CC address is added/removed'},
+    {'id': 5, 'label': 'CLOSED'          , 'short': 'Item closed',
+     'description': 'The item is closed'},
+    {'id': 6, 'label': 'PSS_CHANGE'      , 'short': 'PSS change',
+     'description': 'Priority,Status,Severity changes'},
+    {'id': 7, 'label': 'ANY_OTHER_CHANGE', 'short': 'Any other Changes',
+     'description': 'Any changes not mentioned above'},
+    {'id': 8, 'label': 'I_MADE_IT'       , 'short': 'I did it',
+     'description': 'I am the author of the change'},
+    {'id': 9, 'label': 'NEW_ITEM'        , 'short': 'New Item',
+     'description': 'A new item has been submitted'},
+)
+
+
 class Tracker(models.Model):
     """
     Historically 4 trackers are hard-coded.
@@ -30,13 +71,53 @@ class Tracker(models.Model):
     Item.bugs_id / Item.patch_id / Item.support_id / Item.task_id
     (previous PHP implementation duplicated all tables).
     """
-
     NAME_CHOICES = (('bugs', 'bugs'),
                     ('patches', 'patches'),
                     ('support', 'support'),
                     ('tasks', 'tasks'),
                     )
     name = models.CharField(max_length=7, choices=NAME_CHOICES)
+
+class GroupTypeConfiguration(models.Model):
+    """
+    Previously in table "groups_type"
+    TODO: keep?
+    """
+    tracker = models.ForeignKey('Tracker')
+    group_type = models.IntegerField()  # TODO: ForeignKey
+    new_item_posting_restriction = models.CharField(max_length=1,
+                                                    choices=NEW_ITEM_POSTING_RESTRICTION_CHOICES,
+                                                    blank=True)
+    comment_posting_restriction = models.CharField(max_length=1,
+                                                   choices=COMMENT_POSTING_RESTRICTION_CHOICES,
+                                                   blank=True)
+    default_member_permission = models.CharField(max_length=1, choices=PERMISSION, blank=True)
+
+class GroupConfiguration(models.Model):
+    """
+    Previously in table "groups_default_permissions"
+    """
+    tracker = models.ForeignKey('Tracker')
+    group = models.ForeignKey('auth.Group')
+    new_item_restriction = models.CharField(max_length=1,
+                                            choices=NEW_ITEM_POSTING_RESTRICTION_CHOICES,
+                                            blank=True)
+    comment_restriction = models.CharField(max_length=1,
+                                           choices=COMMENT_POSTING_RESTRICTION_CHOICES,
+                                           blank=True)
+    default_member_permission = models.CharField(max_length=1, choices=PERMISSION, blank=True)
+
+class MemberPermission(models.Model):
+    """
+    Previously in table "user_group"
+    """
+    tracker = models.ForeignKey('Tracker')
+    group = models.ForeignKey('auth.Group')
+    user = models.ForeignKey('auth.Group')
+    permission = models.CharField(max_length=1, choices=Tracker.PERMISSION, blank=True)
+
+#class SquadPermission(models.Model): pass
+
 
 class Field(models.Model):
     """
@@ -344,9 +425,8 @@ class ItemSpamScore(models.Model):
 
 
 # TODO:
-# - trackers_notification_event  # site-wide static kinds of notifications (9 rows)
-# - trackers_notification_role   # site-wide static roles (4 rows)
-# - trackers_notification        # yes/no configuration depending on the above
+# - trackers_notification  # yes/no configuration depending on the events and roles
+# - groups  # per-group notification settings
 # - bugs_canned_responses
 # - user_votes
 
