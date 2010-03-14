@@ -1,6 +1,23 @@
+# Trackers data structure
+# Copyright (C) 2010  Sylvain Beucler
+#
+# This file is part of Savane.
+# 
+# Savane is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# 
+# Savane is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 from django.db import models
 
-# Create your models here.
 class Tracker(models.Model):
     NAME_CHOICES = (('bugs', 'bugs'),
                     ('patches', 'patches'),
@@ -10,6 +27,12 @@ class Tracker(models.Model):
     name = models.CharField(max_length=7, choices=NAME_CHOICES)
 
 class Field(models.Model):
+    """
+    Fields definition for the 4 trackers (~70 fields each)
+    """
+    class Meta:
+        unique_together = (('tracker', 'name'),)
+
     DISPLAY_TYPE_CHOICES = (('DF', 'date field'),
                             ('SB', 'select box'),
                             ('TA', 'text area'),
@@ -17,7 +40,7 @@ class Field(models.Model):
     SCOPE_CHOICES = (('S', 'system'),
                      ('P', 'project'),)
 
-    tracker = models.ForeignKey("Tracker")
+    tracker = models.ForeignKey('Tracker')
     name = models.CharField(max_length=255, db_index=True)
     display_type = models.CharField(max_length=255, choices=DISPLAY_TYPE_CHOICES)
     display_size = models.CharField(max_length=255)
@@ -34,6 +57,12 @@ class Field(models.Model):
     custom = models.BooleanField(help_text="let the user change the label and description")
 
 class FieldUsage(models.Model):
+    """
+    Field configuration for each group
+    """
+    class Meta:
+        unique_together = (('bug_field', 'group'),)
+
     TRANSITION_DEFAULT_AUTH_CHOICES = (('', 'undefined'),
                                        ('A', 'allowed'),
                                        ('F', 'forbidden'),)
@@ -44,6 +73,7 @@ class FieldUsage(models.Model):
     CUSTOM_EMPTY_OK_CHOICES = (('0', 'mandatory only if it was presented to the original submitter'),
                                ('1', 'optional (empty values are accepted)'),
                                ('3', 'mandatory'),)
+    bug_field = models.ForeignKey('Field')
     group = models.ForeignKey('auth.Group')
     use_it = models.BooleanField("used")
     show_on_add = models.CharField(max_length=1, choices=SHOW_ON_ADD_CHOICES,
@@ -68,7 +98,7 @@ class FieldUsage(models.Model):
 
 class FieldValue(models.Model):
     """
-    Choice for a select-box (SB) field
+    Choice for a select-box (SB) field of a specific group
     """
     class Meta:
         unique_together = (('bug_field', 'group', 'value_id'),)
@@ -77,9 +107,10 @@ class FieldValue(models.Model):
                       ('H', 'hidden'), # mask previously-active or system fields
                       ('P', 'permanent'),) # status cannot be modified, always visible
     bug_field = models.ForeignKey('Field')
-    group = models.ForeignKey('auth.Group')
+    group = models.ForeignKey('auth.Group') # =100 for system-wide values
     value_id = models.IntegerField(db_index=True) # group_specific value identifier
-      # somehow duplicate of 'id', but might be useful when moving a bug to another group
+      # not a duplicate of 'id', as it's the value referenced by Item
+      # fields, and the configuration of that value can be customized per-project.
     value = models.CharField(max_length=255) # label
     description = models.TextField()
     order_id = models.IntegerField() # new:rank
@@ -91,10 +122,33 @@ class FieldValue(models.Model):
                                 + " in this category")
     send_all_flag = models.BooleanField("send on all updates", default=True)
 
+# Auto_increment counters
+class BugsPublicId   (models.Model): pass
+class PatchPublicId  (models.Model): pass
+class SupportPublicId(models.Model): pass
+class TaskPublicId   (models.Model): pass
 
 class Item(models.Model):
     # TODO: default '100' (aka 'nobody' or 'None', depending on
     # fields) -> change to NULL?
+
+    class Meta:
+        unique_together = (('tracker', 'bugs_id'),
+                           ('tracker', 'patch_id'),
+                           ('tracker', 'support_id'),
+                           ('tracker', 'task_id'),)
+
+    # Rename 'id' to avoid confusion with public ids below
+    internal_id = models.AutoField(primary_key=True)
+    tracker = models.ForeignKey('Tracker')
+
+    # Per-tracker public item identifier.  Reason is historical:
+    # trackers were stored in different tables, each with its own
+    # auto_increment field:
+    bugs_id    = models.ForeignKey(BugsPublicId,    blank=True, null=True)
+    task_id    = models.ForeignKey(TaskPublicId,    blank=True, null=True)
+    support_id = models.ForeignKey(SupportPublicId, blank=True, null=True)
+    patch_id   = models.ForeignKey(PatchPublicId,   blank=True, null=True)
 
     group = models.ForeignKey('auth.Group')
     spamscore = models.IntegerField(default=0)
@@ -109,7 +163,7 @@ class Item(models.Model):
     # Note: For select boxes, FK should be limited to same group, and
     # to a specific field each e.g.:
     # severity = models.ForeignKey('FieldValue', to_field='value_id', default=5)
-    #            + constraint(same group) + constraint(field_name='severity')
+    #            + constraint(same group or 100) + constraint(field_name='severity')
     # To avoid unnecessary burden, let's drop the above incomplete ForeignKey
 
     # More generally one can wonder if this should be moved to a M2M
@@ -191,3 +245,35 @@ class Item(models.Model):
     custom_df3  = models.DateTimeField()
     custom_df4  = models.DateTimeField()
     custom_df5  = models.DateTimeField()
+
+class ItemMsgId(models.Model):
+    """
+    Idenfier for in 'Message-Id' and 'References' e-mail fields, used
+    to group messages by conversation
+    """
+    item = models.ForeignKey('Item')
+    msg_id = models.CharField(max_length=255)
+
+
+class ItemHistory(models.Model):
+    item = models.ForeignKey('Item')
+    field_name = models.CharField(max_length=255)
+       # Should be: field_name = models.ForeignKey('Field', to_field='name')
+       #            + constraint (item.tracker=field.tracker)
+       # or simply: field_name = models.ForeignKey('Field')
+       # But as it's a history field, adding constraints might be just bad.
+    old_value= models.TextField(blank=True, null=True)
+    new_value= models.TextField()
+    mod_by = models.ForeignKey('auth.User')
+    date = models.DateTimeField()
+    ip = IPAddressField(blank=True, null=True)
+
+    # Specific (bad!) field for 'details'
+    # I guess 'details' could be stored separately.
+    type = models.IntegerField("comment type", blank=True, null=True)
+      # Should be:
+      # type = models.ForeignKey('FieldValue', to_field='value_id')
+      #        + constraint(same group or 100) + constraint(field_name='comment_type_id')
+      # The purpose is to add <strong>[$comment_type]</strong> when
+      # displaying an item comment.
+    spamscore = models.IntegerField()
