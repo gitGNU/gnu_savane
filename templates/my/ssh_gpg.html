@@ -16,13 +16,13 @@
 {% endfor %}
 
 <h3>SSH Keys</h3>
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
   {{ form_ssh.as_p }}
   <br /><input type="submit" value="Add" name="Add" />
 </form>
 
 <h3>GPG Key</h3>
-<form method="post">
+<form method="post">{% csrf_token %}
   {{ form_gpg.as_p }}
   <br /><input type="submit" value="Update" name="Update" />
 </form>

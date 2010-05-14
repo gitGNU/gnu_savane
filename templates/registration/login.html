@@ -3,7 +3,7 @@
 {% block content %}
 Login:
 
-<form action="{% url django.contrib.auth.views.login %}" method="post">
+<form action="{% url django.contrib.auth.views.login %}" method="post">{% csrf_token %}
 {{form.as_p}}
 <input type="submit" name="login" value="Login" />
 </form>

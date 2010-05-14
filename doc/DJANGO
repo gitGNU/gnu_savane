@@ -19,8 +19,3 @@ Stuff of interest:
   "get_object_or_404(ExtendedUser, pk=request.user.pk)" calls with
   something that actually creates the ExtendedUser if the user is just
   a basic user.
-
-- As for 2010-02 Django 1.1 does not have a messaging framework for
-  anonymous users (only for logged-in users), but this will change in
-  Django 1.2, planned for 2010-03:
-  http://docs.djangoproject.com/en/dev/ref/contrib/messages/

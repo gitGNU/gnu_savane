@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="{% url savane.register.views.register %}" method="post">
+<form action="{% url savane.register.views.register %}" method="post">{% csrf_token %}
 <dl>
   {% for field in form %}
   {% if field.is_hidden %}

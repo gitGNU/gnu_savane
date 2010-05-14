@@ -21,6 +21,8 @@ from django.db import models
 # TODO: default '100' (aka 'nobody' or 'None', depending on
 # fields) -> change to NULL?
 
+# Date fields: use default=... rather than auto_now_add=...; indeed,
+# auto_now_add cannot be overriden, hence it would mess data imports.
 
 RESTRICTION_CHOICES = (('2', 'anonymous'),
                        ('3', 'logged-in user'),
@@ -252,7 +254,7 @@ class Item(models.Model):
     spamscore = models.IntegerField(default=0)
     ip = IPAddressField(blank=True, null=True)
     submitted_by = models.ForeignKey('auth.User', default=100)
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=datetime.date.today)
     close_date = models.DateTimeField(blank=True, null=True)
 
     # Forward dependencies
@@ -350,8 +352,8 @@ class Item(models.Model):
 
 class ItemMsgId(models.Model):
     """
-    Idenfier for in 'Message-Id' and 'References' e-mail fields, used
-    to group messages by conversation
+    Identifier for in 'Message-Id' and 'References' e-mail fields,
+    used to group messages by conversation
     """
     item = models.ForeignKey('Item')
     msg_id = models.CharField(max_length=255)
@@ -372,7 +374,7 @@ class ItemHistory(models.Model):
     old_value= models.TextField(blank=True, null=True)
     new_value= models.TextField()
     mod_by = models.ForeignKey('auth.User')
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=datetime.date.today)
     ip = IPAddressField(blank=True, null=True)
 
     # Specific (bad!) field for 'details'
@@ -393,7 +395,7 @@ class ItemCc(models.Model):
     email = models.EmailField(max_length=255)
     added_by = models.ForeignKey('auth.User')
     comment = models.TextField()
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=datetime.date.today)
 
 #class ItemDependencies:
 # => cf. Item.dependencies
@@ -404,7 +406,7 @@ class ItemFile(models.Model):
     """
     item = models.ForeignKey('Item')
     submitted_by = models.ForeignKey('auth.User')
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=datetime.date.today)
     description = models.TextField()
     filename = models.TextField()
     filesize = models.IntegerField(default=0)

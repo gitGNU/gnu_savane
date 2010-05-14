@@ -45,7 +45,7 @@
     </div>
     {% else %}
     <div class="menu_login">
-      <form action="{% url django.contrib.auth.views.login %}" method="post">
+      <form action="{% url django.contrib.auth.views.login %}" method="post">{% csrf_token %}
         <dl>
           <dt>Login Name:</dt>
           <dd><input type="text" name="username" value="" size="12" /></dd>
