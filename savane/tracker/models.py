@@ -430,7 +430,6 @@ class ItemSpamScore(models.Model):
 # - trackers_notification  # yes/no configuration depending on the events and roles
 # - groups  # per-group notification settings
 # - bugs_canned_responses
-# - user_votes
 
 # Re-implement?  Not much used:
 # - user_squad
@@ -441,6 +440,7 @@ class ItemSpamScore(models.Model):
 # - trackers_spamban  # spamassassin gateway
 # - trackers_spamcheck_queue
 # - trackers_spamcheck_queue_notification
+# - user_votes
 
 # Depends if we display in a compatible manner:
 # - user_preferences # per-tracker browse configuration
