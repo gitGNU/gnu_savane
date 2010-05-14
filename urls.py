@@ -20,8 +20,10 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 
+urlpatterns = patterns('',)
+
 # Home/presentation pages
-urlpatterns = patterns('',
+urlpatterns += patterns('',
   (r'', include('savane.svmain.urls')),
 )
 
@@ -44,14 +46,14 @@ from django.contrib import admin
 import django
 admin.autodiscover()
 
-if django.VERSION[0] > 1 or (django.VERSION[0] == 1 and django.VERSION[1] >= 1):
-    urlpatterns += patterns('',
-      (r'^admin/', include(admin.site.urls)),
-    )
-else:
-    urlpatterns += patterns('',
-      (r'^admin/(.*)', admin.site.root),
-    )
+urlpatterns += patterns('',
+    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
+    # to INSTALLED_APPS to enable admin documentation:
+    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+    # Uncomment the next line to enable the admin:
+    (r'^admin/', include(admin.site.urls)),
+)
 
 
 # Static content

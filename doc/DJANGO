@@ -19,3 +19,8 @@ Stuff of interest:
   "get_object_or_404(ExtendedUser, pk=request.user.pk)" calls with
   something that actually creates the ExtendedUser if the user is just
   a basic user.
+
+- In Django 1.2, the combination of aggregation and filters is buggy,
+  and voluntarily released that way without so much of a release note.
+  Don't rely on it.
+  http://code.djangoproject.com/ticket/11293
