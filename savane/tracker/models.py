@@ -123,7 +123,18 @@ class MemberPermission(models.Model):
 
 class Field(models.Model):
     """
-    Fields definition for the 4 trackers (~70 fields each)
+    Site-wide field definitions for the 4 trackers (~70 fields each).
+
+    Most fields cannot be redefined (such as display_type or
+    scope). Usually fields that can be redefined are in FieldUsage,
+    where an entry with special group_id=100 contains the default
+    value.
+
+    However some of the fields in this class can be redefined through
+    similar fields in FieldUsage (display_size and keep_history) - in
+    which case it's not clear whether the default value is in Field or
+    in FieldUsage, at first glance it's defined here, all related
+    values in FieldUsage are set to NULL.
     """
     class Meta:
         unique_together = (('tracker', 'name'),)
@@ -145,7 +156,7 @@ class Field(models.Model):
     label  = models.CharField(max_length=255)
     description = models.TextField()
     scope = models.CharField(max_length=1, choices=SCOPE_CHOICES)
-    required = models.BooleanField()
+    required = models.BooleanField(help_text="field cannot be disabled in configuration")
     empty_ok = models.BooleanField()
     keep_history = models.BooleanField()
     special = models.BooleanField(help_text="field is not entered by the user but by the system")
@@ -179,17 +190,22 @@ class FieldUsage(models.Model):
     show_on_add_members = models.BooleanField("show to project members")
     place = models.IntegerField() # new:rank
     transition_default_auth = models.CharField(max_lenth=1, choices=TRANSITION_DEFAULT_AUTH, default='A')
-    
-    # Specific (bad!) fields for custom fields:
-    custom_label = models.CharField(max_length=255, blank=True, null=True)
-    custom_description = models.CharField(max_length=255, blank=True, null=True)
+
+    custom_empty_ok = models.CharField(max_length=1, choices=CUSTOM_EMPTY_OK_CHOICES,
+                                       default='0', blank=True, null=True)
+
+    # Some global parameters can be customized
     custom_display_size = models.CharField(max_length=255, blank=True, null=True)
       # new:
       # custom_display_size_min = models.IntegerField(blank=True, null=True)
       # custom_display_size_max = models.IntegerField(blank=True, null=True)
-    custom_empty_ok = models.CharField(max_length=1, choices=CUSTOM_EMPTY_OK_CHOICES,
-                                       default='0', blank=True, null=True)
+      # The default value is in Field.display_size
+      #   rather than FieldUsage(group_id=100).custom_display_size
     custom_keep_history = models.BooleanField("keep field value changes in history")
+    
+    # Specific (bad!) fields for custom fields (if Field.custom is True):
+    custom_label = models.CharField(max_length=255, blank=True, null=True)
+    custom_description = models.CharField(max_length=255, blank=True, null=True)
 
 class FieldValue(models.Model):
     """
