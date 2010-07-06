@@ -37,6 +37,11 @@ Edit the the file savane/settings.py and edit:
 DATABASE_USER, DATABASE_PASSWORD, DATABASE_HOST to the proper data
 needed to connect to the MySQL database.
 
+Initialize the database::
+
+  ./manage.py syncdb
+  ./manage.py loaddata savane/svmain/fixtures/*.yaml
+
 
 * Run for testing:
 

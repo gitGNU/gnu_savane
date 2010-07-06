@@ -47,7 +47,7 @@ There are a few issues with using LDAP+Django+Unix:
 Some solutions:
 
 - Use slapd-sql so LDAP fetchs the data transparently in SQL. But it's
-  experimental, we did test.
+  experimental, we didn't test.
   http://www.openldap.org/software/man.cgi?query=slapd-sql
 
 - Export the database to LDAP (instead of the other way around).  This
@@ -60,7 +60,7 @@ Some solutions:
 - Modify 3rd-party apps so they use an external database for
   authentication, instead of using an external LDAP directory.
 
-- Is LDAP is used for the system (Unix) through libnss-ldap(d), the
+- If LDAP is used for the system (Unix) through libnss-ldap(d), the
   performances issues are not fixed.  Either you need to rely on nscd
   (but this means you'll get a cache delay before changes are taken
   into account, which defeats the point of using libnss-*), either you
