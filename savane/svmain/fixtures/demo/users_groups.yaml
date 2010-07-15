@@ -11,6 +11,7 @@
   fields:
     type: 1
     devel_status: 6
+    license: 22
     register_time: 2001-02-08 15:03:48
 - model: auth.user
   pk: 1

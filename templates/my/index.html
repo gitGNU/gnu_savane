@@ -1,9 +1,6 @@
-{# -*- Mode: django-html; -*- #}
 {% extends "base.html" %}
 
 {% block content %}
-<p>My nice personal page.</p>
-
 <p>
   <a href="{% url savane.my.views.sv_conf %}">Account configuration</a>
 | <a href="{% url savane.my.group_list %}">My groups</a>
@@ -11,3 +8,10 @@
 </p>
 
 {% endblock %}
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

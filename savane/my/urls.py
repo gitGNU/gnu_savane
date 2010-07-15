@@ -46,12 +46,14 @@ def decorated_patterns(prefix, func, *args):
 
 urlpatterns = decorated_patterns ('', login_required,
   url(r'^$', direct_to_template,
-      { 'template' : 'my/index.html' },
+      { 'template' : 'my/index.html',
+        'extra_context' : { 'title' : 'My account', }, },
       name='savane.my.views.index'),
   url('^conf/$', views.sv_conf),
   url('^conf/resume_skill$', views.sv_resume_skill),
   url('^conf/ssh_gpg$', views.sv_ssh_gpg),
   url(r'^groups/$', only_mine(object_list),
-      { 'queryset' : svmain_models.ExtendedGroup.objects.all() },
+      { 'queryset' : svmain_models.ExtendedGroup.objects.all(),
+        'extra_context' : { 'title' : "My groups", }, },
       name='savane.my.group_list'),
 )
