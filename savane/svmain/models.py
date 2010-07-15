@@ -508,6 +508,13 @@ class Membership(models.Model):
     """
     Extra attributes about a User<->Group relationship
     (e.g. "is the user an admin?")
+
+    Consider this as metadata about an existing
+    django.contrib.auth.User.groups relationship; or a potential
+    relationship (e.g. pending membership waiting for admin approval).
+
+    The group membership is defined by the underlying User.groups
+    relationship, not this one.
     """
     user = models.ForeignKey(ExtendedUser)
     group = models.ForeignKey(ExtendedGroup)

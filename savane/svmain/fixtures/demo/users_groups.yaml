@@ -1,0 +1,41 @@
+- model: svmain.groupconfiguration
+  pk: 1
+  fields:
+    name: "GNU projects"
+- model: auth.group
+  pk: 1
+  fields:
+    name: emacs
+- model: svmain.extendedgroup
+  pk: 1
+  fields:
+    type: 1
+    devel_status: 6
+    register_time: 2001-02-08 15:03:48
+- model: auth.user
+  pk: 1
+  fields:
+    username: admin
+    is_staff: true
+    is_superuser: true
+    password: sha1$2c71c$92bacf9046c9d9335dc13d1b8a8d57ea87f8e37e
+- model: svmain.extendeduser
+  pk: 1
+  fields:
+    status: 'A'
+- model: auth.user
+  pk: 2
+  fields:
+    username: rms
+    password: sha1$6bde8$748d99ad2f2493225efb0e6b78914c5c9a065275
+    groups: [1, ]
+- model: svmain.extendeduser
+  pk: 2
+  fields:
+    status: 'A'
+- model: svmain.membership
+  pk: 1
+  fields:
+    user: 2
+    group: 1
+    admin_flags: 'A'

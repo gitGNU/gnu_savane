@@ -37,10 +37,12 @@
     </div>
     {% if user.is_authenticated %}
     <div class="fast_menu_user">
-      {{ user.username}} ({{ user.first_name }} {{ user.last_name }})
+      Connected as <a href="{% url savane.my.views.index %}">
+        {{ user.username}}
+        {% if user.first_name or user.last_name %}({{ user.first_name }} {{ user.last_name }}) {% endif %}
 <!--      <a href="">Items</a> -->
 <!--      <a href="">Groups</a> -->
-      <a href="{% url savane.my.views.sv_conf %}">Account Conf</a>
+      </a>
       | <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
     </div>
     {% else %}

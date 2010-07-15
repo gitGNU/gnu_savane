@@ -23,15 +23,7 @@ from django.views.generic.simple import direct_to_template
 from django.views.generic.list_detail import object_list
 import views
 import savane.svmain.models as svmain_models
-
-def only_mine(f):
-    """Filter a generic query_set to only display objets related to
-    the current user"""
-    def _dec(request, queryset, *args, **kwargs):
-        user = request.user
-        queryset = queryset.filter(user=user.id)
-        return f(request, queryset, *args, **kwargs)
-    return _dec
+from savane.my.filters import *
 
 # Batch-decorator for urlpatterns
 # http://www.djangosnippets.org/snippets/532/

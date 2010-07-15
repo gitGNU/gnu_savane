@@ -46,7 +46,7 @@ urlpatterns = patterns ('',
         'slug_field' : 'username' },
       name='savane.svmain.user_detail'),
   url(r'^us/(?P<slug>[-\w]+)$', views.user_redir),
-  url(r'^users/(?P<slug>[-\w]+)$', views.user_redir),
+  url(r'^users/(?P<slug>[-\w]+)/?$', views.user_redir),
 
   url(r'^license/$', 'django.views.generic.list_detail.object_list',
       { 'queryset' : svmain_models.License.objects.all(), },

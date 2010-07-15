@@ -2,5 +2,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-My nice personal page.
+<p>My nice personal page.</p>
+
+<p>
+  <a href="{% url savane.my.views.sv_conf %}">Account configuration</a>
+| <a href="{% url savane.my.group_list %}">My groups</a>
+| <a href="{% url savane.svmain.user_detail request.user.username %}">My public page</a>
+</p>
+
 {% endblock %}

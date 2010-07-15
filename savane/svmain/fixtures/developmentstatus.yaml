@@ -1,36 +1,36 @@
 - fields:
-    name: '0 - Undefined'
+    name: '1 - Planning'
   model: svmain.developmentstatus
   pk: 1
 - fields:
-    name: '1 - Planning'
+    name: '2 - Pre-Alpha'
   model: svmain.developmentstatus
   pk: 2
 - fields:
-    name: '2 - Pre-Alpha'
+    name: '3 - Alpha'
   model: svmain.developmentstatus
   pk: 3
 - fields:
-    name: '3 - Alpha'
+    name: '4 - Beta'
   model: svmain.developmentstatus
   pk: 4
 - fields:
-    name: '4 - Beta'
+    name: '5 - Production/Stable'
   model: svmain.developmentstatus
   pk: 5
 - fields:
-    name: '5 - Production/Stable'
+    name: '6 - Mature'
   model: svmain.developmentstatus
   pk: 6
 - fields:
-    name: '6 - Mature'
+    name: 'N/A'
   model: svmain.developmentstatus
   pk: 7
 - fields:
-    name: 'N/A'
+    name: '? - Orphaned/Unmaintained'
   model: svmain.developmentstatus
   pk: 8
 - fields:
-    name: '? - Orphaned/Unmaintained'
+    name: '0 - Undefined'
   model: svmain.developmentstatus
   pk: 9
