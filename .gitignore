@@ -4,3 +4,4 @@ settings.py
 
 # Bundled dependencies, cf. INSTALL
 django-annoying
+django-registration

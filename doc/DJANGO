@@ -24,3 +24,8 @@ Stuff of interest:
   and voluntarily released that way without so much of a release note.
   Don't rely on it.
   http://code.djangoproject.com/ticket/11293
+
+- With Django 1.2 and above, you can add to you settings.py:
+  EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+  This will direct all mails to the console, which means you won't
+  risk sending real e-mails to real people by mistake when testing.

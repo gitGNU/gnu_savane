@@ -33,6 +33,8 @@ urlpatterns += patterns('',
   # Generic login/logout/change_pass/etc.
   (r'^accounts/logout/$', 'django.contrib.auth.views.logout',
     {'next_page' : '/'}),  # redirect to '/' instead of login page
+  # django-registration
+  (r'^accounts/', include('registration.backends.default.urls')),
   (r'^accounts/', include('django.contrib.auth.urls')),
 )
 

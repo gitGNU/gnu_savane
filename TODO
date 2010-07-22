@@ -11,7 +11,9 @@ This roadmap is not immutable, feel free to discuss it with others and
 improve it.
 
 
-[/] Implement web screens (higher priority)
+[/] Implement high priority web screens
+
+    [/] User account registration
 
     [/] User page
 
@@ -32,8 +34,6 @@ improve it.
 
         [X] GPG key
 
-	[ ] Resume and skills
-
     [/] My Groups
 
     [ ] Group membership (manage members, manage permissions, request
@@ -44,21 +44,21 @@ improve it.
 
 [ ] Project registration
 
-[ ] Implement web screens (lower priority)
+[ ] Implement lower priority web screens
 
-    [ ] Account conf 2 ([ ] profile/resume, [ ] skills, [ ] timezone)
+    [ ] Account conf part 2 ([ ] profile/resume, [ ] skills, [ ] timezone)
 
     [ ] Bookmarks? Was considered for deletion at a point in Savane:
         http://gna.org/task/?1412 - note that yeupou is a bit partial
         towards trackers in that discussion
 
-[X] Admin interface (implemented via Django admin)
+[/] Admin interface (implemented via Django admin)
 
 [ ] News management (+ comments)
 
 [/] Work on the web design
 
-    [X] Do something different
+    [/] Do something different
 
     [ ] Maybe we can change the colors.
 
@@ -77,7 +77,7 @@ improve it.
     [/] homedirs and .ssh replication (done in savane-cleanup, and in
         Python - just adapt the DB schema)
 
-    [ ] GPG keyrings
+    [/] GPG keyrings
 
     [ ] Group resources (Download, CVS, SVN, Arch, Git, Mercurial,
         Bazaar)

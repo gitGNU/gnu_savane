@@ -20,12 +20,15 @@
           <li class="menuitem"><a href="{% url savane.my.views.index %}">My account</a></li>
           <li class="menuitem"><a href="{% url django.contrib.auth.views.logout %}">Logout</a></li>
         {% else %}
+          <li class="menutitle">Login status</li>
+          <li class="menuitem"><span class="error">Not connected</span></li>
           <li class="menuitem"><a href="{% url django.contrib.auth.views.login %}">Login</a></li>
+          <li class="menuitem"><a href="{% url registration_register %}">New user</a></li>
         {% endif %}
         <!-- /sitemenu -->
 
-	<li class="menutitle">Site Help</li>
-        <li class="menuitem"><a href="{% url contact %}">Contact Us</a></li>
+	<li class="menutitle">Site help</li>
+        <li class="menuitem"><a href="{% url contact %}">Contact us</a></li>
       </ul>
 
       <div class="main"><a name="top"></a>

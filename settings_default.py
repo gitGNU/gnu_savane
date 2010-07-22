@@ -87,6 +87,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
 
+    'registration',
+
     'savane.svmain',
     'savane.my',
     'savane.register',
@@ -117,3 +119,9 @@ MEDIA_URL = '/upload/'
 #REQUIRE_LOGIN_PATH = LOGIN_URL
 #STATIC_MEDIA_URL   = subdir + '/static_media/'
 #MEDIA_URL          = subdir + '/upload/'
+
+
+# 3rd-party configuration
+
+# django-registration
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window

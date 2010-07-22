@@ -26,6 +26,7 @@
 apt-get install python-django python-mysqldb mysql-server
 
 hg clone http://bitbucket.org/offline/django-annoying/
+hg clone http://bitbucket.org/ubernostrum/django-registration/
 
 
 * Install process
