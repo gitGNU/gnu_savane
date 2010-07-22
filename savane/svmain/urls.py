@@ -27,8 +27,9 @@ urlpatterns = patterns ('',
       { 'template' : 'index.html',
         'extra_context' : { 'has_left_menu': False } },
       name='homepage'),
-  url(r'^contact$', 'django.views.generic.simple.direct_to_template',
-      { 'template' : 'contact.html' },
+  url(r'^contact/$', 'django.views.generic.simple.direct_to_template',
+      { 'template' : 'svmain/text.html',
+        'extra_context' : { 'title' : 'Contact', }, },
       name='contact'),
 
   # TODO: not sure about the views naming convention - all this

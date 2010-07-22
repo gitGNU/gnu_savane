@@ -23,15 +23,13 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django import forms
+from django.contrib import messages
 from savane.svmain.models import ExtendedUser, SshKey
 from savane.utils import *
+from annoying.decorators import render_to
 
 @login_required()
 def sv_conf( request ):
-
-    error_msg = ''
-    success_msg = ''
-
     form_pass = PasswordForm ()
     form_mail = MailForm ()
     form_identity = IdentityForm ()
@@ -40,43 +38,41 @@ def sv_conf( request ):
     if request.method == 'POST':
         action = request.POST['action']
         if action == 'update_password':
-            form_pass = PasswordForm( request.POST )
+            form_pass = PasswordForm(request.POST)
             form = form_pass
         elif action == 'update_mail':
-            form_mail = MailForm( request.POST )
+            form_mail = MailForm(request.POST)
             form = form_mail
         elif action == 'update_identity':
-            form_identity = IdentityForm( request.POST )
+            form_identity = IdentityForm(request.POST)
             form = form_identity
 
         if form is not None and form.is_valid():
             if action == 'update_password':
-                if request.user.check_password( request.POST['old_password'] ):
-                    request.user.set_password( request.POST['new_password'] );
+                if request.user.check_password(request.POST['old_password']):
+                    request.user.set_password(request.POST['new_password']);
                     request.user.save()
-                    success_msg = "Password was successfully changed."
+                    messages.success(request, u"Password was successfully changed.")
                     form_pass = PasswordForm()
                 else:
-                    error_msg = "Old password didn't match."
+                    messages.error(request, u"Old password didn't match.")
             elif action == 'update_mail':
                 new_email = request.POST['email']
                 request.user.email = new_email
                 request.user.save()
                 form_mail = MailForm()
-                success_msg = 'The E-Mail address was succesfully updated. New E-Mail address is <'+new_email+'>'
+                messages.success(request, u"The E-Mail address was succesfully updated. New E-Mail address is <%s>" % new_email)
             elif action == 'update_identity':
                 request.user.first_name = request.POST['name']
                 request.user.last_name = request.POST['last_name']
                 request.user.save()
-                success_msg = 'Personal information changed.'
+                messages.success(request, u"Personal information changed.")
                 form_identity = IdentityForm()
 
     return render_to_response('my/conf.html',
                               { 'form_pass' : form_pass,
                                 'form_mail' : form_mail,
                                 'form_identity' : form_identity,
-                                'error_msg' : error_msg,
-                                'success_msg' : success_msg,
                                 },
                               context_instance=RequestContext(request))
 
@@ -84,6 +80,7 @@ def sv_conf( request ):
 def sv_resume_skill( request ):
     return render_to_response('my/resume_skill.html',
                                context_instance=RequestContext(request))
+
 @login_required()
 def sv_ssh_gpg( request ):
     eu = get_object_or_404(ExtendedUser, pk=request.user.pk)
@@ -168,6 +165,20 @@ def sv_ssh_gpg( request ):
                                 },
                               context_instance=RequestContext(request))
 
+@login_required()
+@render_to('svmain/generic_confirm.html', mimetype=None)
+def sv_ssh_delete(request):
+    eu = get_object_or_404(ExtendedUser, pk=request.user.pk)
+    if request.method == 'POST':
+        try:
+            ssh_key = eu.sshkey_set.get(pk=request.POST.get('key_pk', 0))
+            ssh_key.delete()
+        except SshKey.DoesNotExist:
+            messages.error(request, u"Cannot remove the selected key")
+        return HttpResponseRedirect("../")
+    else:
+        return {}
+
 class MailForm( forms.Form ):
     email = forms.EmailField(required=True)
     action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_mail' )
@@ -193,18 +204,18 @@ class GPGForm( forms.Form ):
     action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_gpg' )
 
 class SSHForm( forms.Form ):
-    key_file = forms.FileField( required=False )
-    key = forms.CharField( widget=forms.TextInput( attrs={'size':'60'} ), required=False )
+    key_file = forms.FileField(required=False, help_text="Be sure to upload the file ending with .pub")
+    key = forms.CharField(widget=forms.TextInput(attrs={'size':'60'}), required=False)
 
-    action = forms.CharField( widget=forms.HiddenInput, required=True, initial='add_ssh' )
+    action = forms.CharField(widget=forms.HiddenInput, required=True, initial='add_ssh')
 
     def clean_key( self ):
         ssh_key = self.cleaned_data['key']
 
         try:
-            ssh_key_fingerprint( ssh_key )
+            ssh_key_fingerprint(ssh_key)
         except:
-            raise forms.ValidationError( "The uploaded string is not a public key file" )
+            raise forms.ValidationError("The uploaded string is not a public key file")
 
         return ssh_key
 
@@ -219,8 +230,8 @@ class SSHForm( forms.Form ):
             ssh_key = ssh_key + chunk
 
         try:
-            ssh_key_fingerprint( ssh_key )
+            ssh_key_fingerprint(ssh_key)
         except:
-            raise forms.ValidationError( "The uploaded file is not a public key file" )
+            raise forms.ValidationError("The uploaded file is not a public key file")
 
         return ssh_key_file

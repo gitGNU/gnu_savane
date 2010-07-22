@@ -28,10 +28,11 @@ improve it.
 
         [X] real name
 
-        [/] SSH keys TODO: maybe display existing keys better; avoid
-	    using GET for deletions (use POST instead)
+        [X] SSH keys
 
         [X] GPG key
+
+	[ ] Resume and skills
 
     [/] My Groups
 

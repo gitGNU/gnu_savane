@@ -2,9 +2,24 @@
 
 {% block content %}
 <p>
-  <a href="{% url savane.my.views.sv_conf %}">Account configuration</a>
-| <a href="{% url savane.my.group_list %}">My groups</a>
-| <a href="{% url savane.svmain.user_detail request.user.username %}">My public page</a>
+  <div style="float: left; margin: 10px;">
+    <p>Configure</p>
+
+    <p>
+      <a href="{% url savane.my.views.sv_conf %}">Authentication &amp; contact</a><br />
+      <a href="{% url savane.my.views.sv_ssh_gpg %}">SSH &amp; GPG</a><br />
+      <a href="{% url savane.my.views.sv_resume_skill %}">My resume &amp; skills</a><br />
+      <a href="{% url savane.my.group_list %}">My groups</a><br />
+    </p>
+  </div>
+
+  <div style="float: left; margin: 10px;">
+    <p>Public information</p>
+
+    <p>
+      <a href="{% url savane.svmain.user_detail request.user.username %}">My public page</a><br />
+    </p>
+  </div>
 </p>
 
 {% endblock %}
