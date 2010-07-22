@@ -4,8 +4,8 @@
   <head>
     {% load i18n %}
     <title>
-      {% block title %}{% if title %}{{ title }}{% else %}{% trans 'Welcome' %}{% endif %}
-        [Savannah]{% endblock %}
+      {% include "title.html" %}
+      [Savannah]
     </title>
     <link rel="stylesheet" type="text/css" href="{{STATIC_MEDIA_URL}}savane/css/Savannah.css" />
     <link rel="icon" type="image/png" href="{{STATIC_MEDIA_URL}}savane/images/icon.png" />
@@ -39,14 +39,11 @@
         <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
         {% endif %}
 
-	  <h1>{{ title }}</h1>
+	  <h1>{% include "title.html" %}</h1>
 
           {% block content %}
           {% endblock %}
         </div>
-      </div>
-    </div>
-
       </div><!-- end main -->
       <br class="clear" />
     </div><!-- end realbody -->
