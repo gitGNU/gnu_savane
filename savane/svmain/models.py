@@ -60,14 +60,28 @@ from django.contrib.auth import models as auth_models
 
 
 class SshKey(models.Model):
-    user = models.ForeignKey('ExtendedUser')
+    user = models.ForeignKey(auth_models.User)
     # Could a CharField with max_length=3000 or something similar, as
     # it's a single line of text, but it sounds safer to use a
     # TextField for such a long text.  Too bad for the admin/ area.
     ssh_key = models.TextField(blank=False)
 
-class ExtendedUser(auth_models.User):
-    """Django base User class + extra Savane fields"""
+from annoying.fields import AutoOneToOneField
+class SvUserInfo(models.Model):
+    """
+    Django base User class + extra Savane fields
+
+    Since it adds a field to Django's User objects, we prefix it by
+    'sv' to avoid clashes with other packages, C-style (ahem).
+
+    Using AutoOneToOneField to automatically create this extra data
+    for new users as soon as the field is accessed.
+    """
+
+    class Meta:
+        ordering = ['user__username']
+
+    user = AutoOneToOneField(auth_models.User, primary_key=True)
 
     # Migrated to 'first_name' and 'last_name' in auth.User
     #realname = models.CharField(max_length=96)
@@ -80,7 +94,7 @@ class ExtendedUser(auth_models.User):
         ('S', 'Suspended'),
         #('SQD', 'Squad'), # TODO: implement squads more cleanly
         )
-    status = models.CharField(max_length=3, choices=status_CHOICES)
+    status = models.CharField(max_length=3, choices=status_CHOICES, default='A')
 
     # Unix mapping, used when populating a LDAP directory
     uidNumber = models.IntegerField(default=0)
@@ -106,9 +120,6 @@ class ExtendedUser(auth_models.User):
     timezone = models.CharField(max_length=192, blank=True)
     theme = models.CharField(max_length=45, blank=True)
 
-    # Non-field link to extended groups
-    extendedgroup_set = models.ManyToManyField('ExtendedGroup', through='Membership')
-
     # Inherit specialized models.Manager with convenience functions
     objects = auth_models.UserManager()
 
@@ -124,32 +135,6 @@ class ExtendedUser(auth_models.User):
                           + " WHERE status = 'A'"
                           )
 
-    @models.permalink
-    def get_absolute_url(self):
-        return ('savane.svmain.user_detail', [self.username])
-
-    class Meta:
-        ordering = ['username']
-
-# FIXME
-# Let's make sure extendeduser is always created, even if somehow a
-# normal User is created (from the admin interface, e.g.)
-# This currently fails, and this doesn't support creating a model if
-# another apps creates a derived class.
-#from django.contrib.auth.models import User
-#from django.db.models.signals import post_save
-#def user_post_save_handler(sender, **kwargs):
-#    """
-#    Create an ExtendedUser when a User is directly created
-#
-#    Called when User is created
-#    (but not called when a ExtendedUser is created)
-#    """
-#    u = kwargs['instance']
-#    if kwargs['created'] == True:
-#        eu = ExtendedUser(user_ptr=u)
-#        eu.save()  # ERROR
-#post_save.connect(user_post_save_handler, sender=User)
 
 class License(models.Model):
     """
@@ -363,8 +348,17 @@ class GroupConfiguration(models.Model):
         return self.name
 
 
-class ExtendedGroup(auth_models.Group):
-    """Django base Group class + extra Savane fields"""
+class SvGroupInfo(models.Model):
+    """
+    Django base Group class + extra Savane fields
+
+    Cf. SvUserInfo for concepts.
+    """
+
+    class Meta:
+        ordering = ['group__name']
+
+    group = AutoOneToOneField(auth_models.Group, primary_key=True)
 
     type = models.ForeignKey(GroupConfiguration)
     full_name = models.CharField(max_length=255, blank=True,
@@ -488,20 +482,13 @@ class ExtendedGroup(auth_models.Group):
         """
         return conn.query("SELECT "
                           + ",".join(fields)
-                          + " FROM auth_group JOIN svmain_extendedgroup"
-                          + " ON auth_group.id = svmain_extendedgroup.group_ptr_id"
+                          + " FROM auth_group JOIN svmain_svgroupinfo"
+                          + " ON auth_group.id = svmain_svgroupinfo.group_id"
                           + " WHERE status = 'A'"
                           )
 
     def __unicode__(self):
         return self.name
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('savane.svmain.group_detail', [self.name])
-
-    class Meta:
-        ordering = ['name']
 
 
 class Membership(models.Model):
@@ -516,8 +503,13 @@ class Membership(models.Model):
     The group membership is defined by the underlying User.groups
     relationship, not this one.
     """
-    user = models.ForeignKey(ExtendedUser)
-    group = models.ForeignKey(ExtendedGroup)
+
+    class Meta:
+        unique_together = (('user', 'group'),)
+        ordering = ('group', 'user', )
+
+    user = models.ForeignKey(auth_models.User)
+    group = models.ForeignKey(auth_models.Group)
 
     admin_flags_CHOICES = (
         ('A', 'Admin'),
@@ -559,7 +551,3 @@ class Membership(models.Model):
 
     def __unicode__(self):
         return "[%s is a member of %s]" % (self.user.username, self.group.name)
-
-    class Meta:
-        unique_together = (('user', 'group'),)
-        ordering = ('group', 'user', )

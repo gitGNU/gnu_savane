@@ -18,12 +18,13 @@
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
-import models as svmain_models
-
-def group_redir(request, slug):
-    eg = get_object_or_404(svmain_models.ExtendedGroup, name=slug)
-    return HttpResponseRedirect(eg.get_absolute_url())
+from django.core.urlresolvers import reverse
+import django.contrib.auth.models as auth_models
 
 def user_redir(request, slug):
-    ug = get_object_or_404(svmain_models.ExtendedUser, username=slug)
-    return HttpResponseRedirect(ug.get_absolute_url())
+    u = get_object_or_404(auth_models.User, username=slug)
+    return HttpResponseRedirect(reverse('savane.svmain.user_detail', args=(slug,)))
+
+def group_redir(request, slug):
+    g = get_object_or_404(svmain_models.ExtendedGroup, name=slug)
+    return HttpResponseRedirect(reverse('savane.svmain.group_detail', args=(slug,)))

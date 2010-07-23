@@ -15,6 +15,10 @@ improve it.
 
     [/] User account registration
 
+        [X] Account creation
+
+        [ ] Password recovery
+
     [/] User page
 
     [/] Group page

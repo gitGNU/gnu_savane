@@ -23,6 +23,7 @@ from django.views.generic.simple import direct_to_template
 from django.views.generic.list_detail import object_list
 import views
 import savane.svmain.models as svmain_models
+import django.contrib.auth.models as auth_models
 from savane.my.filters import *
 
 # Batch-decorator for urlpatterns
@@ -54,7 +55,8 @@ urlpatterns = decorated_patterns ('', login_required,
   url('^conf/ssh_gpg/$', views.sv_ssh_gpg),
   url('^conf/ssh_gpg/delete/$', views.sv_ssh_delete),
   url(r'^groups/$', only_mine(object_list),
-      { 'queryset' : svmain_models.ExtendedGroup.objects.all(),
-        'extra_context' : { 'title' : "My groups", }, },
+      { 'queryset' : auth_models.Group.objects.all(),
+        'extra_context' : { 'title' : "My groups", },
+        'template_name' : 'svmain/group_list.html', },
       name='savane.my.group_list'),
 )

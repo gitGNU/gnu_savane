@@ -13,7 +13,7 @@ Development status: {{object.devel_status}}<br />
 {% if object.user_set.all %}
 <ul>
   {% for user in object.user_set.all %}
-  <li><a href="{{ user.get_absolute_url }}">{{ user.username }}</a></li>
+  <li><a href="{% url savane.svmain.user_detail user.username %}">{{ user.username }}</a></li>
   {% endfor %}
   </ul>
 {% else %}

@@ -24,7 +24,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django import forms
 from django.contrib import messages
-from savane.svmain.models import ExtendedUser, SshKey
+from savane.svmain.models import SvUserInfo, SshKey
 from savane.utils import *
 from annoying.decorators import render_to
 
@@ -83,7 +83,7 @@ def sv_resume_skill( request ):
 
 @login_required()
 def sv_ssh_gpg( request ):
-    eu = get_object_or_404(ExtendedUser, pk=request.user.pk)
+    info = get_object_or_404(SvUserInfo, user=request.user)
 
     error_msg = None
     success_msg = None
@@ -97,7 +97,7 @@ def sv_ssh_gpg( request ):
         if action == 'delete_key':
             key_pk = request.GET['key_pk']
             try:
-                ssh_key = eu.sshkey_set.get(pk=key_pk)
+                ssh_key = request.user.sshkey_set.get(pk=key_pk)
                 ssh_key.delete()
             except:
                 error_msg = 'Cannot remove the selected key'
@@ -117,7 +117,7 @@ def sv_ssh_gpg( request ):
                     key = request.POST['key'].strip()
                     if len(key) > 0:
                         ssh_key = SshKey(ssh_key=key)
-                        eu.sshkey_set.add(ssh_key)
+                        request.user.sshkey_set.add(ssh_key)
                         success_msg = 'Authorized keys stored.'
 
                 if 'key_file' in request.FILES:
@@ -129,7 +129,7 @@ def sv_ssh_gpg( request ):
 
                             if len(key) > 0:
                                 ssh_key = SshKey(ssh_key=key)
-                                eu.sshkey_set.add(ssh_key)
+                                request.user.sshkey_set.add(ssh_key)
                                 success_msg = 'Authorized keys stored.'
 
                 form_ssh = SSHForm()
@@ -140,16 +140,16 @@ def sv_ssh_gpg( request ):
             elif action == 'update_gpg':
                 if 'gpg_key' in request.POST:
                     gpg_key = request.POST['gpg_key']
-                    eu.gpg_key = gpg_key
+                    info.gpg_key = gpg_key
                     success_msg = 'GPG Key stored.'
 
-    if eu.gpg_key != '':
-        gpg_data = dict({'action':'update_gpg', 'gpg_key':eu.gpg_key})
+    if info.gpg_key != '':
+        gpg_data = dict({'action':'update_gpg', 'gpg_key':info.gpg_key})
         form_gpg = GPGForm( gpg_data )
     else:
         form_gpg = GPGForm()
 
-    keys =  eu.sshkey_set.all()
+    keys =  request.user.sshkey_set.all()
     if keys is not None:
         ssh_keys = dict()
         for key in keys:
@@ -171,7 +171,7 @@ def sv_ssh_delete(request):
     eu = get_object_or_404(ExtendedUser, pk=request.user.pk)
     if request.method == 'POST':
         try:
-            ssh_key = eu.sshkey_set.get(pk=request.POST.get('key_pk', 0))
+            ssh_key = request.user.sshkey_set.get(pk=request.POST.get('key_pk', 0))
             ssh_key.delete()
         except SshKey.DoesNotExist:
             messages.error(request, u"Cannot remove the selected key")

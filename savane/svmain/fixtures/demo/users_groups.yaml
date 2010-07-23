@@ -6,7 +6,7 @@
   pk: 1
   fields:
     name: emacs
-- model: svmain.extendedgroup
+- model: svmain.svgroupinfo
   pk: 1
   fields:
     type: 1
@@ -20,17 +20,13 @@
     is_staff: true
     is_superuser: true
     password: sha1$2c71c$92bacf9046c9d9335dc13d1b8a8d57ea87f8e37e
-- model: svmain.extendeduser
-  pk: 1
-  fields:
-    status: 'A'
 - model: auth.user
   pk: 2
   fields:
     username: rms
     password: sha1$6bde8$748d99ad2f2493225efb0e6b78914c5c9a065275
     groups: [1, ]
-- model: svmain.extendeduser
+- model: svmain.svuserinfo
   pk: 2
   fields:
     status: 'A'

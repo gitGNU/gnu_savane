@@ -19,7 +19,8 @@
 
 from django.conf.urls.defaults import *
 
-from savane.svmain import models as svmain_models
+import savane.svmain.models as svmain_models
+import django.contrib.auth.models as auth_models
 import views
 
 urlpatterns = patterns ('',
@@ -36,15 +37,17 @@ urlpatterns = patterns ('',
   # "models in 'svmain', views in 'my'" is getting messy, probably a
   # mistake from me (Beuc) :P
   url(r'^p/(?P<slug>[-\w]+)$', 'django.views.generic.list_detail.object_detail',
-      { 'queryset' : svmain_models.ExtendedGroup.objects.all(),
-        'slug_field' : 'name' },
+      { 'queryset' : auth_models.Group.objects.all(),
+        'slug_field' : 'name',
+        'template_name' : 'svmain/group_detail.html', },
       name='savane.svmain.group_detail'),
   url(r'^pr/(?P<slug>[-\w]+)$', views.group_redir),
   url(r'^projects/(?P<slug>[-\w]+)$', views.group_redir),
 
   url(r'^u/(?P<slug>[-\w]+)$', 'django.views.generic.list_detail.object_detail',
-      { 'queryset' : svmain_models.ExtendedUser.objects.all(),
-        'slug_field' : 'username' },
+      { 'queryset' : auth_models.User.objects.all(),
+        'slug_field' : 'username',
+        'template_name' : 'svmain/user_detail.html', },
       name='savane.svmain.user_detail'),
   url(r'^us/(?P<slug>[-\w]+)$', views.user_redir),
   url(r'^users/(?P<slug>[-\w]+)/?$', views.user_redir),

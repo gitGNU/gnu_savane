@@ -15,26 +15,22 @@ class SshKeyInline(admin.TabularInline):
     model = svmain_models.SshKey
     extra = 2  # to add several keys in the ExtendedUser page
 
-class ExtendedUserAdmin(admin.ModelAdmin):
+class SvUserInfoAdmin(admin.ModelAdmin):
     # Copy/pasted from django.contrib.auth.admin; inheritance fails
     # when you attempt to display extended fields..
     fieldsets = (
-        (None, {'fields': ('username', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
-        (_('Permissions'), {'fields': ('is_staff', 'is_active', 'is_superuser', 'user_permissions')}),
-        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
-        (_('Groups'), {'fields': ('groups',)}),
+        (None, {'fields': ('user',)}),
         (_('Savane'),
          {'fields': ('status', 'spamscore',
                      'gpg_key', 'gpg_key_count',
                      'people_view_skills', 'email_hide', 'timezone', 'theme',)}),
         )
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff')
-    list_filter = ('is_staff', 'is_superuser', 'status')
-    search_fields = ('username', 'first_name', 'last_name', 'email')
-    ordering = ('username',)
-    filter_horizontal = ('user_permissions',)
-    inlines = [SshKeyInline]
+    list_display = ('user', 'status')
+    list_filter = ('status',)
+    search_fields = ('user',)
+    ordering = ('user__username',)
+    #filter_horizontal = ('m2m',)
+    #inlines = [SshKeyInline]
 
 class GroupConfigurationAdmin(admin.ModelAdmin):
     fieldsets = (
@@ -84,17 +80,17 @@ class GroupConfigurationAdmin(admin.ModelAdmin):
         
         )
 
-class ExtendedGroupAdmin(admin.ModelAdmin):
+class SvGroupInfoAdmin(admin.ModelAdmin):
     # Copy/pasted from django.contrib.auth.admin; inheritance fails
     # when you attempt to display extended fields..
     search_fields = ('name',)
-    ordering = ('name',)
-    filter_horizontal = ('permissions',)
-    list_display  = ('name', 'pk', 'full_name', 'type', 'license',)
+    ordering = ('group__name',)
+    #filter_horizontal = ('permissions',)
+    list_display  = ('pk', 'full_name', 'type', 'license',)
     list_filter = ('type', 'license', 'devel_status',)
 
-admin.site.register(svmain_models.ExtendedUser, ExtendedUserAdmin)
-admin.site.register(svmain_models.ExtendedGroup, ExtendedGroupAdmin)
+admin.site.register(svmain_models.SvUserInfo, SvUserInfoAdmin)
+admin.site.register(svmain_models.SvGroupInfo, SvGroupInfoAdmin)
 admin.site.register(svmain_models.GroupConfiguration, GroupConfigurationAdmin)
 admin.site.register(svmain_models.License, LicenseAdmin)
 admin.site.register(svmain_models.DevelopmentStatus, DevelopmentStatusAdmin)
