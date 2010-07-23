@@ -1,0 +1,33 @@
+{% if page_obj %}
+<div class="pagination">
+    <span class="step-links">
+      {% if paginator.num_pages > 1 %}
+        {% if not page_obj.has_previous %}
+	  préc.
+	{% else %}
+          <a href="?page={{ page_obj.previous_page_number }}">préc.</a>
+        {% endif %}
+	&lt;
+	{% for number in paginator.page_range %}
+	    {% ifequal number page_obj.number %}
+	      {{ number }}
+	    {% else %}
+              <a href="?page={{ number }}">{{ number }}</a>
+	    {% endifequal %}
+        {% endfor %}
+	&gt;
+        {% if not page_obj.has_next %}
+	    suiv.
+	{% else %}
+            <a href="?page={{ page_obj.next_page_number }}">suiv.</a>
+        {% endif %}
+
+        <span class="current">
+            - Page {{ page_obj.number }} sur {{ paginator.num_pages }} ({{paginator.count}})
+        </span>
+      {% else %}
+	({{paginator.count}} élément(s))
+      {% endif %}
+    </span>
+</div>
+{% endif %}

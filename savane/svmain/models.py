@@ -28,7 +28,7 @@ http://www.b-list.org/weblog/2006/jun/06/django-tips-extending-user-model/
 http://mirobetm.blogspot.com/2007/04/en-django-extending-user_2281.html
 
 However profiles were mainly useful in Django < 1.0 where you couldn't
-subclass User as we do.
+subclass User.
 
 Profiles also have a few drawbacks, namely they are site-specific,
 which means you cannot have multiple applications have different
@@ -53,6 +53,11 @@ http://scottbarnham.com/blog/2008/08/21/extending-the-django-user-model-with-inh
 Note that Scott's authentication backend has the same issue than
 profiles: only one profile class can be used on a single website, so
 we don't use it.
+
+The current solution is to use AutoOneToOneField: OneToOneField is
+similar to extending a model class (at the SQL tables level), and
+AutoOneToOneField is a trick from django-annoying to automatically
+create the extended data on first access.
 """
 
 from django.db import models

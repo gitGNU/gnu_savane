@@ -18,12 +18,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls.defaults import *
+from django.views.generic.list_detail import object_list, object_detail
 
 import savane.svmain.models as svmain_models
 import django.contrib.auth.models as auth_models
 import views
+from savane.filters import search
 
-urlpatterns = patterns ('',
+urlpatterns = patterns ('',)
+
+urlpatterns += patterns ('',
   url(r'^$', 'django.views.generic.simple.direct_to_template',
       { 'template' : 'index.html',
         'extra_context' : { 'has_left_menu': False } },
@@ -32,11 +36,41 @@ urlpatterns = patterns ('',
       { 'template' : 'svmain/text.html',
         'extra_context' : { 'title' : 'Contact', }, },
       name='contact'),
+)
 
-  # TODO: not sure about the views naming convention - all this
-  # "models in 'svmain', views in 'my'" is getting messy, probably a
-  # mistake from me (Beuc) :P
-  url(r'^p/(?P<slug>[-\w]+)$', 'django.views.generic.list_detail.object_detail',
+# TODO: not sure about the views naming convention - all this
+# "models in 'svmain', views in 'my'" is getting messy, probably a
+# mistake from me (Beuc) :P
+from django.contrib.auth.admin import UserAdmin
+urlpatterns += patterns ('',
+  url(r'^u/$',
+      search(object_list),
+      { 'queryset': auth_models.User.objects.all(),
+        'paginate_by': 20,
+        'model_admin': UserAdmin,
+        'extra_context' : { 'title' : 'Users' },
+        'template_name' : 'svmain/user_list.html' },
+      name='savane.svmain.user_list'),
+  url(r'^u/(?P<slug>[-\w]+)$', object_detail,
+      { 'queryset' : auth_models.User.objects.all(),
+        'slug_field' : 'username',
+        'template_name' : 'svmain/user_detail.html', },
+      name='savane.svmain.user_detail'),
+  url(r'^us/(?P<slug>[-\w]+)$', views.user_redir),
+  url(r'^users/(?P<slug>[-\w]+)/?$', views.user_redir),
+)
+
+from django.contrib.auth.admin import GroupAdmin
+urlpatterns += patterns ('',
+  url(r'^p/$',
+      search(object_list),
+      { 'queryset': auth_models.Group.objects.all(),
+        'paginate_by': 20,
+        'model_admin': GroupAdmin,
+        'extra_context' : { 'title' : 'Projects' },
+        'template_name' : 'svmain/group_list.html' },
+      name='savane.svmain.group_list'),
+  url(r'^p/(?P<slug>[-\w]+)$', object_detail,
       { 'queryset' : auth_models.Group.objects.all(),
         'slug_field' : 'name',
         'template_name' : 'svmain/group_detail.html', },
@@ -44,18 +78,10 @@ urlpatterns = patterns ('',
   url(r'^pr/(?P<slug>[-\w]+)$', views.group_redir),
   url(r'^projects/(?P<slug>[-\w]+)$', views.group_redir),
 
-  url(r'^u/(?P<slug>[-\w]+)$', 'django.views.generic.list_detail.object_detail',
-      { 'queryset' : auth_models.User.objects.all(),
-        'slug_field' : 'username',
-        'template_name' : 'svmain/user_detail.html', },
-      name='savane.svmain.user_detail'),
-  url(r'^us/(?P<slug>[-\w]+)$', views.user_redir),
-  url(r'^users/(?P<slug>[-\w]+)/?$', views.user_redir),
-
   url(r'^license/$', 'django.views.generic.list_detail.object_list',
       { 'queryset' : svmain_models.License.objects.all(), },
       name='savane.svmain.license_list'),
-  url(r'^license/(?P<slug>[-\w]+)$', 'django.views.generic.list_detail.object_detail',
+  url(r'^license/(?P<slug>[-\w]+)$', object_detail,
       { 'queryset' : svmain_models.License.objects.all(), },
       name='savane.svmain.license_detail'),
 )
