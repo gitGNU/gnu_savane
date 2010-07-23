@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% regroup object_list by get_admin_flags_display as type_list %}
+
+{% if type_list %}
+  <ul>
+  {% for type in type_list %}
+    <li>{{ type.grouper }}
+      <ul>
+        {% for object in type.list %}
+        <li><a href="{% url savane.svmain.group_detail object.group.name %}">{{ object.group.name }}</a> ({{ object.admin_flags }})</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No memberships.</p>
+{% endif %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

@@ -20,11 +20,23 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.urlresolvers import reverse
 import django.contrib.auth.models as auth_models
+from django.contrib import messages
+import models as svmain_models
 
 def user_redir(request, slug):
     u = get_object_or_404(auth_models.User, username=slug)
     return HttpResponseRedirect(reverse('savane.svmain.user_detail', args=(slug,)))
 
 def group_redir(request, slug):
-    g = get_object_or_404(svmain_models.ExtendedGroup, name=slug)
+    g = get_object_or_404(auth_models.Group, name=slug)
     return HttpResponseRedirect(reverse('savane.svmain.group_detail', args=(slug,)))
+
+def group_join(request, slug):
+    g = get_object_or_404(auth_models.Group, name=slug)
+    if svmain_models.Membership.objects.filter(user=request.user, group=g).count():
+        messages.error(request, u"Request for inclusion already registered")
+    else:
+        svmain_models.Membership(user=request.user, group=g, admin_flags='P').save()
+        # TODO: send e-mail notification to group admins
+        messages.success(request, u"Request for inclusion sent to project administrators")
+    return HttpResponseRedirect('../')
