@@ -158,7 +158,7 @@ class License(models.Model):
         retrieved for efficiency (retrieving all informations, namely
         long_description, is quite long).  Used by the license template.
         """
-        return self.extendedgroup_set.only("name")
+        return self.svgroupinfo_set.values_list('group__name', flat=True)
 
     def __unicode__(self):
         return self.slug + ": " + self.name
@@ -493,7 +493,7 @@ class SvGroupInfo(models.Model):
                           )
 
     def __unicode__(self):
-        return self.name
+        return "%s (%s)" % (self.group.name, self.status)
 
 
 class Membership(models.Model):
