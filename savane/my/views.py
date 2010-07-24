@@ -169,6 +169,7 @@ def sv_ssh_delete(request):
     else:
         return {}
 
+
 class MailForm( forms.Form ):
     email = forms.EmailField(required=True)
     action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_mail' )

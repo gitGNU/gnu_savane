@@ -1,11 +1,13 @@
+{% load i18n %}
+
 {% if page_obj %}
 <div class="pagination">
     <span class="step-links">
       {% if paginator.num_pages > 1 %}
         {% if not page_obj.has_previous %}
-	  préc.
+	  {% trans "previous" %}
 	{% else %}
-          <a href="?page={{ page_obj.previous_page_number }}">préc.</a>
+          <a href="?page={{ page_obj.previous_page_number }}">{% trans "previous" %}</a>
         {% endif %}
 	&lt;
 	{% for number in paginator.page_range %}
@@ -17,16 +19,23 @@
         {% endfor %}
 	&gt;
         {% if not page_obj.has_next %}
-	    suiv.
+	    {% trans "next" %}
 	{% else %}
-            <a href="?page={{ page_obj.next_page_number }}">suiv.</a>
+            <a href="?page={{ page_obj.next_page_number }}">{% trans "next" %}</a>
         {% endif %}
 
         <span class="current">
-            - Page {{ page_obj.number }} sur {{ paginator.num_pages }} ({{paginator.count}})
+	    -
+            {% blocktrans with page_obj.number as number and paginator.num_pages as num_pages and paginator.count as count %}
+            Page {{ page_obj.number }} on {{ num_pages }} ({{ count }})
+	    {% endblocktrans %}
         </span>
       {% else %}
-	({{paginator.count}} element(s))
+        {% blocktrans count paginator.count as count %}
+	{{count}} element
+	{% plural %}
+	{{count}} elements
+	{% endblocktrans %}
       {% endif %}
     </span>
 </div>

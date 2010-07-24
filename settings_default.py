@@ -32,6 +32,21 @@ TIME_ZONE = 'America/Chicago'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
+# http://docs.djangoproject.com/en/dev/topics/i18n/deployment/#how-django-discovers-language-preference
+ugettext = lambda s: s
+LANGUAGES = (
+    ('ca',    ugettext('Catalan')),
+    ('de',    ugettext('German')),
+    ('en',    ugettext('English')),
+    ('es',    ugettext('Spanish')),
+    ('fr',    ugettext('French')),
+    ('it',    ugettext('Italian')),
+    ('ja',    ugettext('Japanese')),
+    ('pt_BR', ugettext('Portuguese (Brazil)')),
+    ('ru',    ugettext('Russian')),
+    ('sv',    ugettext('Swedish')),
+)
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -61,6 +76,7 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% comment %}
+Cf. http://docs.djangoproject.com/en/dev/topics/i18n/internationalization/#the-set-language-redirect-view
+{% endcomment %}
+
+{% block content %}
+
+<form action="{% url django.views.i18n.set_language %}" method="post">
+{% csrf_token %}
+<input name="next" type="hidden" value="{% url savane.my.index %}" />
+<select name="language">
+{% for lang in LANGUAGES %}
+<option value="{{ lang.0 }}">{{ lang.1 }}</option>
+{% endfor %}
+</select>
+<input type="submit" value="Go" />
+</form>
+
+{% endblock %}
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

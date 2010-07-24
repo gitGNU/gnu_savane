@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
 
 {% include "svmain/pagination.inc.html" %}
 
 <form action="." method="GET">
-  Search: <input type="text" name="q" value="{{q}}" />
+  {% trans "Search" %}: <input type="text" name="q" value="{{q}}" />
 </form>
 
 {% if object_list %}
@@ -15,7 +16,7 @@
     {% endfor %}
     </ul>
 {% else %}
-    <p>No groups.</p>
+    <p>{% trans "No groups." %}</p>
 {% endif %}
 
 {% endblock %}
