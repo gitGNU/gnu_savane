@@ -1,19 +1,24 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load svpagemenu %}
+
+{% block pagemenu %}
+  {% svpagemenu "group" %}
+{% endblock %}
 
 {% block content %}
 
 <p>
-Name: {{object.name}}<br />
-License: <a href="{{object.svgroupinfo.license.get_absolute_url}}">{{object.svgroupinfo.license.name}}</a><br />
-Development status: {{object.svgroupinfo.devel_status}}<br />
+Name: {{group.name}}<br />
+License: <a href="{{group.svgroupinfo.license.get_absolute_url}}">{{group.svgroupinfo.license.name}}</a><br />
+Development status: {{group.svgroupinfo.devel_status}}<br />
 </p>
 
 <p>Members:</p>
 
-{% if object.user_set.all %}
+{% if group.user_set.all %}
 <ul>
-  {% for user in object.user_set.all %}
+  {% for user in group.user_set.all %}
   <li><a href="{% url savane.svmain.user_detail user.username %}">{{ user.username }}</a></li>
   {% endfor %}
   </ul>

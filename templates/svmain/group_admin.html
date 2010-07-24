@@ -3,18 +3,18 @@
 {% load svpagemenu %}
 
 {% block pagemenu %}
-  {% with "group" as menu_name %}
-  {% svpagemenu %}
-  {% endwith %}
+  {% svpagemenu "group" %}
 {% endblock %}
 
 {% block content %}
 
 <p>
-Group: {{group.name}}<br />
+Project: {{group.name}}<br />
 </p>
 
-<p>Manage members</p>
+<ul>
+<li><a href="members/">Manage members</a></li>
+</ul>
 
 {% endblock %}
 
