@@ -13,11 +13,11 @@ improve it.
 
 [/] Implement high priority web screens
 
-    [/] User account registration
+    [X] User account registration
 
         [X] Account creation
 
-        [ ] Password recovery
+        [X] Password recovery
 
     [/] User page
 
@@ -27,8 +27,7 @@ improve it.
 
     [/] Account conf
 
-        [/] e-mail TODO: send mail to verify it, pre-fill the field
-	    with the current value
+        [/] e-mail TODO: send mail to verify it
 
         [X] password
 

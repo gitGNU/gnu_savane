@@ -29,18 +29,15 @@ from savane.utils import *
 from annoying.decorators import render_to
 
 @login_required()
-def sv_conf( request ):
-    form_pass = PasswordForm ()
-    form_mail = MailForm ()
-    form_identity = IdentityForm ()
+def sv_conf(request, extra_context={}):
+    form_mail = MailForm(initial={'email' : request.user.email})
+    form_identity = IdentityForm(initial={'name' : request.user.first_name,
+                                          'last_name' : request.user.last_name})
     form = None
 
     if request.method == 'POST':
         action = request.POST['action']
-        if action == 'update_password':
-            form_pass = PasswordForm(request.POST)
-            form = form_pass
-        elif action == 'update_mail':
+        if action == 'update_mail':
             form_mail = MailForm(request.POST)
             form = form_mail
         elif action == 'update_identity':
@@ -48,42 +45,34 @@ def sv_conf( request ):
             form = form_identity
 
         if form is not None and form.is_valid():
-            if action == 'update_password':
-                if request.user.check_password(request.POST['old_password']):
-                    request.user.set_password(request.POST['new_password']);
-                    request.user.save()
-                    messages.success(request, u"Password was successfully changed.")
-                    form_pass = PasswordForm()
-                else:
-                    messages.error(request, u"Old password didn't match.")
-            elif action == 'update_mail':
+            if action == 'update_mail':
                 new_email = request.POST['email']
                 request.user.email = new_email
                 request.user.save()
-                form_mail = MailForm()
                 messages.success(request, u"The E-Mail address was succesfully updated. New E-Mail address is <%s>" % new_email)
             elif action == 'update_identity':
                 request.user.first_name = request.POST['name']
                 request.user.last_name = request.POST['last_name']
                 request.user.save()
                 messages.success(request, u"Personal information changed.")
-                form_identity = IdentityForm()
 
+    context = { 'form_mail' : form_mail,
+                'form_identity' : form_identity,
+                }
+    context.update(extra_context)
     return render_to_response('my/conf.html',
-                              { 'form_pass' : form_pass,
-                                'form_mail' : form_mail,
-                                'form_identity' : form_identity,
-                                },
+                              context,
                               context_instance=RequestContext(request))
 
 @login_required()
-def sv_resume_skill( request ):
+def sv_resume_skill(request, extra_context={}):
     return render_to_response('my/resume_skill.html',
-                               context_instance=RequestContext(request))
+                              extra_context,
+                              context_instance=RequestContext(request))
 
 @login_required()
-def sv_ssh_gpg( request ):
-    info = get_object_or_404(SvUserInfo, user=request.user)
+def sv_ssh_gpg(request, extra_context={}):
+    info = request.user.svuserinfo
 
     error_msg = None
     success_msg = None
@@ -156,19 +145,20 @@ def sv_ssh_gpg( request ):
             ssh_keys[key.pk] =  ssh_key_fingerprint( key.ssh_key )
 
 
+    context = { 'form_gpg' : form_gpg,
+                'form_ssh' : form_ssh,
+                'ssh_keys' : ssh_keys,
+                'error_msg' : error_msg,
+                'success_msg' : success_msg,
+                }
+    context.update(extra_context)
     return render_to_response('my/ssh_gpg.html',
-                              { 'form_gpg' : form_gpg,
-                                'form_ssh' : form_ssh,
-                                'ssh_keys' : ssh_keys,
-                                'error_msg' : error_msg,
-                                'success_msg' : success_msg,
-                                },
+                              context,
                               context_instance=RequestContext(request))
 
 @login_required()
 @render_to('svmain/generic_confirm.html', mimetype=None)
 def sv_ssh_delete(request):
-    eu = get_object_or_404(ExtendedUser, pk=request.user.pk)
     if request.method == 'POST':
         try:
             ssh_key = request.user.sshkey_set.get(pk=request.POST.get('key_pk', 0))
@@ -182,17 +172,6 @@ def sv_ssh_delete(request):
 class MailForm( forms.Form ):
     email = forms.EmailField(required=True)
     action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_mail' )
-
-class PasswordForm( forms.Form ):
-    old_password = forms.CharField(widget=forms.PasswordInput,required=True)
-    new_password = forms.CharField(widget=forms.PasswordInput,required=True)
-    repated_password = forms.CharField(widget=forms.PasswordInput,required=True)
-    action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_password' )
-
-    def clean( self ):
-        cleaned_data = self.cleaned_data
-        new_password = cleaned_data.get('new_password')
-        old_password = cleaned_data.get('old_password')
 
 class IdentityForm( forms.Form ):
     name = forms.CharField( required = True )

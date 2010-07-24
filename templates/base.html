@@ -36,14 +36,14 @@
       </ul>
 
       <div class="main"><a name="top"></a>
+	<h1>{% include "title.html" %}</h1>
+
         <!-- pagemenu -->
         <!-- /pagemenu -->
         <div class="content">
         {% if messages %}
         <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
         {% endif %}
-
-	  <h1>{% include "title.html" %}</h1>
 
           {% block content %}
           {% endblock %}
