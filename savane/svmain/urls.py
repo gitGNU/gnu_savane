@@ -81,6 +81,7 @@ urlpatterns += patterns ('',
   url(r'^pr/(?P<slug>[-\w]+)/$', views.group_redir),
   url(r'^projects/(?P<slug>[-\w]+)/$', views.group_redir),
   url(r'^p/(?P<slug>[-\w]+)/join/$', views.group_join),
+  url(r'^p/(?P<slug>[-\w]+)/admin/$', views.group_admin),
 
   url(r'^license/$', 'django.views.generic.list_detail.object_list',
       { 'queryset' : svmain_models.License.objects.all(),

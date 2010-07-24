@@ -25,7 +25,6 @@
           <li class="menuitem"><a href="{% url django.contrib.auth.views.login %}">Login</a></li>
           <li class="menuitem"><a href="{% url registration_register %}">New user</a></li>
         {% endif %}
-        <!-- /sitemenu -->
 
 	<li class="menutitle">Search</li>
         <li class="menuitem"><a href="{% url savane.svmain.user_list %}">Users</a></li>
@@ -33,13 +32,14 @@
 
 	<li class="menutitle">Site help</li>
         <li class="menuitem"><a href="{% url contact %}">Contact us</a></li>
+        <!-- /sitemenu -->
       </ul>
 
       <div class="main"><a name="top"></a>
 	<h1>{% include "title.html" %}</h1>
 
-        <!-- pagemenu -->
-        <!-- /pagemenu -->
+	{% block pagemenu %}{% endblock %}
+
         <div class="content">
         {% if messages %}
         <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>

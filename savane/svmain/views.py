@@ -22,6 +22,7 @@ from django.core.urlresolvers import reverse
 import django.contrib.auth.models as auth_models
 from django.contrib import messages
 import models as svmain_models
+from annoying.decorators import render_to
 
 def user_redir(request, slug):
     u = get_object_or_404(auth_models.User, username=slug)
@@ -40,3 +41,13 @@ def group_join(request, slug):
         # TODO: send e-mail notification to group admins
         messages.success(request, u"Request for inclusion sent to project administrators")
     return HttpResponseRedirect('../')
+
+@render_to('svmain/group_admin.html', mimetype=None)
+def group_admin(request, slug, extra_context={}):
+    group = get_object_or_404(auth_models.Group, name=slug)
+
+    context = {
+        'group' : group,
+        }
+    context.update(extra_context)
+    return context

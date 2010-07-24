@@ -1,0 +1,17 @@
+<ul class="topmenu" id="topmenu">
+{% for l1 in entries %}
+  <li class="topmenuitemmainitem">
+    <a class="tabs" href="{{l1.href}}" title="{{l1.title}}">{{ l1.text }}</a>
+    <ul id="submenu{{forloop.counter}}" class="topmenuitemsubmenu">
+    {% for l2 in l1.children %}
+      {% if l2.separator %}
+	  <li class="topmenuitemsubmenuseparator">&nbsp;</li>
+	  {% else %}
+      <li class="topmenuitemsubmenu"><a href="{{l2.href}}" title="{{l2.title}}">{{ l2.text }}</a></li>
+	  {% endif %}
+    {% endfor %}
+    </ul>
+  </li>
+{% endfor %}
+</ul>
+<div id="topmenunooverlap"></div><div id="topmenunooverlapbis"></div>
