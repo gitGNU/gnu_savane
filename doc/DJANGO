@@ -29,3 +29,7 @@ Stuff of interest:
   EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
   This will direct all mails to the console, which means you won't
   risk sending real e-mails to real people by mistake when testing.
+
+- http://code.google.com/p/django-treemenus/ may be nice to implement
+  the left menu, which is mostly static.  The context menu however is
+  dynamic so it's not a good idea to implement it with TreeMenus.

@@ -32,6 +32,7 @@ urlpatterns += patterns ('',
       { 'template' : 'index.html',
         'extra_context' : { 'has_left_menu': False } },
       name='homepage'),
+  # TODO: add a web interface to edit some static content (using Django template notation?)
   url(r'^contact/$', 'django.views.generic.simple.direct_to_template',
       { 'template' : 'svmain/text.html',
         'extra_context' : { 'title' : 'Contact', }, },
