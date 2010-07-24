@@ -19,13 +19,20 @@
 from django import template
 from django.core.urlresolvers import reverse
 import savane.svmain.models as svmain_models
+from django.conf import settings
 
 register = template.Library()
 
 @register.inclusion_tag('svmain/svpagemenu.html', takes_context=True)
 def svpagemenu(context, menu_name):
+    """
+    Return info to build the top menu, including menu structure and
+    page icon.
+    """
+    icon = 'main'
+    entries = []
+
     if menu_name == 'group':
-        entries = []
         entry_home = { 'text' : 'Home',
                    'href' : reverse('savane.svmain.group_detail', args=[context['group'].name]),
                    'title': "Project Main Page at %s" % 'this website'}
@@ -45,15 +52,19 @@ def svpagemenu(context, menu_name):
                         {'text' : 2.1, 'href' : 2.1, 'title': 2.1 },
                     ]
                 }
+
         entries.append(entry_home)
         entries.append(entry_test)
-        return { 'entries' : entries,
-                 'menu_name': menu_name,
-        }
     elif menu_name == 'my':
-        return {
-            'entries':
-            [
-            ],
-            'menu_name': menu_name,
+        pass
+
+    context = {
+        'title' : context['title'],
+        'menu_name' : menu_name,
+        'entries' : entries,
+        'icon' : icon,
+        # STATIC_MEDIA_URL is not available in inclusion tags, because
+        # RequestContext is not used; let's work around that lack:
+        'STATIC_MEDIA_URL' : settings.STATIC_MEDIA_URL,
         }
+    return context
