@@ -533,6 +533,7 @@ class Membership(models.Model):
       blank=True, help_text="membership properties")
     onduty = models.BooleanField(default=True,
       help_text="Untick to hide emeritous members from the project page")
+    since = models.DateField(blank=True, null=True)
 
     # TODO: split news params
     #news_flags int(11) default NULL

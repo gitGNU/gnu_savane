@@ -19,11 +19,14 @@
 
 from django.conf.urls.defaults import *
 from django.views.generic.list_detail import object_list, object_detail
+from django.contrib.auth.decorators import login_required
 
 import savane.svmain.models as svmain_models
 import django.contrib.auth.models as auth_models
 import views
 from savane.filters import search
+from savane.perms import only_project_admin
+from savane.django_utils import decorated_patterns
 
 urlpatterns = patterns ('',)
 
@@ -82,13 +85,17 @@ urlpatterns += patterns ('',
   url(r'^pr/(?P<slug>[-\w]+)/$', views.group_redir),
   url(r'^projects/(?P<slug>[-\w]+)/$', views.group_redir),
   url(r'^p/(?P<slug>[-\w]+)/join/$', views.group_join),
+)
+urlpatterns += decorated_patterns ('', only_project_admin,
   url(r'^p/(?P<slug>[-\w]+)/admin/$', views.group_admin,
       { 'extra_context' : { 'title' : 'Administration Summary' }, },
       name='savane.svmain.group_admin'),
   url(r'^p/(?P<slug>[-\w]+)/admin/members/$', views.group_admin_members,
       { 'extra_context' : { 'title' : 'Administration Summary: Manage Members' }, },
       name='savane.svmain.group_admin_members'),
+)
 
+urlpatterns += patterns ('',
   url(r'^license/$', 'django.views.generic.list_detail.object_list',
       { 'queryset' : svmain_models.License.objects.all(),
         'extra_context' : { 'title' : 'License list' }, },

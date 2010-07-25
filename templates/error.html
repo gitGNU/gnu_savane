@@ -1,5 +1,19 @@
 {% extends "base.html" %}
 
+{% block title %}
+Error
+{% endblock %}
+
+{% block top %}
+{% endblock %}
+
 {% block content %}
-<p style='color: red'>{{error}}</p>
+<div class="main"><a name="top"></a>
+<div id="feedback" class="feedbackerror">
+  <span class="feedbackerrortitle">
+    <img src="{{STATIC_MEDIA_URL}}savane/images/common/bool1/wrong.orig.png" class="feedbackimage" alt="" />
+    Error:
+  </span><br/>
+  {{error}}
+</div>
 {% endblock content %}

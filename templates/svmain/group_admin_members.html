@@ -14,6 +14,49 @@
 
 {% block content %}
 
+<p>Members:</p>
+<form action="" method="POST">{% csrf_token %}
+<table>
+<tr><th>User</th><th>Admin</th><th>Remove?</th></tr>
+{% for membership in memberships %}
+<tr>
+  <td>{{ membership.user.get_full_name }} &lt;{{ membership.user.username }}&gt;</td>
+  <td>
+    {% ifequal request.user membership.user %}
+    <em>{% trans "You are Admin" %}</em>
+    {% else %}
+    <input type="checkbox" name="admin_{{membership.pk}}" {% ifequal membership.admin_flags "A" %}checked="checked"{% endifequal %}/>
+    {% endifequal %}
+  </td>
+  <td>
+    {% ifequal request.user membership.user %}
+    -
+    {% else %}    <input type="checkbox" name="remove_{{membership.pk}}" />
+    {% endifequal %}
+  </td>
+</tr>
+{% endfor %}
+</table>
+
+{% if pending_memberships %}
+  <p>Requests for inclusion:</p>
+  <table>
+  <tr><th>User</th><th>Approve</th></tr>
+  {% for membership in pending_memberships %}
+  <tr>
+    <td>{{ membership.user.get_full_name }} &lt;{{ membership.user.username }}&gt;</td>
+    <td><input type="checkbox" name="approve_{{membership.pk}}" /></td>
+  </tr>
+  {% endfor %}
+  </table>
+{% else %}
+  <p><em>{% trans "No requests for inclusion" %}</em></p>
+{% endif %}
+
+<p><input type="submit" value="OK" /></p>
+</form>
+
+<p><a href="add/">{% trans "Add users to group" %}</a></p>
 
 {% endblock %}
 

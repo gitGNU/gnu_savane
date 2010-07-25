@@ -25,27 +25,11 @@ import views
 import savane.svmain.models as svmain_models
 import django.contrib.auth.models as auth_models
 from savane.my.filters import *
+from savane.django_utils import decorated_patterns
 
-# Batch-decorator for urlpatterns
-# http://www.djangosnippets.org/snippets/532/
-from django.core.urlresolvers import RegexURLPattern
-class DecoratedURLPattern(RegexURLPattern):
-    def resolve(self, *args, **kwargs):
-        result = RegexURLPattern.resolve(self, *args, **kwargs)
-        if result:
-            result = list(result)
-            result[0] = self._decorate_with(result[0])
-        return result
-def decorated_patterns(prefix, func, *args):
-    result = patterns(prefix, *args)
-    if func:
-        for p in result:
-            if isinstance(p, RegexURLPattern):
-                p.__class__ = DecoratedURLPattern
-                p._decorate_with = func
-    return result
+urlpatterns = patterns ('',)
 
-urlpatterns = decorated_patterns ('', login_required,
+urlpatterns += decorated_patterns ('', login_required,
   url(r'^$', direct_to_template,
       { 'template' : 'my/index.html',
         'extra_context' : { 'title' : 'My account', }, },

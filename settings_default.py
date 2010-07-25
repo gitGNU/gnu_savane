@@ -82,6 +82,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 
     'savane.middleware.debug.DebugFooter',
+    'savane.middleware.exception.HttpCatchAppExceptionMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
