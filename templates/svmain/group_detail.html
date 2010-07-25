@@ -8,23 +8,39 @@
 
 {% block content %}
 
+<div class="indexright">
+  <div class="box">
+    <div class="boxtitle">{% trans "Membership Info" %}</div>
+    {% if group.svgroupinfo.get_admins %}
+    <div class="boxitem"><span class="smaller">{% trans "Project Admins:" %}</span></div>
+    {% for user in group.svgroupinfo.get_admins %}
+    <div class="{% cycle 'boxitemalt' 'boxitem' %}"><span class="smaller">&nbsp;
+	- <a href="{% url savane.svmain.user_detail user.username %}">{{ user.svuserinfo.get_full_name_display }}</a></span></div>
+    {% endfor %}
+    {% else %}
+    <div class="boxitem"><span class="smaller">{% trans "No members!" %}</span></div>
+    {% endif %}
+    <div class="boxitem"><span class="smaller">{% blocktrans count group.user_set.count as count %}{{count}} active member{% plural %}{{count}} active members{% endblocktrans %}</span></div>
+    <div class="boxitemalt"><span class="smaller">[<a href="memberlist/">{% trans "View Members" %}</a>]</span></div>
+  </div>
+  <div class="box">
+    <div class="boxtitle">{% trans "Group identification" %}</div>
+    <div class="boxitem"><span class="smaller">{% trans "Id:" %} <strong>#{{group.pk}}</strong></span></div>
+    <div class="boxitemalt"><span class="smaller">{% trans "System Name:" %} <strong>{{group.name}}</strong></span></div>
+    <div class="boxitem"><span class="smaller">{% trans "Name:" %} <strong>{{group.svgroupinfo.full_name}}</strong></span></div>
+    <div class="boxitemalt"><span class="smaller">{% trans "Group Type:" %} <strong>{{group.svgroupinfo.type.name}}</strong></span></div>
+  </div>
+</div>
+
+<div class="indexcenter">
+<p>{{group.svgroupinfo.type.description}}</p>
+<p></p>
+<p>{{group.svgroupinfo.long_description}}</p>
 <p>
-Name: {{group.name}}<br />
-License: <a href="{{group.svgroupinfo.license.get_absolute_url}}">{{group.svgroupinfo.license.name}}</a><br />
-Development status: {{group.svgroupinfo.devel_status}}<br />
+{% trans "Registration Date" %}: {{group.svgroupinfo.register_time}}<br />
+{% trans "License" %}: <a href="{{group.svgroupinfo.license.get_absolute_url}}">{{group.svgroupinfo.license.name}}</a><br />
+{% trans "Development Status" %}: {{group.svgroupinfo.devel_status}}<br />
 </p>
-
-<p>Members:</p>
-
-{% if group.user_set.all %}
-<ul>
-  {% for user in group.user_set.all %}
-  <li><a href="{% url savane.svmain.user_detail user.username %}">{{ user.username }}</a></li>
-  {% endfor %}
-  </ul>
-{% else %}
-  No members!
-{% endif %}
 
 {% if user.is_authenticated %}
 <form action="join/" method="POST">{% csrf_token %}

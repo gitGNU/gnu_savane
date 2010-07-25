@@ -3,7 +3,7 @@
 {% load svtopmenu %}
 
 {% block title %}
-{{group.svgroupinfo.full_name_display}} - {{title}}
+{{group.svgroupinfo.get_full_name_display}} - {{title}}
 {% endblock %}
 
 {% block icon %}preferences{% endblock %}

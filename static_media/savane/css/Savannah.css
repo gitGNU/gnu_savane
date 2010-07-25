@@ -554,6 +554,7 @@ li.topmenuitemsubmenuseparator {
 	width: 96%;
 	margin-left: 2%;
   	margin-right: 2%;
+	margin-bottom: 15px;
 	vertical-align: top;
 	border-spacing: 1px;
 	border: 0;
@@ -1077,7 +1078,7 @@ li.topmenuitemsubmenu:hover {
 }
 
 .boxtitle  {	
-	background-image: url("../images/Savannah.theme/leopard.png");
+	background-image: url("../images/leopard.png");
 	background-color: #eddb5a;
 	border: thin outset #641212;
 	color: #000000;

@@ -140,6 +140,13 @@ class SvUserInfo(models.Model):
                           + " WHERE status = 'A'"
                           )
 
+    def get_full_name_display(self):
+        if self.user.get_full_name() != "":
+            return self.user.get_full_name()
+        else:
+            return self.user.username
+
+
 
 class License(models.Model):
     """
@@ -480,11 +487,14 @@ class SvGroupInfo(models.Model):
     #patch_private_exclude_address text
     #cookbook_private_exclude_address text
 
-    def full_name_display(self):
+    def get_full_name_display(self):
         if self.full_name != "":
             return self.full_name
         else:
             return self.group.name
+
+    def get_admins(self):
+        return auth_models.User.objects.filter(membership__admin_flags='A')
 
     @staticmethod
     def query_active_groups_raw(conn, fields):

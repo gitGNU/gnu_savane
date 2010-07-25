@@ -1,7 +1,8 @@
 - model: svmain.groupconfiguration
   pk: 1
   fields:
-    name: "GNU projects"
+    name: "Official GNU software"
+    description: "This project is part of the GNU Project."
 - model: auth.group
   pk: 1
   fields:
@@ -9,6 +10,8 @@
 - model: svmain.svgroupinfo
   pk: 1
   fields:
+    full_name: emacs
+    long_description: "Emacs is the extensible, customizable, self-documenting real-time display editor."
     type: 1
     devel_status: 6
     license: 22
@@ -24,6 +27,8 @@
   pk: 2
   fields:
     username: rms
+    first_name: Richard M.
+    last_name: Stallman
     password: sha1$6bde8$748d99ad2f2493225efb0e6b78914c5c9a065275
     groups: [1, ]
 - model: svmain.svuserinfo
