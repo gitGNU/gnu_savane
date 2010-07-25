@@ -49,6 +49,8 @@ def svtopmenu(context, menu_name):
             entry_home['children'].append({'separator' : True })
             entry_home['children'].append({'text' : _("Administer:"), 'strong': True,
                                            'href' : reverse('savane.svmain.group_admin', args=[group.name]) })
+            entry_home['children'].append({'text' : _("Edit Public Info"),
+                                           'href' : reverse('savane.svmain.group_admin_info', args=[group.name]) })
             entry_home['children'].append({'text' : _("Manage Members"),
                                            'href' : reverse('savane.svmain.group_admin_members', args=[group.name]) })
 

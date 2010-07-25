@@ -62,6 +62,7 @@ create the extended data on first access.
 
 from django.db import models
 from django.contrib.auth import models as auth_models
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 
 class SshKey(models.Model):
@@ -369,6 +370,7 @@ class SvGroupInfo(models.Model):
 
     class Meta:
         ordering = ['group__name']
+        verbose_name = _("project information")
 
     group = AutoOneToOneField(auth_models.Group, primary_key=True)
 

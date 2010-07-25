@@ -1,5 +1,5 @@
-# Manage user attributes
-# Copyright (C) 2009  Sylvain Beucler
+# View and manage users and groups
+# Copyright (C) 2009, 2010  Sylvain Beucler
 #
 # This file is part of Savane.
 # 
@@ -21,7 +21,9 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.core.urlresolvers import reverse
 import django.contrib.auth.models as auth_models
 from django.contrib import messages
+from django.utils.text import capfirst
 import models as svmain_models
+import forms as svmain_forms
 from annoying.decorators import render_to
 
 def user_redir(request, slug):
@@ -48,6 +50,33 @@ def group_admin(request, slug, extra_context={}):
 
     context = {
         'group' : group,
+        }
+    context.update(extra_context)
+    return context
+
+@render_to("svmain/group_admin_info.html", mimetype=None)
+def group_admin_info(request, slug, extra_context={}, post_save_redirect=None):
+    group = get_object_or_404(auth_models.Group, name=slug)
+    object = group.svgroupinfo
+
+    form_class = svmain_forms.GroupInfoForm
+
+    if request.method == 'POST': # If the form has been submitted...
+        form = form_class(request.POST, instance=object) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            # Process the data
+            object = form.save()
+            messages.success(request, u"%s saved." % capfirst(object._meta.verbose_name))
+            if post_save_redirect is None:
+                post_save_redirect = object.get_absolute_url()
+            return HttpResponseRedirect(post_save_redirect) # Redirect after POST
+    else:
+        form = form_class(instance=object) # An unbound form
+
+    print form
+    context = {
+        'group' : group,
+        'form' : form,
         }
     context.update(extra_context)
     return context
