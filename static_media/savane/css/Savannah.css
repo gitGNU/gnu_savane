@@ -569,7 +569,7 @@ li.topmenuitemsubmenuseparator {
 
 
 
-.boxtitle {
+.box th, .boxtitle {
 	font-weight: bold;
 	text-align: center;
 	text-transform: capitalize;
@@ -1077,7 +1077,7 @@ li.topmenuitemsubmenu:hover {
   	margin-right: 1%; 
 }
 
-.boxtitle  {	
+.box th, .boxtitle  {
 	background-image: url("../images/leopard.png");
 	background-color: #eddb5a;
 	border: thin outset #641212;

@@ -493,8 +493,11 @@ class SvGroupInfo(models.Model):
         else:
             return self.group.name
 
-    def get_admins(self):
-        return auth_models.User.objects.filter(membership__admin_flags='A')
+    def get_admin_memberships(self):
+        return self.group.membership_set.filter(admin_flags='A')
+
+    def get_active_memberships(self):
+        return self.group.membership_set.exclude(admin_flags='P')
 
     @staticmethod
     def query_active_groups_raw(conn, fields):

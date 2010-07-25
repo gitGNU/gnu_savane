@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load svtopmenu %}
+
+{% block title %}
+{{group.svgroupinfo.get_full_name_display}} - {{title}}
+{% endblock %}
+
+{% block icon %}people{% endblock %}
+
+{% block topmenu %}
+  {% svtopmenu "group" %}
+{% endblock %}
+
+{% block content %}
+
+<table class="box">
+<tr><th></th><th>Member</th><th>Resume and skills</th></tr>
+{% for membership in group.svgroupinfo.get_active_memberships %}
+<tr class="{% cycle 'boxitemalt' 'boxitem' %}">
+  <td>
+    {% ifequal membership.admin_flags 'A' %}
+    <img class="icon"
+      alt="{% trans "Project Administrator" %}"
+      src="{{STATIC_MEDIA_URL}}savane/images/common/roles1/project-admin.orig.png" />
+    {% else %}
+    <img class="icon"
+      alt="{% trans "Project Member" %}"
+      src="{{STATIC_MEDIA_URL}}savane/images/common/roles1/project-member.orig.png" />
+    {% endifequal %}
+  </td>
+  <td><a href="{% url savane.svmain.user_detail membership.user.username %}">{{ membership.user.svuserinfo.get_full_name_display }}</a></td>
+  <td>TODO</td>
+{% endfor %}
+</table>
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

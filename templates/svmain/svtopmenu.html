@@ -5,10 +5,12 @@
     <ul id="submenu{{forloop.counter}}" class="topmenuitemsubmenu">
     {% for l2 in l1.children %}
       {% if l2.separator %}
-	  <li class="topmenuitemsubmenuseparator">&nbsp;</li>
-	  {% else %}
-      <li class="topmenuitemsubmenu"><a href="{{l2.href}}" title="{{l2.title}}">{{ l2.text }}</a></li>
-	  {% endif %}
+      <li class="topmenuitemsubmenuseparator">&nbsp;</li>
+      {% else %}
+      <li class="topmenuitemsubmenu"><a href="{{l2.href}}" title="{{l2.title}}">
+	  {% if l2.strong %}<strong>{{ l2.text }}</strong>{% else %}{{ l2.text }}{% endif %}
+      </a></li>
+      {% endif %}
     {% endfor %}
     </ul>
   </li>
