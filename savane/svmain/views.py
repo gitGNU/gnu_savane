@@ -74,6 +74,8 @@ def group_admin_members(request, slug, extra_context={}):
 
     if request.method == 'POST':
         for membership in memberships:
+            # Note: Membership's save() and delete() update the
+            # matching User<->Group relationship.
             if request.user != membership.user: # don't unadmin or remove myself
                 # admin / unadmin 
                 if request.POST.get('admin_%d' % membership.pk, None):
@@ -88,13 +90,11 @@ def group_admin_members(request, slug, extra_context={}):
                         messages.success(request, "permissions of %s updated." % membership.user)
                 # remove members
                 if request.POST.get('remove_%d' % membership.pk, None):
-                    group.user_set.remove(membership.user)
                     membership.delete()
                     messages.success(request, "User %s deleted from the project." % membership.user)
         # approve pending membership
         for membership in pending_memberships:
             if request.POST.get('approve_%d' % membership.pk, None):
-                group.user_set.add(membership.user)
                 membership.admin_flags = ''
                 membership.save()
                 messages.success(request, "User %s added to the project." % membership.user)

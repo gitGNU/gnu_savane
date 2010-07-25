@@ -549,6 +549,29 @@ class Membership(models.Model):
     # Deprecated
     #forum_flags int(11) default NULL
 
+    def save(self, force_insert=False, force_update=False):
+        """
+        Update the matching User<->Group relationship
+        """
+        if self.admin_flags != 'P':
+            self.group.user_set.add(self.user)
+        if self.admin_flags == 'P':
+            self.group.user_set.remove(self.user)
+        super(self.__class__, self).save(force_insert, force_update)
+    def delete(self, using=None):
+        self.group.user_set.remove(self.user)
+        super(self.__class__, self).delete(using)
+
+    @staticmethod
+    def is_member(user, group):
+        return group.user_set.filter(pk=user.pk).count() > 0
+
+    @staticmethod
+    def is_admin(user, group):
+        return (Membership.is_member(user, group)
+                and Membership.objects
+                .filter(user=user, group=group, admin_flags='A').count() > 0)
+
     @staticmethod
     def query_active_memberships_raw(conn, fields):
         """

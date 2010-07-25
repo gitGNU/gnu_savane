@@ -21,14 +21,6 @@ from django.shortcuts import get_object_or_404
 from savane.middleware.exception import HttpAppException
 import savane.svmain.models as svmain_models
 
-def is_member(user, group):
-    return group.user_set.filter(pk=user.pk).count() > 0
-
-def is_admin(user, group):
-    return (is_member(user, group)
-            and svmain_models.Membership.objects
-            .filter(user=user, group=group, admin_flags='A'))
-
 def only_project_admin(f, error_msg="Permission Denied"):
     """
     Decorator to keep non-members out of project administration
@@ -37,7 +29,7 @@ def only_project_admin(f, error_msg="Permission Denied"):
     """
     def _f(request, *args, **kwargs):
         group = get_object_or_404(auth_models.Group, name=kwargs['slug'])
-        if request.user.is_anonymous() or not is_admin(request.user, group):
+        if request.user.is_anonymous() or not svmain_models.Membership.is_admin(request.user, group):
             raise HttpAppException(error_msg)
         return f(request, *args, **kwargs)
     return _f
