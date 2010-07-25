@@ -1,29 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>
-  <div style="float: left; margin: 10px;">
-    <p>Configure</p>
+<div style="float: left; margin: 10px;">
+  <p>Configure</p>
 
-    <p>
-      <a href="{% url savane.my.views.sv_conf %}">Contact info</a><br />
-      <a href="{% url savane.my.views.sv_ssh_gpg %}">SSH &amp; GPG</a><br />
-      <a href="{% url savane.my.views.sv_resume_skill %}">My resume &amp; skills</a><br />
-      <a href="{% url savane.my.group_list %}">My groups</a><br />
-      <a href="{% url savane.my.membership_list %}">My memberships</a><br />
-      <a href="{% url django.contrib.auth.views.password_change %}">Change my password</a><br />
-      <a href="{% url savane.my.language %}">Set language</a> ({{LANGUAGE_CODE}})<br />
-    </p>
-  </div>
+  <p>
+    <a href="{% url savane.my.views.sv_conf %}">Contact info</a><br />
+    <a href="{% url savane.my.views.sv_ssh_gpg %}">SSH &amp; GPG</a><br />
+    <a href="{% url savane.my.views.sv_resume_skill %}">My resume &amp; skills</a><br />
+    <a href="{% url savane.my.group_list %}">My groups</a><br />
+    <a href="{% url savane.my.membership_list %}">My memberships</a><br />
+    <a href="{% url django.contrib.auth.views.password_change %}">Change my password</a><br />
+    <a href="{% url savane.my.language %}">Set language</a> ({{LANGUAGE_CODE}})<br />
+  </p>
+</div>
 
-  <div style="float: left; margin: 10px;">
-    <p>Public information</p>
+<div style="float: left; margin: 10px;">
+  <p>Public information</p>
 
-    <p>
-      <a href="{% url savane.svmain.user_detail request.user.username %}">My public page</a><br />
-    </p>
-  </div>
-</p>
+  <p>
+    <a href="{% url savane.svmain.user_detail request.user.username %}">My public page</a><br />
+  </p>
+</div>
 
 {% endblock %}
 {% comment %}

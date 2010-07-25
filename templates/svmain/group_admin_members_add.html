@@ -16,7 +16,7 @@
 
 {% include "svmain/pagination.inc.html" %}
 
-<form action="." method="GET">
+<form action="." method="get">
   {% trans "Search" %}: <input type="text" name="q" value="{{q}}" />
 </form>
 
@@ -29,7 +29,7 @@
       <td>{{ object.get_full_name }}</td>
       <td><a href="{% url savane.svmain.user_detail object.username %}">{% trans 'view' %}</a></td>
       <td>
-	<form action="" method="POST">{% csrf_token %}
+	<form action="" method="post">{% csrf_token %}
 	  <input type="hidden" name="user_id" value="{{object.pk}}" />
 	  <input type="submit" value="{% trans 'Add' %}" />
 	</form>

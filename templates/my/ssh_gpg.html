@@ -5,7 +5,7 @@
 {% for key_pk,key in ssh_keys.items %}
 <li>
   {{ key }}
-  <form action="delete/" method="POST">{% csrf_token %}
+  <form action="delete/" method="post">{% csrf_token %}
     <input type="hidden" name="key_pk" value="{{key_pk}}" /><input type="submit" value="Delete"</input>
   </form>
 </li>
@@ -14,13 +14,13 @@
 {% endfor %}
 
 <h2>SSH Keys</h2>
-<form method="post" enctype="multipart/form-data">{% csrf_token %}
+<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
   {{ form_ssh.as_p }}
   <br /><input type="submit" value="Add" name="Add" />
 </form>
 
 <h2>GPG Key</h2>
-<form method="post">{% csrf_token %}
+<form action="" method="post">{% csrf_token %}
   {{ form_gpg.as_p }}
   <br /><input type="submit" value="Update" name="Update" />
 </form>

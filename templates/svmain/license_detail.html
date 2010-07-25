@@ -2,11 +2,9 @@
 
 {% block content %}
 
-<p><a href="{% url savane.svmain.license_list %}">License list</a></p>
-
 <p>
 Name: {{object.slug}}<br />
-URL: <a href="{{object.license.url}}">{{object.url}}</a><br />
+URL: <a href="{{object.url}}">{{object.url}}</a><br />
 </p>
 
 <p>Projects that use it:</p>
@@ -16,6 +14,8 @@ URL: <a href="{{object.license.url}}">{{object.url}}</a><br />
 {% for name in object.get_group_names %}
 <a href="{% url savane.svmain.group_detail name %}">{{name}}</a>{% if forloop.last %}{%else%},{% endif %}
 {% endfor %}
+
+<p><a href="{% url savane.svmain.license_list %}">Go to license list</a></p>
 
 {% endblock %}
 
