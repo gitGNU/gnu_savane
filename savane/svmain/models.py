@@ -480,6 +480,12 @@ class SvGroupInfo(models.Model):
     #patch_private_exclude_address text
     #cookbook_private_exclude_address text
 
+    def full_name_display(self):
+        if self.full_name != "":
+            return self.full_name
+        else:
+            return self.group.name
+
     @staticmethod
     def query_active_groups_raw(conn, fields):
         """

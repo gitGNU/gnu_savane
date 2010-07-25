@@ -23,11 +23,15 @@ from django.conf import settings
 
 register = template.Library()
 
-@register.inclusion_tag('svmain/svpagemenu.html', takes_context=True)
-def svpagemenu(context, menu_name):
+@register.inclusion_tag('svmain/svtopmenu.html', takes_context=True)
+def svtopmenu(context, menu_name):
     """
     Return info to build the top menu, including menu structure and
     page icon.
+
+    TODO: use context['request'].PATH_INFO to determine if a link is
+    the current URL, and mark it so we can apply a different CSS style
+    on it.
     """
     icon = 'main'
     entries = []
@@ -59,12 +63,7 @@ def svpagemenu(context, menu_name):
         pass
 
     context = {
-        'title' : context['title'],
         'menu_name' : menu_name,
         'entries' : entries,
-        'icon' : icon,
-        # STATIC_MEDIA_URL is not available in inclusion tags, because
-        # RequestContext is not used; let's work around that lack:
-        'STATIC_MEDIA_URL' : settings.STATIC_MEDIA_URL,
         }
     return context

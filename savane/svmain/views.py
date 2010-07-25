@@ -51,3 +51,15 @@ def group_admin(request, slug, extra_context={}):
         }
     context.update(extra_context)
     return context
+
+@render_to('svmain/group_admin_members.html', mimetype=None)
+def group_admin_members(request, slug, extra_context={}):
+    group = get_object_or_404(auth_models.Group, name=slug)
+    members = group.user_set.all()
+
+    context = {
+        'group' : group,
+        'members' : members,
+        }
+    context.update(extra_context)
+    return context
