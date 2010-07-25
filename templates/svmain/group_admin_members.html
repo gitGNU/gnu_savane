@@ -14,13 +14,16 @@
 
 {% block content %}
 
-<p>Members:</p>
+<p>Members:<br />
 <form action="" method="POST">{% csrf_token %}
 <table>
 <tr><th>User</th><th>Admin</th><th>Remove?</th></tr>
 {% for membership in memberships %}
 <tr>
-  <td>{{ membership.user.get_full_name }} &lt;{{ membership.user.username }}&gt;</td>
+  <td>
+    {{ membership.user.get_full_name }}
+    &lt;<a href="{% url savane.svmain.user_detail membership.user.username %}">{{ membership.user.username }}</a>&gt;
+  </td>
   <td>
     {% ifequal request.user membership.user %}
     <em>{% trans "You are Admin" %}</em>

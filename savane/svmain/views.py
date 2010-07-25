@@ -108,3 +108,25 @@ def group_admin_members(request, slug, extra_context={}):
         }
     context.update(extra_context)
     return context
+
+def group_admin_members_add(request, slug, extra_context={}):
+    group = get_object_or_404(auth_models.Group, name=slug)
+
+    if request.method == "POST":
+        user = get_object_or_404(auth_models.User, pk=int(request.POST['user_id']))
+        svmain_models.Membership(user=user, group=group, admin_flags='').save()
+        return HttpResponseRedirect('../')
+
+    from django.views.generic.list_detail import object_list
+    from savane.filters import search
+    from django.contrib.auth.admin import UserAdmin
+    context = {}
+    context.update(extra_context)
+    context.update({'group' : group})
+    queryset = auth_models.User.objects.filter(is_active=True).exclude(pk__in=group.user_set.all())
+    return search(object_list)(request,
+                               queryset=queryset,
+                               paginate_by=20,
+                               model_admin=UserAdmin,
+                               extra_context=context,
+                               template_name='svmain/group_admin_members_add.html')

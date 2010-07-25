@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load svtopmenu %}
+
+{% block title %}
+{{group.svgroupinfo.full_name_display}} - {{title}}
+{% endblock %}
+
+{% block icon %}preferences{% endblock %}
+
+{% block topmenu %}
+  {% svtopmenu "group" %}
+{% endblock %}
+
+{% block content %}
+
+{% include "svmain/pagination.inc.html" %}
+
+<form action="." method="GET">
+  {% trans "Search" %}: <input type="text" name="q" value="{{q}}" />
+</form>
+
+{% if object_list %}
+    <table>
+    <tr><th>User</th><th>Full name</th><th>Profile</th><th></th></tr>
+    {% for object in object_list %}
+    <tr>
+      <td>{{ object.username }}</td>
+      <td>{{ object.get_full_name }}</td>
+      <td><a href="{% url savane.svmain.user_detail object.username %}">{% trans 'view' %}</a></td>
+      <td>
+	<form action="" method="POST">{% csrf_token %}
+	  <input type="hidden" name="user_id" value="{{object.pk}}" />
+	  <input type="submit" value="{% trans 'Add' %}" />
+	</form>
+      </td>
+    </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>{% trans "All other users are members of your group!" %}</p>
+{% endif %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

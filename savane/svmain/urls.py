@@ -93,6 +93,9 @@ urlpatterns += decorated_patterns ('', only_project_admin,
   url(r'^p/(?P<slug>[-\w]+)/admin/members/$', views.group_admin_members,
       { 'extra_context' : { 'title' : 'Administration Summary: Manage Members' }, },
       name='savane.svmain.group_admin_members'),
+  url(r'^p/(?P<slug>[-\w]+)/admin/members/add/$', views.group_admin_members_add,
+      { 'extra_context' : { 'title' : 'Administration Summary: Manage Members' }, },
+      name='savane.svmain.group_admin_members_add'),
 )
 
 urlpatterns += patterns ('',
