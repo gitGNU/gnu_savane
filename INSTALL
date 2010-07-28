@@ -19,11 +19,11 @@
 
 * Dependencies as Debian packages
 
-- Django >= 1.1
+- Django >= 1.2 (+ YAML support)
 - MySQLdb (mysql-python)
 - MySQL
 
-apt-get install python-django python-mysqldb mysql-server
+apt-get install python-django python-mysqldb python-yaml mysql-server
 
 hg clone http://bitbucket.org/offline/django-annoying/
 hg clone http://bitbucket.org/ubernostrum/django-registration/
