@@ -24,6 +24,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django import forms
 from django.contrib import messages
+from django.utils.translation import ugettext as _
 from savane.svmain.models import SvUserInfo, SshKey
 from savane.utils import *
 from annoying.decorators import render_to
@@ -78,27 +79,18 @@ def sv_ssh_gpg(request, extra_context={}):
     success_msg = None
 
     form_ssh = SSHForm()
-    form_gpg = GPGForm()
+    form_gpg = GPGForm(initial={'gpg_key' : info.gpg_key})
     ssh_keys = None
-
-    if request.method == 'GET' and 'action' in request.GET:
-        action = request.GET['action']
-        if action == 'delete_key':
-            key_pk = request.GET['key_pk']
-            try:
-                ssh_key = request.user.sshkey_set.get(pk=key_pk)
-                ssh_key.delete()
-            except:
-                error_msg = 'Cannot remove the selected key'
 
     if request.method == 'POST':
         form = None
         action = request.POST['action']
         if action == 'add_ssh':
-            form_ssh = SSHForm( request.POST, request.FILES )
+            form_ssh = SSHForm(request.POST, request.FILES)
             form = form_ssh
         elif action == 'update_gpg':
-            form_gpg = GPGForm( request.POST )
+            form_gpg = GPGForm(request.POST)
+            form = form_gpg
 
         if form is not None and form.is_valid():
             if action == 'add_ssh':
@@ -128,17 +120,11 @@ def sv_ssh_gpg(request, extra_context={}):
 
             elif action == 'update_gpg':
                 if 'gpg_key' in request.POST:
-                    gpg_key = request.POST['gpg_key']
-                    info.gpg_key = gpg_key
-                    success_msg = 'GPG Key stored.'
+                    info.gpg_key = request.POST['gpg_key']
+                    info.save()
+                    messages.success(request, _("GPG Key updated."))
 
-    if info.gpg_key != '':
-        gpg_data = dict({'action':'update_gpg', 'gpg_key':info.gpg_key})
-        form_gpg = GPGForm( gpg_data )
-    else:
-        form_gpg = GPGForm()
-
-    keys =  request.user.sshkey_set.all()
+    keys = request.user.sshkey_set.all()
     if keys is not None:
         ssh_keys = dict()
         for key in keys:

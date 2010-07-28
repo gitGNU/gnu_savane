@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.urlresolvers import reverse
 import django.contrib.auth.models as auth_models
@@ -43,6 +43,48 @@ def group_join(request, slug):
         # TODO: send e-mail notification to group admins
         messages.success(request, u"Request for inclusion sent to project administrators")
     return HttpResponseRedirect('../')
+
+@render_to('svmain/group_gpgkeyring.html')
+def group_gpgkeyring(request, slug, extra_context={}):
+    group = get_object_or_404(auth_models.Group, name=slug)
+    context = {
+        'gpgkeyring': True,  # TODO
+        'group' : group,
+        }
+    context.update(extra_context)
+    return context
+
+def group_gpgkeyring_download(request, slug):
+    group = get_object_or_404(auth_models.Group, name=slug)
+
+    import os, sys, tempfile, shutil, glob
+    from pyme import core, constants
+    tdir = tempfile.mkdtemp()
+    core.set_engine_info(constants.PROTOCOL_OpenPGP, None, tdir)
+    c = core.Context()
+
+    for user in group.user_set.all():
+        status = c.op_import(core.Data(str(user.svuserinfo.gpg_key)))
+        result = c.op_import_result()
+
+    data_export = core.Data()
+    c.op_export(None, 0, data_export)
+    data_export.seek(0, os.SEEK_SET)
+    keyring_txt = data_export.read()
+
+    response = HttpResponse()
+    response = HttpResponse(mimetype='application/pgp-keys')
+    response['Content-Disposition'] = 'attachment; filename=%s-keyring.gpg' % group.name
+    response['Content-Description'] = 'GPG Keyring of the project %s' % group.name
+
+    response.write(keyring_txt)
+
+    shutil.rmtree(tdir)
+
+    # Page display:
+    # gpg --homedir /tmp/t --batch --quiet --no-tty --no-options --no-default-keyring --list-keys  --display-charset=utf-8 --keyring `pwd`/out
+
+    return response
 
 @render_to('svmain/group_admin.html', mimetype=None)
 def group_admin(request, slug, extra_context={}):

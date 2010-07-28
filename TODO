@@ -39,8 +39,7 @@ improve it.
 
     [/] My Groups
 
-    [ ] Group membership (manage members, manage permissions, request
-        inclusion)
+    [X] Group membership (manage members, request inclusion)
 
     [ ] Delete account (clean-up data but keep User+user_id if past
         history)

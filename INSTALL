@@ -22,8 +22,9 @@
 - Django >= 1.2 (+ YAML support)
 - MySQLdb (mysql-python)
 - MySQL
+- PyME (GPG Made Easy for Python)
 
-apt-get install python-django python-mysqldb python-yaml mysql-server
+apt-get install python-django python-mysqldb python-yaml mysql-server python-pyme
 
 hg clone http://bitbucket.org/offline/django-annoying/
 hg clone http://bitbucket.org/ubernostrum/django-registration/

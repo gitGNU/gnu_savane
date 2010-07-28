@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load svtopmenu %}
+
+{% block title %}
+{{group.svgroupinfo.get_full_name_display}} - {% trans "Summary" %}{% trans ": " %}{{title}}
+{% endblock %}
+
+{% block icon %}keys{% endblock %}
+
+{% block topmenu %}
+  {% svtopmenu "group" %}
+{% endblock %}
+
+{% block content %}
+
+{% if gpgkeyring %}
+  {% comment %}
+  <p>{% trans "Below is the content of this project's keyring. These are the successfully registered keys of project members." %}</p>
+  <p>{{ gpgkeyring }}</p>
+  {% endcomment %}
+  {% url savane.svmain.group_gpgkeyring_download group.name as url_download %}
+{% blocktrans with '<a href="'|add:url_download|add:'">'|safe as begin_link and '</a>' as end_link and '<em>gpg --import &lt;file&gt;</em>' as command %}
+You can {{begin_link}}download the keyring{{end_link}} and import it with the command {{command}}
+{% endblocktrans %}
+  </p>
+{% else %}
+  {% trans "They GPG Keyring of the project is empty, no keys were registered" %}
+{% endif %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}
