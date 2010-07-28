@@ -26,3 +26,17 @@ def media(request):
     TEMPLATE_CONTEXT_PROCESSORS )
     """
     return {'STATIC_MEDIA_URL': settings.STATIC_MEDIA_URL}
+
+from django.contrib.sites.models import Site, RequestSite
+def site_name(request):
+    """
+    Returns the current site name.
+    Cf. django.contrib.auth.views
+    """
+
+    if Site._meta.installed:
+        site_name = Site.objects.get_current().name
+    else:
+        site_name = 'Savane'
+
+    return {'site_name' : site_name}

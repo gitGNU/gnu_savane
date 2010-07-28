@@ -71,6 +71,7 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
     'savane.context_processors.media',
+    'savane.context_processors.site_name',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,6 +101,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
 
     'django.contrib.admin',
     'django.contrib.admindocs',
@@ -108,9 +110,6 @@ INSTALLED_APPS = (
 
     'savane.svmain',
     'savane.my',
-# Disabled: we're not using it currently, and there are issues with
-# login when no site is defined
-#    'django.contrib.sites',
 )
 
 
