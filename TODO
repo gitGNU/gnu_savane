@@ -111,6 +111,17 @@ improve it.
     dealt with (so avoid the automatic conversion to sha1$ that Django
     does at each login)
 
+[ ] Translations
+
+    [ ] Design the translation build system: we need to parse the web
+        templates (./manage.py makemessages), and see how to install
+        .po files for Django (in particular Django uses one .po file
+        per app, and Savane is split in multiple apps, so maybe we
+        need to split the existing translations).
+
+    [ ] Translate new strings and generally update existing
+        translations.
+
 =====
 
 Goal #1: use it live at Savannah :)
@@ -156,8 +167,6 @@ Uncharted territories - and wild ideas.
 
 [ ] Improve/suppress delays (e.g. ping a daemon that creates project
     repositories and mailing lists, with a job queue system)
-
-[ ] Translations
 
 [ ] pastebin
 
