@@ -73,7 +73,6 @@ def group_admin_info(request, slug, extra_context={}, post_save_redirect=None):
     else:
         form = form_class(instance=object) # An unbound form
 
-    print form
     context = {
         'group' : group,
         'form' : form,
@@ -127,6 +126,9 @@ def group_admin_members(request, slug, extra_context={}):
                 membership.admin_flags = ''
                 membership.save()
                 messages.success(request, "User %s added to the project." % membership.user)
+            if request.POST.get('reject_%d' % membership.pk, None):
+                membership.delete()
+                messages.success(request, "User %s deleted from the project." % membership.user)
         return HttpResponseRedirect('')  # reload
 
 

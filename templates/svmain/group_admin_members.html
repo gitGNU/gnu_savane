@@ -44,11 +44,12 @@
 {% if pending_memberships %}
   <p>Requests for inclusion:</p>
   <table>
-  <tr><th>User</th><th>Approve</th></tr>
+  <tr><th>User</th><th>Approve</th><th>Reject</th></tr>
   {% for membership in pending_memberships %}
   <tr>
     <td>{{ membership.user.get_full_name }} &lt;{{ membership.user.username }}&gt;</td>
     <td><input type="checkbox" name="approve_{{membership.pk}}" /></td>
+    <td><input type="checkbox" name="reject_{{membership.pk}}" /></td>
   </tr>
   {% endfor %}
   </table>

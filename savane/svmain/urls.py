@@ -99,7 +99,7 @@ urlpatterns += decorated_patterns ('', only_project_admin,
   url(r'^p/(?P<slug>[-\w]+)/admin/$', views.group_admin,
       { 'extra_context' : { 'title' : 'Administration Summary' }, },
       name='savane.svmain.group_admin'),
-  url(r'^p/(?P<slug>[-\w]+)/admin/members/$', views.group_admin_info,
+  url(r'^p/(?P<slug>[-\w]+)/admin/info/$', views.group_admin_info,
       { 'post_save_redirect' : '../../',  # back to project page to see the changes
         'extra_context' : { 'title' : 'Administration Summary: Editing Public Info' }, },
       name='savane.svmain.group_admin_info'),
