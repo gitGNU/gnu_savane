@@ -10,9 +10,9 @@
 
 <div class="indexright">
   <div class="box">
-    <div class="boxtitle">{% trans "Membership Info" %}</div>
+    <div class="boxtitle">{% trans "Membership info" %}</div>
     {% if group.svgroupinfo.get_admin_memberships %}
-    <div class="boxitem smaller">{% trans "Project Admins:" %}</div>
+    <div class="boxitem smaller">{% trans "Project admins:" %}</div>
     {% for membership in group.svgroupinfo.get_admin_memberships %}
     <div class="{% cycle 'boxitemalt' 'boxitem' %} smaller">&nbsp;
 	- <a href="{% url savane.svmain.user_detail membership.user.username %}">{{ membership.user.svuserinfo.get_full_name_display }}</a></div>
@@ -21,14 +21,14 @@
     <div class="boxitem smaller">{% trans "No members!" %}</div>
     {% endif %}
     <div class="boxitem smaller">{% blocktrans count group.user_set.count as count %}{{count}} active member{% plural %}{{count}} active members{% endblocktrans %}</div>
-    <div class="boxitemalt smaller">[<a href="memberlist/">{% trans "View Members" %}</a>]</div>
+    <div class="boxitemalt smaller">[<a href="{% url savane.svmain.group_memberlist group.name %}">{% trans "View members" %}</a>]</div>
   </div>
   <div class="box">
     <div class="boxtitle">{% trans "Group identification" %}</div>
     <div class="boxitem smaller">{% trans "Id:" %} <strong>#{{group.pk}}</strong></div>
-    <div class="boxitemalt smaller">{% trans "System Name:" %} <strong>{{group.name}}</strong></div>
+    <div class="boxitemalt smaller">{% trans "System name:" %} <strong>{{group.name}}</strong></div>
     <div class="boxitem smaller">{% trans "Name:" %} <strong>{{group.svgroupinfo.full_name}}</strong></div>
-    <div class="boxitemalt smaller">{% trans "Group Type:" %} <strong>{{group.svgroupinfo.type.name}}</strong></div>
+    <div class="boxitemalt smaller">{% trans "Group type:" %} <strong>{{group.svgroupinfo.type.name}}</strong></div>
   </div>
 </div>
 
@@ -36,9 +36,9 @@
 <p>{{group.svgroupinfo.type.description}}</p>
 <p>{{group.svgroupinfo.long_description}}</p>
 <p>
-{% trans "Registration Date" %}: {{group.svgroupinfo.register_time}}<br />
+{% trans "Registration date" %}: {{group.svgroupinfo.register_time}}<br />
 {% trans "License" %}: <a href="{{group.svgroupinfo.license.get_absolute_url}}">{{group.svgroupinfo.license.name}}</a><br />
-{% trans "Development Status" %}: {{group.svgroupinfo.devel_status}}<br />
+{% trans "Development status" %}: {{group.svgroupinfo.devel_status}}<br />
 </p>
 </div>
 

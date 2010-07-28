@@ -112,11 +112,7 @@ improve it.
 
 [ ] Translations
 
-    [ ] Design the translation build system: we need to parse the web
-        templates (./manage.py makemessages), and see how to install
-        .po files for Django (in particular Django uses one .po file
-        per app, and Savane is split in multiple apps, so maybe we
-        need to split the existing translations).
+    [ ] Design the translation build system; cf. doc/DJANGO_I18N.
 
     [ ] Translate new strings and generally update existing
         translations.

@@ -1,0 +1,61 @@
+Translations
+============
+
+You create them with either:
+
+- a monolithic translation catalog
+
+  cd framework/
+  mkdir locale/  # or conf/locale/
+  django-admin makemessages -l fr
+  django-admin compilemessages -l fr
+
+- per-app translation catalogs:
+
+  cd framework/savane/svmain/
+  mkdir locale/
+  django-admin makemessages -l fr
+  django-admin compilemessages -l fr
+
+- in both cases, to update:
+
+  cd ...
+  django-admin makemessages -a
+
+Monolithic translations are not suited for deploying reusable apps
+(because they are installed in the projects rather than in the
+applications).
+
+Per-app translation catalog means splitting the Savane 3 catalog.
+It's not hard to do: just duplicate the current catalog in all
+applications, and update the catalogs (all unused strings will be
+commented out).
+
+Per-app translation catalogs also means moving the templates in the
+application directory, otherwise they won't be parsed.  For example:
+
+  framework/savane/svmain/templates/svmain/group_detail.html
+
+Also this means placing top-level templates in an application, so that
+its strings get translated too (e.g. move templates/base.html to
+framework/savane/svmain/templates/base.html).
+
+
+Given that "reusable apps" in Django is mostly utopia as of 2010, and
+given the constraints of per-app translation catalogs, let's use a
+monolithic translation catalog for now.
+
+
+Notes:
+
+- Django needs to be restarted to take new translations into account
+  (they are cached).
+
+- Template {% blocktrans %} blocks takes newlines into account, so
+  better write them on a signe line, even if it's very long.
+
+- {% blocktrans %} uses mappings ('%(variable)s' instead of '%s'),
+  which is not compatible with Savane 3's .po strings.  Consequently
+  we'll get a lot fuzzy strings that translators will need to review.
+  Thus let's not worry so much about introducing fuzzy strings:
+  typically let's not keep All Firstcap Titles that cripple Savane 3.

@@ -20,9 +20,7 @@
   <p>{{ gpgkeyring }}</p>
   {% endcomment %}
   {% url savane.svmain.group_gpgkeyring_download group.name as url_download %}
-{% blocktrans with '<a href="'|add:url_download|add:'">'|safe as begin_link and '</a>' as end_link and '<em>gpg --import &lt;file&gt;</em>' as command %}
-You can {{begin_link}}download the keyring{{end_link}} and import it with the command {{command}}
-{% endblocktrans %}
+  {% blocktrans with '<a href="'|add:url_download|add:'">'|safe as begin_link and '</a>' as end_link and '<em>gpg --import &lt;file&gt;</em>' as command %}You can {{begin_link}}download the keyring{{end_link}} and import it with the command {{command}}{% endblocktrans %}
   </p>
 {% else %}
   {% trans "They GPG Keyring of the project is empty, no keys were registered" %}

@@ -36,9 +36,7 @@
 
 <p>
 {% url savane.svmain.group_gpgkeyring group.name as url_gpgkeyring %}
-{% blocktrans with '<a href="'|add:url_gpgkeyring|add:'">'|safe as begin_link and '</a>' as end_link %}
-You may also be interested in the {{begin_link}}GPG Keyring of this project{{end_link}}
-{% endblocktrans %}
+{% blocktrans with '<a href="'|add:url_gpgkeyring|add:'">'|safe as begin_link and '</a>' as end_link %}You may also be interested in the {{begin_link}}GPG Keyring of this project{{end_link}}{% endblocktrans %}
 </p>
 
 {% endblock %}

@@ -1,0 +1,8 @@
+When this directory exists, you can create a top-level translation
+file:
+
+  django-admin makemessages -l fr
+  django-admin compilemessages
+  ...
+
+Cf. doc/DJANGO_I18N for further information.
