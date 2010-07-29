@@ -11,24 +11,29 @@
 <div class="indexright">
   <div class="box">
     <div class="boxtitle">{% trans "Membership info" %}</div>
-    {% if group.svgroupinfo.get_admin_memberships %}
-    <div class="boxitem smaller">{% trans "Project admins:" %}</div>
-    {% for membership in group.svgroupinfo.get_admin_memberships %}
-    <div class="{% cycle 'boxitemalt' 'boxitem' %} smaller">&nbsp;
-	- <a href="{% url savane:svmain:user_detail membership.user.username %}">{{ membership.user.svuserinfo.get_full_name_display }}</a></div>
-    {% endfor %}
-    {% else %}
-    <div class="boxitem smaller">{% trans "No members!" %}</div>
-    {% endif %}
-    <div class="boxitem smaller">{% blocktrans count group.user_set.count as count %}{{count}} active member{% plural %}{{count}} active members{% endblocktrans %}</div>
-    <div class="boxitemalt smaller">[<a href="{% url savane:svmain:group_memberlist group.name %}">{% trans "View members" %}</a>]</div>
+    <div class="smaller">
+      {% if group.svgroupinfo.get_admin_memberships %}
+      <div class="boxitem">{% trans "Project admins:" %}</div>
+      {% for membership in group.svgroupinfo.get_admin_memberships %}
+      <div class="{% cycle 'boxitemalt' 'boxitem' as rowcolor %}">&nbsp;
+	- <a href="{% url savane:svmain:user_detail membership.user.username %}"
+	  >{{ membership.user.svuserinfo.get_full_name_display }}</a></div>
+      {% endfor %}
+      {% else %}
+      <div class="{% cycle rowcolor %}">{% trans "No members!" %}</div>
+      {% endif %}
+      <div class="{% cycle rowcolor %}">{% blocktrans count group.user_set.count as count %}{{count}} active member{% plural %}{{count}} active members{% endblocktrans %}</div>
+      <div class="{% cycle rowcolor %}">[<a href="{% url savane:svmain:group_memberlist group.name %}">{% trans "View members" %}</a>]</div>
+    </div>
   </div>
   <div class="box">
     <div class="boxtitle">{% trans "Group identification" %}</div>
-    <div class="boxitem smaller">{% trans "Id:" %} <strong>#{{group.pk}}</strong></div>
-    <div class="boxitemalt smaller">{% trans "System name:" %} <strong>{{group.name}}</strong></div>
-    <div class="boxitem smaller">{% trans "Name:" %} <strong>{{group.svgroupinfo.full_name}}</strong></div>
-    <div class="boxitemalt smaller">{% trans "Group type:" %} <strong>{{group.svgroupinfo.type.name}}</strong></div>
+    <div class="smaller">
+      <div class="boxitem">{% trans "Id:" %} <strong>#{{group.pk}}</strong></div>
+      <div class="boxitemalt">{% trans "System name:" %} <strong>{{group.name}}</strong></div>
+      <div class="boxitem">{% trans "Name:" %} <strong>{{group.svgroupinfo.full_name}}</strong></div>
+      <div class="boxitemalt">{% trans "Group type:" %} <strong>{{group.svgroupinfo.type.name}}</strong></div>
+    </div>
   </div>
 </div>
 

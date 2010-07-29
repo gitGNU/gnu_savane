@@ -16,10 +16,10 @@
 
 <p>Members:</p>
 <form action="" method="post">{% csrf_token %}
-<table>
+<table class="box">
 <tr><th>User</th><th>Admin</th><th>Remove?</th></tr>
 {% for membership in memberships %}
-<tr>
+<tr class="{% cycle 'boxitem' 'boxitemalt' %}">
   <td>
     {{ membership.user.get_full_name }}
     &lt;<a href="{% url savane:svmain:user_detail membership.user.username %}">{{ membership.user.username }}</a>&gt;

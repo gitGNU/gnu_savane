@@ -173,7 +173,7 @@ class License(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('savane.svmain.license_detail', [self.slug])
+        return ('savane:svmain:license_detail', [self.slug])
 
     class Meta:
         ordering = ['slug']

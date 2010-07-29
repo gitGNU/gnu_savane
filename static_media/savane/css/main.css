@@ -21,10 +21,6 @@
  *
 */
 
-/* THIS CSS DEFINES BASIC ELEMENTS AND IS SUPPOSED TO BE IMPORTED */
-
-/* GUIDELINES VERSION FOLLOWED: 1.17 */
-
 
 /**********************************************************************
  *
@@ -33,23 +29,15 @@
  **********************************************************************/
 
 body {
-	font-family: sans-serif;
+    font-family: sans-serif,"Liberation Sans","DejaVu Sans";
+    margin: 0;
+    color: black;
+    background-color: white;
 }
 
 img {
 	border: none;
-	margin-bottom: -0.2em;
 }
-
-p {	
-	padding-left: 0.2em;
-	padding-right: 0.2em;
-}
-
-strong { font-weight: bold; }
-.bold { font-weight: bold; }
-em { font-style: italic; }
-.italic { font-style: italic; }
 
 .verbatim {
 	/* useful to put code blocks, should look by default like postit */
@@ -61,9 +49,6 @@ em { font-style: italic; }
 }
 
 
-.block { display: block; }
-
-
 .smaller { font-size: smaller; }
 .small { font-size: small; }
 .xsmall { font-size: xx-small; }
@@ -72,16 +57,17 @@ em { font-style: italic; }
 .error { font-weight: bold; color: #c12424; }
 .warn {  color: #c12424; }
 
-.footer { font-size: x-small; clear: both; }
-
-
-/* .text should be deprecated in favor of <p class="smaller">
-.text {
-	padding-left: 5px;
-	text-indent: 1em;
-	font-size: smaller;
+.footer {
+    clear: both;
+    font-size: x-small;
+    color: #333333;
+    background-color: #ffe4b7;
+    text-align: center;
+    border: solid #e0c080;
+    border-width: 0 thin thin 0;
+    margin-left: 1%;
+    margin-right: 1%;
 }
-*/
 
 .icon {
 	width: 1em;
@@ -89,12 +75,10 @@ em { font-style: italic; }
 	margin-bottom: -0.2em;
 }
 
-
 .pageicon {
 	padding-right: 0.5em;
 	margin-bottom: -0.5em;
 }
-
 
 .minusorplus {
         vertical-align: middle;
@@ -110,7 +94,6 @@ em { font-style: italic; }
         vertical-align: middle;
 	width: 1em;
 }
-
 
 .feedback {
 	cursor: pointer;
@@ -310,6 +293,54 @@ h5 a {
 
 
 
+
+a { text-decoration: underline; color: #641212;}
+a:hover { text-decoration: none; color: #c40f0f; }
+a:active { color: #ff0000; }
+
+.unavailable {
+	color: #905050;
+	text-decoration: none;
+}
+.unavailable:hover { 
+	color: #B07070;
+}
+
+.warn { color: #aa2200; }
+.error { font-weight: bold; color: #aa2200; }
+
+
+/* Titles */
+
+/* <h1> Page title */
+h1 {
+	text-indent: 0.3em;
+	font-size: 1.5em;
+}
+/* <h3> Section title */
+h3 {
+	text-indent: 1em;
+	border-bottom: thin solid #e0c080;
+	background-color: #fff0d0; 
+}
+/* <h4> Small section title */
+/* <h5> Input form label */
+h5 {
+	font-weight: normal;
+	background-color: #fff7ea; 
+	border: #ffe4b2 solid thin;
+}
+
+.highlight  {	
+	background-color: #ffe0db;
+	border-left: thin dotted #e0c080;
+	border-right: thin dotted #e0c080;
+	border-bottom: thin dotted #e0c080;
+	color: #333333;
+}
+
+
+
 /**********************************************************************
  *
  * Alignement, main tables
@@ -337,10 +368,6 @@ h5 a {
 .clearl { clear: left; }
 .clearr { clear: right; }
 
-.realbody {
-	vertical-align: top;
-}
-
 
 /* like  boxhighlight */
 .highlight {
@@ -348,17 +375,18 @@ h5 a {
 	color: black;
 }
 
-/* margin-left + width must be equal to 100% (but think about body margins
- present in many themes) */
+/* margin-left + width must be equal to 100% */
 .main {
-  	vertical-align: top;
-	margin-left: 16%;
-	border-spacing: 0;
+	vertical-align: top;
 	border: none;
 	display: block;
-	width: 80%;
+	padding-top: 10px;
+	padding-left: 1%;
+	padding-right: 0;
+ 	margin-left: 160px;
+ 	margin-right: 0;
+        width: auto;
 }
-
 
 
 /**********************************************************************
@@ -537,13 +565,6 @@ li.topmenuitemsubmenuseparator {
 }
 
 
-/* only for bots */
-#website {
-	visibility: hidden;
-	display: none;	
-}
-
-
 /**********************************************************************
  *
  * Boxes
@@ -651,354 +672,6 @@ li.topmenuitemsubmenuseparator {
 
 /**********************************************************************
  *
- * Trackers specific
- *
- **********************************************************************/
-
-.trackersoriginalsubmission {
-	padding-left: 0.2em;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
-	border-left: thin #b5b5b5 solid;
-}
-
-/**********************************************************************
- *
- * Priorities
- *
- **********************************************************************/
-
-
-.priora {
-	background-color: #fff2f2;
-	border: thin solid #ef6e6e;
-	text-indent: 0;
-	list-style-type: none; }
-
-
-.priorb {
-	background-color: #ffe8e8;
-	border: thin solid #ef6e6e;
-	text-indent: 0;
-	list-style-type: none; }
-
-.priorc {
-	background-color: #ffe0e0;
-	border: thin solid #ef6e6e;
-	text-indent: 0;
-	list-style-type: none; }
-
-.priord {
-	background-color: #ffd8d8;
-	border: thin solid #ef6e6e;
-	text-indent: 0;
-	list-style-type: none; }
-
-.priore {
-	background-color: #ffcece;
-	border: thin solid #ef6e6e;
-	text-indent: 0;
-	list-style-type: none;  }
-
-.priorf {
-	background-color: #ffc6c6;
-	border: thin solid #ef6e6e;
-	text-indent: 0;
-	list-style-type: none; }
-.priorg {
-	background-color: #ffbfbf;
-	border: thin solid #ef6e6e;
-	text-indent: 0;
-	list-style-type: none; }
-.priorh {
-	background-color: #ffb7b7;
-	border: thin solid #ef6e6e;
-	text-indent: 0;
-	list-style-type: none; }
-.priori {
-	background-color: #ffadad;
-	border: thin solid #ef6e6e;
-	text-indent: 0;
-	list-style-type: none; }
-
-
-.prioraclosed {
-	background-color: #F5FFEB;
-	border: thin solid #51DA96;
-	text-indent: 0;
-	list-style-type: none; }
-.priorbclosed {
-	background-color: #EDFFE6;
-	border: thin solid #51DA96;
-	text-indent: 0;
-	list-style-type: none; }
-.priorcclosed {
-	background-color: #EEFFE1;
-	border: thin solid #51DA96;
-	text-indent: 0;
-	list-style-type: none; }
-.priordclosed {
-	background-color: #E0FFD5;
-	border: thin solid #51DA96;
-	text-indent: 0;
-	list-style-type: none; }
-
-.prioreclosed {
-	background-color: #CCFFBB;
-	border: thin solid #51DA96;
-	text-indent: 0;
-	list-style-type: none; }
-
-.priorfclosed {
-	background-color: #C6FFB9;
-	border: thin solid #51DA96;
-	text-indent: 0;
-	list-style-type: none; }
-.priorgclosed {
-	background-color: #C0FFB2;
-	border: thin solid #51DA96;
-	text-indent: 0;
-	list-style-type: none; }
-.priorhclosed {
-	background-color: #ADFFA4;
-	border: thin solid #51DA96;
-	text-indent: 0;
-	list-style-type: none; }
-.prioriclosed {
-	background-color: #A0FF9D;
-	border: thin solid #51DA96;
-	text-indent: 0;
-	list-style-type: none; }
-
-
-h2.priora { text-shadow: 0.1em 0.1em #f89b9b; }
-h2.priorb { text-shadow: 0.1em 0.1em #f89b9b; }
-h2.priorc { text-shadow: 0.1em 0.1em #f89b9b; }
-h2.priord { text-shadow: 0.1em 0.1em #f89b9b; }
-h2.priore { text-shadow: 0.1em 0.1em #f89b9b; }
-h2.priorf { text-shadow: 0.1em 0.1em #f89b9b; }
-h2.priorg { text-shadow: 0.1em 0.1em #f89b9b; }
-h2.priorh { text-shadow: 0.1em 0.1em #f89b9b; }
-h2.priori { text-shadow: 0.1em 0.1em #f89b9b; }
-
-h2.prioraclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
-h2.priorbclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
-h2.priorcclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
-h2.priordclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
-h2.prioreclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
-h2.priorfclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
-h2.priorgclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
-h2.priorhclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
-h2.prioriclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
-
-
-tr.priora a {
-	display: block;
-}
-tr.priorb a {
-	display: block;
-}
-tr.priorc a {
-	display: block;
-}
-tr.priord a {
-	display: block;
-}
-tr.priore a {
-	display: block;
-}
-tr.priorf a {
-	display: block;
-}
-tr.priorg a {
-	display: block;
-}
-tr.priorh a {
-	display: block;
-}
-tr.priori a {
-	display: block;
-}
-
-tr.prioraclosed a {
-	display: block;
-}
-tr.priorbclosed a {
-	display: block;
-}
-tr.priorcclosed a {
-	display: block;
-}
-tr.priordclosed a {
-	display: block;
-}
-tr.prioreclosed a {
-	display: block;
-}
-tr.priorfclosed a {
-	display: block;
-}
-tr.priorgclosed a {
-	display: block;
-}
-tr.priorhclosed a {
-	display: block;
-}
-tr.prioriclosed a {
-	display: block;
-}
-
-.menu .priore
-{
- /* when the priority is included in a menu, we dont want any border effect */
- border: none;
-}
-
-/**********************************************************************
- *
- * Very basic (mostly text) items:
- *
- **********************************************************************/
-
-body { 
-  margin-top: 0;
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 0;
-  font-family: arial,helvetica;
-  color: black;
-/*  background-color: #ffe4b7; */
-/*  background-color: #eae3d7; */
-  background-color: #ffffff;
-}
-
-a { text-decoration: underline; color: #641212;}
-a:hover { text-decoration: none; color: #c40f0f; }
-a:active { color: #ff0000; }
-
-.unavailable {
-	color: #905050;
-	text-decoration: none;
-}
-.unavailable:hover { 
-	color: #B07070;
-}
-
-.footer {
- color: #333333;
-/*  background-color: #CCBB88; */
- background-color: #ffe4b7;
- text-align: center;
-/*  border: solid #998855; */
- border: solid #e0c080;
- border-width: 0 thin thin 0;
- margin-left: 1%;
- margin-right: 1%;
-}
-.warn { color: #aa2200; }
-.error { font-weight: bold; color: #aa2200; }
-
-
-/* Titles */
-
-/* <h1> Page title */
-h1 {
-	text-indent: 0.3em;
-	font-size: 1.5em;
-}
-/* <h3> Section title */
-h3 {
-	text-indent: 1em;
-	border-bottom: thin solid #e0c080;
-	background-color: #fff0d0; 
-}
-/* <h4> Small section title */
-/* <h5> Input form label */
-h5 {
-	font-weight: normal;
-	background-color: #fff7ea; 
-	border: #ffe4b2 solid thin;
-}
-
-.highlight  {	
-	background-color: #ffe0db;
-	border-left: thin dotted #e0c080;
-	border-right: thin dotted #e0c080;
-	border-bottom: thin dotted #e0c080;
-	color: #333333;
-}
-
-/**********************************************************************
- *
- * Alignement, main tables
- *
- **********************************************************************/
-
-.realbody { 
-	border-spacing: 0px;
-	border: none;
-}
-
-.main {
-  	background-color: #ffffff; 
-/* 	border-bottom: thin solid #333333;  */
-/* 	border-top: thin solid #333333;   */
-/* 	border-right: thin solid #333333; */
-	padding-top: 10px;
-	padding-left: 1%;
-	padding-right: 0;
- 	margin-left: 160px;
- 	margin-right: 0;
-        width: auto;
-}
-
-
-/* Our users and I don't like fixed feedback: 
-	yeupou, 2006-09-20:
-	But we wont deliver a theme upstream that breaks savane behavior
-	It is now possible to configure savane to have a non-fixed menu.
-	However, if a site-specific CSS still want to have a non-standard
-	behavior, I think this CSS should no longer be distributed along
-	with Savane (which is not really an issue).
-	For instance, we can rename this theme OldSavannah and you'll be
-	free to have another brand new Savannah theme tuned as you want
-	on your site. 
-
-	
-.feedback {
-	position: relative;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-}
-.feedbackerror {
-	position: relative;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-}
-.feedbackerrorandsuccess {
-	position: relative;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-}
-.feedbackback {
-	position: relative;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-}
-*/
-
-
-
-/**********************************************************************
- *
  * Menus
  *
  **********************************************************************/
@@ -1064,6 +737,7 @@ li.topmenuitemsubmenu:hover {
   version (RHEL) */
 .tabselect { text-decoration: underline; color: #000000; /* font-weight: bold; */ }
 .tabselect:hover { text-decoration: underline; /* font-weight: bold; */ }
+
 
 /**********************************************************************
  *
