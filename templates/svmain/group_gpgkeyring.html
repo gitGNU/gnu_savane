@@ -15,11 +15,10 @@
 {% block content %}
 
 {% if gpgkeyring %}
-  {% comment %}
   <p>{% trans "Below is the content of this project's keyring. These are the successfully registered keys of project members." %}</p>
-  <p>{{ gpgkeyring }}</p>
-  {% endcomment %}
+  <pre>$ <strong>gpg --list-keys</strong><br />{{ gpgkeyring }}</pre>
   {% url savane.svmain.group_gpgkeyring_download group.name as url_download %}
+  <p>
   {% blocktrans with '<a href="'|add:url_download|add:'">'|safe as begin_link and '</a>' as end_link and '<em>gpg --import &lt;file&gt;</em>' as command %}You can {{begin_link}}download the keyring{{end_link}} and import it with the command {{command}}{% endblocktrans %}
   </p>
 {% else %}

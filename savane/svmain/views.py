@@ -46,19 +46,56 @@ def group_join(request, slug):
 
 @render_to('svmain/group_gpgkeyring.html')
 def group_gpgkeyring(request, slug, extra_context={}):
+    """
+    Generate temporary keyring and display it
+    """
     group = get_object_or_404(auth_models.Group, name=slug)
+
+    import os, sys, tempfile, shutil, glob
+    from pyme import core, constants
+    # Don't be fooled by the library-like look of pyme - internaly it
+    # just invokes command-line 'gpg'.  There's no "gpg library".
+    tdir = tempfile.mkdtemp()
+    core.set_engine_info(constants.PROTOCOL_OpenPGP, None, tdir)
+    c = core.Context()
+
+    for user in group.user_set.all():
+        status = c.op_import(core.Data(str(user.svuserinfo.gpg_key)))
+        result = c.op_import_result()
+
+    # Page display:
+    # gpg --homedir /tmp/t --batch --quiet --no-tty --no-options \
+    #   --no-default-keyring --list-keys  --display-charset=utf-8 \
+    #   --keyring `pwd`/out
+    import subprocess
+    args = ['gpg', '--homedir', tdir,
+            '--batch', '--quiet', '--no-tty', '--no-options',
+            '--no-default-keyring', '--list-keys', '--display-charset=utf-8']
+    out_err = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+    out = out_err[0]
+    # Remove filename (first 2 lines):
+    gpgkeyring = "\n".join(out.split("\n")[2:])
+
+    shutil.rmtree(tdir)
+
+
     context = {
-        'gpgkeyring': True,  # TODO
+        'gpgkeyring': gpgkeyring,
         'group' : group,
         }
     context.update(extra_context)
     return context
 
 def group_gpgkeyring_download(request, slug):
+    """
+    Generate a GPG binary keyring
+    """
     group = get_object_or_404(auth_models.Group, name=slug)
 
     import os, sys, tempfile, shutil, glob
     from pyme import core, constants
+    # Don't be fooled by the library-like look of pyme - internaly it
+    # just invokes command-line 'gpg'.  There's no "gpg library".
     tdir = tempfile.mkdtemp()
     core.set_engine_info(constants.PROTOCOL_OpenPGP, None, tdir)
     c = core.Context()
@@ -80,9 +117,6 @@ def group_gpgkeyring_download(request, slug):
     response.write(keyring_txt)
 
     shutil.rmtree(tdir)
-
-    # Page display:
-    # gpg --homedir /tmp/t --batch --quiet --no-tty --no-options --no-default-keyring --list-keys  --display-charset=utf-8 --keyring `pwd`/out
 
     return response
 
