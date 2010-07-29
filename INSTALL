@@ -8,15 +8,6 @@
 - Modify if necessary, e.g.: DATABASES = {...}
 
 
-* Directory Description
-
-- 'savane/' directory contains all the python(django) code.
-
-- 'static_media/' all the css and images
-
-- 'templates/' all the templates that are necessary to run savane
-
-
 * Dependencies as Debian packages
 
 - Django >= 1.2 (+ YAML support)

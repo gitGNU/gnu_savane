@@ -1,3 +1,13 @@
+Directory layout
+================
+
+* 'savane/' directory contains all the python(django) code.
+
+* 'static_media/' all the css and images
+
+* 'templates/' all the templates that are necessary to run savane
+
+
 Debugging
 =========
 
@@ -24,3 +34,16 @@ before pushing, as a rule of the thumb, and rebase as necessary.
 More in-depth explanation with examples (though the author works on a
 fork, not on the project master branch):
 - http://www.gitready.com/advanced/2009/02/11/pull-with-rebase.html
+
+
+Testing
+=======
+
+You need to create a test_savane database:
+
+  mysql -e "CREATE DATABASE test_savane DEFAULT CHARACTER SET utf8;"
+  mysql -e "GRANT ALL PRIVILEGES ON test_savane.* TO 'savane' IDENTIFIED BY 'yourpass';"
+
+Run your tests with::
+
+  ./manage.py test svmain my
