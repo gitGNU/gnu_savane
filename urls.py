@@ -22,15 +22,13 @@ from django.conf import settings
 
 urlpatterns = patterns('',)
 
-# Home/presentation pages
+# Savane
 urlpatterns += patterns('',
-  (r'', include('savane.svmain.urls')),
+  (r'', include('savane.urls', namespace='savane')),
 )
 
-# User account
+# Generic login/logout/change_pass/etc.
 urlpatterns += patterns('',
-  (r'^my/', include('savane.my.urls')),
-  # Generic login/logout/change_pass/etc.
   (r'^accounts/logout/$', 'django.contrib.auth.views.logout',
     {'next_page' : '/'}),  # redirect to '/' instead of login page
   # django-registration
@@ -51,7 +49,6 @@ urlpatterns += patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
 )
-
 
 # Static content
 if settings.DEBUG:

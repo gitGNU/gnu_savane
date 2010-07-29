@@ -10,7 +10,7 @@
     <li>{{ type.grouper }}
       <ul>
         {% for object in type.list %}
-        <li><a href="{% url savane.svmain.group_detail object.group.name %}">{{ object.group.name }}</a> ({{ object.admin_flags }})</li>
+        <li><a href="{% url savane:svmain:group_detail object.group.name %}">{{ object.group.name }}</a> ({{ object.admin_flags }})</li>
         {% endfor %}
       </ul>
     </li>

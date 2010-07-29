@@ -30,7 +30,7 @@ from savane.utils import *
 from annoying.decorators import render_to
 
 @login_required()
-def sv_conf(request, extra_context={}):
+def conf(request, extra_context={}):
     form_mail = MailForm(initial={'email' : request.user.email})
     form_identity = IdentityForm(initial={'name' : request.user.first_name,
                                           'last_name' : request.user.last_name})
@@ -66,13 +66,13 @@ def sv_conf(request, extra_context={}):
                               context_instance=RequestContext(request))
 
 @login_required()
-def sv_resume_skill(request, extra_context={}):
+def resume_skills(request, extra_context={}):
     return render_to_response('my/resume_skill.html',
                               extra_context,
                               context_instance=RequestContext(request))
 
 @login_required()
-def sv_ssh_gpg(request, extra_context={}):
+def ssh_gpg(request, extra_context={}):
     info = request.user.svuserinfo
 
     error_msg = None
@@ -144,7 +144,7 @@ def sv_ssh_gpg(request, extra_context={}):
 
 @login_required()
 @render_to('svmain/generic_confirm.html', mimetype=None)
-def sv_ssh_delete(request):
+def ssh_delete(request):
     if request.method == 'POST':
         try:
             ssh_key = request.user.sshkey_set.get(pk=request.POST.get('key_pk', 0))

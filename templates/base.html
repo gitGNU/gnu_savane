@@ -14,10 +14,10 @@
     <div class="realbody">
       <ul class="menu">
         <!-- sitemenu -->
-        <li><a href="/"><img src="{{STATIC_MEDIA_URL}}savane/images/floating.png" alt="{% trans "Back to homepage" %}" border="0" width="118" height="100" /></a></li>
+        <li><a href="{% url savane:svmain:homepage %}"><img src="{{STATIC_MEDIA_URL}}savane/images/floating.png" alt="{% trans "Back to homepage" %}" border="0" width="118" height="100" /></a></li>
         {% if user.is_authenticated %}
           <li class="menutitle">{% blocktrans with user.username as username %}Connected as {{username}}{% endblocktrans %}</li>
-          <li class="menuitem"><a href="{% url savane.my.index %}">{% trans "My account" %}</a></li>
+          <li class="menuitem"><a href="{% url savane:my:index %}">{% trans "My account" %}</a></li>
           <li class="menuitem"><a href="{% url django.contrib.auth.views.logout %}">{% trans "Logout" %}</a></li>
         {% else %}
           <li class="menutitle">{% trans "Login status" %}</li>
@@ -27,11 +27,11 @@
         {% endif %}
 
 	<li class="menutitle">{% trans "Search" %}</li>
-        <li class="menuitem"><a href="{% url savane.svmain.user_list %}">{% trans "Users" %}</a></li>
-        <li class="menuitem"><a href="{% url savane.svmain.group_list %}">{% trans "Projects" %}</a></li>
+        <li class="menuitem"><a href="{% url savane:svmain:user_list %}">{% trans "Users" %}</a></li>
+        <li class="menuitem"><a href="{% url savane:svmain:group_list %}">{% trans "Projects" %}</a></li>
 
 	<li class="menutitle">{% trans "Site help" %}</li>
-        <li class="menuitem"><a href="{% url contact %}">{% trans "Contact us" %}</a></li>
+        <li class="menuitem"><a href="{% url savane:svmain:contact %}">{% trans "Contact us" %}</a></li>
         <!-- /sitemenu -->
       </ul>
 

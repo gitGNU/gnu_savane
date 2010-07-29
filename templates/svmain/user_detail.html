@@ -11,7 +11,7 @@ Real name: {{object.first_name}} {{object.last_name}}</p>
 <ul>
   {% for group in object.groups.all %}
   <li>
-    <a href="{% url savane.svmain.group_detail group.name %}">{{ group.name }}</a>
+    <a href="{% url savane:svmain:group_detail group.name %}">{{ group.name }}</a>
   </li>
   {% endfor %}
   </ul>
@@ -25,7 +25,7 @@ Real name: {{object.first_name}} {{object.last_name}}</p>
 <ul>
   {% for membership in object.membership_set.all %}
   <li>
-    <a href="{% url savane.svmain.group_detail membership.group.name %}">{{ membership.group.name }}</a> - with flags: {{ membership.admin_flags}}
+    <a href="{% url savane:svmain:group_detail membership.group.name %}">{{ membership.group.name }}</a> - with flags: {{ membership.admin_flags}}
   </li>
   {% endfor %}
   </ul>

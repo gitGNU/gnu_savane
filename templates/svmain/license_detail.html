@@ -12,10 +12,10 @@ URL: <a href="{{object.url}}">{{object.url}}</a><br />
 {{ object.svgroupinfo_set.count }} project(s) use this license<br />
 
 {% for name in object.get_group_names %}
-<a href="{% url savane.svmain.group_detail name %}">{{name}}</a>{% if forloop.last %}{%else%},{% endif %}
+<a href="{% url savane:svmain:group_detail name %}">{{name}}</a>{% if forloop.last %}{%else%},{% endif %}
 {% endfor %}
 
-<p><a href="{% url savane.svmain.license_list %}">Go to license list</a></p>
+<p><a href="{% url savane:svmain:license_list %}">Go to license list</a></p>
 
 {% endblock %}
 

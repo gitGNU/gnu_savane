@@ -15,13 +15,13 @@
     <div class="boxitem smaller">{% trans "Project admins:" %}</div>
     {% for membership in group.svgroupinfo.get_admin_memberships %}
     <div class="{% cycle 'boxitemalt' 'boxitem' %} smaller">&nbsp;
-	- <a href="{% url savane.svmain.user_detail membership.user.username %}">{{ membership.user.svuserinfo.get_full_name_display }}</a></div>
+	- <a href="{% url savane:svmain:user_detail membership.user.username %}">{{ membership.user.svuserinfo.get_full_name_display }}</a></div>
     {% endfor %}
     {% else %}
     <div class="boxitem smaller">{% trans "No members!" %}</div>
     {% endif %}
     <div class="boxitem smaller">{% blocktrans count group.user_set.count as count %}{{count}} active member{% plural %}{{count}} active members{% endblocktrans %}</div>
-    <div class="boxitemalt smaller">[<a href="{% url savane.svmain.group_memberlist group.name %}">{% trans "View members" %}</a>]</div>
+    <div class="boxitemalt smaller">[<a href="{% url savane:svmain:group_memberlist group.name %}">{% trans "View members" %}</a>]</div>
   </div>
   <div class="box">
     <div class="boxtitle">{% trans "Group identification" %}</div>

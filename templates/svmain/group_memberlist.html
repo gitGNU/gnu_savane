@@ -29,13 +29,13 @@
       src="{{STATIC_MEDIA_URL}}savane/images/common/roles1/project-member.orig.png" />
     {% endifequal %}
   </td>
-  <td><a href="{% url savane.svmain.user_detail membership.user.username %}">{{ membership.user.svuserinfo.get_full_name_display }}</a></td>
+  <td><a href="{% url savane:svmain:user_detail membership.user.username %}">{{ membership.user.svuserinfo.get_full_name_display }}</a></td>
   <td>TODO</td>
 {% endfor %}
 </table>
 
 <p>
-{% url savane.svmain.group_gpgkeyring group.name as url_gpgkeyring %}
+{% url savane:svmain:group_gpgkeyring group.name as url_gpgkeyring %}
 {% blocktrans with '<a href="'|add:url_gpgkeyring|add:'">'|safe as begin_link and '</a>' as end_link %}You may also be interested in the {{begin_link}}GPG Keyring of this project{{end_link}}{% endblocktrans %}
 </p>
 

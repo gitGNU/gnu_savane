@@ -5,13 +5,13 @@
   <p>Configure</p>
 
   <p>
-    <a href="{% url savane.my.views.sv_conf %}">Contact info</a><br />
-    <a href="{% url savane.my.views.sv_ssh_gpg %}">SSH &amp; GPG</a><br />
-    <a href="{% url savane.my.views.sv_resume_skill %}">My resume &amp; skills</a><br />
-    <a href="{% url savane.my.group_list %}">My groups</a><br />
-    <a href="{% url savane.my.membership_list %}">My memberships</a><br />
+    <a href="{% url savane:my:conf %}">Contact info</a><br />
+    <a href="{% url savane:my:ssh_gpg %}">SSH &amp; GPG</a><br />
+    <a href="{% url savane:my:resume_skills %}">My resume &amp; skills</a><br />
+    <a href="{% url savane:my:group_list %}">My groups</a><br />
+    <a href="{% url savane:my:membership_list %}">My memberships</a><br />
     <a href="{% url django.contrib.auth.views.password_change %}">Change my password</a><br />
-    <a href="{% url savane.my.language %}">Set language</a> ({{LANGUAGE_CODE}})<br />
+    <a href="{% url savane:my:i18n %}">Set language</a> ({{LANGUAGE_CODE}})<br />
   </p>
 </div>
 
@@ -19,7 +19,7 @@
   <p>Public information</p>
 
   <p>
-    <a href="{% url savane.svmain.user_detail request.user.username %}">My public page</a><br />
+    <a href="{% url savane:svmain:user_detail request.user.username %}">My public page</a><br />
   </p>
 </div>
 

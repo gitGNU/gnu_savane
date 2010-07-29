@@ -40,19 +40,19 @@ def svtopmenu(context, menu_name):
 
     if menu_name == 'group':
         entry_home = { 'text' : 'Home',
-                   'href' : reverse('savane.svmain.group_detail', args=[group.name]),
+                   'href' : reverse('savane:svmain:group_detail', args=[group.name]),
                    'title': "Project Main Page at %s" % 'this website'}
         entry_home['children'] = []
-        entry_home['children'].append({'text' : _("Main"), 'href' : reverse('savane.svmain.group_detail', args=[group.name]) })
-        entry_home['children'].append({'text' : _("View Members"), 'href' : reverse('savane.svmain.group_memberlist', args=[group.name]) })
+        entry_home['children'].append({'text' : _("Main"), 'href' : reverse('savane:svmain:group_detail', args=[group.name]) })
+        entry_home['children'].append({'text' : _("View Members"), 'href' : reverse('savane:svmain:group_memberlist', args=[group.name]) })
         if (svmain_models.Membership.is_admin(context['user'], group)):
             entry_home['children'].append({'separator' : True })
             entry_home['children'].append({'text' : _("Administer:"), 'strong': True,
-                                           'href' : reverse('savane.svmain.group_admin', args=[group.name]) })
+                                           'href' : reverse('savane:svmain:group_admin', args=[group.name]) })
             entry_home['children'].append({'text' : _("Edit Public Info"),
-                                           'href' : reverse('savane.svmain.group_admin_info', args=[group.name]) })
+                                           'href' : reverse('savane:svmain:group_admin_info', args=[group.name]) })
             entry_home['children'].append({'text' : _("Manage Members"),
-                                           'href' : reverse('savane.svmain.group_admin_members', args=[group.name]) })
+                                           'href' : reverse('savane:svmain:group_admin_members', args=[group.name]) })
 
         entry_test = {
                     'text' : 2, 'href' : 2, 'title': 2, 'children':

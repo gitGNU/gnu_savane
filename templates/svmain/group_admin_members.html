@@ -22,7 +22,7 @@
 <tr>
   <td>
     {{ membership.user.get_full_name }}
-    &lt;<a href="{% url savane.svmain.user_detail membership.user.username %}">{{ membership.user.username }}</a>&gt;
+    &lt;<a href="{% url savane:svmain:user_detail membership.user.username %}">{{ membership.user.username }}</a>&gt;
   </td>
   <td>
     {% ifequal request.user membership.user %}

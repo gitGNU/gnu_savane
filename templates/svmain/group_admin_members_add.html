@@ -27,7 +27,7 @@
     <tr>
       <td>{{ object.username }}</td>
       <td>{{ object.get_full_name }}</td>
-      <td><a href="{% url savane.svmain.user_detail object.username %}">{% trans 'view' %}</a></td>
+      <td><a href="{% url savane:svmain:user_detail object.username %}">{% trans 'view' %}</a></td>
       <td>
 	<form action="" method="post">{% csrf_token %}
 	  <input type="hidden" name="user_id" value="{{object.pk}}" />

@@ -6,9 +6,9 @@ Cf. http://docs.djangoproject.com/en/dev/topics/i18n/internationalization/#the-s
 
 {% block content %}
 
-<form action="{% url django.views.i18n.set_language %}" method="post">
+<form action="{% url savane:my:django.views.i18n.set_language %}" method="post">
 {% csrf_token %}
-<input name="next" type="hidden" value="{% url savane.my.index %}" />
+<input name="next" type="hidden" value="{% url savane:my:index %}" />
 <select name="language">
 {% for lang in LANGUAGES %}
 <option value="{{ lang.0 }}">{{ lang.1 }}</option>
