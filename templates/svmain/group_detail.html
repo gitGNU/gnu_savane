@@ -2,6 +2,10 @@
 {% load i18n %}
 {% load svtopmenu %}
 
+{% block title %}
+{{group.svgroupinfo.get_full_name_display}} - {% trans "Summary" %}
+{% endblock %}
+
 {% block topmenu %}
   {% svtopmenu "group" %}
 {% endblock %}

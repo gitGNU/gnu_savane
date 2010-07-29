@@ -24,3 +24,20 @@ class GroupInfoForm(forms.ModelForm):
     class Meta:
         model = svmain_models.SvGroupInfo
         fields = ('full_name', 'short_description', 'long_description', 'devel_status',)
+
+class GroupFeaturesForm(forms.ModelForm):
+    class Meta:
+        model = svmain_models.SvGroupInfo
+        fields = ('use_homepage', 'use_mail', 'use_news', 'use_download', 
+                  'use_extralink_documentation',
+                  'use_cvs', 'use_arch', 'use_svn', 'use_git', 'use_hg', 'use_bzr',
+                  'use_bugs', 'use_support', 'use_patch', 'use_task',
+                  
+                  'url_homepage', 'url_mail', 'url_download', 'url_extralink_documentation',
+                  'url_cvs', 'url_cvs_viewcvs', 'url_cvs_viewcvs_homepage',
+                  'url_arch', 'url_arch_viewcvs',
+                  'url_svn', 'url_svn_viewcvs',
+                  'url_git', 'url_git_viewcvs',
+                  'url_hg', 'url_hg_viewcvs',
+                  'url_bzr', 'url_bzr_viewcvs',
+                  'url_bugs', 'url_support', 'url_patch', 'url_task')

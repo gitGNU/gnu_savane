@@ -3,7 +3,7 @@
 {% load svtopmenu %}
 
 {% block title %}
-{{group.svgroupinfo.get_full_name_display}} - {% trans "Administration summary" %}
+{{group.svgroupinfo.get_full_name_display}} - {% trans "Administration summary" %}{% trans ": " %}{{title}}
 {% endblock %}
 
 {% block icon %}preferences{% endblock %}
@@ -14,9 +14,13 @@
 
 {% block content %}
 
-<ul>
-<li><a href="members/">Manage members</a></li>
-</ul>
+<form action="." method="POST">{% csrf_token %}
+<input type="hidden" name="next" value="{{next}}" />
+<table>
+{{ form.as_table }}
+</table>
+<p><input type="submit" value="{% trans "Submit" %}" /></p>
+</form>
 
 {% endblock %}
 

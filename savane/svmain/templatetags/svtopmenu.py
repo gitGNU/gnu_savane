@@ -43,15 +43,21 @@ def svtopmenu(context, menu_name):
                    'href' : reverse('savane:svmain:group_detail', args=[group.name]),
                    'title': "Project Main Page at %s" % 'this website'}
         entry_home['children'] = []
-        entry_home['children'].append({'text' : _("Main"), 'href' : reverse('savane:svmain:group_detail', args=[group.name]) })
-        entry_home['children'].append({'text' : _("View Members"), 'href' : reverse('savane:svmain:group_memberlist', args=[group.name]) })
+        entry_home['children'].append({'text' : _("Main"),
+                                       'href' : reverse('savane:svmain:group_detail', args=[group.name]) })
+        entry_home['children'].append({'text' : _("View members"),
+                                       'href' : reverse('savane:svmain:group_memberlist', args=[group.name]) })
+        entry_home['children'].append({'text' : _("GPG keyring"),
+                                       'href' : reverse('savane:svmain:group_gpgkeyring', args=[group.name]) })
         if (svmain_models.Membership.is_admin(context['user'], group)):
             entry_home['children'].append({'separator' : True })
             entry_home['children'].append({'text' : _("Administer:"), 'strong': True,
                                            'href' : reverse('savane:svmain:group_admin', args=[group.name]) })
-            entry_home['children'].append({'text' : _("Edit Public Info"),
+            entry_home['children'].append({'text' : _("Edit public info"),
                                            'href' : reverse('savane:svmain:group_admin_info', args=[group.name]) })
-            entry_home['children'].append({'text' : _("Manage Members"),
+            entry_home['children'].append({'text' : _("Select features"),
+                                           'href' : reverse('savane:svmain:group_admin_features', args=[group.name]) })
+            entry_home['children'].append({'text' : _("Manage members"),
                                            'href' : reverse('savane:svmain:group_admin_members', args=[group.name]) })
 
         entry_test = {

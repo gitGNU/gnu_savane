@@ -156,6 +156,33 @@ def group_admin_info(request, slug, extra_context={}, post_save_redirect=None):
     context.update(extra_context)
     return context
 
+@render_to("svmain/group_admin_features.html", mimetype=None)
+def group_admin_features(request, slug, extra_context={}):
+    group = get_object_or_404(auth_models.Group, name=slug)
+    object = group.svgroupinfo
+
+    form_class = svmain_forms.GroupFeaturesForm
+
+    if request.method == 'POST': # If the form has been submitted...
+        form = form_class(request.POST, instance=object) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            # Process the data
+            object = form.save()
+            messages.success(request, u"%s saved." % capfirst(object._meta.verbose_name))
+            if post_save_redirect is None:
+                post_save_redirect = object.get_absolute_url()
+            return HttpResponseRedirect(post_save_redirect) # Redirect after POST
+    else:
+        form = form_class(instance=object) # An unbound form
+
+    context = {
+        'group' : group,
+        'form' : form,
+        }
+    context.update(extra_context)
+    return context
+    
+
 @render_to('svmain/group_admin_members.html', mimetype=None)
 def group_admin_members(request, slug, extra_context={}):
     group = get_object_or_404(auth_models.Group, name=slug)
