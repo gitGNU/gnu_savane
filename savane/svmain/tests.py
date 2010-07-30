@@ -20,6 +20,7 @@ from django.core import mail
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 import django.contrib.auth.models as auth_models
+import savane.svmain.models as svmain_models
 import re
 
 class SimpleTest(TestCase):
@@ -49,3 +50,28 @@ class SimpleTest(TestCase):
         response = self.client.get(reverse('registration_activate', args=[hash]))
         self.assertRedirects(response, reverse('registration_activation_complete'))
         self.assertTrue(self.client.login(username='test', password='test'))
+
+    def test_020_group_url(self):
+        """
+        Create a new group and check the page menu
+        """
+        conf = svmain_models.GroupConfiguration(name='testconf',
+                                                url_homepage='http://www.test.tld/homepage/%PROJECT/',
+                                                url_download='http://www.test.tld/download/%PROJECT/')
+        conf.save()
+        
+        group = auth_models.Group(name='test')
+        group.save()
+        # Work-around AutoOneToOneField bug
+        group.svgroupinfo
+        group.svgroupinfo.type = conf
+        group.svgroupinfo.save()
+
+        response = self.client.get(reverse('savane:svmain:group_detail', args=[group.name]))
+        self.assertContains(response, 'http://www.test.tld/homepage/test/')
+        self.assertContains(response, 'http://www.test.tld/homepage/test/')
+
+        group.svgroupinfo.url_homepage = 'http://www.mysite.tld/%PROJECT/'
+        group.svgroupinfo.save()
+        response = self.client.get(reverse('savane:svmain:group_detail', args=[group.name]))
+        self.assertContains(response, 'http://www.mysite.tld/%PROJECT/')

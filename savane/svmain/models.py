@@ -58,11 +58,25 @@ The current solution is to use AutoOneToOneField: OneToOneField is
 similar to extending a model class (at the SQL tables level), and
 AutoOneToOneField is a trick from django-annoying to automatically
 create the extended data on first access.
+
+However this means all SvGroupInfo fields have a default value or can
+be NULL, which means the rest of the code will have to handle NULL
+cases :/
+
+There are also reports of issues when used with the South framework.
+
+Also this code:
+  group.svgroupinfo.type = ...
+  group.svgroupinfo.save()
+Currently fails: type remains NULL, probably because the result of the
+first invocation of 'group.svgroupinfo' return a different result
+thant the second one.  We may need to do things differently...
 """
 
 from django.db import models
 from django.contrib.auth import models as auth_models
 from django.utils.translation import ugettext, ugettext_lazy as _
+import datetime
 
 
 class SshKey(models.Model):
@@ -374,7 +388,8 @@ class SvGroupInfo(models.Model):
 
     group = AutoOneToOneField(auth_models.Group, primary_key=True)
 
-    type = models.ForeignKey(GroupConfiguration)
+    type = models.ForeignKey(GroupConfiguration,
+      null=True)  # NULL when object initially created by AutoOneToOneField
     full_name = models.CharField(max_length=255, blank=True,
       help_text="Full project name (not Unix system name)")
     is_public = models.BooleanField(default=False)
@@ -393,14 +408,15 @@ class SvGroupInfo(models.Model):
     license = models.ForeignKey(License, blank=True, null=True)
     license_other = models.TextField(blank=True)
 
-    devel_status = models.ForeignKey(DevelopmentStatus)
+    devel_status = models.ForeignKey(DevelopmentStatus,
+      null=True)  # NULL when object initially created by AutoOneToOneField
 
     # Registration-specific
     register_purpose = models.TextField(blank=True)
     required_software = models.TextField(blank=True)
     other_comments = models.TextField(blank=True)
 
-    register_time = models.DateTimeField()
+    register_time = models.DateTimeField(default=datetime.datetime.now)
     #rand_hash text,
 
     registered_gpg_keys = models.TextField(blank=True)
@@ -501,6 +517,14 @@ class SvGroupInfo(models.Model):
     def get_active_memberships(self):
         return self.group.membership_set.exclude(admin_flags='P')
 
+    def get_url_homepage(self):
+        return (self.url_homepage
+                or self.type.url_homepage.replace('%PROJECT', self.group.name))
+
+    def get_url_download(self):
+        return (self.url_download
+                or self.type.url_download.replace('%PROJECT', self.group.name))
+
     @staticmethod
     def query_active_groups_raw(conn, fields):
         """
@@ -581,13 +605,15 @@ class Membership(models.Model):
     def is_member(user, group):
         return (user.is_superuser or
                 user.is_staff or
-                group.user_set.filter(pk=user.pk).count() > 0)
+                (not user.is_anonymous()
+                 and group.user_set.filter(pk=user.pk).count() > 0))
 
     @staticmethod
     def is_admin(user, group):
         return (user.is_superuser or
                 user.is_staff or
-                (Membership.is_member(user, group)
+                (not user.is_anonymous()
+                 and Membership.is_member(user, group)
                  and Membership.objects
                  .filter(user=user, group=group, admin_flags='A').count() > 0))
 

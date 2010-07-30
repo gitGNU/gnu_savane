@@ -3,6 +3,8 @@
   fields:
     name: "Official GNU software"
     description: "This project is part of the GNU Project."
+    url_homepage: "http://www.gnu.org/software/%PROJECT/"
+    url_download: "http://ftp.gnu.org/gnu/%PROJECT/"
 - model: auth.group
   pk: 1
   fields:

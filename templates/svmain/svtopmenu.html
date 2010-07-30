@@ -2,6 +2,7 @@
 {% for l1 in entries %}
   <li class="topmenuitemmainitem">
     <a class="tabs" href="{{l1.href}}" title="{{l1.title}}">{{ l1.text }}</a>
+    {% if l1.children %}
     <ul id="submenu{{forloop.counter}}" class="topmenuitemsubmenu">
     {% for l2 in l1.children %}
       {% if l2.separator %}
@@ -13,6 +14,7 @@
       {% endif %}
     {% endfor %}
     </ul>
+    {% endif %}
   </li>
 {% endfor %}
 </ul>

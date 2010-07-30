@@ -39,7 +39,7 @@ def svtopmenu(context, menu_name):
     group = context['group']
 
     if menu_name == 'group':
-        entry_home = { 'text' : 'Home',
+        entry_home = { 'text' : 'Main',
                    'href' : reverse('savane:svmain:group_detail', args=[group.name]),
                    'title': "Project Main Page at %s" % 'this website'}
         entry_home['children'] = []
@@ -60,15 +60,38 @@ def svtopmenu(context, menu_name):
             entry_home['children'].append({'text' : _("Manage members"),
                                            'href' : reverse('savane:svmain:group_admin_members', args=[group.name]) })
 
-        entry_test = {
-                    'text' : 2, 'href' : 2, 'title': 2, 'children':
-                    [
-                        {'text' : 2.1, 'href' : 2.1, 'title': 2.1 },
-                    ]
-                }
+        entry_homepage = {'text' : _("Homepage"),
+                          'href' : group.svgroupinfo.get_url_homepage(),
+                          'title': _("Browse project homepage (outside of Savane)")}
+
+        entry_download = {'text' : _("Download"),
+                          'href' : group.svgroupinfo.get_url_download(),
+                          'title': _("Download area: files released")}
+
+        entry_mailinglists = {'text' : _("Mailing lists") + " (TODO)",
+                              'href' : '',
+                              'title': _("List existing mailing lists")}
+        entry_mailinglists['children'] = []
+        entry_mailinglists['children'].append({'text' : _("Browse") + " (TODO)",
+                                                   'href' : '' })
+        if (svmain_models.Membership.is_admin(context['user'], group)):
+            entry_mailinglists['children'].append({'separator' : True })
+            entry_mailinglists['children'].append({'text' : _("Configure:") + " (TODO)", 'strong': True,
+                                                   'href' : '' })
+ 
+        entry_sourcecode = {'text' : _("Source code") + " (TODO)",
+                           'href' : '',
+                           'title': _("Source Code Management")}
+        entry_sourcecode['children'] = []
+        entry_sourcecode['children'].append({'text' : _("Use X") + " (TODO)",
+                                               'href' : '' })
+ 
 
         entries.append(entry_home)
-        entries.append(entry_test)
+        entries.append(entry_homepage)
+        entries.append(entry_download)
+        entries.append(entry_mailinglists)
+        entries.append(entry_sourcecode)
     elif menu_name == 'my':
         pass
 

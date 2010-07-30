@@ -157,7 +157,7 @@ def group_admin_info(request, slug, extra_context={}, post_save_redirect=None):
     return context
 
 @render_to("svmain/group_admin_features.html", mimetype=None)
-def group_admin_features(request, slug, extra_context={}):
+def group_admin_features(request, slug, extra_context={}, post_save_redirect=None):
     group = get_object_or_404(auth_models.Group, name=slug)
     object = group.svgroupinfo
 
