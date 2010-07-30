@@ -579,13 +579,17 @@ class Membership(models.Model):
 
     @staticmethod
     def is_member(user, group):
-        return group.user_set.filter(pk=user.pk).count() > 0
+        return (user.is_superuser or
+                user.is_staff or
+                group.user_set.filter(pk=user.pk).count() > 0)
 
     @staticmethod
     def is_admin(user, group):
-        return (Membership.is_member(user, group)
-                and Membership.objects
-                .filter(user=user, group=group, admin_flags='A').count() > 0)
+        return (user.is_superuser or
+                user.is_staff or
+                (Membership.is_member(user, group)
+                 and Membership.objects
+                 .filter(user=user, group=group, admin_flags='A').count() > 0))
 
     @staticmethod
     def query_active_memberships_raw(conn, fields):
