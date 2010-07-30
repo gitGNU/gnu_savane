@@ -326,21 +326,22 @@ class GroupConfiguration(models.Model):
     dir_download = models.CharField(max_length=255, default='/')
 
     # Default URLs
-    url_homepage             = models.CharField(max_length=255, default='http://')
-    url_cvs_viewcvs_homepage = models.CharField(max_length=255, default='http://')
-    url_cvs_viewcvs          = models.CharField(max_length=255, default='http://')
-    url_arch_viewcvs         = models.CharField(max_length=255, default='http://')
-    url_svn_viewcvs          = models.CharField(max_length=255, default='http://')
-    url_git_viewcvs          = models.CharField(max_length=255, default='http://')
-    url_hg_viewcvs           = models.CharField(max_length=255, default='http://')
-    url_bzr_viewcvs          = models.CharField(max_length=255, default='http://')
-    url_download             = models.CharField(max_length=255, default='http://')
-    url_mailing_list_listinfo         = models.CharField(max_length=255, default='http://')
-    url_mailing_list_subscribe        = models.CharField(max_length=255, default='http://')
-    url_mailing_list_unsubscribe      = models.CharField(max_length=255, default='http://')
-    url_mailing_list_archives         = models.CharField(max_length=255, default='http://')
-    url_mailing_list_archives_private = models.CharField(max_length=255, default='http://')
-    url_mailing_list_admin            = models.CharField(max_length=255, default='http://')
+    url_homepage             = models.CharField(max_length=255)
+    url_cvs_viewcvs_homepage = models.CharField(max_length=255)
+    url_cvs_viewcvs          = models.CharField(max_length=255)
+    url_arch_viewcvs         = models.CharField(max_length=255)
+    url_svn_viewcvs          = models.CharField(max_length=255)
+    url_git_viewcvs          = models.CharField(max_length=255)
+    url_hg_viewcvs           = models.CharField(max_length=255)
+    url_bzr_viewcvs          = models.CharField(max_length=255)
+    url_download             = models.CharField(max_length=255)
+    url_mailing_list_listinfo         = models.CharField(max_length=255)
+    url_mailing_list_archives         = models.CharField(max_length=255)
+    url_mailing_list_archives_private = models.CharField(max_length=255)
+    url_mailing_list_admin            = models.CharField(max_length=255)
+    # Old majordomo
+    #url_mailing_list_subscribe        = models.CharField(max_length=255)
+    #url_mailing_list_unsubscribe      = models.CharField(max_length=255)
     url_extralink_documentation = models.CharField(max_length=255, blank=True)
 
     # Deprecated
@@ -631,3 +632,30 @@ class Membership(models.Model):
 
     def __unicode__(self):
         return "[%s is a member of %s]" % (self.user.username, self.group.name)
+
+
+class MailingList(models.Model):
+    status_CHOICES = (
+        ('0', 'Deleted'),
+        ('1', 'To be created'),
+        ('2', 'To be reconfigured'),
+        ('5', 'Created'),
+        )
+    group = models.ForeignKey(auth_models.Group)
+    list_name = models.CharField(max_length=255)
+    is_public = models.BooleanField(default=True)
+    # password
+    # list_admin
+    status = models.CharField(max_length=1, choices=status_CHOICES, default='1')
+    description = models.CharField(max_length=255)
+
+    def get_address(self):
+        return (self.group.svgroupinfo.type.mailing_list_address.replace('%LIST', self.list_name))
+    def get_url_listinfo(self):
+        return (self.group.svgroupinfo.type.url_mailing_list_listinfo.replace('%LIST', self.list_name))
+    def get_url_archives(self):
+        return (self.group.svgroupinfo.type.url_mailing_list_archives.replace('%LIST', self.list_name))
+    def get_url_archives_private(self):
+        return (self.group.svgroupinfo.type.url_mailing_list_archives_private.replace('%LIST', self.list_name))
+    def get_url_admin(self):
+        return (self.group.svgroupinfo.type.url_mailing_list_admin.replace('%LIST', self.list_name))

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load svtopmenu %}
+
+{% block title %}
+{{group.svgroupinfo.get_full_name_display}} - {{title}}
+{% endblock %}
+
+{% block icon %}mail{% endblock %}
+
+{% block topmenu %}
+  {% svtopmenu "group" %}
+{% endblock %}
+
+{% block content %}
+
+{% if object_list %}
+  {% for object in object_list %}
+  <img src="{{STATIC_MEDIA_URL}}savane/images/common/contexts1/mail.orig.png" width=24 height=24 border="0" alt="" />
+  <a href="{{object.get_url_listinfo}}">{{object.list_name}}</a>
+  &nbsp;&nbsp;<em>{{object.description}}</em>
+  <p class="smaller">
+  {% if object.is_public %}
+  {% blocktrans with '<a href="'|add:object.get_url_archives|add:'">'|safe as begin_link and '</a>.' as end_link and object.list_name as list_name %}To see the collection of prior posting to the list, visit the {{begin_link}}{{list_name}} archives{{end_link}}{% endblocktrans %}
+  {% else %}
+  {% blocktrans with '<a href="'|add:object.get_url_archives_private|add:'">'|safe as begin_link and '</a>' as end_link and object.list_name as list_name %}To see the collection of prior posting to the list, visit the {{begin_link}}{{list_name}} archives{{end_link}} (authorization required).{% endblocktrans %}
+  {% endif %}
+  <br />
+  {% blocktrans with object.get_address|urlize as list_address %}To post a message to all the list members, write to {{list_address}}{% endblocktrans %}
+  <br />
+  {% blocktrans with '<a href="'|add:object.get_url_listinfo|add:'">'|safe as begin_link and '</a>.' as end_link and object.list_name as list_name %}You can (un)subscribe to the list by following instructions on the {{begin_link}}list information page{{end_link}}{% endblocktrans %}
+  <br />
+  {% blocktrans with '<a href="'|add:object.get_url_admin|add:'">'|safe as begin_link and '</a>' as end_link and object.list_name as list_name %}Project administrators can use the {{begin_link}}administrative interface{{end_link}} to manage the list.{% endblocktrans %}
+  </p>
+  {% endfor %}
+{% else %}
+  <h2>{% blocktrans with group.name as group_name %}No Lists found for {{group_name}}{% endblocktrans %}</h2>
+  <p>{% trans "Project administrators can add mailing lists using the admin interface." %}</p>
+{% endif %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

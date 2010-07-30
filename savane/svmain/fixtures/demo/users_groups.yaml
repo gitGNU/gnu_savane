@@ -5,6 +5,13 @@
     description: "This project is part of the GNU Project."
     url_homepage: "http://www.gnu.org/software/%PROJECT/"
     url_download: "http://ftp.gnu.org/gnu/%PROJECT/"
+    mailing_list_address: "%LIST@gnu.org"
+    mailing_list_virtual_host: lists.gnu.org
+    mailing_list_format: "%PROJECT-%NAME,%PROJECT,bug-%PROJECT,help-%PROJECT,info-%PROJECT"
+    url_mailing_list_listinfo: "http://lists.gnu.org/mailman/listinfo/%LIST"
+    url_mailing_list_archives: "http://lists.gnu.org/archive/html/%LIST/"
+    url_mailing_list_archives_private: "http://lists.gnu.org/mailman/private/%LIST/"
+    url_mailing_list_admin: "http://lists.gnu.org/mailman/admin/%LIST"
 - model: auth.group
   pk: 1
   fields:

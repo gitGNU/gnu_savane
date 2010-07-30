@@ -64,8 +64,7 @@ class GroupConfigurationAdmin(admin.ModelAdmin):
         (_('Mailing List'),
          {'fields': ('can_use_mailing_list', 'mailing_list_virtual_host',
                      'mailing_list_address', 'mailing_list_format',
-                     'url_mailing_list_listinfo', 'url_mailing_list_subscribe',
-                     'url_mailing_list_unsubscribe', 'url_mailing_list_archives',
+                     'url_mailing_list_listinfo', 'url_mailing_list_archives',
                      'url_mailing_list_archives_private', 'url_mailing_list_admin')}),
         # TODO: finish
         (_('News Manager'), {'fields': ('can_use_news',)}),
@@ -89,8 +88,15 @@ class SvGroupInfoAdmin(admin.ModelAdmin):
     list_display  = ('pk', 'full_name', 'type', 'license',)
     list_filter = ('type', 'license', 'devel_status',)
 
+class MailingListAdmin(admin.ModelAdmin):
+    search_fields = ('list_name',)
+    ordering = ('list_name',)
+    list_display  = ('pk', 'list_name', 'status', 'is_public', 'description',)
+    list_filter = ('status', 'is_public', )
+
 admin.site.register(svmain_models.SvUserInfo, SvUserInfoAdmin)
 admin.site.register(svmain_models.SvGroupInfo, SvGroupInfoAdmin)
 admin.site.register(svmain_models.GroupConfiguration, GroupConfigurationAdmin)
 admin.site.register(svmain_models.License, LicenseAdmin)
 admin.site.register(svmain_models.DevelopmentStatus, DevelopmentStatusAdmin)
+admin.site.register(svmain_models.MailingList, MailingListAdmin)

@@ -51,9 +51,9 @@ class SimpleTest(TestCase):
         self.assertRedirects(response, reverse('registration_activation_complete'))
         self.assertTrue(self.client.login(username='test', password='test'))
 
-    def test_020_group_url(self):
+    def test_020_group(self):
         """
-        Create a new group and check the page menu
+        Create a new group and perform multiple checks
         """
         conf = svmain_models.GroupConfiguration(name='testconf',
                                                 url_homepage='http://www.test.tld/homepage/%PROJECT/',
@@ -67,6 +67,7 @@ class SimpleTest(TestCase):
         group.svgroupinfo.type = conf
         group.svgroupinfo.save()
 
+        # Check project menu
         response = self.client.get(reverse('savane:svmain:group_detail', args=[group.name]))
         self.assertContains(response, 'http://www.test.tld/homepage/test/')
         self.assertContains(response, 'http://www.test.tld/homepage/test/')
@@ -75,3 +76,8 @@ class SimpleTest(TestCase):
         group.svgroupinfo.save()
         response = self.client.get(reverse('savane:svmain:group_detail', args=[group.name]))
         self.assertContains(response, 'http://www.mysite.tld/%PROJECT/')
+
+        # Check that the list of mailing lists is displayed correctly
+        svmain_models.MailingList(group=group, list_name='test-commits').save()
+        response = self.client.get(reverse('savane:svmain:group_mailinglist', args=[group.name]))
+        self.assertContains(response, 'test-commits')

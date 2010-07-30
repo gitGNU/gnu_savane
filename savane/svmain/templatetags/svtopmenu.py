@@ -68,15 +68,15 @@ def svtopmenu(context, menu_name):
                           'href' : group.svgroupinfo.get_url_download(),
                           'title': _("Download area: files released")}
 
-        entry_mailinglists = {'text' : _("Mailing lists") + " (TODO)",
-                              'href' : '',
+        entry_mailinglist = {'text' : _("Browse"),
+                              'href' : reverse('savane:svmain:group_mailinglist', args=[group.name]),
                               'title': _("List existing mailing lists")}
-        entry_mailinglists['children'] = []
-        entry_mailinglists['children'].append({'text' : _("Browse") + " (TODO)",
-                                                   'href' : '' })
+        entry_mailinglist['children'] = []
+        entry_mailinglist['children'].append({'text' : _("Browse"),
+                                               'href' : reverse('savane:svmain:group_mailinglist', args=[group.name])})
         if (svmain_models.Membership.is_admin(context['user'], group)):
-            entry_mailinglists['children'].append({'separator' : True })
-            entry_mailinglists['children'].append({'text' : _("Configure:") + " (TODO)", 'strong': True,
+            entry_mailinglist['children'].append({'separator' : True })
+            entry_mailinglist['children'].append({'text' : _("Configure:") + " (TODO)", 'strong': True,
                                                    'href' : '' })
  
         entry_sourcecode = {'text' : _("Source code") + " (TODO)",
@@ -90,7 +90,7 @@ def svtopmenu(context, menu_name):
         entries.append(entry_home)
         entries.append(entry_homepage)
         entries.append(entry_download)
-        entries.append(entry_mailinglists)
+        entries.append(entry_mailinglist)
         entries.append(entry_sourcecode)
     elif menu_name == 'my':
         pass

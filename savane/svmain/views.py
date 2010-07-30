@@ -34,6 +34,10 @@ def group_redir(request, slug):
     g = get_object_or_404(auth_models.Group, name=slug)
     return HttpResponseRedirect(reverse('savane.svmain.group_detail', args=(slug,)))
 
+##
+# Main
+##
+
 def group_join(request, slug):
     g = get_object_or_404(auth_models.Group, name=slug)
     if svmain_models.Membership.objects.filter(user=request.user, group=g).count():
@@ -264,3 +268,20 @@ def group_admin_members_add(request, slug, extra_context={}):
                                model_admin=UserAdmin,
                                extra_context=context,
                                template_name='svmain/group_admin_members_add.html')
+
+##
+# Mailing lists
+##
+
+def group_mailinglist(request, slug, extra_context={}):
+    group = get_object_or_404(auth_models.Group, name=slug)
+
+    from django.views.generic.list_detail import object_list
+    context = {}
+    context.update(extra_context)
+    context.update({'group' : group})
+    queryset = svmain_models.MailingList.objects.filter(group=group).exclude(status=0)
+    return object_list(request,
+                       queryset=queryset,
+                       extra_context=context,
+                       template_name='svmain/group_mailinglist.html')

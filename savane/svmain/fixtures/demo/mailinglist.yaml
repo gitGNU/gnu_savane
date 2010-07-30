@@ -1,0 +1,7 @@
+- model: svmain.mailinglist
+  pk: 1
+  fields:
+    group: 1
+    list_name: bug-gnu-emacs
+    description: "Bug reports and feature requests"
+    status: 5
