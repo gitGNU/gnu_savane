@@ -51,6 +51,40 @@ class SimpleTest(TestCase):
                                      'gpg_key': '', 'update_identity': 'Update', })
         self.assertRedirects(response, reverse('savane:my:contact'), msg_prefix="Cannot update identity")
 
+        # Change e-mail
+        response = self.client.post(reverse('savane:my:contact'),
+                                    {'email': 'new@test.tld', 'update_mail': 'Update', })
+        self.assertRedirects(response, reverse('savane:my:contact'), msg_prefix="Cannot update email")
+        self.assertEqual(len(mail.outbox), 2)
+        m = re.search(r'/([a-f0-9]{16})/', mail.outbox[0].body)
+        self.assertTrue(m != None)
+        hash = m.groups()[0]
+        mail.outbox = []
+        
+        response = self.client.get(reverse('savane:my:email_confirm', args=[hash]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.post(reverse('savane:my:email_confirm', args=[hash]))
+        self.assertRedirects(response, reverse('savane:my:contact'))
+        user = auth_models.User.objects.get(username='test')
+        self.assertEqual(user.email, 'new@test.tld')
+
+        # Cancel e-mail change
+        response = self.client.post(reverse('savane:my:contact'),
+                                    {'email': 'new2@test.tld', 'update_mail': 'Update', })
+        self.assertRedirects(response, reverse('savane:my:contact'), msg_prefix="Cannot update email")
+        self.assertEqual(len(mail.outbox), 2)
+        m = re.search(r'/([a-f0-9]{16})/', mail.outbox[1].body)
+        self.assertTrue(m != None)
+        hash = m.groups()[0]
+        mail.outbox = []
+
+        response = self.client.get(reverse('savane:my:email_cancel', args=[hash]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.post(reverse('savane:my:email_cancel', args=[hash]))
+        self.assertRedirects(response, reverse('savane:my:contact'))
+        user = auth_models.User.objects.get(username='test')
+        self.assertEqual(user.email, 'new@test.tld')
+
         # SSH keys
         # - string
         response = self.client.get(reverse('savane:my:ssh'))
