@@ -3,7 +3,11 @@
 
 {% block content %}
 
+{% if text %}
+{{text}}
+{% else %}
 {% trans 'Are you sure?' %}
+{% endif %}
 
 <form action="." method="post">{% csrf_token %}
   <input type="submit" value="{% trans 'Yes' %}" />

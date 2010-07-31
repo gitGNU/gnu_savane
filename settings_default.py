@@ -113,6 +113,7 @@ INSTALLED_APPS = (
 )
 
 
+# Paths
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/my/'
 
@@ -134,6 +135,10 @@ MEDIA_URL = '/upload/'
 #REQUIRE_LOGIN_PATH = LOGIN_URL
 #STATIC_MEDIA_URL   = subdir + '/static_media/'
 #MEDIA_URL          = subdir + '/upload/'
+
+
+# E-mail
+#DEFAULT_FROM_EMAIL='webmaster@localhost'
 
 
 # 3rd-party configuration

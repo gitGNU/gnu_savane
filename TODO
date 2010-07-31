@@ -25,9 +25,9 @@ improve it.
 
     [X] Members list + GPG keyring
 
-    [/] Account conf
+    [X] Account conf
 
-        [/] e-mail TODO: send mail to verify it
+        [X] e-mail
 
         [X] password
 

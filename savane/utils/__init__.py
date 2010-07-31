@@ -44,3 +44,14 @@ def ssh_key_fingerprint(ssh_key):
         raise Exception(_("SSH error: %s") % out.replace(tmp_file.name+' ', ''))
 
     return out.replace(tmp_file.name+' ', '')
+
+from django.contrib.sites.models import Site, RequestSite
+def get_site_name():
+    """
+    Return the site name, used in various templates
+    """
+    if Site._meta.installed:
+        site_name = Site.objects.get_current().name
+    else:
+        site_name = 'Savane'
+    return site_name

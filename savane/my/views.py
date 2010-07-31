@@ -20,13 +20,20 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import ugettext as _, ungettext
+from django.core import mail
+from django.conf import settings
 import savane.svmain.models as svmain_models
 from savane.my.forms import *
 from annoying.decorators import render_to
+from savane.utils import get_site_name
+from savane.middleware.exception import HttpAppException
+import random
+import smtplib
 
 @login_required()
 @render_to('my/index.html', mimetype=None)
@@ -57,10 +64,52 @@ def contact(request, extra_context={}):
 
         if form is not None and form.is_valid():
             if 'update_mail' in request.POST:
-                new_email = request.POST['email']
-                request.user.email = new_email
-                request.user.save()
-                messages.success(request, _("The e-mail address was successfully updated. New e-mail address is <%s>") % new_email)
+                request.user.svuserinfo  # ugly work-around
+                request.user.svuserinfo.email_new = request.POST['email']
+                request.user.svuserinfo.email_hash_confirm = random.getrandbits(64-1)
+                request.user.svuserinfo.email_hash_cancel = random.getrandbits(64-1)
+                request.user.svuserinfo.save()
+
+                hex_confirm = hex(request.user.svuserinfo.email_hash_confirm)[2:-1]
+                hex_cancel = hex(request.user.svuserinfo.email_hash_cancel)[2:-1]
+                try:
+                    # TODO: we might use templates instead of plain string concatenation
+                    url = 'http://' + Site.objects.get_current().domain + reverse('savane:my:email_confirm', args=[hex_confirm])
+                    subject = get_site_name() + ' ' + _("verification")
+                    message = (_("You have requested a change of email address on %s.\n"
+                                 + "Please visit the following URL to complete the email change:") % get_site_name()
+                               + "\n\n"
+                               + url
+                               + "\n\n"
+                               + _("-- the %s team.") % get_site_name()
+                               + "\n")
+                    to = [request.user.svuserinfo.email_new]
+                    mail.send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, to)
+		  
+                    url = 'http://' + Site.objects.get_current().domain + reverse('savane:my:email_cancel', args=[hex_cancel])
+                    subject = get_site_name() + ' ' + _("verification")
+                    message = (_("Someone, presumably you, has requested a change of email address on %s.\n"
+                                 + "If it wasn't you, maybe someone is trying to steal your account..."
+                                 + "\n\n"
+                                 + "Your current address is %s, the supposedly new address is %s."
+                                 + "\n\n") % (get_site_name(), request.user.email, request.user.svuserinfo.email_new)
+                               + _("If you did not request that change, please visit the following URL to discard\n"
+                                   + "the email change and report the problem to us:")
+                               + "\n\n"
+                               + url
+                               + "\n\n"
+                               + _("-- the %s team.") % get_site_name()
+                               + "\n")
+                    to = [request.user.email]
+                    if request.user.email != '':
+                        mail.send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, to)
+                except smtplib.SMTPException:
+		      messages.error(request, _("The system reported a failure when trying to send the confirmation mail."
+                                                + " Please retry and report that problem to administrators."))
+                messages.success(request, _("Confirmation mailed to %s.") % request.user.svuserinfo.email_new
+                                 + ' ' + _("Follow the instructions in the email to complete the email change."))
+                
+                
                 return HttpResponseRedirect("")  # reload
             elif 'update_identity' in request.POST:
                 request.user.first_name = request.POST['first_name']
@@ -77,6 +126,40 @@ def contact(request, extra_context={}):
                 }
     context.update(extra_context)
     return context
+
+@login_required()
+@render_to('svmain/generic_confirm.html', mimetype=None)
+def email_confirm(request, confirm_hex):
+    if request.user.svuserinfo.email_hash_confirm == int(confirm_hex, 16):
+        if request.method == 'POST':
+            request.user.email = request.user.svuserinfo.email_new
+            request.user.save()
+            request.user.svuserinfo.email_hash_confirm = None
+            request.user.svuserinfo.email_hash_cancel = None
+            request.user.svuserinfo.email_new = ''
+            request.user.svuserinfo.save()
+            messages.success(request, _("Email address updated."))
+            return HttpResponseRedirect(reverse('savane:my:contact'))
+        return {'title': _("Confirm Email change"),
+                'text': _('Confirm your e-mail change to %s?') % request.user.svuserinfo.email_new }
+    else:
+        raise HttpAppException(_("Invalid confirmation hash"))
+
+@login_required()
+@render_to('svmain/generic_confirm.html', mimetype=None)
+def email_cancel (request, cancel_hex):
+    if request.user.svuserinfo.email_hash_cancel == int(cancel_hex, 16):
+        if request.method == 'POST':
+            request.user.svuserinfo.email_hash_confirm = None
+            request.user.svuserinfo.email_hash_cancel = None
+            request.user.svuserinfo.email_new = ''
+            request.user.svuserinfo.save()
+            messages.success(request, _("Address change process discarded."))
+            return HttpResponseRedirect(reverse('savane:my:contact'))
+        return {'title': _("Cancel Email change"),
+                'text': _('Cancel your e-mail change to %s?') % request.user.svuserinfo.email_new}
+    else:
+        raise HttpAppException(_("Invalid confirmation hash"))
 
 @login_required()
 def resume_skills(request, extra_context={}):

@@ -122,9 +122,13 @@ class SvUserInfo(models.Model):
 
     # Used by trackers only but it could be used more widely
     spamscore = models.IntegerField(null=True, blank=True)
-    # Previously used for e-mail changes and password recovery, Django
-    # does it different with a auth.tokens
-    #confirm_hash = models.CharField(max_length=96, blank=True, null=True)
+
+    # Confirm that user owns the e-mail the hash was sent to
+    email_hash_confirm = models.BigIntegerField(blank=True, null=True)
+    # Allow a user to counter-act an account hijack
+    email_hash_cancel = models.BigIntegerField(blank=True, null=True)
+    # The new e-mail to use if validated
+    email_new = models.EmailField(_("new e-mail address"))
 
     # Keys
     gpg_key = models.TextField(blank=True,
