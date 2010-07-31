@@ -44,15 +44,12 @@ class SimpleTest(TestCase):
         self.assertTrue(self.client.login(username='test', password='test'))
 
         # Contact info
-        response = self.client.get(reverse('savane:my:conf'))
+        response = self.client.get(reverse('savane:my:contact'))
         self.assertEqual(response.status_code, 200)
-        response = self.client.post(reverse('savane:my:conf'),
-                                    {'action': 'update_identity', 'first_name': 'Lambda', 'last_name': 'Visitor'})
-        self.assertEqual(response.status_code, 302)
-
-        response = self.client.post(reverse('savane:my:conf'),
-                                    {'action': 'update_identity', 'first_name': '', 'last_name': 'Visitor'})
-        self.assertFormError(response, 'form_identity', 'first_name', u'This field is required.')
+        response = self.client.post(reverse('savane:my:contact'),
+                                    {'first_name': 'Lambda', 'last_name': 'Visitor',
+                                     'gpg_key': '', 'update_identity': 'Update', })
+        self.assertRedirects(response, reverse('savane:my:contact'), msg_prefix="Cannot update identity")
 
         # SSH keys
         # - string
@@ -72,3 +69,9 @@ class SimpleTest(TestCase):
         f.seek(0)
         response = self.client.post(reverse('savane:my:ssh'), {'key_file': f})
         self.assertEqual(response.status_code, 302)
+
+        # - delete
+        response = self.client.post(reverse('savane:my:ssh_delete'), {'key_pk' : 1})
+        self.assertRedirects(response, reverse('savane:my:ssh'))
+        response = self.client.post(reverse('savane:my:ssh_delete'), {'key_pk' : 2})
+        self.assertRedirects(response, reverse('savane:my:ssh'))

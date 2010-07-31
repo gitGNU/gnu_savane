@@ -3,28 +3,49 @@
 
 {% block content %}
 <div style="float: left; margin: 10px;">
-  <p>{% trans "Account configuration" %}</p>
+  <h2>{% trans "Account configuration" %}</h2>
 
   <p>
-    <a href="{% url savane:my:conf %}">{% trans "Contact info" %}</a><br />
+    <a href="{% url savane:my:contact %}">{% trans "Contact info" %}</a><br />
     <a href="{% url savane:my:ssh %}">{% trans "SSH public keys" %}</a><br />
-    <a href="{% url savane:my:resume_skills %}">{% trans "Edit resume and skills" %}</a><br />
-    <a href="{% url savane:my:group_list %}">{% trans "My groups" %}</a><br />
-    <a href="{% url savane:my:membership_list %}">My memberships</a><br />
+    <a href="{% url savane:my:resume_skills %}">{% trans "Edit resume and skills" %}</a> (TODO)<br />
     <a href="{% url django.contrib.auth.views.password_change %}">{% trans "Change password" %}</a><br />
     <a href="{% url savane:my:i18n %}">{% trans "Set language" %}</a> ({{LANGUAGE_CODE}})<br />
   </p>
 </div>
 
 <div style="float: left; margin: 10px;">
-  <p>{% trans "Public information" %}</p>
+  <h2>{% trans "Public information" %}</h2>
 
   <p>
     <a href="{% url savane:svmain:user_detail request.user.username %}">{% trans "View your public profile" %}</a><br />
   </p>
 </div>
 
+<div style="float: left; margin: 10px;">
+  <h2>{% trans "My groups" %}</h2>
+
+{% regroup object_list by get_admin_flags_display as type_list %}
+{% if type_list %}
+  <ul>
+  {% for type in type_list %}
+    {% comment %}<li>{{ type.grouper }}<ul>{% endcomment %}
+        {% for object in type.list %}
+        <li>
+	  <a href="{% url savane:svmain:group_detail object.group.name %}">{{ object.group.name }}</a>
+	  {% if object.admin_flags %}({{ object.admin_flags }}){% endif %}
+	  {% if object.since %}{{ object.since }}{% endif %}
+	</li>
+        {% endfor %}
+    {% comment %}</ul></li>{% endcomment %}
+  {% endfor %}
+  </ul>
+{% else %}
+    <p>{% trans "No groups." %}</p>
+{% endif %}
+
 {% endblock %}
+
 {% comment %}
 Local Variables: **
 mode: django-html **

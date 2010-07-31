@@ -24,9 +24,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import ugettext as _, ungettext
-from savane.svmain.models import SvUserInfo, SshKey
+import savane.svmain.models as svmain_models
 from savane.my.forms import *
 from annoying.decorators import render_to
+
+@login_required()
+@render_to('my/index.html', mimetype=None)
+def index(request, extra_context={}):
+    svmain_models.Membership.tidy(user=request.user)
+    membership_list = svmain_models.Membership.objects.filter(user=request.user)
+
+    context = { 'object_list' : membership_list, }
+    context.update(extra_context)
+    return context
 
 @login_required()
 @render_to('my/contact.html', mimetype=None)
@@ -94,7 +104,7 @@ def ssh(request, extra_context={}):
             if 'key' in request.POST:
                 key = request.POST['key'].strip()
                 if len(key) > 0:
-                    ssh_key = SshKey(ssh_key=key)
+                    ssh_key = svmain_models.SshKey(ssh_key=key)
                     request.user.sshkey_set.add(ssh_key)
                     keys_saved += 1
 
@@ -105,7 +115,7 @@ def ssh(request, extra_context={}):
                     for chunk in ssh_key_file.chunks():
                         key = key + chunk
                         if len(key) > 0:
-                            ssh_key = SshKey(ssh_key=key)
+                            ssh_key = svmain_models.SshKey(ssh_key=key)
                             request.user.sshkey_set.add(ssh_key)
                             keys_saved += 1
 
@@ -141,7 +151,7 @@ def ssh_delete(request):
         try:
             ssh_key = request.user.sshkey_set.get(pk=request.POST.get('key_pk', 0))
             ssh_key.delete()
-        except SshKey.DoesNotExist:
+        except svmain_models.SshKey.DoesNotExist:
             messages.error(request, _("Cannot remove the selected key"))
         return HttpResponseRedirect("../")
     else:

@@ -318,8 +318,9 @@ h1 {
 	font-size: 1.5em;
 }
 /* <h3> Section title */
-h3 {
-	text-indent: 1em;
+h2 {
+	font-size: 1em;
+	text-indent: 0.5em;
 	border-bottom: thin solid #e0c080;
 	background-color: #fff0d0; 
 }

@@ -574,7 +574,7 @@ class Membership(models.Model):
       blank=True, help_text="membership properties")
     onduty = models.BooleanField(default=True,
       help_text="Untick to hide emeritous members from the project page")
-    since = models.DateField(auto_now_add=True, blank=True, null=True)
+    since = models.DateField(default=datetime.datetime.now, blank=True, null=True)
 
     # TODO: split news params
     #news_flags int(11) default NULL
@@ -618,6 +618,35 @@ class Membership(models.Model):
                  and Membership.is_member(user, group)
                  and Membership.objects
                  .filter(user=user, group=group, admin_flags='A').count() > 0))
+
+    @staticmethod
+    def tidy(user=None, group=None):
+        """
+        If using a non-Savane users&groups base, create missing
+        Membership relationships.
+        """
+        if group is not None:
+            # If using a non-Savane groups base, prepare membership metadata
+            user_pks = Membership.objects.filter(group=group).values_list('user__pk', flat=True)
+            missing_members = group.user_set.exclude(pk__in=user_pks)
+            for member in missing_members:
+                Membership(user=member, group=group, admin_flags='').save()
+        
+            # If a membership does not have a matching User<->Group relationship, remove it
+            user_pks = group.user_set.values_list('pk', flat=True)
+            invalid_memberships = Membership.objects.exclude(user__in=user_pks).exclude(admin_flags='P')
+            invalid_memberships.delete()
+        if user is not None:
+            # If using a non-Savane groups base, prepare membership metadata
+            group_pks = Membership.objects.filter(user=user).values_list('group__pk', flat=True)
+            missing_groups = user.groups.exclude(pk__in=group_pks)
+            for group in missing_groups:
+                Membership(user=member, group=group, admin_flags='').save()
+        
+            # If a membership does not have a matching User<->Group relationship, remove it
+            group_pks = user.groups.values_list('pk', flat=True)
+            invalid_memberships = Membership.objects.exclude(group__in=group_pks).exclude(admin_flags='P')
+            invalid_memberships.delete()
 
     @staticmethod
     def query_active_memberships_raw(conn, fields):

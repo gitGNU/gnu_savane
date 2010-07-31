@@ -190,18 +190,7 @@ def group_admin_features(request, slug, extra_context={}, post_save_redirect=Non
 @render_to('svmain/group_admin_members.html', mimetype=None)
 def group_admin_members(request, slug, extra_context={}):
     group = get_object_or_404(auth_models.Group, name=slug)
-
-    # If using a non-Savane groups base, prepare membership metadata
-    user_pks = svmain_models.Membership.objects.filter(group=group).values_list('user__pk', flat=True)
-    missing_members = group.user_set.exclude(pk__in=user_pks)
-    for member in missing_members:
-        svmain_models.Membership(user=member, group=group, admin_flags='A').save()
-
-    # If a membership does not have a matching User<->Group relationship, remove it
-    user_pks = group.user_set.values_list('pk', flat=True)
-    invalid_memberships = svmain_models.Membership.objects.exclude(user__in=user_pks).exclude(admin_flags='P')
-    invalid_memberships.delete()
-
+    svmain_models.Membership.tidy(group=group)
 
     memberships = svmain_models.Membership.objects.filter(group=group).exclude(admin_flags='P')
     pending_memberships = svmain_models.Membership.objects.filter(group=group, admin_flags='P')
