@@ -44,6 +44,8 @@ improve it.
     [ ] Delete account (clean-up data but keep User+user_id if past
         history)
 
+    [/] Site settings ([ ] URL schema (http/https))
+
 [ ] Project registration
 
 [ ] Implement lower priority web screens
