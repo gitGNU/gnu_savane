@@ -21,16 +21,14 @@ from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
 from savane.utils import *
 
-class MailForm( forms.Form ):
+class MailForm(forms.Form):
     email = forms.EmailField(required=True)
-    action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_mail' )
 
 class IdentityForm(forms.Form):
-    first_name = forms.CharField(required = True)
-    last_name = forms.CharField(required = False)
+    first_name = forms.CharField(required=False)
+    last_name = forms.CharField(required=False)
     gpg_key = forms.CharField(widget=forms.Textarea(attrs={'cols':'70','rows':'15'}), required=False,
                               help_text=_("You can write down here your (ASCII) public key (gpg --export --armor keyid)"))
-    action = forms.CharField(widget=forms.HiddenInput, required=True, initial='update_identity')
 
 class SSHForm(forms.Form):
     key_file = forms.FileField(required=False, help_text=_("Be sure to upload the file ending with .pub"))

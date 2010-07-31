@@ -12,7 +12,7 @@
 <li>
   {{ key }}
   <form action="{% url savane:my:ssh_delete %}" method="post">{% csrf_token %}
-    <input type="hidden" name="key_pk" value="{{key_pk}}" /><input type="submit" value="Delete"</input>
+    <input type="hidden" name="key_pk" value="{{key_pk}}" /><input type="submit" value="Delete" />
   </form>
 </li>
 </ul>

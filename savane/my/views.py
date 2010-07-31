@@ -29,32 +29,36 @@ from savane.my.forms import *
 from annoying.decorators import render_to
 
 @login_required()
-def conf(request, extra_context={}):
+@render_to('my/contact.html', mimetype=None)
+def contact(request, extra_context={}):
     form_mail = MailForm(initial={'email' : request.user.email})
     form_identity = IdentityForm(initial={'first_name' : request.user.first_name,
-                                          'last_name' : request.user.last_name})
+                                          'last_name' : request.user.last_name,
+                                          'gpg_key' : request.user.svuserinfo.gpg_key, })
     form = None
 
     if request.method == 'POST':
-        action = request.POST['action']
-        if action == 'update_mail':
+        if 'update_mail' in request.POST:
             form_mail = MailForm(request.POST)
             form = form_mail
-        elif action == 'update_identity':
+        elif 'update_identity' in request.POST:
             form_identity = IdentityForm(request.POST)
             form = form_identity
 
         if form is not None and form.is_valid():
-            if action == 'update_mail':
+            if 'update_mail' in request.POST:
                 new_email = request.POST['email']
                 request.user.email = new_email
                 request.user.save()
                 messages.success(request, _("The e-mail address was successfully updated. New e-mail address is <%s>") % new_email)
                 return HttpResponseRedirect("")  # reload
-            elif action == 'update_identity':
+            elif 'update_identity' in request.POST:
                 request.user.first_name = request.POST['first_name']
                 request.user.last_name = request.POST['last_name']
                 request.user.save()
+                request.user.svuserinfo
+                request.user.svuserinfo.gpg_key = request.POST['gpg_key']
+                request.user.svuserinfo.save()
                 messages.success(request, _("Personal information changed."))
                 return HttpResponseRedirect("")  # reload
 
@@ -62,9 +66,7 @@ def conf(request, extra_context={}):
                 'form_identity' : form_identity,
                 }
     context.update(extra_context)
-    return render_to_response('my/conf.html',
-                              context,
-                              context_instance=RequestContext(request))
+    return context
 
 @login_required()
 def resume_skills(request, extra_context={}):
