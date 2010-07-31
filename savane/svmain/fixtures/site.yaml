@@ -1,0 +1,3 @@
+- fields: {domain: 'localhost:8000', name: 'Savane'}
+  model: sites.site
+  pk: 1
