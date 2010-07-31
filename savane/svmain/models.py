@@ -127,7 +127,8 @@ class SvUserInfo(models.Model):
     #confirm_hash = models.CharField(max_length=96, blank=True, null=True)
 
     # Keys
-    gpg_key = models.TextField(blank=True)
+    gpg_key = models.TextField(blank=True,
+                               help_text="You can write down here your (ASCII) public key (gpg --export --armor keyid)")
     gpg_key_count = models.IntegerField(null=True, blank=True)
     # SSH keys: cf. SshKey above
 

@@ -26,39 +26,40 @@ import savane.svmain.models as svmain_models
 import django.contrib.auth.models as auth_models
 from savane.my.filters import *
 from savane.django_utils import decorated_patterns
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 urlpatterns = patterns ('',)
 
 urlpatterns += decorated_patterns ('', login_required,
   url(r'^$', direct_to_template,
       { 'template' : 'my/index.html',
-        'extra_context' : { 'title' : 'My account', }, },
+        'extra_context' : { 'title' : _("My account configuration"), }, },
       name='index'),
   url('^conf/$', views.conf,
-      { 'extra_context' : {'title' : 'Contact info', }, },
+      { 'extra_context' : {'title' : _("Contact info"), }, },
       name='conf'),
   url('^conf/resume_skills/$', views.resume_skills,
-      { 'extra_context' : {'title' : 'Resume & skills', } },
+      { 'extra_context' : {'title' : _("Edit your resume & skills"), } },
       name='resume_skills'),
-  url('^conf/ssh_gpg/$', views.ssh_gpg,
-      { 'extra_context' : {'title' : 'SSH & GPG', } },
-      name='ssh_gpg'),
-  url('^conf/ssh_gpg/delete/$', views.ssh_delete,
+  url('^conf/ssh/$', views.ssh,
+      { 'extra_context' : {'title' : _("Change authorized keys"), } },
+      name='ssh'),
+  url('^conf/ssh/delete/$', views.ssh_delete,
       name='ssh_delete'),
   url('^i18n/$', direct_to_template,
       { 'template' : 'my/i18n.html',
-        'extra_context' : {'title' : 'Language', } },
+        'extra_context' : {'title' : _("Language"), } },
       name='i18n'),
   # TODO: set_lang only lasts for the user's session
   url('^i18n/', include('django.conf.urls.i18n')),
   url(r'^groups/$', only_mine(object_list),
       { 'queryset' : auth_models.Group.objects.all(),
-        'extra_context' : { 'title' : "My groups", },
+        'extra_context' : { 'title' : _("My groups"), },
         'template_name' : 'svmain/group_list.html', },
       name='group_list'),
   url(r'^memberships/$', only_mine(object_list),
       { 'queryset' : svmain_models.Membership.objects.all(),
-        'extra_context' : { 'title' : "My memberships", },
+        'extra_context' : { 'title' : _("My memberships"), },
         },
       name='membership_list'),
 )

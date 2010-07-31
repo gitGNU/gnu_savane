@@ -22,17 +22,16 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django import forms
 from django.contrib import messages
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, ungettext
 from savane.svmain.models import SvUserInfo, SshKey
-from savane.utils import *
+from savane.my.forms import *
 from annoying.decorators import render_to
 
 @login_required()
 def conf(request, extra_context={}):
     form_mail = MailForm(initial={'email' : request.user.email})
-    form_identity = IdentityForm(initial={'name' : request.user.first_name,
+    form_identity = IdentityForm(initial={'first_name' : request.user.first_name,
                                           'last_name' : request.user.last_name})
     form = None
 
@@ -50,12 +49,14 @@ def conf(request, extra_context={}):
                 new_email = request.POST['email']
                 request.user.email = new_email
                 request.user.save()
-                messages.success(request, u"The E-Mail address was succesfully updated. New E-Mail address is <%s>" % new_email)
+                messages.success(request, _("The e-mail address was successfully updated. New e-mail address is <%s>") % new_email)
+                return HttpResponseRedirect("")  # reload
             elif action == 'update_identity':
-                request.user.first_name = request.POST['name']
+                request.user.first_name = request.POST['first_name']
                 request.user.last_name = request.POST['last_name']
                 request.user.save()
-                messages.success(request, u"Personal information changed.")
+                messages.success(request, _("Personal information changed."))
+                return HttpResponseRedirect("")  # reload
 
     context = { 'form_mail' : form_mail,
                 'form_identity' : form_identity,
@@ -72,73 +73,62 @@ def resume_skills(request, extra_context={}):
                               context_instance=RequestContext(request))
 
 @login_required()
-def ssh_gpg(request, extra_context={}):
+def ssh(request, extra_context={}):
     info = request.user.svuserinfo
 
     error_msg = None
     success_msg = None
 
-    form_ssh = SSHForm()
-    form_gpg = GPGForm(initial={'gpg_key' : info.gpg_key})
+    form = SSHForm()
     ssh_keys = None
 
     if request.method == 'POST':
         form = None
-        action = request.POST['action']
-        if action == 'add_ssh':
-            form_ssh = SSHForm(request.POST, request.FILES)
-            form = form_ssh
-        elif action == 'update_gpg':
-            form_gpg = GPGForm(request.POST)
-            form = form_gpg
+        form = SSHForm(request.POST, request.FILES)
 
         if form is not None and form.is_valid():
-            if action == 'add_ssh':
-                if 'key' in request.POST:
-                    key = request.POST['key'].strip()
-                    if len(key) > 0:
-                        ssh_key = SshKey(ssh_key=key)
-                        request.user.sshkey_set.add(ssh_key)
-                        success_msg = 'Authorized keys stored.'
+            keys_saved = 0
 
-                if 'key_file' in request.FILES:
-                    ssh_key_file = request.FILES['key_file']
-                    if ssh_key_file is not None:
-                        key = ''
-                        for chunk in ssh_key_file.chunks():
-                            key = key + chunk
+            if 'key' in request.POST:
+                key = request.POST['key'].strip()
+                if len(key) > 0:
+                    ssh_key = SshKey(ssh_key=key)
+                    request.user.sshkey_set.add(ssh_key)
+                    keys_saved += 1
 
-                            if len(key) > 0:
-                                ssh_key = SshKey(ssh_key=key)
-                                request.user.sshkey_set.add(ssh_key)
-                                success_msg = 'Authorized keys stored.'
+            if 'key_file' in request.FILES:
+                ssh_key_file = request.FILES['key_file']
+                if ssh_key_file is not None:
+                    key = ''
+                    for chunk in ssh_key_file.chunks():
+                        key = key + chunk
+                        if len(key) > 0:
+                            ssh_key = SshKey(ssh_key=key)
+                            request.user.sshkey_set.add(ssh_key)
+                            keys_saved += 1
 
-                form_ssh = SSHForm()
-
-                if len( success_msg ) == 0:
-                    error_msg = 'Cannot added the public key'
-
-            elif action == 'update_gpg':
-                if 'gpg_key' in request.POST:
-                    info.gpg_key = request.POST['gpg_key']
-                    info.save()
-                    messages.success(request, _("GPG Key updated."))
+            if keys_saved > 0:
+                messages.success(request, ungettext('Key registered', '%(count)d keys registered', keys_saved) % {
+                        'count': keys_saved})
+                return HttpResponseRedirect("")  # reload
+            else:
+                error_msg = _("Error while registering keys")
+    else:
+        form_ssh = SSHForm()
 
     keys = request.user.sshkey_set.all()
     if keys is not None:
         ssh_keys = dict()
         for key in keys:
-            ssh_keys[key.pk] =  ssh_key_fingerprint( key.ssh_key )
+            ssh_keys[key.pk] = ssh_key_fingerprint(key.ssh_key)
 
-
-    context = { 'form_gpg' : form_gpg,
-                'form_ssh' : form_ssh,
+    context = { 'form' : form,
                 'ssh_keys' : ssh_keys,
                 'error_msg' : error_msg,
                 'success_msg' : success_msg,
                 }
     context.update(extra_context)
-    return render_to_response('my/ssh_gpg.html',
+    return render_to_response('my/ssh.html',
                               context,
                               context_instance=RequestContext(request))
 
@@ -150,54 +140,7 @@ def ssh_delete(request):
             ssh_key = request.user.sshkey_set.get(pk=request.POST.get('key_pk', 0))
             ssh_key.delete()
         except SshKey.DoesNotExist:
-            messages.error(request, u"Cannot remove the selected key")
+            messages.error(request, _("Cannot remove the selected key"))
         return HttpResponseRedirect("../")
     else:
         return {}
-
-
-class MailForm( forms.Form ):
-    email = forms.EmailField(required=True)
-    action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_mail' )
-
-class IdentityForm( forms.Form ):
-    name = forms.CharField( required = True )
-    last_name = forms.CharField( required = False )
-    action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_identity' )
-
-class GPGForm( forms.Form ):
-    gpg_key = forms.CharField( widget=forms.Textarea( attrs={'cols':'70','rows':'15'} ), required=False )
-    action = forms.CharField( widget=forms.HiddenInput, required=True, initial='update_gpg' )
-
-class SSHForm( forms.Form ):
-    key_file = forms.FileField(required=False, help_text="Be sure to upload the file ending with .pub")
-    key = forms.CharField(widget=forms.TextInput(attrs={'size':'60'}), required=False)
-
-    action = forms.CharField(widget=forms.HiddenInput, required=True, initial='add_ssh')
-
-    def clean_key( self ):
-        ssh_key = self.cleaned_data['key']
-
-        try:
-            ssh_key_fingerprint(ssh_key)
-        except:
-            raise forms.ValidationError("The uploaded string is not a public key file")
-
-        return ssh_key
-
-    def clean_key_file( self ):
-        ssh_key_file = self.cleaned_data['key_file']
-
-        if ssh_key_file is None:
-            return ssh_key_file
-
-        ssh_key = str()
-        for chunk in ssh_key_file.chunks():
-            ssh_key = ssh_key + chunk
-
-        try:
-            ssh_key_fingerprint(ssh_key)
-        except:
-            raise forms.ValidationError("The uploaded file is not a public key file")
-
-        return ssh_key_file

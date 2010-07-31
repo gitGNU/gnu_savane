@@ -3,30 +3,28 @@
 
 {% block content %}
 <h2>Working SSH Keys</h2>
+
+{% if ssh_keys.items %}
+<p><code>$ ssh-keygen -l -f key.pub</code></p>
+{% endif %}
 {% for key_pk,key in ssh_keys.items %}
+<ul>
 <li>
   {{ key }}
-  <form action="delete/" method="post">{% csrf_token %}
+  <form action="{% url savane:my:ssh_delete %}" method="post">{% csrf_token %}
     <input type="hidden" name="key_pk" value="{{key_pk}}" /><input type="submit" value="Delete"</input>
   </form>
 </li>
+</ul>
 {% empty %}
   No SSH keys yet.
 {% endfor %}
 
 <h2>SSH Keys</h2>
 <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-  {{ form_ssh.as_p }}
+  {{ form.as_p }}
   <br /><input type="submit" value="Add" name="Add" />
 </form>
-
-<h2>GPG Key</h2>
-{% trans "You can write down here your (ASCII) public key (gpg --export --armor keyid):" %}
-<form action="" method="post">{% csrf_token %}
-  {{ form_gpg.as_p }}
-  <br /><input type="submit" value="Update" name="Update" />
-</form>
-
 
 {% endblock %}
 {% comment %}

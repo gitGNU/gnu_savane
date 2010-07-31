@@ -1,25 +1,26 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
 <div style="float: left; margin: 10px;">
-  <p>Configure</p>
+  <p>{% trans "Account configuration" %}</p>
 
   <p>
-    <a href="{% url savane:my:conf %}">Contact info</a><br />
-    <a href="{% url savane:my:ssh_gpg %}">SSH &amp; GPG</a><br />
-    <a href="{% url savane:my:resume_skills %}">My resume &amp; skills</a><br />
-    <a href="{% url savane:my:group_list %}">My groups</a><br />
+    <a href="{% url savane:my:conf %}">{% trans "Contact info" %}</a><br />
+    <a href="{% url savane:my:ssh %}">{% trans "SSH public keys" %}</a><br />
+    <a href="{% url savane:my:resume_skills %}">{% trans "Edit resume and skills" %}</a><br />
+    <a href="{% url savane:my:group_list %}">{% trans "My groups" %}</a><br />
     <a href="{% url savane:my:membership_list %}">My memberships</a><br />
-    <a href="{% url django.contrib.auth.views.password_change %}">Change my password</a><br />
-    <a href="{% url savane:my:i18n %}">Set language</a> ({{LANGUAGE_CODE}})<br />
+    <a href="{% url django.contrib.auth.views.password_change %}">{% trans "Change password" %}</a><br />
+    <a href="{% url savane:my:i18n %}">{% trans "Set language" %}</a> ({{LANGUAGE_CODE}})<br />
   </p>
 </div>
 
 <div style="float: left; margin: 10px;">
-  <p>Public information</p>
+  <p>{% trans "Public information" %}</p>
 
   <p>
-    <a href="{% url savane:svmain:user_detail request.user.username %}">My public page</a><br />
+    <a href="{% url savane:svmain:user_detail request.user.username %}">{% trans "View your public profile" %}</a><br />
   </p>
 </div>
 
