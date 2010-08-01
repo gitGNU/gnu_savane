@@ -1,14 +1,14 @@
 <ul class="topmenu" id="topmenu">
 {% for l1 in entries %}
   <li class="topmenuitemmainitem">
-    <a class="tabs" href="{{l1.href}}" title="{{l1.title}}">{{ l1.text }}</a>
+    <a class="tabs"{% if l1.href %} href="{{l1.href}}"{% endif %}title="{{l1.title}}">{{ l1.text }}</a>
     {% if l1.children %}
     <ul id="submenu{{forloop.counter}}" class="topmenuitemsubmenu">
     {% for l2 in l1.children %}
       {% if l2.separator %}
       <li class="topmenuitemsubmenuseparator">&nbsp;</li>
       {% else %}
-      <li class="topmenuitemsubmenu"><a href="{{l2.href}}" title="{{l2.title}}">
+      <li class="topmenuitemsubmenu"><a{% if l2.href %} href="{{l2.href}}"{% endif %} title="{{l2.title}}">
 	  {% if l2.strong %}<strong>{{ l2.text }}</strong>{% else %}{{ l2.text }}{% endif %}
       </a></li>
       {% endif %}
