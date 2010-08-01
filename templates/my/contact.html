@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "My account configuration" %}{% trans ": " %} {{title}}
+{% endblock %}
 
 {% block content %}
 <h2>Change E-Mail</h2>
@@ -6,7 +11,7 @@
   <table>
     {{ form_mail.as_table }}
   </table>
-  <input type="submit" name="update_mail" value="Update" />
+  <input type="submit" name="update_mail" value="{% trans "Update"%}" />
 </form>
 
 <h2>Change Name</h2>
@@ -14,7 +19,7 @@
   <table>
     {{ form_identity.as_table }}
   </table>
-  <input type="submit" name="update_identity" value="Update" />
+  <input type="submit" name="update_identity" value="{% trans "Update"%}" />
 </form>
 
 {% endblock %}

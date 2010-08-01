@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block title %}
+{% trans "My account configuration" %}{% trans ": " %} {{title}}
+{% endblock %}
+
 {% block content %}
 <h2>Working SSH Keys</h2>
 
@@ -12,7 +16,7 @@
 <li>
   {{ key }}
   <form action="{% url savane:my:ssh_delete %}" method="post">{% csrf_token %}
-    <input type="hidden" name="key_pk" value="{{key_pk}}" /><input type="submit" value="Delete" />
+    <input type="hidden" name="key_pk" value="{{key_pk}}" /><input type="submit" value="{% trans "Delete" %}" />
   </form>
 </li>
 </ul>
@@ -23,7 +27,7 @@
 <h2>SSH Keys</h2>
 <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
   {{ form.as_p }}
-  <br /><input type="submit" value="Add" name="Add" />
+  <br /><input type="submit" value="{% trans "Add" %}" />
 </form>
 
 {% endblock %}

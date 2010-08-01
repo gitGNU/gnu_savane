@@ -39,7 +39,7 @@ def svtopmenu(context, menu_name):
     group = context['group']
 
     if menu_name == 'group':
-        entry_home = { 'text' : 'Main',
+        entry_home = { 'text' : _("Main"),
                    'href' : reverse('savane:svmain:group_detail', args=[group.name]),
                    'title': "Project Main Page at %s" % 'this website'}
         entry_home['children'] = []

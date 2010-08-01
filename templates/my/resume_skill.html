@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "My account configuration" %}{% trans ": " %} {{title}}
+{% endblock %}
 
 {% block content %}
 

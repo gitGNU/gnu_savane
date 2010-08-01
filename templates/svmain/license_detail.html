@@ -1,21 +1,23 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
 
 <p>
-Name: {{object.slug}}<br />
-URL: <a href="{{object.url}}">{{object.url}}</a><br />
+{% trans "Name:" %} {{object.slug}}<br />
+{% trans "URL:" %} <a href="{{object.url}}">{{object.url}}</a><br />
 </p>
 
-<p>Projects that use it:</p>
+<p>{% trans "Projects that use it:" %}</p>
 
-{{ object.svgroupinfo_set.count }} project(s) use this license<br />
+{% blocktrans count object.svgroupinfo_set.count as count %}1 project use this license{% plural %}{{count}} projects use this license{% endblocktrans %}
+<br />
 
 {% for name in object.get_group_names %}
 <a href="{% url savane:svmain:group_detail name %}">{{name}}</a>{% if forloop.last %}{%else%},{% endif %}
 {% endfor %}
 
-<p><a href="{% url savane:svmain:license_list %}">Go to license list</a></p>
+<p><a href="{% url savane:svmain:license_list %}">{% trans "Go to license list" %}</a></p>
 
 {% endblock %}
 

@@ -1,9 +1,11 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
 
-<p>Name: {{object.username}}<br />
-Real name: {{object.first_name}} {{object.last_name}}</p>
+<p>
+{% trans "Real name:" %} {{object.first_name}} {{object.last_name}}</p>
+{% trans "Login name:" %} {{object.username}}<br />
 
 <p>Is a member of (using Django user.groups):</p>
 
