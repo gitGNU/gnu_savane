@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-31 19:14-0500\n"
-"PO-Revision-Date: 2010-08-01 02:22+0200\n"
+"POT-Creation-Date: 2010-08-01 03:49-0500\n"
+"PO-Revision-Date: 2010-08-01 10:55+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -110,7 +110,8 @@ msgstr "La chaîne transmise n'est pas une clef publique : %s"
 msgid "The uploaded file is not a public key file: %s"
 msgstr "Le fichier transmis n'est pas une clef publique : %s"
 
-#: savane/my/urls.py:35
+#: savane/my/urls.py:35 templates/my/contact.html:5 templates/my/i18n.html:5
+#: templates/my/resume_skill.html:5 templates/my/ssh.html:5
 msgid "My account configuration"
 msgstr "Mes préférences"
 
@@ -313,6 +314,45 @@ msgstr "nouvelle adresse courriel"
 msgid "project information"
 msgstr "informations du projet"
 
+#: savane/svmain/urls.py:56 templates/base.html:29
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: savane/svmain/urls.py:62
+#, fuzzy
+msgid "User detail"
+msgstr ""
+
+#: savane/svmain/urls.py:76 templates/base.html:30
+msgid "Projects"
+msgstr "Projets"
+
+#: savane/svmain/urls.py:90
+msgid "Project memberlist"
+msgstr "Liste des membres du projet"
+
+#: savane/svmain/urls.py:111
+msgid "Editing public info"
+msgstr "Modifier les infos publiques"
+
+#: savane/svmain/urls.py:114 savane/svmain/templatetags/svtopmenu.py:58
+msgid "Select features"
+msgstr "Selectionner les outils"
+
+#: savane/svmain/urls.py:118 savane/svmain/urls.py:121
+#: savane/svmain/templatetags/svtopmenu.py:60
+msgid "Manage members"
+msgstr "Gérer les membres"
+
+#: savane/svmain/urls.py:128
+msgid "License list"
+msgstr "Liste des licences"
+
+#: savane/svmain/urls.py:132
+msgid "License detail"
+msgstr "Détails de la licence"
+
+#: savane/svmain/templatetags/svtopmenu.py:42
 #: savane/svmain/templatetags/svtopmenu.py:46
 msgid "Main"
 msgstr "Accueil"
@@ -333,14 +373,6 @@ msgstr "Administrer :"
 #: savane/svmain/templatetags/svtopmenu.py:56
 msgid "Edit public info"
 msgstr "Modifier les infos publiques"
-
-#: savane/svmain/templatetags/svtopmenu.py:58
-msgid "Select features"
-msgstr "Selectionner les outils"
-
-#: savane/svmain/templatetags/svtopmenu.py:60
-msgid "Manage members"
-msgstr "Gérer les membres"
 
 #: savane/svmain/templatetags/svtopmenu.py:63
 msgid "Homepage"
@@ -426,14 +458,6 @@ msgstr "Nouvel utilisateur"
 msgid "Search"
 msgstr "Rechercher"
 
-#: templates/base.html:29
-msgid "Users"
-msgstr "Utilisateurs"
-
-#: templates/base.html:30
-msgid "Projects"
-msgstr "Projets"
-
 #: templates/base.html:32
 msgid "Site help"
 msgstr "Aide du site"
@@ -445,6 +469,22 @@ msgstr "Nous contacter"
 #: templates/title.html:3
 msgid "Welcome"
 msgstr "Bienvenue"
+
+#: templates/my/contact.html:5 templates/my/i18n.html:5
+#: templates/my/resume_skill.html:5 templates/my/ssh.html:5
+#: templates/svmain/group_admin_features.html:6
+#: templates/svmain/group_admin_info.html:6
+#: templates/svmain/group_admin_members.html:6
+#: templates/svmain/group_admin_members_add.html:6
+#: templates/svmain/group_gpgkeyring.html:6
+#: templates/svmain/group_memberlist.html:6
+msgid ": "
+msgstr " : "
+
+#: templates/my/contact.html:14 templates/my/contact.html.py:22
+#: templates/my/i18n.html:22
+msgid "Update"
+msgstr "Mise à jour"
 
 #: templates/my/index.html:6
 msgid "Account configuration"
@@ -459,12 +499,12 @@ msgid "Edit resume and skills"
 msgstr "Modifier CV et compétences"
 
 #: templates/my/index.html:12
-msgid "Change password"
-msgstr "Modifier votre mot de passe"
-
-#: templates/my/index.html:13
 msgid "Set language"
 msgstr "Définir la langue"
+
+#: templates/my/index.html:13
+msgid "Change password"
+msgstr "Modifier votre mot de passe"
 
 #: templates/my/index.html:18
 msgid "Public information"
@@ -481,6 +521,14 @@ msgstr "Mes groupes"
 #: templates/my/index.html:44 templates/svmain/group_list.html:19
 msgid "No groups."
 msgstr "Aucun groupe."
+
+#: templates/my/ssh.html:19
+msgid "Delete"
+msgstr "Supprimer"
+
+#: templates/my/ssh.html:30 templates/svmain/group_admin_members_add.html:34
+msgid "Add"
+msgstr "Ajouter"
 
 #: templates/registration/activate.html:8
 msgid "Your account activation failed."
@@ -650,15 +698,6 @@ msgstr "Oui"
 msgid "Administration summary"
 msgstr "Accueil de l'administration"
 
-#: templates/svmain/group_admin_features.html:6
-#: templates/svmain/group_admin_info.html:6
-#: templates/svmain/group_admin_members.html:6
-#: templates/svmain/group_admin_members_add.html:6
-#: templates/svmain/group_gpgkeyring.html:6
-#: templates/svmain/group_memberlist.html:6
-msgid ": "
-msgstr " : "
-
 #: templates/svmain/group_admin_features.html:22
 #: templates/svmain/group_admin_info.html:26
 msgid "Submit"
@@ -684,6 +723,10 @@ msgstr "Vous êtes Admin"
 msgid "No requests for inclusion"
 msgstr "Aucune demande d'ajout"
 
+#: templates/svmain/group_admin_members.html:60
+msgid "OK"
+msgstr "OK"
+
 #: templates/svmain/group_admin_members.html:63
 msgid "Add users to group"
 msgstr "Ajouter le ou les utilisateurs au groupe"
@@ -691,10 +734,6 @@ msgstr "Ajouter le ou les utilisateurs au groupe"
 #: templates/svmain/group_admin_members_add.html:30
 msgid "view"
 msgstr "consulter"
-
-#: templates/svmain/group_admin_members_add.html:34
-msgid "Add"
-msgstr "Ajouter"
 
 #: templates/svmain/group_admin_members_add.html:41
 msgid "All other users are members of your group!"
@@ -738,6 +777,7 @@ msgid "System name:"
 msgstr "Nom système :"
 
 #: templates/svmain/group_detail.html:38
+#: templates/svmain/license_detail.html:7
 msgid "Name:"
 msgstr "Nom :"
 
@@ -856,6 +896,25 @@ msgstr ""
 "Vous pouvez également consulter le %(begin_link)strousseau de clefs GPG des "
 "membres du projet%(end_link)s"
 
+#: templates/svmain/license_detail.html:8
+msgid "URL:"
+msgstr "URL :"
+
+#: templates/svmain/license_detail.html:11
+msgid "Projects that use it:"
+msgstr "Projets qui l'utilisent :"
+
+#: templates/svmain/license_detail.html:13
+#, python-format
+msgid "1 project use this license"
+msgid_plural "%(count)s projects use this license"
+msgstr[0] "1 projet utilise cette licence"
+msgstr[1] "%(count)s projets utilisent cette licence"
+
+#: templates/svmain/license_detail.html:20
+msgid "Go to license list"
+msgstr "Aller à la liste de licences"
+
 #: templates/svmain/pagination.inc.html:8
 #: templates/svmain/pagination.inc.html:10
 msgid "previous"
@@ -877,6 +936,14 @@ msgid "%(count)s element"
 msgid_plural "%(count)s elements"
 msgstr[0] "%(count)s élément"
 msgstr[1] "%(count)s éléments"
+
+#: templates/svmain/user_detail.html:7
+msgid "Real name:"
+msgstr "Nom :"
+
+#: templates/svmain/user_detail.html:8
+msgid "Login name:"
+msgstr "Nom de compte :"
 
 #: templates/svmain/user_list.html:19
 msgid "No users."
@@ -1017,9 +1084,6 @@ msgstr "Aucun utilisateur."
 #~ "Vous allez être connecté sur un serveur utilisant une liaison chiffrée "
 #~ "(https), votre mot de passe ne pourra pas être vu par d'autres "
 #~ "utilisateurs."
-
-#~ msgid "Login Name:"
-#~ msgstr "Nom de compte :"
 
 #~ msgid "No account yet?"
 #~ msgstr "Pas encore de compte ?"
@@ -1285,9 +1349,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Re-type Password:"
 #~ msgstr "Retapez votre mot de passe :"
-
-#~ msgid "Real Name:"
-#~ msgstr "Nom :"
 
 #~ msgid "This email address will be verified before account activation."
 #~ msgstr "L'adresse électronique sera vérifiée avant l'activation du compte."
@@ -2392,12 +2453,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "No Skill Inventory Set Up"
 #~ msgstr "Pas de liste de compétences définie"
 
-#~ msgid "Update"
-#~ msgstr "Mise à jour"
-
-#~ msgid "Delete"
-#~ msgstr "Supprimer"
-
 #~ msgid "Add A New Skill"
 #~ msgstr "Ajouter une nouvelle compétence"
 
@@ -2518,9 +2573,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Browse the cookbook"
 #~ msgstr "Consulter le livre de recettes"
-
-#~ msgid "Project Memberlist"
-#~ msgstr "Liste des membres du projet"
 
 #~ msgid "Project Members GPG Keyring"
 #~ msgstr "Trousseau de clefs GPG des membres du projet"
@@ -4491,9 +4543,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Job #%s, bound to task #%s, %s"
 #~ msgstr "Exportation #%s, liée à la tâche #%s, %s"
-
-#~ msgid "URL: %s"
-#~ msgstr "URL : %s"
 
 #~ msgid "%s at %s hours"
 #~ msgstr "%s à %s heures"
@@ -6938,9 +6987,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "License for This Project"
 #~ msgstr "Licence du projet"
 
-#~ msgid "Choose your project's license"
-#~ msgstr "Choisissez une licence pour votre projet"
-
 #~ msgid ""
 #~ "If you selected \"other\", please provide an explanation along with a "
 #~ "description of your license"
@@ -7529,9 +7575,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Status updated to %s for user %s"
 #~ msgstr "État mis à jour vers %s pour l'utilisateur %s"
 
-#~ msgid "User Search"
-#~ msgstr "Rechercher des utilisateurs"
-
 #~ msgid "Display users beginning with"
 #~ msgstr "Afficher les utilisateurs commençant par"
 
@@ -7659,9 +7702,6 @@ msgstr "Aucun utilisateur."
 #~ msgid_plural "including %s in private state"
 #~ msgstr[0] "dont %s est privé"
 #~ msgstr[1] "dont %s sont privés"
-
-#~ msgid "Projects per group type:"
-#~ msgstr "Projets par type :"
 
 #~ msgid "%s support request,"
 #~ msgid_plural "%s support requests,"
