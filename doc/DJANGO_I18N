@@ -4,6 +4,7 @@ Translations
 You create them with either:
 
 - a monolithic translation catalog
+  (what we currently use)
 
   cd framework/
   mkdir locale/  # or conf/locale/
@@ -21,6 +22,7 @@ You create them with either:
 
   cd ...
   django-admin makemessages -a
+
 
 Monolithic translations are not suited for deploying reusable apps
 (because they are installed in the projects rather than in the
@@ -59,3 +61,7 @@ Notes:
   we'll get a lot fuzzy strings that translators will need to review.
   Thus let's not worry so much about introducing fuzzy strings:
   typically let's not keep All Firstcap Titles that cripple Savane 3.
+
+- The strings discover parser is limited and doesn't understand
+  "string1" + "string2" on multiple lines, so don't be afraid to use
+  super-long text lines in the code.

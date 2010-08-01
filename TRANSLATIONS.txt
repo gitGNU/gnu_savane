@@ -1,0 +1,58 @@
+Translate Savane in your own language!
+======================================
+
+Create a translation strings catalog
+------------------------------------
+
+In a terminal, type:
+
+  ./manage.py makemessages -l XX
+
+where XX is your language code:
+http://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html
+
+The catalog will be created in locale/XX/LC_MESSAGES/django.po .
+
+If you don't know how to do that, ask a Savane developer to send you
+the translation strings catalog for your language.
+
+Check if there's a catalog in the previous version of Savane, as the
+current version reuses a lot of text strings from it:
+http://svn.gna.org/viewcvs/savane/trunk/po/
+
+
+Editing your .po catalog
+------------------------
+
+Poedit (PO editor) is a nice graphical editor that can create new .po
+files and synchronize them with the Savane source code. Check it out!
+http://www.poedit.net/
+
+Emacs users can use PO-mode, which runs automatically when editing .po
+files (under Debian GNU/Linux, install the 'gettext-el' package).
+
+
+Update your catalog
+-------------------
+
+In a terminal, just type again:
+
+  ./manage.py makemessages -l XX
+
+Don't use Poedit to update your catalog, as it doesn't know how to
+search for strings in the Savane templates (Django format).
+
+
+Testing your translation
+------------------------
+
+Update locale/XX/LC_MESSAGES/django.po with your latest catalog.
+
+Then type in a terminal:
+
+  ./manage.py compilemessages
+
+and restart Savane (see README).
+
+(You should notice an updated .mo file (not .po) in
+ locale/XX/LC_MESSAGES/)
