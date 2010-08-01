@@ -70,7 +70,10 @@ Also this code:
   group.svgroupinfo.save()
 Currently fails: type remains NULL, probably because the result of the
 first invocation of 'group.svgroupinfo' return a different result
-thant the second one.  We may need to do things differently...
+thant the second one.  I submitted a fix:
+http://bitbucket.org/offline/django-annoying/issue/16/cache-issue-with-autoonetoonefield
+
+We may need to do things differently if upstream stays unresponsive...
 """
 
 from django.db import models
@@ -166,6 +169,8 @@ class SvUserInfo(models.Model):
         else:
             return self.user.username
 
+    def __unicode__(self):
+        return "Savane information on user %s" % (self.user.username)
 
 
 class License(models.Model):
