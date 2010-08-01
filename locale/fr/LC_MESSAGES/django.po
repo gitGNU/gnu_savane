@@ -2,7 +2,7 @@
 # 	Stephane Urbanovski <stephane.urbanovski--ac-nancy-metz.fr>
 # 	Mathieu Roy <yeupou--gnu.org>
 # 	Benoit Schwinden <GNU Savannah account: gromf88>
-# Copyright (C) 2007  Sylvain Beucler <beuc@beuc.net>
+# Copyright (C) 2007, 2010  Sylvain Beucler <beuc@beuc.net>
 #
 #
 # This file is part of Savane.
@@ -39,9 +39,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-31 19:19-0500\n"
-"PO-Revision-Date: 2006-11-28 10:54+0100\n"
-"Last-Translator: Mathieu Roy <yeupou@gnu.org>\n"
+"POT-Creation-Date: 2010-07-31 19:14-0500\n"
+"PO-Revision-Date: 2010-08-01 02:22+0200\n"
+"Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -51,47 +51,45 @@ msgstr ""
 
 #: settings_default.py:38
 msgid "Catalan"
-msgstr ""
+msgstr "Catalan"
 
 #: settings_default.py:39
-#, fuzzy
 msgid "German"
-msgstr "Permanent"
+msgstr "Allemand"
 
 #: settings_default.py:40
 msgid "English"
-msgstr ""
+msgstr "Anglais"
 
 #: settings_default.py:41
 msgid "Spanish"
-msgstr ""
+msgstr "Espagnol"
 
 #: settings_default.py:42
 msgid "French"
-msgstr ""
+msgstr "Français"
 
 #: settings_default.py:43
 msgid "Italian"
-msgstr ""
+msgstr "Italien"
 
 #: settings_default.py:44
 msgid "Japanese"
-msgstr ""
+msgstr "Japonais"
 
 #: settings_default.py:45
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugais (Brésil)"
 
 #: settings_default.py:46
 msgid "Russian"
-msgstr ""
+msgstr "Russe"
 
 #: settings_default.py:47
 msgid "Swedish"
-msgstr ""
+msgstr "Suédois"
 
 #: savane/my/forms.py:31
-#, fuzzy
 msgid ""
 "You can write down here your (ASCII) public key (gpg --export --armor keyid)"
 msgstr ""
@@ -100,46 +98,41 @@ msgstr ""
 
 #: savane/my/forms.py:34
 msgid "Be sure to upload the file ending with .pub"
-msgstr ""
+msgstr "Assurez-vous d'envoyer le fichier qui se finit en .pub"
 
 #: savane/my/forms.py:47
 #, python-format
 msgid "The uploaded string is not a public key file: %s"
-msgstr ""
+msgstr "La chaîne transmise n'est pas une clef publique : %s"
 
 #: savane/my/forms.py:65
 #, python-format
 msgid "The uploaded file is not a public key file: %s"
-msgstr ""
+msgstr "Le fichier transmis n'est pas une clef publique : %s"
 
 #: savane/my/urls.py:35
-#, fuzzy
 msgid "My account configuration"
 msgstr "Mes préférences"
 
 #: savane/my/urls.py:38 templates/my/index.html:9
-#, fuzzy
 msgid "Contact info"
-msgstr "Nous contacter"
+msgstr "Infos contact"
 
 #: savane/my/urls.py:45
-#, fuzzy
 msgid "Edit your resume & skills"
-msgstr "Modifier votre CV et la description de vos compétences"
+msgstr "Modifier votre CV & vos compétences"
 
 #: savane/my/urls.py:48
-#, fuzzy
 msgid "Change authorized keys"
 msgstr "Modifier vos clefs publiques"
 
 #: savane/my/urls.py:54
 msgid "Language"
-msgstr ""
+msgstr "Langue"
 
 #: savane/my/views.py:78 savane/my/views.py:90
-#, fuzzy
 msgid "verification"
-msgstr "Vérification"
+msgstr "vérification"
 
 #: savane/my/views.py:79
 #, python-format
@@ -156,7 +149,7 @@ msgid "-- the %s team."
 msgstr "-- L'équipe de %s"
 
 #: savane/my/views.py:91
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Someone, presumably you, has requested a change of email address on "
 "%(site_name)s.\n"
@@ -167,11 +160,12 @@ msgid ""
 "\n"
 msgstr ""
 "Quelqu'un, probablement vous, a demandé le changement de votre courriel à "
-"%s.\n"
+"%(site_name)s.\n"
 "Si ce n'est pas vous, peut-être s'agit-il d'une tentative de vol de votre "
 "compte...\n"
 "\n"
-"Votre adresse actuelle %s, l'adresse de remplacement est %s.\n"
+"Votre adresse actuelle %(email_current)s, l'adresse de remplacement est "
+"%(email_new)s.\n"
 "\n"
 
 #: savane/my/views.py:99
@@ -203,23 +197,21 @@ msgstr ""
 "valider le changement."
 
 #: savane/my/views.py:123
-#, fuzzy
 msgid "Personal information changed."
-msgstr "Options de configuration personnelles"
+msgstr "Informations personnelles modifiées"
 
 #: savane/my/views.py:143
 msgid "Email address updated."
 msgstr "Courriel mis à jour."
 
 #: savane/my/views.py:145
-#, fuzzy
 msgid "Confirm Email change"
-msgstr "La confirmation a été envoyée"
+msgstr "Confirmer le changement de courriel"
 
 #: savane/my/views.py:146
-#, fuzzy, python-format
+#, python-format
 msgid "Confirm your e-mail change to %s?"
-msgstr "Confirmation envoyée à %s."
+msgstr "Confirmer le changement de votre courriel en %s?"
 
 #: savane/my/views.py:148 savane/my/views.py:164
 msgid "Invalid confirmation hash"
@@ -230,21 +222,20 @@ msgid "Address change process discarded."
 msgstr "Processus de changement d'adresse annulé."
 
 #: savane/my/views.py:161
-#, fuzzy
 msgid "Cancel Email change"
-msgstr "Annuler des notifications par courriel"
+msgstr "Annuler le changement de courriel"
 
 #: savane/my/views.py:162
 #, python-format
 msgid "Cancel your e-mail change to %s?"
-msgstr ""
+msgstr "Annuler le changement de courriel en %s?"
 
 #: savane/my/views.py:208
-#, fuzzy, python-format
+#, python-format
 msgid "Key registered"
 msgid_plural "%(count)d keys registered"
-msgstr[0] "Clefs enregistrées"
-msgstr[1] "Clefs enregistrées"
+msgstr[0] "Clef enregistrée"
+msgstr[1] "%(count)d clefs enregistrées"
 
 #: savane/my/views.py:212
 msgid "Error while registering keys"
@@ -252,67 +243,57 @@ msgstr "Erreur lors de l'enregistrement des clefs"
 
 #: savane/my/views.py:240
 msgid "Cannot remove the selected key"
-msgstr ""
+msgstr "Impossible de supprimer la clef sélectionnée"
 
 #: savane/svmain/admin.py:23
 msgid "Savane"
-msgstr ""
+msgstr "Savane"
 
 #: savane/svmain/admin.py:37
 msgid "General Settings"
 msgstr "Configuration générale"
 
 #: savane/svmain/admin.py:38
-#, fuzzy
 msgid "Project WWW Homepage"
-msgstr "Site web"
+msgstr "Page web du projet"
 
 #: savane/svmain/admin.py:41
-#, fuzzy
 msgid "Source Code Manager: CVS"
-msgstr "Gestion de code source : Dépôt CVS"
+msgstr "Gestion de code source : CVS"
 
 #: savane/svmain/admin.py:44
-#, fuzzy
 msgid "Source Code Manager: GNU Arch"
-msgstr "Gestion de code source : Dépôt CVS"
+msgstr "Gestion de code source : GNU Arch"
 
 #: savane/svmain/admin.py:47
-#, fuzzy
 msgid "Source Code Manager: Subversion"
-msgstr "Gestion de code source : Dépôt CVS"
+msgstr "Gestion de code source : Subversion"
 
 #: savane/svmain/admin.py:50
-#, fuzzy
 msgid "Source Code Manager: Git"
-msgstr "Gestion de code source"
+msgstr "Gestion de code source : Git"
 
 #: savane/svmain/admin.py:53
-#, fuzzy
 msgid "Source Code Manager: Mercurial"
-msgstr "Gestion de code source"
+msgstr "Gestion de code source: Mercurial"
 
 #: savane/svmain/admin.py:56
-#, fuzzy
 msgid "Source Code Manager: Bazaar"
-msgstr "Gestion de code source : Dépôt CVS"
+msgstr "Gestion de code source : Bazaar"
 
 #: savane/svmain/admin.py:59
-#, fuzzy
 msgid "Download area"
 msgstr "Espace de téléchargement"
 
 #: savane/svmain/admin.py:62
-#, fuzzy
 msgid "Licenses"
-msgstr "Licence"
+msgstr "Licences"
 
 #: savane/svmain/admin.py:63
 msgid "Development Status"
 msgstr "Stade de développement"
 
 #: savane/svmain/admin.py:64
-#, fuzzy
 msgid "Mailing List"
 msgstr "Listes de discussion"
 
@@ -325,14 +306,12 @@ msgid "Project Menu Settings"
 msgstr "Configuration du menu du projet"
 
 #: savane/svmain/models.py:131
-#, fuzzy
 msgid "new e-mail address"
-msgstr "Nouvelle adresse de courriel :"
+msgstr "nouvelle adresse courriel"
 
 #: savane/svmain/models.py:393
-#, fuzzy
 msgid "project information"
-msgstr "Projets/Groupes"
+msgstr "informations du projet"
 
 #: savane/svmain/templatetags/svtopmenu.py:46
 msgid "Main"
@@ -340,30 +319,26 @@ msgstr "Accueil"
 
 #: savane/svmain/templatetags/svtopmenu.py:48
 #: templates/svmain/group_detail.html:30
-#, fuzzy
 msgid "View members"
 msgstr "Lister les membres"
 
 #: savane/svmain/templatetags/svtopmenu.py:50
 msgid "GPG keyring"
-msgstr ""
+msgstr "Trousseau GPG"
 
 #: savane/svmain/templatetags/svtopmenu.py:54
 msgid "Administer:"
-msgstr "Administrer :"
+msgstr "Administrer :"
 
 #: savane/svmain/templatetags/svtopmenu.py:56
-#, fuzzy
 msgid "Edit public info"
-msgstr "Modifier les informations publiques"
+msgstr "Modifier les infos publiques"
 
 #: savane/svmain/templatetags/svtopmenu.py:58
-#, fuzzy
 msgid "Select features"
 msgstr "Selectionner les outils"
 
 #: savane/svmain/templatetags/svtopmenu.py:60
-#, fuzzy
 msgid "Manage members"
 msgstr "Gérer les membres"
 
@@ -372,7 +347,6 @@ msgid "Homepage"
 msgstr "Site web"
 
 #: savane/svmain/templatetags/svtopmenu.py:65
-#, fuzzy
 msgid "Browse project homepage (outside of Savane)"
 msgstr "Se rendre sur le site web du projet (hors de Savane)"
 
@@ -381,9 +355,8 @@ msgid "Download"
 msgstr "Téléchargement"
 
 #: savane/svmain/templatetags/svtopmenu.py:69
-#, fuzzy
 msgid "Download area: files released"
-msgstr "Espace de téléchargement"
+msgstr "Espace de téléchargement: fichier diffusés"
 
 #: savane/svmain/templatetags/svtopmenu.py:71
 #: savane/svmain/templatetags/svtopmenu.py:75
@@ -391,7 +364,6 @@ msgid "Browse"
 msgstr "Consulter"
 
 #: savane/svmain/templatetags/svtopmenu.py:73
-#, fuzzy
 msgid "List existing mailing lists"
 msgstr "Liste les listes de discussion du projet"
 
@@ -400,7 +372,6 @@ msgid "Configure:"
 msgstr "Configurer :"
 
 #: savane/svmain/templatetags/svtopmenu.py:82
-#, fuzzy
 msgid "Source code"
 msgstr "Code source"
 
@@ -409,50 +380,44 @@ msgid "Source Code Management"
 msgstr "Gestion de code source"
 
 #: savane/svmain/templatetags/svtopmenu.py:86
-#, fuzzy
 msgid "Use X"
-msgstr "Utiliser Git"
+msgstr "Utiliser X"
 
 #: savane/utils/__init__.py:44
-#, fuzzy, python-format
+#, python-format
 msgid "SSH error: %s"
-msgstr "Erreur SQL :"
+msgstr "Erreur SSH : %s"
 
 #: templates/base.html:16
-#, fuzzy
 msgid "Back to homepage"
-msgstr "Retour à votre page personnelle"
+msgstr "Retour à la page d'accueil"
 
 #: templates/base.html:18
 #, python-format
 msgid "Connected as %(username)s"
-msgstr ""
+msgstr "Authentifié(e) en tant que %(username)s"
 
 #: templates/base.html:19
-#, fuzzy
 msgid "My account"
-msgstr "Mes préférences"
+msgstr "Mon compte"
 
 #: templates/base.html:20
 msgid "Logout"
 msgstr "Retour à l'anonymat"
 
 #: templates/base.html:22
-#, fuzzy
 msgid "Login status"
-msgstr "État de la connexion&nbsp;:"
+msgstr "État de la connexion :"
 
 #: templates/base.html:23
-#, fuzzy
 msgid "Not connected"
-msgstr "Pas trouvé"
+msgstr "Vous n'êtes pas authentifié"
 
 #: templates/base.html:24
 msgid "Login"
 msgstr "S'authentifier"
 
 #: templates/base.html:25
-#, fuzzy
 msgid "New user"
 msgstr "Nouvel utilisateur"
 
@@ -470,12 +435,10 @@ msgid "Projects"
 msgstr "Projets"
 
 #: templates/base.html:32
-#, fuzzy
 msgid "Site help"
 msgstr "Aide du site"
 
 #: templates/base.html:33
-#, fuzzy
 msgid "Contact us"
 msgstr "Nous contacter"
 
@@ -484,76 +447,64 @@ msgid "Welcome"
 msgstr "Bienvenue"
 
 #: templates/my/index.html:6
-#, fuzzy
 msgid "Account configuration"
 msgstr "Préférences"
 
 #: templates/my/index.html:10
 msgid "SSH public keys"
-msgstr ""
+msgstr "Clefs publiques SSH"
 
 #: templates/my/index.html:11
-#, fuzzy
 msgid "Edit resume and skills"
-msgstr "Modifier votre CV et la description de vos compétences"
+msgstr "Modifier CV et compétences"
 
 #: templates/my/index.html:12
-#, fuzzy
 msgid "Change password"
 msgstr "Modifier votre mot de passe"
 
 #: templates/my/index.html:13
 msgid "Set language"
-msgstr ""
+msgstr "Définir la langue"
 
 #: templates/my/index.html:18
-#, fuzzy
 msgid "Public information"
-msgstr "Modifier les informations publiques"
+msgstr "Informations publiques"
 
 #: templates/my/index.html:21
-#, fuzzy
 msgid "View your public profile"
-msgstr "Consulter mon profil"
+msgstr "Consulter mon profil public"
 
 #: templates/my/index.html:26
-#, fuzzy
 msgid "My groups"
 msgstr "Mes groupes"
 
 #: templates/my/index.html:44 templates/svmain/group_list.html:19
-#, fuzzy
 msgid "No groups."
-msgstr "Nouveau groupe"
+msgstr "Aucun groupe."
 
 #: templates/registration/activate.html:8
-#, fuzzy
 msgid "Your account activation failed."
-msgstr "Votre compte a été supprimé. "
+msgstr "L'activation de votre compte a échoué."
 
 #: templates/registration/activation_complete.html:8
-#, fuzzy
 msgid "Your account is now active."
-msgstr "Votre compte a été supprimé. "
+msgstr "Votre compte est maintenant actif."
 
 #: templates/registration/login.html:12
 msgid "Lost your password?"
 msgstr "Vous avez perdu votre mot de passe ?"
 
 #: templates/registration/password_change_done.html:4
-#, fuzzy
 msgid "Password change successful"
-msgstr "Changement du mot de passe"
+msgstr ""
 
 #: templates/registration/password_change_done.html:8
-#, fuzzy
 msgid "Your password was changed."
-msgstr "Changement du mot de passe"
+msgstr ""
 
 #: templates/registration/password_change_form.html:4
-#, fuzzy
 msgid "Password change"
-msgstr "Changement du mot de passe"
+msgstr ""
 
 #: templates/registration/password_change_form.html:12
 msgid "Please correct the error below."
@@ -568,30 +519,25 @@ msgid ""
 msgstr ""
 
 #: templates/registration/password_change_form.html:22
-#, fuzzy
 msgid "Old password"
-msgstr "Mot-de-passe invalide"
+msgstr ""
 
 #: templates/registration/password_change_form.html:27
-#, fuzzy
 msgid "New password"
-msgstr "Nouveau mot de passe :"
+msgstr ""
 
 #: templates/registration/password_change_form.html:32
-#, fuzzy
 msgid "Password (again)"
-msgstr "Mot-de-passe (confirmer)"
+msgstr ""
 
 #: templates/registration/password_change_form.html:38
 #: templates/registration/password_reset_confirm.html:19
-#, fuzzy
 msgid "Change my password"
-msgstr "Modifier votre mot de passe"
+msgstr ""
 
 #: templates/registration/password_reset_complete.html:4
-#, fuzzy
 msgid "Password reset complete"
-msgstr "Mot-de-passe (confirmer)"
+msgstr ""
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Your password has been set.  You may go ahead and log in now."
@@ -603,14 +549,12 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:4
 #: templates/registration/password_reset_form.html:4
-#, fuzzy
 msgid "Password reset"
-msgstr "Mot-de-passe (confirmer)"
+msgstr ""
 
 #: templates/registration/password_reset_confirm.html:10
-#, fuzzy
 msgid "Enter new password"
-msgstr "Retapez votre nouveau mot de passe :"
+msgstr ""
 
 #: templates/registration/password_reset_confirm.html:12
 msgid ""
@@ -619,14 +563,12 @@ msgid ""
 msgstr ""
 
 #: templates/registration/password_reset_confirm.html:16
-#, fuzzy
 msgid "New password:"
-msgstr "Nouveau mot de passe :"
+msgstr ""
 
 #: templates/registration/password_reset_confirm.html:18
-#, fuzzy
 msgid "Confirm password:"
-msgstr "Mot de passe actuel :"
+msgstr ""
 
 #: templates/registration/password_reset_confirm.html:24
 msgid "Password reset unsuccessful"
@@ -639,9 +581,8 @@ msgid ""
 msgstr ""
 
 #: templates/registration/password_reset_done.html:4
-#, fuzzy
 msgid "Password reset successful"
-msgstr "Mot-de-passe (confirmer)"
+msgstr ""
 
 #: templates/registration/password_reset_done.html:8
 msgid ""
@@ -682,14 +623,12 @@ msgid ""
 msgstr ""
 
 #: templates/registration/password_reset_form.html:12
-#, fuzzy
 msgid "E-mail address:"
-msgstr "Courriel :"
+msgstr ""
 
 #: templates/registration/password_reset_form.html:12
-#, fuzzy
 msgid "Reset my password"
-msgstr "Vous avez perdu votre mot de passe ?"
+msgstr ""
 
 #: templates/registration/registration_complete.html:8
 msgid "An email containing account-activation information has been sent."
@@ -697,7 +636,7 @@ msgstr ""
 
 #: templates/svmain/generic_confirm.html:9
 msgid "Are you sure?"
-msgstr ""
+msgstr "Êtes-vous sûr(e)?"
 
 #: templates/svmain/generic_confirm.html:13
 msgid "Yes"
@@ -708,7 +647,6 @@ msgstr "Oui"
 #: templates/svmain/group_admin_info.html:6
 #: templates/svmain/group_admin_members.html:6
 #: templates/svmain/group_admin_members_add.html:6
-#, fuzzy
 msgid "Administration summary"
 msgstr "Accueil de l'administration"
 
@@ -719,7 +657,7 @@ msgstr "Accueil de l'administration"
 #: templates/svmain/group_gpgkeyring.html:6
 #: templates/svmain/group_memberlist.html:6
 msgid ": "
-msgstr " : "
+msgstr " : "
 
 #: templates/svmain/group_admin_features.html:22
 #: templates/svmain/group_admin_info.html:26
@@ -728,40 +666,39 @@ msgstr "Poster"
 
 #: templates/svmain/group_admin_info.html:22
 msgid "License:"
-msgstr "Licence :"
+msgstr "Licence :"
 
 #: templates/svmain/group_admin_info.html:23
 msgid ""
 "License changes are moderated by the site administrators. Please contact "
 "them to change your project license."
 msgstr ""
+"Les changements de licence sont modérés par les administrateurs du site.  "
+"Veuillez les contacter pour changer la licence de votre projet."
 
 #: templates/svmain/group_admin_members.html:29
 msgid "You are Admin"
 msgstr "Vous êtes Admin"
 
 #: templates/svmain/group_admin_members.html:57
-#, fuzzy
 msgid "No requests for inclusion"
-msgstr "Requête d'inclusion"
+msgstr "Aucune demande d'ajout"
 
 #: templates/svmain/group_admin_members.html:63
 msgid "Add users to group"
 msgstr "Ajouter le ou les utilisateurs au groupe"
 
 #: templates/svmain/group_admin_members_add.html:30
-#, fuzzy
 msgid "view"
-msgstr "Aperçu :"
+msgstr "consulter"
 
 #: templates/svmain/group_admin_members_add.html:34
 msgid "Add"
 msgstr "Ajouter"
 
 #: templates/svmain/group_admin_members_add.html:41
-#, fuzzy
 msgid "All other users are members of your group!"
-msgstr "Cet utilisateur est déjà membre du groupe."
+msgstr "Tous les autres utilisateurs sont membres de votre groupe!"
 
 #: templates/svmain/group_detail.html:6
 #: templates/svmain/group_gpgkeyring.html:6
@@ -770,26 +707,23 @@ msgid "Summary"
 msgstr "Accueil"
 
 #: templates/svmain/group_detail.html:17
-#, fuzzy
 msgid "Membership info"
 msgstr "Membres"
 
 #: templates/svmain/group_detail.html:20
-#, fuzzy
 msgid "Project admins:"
-msgstr "Administrateurs"
+msgstr "Admins du projet:"
 
 #: templates/svmain/group_detail.html:27
-#, fuzzy
 msgid "No members!"
-msgstr "Novembre"
+msgstr "Aucun membre!"
 
 #: templates/svmain/group_detail.html:29
 #, python-format
 msgid "%(count)s active member"
 msgid_plural "%(count)s active members"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s membre actif"
+msgstr[1] "%(count)s members actifs"
 
 #: templates/svmain/group_detail.html:34
 msgid "Group identification"
@@ -797,24 +731,21 @@ msgstr "Identifiants du Groupe"
 
 #: templates/svmain/group_detail.html:36
 msgid "Id:"
-msgstr "Id :"
+msgstr "Id :"
 
 #: templates/svmain/group_detail.html:37
-#, fuzzy
 msgid "System name:"
-msgstr "Nom système :"
+msgstr "Nom système :"
 
 #: templates/svmain/group_detail.html:38
 msgid "Name:"
-msgstr "Nom :"
+msgstr "Nom :"
 
 #: templates/svmain/group_detail.html:39
-#, fuzzy
 msgid "Group type:"
-msgstr "Type de groupe :"
+msgstr "Type de groupe :"
 
 #: templates/svmain/group_detail.html:48
-#, fuzzy
 msgid "Registration date"
 msgstr "Date d'enregistrement"
 
@@ -823,14 +754,12 @@ msgid "License"
 msgstr "Licence"
 
 #: templates/svmain/group_detail.html:50
-#, fuzzy
 msgid "Development status"
 msgstr "Stade de développement"
 
 #: templates/svmain/group_detail.html:56
-#, fuzzy
 msgid "Join this project"
-msgstr "Quitter ce projet ?"
+msgstr "Rejoindre ce projet"
 
 #: templates/svmain/group_gpgkeyring.html:18
 msgid ""
@@ -841,12 +770,13 @@ msgstr ""
 "affichées les clefs des membres du projet proprement enregistrées."
 
 #: templates/svmain/group_gpgkeyring.html:22
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You can %(begin_link)sdownload the keyring%(end_link)s and import it with "
 "the command %(command)s"
 msgstr ""
-"Vous pouvez %stélécharger le trousseau%s et l'importer avec la commande %s"
+"Vous pouvez %(begin_link)stélécharger le trousseau%(end_link)s et l'importer "
+"avec la commande %(command)s"
 
 #: templates/svmain/group_gpgkeyring.html:25
 msgid "They GPG Keyring of the project is empty, no keys were registered"
@@ -855,50 +785,53 @@ msgstr ""
 "enregistrée"
 
 #: templates/svmain/group_mailinglist.html:24
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "To see the collection of prior posting to the list, visit the %(begin_link)s"
 "%(list_name)s archives%(end_link)s"
 msgstr ""
 "Pour consulter la collection des messages précédemment envoyés, rendez vous "
-"sur les %sarchives de %s%s"
+"sur les %(begin_link)sarchives de %(list_name)s%(end_link)s"
 
 #: templates/svmain/group_mailinglist.html:26
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "To see the collection of prior posting to the list, visit the %(begin_link)s"
 "%(list_name)s archives%(end_link)s (authorization required)."
 msgstr ""
 "Pour consulter la collection des messages précédemment envoyés, rendez vous "
-"sur les %sarchives de %s%s (autorisation requise)"
+"sur les %(begin_link)sarchives de %(list_name)s%(end_link)s (autorisation "
+"requise)"
 
 #: templates/svmain/group_mailinglist.html:29
-#, fuzzy, python-format
+#, python-format
 msgid "To post a message to all the list members, write to %(list_address)s"
-msgstr "Pour envoyer un message à tous les membres de la liste, écrivez à %s"
+msgstr ""
+"Pour envoyer un message à tous les membres de la liste, écrivez à "
+"%(list_address)s"
 
 #: templates/svmain/group_mailinglist.html:31
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You can (un)subscribe to the list by following instructions on the "
 "%(begin_link)slist information page%(end_link)s"
 msgstr ""
 "Vous pouvez vous (dés)abonner à cette liste en suivant les instructions sur "
-"%sla page d'information de liste%s"
+"%(begin_link)sla page d'information de liste%(end_link)s"
 
 #: templates/svmain/group_mailinglist.html:33
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Project administrators can use the %(begin_link)sadministrative interface"
 "%(end_link)s to manage the list."
 msgstr ""
-"Les administrateurs de projet peuvent utiliser %sl'interface d'administration"
-"%s pour gèrer la liste."
+"Les administrateurs de projet peuvent utiliser %(begin_link)sl'interface "
+"d'administration%(end_link)s pour gèrer la liste."
 
 #: templates/svmain/group_mailinglist.html:37
-#, fuzzy, python-format
+#, python-format
 msgid "No Lists found for %(group_name)s"
-msgstr "Aucune liste trouvée pour %s"
+msgstr "Aucune liste trouvée pour %(group_name)s"
 
 #: templates/svmain/group_mailinglist.html:38
 msgid "Project administrators can add mailing lists using the admin interface."
@@ -915,41 +848,56 @@ msgid "Project Member"
 msgstr "Membre du projet"
 
 #: templates/svmain/group_memberlist.html:39
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You may also be interested in the %(begin_link)sGPG Keyring of this project"
 "%(end_link)s"
 msgstr ""
-"Vous pouvez également consulter le %strousseau de clefs GPG des membres du "
-"projet%s"
+"Vous pouvez également consulter le %(begin_link)strousseau de clefs GPG des "
+"membres du projet%(end_link)s"
 
 #: templates/svmain/pagination.inc.html:8
 #: templates/svmain/pagination.inc.html:10
-#, fuzzy
 msgid "previous"
-msgstr "Valeur précédente"
+msgstr "précédent"
 
 #: templates/svmain/pagination.inc.html:22
 #: templates/svmain/pagination.inc.html:24
 msgid "next"
-msgstr ""
+msgstr "suivant"
 
 #: templates/svmain/pagination.inc.html:29
 #, python-format
 msgid "Page %(number)s on %(num_pages)s (%(count)s)"
-msgstr ""
+msgstr "Page %(number)s sur %(num_pages)s (%(count)s)"
 
 #: templates/svmain/pagination.inc.html:32
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s element"
 msgid_plural "%(count)s elements"
-msgstr[0] "Compte supprimé"
-msgstr[1] "Compte supprimé"
+msgstr[0] "%(count)s élément"
+msgstr[1] "%(count)s éléments"
 
 #: templates/svmain/user_list.html:19
-#, fuzzy
 msgid "No users."
-msgstr "Nouvel utilisateur"
+msgstr "Aucun utilisateur."
+
+#, fuzzy
+#~ msgid ""
+#~ "Someone, presumably you, has requested a change of email address on %s.\n"
+#~ msgstr "Vous avez demandé un changement d'adresse électronique sur"
+
+#, fuzzy
+#~ msgid ""
+#~ "If you did not request that change, please visit the following URL to "
+#~ "discard\n"
+#~ msgstr ""
+#~ "Si vous n'avez pas demandé ce changement, visitez cette URL pour annuler\n"
+#~ "l'opération and signalez-nous le problème :"
+
+#, fuzzy
+#~ msgid "You have requested a change of email address on %s.\n"
+#~ msgstr "Vous avez demandé un changement d'adresse électronique sur"
 
 #~ msgid "Requested XML not Found (Error 404)"
 #~ msgstr "Fichier XML non trouvé (Erreur 404)"
@@ -1062,7 +1010,6 @@ msgstr "Nouvel utilisateur"
 #~ msgid "Fill a support request."
 #~ msgstr "Postez une demande d'assistance technique"
 
-#, fuzzy
 #~ msgid ""
 #~ "You're going to be connected with a secure (https) server and your "
 #~ "password will not be visible to other users."
@@ -1274,7 +1221,6 @@ msgstr "Nouvel utilisateur"
 #~ msgid "You must supply a valid email address."
 #~ msgstr "Vous devez fournir une adresse électronique valide."
 
-#, fuzzy
 #~ msgid "You must supply a real name."
 #~ msgstr "Vous devez fournir un nom complet."
 
@@ -1368,7 +1314,6 @@ msgstr "Nouvel utilisateur"
 #~ msgid "Password"
 #~ msgstr "Mot de passe"
 
-#, fuzzy
 #~ msgid "This user doesn't exist."
 #~ msgstr "Cet utilisateur n'existe pas"
 
@@ -1401,29 +1346,23 @@ msgstr "Nouvel utilisateur"
 #~ msgid "Invalid Group"
 #~ msgstr "Groupe non valide"
 
-#, fuzzy
 #~ msgid "Invalid repository name: "
-#~ msgstr "Nom de liste invalide"
+#~ msgstr "Nom de dépôt invalide : "
 
-#, fuzzy
 #~ msgid "Invalid matching type"
-#~ msgstr "%d item correspondant"
+#~ msgstr "Type de correspondance invalide"
 
-#, fuzzy
 #~ msgid "Invalid value for enable_diff"
-#~ msgstr "Nom d'utilisateur non valide."
+#~ msgstr "Valeur incorrecte pour enable_diff"
 
-#, fuzzy
 #~ msgid "Invalid list of notification e-mails"
-#~ msgstr "Code de confirmation non valide."
+#~ msgstr "Liste de courriels de notification incorrecte"
 
-#, fuzzy
 #~ msgid "Invalid list of diff notification e-mails"
-#~ msgstr "Code de confirmation non valide."
+#~ msgstr "Liste de courriels d'envoi de changements incorrecte"
 
-#, fuzzy
 #~ msgid "Modify"
-#~ msgstr "lundi"
+#~ msgstr "Modifier"
 
 #~ msgid "Note for GNU projects"
 #~ msgstr "Note pour les projets GNU"
@@ -5241,14 +5180,6 @@ msgstr "Nouvel utilisateur"
 #~ msgstr ""
 #~ "Si vous n'avez pas demandé la suppression de votre compte %s, visitez "
 #~ "cette URL pour annuler\n"
-#~ "l'opération and signalez-nous le problème :"
-
-#~ msgid ""
-#~ "If you did not request that change, please visit the following URL to "
-#~ "discard\n"
-#~ "the process and report ASAP the problem to us:"
-#~ msgstr ""
-#~ "Si vous n'avez pas demandé ce changement, visitez cette URL pour annuler\n"
 #~ "l'opération and signalez-nous le problème :"
 
 #~ msgid ""
@@ -9445,13 +9376,6 @@ msgstr "Nouvel utilisateur"
 
 #~ msgid ", where you are registered as "
 #~ msgstr ", où vous êtes enregistré en tant "
-
-#, fuzzy
-#~ msgid "Someone, presumably you, has requested a change of email address on"
-#~ msgstr "Vous avez demandé un changement d'adresse électronique sur"
-
-#~ msgid "You have requested a change of email address on"
-#~ msgstr "Vous avez demandé un changement d'adresse électronique sur"
 
 #~ msgid "Your current address is "
 #~ msgstr "Votre adresse actuelle est "
