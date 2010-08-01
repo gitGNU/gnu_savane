@@ -26,7 +26,7 @@
 
         <span class="current">
 	    -
-            {% blocktrans with page_obj.number as number and paginator.num_pages as num_pages and paginator.count as count %}Page {{ page_obj.number }} on {{ num_pages }} ({{ count }}){% endblocktrans %}
+            {% blocktrans with page_obj.number as number and paginator.num_pages as num_pages and paginator.count as count %}Page {{ number }} on {{ num_pages }} ({{ count }}){% endblocktrans %}
         </span>
       {% else %}
         {% blocktrans count paginator.count as count %}{{count}} element{% plural %}{{count}} elements{% endblocktrans %}

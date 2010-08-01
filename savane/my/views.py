@@ -76,8 +76,8 @@ def contact(request, extra_context={}):
                     # TODO: we might use templates instead of plain string concatenation
                     url = 'http://' + Site.objects.get_current().domain + reverse('savane:my:email_confirm', args=[hex_confirm])
                     subject = get_site_name() + ' ' + _("verification")
-                    message = (_("You have requested a change of email address on %s.\n"
-                                 + "Please visit the following URL to complete the email change:") % get_site_name()
+                    message = (_("""You have requested a change of email address on %s.
+Please visit the following URL to complete the email change:""") % get_site_name()
                                + "\n\n"
                                + url
                                + "\n\n"
@@ -88,13 +88,16 @@ def contact(request, extra_context={}):
 		  
                     url = 'http://' + Site.objects.get_current().domain + reverse('savane:my:email_cancel', args=[hex_cancel])
                     subject = get_site_name() + ' ' + _("verification")
-                    message = (_("Someone, presumably you, has requested a change of email address on %s.\n"
-                                 + "If it wasn't you, maybe someone is trying to steal your account..."
-                                 + "\n\n"
-                                 + "Your current address is %s, the supposedly new address is %s."
-                                 + "\n\n") % (get_site_name(), request.user.email, request.user.svuserinfo.email_new)
-                               + _("If you did not request that change, please visit the following URL to discard\n"
-                                   + "the email change and report the problem to us:")
+                    message = (_("""Someone, presumably you, has requested a change of email address on %(site_name)s.
+If it wasn't you, maybe someone is trying to steal your account...
+
+Your current address is %(email_current)s, the supposedly new address is %(email_new)s.
+
+""") % {'site_name': get_site_name(),
+        'email_current': request.user.email,
+        'email_new': request.user.svuserinfo.email_new}
+                               + _("""If you did not request that change, please visit the following URL to discard
+the email change and report the problem to us:""")
                                + "\n\n"
                                + url
                                + "\n\n"
@@ -104,8 +107,7 @@ def contact(request, extra_context={}):
                     if request.user.email != '':
                         mail.send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, to)
                 except smtplib.SMTPException:
-		      messages.error(request, _("The system reported a failure when trying to send the confirmation mail."
-                                                + " Please retry and report that problem to administrators."))
+		      messages.error(request, _("The system reported a failure when trying to send the confirmation mail. Please retry and report that problem to administrators."))
                 messages.success(request, _("Confirmation mailed to %s.") % request.user.svuserinfo.email_new
                                  + ' ' + _("Follow the instructions in the email to complete the email change."))
                 

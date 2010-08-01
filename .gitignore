@@ -1,6 +1,7 @@
 *~
 *.pyc
 settings.py
+*.mo
 
 # Bundled dependencies, cf. INSTALL
 django-annoying
