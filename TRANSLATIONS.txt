@@ -4,7 +4,12 @@ Translate Savane in your own language!
 Create a translation strings catalog
 ------------------------------------
 
-In a terminal, type:
+First, as described in INSTALL, define the default settings.
+Type the following in a terminal:
+
+  echo 'from settings_default import *' > settings.py
+
+Once that's done, still in a terminal, type:
 
   ./manage.py makemessages -l XX
 

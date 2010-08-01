@@ -7,6 +7,16 @@ Directory layout
 
 * 'templates/' all the templates that are necessary to run savane
 
+When deploying Django, the top-level directory will be added to the
+Python path (sys.path).  So all packages are specified relative to
+this directory.  e.g.: import savane.my.views
+
+In particular, 'savane' is the main package.  It may be installed at
+another point of the Python path, e.g. in
+'/usr/share/pyshared/savane', in which case the top-level directory
+will only contain installation-specific files: 'manage.py',
+'settings.py', and 'url.py'.
+
 
 Debugging
 =========

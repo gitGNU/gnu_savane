@@ -1,8 +1,2 @@
-When this directory exists, you can create a top-level translation
-file:
-
-  django-admin makemessages -l fr
-  django-admin compilemessages
-  ...
-
-Cf. doc/DJANGO_I18N for further information.
+This directory required for django to create a top-level translation files.
+Cf. TRANSLATIONS.txt and doc/DJANGO_I18N .
