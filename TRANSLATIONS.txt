@@ -24,6 +24,7 @@ the translation strings catalog for your language.
 Check if there's a catalog in the previous version of Savane, as the
 current version reuses a lot of text strings from it:
 http://svn.gna.org/viewcvs/savane/trunk/po/
+http://git.savannah.gnu.org/cgit/savane-cleanup.git/tree/po
 
 
 Editing your .po catalog
@@ -35,6 +36,10 @@ http://www.poedit.net/
 
 Emacs users can use PO-mode, which runs automatically when editing .po
 files (under Debian GNU/Linux, install the 'gettext-el' package).
+
+You need not translate the 'templates/registration/password_*' files,
+as they are derived from Django files and translations are already
+available.
 
 
 Update your catalog
