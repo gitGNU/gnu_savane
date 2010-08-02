@@ -73,7 +73,9 @@ first invocation of 'group.svgroupinfo' return a different result
 thant the second one.  I submitted a fix:
 http://bitbucket.org/offline/django-annoying/issue/16/cache-issue-with-autoonetoonefield
 
-We may need to do things differently if upstream stays unresponsive...
+Currently we use a modified and fixed version (for the South and the
+above issue) in savane.utils.fields, because upstream is not
+responsive.
 """
 
 from django.db import models
@@ -89,7 +91,7 @@ class SshKey(models.Model):
     # TextField for such a long text.  Too bad for the admin/ area.
     ssh_key = models.TextField(blank=False)
 
-from annoying.fields import AutoOneToOneField
+from savane.utils.fields import AutoOneToOneField
 class SvUserInfo(models.Model):
     """
     Django base User class + extra Savane fields

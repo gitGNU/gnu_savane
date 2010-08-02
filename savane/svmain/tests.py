@@ -62,8 +62,6 @@ class SimpleTest(TestCase):
         
         group = auth_models.Group(name='test')
         group.save()
-        # Work-around AutoOneToOneField bug
-        group.svgroupinfo
         group.svgroupinfo.type = conf
         group.svgroupinfo.save()
 

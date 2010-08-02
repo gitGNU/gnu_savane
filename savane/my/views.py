@@ -64,7 +64,6 @@ def contact(request, extra_context={}):
 
         if form is not None and form.is_valid():
             if 'update_mail' in request.POST:
-                request.user.svuserinfo  # ugly work-around
                 request.user.svuserinfo.email_new = request.POST['email']
                 request.user.svuserinfo.email_hash_confirm = random.getrandbits(64-1)
                 request.user.svuserinfo.email_hash_cancel = random.getrandbits(64-1)
@@ -117,7 +116,6 @@ the email change and report the problem to us:""")
                 request.user.first_name = request.POST['first_name']
                 request.user.last_name = request.POST['last_name']
                 request.user.save()
-                request.user.svuserinfo
                 request.user.svuserinfo.gpg_key = request.POST['gpg_key']
                 request.user.svuserinfo.save()
                 messages.success(request, _("Personal information changed."))
