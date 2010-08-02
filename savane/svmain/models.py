@@ -113,11 +113,11 @@ class SvUserInfo(models.Model):
 
     # Old Savane can be Active/Deleted/Pending/Suspended/SQuaD
     status_CHOICES = (
-        ('A', 'Active'),
-        ('D', 'Deleted'),
-        ('P', 'Pending'),
-        ('S', 'Suspended'),
-        #('SQD', 'Squad'), # TODO: implement squads more cleanly
+        ('A', _('Active')),
+        ('D', _('Deleted')),
+        ('P', _('Pending')),
+        ('S', _('Suspended')),
+        #('SQD', _('Squad')), # TODO: implement squads more cleanly
         )
     status = models.CharField(max_length=3, choices=status_CHOICES, default='A')
 
@@ -137,7 +137,7 @@ class SvUserInfo(models.Model):
 
     # Keys
     gpg_key = models.TextField(blank=True,
-                               help_text="You can write down here your (ASCII) public key (gpg --export --armor keyid)")
+                               help_text=_("You can write down here your (ASCII) public key (gpg --export --armor keyid)"))
     gpg_key_count = models.IntegerField(null=True, blank=True)
     # SSH keys: cf. SshKey above
 
@@ -213,13 +213,13 @@ class DevelopmentStatus(models.Model):
 
     class Meta:
         ordering = ['name']
-        verbose_name_plural='Development statuses'
+        verbose_name_plural=_('Development statuses')
 
 class GroupConfiguration(models.Model):
     """Group configuration and main category (previously group_type)"""
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True,
-      help_text='Will be added on each project main page')
+      help_text=_('Will be added on each project main page'))
 
     #admin_email_adress = models.CharField(max_length=128, null=True) # unused
 
@@ -228,24 +228,17 @@ class GroupConfiguration(models.Model):
 
     # Mailing lists
     mailing_list_address = models.CharField(max_length=255, default='@',
-      help_text='would be %LIST@gnu.org for GNU projects at sv.gnu.org')
+      help_text=_('would be %LIST@gnu.org for GNU projects at sv.gnu.org'))
     mailing_list_virtual_host = models.CharField(max_length=255, blank=True,
-      help_text='would be lists.gnu.org or lists.nongnu.org at sv.gnu.org [BACKEND SPECIFIC]')
+      help_text=_('would be lists.gnu.org or lists.nongnu.org at sv.gnu.org [BACKEND SPECIFIC]'))
     mailing_list_format = models.CharField(max_length=255, default='%NAME',
-      help_text='With this, you can force projects to follow a specific policy'
-        + ' for the name of the %LIST. Here you should use the special wildcard'
-        + ' %NAME, which is the part the of the mailing list name that the'
-        + ' project admin can define (would be %PROJECT-%NAME for non-GNU'
-        + ' projects at sv.gnu.org). Do no add any @hostname here!'
-        + ' You can specify multiple formats separated by a "," comma.')
+      help_text=_('With this, you can force projects to follow a specific policy for the name of the %LIST. Here you should use the special wildcard %NAME, which is the part of the mailing list name that the project admin can define (would be %PROJECT-%NAME for non-GNU projects at sv.gnu.org). Do no add any @hostname here! You can specify multiple formats separated by a "," comma.'))
     #mailing_list_host = models.CharField(max_length=255, help_text='DEPRECATED')
 
     # Permissions
     can_use_homepage     = models.BooleanField(default=True)
     can_use_download     = models.BooleanField(default=True,
-      help_text='This is useful if you provide directly download areas (created'
-        + ' by the backend) or if you want to allow projects to configure the'
-        + ' related menu entry (see below).')
+      help_text=_('This is useful if you provide directly download areas (created by the backend) or if you want to allow projects to configure the related menu entry (see below).'))
     can_use_cvs          = models.BooleanField(default=False)
     can_use_arch         = models.BooleanField(default=False)
     can_use_svn          = models.BooleanField(default=False)
@@ -253,24 +246,18 @@ class GroupConfiguration(models.Model):
     can_use_hg           = models.BooleanField(default=False)
     can_use_bzr          = models.BooleanField(default=False)
     can_use_license      = models.BooleanField(default=True,
-      help_text='This is useful if you want project to select a license'
-        + ' on submission.')
+      help_text=_('This is useful if you want project to select a license on submission.'))
     can_use_devel_status = models.BooleanField(default=True,
-      help_text='This is useful if you want project to be able to defines their'
-        + ' development status that will be shown on their main page. This is'
-        + ' purely a matter of cosmetics. This option is mainly here just to'
-        + ' remove this content in case it is useless (it does not makes sense'
-        + ' for organizational projects).')
+      help_text=_('This is useful if you want project to be able to defines their development status that will be shown on their main page. This is purely a matter of cosmetics. This option is mainly here just to remove this content in case it is useless (it does not makes sense for organizational projects).'))
     can_use_mailing_list = models.BooleanField(default=True,
-      help_text='This is one of the main issue tracker of Savane.'
-        + ' Projects are supposed to use it as primary interface with end user.')
+      help_text=_('This is one of the main issue tracker of Savane. Projects are supposed to use it as primary interface with end user.'))
     can_use_support      = models.BooleanField(default=True)
     can_use_bug          = models.BooleanField(default=True)
     can_use_task         = models.BooleanField(default=True)
     can_use_patch        = models.BooleanField(default=False)
     can_use_news         = models.BooleanField(default=True)
     is_menu_configurable_homepage                = models.BooleanField(default=False,
-      help_text='the homepage link can be modified')
+      help_text=_('the homepage link can be modified'))
     is_menu_configurable_download                = models.BooleanField(default=False)
     is_menu_configurable_support                 = models.BooleanField(default=False)
     is_menu_configurable_mail                    = models.BooleanField(default=False)
@@ -292,33 +279,30 @@ class GroupConfiguration(models.Model):
     is_menu_configurable_patch                   = models.BooleanField(default=False)
     is_menu_configurable_extralink_documentation = models.BooleanField(default=False)
     is_configurable_download_dir = models.BooleanField(default=False,
-      help_text="the download _directory_ can be modified -- beware, if the"
-        + " backend is running and creating download dir, it can be used"
-        + " maliciously. don't activate this feature unless you truly know"
-        + "what you're doing")
+      help_text=_("the download _directory_ can be modified -- beware, if the backend is running and creating download dir, it can be used maliciously. don't activate this feature unless you truly know what you're doing"))
 
     # Directory creation config
     SCM_CHOICES = (
-        ('cvs', 'CVS'),
-        ('svn' , 'Subversion'),
-        ('arch' , 'GNU Arch'),
-        ('git' , 'Git'),
-        ('hg' , 'Mercurial'),
-        ('bzr' , 'Bazaar'),
+        ('cvs', _('CVS')),
+        ('svn' , _('Subversion')),
+        ('arch' , _('GNU Arch')),
+        ('git' , _('Git')),
+        ('hg' , _('Mercurial')),
+        ('bzr' , _('Bazaar')),
         )
     homepage_scm = models.CharField(max_length=4, choices=SCM_CHOICES, default='cvs')
     DIR_TYPE_CHOICES = (
-        ('basicdirectory', 'Basic directory'),
-        ('basiccvs', 'Basic CVS directory'),
-        ('basicsvn', 'Basic Subversion directory'),
-        ('basicgit', 'Basic Git directory'),
-        ('basichg', 'Basic Mercurial directory'),
-        ('basicbzr', 'Basic Bazaar directory'),
-        ('cvsattic', 'CVS Attic/Gna!'),
-        ('svnattic', 'Subversion Attic/Gna!'),
-        ('svnatticwebsite', 'Subversion Subdirectory Attic/Gna!'),
-        ('savannah-gnu', 'CVS Savannah GNU'),
-        ('savannah-nongnu', 'CVS Savannah non-GNU'),
+        ('basicdirectory', _('Basic directory')),
+        ('basiccvs', _('Basic CVS directory')),
+        ('basicsvn', _('Basic Subversion directory')),
+        ('basicgit', _('Basic Git directory')),
+        ('basichg', _('Basic Mercurial directory')),
+        ('basicbzr', _('Basic Bazaar directory')),
+        ('cvsattic', _('CVS Attic/Gna!')),
+        ('svnattic', _('Subversion Attic/Gna!')),
+        ('svnatticwebsite', _('Subversion Subdirectory Attic/Gna!')),
+        ('savannah-gnu', _('CVS Savannah GNU')),
+        ('savannah-nongnu', _('CVS Savannah non-GNU')),
         )
     dir_type_cvs      = models.CharField(max_length=15, choices=DIR_TYPE_CHOICES, default='basiccvs')
     dir_type_arch     = models.CharField(max_length=15, choices=DIR_TYPE_CHOICES, default='basicdirectory')
@@ -404,14 +388,14 @@ class SvGroupInfo(models.Model):
     type = models.ForeignKey(GroupConfiguration,
       null=True)  # NULL when object initially created by AutoOneToOneField
     full_name = models.CharField(max_length=255, blank=True,
-      help_text="Full project name (not Unix system name)")
+      help_text=_("Full project name (not Unix system name)"))
     is_public = models.BooleanField(default=False)
     status_CHOICES = (
-        ('A', 'Active'),
-        ('P', 'Pending'),
-        ('D', 'Deleted'),
-        ('M', 'Maintenance (accessible only to superuser)'),
-        ('I', 'Incomplete (failure during registration)'),
+        ('A', _('Active')),
+        ('P', _('Pending')),
+        ('D', _('Deleted')),
+        ('M', _('Maintenance (accessible only to superuser)')),
+        ('I', _('Incomplete (failure during registration)')),
         )
     status = models.CharField(max_length=1, choices=status_CHOICES, default='A')
     gidNumber = models.IntegerField(default=0)
@@ -575,16 +559,16 @@ class Membership(models.Model):
     group = models.ForeignKey(auth_models.Group)
 
     admin_flags_CHOICES = (
-        ('A', 'Admin'),
+        ('A', _('Admin')),
         # IMHO we need to put 'P' in a separate table, like 'pending
         # membership', otherwise it's too easy to make mistakes
-        ('P', 'Pending moderation'),
-        ('SQD', 'Squad'), # FIXME: I dislike squad=user
+        ('P', _('Pending moderation')),
+        ('SQD', _('Squad')), # FIXME: I dislike squad=user
         )
     admin_flags = models.CharField(max_length=3, choices=admin_flags_CHOICES,
-      blank=True, help_text="membership properties")
+      blank=True, help_text=_("membership properties"))
     onduty = models.BooleanField(default=True,
-      help_text="Untick to hide emeritous members from the project page")
+      help_text=_("Untick to hide emeritous members from the project page"))
     since = models.DateField(default=datetime.datetime.now, blank=True, null=True)
 
     # TODO: split news params
@@ -677,10 +661,10 @@ class Membership(models.Model):
 
 class MailingList(models.Model):
     status_CHOICES = (
-        ('0', 'Deleted'),
-        ('1', 'To be created'),
-        ('2', 'To be reconfigured'),
-        ('5', 'Created'),
+        ('0', _('Deleted')),
+        ('1', _('To be created')),
+        ('2', _('To be reconfigured')),
+        ('5', _('Created')),
         )
     group = models.ForeignKey(auth_models.Group)
     list_name = models.CharField(max_length=255)

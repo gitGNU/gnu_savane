@@ -17,6 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 # TODO: default '100' (aka 'nobody' or 'None', depending on
 # fields) -> change to NULL?
@@ -24,44 +25,44 @@ from django.db import models
 # Date fields: use default=... rather than auto_now_add=...; indeed,
 # auto_now_add cannot be overriden, hence it would mess data imports.
 
-RESTRICTION_CHOICES = (('2', 'anonymous'),
-                       ('3', 'logged-in user'),
-                       ('5', 'project member'),)
-NEW_ITEM_POSTING_RESTRICTION_CHOICES = PERMISSION_CHOICES + (('', 'group type default'),)
-COMMENT_POSTING_RESTRICTION_CHOICES = PERMISSION_CHOICES + (('', 'same as new item'),)
-PERMISSION_CHOICES = (('', 'group type default'),
-                      ('9', 'none'),
-                      ('1', 'technician'),
-                      ('3', 'manager'),
-                      ('2', 'technician & manager'),)
+RESTRICTION_CHOICES = (('2', _('anonymous')),
+                       ('3', _('logged-in user')),
+                       ('5', _('project member')),)
+NEW_ITEM_POSTING_RESTRICTION_CHOICES = PERMISSION_CHOICES + (('', _('group type default')),)
+COMMENT_POSTING_RESTRICTION_CHOICES = PERMISSION_CHOICES + (('', _('same as new item')),)
+PERMISSION_CHOICES = (('', _('group type default')),
+                      ('9', _('none')),
+                      ('1', _('technician')),
+                      ('3', _('manager')),
+                      ('2', _('technician & manager')),)
 
 
 NOTIFICATION_ROLES = (
-    {'id': 1, 'label': 'SUBMITTER', 'short': 'Submitter', 'description': 'The person who submitted the item'},
-    {'id': 2, 'label': 'ASSIGNEE',  'short': 'Assignee' , 'description': 'The person to whom the item was assigned'},
-    {'id': 3, 'label': 'CC',        'short': 'CC'       , 'description': 'The person who is in the CC list'},
-    {'id': 4, 'label': 'SUBMITTER', 'short': 'Submitter', 'description': 'A person who once posted a follow-up comment'},
+    {'id': 1, 'label': 'SUBMITTER', 'short': _('Submitter'), 'description': _('The person who submitted the item')},
+    {'id': 2, 'label': 'ASSIGNEE',  'short': _('Assignee' ), 'description': _('The person to whom the item was assigned')},
+    {'id': 3, 'label': 'CC',        'short': _('CC'       ), 'description': _('The person who is in the CC list')},
+    {'id': 4, 'label': 'SUBMITTER', 'short': _('Submitter'), 'description': _('A person who once posted a follow-up comment')},
 )
 
 NOTIFICATION_EVENTS = (
-    {'id': 1, 'label': 'ROLE_CHANGE'     , 'short': 'Role has changed',
-     'description': "I'm added to or removed from this role"},
-    {'id': 2, 'label': 'NEW_COMMENT'     , 'short': 'New comment',
-     'description': 'A new followup comment is added'},
-    {'id': 3, 'label': 'NEW_FILE'        , 'short': 'New attachment',
-     'description': 'A new file attachment is added'},
-    {'id': 4, 'label': 'CC_CHANGE'       , 'short': 'CC Change',
-     'description': 'A new CC address is added/removed'},
-    {'id': 5, 'label': 'CLOSED'          , 'short': 'Item closed',
-     'description': 'The item is closed'},
-    {'id': 6, 'label': 'PSS_CHANGE'      , 'short': 'PSS change',
-     'description': 'Priority,Status,Severity changes'},
-    {'id': 7, 'label': 'ANY_OTHER_CHANGE', 'short': 'Any other Changes',
-     'description': 'Any changes not mentioned above'},
-    {'id': 8, 'label': 'I_MADE_IT'       , 'short': 'I did it',
-     'description': 'I am the author of the change'},
-    {'id': 9, 'label': 'NEW_ITEM'        , 'short': 'New Item',
-     'description': 'A new item has been submitted'},
+    {'id': 1, 'label': 'ROLE_CHANGE'     , 'short': _('Role has changed'),
+     'description': _("I'm added to or removed from this role")},
+    {'id': 2, 'label': 'NEW_COMMENT'     , 'short': _('New comment'),
+     'description': _('A new followup comment is added')},
+    {'id': 3, 'label': 'NEW_FILE'        , 'short': _('New attachment'),
+     'description': _('A new file attachment is added')},
+    {'id': 4, 'label': 'CC_CHANGE'       , 'short': _('CC Change'),
+     'description': _('A new CC address is added/removed')},
+    {'id': 5, 'label': 'CLOSED'          , 'short': _('Item closed'),
+     'description': _('The item is closed')},
+    {'id': 6, 'label': 'PSS_CHANGE'      , 'short': _('PSS change'),
+     'description': _('Priority,Status,Severity changes')},
+    {'id': 7, 'label': 'ANY_OTHER_CHANGE', 'short': _('Any other Changes'),
+     'description': _('Any changes not mentioned above')},
+    {'id': 8, 'label': 'I_MADE_IT'       , 'short': _('I did it'),
+     'description': _('I am the author of the change')},
+    {'id': 9, 'label': 'NEW_ITEM'        , 'short': _('New Item'),
+     'description': _('A new item has been submitted')},
 )
 
 
@@ -139,12 +140,12 @@ class Field(models.Model):
     class Meta:
         unique_together = (('tracker', 'name'),)
 
-    DISPLAY_TYPE_CHOICES = (('DF', 'date field'),
-                            ('SB', 'select box'),
-                            ('TA', 'text area'),
-                            ('TF', 'text field'),)
-    SCOPE_CHOICES = (('S', 'system'),
-                     ('P', 'project'),)
+    DISPLAY_TYPE_CHOICES = (('DF', _('date field')),
+                            ('SB', _('select box')),
+                            ('TA', _('text area')),
+                            ('TF', _('text field')),)
+    SCOPE_CHOICES = (('S', _('system')),
+                     ('P', _('project')),)
 
     tracker = models.ForeignKey('Tracker')
     name = models.CharField(max_length=255, db_index=True)
@@ -156,11 +157,11 @@ class Field(models.Model):
     label  = models.CharField(max_length=255)
     description = models.TextField()
     scope = models.CharField(max_length=1, choices=SCOPE_CHOICES)
-    required = models.BooleanField(help_text="field cannot be disabled in configuration")
+    required = models.BooleanField(help_text=_("field cannot be disabled in configuration"))
     empty_ok = models.BooleanField()
     keep_history = models.BooleanField()
-    special = models.BooleanField(help_text="field is not entered by the user but by the system")
-    custom = models.BooleanField(help_text="let the user change the label and description")
+    special = models.BooleanField(help_text=_("field is not entered by the user but by the system"))
+    custom = models.BooleanField(help_text=_("let the user change the label and description"))
 
 class FieldUsage(models.Model):
     """
@@ -169,25 +170,25 @@ class FieldUsage(models.Model):
     class Meta:
         unique_together = (('bug_field', 'group'),)
 
-    TRANSITION_DEFAULT_AUTH_CHOICES = (('', 'undefined'),
-                                       ('A', 'allowed'),
-                                       ('F', 'forbidden'),)
-    SHOW_ON_ADD_CHOICES = (('0', 'no'),
-                           ('1', 'show to logged in users'),
-                           ('2', 'show to anonymous users'),
-                           ('3', 'show to both logged in and anonymous users'),)
-    CUSTOM_EMPTY_OK_CHOICES = (('0', 'mandatory only if it was presented to the original submitter'),
-                               ('1', 'optional (empty values are accepted)'),
-                               ('3', 'mandatory'),)
+    TRANSITION_DEFAULT_AUTH_CHOICES = (('', _('undefined')),
+                                       ('A', _('allowed')),
+                                       ('F', _('forbidden')),)
+    SHOW_ON_ADD_CHOICES = (('0', _('no')),
+                           ('1', _('show to logged in users')),
+                           ('2', _('show to anonymous users')),
+                           ('3', _('show to both logged in and anonymous users')),)
+    CUSTOM_EMPTY_OK_CHOICES = (('0', _('mandatory only if it was presented to the original submitter')),
+                               ('1', _('optional (empty values are accepted)')),
+                               ('3', _('mandatory')),)
     bug_field = models.ForeignKey('Field')
     group = models.ForeignKey('auth.Group')
-    use_it = models.BooleanField("used")
+    use_it = models.BooleanField(_("used"))
     show_on_add = models.CharField(max_length=1, choices=SHOW_ON_ADD_CHOICES,
                                    default='0', blank=True, null=True)
       # new:
       # show_on_add_logged_in = models.BooleanField("show to logged in users")
       # show_on_add_anonymous = models.BooleanField("show to anonymous users")
-    show_on_add_members = models.BooleanField("show to project members")
+    show_on_add_members = models.BooleanField(_("show to project members"))
     place = models.IntegerField() # new:rank
     transition_default_auth = models.CharField(max_lenth=1, choices=TRANSITION_DEFAULT_AUTH, default='A')
 
@@ -201,7 +202,7 @@ class FieldUsage(models.Model):
       # custom_display_size_max = models.IntegerField(blank=True, null=True)
       # The default value is in Field.display_size
       #   rather than FieldUsage(group_id=100).custom_display_size
-    custom_keep_history = models.BooleanField("keep field value changes in history")
+    custom_keep_history = models.BooleanField(_("keep field value changes in history"))
     
     # Specific (bad!) fields for custom fields (if Field.custom is True):
     custom_label = models.CharField(max_length=255, blank=True, null=True)
@@ -214,9 +215,9 @@ class FieldValue(models.Model):
     class Meta:
         unique_together = (('bug_field', 'group', 'value_id'),)
 
-    STATUS_CHOICES = (('A', 'active'),
-                      ('H', 'hidden'), # mask previously-active or system fields
-                      ('P', 'permanent'),) # status cannot be modified, always visible
+    STATUS_CHOICES = (('A', _('active')),
+                      ('H', _('hidden')), # mask previously-active or system fields
+                      ('P', _('permanent')),) # status cannot be modified, always visible
     bug_field = models.ForeignKey('Field')
     group = models.ForeignKey('auth.Group') # =100 for system-wide values
     value_id = models.IntegerField(db_index=True) # group_specific value identifier
@@ -229,10 +230,8 @@ class FieldValue(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='A', db_index=True)
 
     # Field category: specific (bad!) field for e-mail notifications
-    email_ad = models.TextField(help_text="comma-separated list of e-mail addresses"
-                                + " to notify when an item is created or modified"
-                                + " in this category")
-    send_all_flag = models.BooleanField("send on all updates", default=True)
+    email_ad = models.TextField(help_text=_("comma-separated list of e-mail addresses to notify when an item is created or modified in this category"))
+    send_all_flag = models.BooleanField(_("send on all updates"), default=True)
 
 # Auto_increment counters
 # We could make this more generic, but we'd have to implement
@@ -300,14 +299,14 @@ class Item(models.Model):
     assigned_to = models.IntegerField(default=100)
 
     # - other fields
-    status_id = models.IntegerField(default=100, verbose_name="open/closed")
+    status_id = models.IntegerField(default=100, verbose_name=_("open/closed"))
     resolution_id = models.IntegerField(default=100)
     severity = models.IntegerField(default=5)
     planned_starting_date = models.DateTimeField(blank=True, null=True)
     planned_close_date = models.DateTimeField(blank=True, null=True)
     percent_complete = models.IntegerField(default=1) # SB
     reproducibility_id = models.IntegerField(default=100)
-    bug_group_id = models.IntegerField(default=100, verbose_name="item group")
+    bug_group_id = models.IntegerField(default=100, verbose_name=_("item group"))
     keywords = models.CharField(max_length=255)
     hours = models.FloatField(default=0.0)
     priority = models.IntegerField(default=5)
@@ -395,13 +394,13 @@ class ItemHistory(models.Model):
 
     # Specific (bad!) field for 'details'
     # I guess 'details' could be stored separately.
-    type = models.IntegerField("comment type", blank=True, null=True)
+    type = models.IntegerField(_("comment type"), blank=True, null=True)
       # Should be:
       # type = models.ForeignKey('FieldValue', to_field='value_id')
       #        + constraint(same group or 100) + constraint(field_name='comment_type_id')
       # The purpose is to add <strong>[$comment_type]</strong> when
       # displaying an item comment.
-    spamscore = models.IntegerField("total spamscore for this comment")
+    spamscore = models.IntegerField(_("total spamscore for this comment"))
 
 class ItemCc(models.Model):
     """

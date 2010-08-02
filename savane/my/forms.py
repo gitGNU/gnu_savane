@@ -22,17 +22,22 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from savane.utils import *
 
 class MailForm(forms.Form):
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(required=True, label=_("E-mail"))
 
 class IdentityForm(forms.Form):
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
+    first_name = forms.CharField(required=False, label=_("First name"))
+    last_name = forms.CharField(required=False, label=_("Last name"))
     gpg_key = forms.CharField(widget=forms.Textarea(attrs={'cols':'70','rows':'15'}), required=False,
+                              label=_("GPG key"),
                               help_text=_("You can write down here your (ASCII) public key (gpg --export --armor keyid)"))
 
 class SSHForm(forms.Form):
-    key_file = forms.FileField(required=False, help_text=_("Be sure to upload the file ending with .pub"))
-    key = forms.CharField(widget=forms.TextInput(attrs={'size':'60'}), required=False)
+    key_file = forms.FileField(required=False,
+                               label=_("Key file"),
+                               help_text=_("Be sure to upload the file ending with .pub"))
+    key = forms.CharField(required=False,
+                          widget=forms.TextInput(attrs={'size':'60'}),
+                          label=_("Key"))
 
     def clean_key(self):
         ssh_key = self.cleaned_data['key']

@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-02 15:53-0500\n"
-"PO-Revision-Date: 2010-08-02 22:51+0200\n"
+"POT-Creation-Date: 2010-08-02 16:43-0500\n"
+"PO-Revision-Date: 2010-08-02 23:43+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -89,23 +89,47 @@ msgstr "Russe"
 msgid "Swedish"
 msgstr "Suédois"
 
+#: savane/my/forms.py:25
+msgid "E-mail"
+msgstr "Courriel"
+
+#: savane/my/forms.py:28
+msgid "First name"
+msgstr "Prénom"
+
+#: savane/my/forms.py:29
+msgid "Last name"
+msgstr "Nom"
+
 #: savane/my/forms.py:31
+msgid "GPG key"
+msgstr "Clef GPG"
+
+#: savane/my/forms.py:32 savane/svmain/models.py:140
 msgid ""
 "You can write down here your (ASCII) public key (gpg --export --armor keyid)"
 msgstr ""
 "Vous pouvez ajouter ici votre clef publique ASCII (gpg --export --armor "
 "keyid) :"
 
-#: savane/my/forms.py:34
+#: savane/my/forms.py:36
+msgid "Key file"
+msgstr "Clef (fichier)"
+
+#: savane/my/forms.py:37
 msgid "Be sure to upload the file ending with .pub"
 msgstr "Assurez-vous d'envoyer le fichier qui se finit en .pub"
 
-#: savane/my/forms.py:47
+#: savane/my/forms.py:40
+msgid "Key"
+msgstr "Clef"
+
+#: savane/my/forms.py:52
 #, python-format
 msgid "The uploaded string is not a public key file: %s"
 msgstr "La chaîne transmise n'est pas une clef publique : %s"
 
-#: savane/my/forms.py:65
+#: savane/my/forms.py:70
 #, python-format
 msgid "The uploaded file is not a public key file: %s"
 msgstr "Le fichier transmis n'est pas une clef publique : %s"
@@ -306,13 +330,220 @@ msgstr "Gestionnaire de dépêches"
 msgid "Project Menu Settings"
 msgstr "Configuration du menu du projet"
 
+#: savane/svmain/models.py:116 savane/svmain/models.py:394
+msgid "Active"
+msgstr "Actif"
+
+#: savane/svmain/models.py:117 savane/svmain/models.py:396
+#: savane/svmain/models.py:664
+msgid "Deleted"
+msgstr "Supprimé"
+
+#: savane/svmain/models.py:118 savane/svmain/models.py:395
+msgid "Pending"
+msgstr "En attente"
+
+#: savane/svmain/models.py:119
+msgid "Suspended"
+msgstr "Suspendu"
+
 #: savane/svmain/models.py:136
 msgid "new e-mail address"
 msgstr "nouvelle adresse courriel"
 
-#: savane/svmain/models.py:400
+#: savane/svmain/models.py:216
+#, fuzzy
+msgid "Development statuses"
+msgstr "Stade de développement"
+
+#: savane/svmain/models.py:222
+#, fuzzy
+msgid "Will be added on each project main page"
+msgstr "Description (qui sera ajouté sur chaque page principale de projet):"
+
+#: savane/svmain/models.py:231
+msgid "would be %LIST@gnu.org for GNU projects at sv.gnu.org"
+msgstr "ce serait %LIST@gnu.org pour les projets GNU sur sv.gnu.org"
+
+#: savane/svmain/models.py:233
+msgid ""
+"would be lists.gnu.org or lists.nongnu.org at sv.gnu.org [BACKEND SPECIFIC]"
+msgstr ""
+"ce serait lists.gnu.org or lists.nongnu.org sur sv.gnu.org [spécifique à la "
+"partie système]"
+
+#: savane/svmain/models.py:235
+#, fuzzy
+msgid ""
+"With this, you can force projects to follow a specific policy for the name "
+"of the %LIST. Here you should use the special wildcard %NAME, which is the "
+"part of the mailing list name that the project admin can define (would be "
+"%PROJECT-%NAME for non-GNU projects at sv.gnu.org). Do no add any @hostname "
+"here! You can specify multiple formats separated by a \",\" comma."
+msgstr ""
+"Avec ceci, vous pouvez forcer les projets à suivre une convention de nommage "
+"particulière pour le nom de la %LIST. Vous devez utiliser ici le joker dédié "
+"%NAME, qui représente la partie de la liste de diffusion que "
+"l'administrateur du projet peut définir (ce serait %PROJECT-%NAME pour les "
+"projets non-GNU projects sur sv.gnu.org). N'ajoutez pas de @hostname ici! "
+"Vous pouvez spécier plusieurs formats séparés par une \",\" virgule."
+
+#: savane/svmain/models.py:241
+msgid ""
+"This is useful if you provide directly download areas (created by the "
+"backend) or if you want to allow projects to configure the related menu "
+"entry (see below)."
+msgstr ""
+
+#: savane/svmain/models.py:249
+msgid "This is useful if you want project to select a license on submission."
+msgstr ""
+
+#: savane/svmain/models.py:251
+msgid ""
+"This is useful if you want project to be able to defines their development "
+"status that will be shown on their main page. This is purely a matter of "
+"cosmetics. This option is mainly here just to remove this content in case it "
+"is useless (it does not makes sense for organizational projects)."
+msgstr ""
+
+#: savane/svmain/models.py:253
+msgid ""
+"This is one of the main issue tracker of Savane. Projects are supposed to "
+"use it as primary interface with end user."
+msgstr ""
+
+#: savane/svmain/models.py:260
+msgid "the homepage link can be modified"
+msgstr "le lien vers le site web du projet peut être modifié"
+
+#: savane/svmain/models.py:282
+msgid ""
+"the download _directory_ can be modified -- beware, if the backend is "
+"running and creating download dir, it can be used maliciously. don't "
+"activate this feature unless you truly know what you're doing"
+msgstr ""
+
+#: savane/svmain/models.py:286
+msgid "CVS"
+msgstr "CVS"
+
+#: savane/svmain/models.py:287
+msgid "Subversion"
+msgstr "Subversion"
+
+#: savane/svmain/models.py:288
+msgid "GNU Arch"
+msgstr "GNU Arch"
+
+#: savane/svmain/models.py:289
+msgid "Git"
+msgstr "Git"
+
+#: savane/svmain/models.py:290
+msgid "Mercurial"
+msgstr "Mercurial"
+
+#: savane/svmain/models.py:291
+msgid "Bazaar"
+msgstr "Bazaar"
+
+#: savane/svmain/models.py:295
+#, fuzzy
+msgid "Basic directory"
+msgstr "Dossier basique"
+
+#: savane/svmain/models.py:296
+msgid "Basic CVS directory"
+msgstr "Dossier CVS basique"
+
+#: savane/svmain/models.py:297
+msgid "Basic Subversion directory"
+msgstr "Dossier Subversion basique"
+
+#: savane/svmain/models.py:298
+msgid "Basic Git directory"
+msgstr "Dossier Git basique"
+
+#: savane/svmain/models.py:299
+msgid "Basic Mercurial directory"
+msgstr "Dossier Mercurial basique"
+
+#: savane/svmain/models.py:300
+msgid "Basic Bazaar directory"
+msgstr "Dossier Bazaar basique"
+
+#: savane/svmain/models.py:301
+msgid "CVS Attic/Gna!"
+msgstr ""
+
+#: savane/svmain/models.py:302
+#, fuzzy
+msgid "Subversion Attic/Gna!"
+msgstr "Subversion"
+
+#: savane/svmain/models.py:303
+#, fuzzy
+msgid "Subversion Subdirectory Attic/Gna!"
+msgstr "Dépôts Subversion"
+
+#: savane/svmain/models.py:304
+msgid "CVS Savannah GNU"
+msgstr ""
+
+#: savane/svmain/models.py:305
+msgid "CVS Savannah non-GNU"
+msgstr ""
+
+#: savane/svmain/models.py:384
 msgid "project information"
 msgstr "informations du projet"
+
+#: savane/svmain/models.py:391
+msgid "Full project name (not Unix system name)"
+msgstr "Nom complet du projet (pas le nom système Unix!)"
+
+#: savane/svmain/models.py:397
+msgid "Maintenance (accessible only to superuser)"
+msgstr "Maintenance (accessible seulement aux superutilisateurs)"
+
+#: savane/svmain/models.py:398
+msgid "Incomplete (failure during registration)"
+msgstr "Incomplet (échec lors de l'inscription)"
+
+#: savane/svmain/models.py:562
+msgid "Admin"
+msgstr "Admin"
+
+#: savane/svmain/models.py:565
+#, fuzzy
+msgid "Pending moderation"
+msgstr "En attente de modération"
+
+#: savane/svmain/models.py:566
+msgid "Squad"
+msgstr "Escouade"
+
+#: savane/svmain/models.py:569
+#, fuzzy
+msgid "membership properties"
+msgstr "propriété de l'appartenance à un projet"
+
+#: savane/svmain/models.py:571
+msgid "Untick to hide emeritous members from the project page"
+msgstr "Décocher pour masquer les membres émérites de la page de projet"
+
+#: savane/svmain/models.py:665
+msgid "To be created"
+msgstr "À créer"
+
+#: savane/svmain/models.py:666
+msgid "To be reconfigured"
+msgstr "À reconfigurer"
+
+#: savane/svmain/models.py:667
+msgid "Created"
+msgstr "Créée"
 
 #: savane/svmain/urls.py:56 templates/base.html:29
 msgid "Users"
@@ -414,6 +645,283 @@ msgstr "Gestion de code source"
 msgid "Use X"
 msgstr "Utiliser X"
 
+#: savane/tracker/models.py:28
+#, fuzzy
+msgid "anonymous"
+msgstr "Anonyme"
+
+#: savane/tracker/models.py:29
+#, fuzzy
+msgid "logged-in user"
+msgstr "Utilisateur authentifié"
+
+#: savane/tracker/models.py:30
+#, fuzzy
+msgid "project member"
+msgstr "Membre du projet"
+
+#: savane/tracker/models.py:31 savane/tracker/models.py:33
+#, fuzzy
+msgid "group type default"
+msgstr "type de groupe supprimé"
+
+#: savane/tracker/models.py:32
+#, fuzzy
+msgid "same as new item"
+msgstr "Tel que pour les nouveaux items"
+
+#: savane/tracker/models.py:34
+msgid "none"
+msgstr "aucun"
+
+#: savane/tracker/models.py:35
+msgid "technician"
+msgstr "technicien"
+
+#: savane/tracker/models.py:36
+msgid "manager"
+msgstr "gestionnaire"
+
+#: savane/tracker/models.py:37
+msgid "technician & manager"
+msgstr "techn. & gestion."
+
+#: savane/tracker/models.py:41 savane/tracker/models.py:44
+msgid "Submitter"
+msgstr "Poster"
+
+#: savane/tracker/models.py:41
+msgid "The person who submitted the item"
+msgstr "La personne qui a posté l'item"
+
+#: savane/tracker/models.py:42
+msgid "Assignee"
+msgstr "Responsable"
+
+#: savane/tracker/models.py:42
+msgid "The person to whom the item was assigned"
+msgstr "La personne à qui cet item a été assigné"
+
+#: savane/tracker/models.py:43
+msgid "CC"
+msgstr "CC"
+
+#: savane/tracker/models.py:43
+msgid "The person who is in the CC list"
+msgstr "La personne qui est la dans la liste de CC"
+
+#: savane/tracker/models.py:44
+msgid "A person who once posted a follow-up comment"
+msgstr "La personne qui a posté un commentaire"
+
+#: savane/tracker/models.py:48
+msgid "Role has changed"
+msgstr "Le rôle a changé"
+
+#: savane/tracker/models.py:49
+msgid "I'm added to or removed from this role"
+msgstr ""
+
+#: savane/tracker/models.py:50
+msgid "New comment"
+msgstr "Nouveau commentaire"
+
+#: savane/tracker/models.py:51
+msgid "A new followup comment is added"
+msgstr "Un nouveau commentaire est ajouté"
+
+#: savane/tracker/models.py:52
+msgid "New attachment"
+msgstr "Nouveau documents joint"
+
+#: savane/tracker/models.py:53
+msgid "A new file attachment is added"
+msgstr "Un nouveau fichier attaché est ajoutéé"
+
+#: savane/tracker/models.py:54
+msgid "CC Change"
+msgstr "CC changée"
+
+#: savane/tracker/models.py:55
+msgid "A new CC address is added/removed"
+msgstr "Une nouvelle adresse CC est ajouté/supprimée"
+
+#: savane/tracker/models.py:56
+msgid "Item closed"
+msgstr "Item fermé"
+
+#: savane/tracker/models.py:57
+msgid "The item is closed"
+msgstr "L'item vient d'être fermé"
+
+#: savane/tracker/models.py:58
+msgid "PSS change"
+msgstr ""
+
+#: savane/tracker/models.py:59
+msgid "Priority,Status,Severity changes"
+msgstr ""
+
+#: savane/tracker/models.py:60
+msgid "Any other Changes"
+msgstr ""
+
+#: savane/tracker/models.py:61
+msgid "Any changes not mentioned above"
+msgstr ""
+
+#: savane/tracker/models.py:62
+msgid "I did it"
+msgstr ""
+
+#: savane/tracker/models.py:63
+#, fuzzy
+msgid "I am the author of the change"
+msgstr "Je ne suis pas l'auteur de la mise à jour de l'item"
+
+#: savane/tracker/models.py:64
+msgid "New Item"
+msgstr "Nouvel item"
+
+#: savane/tracker/models.py:65
+#, fuzzy
+msgid "A new item has been submitted"
+msgstr "Approuver une dépêche pour le projet %s proposée par %s"
+
+#: savane/tracker/models.py:143
+msgid "date field"
+msgstr "champ date"
+
+#: savane/tracker/models.py:144
+msgid "select box"
+msgstr "liste déroulante"
+
+#: savane/tracker/models.py:145
+msgid "text area"
+msgstr "zone de texte"
+
+#: savane/tracker/models.py:146
+msgid "text field"
+msgstr "champ de texte"
+
+#: savane/tracker/models.py:147
+msgid "system"
+msgstr "système"
+
+#: savane/tracker/models.py:148
+msgid "project"
+msgstr "projet"
+
+#: savane/tracker/models.py:160
+msgid "field cannot be disabled in configuration"
+msgstr ""
+
+#: savane/tracker/models.py:163
+msgid "field is not entered by the user but by the system"
+msgstr ""
+
+#: savane/tracker/models.py:164
+msgid "let the user change the label and description"
+msgstr ""
+
+#: savane/tracker/models.py:173
+msgid "undefined"
+msgstr "indéfini"
+
+#: savane/tracker/models.py:174
+msgid "allowed"
+msgstr "autorisé"
+
+#: savane/tracker/models.py:175
+msgid "forbidden"
+msgstr "interdit"
+
+#: savane/tracker/models.py:176
+msgid "no"
+msgstr "non"
+
+#: savane/tracker/models.py:177
+msgid "show to logged in users"
+msgstr "montrer aux utilisateurs authentifiés"
+
+#: savane/tracker/models.py:178
+msgid "show to anonymous users"
+msgstr "montrer aux utilisateurs anonymes"
+
+#: savane/tracker/models.py:179
+#, fuzzy
+msgid "show to both logged in and anonymous users"
+msgstr "Cette information n'est pas divulguée aux utilisateurs anonymes"
+
+#: savane/tracker/models.py:180
+#, fuzzy
+msgid "mandatory only if it was presented to the original submitter"
+msgstr "Obligatoire seulement s'il a été présenté à celui ayant posté l'item"
+
+#: savane/tracker/models.py:181
+#, fuzzy
+msgid "optional (empty values are accepted)"
+msgstr "Facultatif (les valeurs nulles sont acceptées)"
+
+#: savane/tracker/models.py:182
+msgid "mandatory"
+msgstr "obligatoire"
+
+#: savane/tracker/models.py:185
+msgid "used"
+msgstr "utilisé"
+
+#: savane/tracker/models.py:191
+#, fuzzy
+msgid "show to project members"
+msgstr "Membres du projet"
+
+#: savane/tracker/models.py:205
+#, fuzzy
+msgid "keep field value changes in history"
+msgstr "Conserver dans l'historique les modifications des valeurs de ce champ"
+
+#: savane/tracker/models.py:218
+msgid "active"
+msgstr "actif"
+
+#: savane/tracker/models.py:219
+msgid "hidden"
+msgstr "caché"
+
+#: savane/tracker/models.py:220
+msgid "permanent"
+msgstr "permanent"
+
+#: savane/tracker/models.py:233
+msgid ""
+"comma-separated list of e-mail addresses to notify when an item is created "
+"or modified in this category"
+msgstr ""
+
+#: savane/tracker/models.py:234
+#, fuzzy
+msgid "send on all updates"
+msgstr "Poster à toutes les mises à jour de l'item"
+
+#: savane/tracker/models.py:302
+msgid "open/closed"
+msgstr "ouvert/clos"
+
+#: savane/tracker/models.py:309
+#, fuzzy
+msgid "item group"
+msgstr "Quitter un groupe"
+
+#: savane/tracker/models.py:397
+msgid "comment type"
+msgstr "type de commentaire"
+
+#: savane/tracker/models.py:403
+#, fuzzy
+msgid "total spamscore for this comment"
+msgstr "Vous avez déjà signalé ce commentaire"
+
 #: savane/utils/__init__.py:44
 #, python-format
 msgid "SSH error: %s"
@@ -480,10 +988,18 @@ msgstr "Bienvenue"
 msgid ": "
 msgstr " : "
 
+#: templates/my/contact.html:9
+msgid "Change e-mail"
+msgstr "Modifier l'e-mail"
+
 #: templates/my/contact.html:14 templates/my/contact.html.py:22
 #: templates/my/i18n.html:22
 msgid "Update"
 msgstr "Mise à jour"
+
+#: templates/my/contact.html:17
+msgid "Change name"
+msgstr "Modifier le nom"
 
 #: templates/my/index.html:6
 msgid "Account configuration"
@@ -521,9 +1037,21 @@ msgstr "Mes groupes"
 msgid "No groups."
 msgstr "Aucun groupe."
 
+#: templates/my/ssh.html:9
+msgid "Working SSH Keys"
+msgstr "Clefs SSH fonctionnelles"
+
 #: templates/my/ssh.html:19
 msgid "Delete"
 msgstr "Supprimer"
+
+#: templates/my/ssh.html:24
+msgid "No SSH keys yet."
+msgstr "Pas encore de clef SSH."
+
+#: templates/my/ssh.html:27
+msgid "SSH keys"
+msgstr "Clefs SSH"
 
 #: templates/my/ssh.html:30 templates/svmain/group_admin_members_add.html:34
 msgid "Add"
@@ -1245,9 +1773,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Account Registration"
 #~ msgstr "Création d'un nouveau compte"
-
-#~ msgid "Account Pending Verification"
-#~ msgstr "Compte en attente de vérification"
 
 #~ msgid ""
 #~ "Your email confirmation has been resent. Visit the link in this email to "
@@ -1991,15 +2516,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Techn. & Manager"
 #~ msgstr "Techni. & Gestion."
 
-#~ msgid "Same as for new items"
-#~ msgstr "Tel que pour les nouveaux items"
-
-#~ msgid "Logged-in User"
-#~ msgstr "Utilisateur authentifié"
-
-#~ msgid "Anonymous"
-#~ msgstr "Anonyme"
-
 #~ msgid "default"
 #~ msgstr "défaut"
 
@@ -2464,9 +2980,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Date Opened"
 #~ msgstr "Date d'ouverture"
 
-#~ msgid "Project"
-#~ msgstr "Projet"
-
 #~ msgid "Type"
 #~ msgstr "Type"
 
@@ -2848,9 +3361,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Logged in as %s"
 #~ msgstr "Authentifié(e) en tant que %s"
 
-#~ msgid "%s logged in as superuser"
-#~ msgstr "%s authentifié en super utilisateur"
-
 #~ msgid "Become Superuser"
 #~ msgstr "Devenir super utilisateur"
 
@@ -2892,9 +3402,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Account registration form"
 #~ msgstr "Formulaire de création de compte"
-
-#~ msgid "You already flagged this comment"
-#~ msgstr "Vous avez déjà signalé ce commentaire"
 
 #~ msgid "Not able to find out who submitted the alleged spam, stopping here"
 #~ msgstr "Impossible de savoir qui a soumis le supposé spam"
@@ -2991,9 +3498,6 @@ msgstr "Aucun utilisateur."
 #~ msgstr ""
 #~ "Vous ne pouvez copier la configuration d'autres projets car vous n'est "
 #~ "membre d'aucun autre projet ici utilisant un outil de suivi de %s."
-
-#~ msgid "Anonymous Users"
-#~ msgstr "Anonymes"
 
 #~ msgid "Logged-in Users"
 #~ msgstr "Utilisateurs authentifiés"
@@ -3100,9 +3604,6 @@ msgstr "Aucun utilisateur."
 #~ "fournir les listes d'adresses électroniques qui vont de pair (en "
 #~ "employant la virgule comme séparateur)."
 
-#~ msgid "Notify persons in the global list only"
-#~ msgstr "Notifier les personnes dans la liste globale uniquement"
-
 #~ msgid ""
 #~ "Notify persons in the category related list instead of the global list"
 #~ msgstr ""
@@ -3117,9 +3618,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Category related lists"
 #~ msgstr "Listes relatives à des catégories"
-
-#~ msgid "Send on all updates"
-#~ msgstr "Poster à toutes les mises à jour de l'item"
 
 #~ msgid "Global list"
 #~ msgstr "Liste globale"
@@ -3203,9 +3701,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Unable to create a new item."
 #~ msgstr "Échec de la création d'un nouvel item."
-
-#~ msgid "New item created."
-#~ msgstr "Nouvel item créé."
 
 #~ msgid "Unable to find the ID of the new item."
 #~ msgstr "Impossible de trouve l'Id du nouvel item."
@@ -3330,9 +3825,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Carbon-Copy List"
 #~ msgstr "Liste des Copies-Carbone"
-
-#~ msgid "Submitted the item"
-#~ msgstr "A posté l'item"
 
 #~ msgid "Posted a comment"
 #~ msgstr "A posté un commentaire"
@@ -3460,9 +3952,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Other"
 #~ msgstr "Autre"
 
-#~ msgid "Undefined"
-#~ msgstr "Indéfini"
-
 #~ msgid "From %s User Docs"
 #~ msgstr "Issu de la documentation utilisateur de %s"
 
@@ -3473,9 +3962,6 @@ msgstr "Aucun utilisateur."
 #~ msgid_plural "Follow %s latest changes."
 #~ msgstr[0] "Ci-dessous la %s dernière modification."
 #~ msgstr[1] "Ci-dessous les %s dernières modifications."
-
-#~ msgid "Changed By"
-#~ msgstr "Changé par"
 
 #~ msgid "Updated Field"
 #~ msgstr "Champ mis à jour"
@@ -3549,9 +4035,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Unable to finally record the vote, please report to admins"
 #~ msgstr "Impossible d'enregistrer votre vote, contactez les administrateurs."
-
-#~ msgid "Vote recorded"
-#~ msgstr "Vote enregistré"
 
 #~ msgid "Action Unavailable: %s"
 #~ msgstr "Action interdite : %s"
@@ -3694,15 +4177,8 @@ msgstr "Aucun utilisateur."
 #~ msgid "Used"
 #~ msgstr "Utilisé"
 
-#~ msgid "Unused"
-#~ msgstr "Inutilisé"
-
 #~ msgid "Item History:"
 #~ msgstr "Historique des items :"
-
-#~ msgid "Keep field value changes in history"
-#~ msgstr ""
-#~ "Conserver dans l'historique les modifications des valeurs de ce champ"
 
 #~ msgid "Ignore field value changes in history"
 #~ msgstr "Ignorer les modifications des valeurs de ce champ dans l'historique"
@@ -3713,21 +4189,8 @@ msgstr "Aucun utilisateur."
 #~ msgid "This field is:"
 #~ msgstr "Ce champ est :"
 
-#~ msgid "Optional (empty values are accepted)"
-#~ msgstr "Facultatif (les valeurs nulles sont acceptées)"
-
-#~ msgid "Mandatory"
-#~ msgstr "Obligatoire"
-
-#~ msgid "Mandatory only if it was presented to the original submitter"
-#~ msgstr ""
-#~ "Obligatoire seulement s'il a été présenté à celui ayant posté l'item"
-
 #~ msgid "On new item submission, present this field to:"
 #~ msgstr "Lors du postage d'un nouvel item, ce champ est présenté aux :"
-
-#~ msgid "Project Members"
-#~ msgstr "Membres du projet"
 
 #~ msgid "Display:"
 #~ msgstr "Affichage :"
@@ -3750,12 +4213,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "By default, transitions (from one value to another) are:"
 #~ msgstr "Par défaut, les transitions (d'une valeur à une autre) sont :"
 
-#~ msgid "Allowed"
-#~ msgstr "Autorisées"
-
-#~ msgid "Forbidden"
-#~ msgstr "Interdites"
-
 #~ msgid "Reset to defaults"
 #~ msgstr "Revenir aux paramètres par défaut"
 
@@ -3764,9 +4221,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Status"
 #~ msgstr "État"
-
-#~ msgid "System"
-#~ msgstr "Système"
 
 #~ msgid "Custom Field"
 #~ msgstr "Champ personnalisé"
@@ -3833,12 +4287,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Occurences"
 #~ msgstr "Occurences"
-
-#~ msgid "Active"
-#~ msgstr "Actif"
-
-#~ msgid "Hidden"
-#~ msgstr "Caché"
 
 #~ msgid ""
 #~ "No active value for this field. Create one or reactivate a hidden value "
@@ -4128,9 +4576,6 @@ msgstr "Aucun utilisateur."
 #~ "Copy the configuration of trackers of other projects you are member of."
 #~ msgstr "Copier la configuration d'un outil de suivi d'un autre projet."
 
-#~ msgid "Items Fields"
-#~ msgstr "Champs des items"
-
 #~ msgid ""
 #~ "Define which fields you want to use in this tracker, define how they will "
 #~ "be used."
@@ -4151,9 +4596,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Changed notification email settings"
 #~ msgstr "Paramètres des notifications par courriel mis à jour"
-
-#~ msgid "Update failed"
-#~ msgstr "Échec de la mise à jour"
 
 #~ msgid "Submit Changes"
 #~ msgstr "Poster les modifications"
@@ -4455,9 +4897,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Closed Item"
 #~ msgstr "Item fermé"
 
-#~ msgid "Open Item"
-#~ msgstr "Item ouvert"
-
 #~ msgid "Latest comment posted (by %s):"
 #~ msgstr "Dernier commentaire posté (par %s) :"
 
@@ -4533,9 +4972,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Remove this job"
 #~ msgstr "Supprimer cet export"
-
-#~ msgid "Pending"
-#~ msgstr "En attente"
 
 #~ msgid "Done"
 #~ msgstr "Effectué"
@@ -4637,15 +5073,9 @@ msgstr "Aucun utilisateur."
 #~ msgid "You are both technician and manager for this tracker."
 #~ msgstr "Vous êtes technicien et gestionnaire sur cet outil de suivi."
 
-#~ msgid "technician"
-#~ msgstr "technicien"
-
 #~ msgid "can be assigned items, cannot change status or priority"
 #~ msgstr ""
 #~ "peut se voir assigner des items, ne peut changer leur état ou priorité"
-
-#~ msgid "manager"
-#~ msgstr "gestionnaire"
 
 #~ msgid "fully manage the items"
 #~ msgstr "gère intégralement les items"
@@ -4920,9 +5350,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "-unavailable-"
 #~ msgstr "-indisponible-"
 
-#~ msgid "This information is not provided to anonymous users"
-#~ msgstr "Cette information n'est pas divulguée aux utilisateurs anonymes"
-
 #~ msgid "at"
 #~ msgstr "à"
 
@@ -5057,9 +5484,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "You must provide list name that is two or more characters long: %s"
 #~ msgstr ""
 #~ "Vous devez fournir un nom de liste qui soit supérieur à 2 caractères"
-
-#~ msgid "list name"
-#~ msgstr "nom de liste"
 
 #, fuzzy
 #~ msgid "Invalid list name: %s"
@@ -5243,9 +5667,6 @@ msgstr "Aucun utilisateur."
 #~ "Failed to discard account deletion process, please contact administrators."
 #~ msgstr "Échec de la suppression du compte, contactez les administrateurs."
 
-#~ msgid "Change Real Name"
-#~ msgstr "Modifier votre nom"
-
 #~ msgid "New Real Name:"
 #~ msgstr "Nouveau nom réel :"
 
@@ -5373,15 +5794,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Send notification to me only when:"
 #~ msgstr "M'envoyer les notifications seulement quand :"
-
-#~ msgid "I am not the author of the item update"
-#~ msgstr "Je ne suis pas l'auteur de la mise à jour de l'item"
-
-#~ msgid "the item was closed"
-#~ msgstr "L'item vient d'être fermé"
-
-#~ msgid "the item status changed"
-#~ msgstr "L'état de l'item vient d'être changé"
 
 #~ msgid "Do not add me in Carbon-Copy when:"
 #~ msgstr "Ne pas m'ajouter dans la liste des copies-carbones quand :"
@@ -5982,14 +6394,8 @@ msgstr "Aucun utilisateur."
 #~ msgid "Show %s new items or of %s priority at least."
 #~ msgstr "Afficher les items %s récents ou au moins de priorité %s."
 
-#~ msgid "Assigned to me"
-#~ msgstr "Me sont assignés"
-
 #~ msgid "Submitted by me"
 #~ msgstr "Postés par moi-même"
-
-#~ msgid "Quit a group"
-#~ msgstr "Quitter un groupe"
 
 #~ msgid "You are about to leave the group %s, please confirm:"
 #~ msgstr "Vous êtes sur le point de quitter le groupe %s :"
@@ -6371,20 +6777,11 @@ msgstr "Aucun utilisateur."
 #~ msgid "Mailing-List"
 #~ msgstr "Listes de discussion"
 
-#~ msgid "CVS"
-#~ msgstr "CVS"
-
 #~ msgid "CVS Web Browsing"
 #~ msgstr "Navigation web du dépôt CVS"
 
-#~ msgid "GNU Arch"
-#~ msgstr "GNU Arch"
-
 #~ msgid "Arch Web Browsing"
 #~ msgstr "Navigation web du dépôt Arch"
-
-#~ msgid "Subversion"
-#~ msgstr "Subversion"
 
 #~ msgid "Subversion Web Browsing"
 #~ msgstr "Navigation web du dépôt Subversion"
@@ -6729,9 +7126,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "No Squads Found"
 #~ msgstr "Aucune escouade trouvée"
 
-#~ msgid "Squad"
-#~ msgstr "Escouade"
-
 #~ msgid "General Rights"
 #~ msgstr "Droits généraux"
 
@@ -6757,9 +7151,6 @@ msgstr "Aucun utilisateur."
 #~ msgstr ""
 #~ "Les administrateurs de projets ont toujours l'autorisation de voir les "
 #~ "items privés."
-
-#~ msgid "Admin"
-#~ msgstr "Admin"
 
 #~ msgid "Browse with the %s memberlist."
 #~ msgstr "Consulter avec la liste des membres %s."
@@ -6803,9 +7194,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Watch"
 #~ msgstr "Suivi"
-
-#~ msgid "techn. & manager"
-#~ msgstr "techn. & gestion."
 
 #~ msgid "project admin"
 #~ msgstr "Administration du Projet"
@@ -7070,9 +7458,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Unable to delete group type"
 #~ msgstr "Échec de la suppression du type de groupe"
 
-#~ msgid "group type deleted"
-#~ msgstr "type de groupe supprimé"
-
 #, fuzzy
 #~ msgid "Unable to update group type settings: %s"
 #~ msgstr ""
@@ -7083,17 +7468,11 @@ msgstr "Aucun utilisateur."
 #~ msgstr ""
 #~ "mise à jour des configurations générales du type de groupe effectuée"
 
-#~ msgid "Create"
-#~ msgstr "Créer"
-
 #~ msgid "General Default Settings for Groups of this Type"
 #~ msgstr "Configurations par défaut pour les groupes de ce type"
 
 #~ msgid "Base Host:"
 #~ msgstr "Hôte de base :"
-
-#~ msgid "Description (will be added on each project main page):"
-#~ msgstr "Description (qui sera ajouté sur chaque page principale de projet):"
 
 #~ msgid "Admin Email Address:"
 #~ msgstr "Courriel des administrateurs :"
@@ -7176,9 +7555,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Delete this Group Type"
 #~ msgstr "Supprimer ce type de groupe"
-
-#~ msgid "the homepage link can be modified"
-#~ msgstr "le lien vers le site web du projet peut être modifié"
 
 #~ msgid "the documentation \"extra\" link can be modified"
 #~ msgstr "le lien supplémentaire intitulé \"documentation\" peut être modifié"
@@ -7282,15 +7658,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Detailed Interface"
 #~ msgstr "Interface détaillée"
 
-#~ msgid "Deleted"
-#~ msgstr "Supprimé"
-
-#~ msgid "Maintenance (accessible only to superuser)"
-#~ msgstr "Maintenance (accessible seulement aux superutilisateurs)"
-
-#~ msgid "Incomplete (failure during registration)"
-#~ msgstr "Incomplet (échec lors de l'inscription)"
-
 #~ msgid ""
 #~ "On project approval, do not forget to run the script \"Trigger Project "
 #~ "Creation\" at the end of this page, otherwise this project could end up "
@@ -7323,20 +7690,8 @@ msgstr "Aucun utilisateur."
 #~ msgstr "Paramètre spécifique au *backend*"
 
 #, fuzzy
-#~ msgid "CVS directory:"
-#~ msgstr "Depôt CVS du code source :"
-
-#, fuzzy
 #~ msgid "GNU Arch directory:"
 #~ msgstr "Dépôts GNU Arch"
-
-#, fuzzy
-#~ msgid "Subversion directory:"
-#~ msgstr "Dépôts Subversion"
-
-#, fuzzy
-#~ msgid "Git directory:"
-#~ msgstr "Dossier du site web :"
 
 #~ msgid "Homepage directory:"
 #~ msgstr "Dossier du site web :"
@@ -7392,9 +7747,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "yes"
 #~ msgstr "oui"
-
-#~ msgid "no"
-#~ msgstr "non"
 
 #~ msgid "Home"
 #~ msgstr "Accueil"
@@ -7588,9 +7940,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Member Profile"
 #~ msgstr "Profil du membre"
-
-#~ msgid "Suspended"
-#~ msgstr "Suspendu"
 
 #~ msgid "Active (Squad)"
 #~ msgstr "Actif (Escouade)"
@@ -8001,9 +8350,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "<em>%s</em> details:"
 #~ msgstr "<em>%s</em> en détail :"
 
-#~ msgid "Follow-up Comments"
-#~ msgstr "Commentaires"
-
 #~ msgid ""
 #~ "(Note: you can add pointers to other items by typing %s where %s is one "
 #~ "of %s and %s is the item id number.)"
@@ -8013,9 +8359,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Exiting [anonymous attempt to post to private item]"
 #~ msgstr "Échec [tentative anonyme de poster sur un item privé]"
-
-#~ msgid "Comment Type:"
-#~ msgstr "Type de commentaire :"
 
 #~ msgid "Previous Comment Style:"
 #~ msgstr "Style d'affichage des commentaires précédents :"
@@ -8058,9 +8401,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "This item doesn't depend on any other items"
 #~ msgstr "Cet item ne dépend d'aucun autre"
-
-#~ msgid "Approve a news item for %s submitted by %s"
-#~ msgstr "Approuver une dépêche pour le projet %s proposée par %s"
 
 #, fuzzy
 #~ msgid "%sKB"
@@ -8373,9 +8713,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "every %s at %s hours %s"
 #~ msgstr "Tous les %s à %s heures %s"
-
-#~ msgid "New Account"
-#~ msgstr "Nouveau compte"
 
 #~ msgid "Powered by Savane %s"
 #~ msgstr "Tourne sur Savane %s"
@@ -8808,9 +9145,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "No news items approved these past two weeks"
 #~ msgstr "Aucune dépêche approuvée ces deux dernières semaines"
 
-#~ msgid "Project membership approved"
-#~ msgstr "Inclusion dans le groupe approuvée"
-
 #~ msgid "Authentication level required"
 #~ msgstr "Niveau d'authentification requis"
 
@@ -9092,10 +9426,6 @@ msgstr "Aucun utilisateur."
 #~ msgstr " ;"
 
 #, fuzzy
-#~ msgid "file"
-#~ msgstr "Titre"
-
-#, fuzzy
 #~ msgid "file_description"
 #~ msgstr "Description du fichier :"
 
@@ -9128,9 +9458,6 @@ msgstr "Aucun utilisateur."
 #~ "Error - Duplicated submission. This item already exists in our database."
 #~ msgstr ""
 #~ "Erreur - Doublon. Cet item est déjà présent dans la base de données."
-
-#~ msgid "File Attachments:"
-#~ msgstr "Documents joints"
 
 #~ msgid "Follow-up Comments:"
 #~ msgstr "Commentaires :"
@@ -9170,9 +9497,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "CVS Repository (Web Pages)"
 #~ msgstr "Dépôt CVS (Pages web)"
-
-#~ msgid "Email"
-#~ msgstr "Courriel"
 
 #~ msgid "How do I import my project into the CVS (Sources)"
 #~ msgstr "Comment faire pour importer mon projet dans le CVS (CVS Sources)"
@@ -9495,9 +9819,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Make sure there are no line breaks except between keys"
 #~ msgstr "N'insérez par de retour à la ligne sauf entre les clefs"
-
-#~ msgid "Ssh keys:"
-#~ msgstr "Clefs ssh :"
 
 #~ msgid "System Information"
 #~ msgstr "Information Système"
