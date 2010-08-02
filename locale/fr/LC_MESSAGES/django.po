@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-01 03:49-0500\n"
-"PO-Revision-Date: 2010-08-01 10:55+0200\n"
+"POT-Creation-Date: 2010-08-02 15:53-0500\n"
+"PO-Revision-Date: 2010-08-02 22:51+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -131,11 +131,11 @@ msgstr "Modifier vos clefs publiques"
 msgid "Language"
 msgstr "Langue"
 
-#: savane/my/views.py:78 savane/my/views.py:90
+#: savane/my/views.py:77 savane/my/views.py:89
 msgid "verification"
 msgstr "vérification"
 
-#: savane/my/views.py:79
+#: savane/my/views.py:78
 #, python-format
 msgid ""
 "You have requested a change of email address on %s.\n"
@@ -144,12 +144,12 @@ msgstr ""
 "Vous avez demandé le changement de votre courriel à %s.\n"
 " Veuillez vous rendre l'adresse suivante pour valider le changement:"
 
-#: savane/my/views.py:84 savane/my/views.py:104
+#: savane/my/views.py:83 savane/my/views.py:103
 #, python-format
 msgid "-- the %s team."
 msgstr "-- L'équipe de %s"
 
-#: savane/my/views.py:91
+#: savane/my/views.py:90
 #, python-format
 msgid ""
 "Someone, presumably you, has requested a change of email address on "
@@ -169,7 +169,7 @@ msgstr ""
 "%(email_new)s.\n"
 "\n"
 
-#: savane/my/views.py:99
+#: savane/my/views.py:98
 msgid ""
 "If you did not request that change, please visit the following URL to "
 "discard\n"
@@ -178,7 +178,7 @@ msgstr ""
 "Si vous n'avez pas demandé ce changement, visitez cette URL pour annuler\n"
 "l'opération and signalez-nous le problème :"
 
-#: savane/my/views.py:110
+#: savane/my/views.py:109
 msgid ""
 "The system reported a failure when trying to send the confirmation mail. "
 "Please retry and report that problem to administrators."
@@ -186,63 +186,63 @@ msgstr ""
 "Le système a signalé un échec de l'envoi du courriel de confirmation. "
 "Réessayez et signalez le problème aux administrateurs."
 
-#: savane/my/views.py:111
+#: savane/my/views.py:110
 #, python-format
 msgid "Confirmation mailed to %s."
 msgstr "Confirmation envoyée à %s."
 
-#: savane/my/views.py:112
+#: savane/my/views.py:111
 msgid "Follow the instructions in the email to complete the email change."
 msgstr ""
 "Un couriel a été envoyé. Suivez les instructions dans le message pour "
 "valider le changement."
 
-#: savane/my/views.py:123
+#: savane/my/views.py:121
 msgid "Personal information changed."
 msgstr "Informations personnelles modifiées"
 
-#: savane/my/views.py:143
+#: savane/my/views.py:141
 msgid "Email address updated."
 msgstr "Courriel mis à jour."
 
-#: savane/my/views.py:145
+#: savane/my/views.py:143
 msgid "Confirm Email change"
 msgstr "Confirmer le changement de courriel"
 
-#: savane/my/views.py:146
+#: savane/my/views.py:144
 #, python-format
 msgid "Confirm your e-mail change to %s?"
 msgstr "Confirmer le changement de votre courriel en %s?"
 
-#: savane/my/views.py:148 savane/my/views.py:164
+#: savane/my/views.py:146 savane/my/views.py:162
 msgid "Invalid confirmation hash"
 msgstr "Code de confirmation non valide."
 
-#: savane/my/views.py:159
+#: savane/my/views.py:157
 msgid "Address change process discarded."
 msgstr "Processus de changement d'adresse annulé."
 
-#: savane/my/views.py:161
+#: savane/my/views.py:159
 msgid "Cancel Email change"
 msgstr "Annuler le changement de courriel"
 
-#: savane/my/views.py:162
+#: savane/my/views.py:160
 #, python-format
 msgid "Cancel your e-mail change to %s?"
 msgstr "Annuler le changement de courriel en %s?"
 
-#: savane/my/views.py:208
+#: savane/my/views.py:206
 #, python-format
 msgid "Key registered"
 msgid_plural "%(count)d keys registered"
 msgstr[0] "Clef enregistrée"
 msgstr[1] "%(count)d clefs enregistrées"
 
-#: savane/my/views.py:212
+#: savane/my/views.py:210
 msgid "Error while registering keys"
 msgstr "Erreur lors de l'enregistrement des clefs"
 
-#: savane/my/views.py:240
+#: savane/my/views.py:238
 msgid "Cannot remove the selected key"
 msgstr "Impossible de supprimer la clef sélectionnée"
 
@@ -306,11 +306,11 @@ msgstr "Gestionnaire de dépêches"
 msgid "Project Menu Settings"
 msgstr "Configuration du menu du projet"
 
-#: savane/svmain/models.py:131
+#: savane/svmain/models.py:136
 msgid "new e-mail address"
 msgstr "nouvelle adresse courriel"
 
-#: savane/svmain/models.py:393
+#: savane/svmain/models.py:400
 msgid "project information"
 msgstr "informations du projet"
 
@@ -319,7 +319,6 @@ msgid "Users"
 msgstr "Utilisateurs"
 
 #: savane/svmain/urls.py:62
-#, fuzzy
 msgid "User detail"
 msgstr ""
 
@@ -866,7 +865,7 @@ msgid ""
 "%(end_link)s to manage the list."
 msgstr ""
 "Les administrateurs de projet peuvent utiliser %(begin_link)sl'interface "
-"d'administration%(end_link)s pour gèrer la liste."
+"d'administration%(end_link)s pour gérer la liste."
 
 #: templates/svmain/group_mailinglist.html:37
 #, python-format
