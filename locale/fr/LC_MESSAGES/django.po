@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-02 16:43-0500\n"
-"PO-Revision-Date: 2010-08-02 23:43+0200\n"
+"POT-Creation-Date: 2010-08-03 16:49-0500\n"
+"PO-Revision-Date: 2010-08-03 23:51+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -561,104 +561,106 @@ msgstr "Projets"
 msgid "Project memberlist"
 msgstr "Liste des membres du projet"
 
-#: savane/svmain/urls.py:111
+#: savane/svmain/urls.py:119
 msgid "Editing public info"
 msgstr "Modifier les infos publiques"
 
-#: savane/svmain/urls.py:114 savane/svmain/templatetags/svtopmenu.py:58
+#: savane/svmain/urls.py:122 savane/svmain/templatetags/svtopmenu.py:59
 msgid "Select features"
 msgstr "Selectionner les outils"
 
-#: savane/svmain/urls.py:118 savane/svmain/urls.py:121
-#: savane/svmain/templatetags/svtopmenu.py:60
+#: savane/svmain/urls.py:126 savane/svmain/urls.py:129
+#: savane/svmain/templatetags/svtopmenu.py:61
 msgid "Manage members"
 msgstr "Gérer les membres"
 
-#: savane/svmain/urls.py:128
+#: savane/svmain/urls.py:136
 msgid "License list"
 msgstr "Liste des licences"
 
-#: savane/svmain/urls.py:132
+#: savane/svmain/urls.py:140
 msgid "License detail"
 msgstr "Détails de la licence"
 
-#: savane/svmain/templatetags/svtopmenu.py:42
-#: savane/svmain/templatetags/svtopmenu.py:46
+#: savane/svmain/templatetags/svtopmenu.py:43
+#: savane/svmain/templatetags/svtopmenu.py:47
 msgid "Main"
 msgstr "Accueil"
 
-#: savane/svmain/templatetags/svtopmenu.py:48
+#: savane/svmain/templatetags/svtopmenu.py:49
 #: templates/svmain/group_detail.html:30
 msgid "View members"
 msgstr "Lister les membres"
 
-#: savane/svmain/templatetags/svtopmenu.py:50
+#: savane/svmain/templatetags/svtopmenu.py:51
 msgid "GPG keyring"
 msgstr "Trousseau GPG"
 
-#: savane/svmain/templatetags/svtopmenu.py:54
+#: savane/svmain/templatetags/svtopmenu.py:55
 msgid "Administer:"
 msgstr "Administrer :"
 
-#: savane/svmain/templatetags/svtopmenu.py:56
+#: savane/svmain/templatetags/svtopmenu.py:57
 msgid "Edit public info"
 msgstr "Modifier les infos publiques"
 
-#: savane/svmain/templatetags/svtopmenu.py:63
+#: savane/svmain/templatetags/svtopmenu.py:65
 msgid "Homepage"
 msgstr "Site web"
 
-#: savane/svmain/templatetags/svtopmenu.py:65
+#: savane/svmain/templatetags/svtopmenu.py:67
 msgid "Browse project homepage (outside of Savane)"
 msgstr "Se rendre sur le site web du projet (hors de Savane)"
 
-#: savane/svmain/templatetags/svtopmenu.py:67
+#: savane/svmain/templatetags/svtopmenu.py:70
 msgid "Download"
 msgstr "Téléchargement"
 
-#: savane/svmain/templatetags/svtopmenu.py:69
+#: savane/svmain/templatetags/svtopmenu.py:72
 msgid "Download area: files released"
 msgstr "Espace de téléchargement: fichier diffusés"
 
-#: savane/svmain/templatetags/svtopmenu.py:71
 #: savane/svmain/templatetags/svtopmenu.py:75
-msgid "Browse"
-msgstr "Consulter"
+#, fuzzy
+msgid "Mailing lists"
+msgstr "Listes de discussion"
 
-#: savane/svmain/templatetags/svtopmenu.py:73
+#: savane/svmain/templatetags/svtopmenu.py:77
 msgid "List existing mailing lists"
 msgstr "Liste les listes de discussion du projet"
 
 #: savane/svmain/templatetags/svtopmenu.py:79
+msgid "Browse"
+msgstr "Consulter"
+
+#: savane/svmain/templatetags/svtopmenu.py:83
 msgid "Configure:"
 msgstr "Configurer :"
 
-#: savane/svmain/templatetags/svtopmenu.py:82
+#: savane/svmain/templatetags/svtopmenu.py:87
 msgid "Source code"
 msgstr "Code source"
 
-#: savane/svmain/templatetags/svtopmenu.py:84
+#: savane/svmain/templatetags/svtopmenu.py:89
 msgid "Source Code Management"
 msgstr "Gestion de code source"
 
-#: savane/svmain/templatetags/svtopmenu.py:86
-msgid "Use X"
-msgstr "Utiliser X"
+#: savane/svmain/templatetags/svtopmenu.py:91
+msgid "Use CVS"
+msgstr "Utiliser CVS"
 
 #: savane/tracker/models.py:28
 #, fuzzy
 msgid "anonymous"
-msgstr "Anonyme"
+msgstr "anonyme"
 
 #: savane/tracker/models.py:29
-#, fuzzy
 msgid "logged-in user"
-msgstr "Utilisateur authentifié"
+msgstr "utilisateur authentifié"
 
 #: savane/tracker/models.py:30
-#, fuzzy
 msgid "project member"
-msgstr "Membre du projet"
+msgstr "membre du projet"
 
 #: savane/tracker/models.py:31 savane/tracker/models.py:33
 #, fuzzy
@@ -1423,6 +1425,20 @@ msgstr ""
 "Vous pouvez également consulter le %(begin_link)strousseau de clefs GPG des "
 "membres du projet%(end_link)s"
 
+#: templates/svmain/group_scm_cvs.html:17
+#, python-format
+msgid "Browsing the %(type)s repository"
+msgstr "Consulter le dépôt %(type)s"
+
+#: templates/svmain/group_scm_cvs.html:19
+#, python-format
+msgid ""
+"You can browse the %(type)s repository of this project with your web "
+"browser. This gives you a good picture of the current status of the source "
+"files. You may also view the complete histories of any file in the "
+"repository as well as differences among two versions."
+msgstr "Vous pouvez consulter le dépôt %(type)s de ce projet avec votre navigateur. Cela peut vous donner une bonne representation de l'état actuel du code source. Vous pouvez également consulter l'historique complet, ainsi que les différences entre deux versions de n'importe quel fichier du dépôt."
+
 #: templates/svmain/license_detail.html:8
 msgid "URL:"
 msgstr "URL :"
@@ -1475,6 +1491,9 @@ msgstr "Nom de compte :"
 #: templates/svmain/user_list.html:19
 msgid "No users."
 msgstr "Aucun utilisateur."
+
+#~ msgid "Use X"
+#~ msgstr "Utiliser X"
 
 #, fuzzy
 #~ msgid ""
@@ -1904,20 +1923,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "This project has turned off this tool"
 #~ msgstr "Ce projet n'utilise pas cet outil."
-
-#~ msgid "Browsing the %s Repository"
-#~ msgstr "Consulter le dépôt %s"
-
-#~ msgid ""
-#~ "You can Browse the %s repository of this project with your web browser. "
-#~ "This gives you a good picture of the current status of the source files. "
-#~ "You may also view the complete histories of any file in the repository as "
-#~ "well as differences among two versions."
-#~ msgstr ""
-#~ "Vous pouvez consulter le dépôt %s de ce projet avec votre navigateur. "
-#~ "Cela peut vous donner une bonne representation de l'état actuel du code "
-#~ "source. Vous pouvez également consulter l'historique complet, ainsi que "
-#~ "les différences entre deux versions de n'importe quel fichier du dépôt."
 
 #~ msgid "Browse Sources Repository"
 #~ msgstr "Consulter le dépôt du code source"
@@ -2367,9 +2372,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Mailing Lists Administration"
 #~ msgstr "Administration des listes de discussion"
 
-#~ msgid "Mailing Lists"
-#~ msgstr "Listes de discussion"
-
 #~ msgid "People at %s"
 #~ msgstr "Utilisateurs de %s"
 
@@ -2802,10 +2804,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Source Code Manager: GNU Arch Repository"
 #~ msgstr "Gestion de code source : Dépôt GNU Arch"
-
-#, fuzzy
-#~ msgid "Use CVS"
-#~ msgstr "Utilise CVS :"
 
 #~ msgid "Source Code Manager: CVS Repository"
 #~ msgstr "Gestion de code source : Dépôt CVS"

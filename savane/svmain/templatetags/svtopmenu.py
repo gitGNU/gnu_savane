@@ -39,6 +39,7 @@ def svtopmenu(context, menu_name):
     group = context['group']
 
     if menu_name == 'group':
+        # Main
         entry_home = { 'text' : _("Main"),
                    'href' : reverse('savane:svmain:group_detail', args=[group.name]),
                    'title': "Project Main Page at %s" % 'this website'}
@@ -60,39 +61,46 @@ def svtopmenu(context, menu_name):
             entry_home['children'].append({'text' : _("Manage members"),
                                            'href' : reverse('savane:svmain:group_admin_members', args=[group.name]) })
 
+        # Homepage
         entry_homepage = {'text' : _("Homepage"),
                           'href' : group.svgroupinfo.get_url_homepage(),
                           'title': _("Browse project homepage (outside of Savane)")}
 
+        # Homepage
         entry_download = {'text' : _("Download"),
                           'href' : group.svgroupinfo.get_url_download(),
                           'title': _("Download area: files released")}
 
-        entry_mailinglist = {'text' : _("Browse"),
+        # Mailing lists
+        entry_mailinglist = {'text' : _("Mailing lists"),
                               'href' : reverse('savane:svmain:group_mailinglist', args=[group.name]),
                               'title': _("List existing mailing lists")}
         entry_mailinglist['children'] = []
         entry_mailinglist['children'].append({'text' : _("Browse"),
-                                               'href' : reverse('savane:svmain:group_mailinglist', args=[group.name])})
+                                               'href' : reverse('savane:svmain:group_mailinglist', args=[group.name]) })
         if (svmain_models.Membership.is_admin(context['user'], group)):
             entry_mailinglist['children'].append({'separator' : True })
             entry_mailinglist['children'].append({'text' : _("Configure:") + " (TODO)", 'strong': True,
                                                    'href' : '' })
- 
-        entry_sourcecode = {'text' : _("Source code") + " (TODO)",
+
+        # Source code
+        entry_sourcecode = {'text' : _("Source code"),
                            'href' : '',
                            'title': _("Source Code Management")}
         entry_sourcecode['children'] = []
-        entry_sourcecode['children'].append({'text' : _("Use X") + " (TODO)",
-                                               'href' : '' })
- 
+        entry_sourcecode['children'].append({'text' : _("Use CVS"),
+                                             'href' :  reverse('savane:svmain:group_scm_cvs', args=[group.name]) })
 
+        # Add 'em all!
         entries.append(entry_home)
         entries.append(entry_homepage)
         entries.append(entry_download)
         entries.append(entry_mailinglist)
-        entries.append(entry_sourcecode)
+        if len(entry_sourcecode['children']) > 0:
+            entries.append(entry_sourcecode)
     elif menu_name == 'my':
+        # Not sure if we should make it, the current interface works
+        # without it
         pass
 
     context = {

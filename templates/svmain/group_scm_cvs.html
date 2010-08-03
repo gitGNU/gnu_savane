@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load svtopmenu %}
+
+{% block title %}
+{{group.svgroupinfo.get_full_name_display}} - {{title}}
+{% endblock %}
+
+{% block icon %}cvs{% endblock %}
+
+{% block topmenu %}
+  {% svtopmenu "group" %}
+{% endblock %}
+
+{% block content %}
+
+<h2>{% blocktrans with 'CVS' as type %}Browsing the {{type}} repository{% endblocktrans %}</h2>
+
+{% blocktrans with 'CVS' as type %}You can browse the {{type}} repository of this project with your web browser. This gives you a good picture of the current status of the source files. You may also view the complete histories of any file in the repository as well as differences among two versions.{% endblocktrans %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}
