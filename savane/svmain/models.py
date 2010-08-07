@@ -514,13 +514,55 @@ class SvGroupInfo(models.Model):
     def get_active_memberships(self):
         return self.group.membership_set.exclude(admin_flags='P')
 
+    # Download
+    def get_url_download(self):
+        return (self.url_download
+                or self.type.url_download.replace('%PROJECT', self.group.name))
+
+    # Homepage
+    def uses_homepage(self):  return self.type.can_use_homepage and self.use_homepage
+
     def get_url_homepage(self):
         return (self.url_homepage
                 or self.type.url_homepage.replace('%PROJECT', self.group.name))
 
-    def get_url_download(self):
-        return (self.url_download
-                or self.type.url_download.replace('%PROJECT', self.group.name))
+    def uses_cvs_for_homepage (self):  return self.uses_homepage() and self.type.homepage_scm == 'cvs'
+    def uses_svn_for_homepage (self):  return self.uses_homepage() and self.type.homepage_scm == 'svn'
+    def uses_arch_for_homepage(self):  return self.uses_homepage() and self.type.homepage_scm == 'arch'
+    def uses_git_for_homepage (self):  return self.uses_homepage() and self.type.homepage_scm == 'git'
+    def uses_hg_for_homepage  (self):  return self.uses_homepage() and self.type.homepage_scm == 'hg'
+    def uses_bzr_for_homepage (self):  return self.uses_homepage() and self.type.homepage_scm == 'bzr'
+
+    def get_url_homepage_vcs_browser(self):
+        return (self.url_cvs_viewcvs_homepage
+                or self.type.url_cvs_viewcvs_homepage.replace('%PROJECT', self.group.name))
+
+    # VCS
+    def uses_cvs (self):  return self.type.can_use_cvs  and self.use_cvs
+    def uses_svn (self):  return self.type.can_use_svn  and self.use_svn
+    def uses_arch(self):  return self.type.can_use_arch and self.use_arch
+    def uses_git (self):  return self.type.can_use_git  and self.use_git
+    def uses_hg  (self):  return self.type.can_use_hg   and self.use_hg
+    def uses_bzr (self):  return self.type.can_use_bzr  and self.use_bzr
+
+    def get_url_cvs_browser(self):
+        return (self.url_cvs_viewcvs
+                or self.type.url_cvs_viewcvs.replace('%PROJECT', self.group.name))
+    def get_url_svn_browser(self):
+        return (self.url_svn_viewcvs
+                or self.type.url_svn_viewcvs.replace('%PROJECT', self.group.name))
+    def get_url_arch_browser(self):
+        return (self.url_arch_viewcvs
+                or self.type.url_arch_viewcvs.replace('%PROJECT', self.group.name))
+    def get_url_git_browser(self):
+        return (self.url_git_viewcvs
+                or self.type.url_git_viewcvs.replace('%PROJECT', self.group.name))
+    def get_url_hg_browser(self):
+        return (self.url_hg_viewcvs
+                or self.type.url_hg_viewcvs.replace('%PROJECT', self.group.name))
+    def get_url_bzr_browser(self):
+        return (self.url_bzr_viewcvs
+                or self.type.url_bzr_viewcvs.replace('%PROJECT', self.group.name))
 
     @staticmethod
     def query_active_groups_raw(conn, fields):

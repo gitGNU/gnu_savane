@@ -12,6 +12,20 @@
     url_mailing_list_archives: "http://lists.gnu.org/archive/html/%LIST/"
     url_mailing_list_archives_private: "http://lists.gnu.org/mailman/private/%LIST/"
     url_mailing_list_admin: "http://lists.gnu.org/mailman/admin/%LIST"
+    can_use_homepage: 1
+    url_cvs_viewcvs_homepage: "http://web.cvs.savannah.gnu.org/viewvc/?root=%PROJECT"
+    can_use_cvs: 1
+    url_cvs_viewcvs: "http://cvs.savannah.gnu.org/viewvc/?root=%PROJECT"
+    can_use_svn: 1
+    url_svn_viewcvs: "http://svn.savannah.gnu.org/viewvc/?root=%PROJECT"
+    can_use_arch: 1
+    url_arch_viewcvs: "http://arch.sv.gnu.org/archives/%PROJECT/"
+    can_use_git: 1
+    url_git_viewcvs: "http://git.savannah.gnu.org/cgit/%PROJECT.git"
+    can_use_hg: 1
+    url_hg_viewcvs: "http://hg.savannah.gnu.org/hgweb/%PROJECT/"
+    can_use_bzr: 1
+    url_bzr_viewcvs: "http://bzr.savannah.gnu.org/lh/%PROJECT"
 - model: auth.group
   pk: 1
   fields:
@@ -25,6 +39,13 @@
     devel_status: 6
     license: 22
     register_time: 2001-02-08 15:03:48
+    use_homepage: 1
+    use_cvs: 1
+    use_svn: 1
+    use_arch: 1
+    use_git: 1
+    use_hg: 1
+    use_bzr: 1
 - model: auth.user
   pk: 1
   fields:

@@ -18,6 +18,18 @@
 
 {% blocktrans with 'CVS' as type %}You can browse the {{type}} repository of this project with your web browser. This gives you a good picture of the current status of the source files. You may also view the complete histories of any file in the repository as well as differences among two versions.{% endblocktrans %}
 
+<ul>
+{% if group.svgroupinfo.uses_cvs %}
+<li><a href="{{group.svgroupinfo.get_url_cvs_browser}}">{% trans "Browse sources repository" %}</a></li>
+{% endif %}
+{% if group.svgroupinfo.uses_cvs_for_homepage %}
+<li><a href="{{group.svgroupinfo.get_url_homepage_vcs_browser}}">{% trans "Browse web pages repository" %}</a></li>
+{% endif %}
+</ul>
+
+
+{% include "svmain/group_vcs_cvs_custom.html" %}
+
 {% endblock %}
 
 {% comment %}

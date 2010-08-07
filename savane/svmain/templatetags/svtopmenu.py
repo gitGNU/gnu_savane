@@ -83,13 +83,72 @@ def svtopmenu(context, menu_name):
             entry_mailinglist['children'].append({'text' : _("Configure:") + " (TODO)", 'strong': True,
                                                    'href' : '' })
 
+        ##
         # Source code
+        ##
         entry_sourcecode = {'text' : _("Source code"),
                            'href' : '',
                            'title': _("Source Code Management")}
         entry_sourcecode['children'] = []
-        entry_sourcecode['children'].append({'text' : _("Use CVS"),
-                                             'href' :  reverse('savane:svmain:group_scm_cvs', args=[group.name]) })
+
+        if group.svgroupinfo.uses_git() or group.svgroupinfo.uses_git_for_homepage():
+            entry_sourcecode['children'].append({'text' : _("Use Git"),
+                                                 'href' : reverse('savane:svmain:group_vcs_git', args=[group.name]) })
+        if group.svgroupinfo.uses_git():
+            entry_sourcecode['children'].append({'text' : _("Browse sources repository"),
+                                                 'href' : group.svgroupinfo.get_url_git_browser() })
+        if group.svgroupinfo.uses_git_for_homepage():
+            entry_sourcecode['children'].append({'text' : _("Browse web pages repository"),
+                                                 'href' : group.svgroupinfo.get_url_homepage_vcs_browser() })
+
+        if group.svgroupinfo.uses_hg() or group.svgroupinfo.uses_hg_for_homepage():
+            entry_sourcecode['children'].append({'text' : _("Use Mercurial"),
+                                                 'href' : reverse('savane:svmain:group_vcs_hg', args=[group.name]) })
+        if group.svgroupinfo.uses_hg():
+            entry_sourcecode['children'].append({'text' : _("Browse sources repository"),
+                                                 'href' : group.svgroupinfo.get_url_hg_browser() })
+        if group.svgroupinfo.uses_hg_for_homepage():
+            entry_sourcecode['children'].append({'text' : _("Browse web pages repository"),
+                                                 'href' : group.svgroupinfo.get_url_homepage_vcs_browser() })
+
+        if group.svgroupinfo.uses_bzr() or group.svgroupinfo.uses_bzr_for_homepage():
+            entry_sourcecode['children'].append({'text' : _("Use Bazaar"),
+                                                 'href' : reverse('savane:svmain:group_vcs_bzr', args=[group.name]) })
+        if group.svgroupinfo.uses_bzr():
+            entry_sourcecode['children'].append({'text' : _("Browse sources repository"),
+                                                 'href' : group.svgroupinfo.get_url_bzr_browser() })
+        if group.svgroupinfo.uses_bzr_for_homepage():
+            entry_sourcecode['children'].append({'text' : _("Browse web pages repository"),
+                                                 'href' : group.svgroupinfo.get_url_homepage_vcs_browser() })
+
+        if group.svgroupinfo.uses_svn() or group.svgroupinfo.uses_svn_for_homepage():
+            entry_sourcecode['children'].append({'text' : _("Use Subversion"),
+                                                 'href' : reverse('savane:svmain:group_vcs_svn', args=[group.name]) })
+        if group.svgroupinfo.uses_svn():
+            entry_sourcecode['children'].append({'text' : _("Browse sources repository"),
+                                                 'href' : group.svgroupinfo.get_url_svn_browser() })
+        if group.svgroupinfo.uses_svn_for_homepage():
+            entry_sourcecode['children'].append({'text' : _("Browse web pages repository"),
+                                                 'href' : group.svgroupinfo.get_url_homepage_vcs_browser() })
+
+        if group.svgroupinfo.uses_arch() or group.svgroupinfo.uses_arch_for_homepage():
+            entry_sourcecode['children'].append({'text' : _("Use GNU Arch"),
+                                                 'href' : reverse('savane:svmain:group_vcs_arch', args=[group.name]) })
+        if group.svgroupinfo.uses_arch():
+            entry_sourcecode['children'].append({'text' : _("Browse sources repository"),
+                                                 'href' : group.svgroupinfo.get_url_arch_browser() })
+        if group.svgroupinfo.uses_arch_for_homepage():
+            entry_sourcecode['children'].append({'text' : _("Browse web pages repository"),
+                                                 'href' : group.svgroupinfo.get_url_homepage_vcs_browser() })
+        if group.svgroupinfo.uses_cvs() or group.svgroupinfo.uses_cvs_for_homepage():
+            entry_sourcecode['children'].append({'text' : _("Use CVS"),
+                                                 'href' : reverse('savane:svmain:group_vcs_cvs', args=[group.name]) })
+        if group.svgroupinfo.uses_cvs():
+            entry_sourcecode['children'].append({'text' : _("Browse sources repository"),
+                                                 'href' : group.svgroupinfo.get_url_cvs_browser() })
+        if group.svgroupinfo.uses_cvs_for_homepage():
+            entry_sourcecode['children'].append({'text' : _("Browse web pages repository"),
+                                                 'href' : group.svgroupinfo.get_url_homepage_vcs_browser() })
 
         # Add 'em all!
         entries.append(entry_home)
