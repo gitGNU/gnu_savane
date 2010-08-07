@@ -14,10 +14,10 @@
 
 {% block content %}
 
-<p>Members:</p>
+<h2>{% trans "Members" %}</h2>
 <form action="" method="post">{% csrf_token %}
 <table class="box">
-<tr><th>User</th><th>Admin</th><th>Remove?</th></tr>
+<tr><th>{% trans "User" %}</th><th>{% trans "Admin" %}</th><th>{% trans "Remove?" %}</th></tr>
 {% for membership in memberships %}
 <tr class="{% cycle 'boxitem' 'boxitemalt' %}">
   <td>
@@ -41,10 +41,10 @@
 {% endfor %}
 </table>
 
+<h2>{% trans "Requests for inclusion" %}</h2>
 {% if pending_memberships %}
-  <p>Requests for inclusion:</p>
   <table>
-  <tr><th>User</th><th>Approve</th><th>Reject</th></tr>
+  <tr><th>{% trans "User" %}</th><th>{% trans "Approve" %}</th><th>{% trans "Reject" %}</th></tr>
   {% for membership in pending_memberships %}
   <tr>
     <td>{{ membership.user.get_full_name }} &lt;{{ membership.user.username }}&gt;</td>

@@ -388,6 +388,7 @@ class SvGroupInfo(models.Model):
     type = models.ForeignKey(GroupConfiguration,
       null=True)  # NULL when object initially created by AutoOneToOneField
     full_name = models.CharField(max_length=255, blank=True,
+      verbose_name=_("full name"),
       help_text=_("Full project name (not Unix system name)"))
     is_public = models.BooleanField(default=False)
     status_CHOICES = (
@@ -400,13 +401,14 @@ class SvGroupInfo(models.Model):
     status = models.CharField(max_length=1, choices=status_CHOICES, default='A')
     gidNumber = models.IntegerField(default=0)
 
-    short_description = models.CharField(max_length=255, blank=True)
-    long_description = models.TextField(blank=True)
-    license = models.ForeignKey(License, blank=True, null=True)
-    license_other = models.TextField(blank=True)
+    short_description = models.CharField(_("short description"), max_length=255, blank=True)
+    long_description = models.TextField(_("long description"), blank=True)
+    license = models.ForeignKey(License, blank=True, null=True, verbose_name=_("license"))
+    license_other = models.TextField(_("license (other)"), blank=True)
 
     devel_status = models.ForeignKey(DevelopmentStatus,
-      null=True)  # NULL when object initially created by AutoOneToOneField
+      null=True,  # NULL when object initially created by AutoOneToOneField
+      verbose_name=_("development status"))
 
     # Registration-specific
     register_purpose = models.TextField(blank=True)

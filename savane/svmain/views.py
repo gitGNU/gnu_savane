@@ -22,6 +22,7 @@ from django.core.urlresolvers import reverse
 import django.contrib.auth.models as auth_models
 from django.contrib import messages
 from django.utils.text import capfirst
+from django.utils.translation import ugettext as _, ungettext
 import models as svmain_models
 import forms as svmain_forms
 from annoying.decorators import render_to
@@ -41,11 +42,11 @@ def group_redir(request, slug):
 def group_join(request, slug):
     g = get_object_or_404(auth_models.Group, name=slug)
     if svmain_models.Membership.objects.filter(user=request.user, group=g).count():
-        messages.error(request, u"Request for inclusion already registered")
+        messages.error(request, _("Request for inclusion already registered"))
     else:
         svmain_models.Membership(user=request.user, group=g, admin_flags='P').save()
         # TODO: send e-mail notification to group admins
-        messages.success(request, u"Request for inclusion sent to project administrators")
+        messages.success(request, _("Request for inclusion sent to project administrators"))
     return HttpResponseRedirect('../')
 
 @render_to('svmain/group_gpgkeyring.html')
@@ -116,7 +117,7 @@ def group_gpgkeyring_download(request, slug):
     response = HttpResponse()
     response = HttpResponse(mimetype='application/pgp-keys')
     response['Content-Disposition'] = 'attachment; filename=%s-keyring.gpg' % group.name
-    response['Content-Description'] = 'GPG Keyring of the project %s' % group.name
+    response['Content-Description'] = _("GPG Keyring of the project %s") % group.name
 
     response.write(keyring_txt)
 
@@ -146,7 +147,7 @@ def group_admin_info(request, slug, extra_context={}, post_save_redirect=None):
         if form.is_valid(): # All validation rules pass
             # Process the data
             object = form.save()
-            messages.success(request, u"%s saved." % capfirst(object._meta.verbose_name))
+            messages.success(request, _("%s saved.") % capfirst(object._meta.verbose_name))
             if post_save_redirect is None:
                 post_save_redirect = object.get_absolute_url()
             return HttpResponseRedirect(post_save_redirect) # Redirect after POST
@@ -172,7 +173,7 @@ def group_admin_features(request, slug, extra_context={}, post_save_redirect=Non
         if form.is_valid(): # All validation rules pass
             # Process the data
             object = form.save()
-            messages.success(request, u"%s saved." % capfirst(object._meta.verbose_name))
+            messages.success(request, _("%s saved.") % capfirst(object._meta.verbose_name))
             if post_save_redirect is None:
                 post_save_redirect = object.get_absolute_url()
             return HttpResponseRedirect(post_save_redirect) # Redirect after POST
@@ -206,25 +207,25 @@ def group_admin_members(request, slug, extra_context={}):
                     if membership.admin_flags != 'A':
                         membership.admin_flags = 'A'
                         membership.save()
-                        messages.success(request, "permissions of %s updated." % membership.user)
+                        messages.success(request, _("Permissions of %s updated.") % membership.user.username)
                 else:
                     if membership.admin_flags != '':
                         membership.admin_flags = ''
                         membership.save()
-                        messages.success(request, "permissions of %s updated." % membership.user)
+                        messages.success(request, _("Permissions of %s updated.") % membership.user.username)
                 # remove members
                 if request.POST.get('remove_%d' % membership.pk, None):
                     membership.delete()
-                    messages.success(request, "User %s deleted from the project." % membership.user)
+                    messages.success(request, _("User %s deleted from the project.") % membership.user.username)
         # approve pending membership
         for membership in pending_memberships:
             if request.POST.get('approve_%d' % membership.pk, None):
                 membership.admin_flags = ''
                 membership.save()
-                messages.success(request, "User %s added to the project." % membership.user)
+                messages.success(request, _("User %s added to the project.") % membership.user.username)
             if request.POST.get('reject_%d' % membership.pk, None):
                 membership.delete()
-                messages.success(request, "User %s deleted from the project." % membership.user)
+                messages.success(request, _("User %s deleted from the project.") % membership.user.username)
         return HttpResponseRedirect('')  # reload
 
 
@@ -242,6 +243,7 @@ def group_admin_members_add(request, slug, extra_context={}):
     if request.method == "POST":
         user = get_object_or_404(auth_models.User, pk=int(request.POST['user_id']))
         svmain_models.Membership(user=user, group=group, admin_flags='').save()
+        messages.success(request, _("User %s added to the project.") % user.username)
         return HttpResponseRedirect('../')
 
     from django.views.generic.list_detail import object_list

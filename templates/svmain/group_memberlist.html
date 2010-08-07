@@ -15,7 +15,7 @@
 {% block content %}
 
 <table class="box">
-<tr><th></th><th>Member</th><th>Resume and skills</th></tr>
+<tr><th></th><th>{% trans "Member" %}</th><th>{% trans "Resume and skills" %}</th></tr>
 {% for membership in group.svgroupinfo.get_active_memberships %}
 <tr class="{% cycle 'boxitemalt' 'boxitem' %}">
   <td>

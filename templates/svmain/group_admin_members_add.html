@@ -22,7 +22,7 @@
 
 {% if object_list %}
     <table>
-    <tr><th>User</th><th>Full name</th><th>Profile</th><th></th></tr>
+    <tr><th>{% trans "User" %}</th><th>{% trans "Full name" %}</th><th>{% trans "Profile" %}</th><th></th></tr>
     {% for object in object_list %}
     <tr>
       <td>{{ object.username }}</td>

@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-07 08:35-0500\n"
-"PO-Revision-Date: 2010-08-07 15:39+0200\n"
+"POT-Creation-Date: 2010-08-07 09:16-0500\n"
+"PO-Revision-Date: 2010-08-07 16:16+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -330,16 +330,16 @@ msgstr "Gestionnaire de dépêches"
 msgid "Project Menu Settings"
 msgstr "Configuration du menu du projet"
 
-#: savane/svmain/models.py:116 savane/svmain/models.py:394
+#: savane/svmain/models.py:116 savane/svmain/models.py:395
 msgid "Active"
 msgstr "Actif"
 
-#: savane/svmain/models.py:117 savane/svmain/models.py:396
-#: savane/svmain/models.py:706
+#: savane/svmain/models.py:117 savane/svmain/models.py:397
+#: savane/svmain/models.py:708
 msgid "Deleted"
 msgstr "Supprimé"
 
-#: savane/svmain/models.py:118 savane/svmain/models.py:395
+#: savane/svmain/models.py:118 savane/svmain/models.py:396
 msgid "Pending"
 msgstr "En attente"
 
@@ -352,14 +352,12 @@ msgid "new e-mail address"
 msgstr "nouvelle adresse courriel"
 
 #: savane/svmain/models.py:216
-#, fuzzy
 msgid "Development statuses"
-msgstr "Stade de développement"
+msgstr "Stades de développement"
 
 #: savane/svmain/models.py:222
-#, fuzzy
 msgid "Will be added on each project main page"
-msgstr "Description (qui sera ajouté sur chaque page principale de projet):"
+msgstr "Description (qui sera ajouté sur chaque page principale de projet)"
 
 #: savane/svmain/models.py:231
 msgid "would be %LIST@gnu.org for GNU projects at sv.gnu.org"
@@ -373,7 +371,6 @@ msgstr ""
 "partie système]"
 
 #: savane/svmain/models.py:235
-#, fuzzy
 msgid ""
 "With this, you can force projects to follow a specific policy for the name "
 "of the %LIST. Here you should use the special wildcard %NAME, which is the "
@@ -449,7 +446,6 @@ msgid "Bazaar"
 msgstr "Bazaar"
 
 #: savane/svmain/models.py:295
-#, fuzzy
 msgid "Basic directory"
 msgstr "Dossier basique"
 
@@ -478,14 +474,12 @@ msgid "CVS Attic/Gna!"
 msgstr ""
 
 #: savane/svmain/models.py:302
-#, fuzzy
 msgid "Subversion Attic/Gna!"
-msgstr "Subversion"
+msgstr ""
 
 #: savane/svmain/models.py:303
-#, fuzzy
 msgid "Subversion Subdirectory Attic/Gna!"
-msgstr "Dépôts Subversion"
+msgstr ""
 
 #: savane/svmain/models.py:304
 msgid "CVS Savannah GNU"
@@ -500,48 +494,70 @@ msgid "project information"
 msgstr "informations du projet"
 
 #: savane/svmain/models.py:391
+msgid "full name"
+msgstr "nom complet"
+
+#: savane/svmain/models.py:392
 msgid "Full project name (not Unix system name)"
 msgstr "Nom complet du projet (pas le nom système Unix!)"
 
-#: savane/svmain/models.py:397
+#: savane/svmain/models.py:398
 msgid "Maintenance (accessible only to superuser)"
 msgstr "Maintenance (accessible seulement aux superutilisateurs)"
 
-#: savane/svmain/models.py:398
+#: savane/svmain/models.py:399
 msgid "Incomplete (failure during registration)"
 msgstr "Incomplet (échec lors de l'inscription)"
 
-#: savane/svmain/models.py:604
+#: savane/svmain/models.py:404
+msgid "short description"
+msgstr "description courte"
+
+#: savane/svmain/models.py:405
+msgid "long description"
+msgstr "description longue"
+
+#: savane/svmain/models.py:406
+msgid "license"
+msgstr "licence"
+
+#: savane/svmain/models.py:407
+msgid "license (other)"
+msgstr "licence (autre)"
+
+#: savane/svmain/models.py:411
+msgid "development status"
+msgstr "stade de développement"
+
+#: savane/svmain/models.py:606 templates/svmain/group_admin_members.html:20
 msgid "Admin"
 msgstr "Admin"
 
-#: savane/svmain/models.py:607
-#, fuzzy
+#: savane/svmain/models.py:609
 msgid "Pending moderation"
 msgstr "En attente de modération"
 
-#: savane/svmain/models.py:608
+#: savane/svmain/models.py:610
 msgid "Squad"
 msgstr "Escouade"
 
-#: savane/svmain/models.py:611
-#, fuzzy
+#: savane/svmain/models.py:613
 msgid "membership properties"
 msgstr "propriété de l'appartenance à un projet"
 
-#: savane/svmain/models.py:613
+#: savane/svmain/models.py:615
 msgid "Untick to hide emeritous members from the project page"
 msgstr "Décocher pour masquer les membres émérites de la page de projet"
 
-#: savane/svmain/models.py:707
+#: savane/svmain/models.py:709
 msgid "To be created"
 msgstr "À créer"
 
-#: savane/svmain/models.py:708
+#: savane/svmain/models.py:710
 msgid "To be reconfigured"
 msgstr "À reconfigurer"
 
-#: savane/svmain/models.py:709
+#: savane/svmain/models.py:711
 msgid "Created"
 msgstr "Créée"
 
@@ -581,6 +597,39 @@ msgstr "Liste des licences"
 #: savane/svmain/urls.py:176
 msgid "License detail"
 msgstr "Détails de la licence"
+
+#: savane/svmain/views.py:45
+msgid "Request for inclusion already registered"
+msgstr "La requête d'inclusion est déjà prise en compte"
+
+#: savane/svmain/views.py:49
+msgid "Request for inclusion sent to project administrators"
+msgstr "La requête d'inclusion a été transmise aux administrateurs"
+
+#: savane/svmain/views.py:120
+#, python-format
+msgid "GPG Keyring of the project %s"
+msgstr "Trousseau GPG du projet %s"
+
+#: savane/svmain/views.py:150 savane/svmain/views.py:176
+#, python-format
+msgid "%s saved."
+msgstr "%s enregistré(e)."
+
+#: savane/svmain/views.py:210 savane/svmain/views.py:215
+#, python-format
+msgid "Permissions of %s updated."
+msgstr "Permissions de %s mises à jour."
+
+#: savane/svmain/views.py:219 savane/svmain/views.py:228
+#, python-format
+msgid "User %s deleted from the project."
+msgstr "L'utilisateur %s est supprimé du projet."
+
+#: savane/svmain/views.py:225
+#, python-format
+msgid "User %s added to the project."
+msgstr "L'utilisateur %s est ajouté au projet."
 
 #: savane/svmain/templatetags/svtopmenu.py:43
 #: savane/svmain/templatetags/svtopmenu.py:47
@@ -645,7 +694,6 @@ msgid "Source Code Management"
 msgstr "Gestion de code source"
 
 #: savane/svmain/templatetags/svtopmenu.py:95
-#, fuzzy
 msgid "Use Git"
 msgstr "Utiliser Git"
 
@@ -712,14 +760,12 @@ msgid "project member"
 msgstr "membre du projet"
 
 #: savane/tracker/models.py:31 savane/tracker/models.py:33
-#, fuzzy
 msgid "group type default"
-msgstr "type de groupe supprimé"
+msgstr "selon le type de groupe"
 
 #: savane/tracker/models.py:32
-#, fuzzy
 msgid "same as new item"
-msgstr "Tel que pour les nouveaux items"
+msgstr "comme pour les nouveaux items"
 
 #: savane/tracker/models.py:34
 msgid "none"
@@ -898,19 +944,16 @@ msgid "show to anonymous users"
 msgstr "montrer aux utilisateurs anonymes"
 
 #: savane/tracker/models.py:179
-#, fuzzy
 msgid "show to both logged in and anonymous users"
-msgstr "Cette information n'est pas divulguée aux utilisateurs anonymes"
+msgstr "montrer aux utilisateurs authentifiés comme anonymes"
 
 #: savane/tracker/models.py:180
-#, fuzzy
 msgid "mandatory only if it was presented to the original submitter"
-msgstr "Obligatoire seulement s'il a été présenté à celui ayant posté l'item"
+msgstr "obligatoire seulement s'il a été présenté à celui ayant posté l'item"
 
 #: savane/tracker/models.py:181
-#, fuzzy
 msgid "optional (empty values are accepted)"
-msgstr "Facultatif (les valeurs nulles sont acceptées)"
+msgstr "facultatif (les valeurs nulles sont acceptées)"
 
 #: savane/tracker/models.py:182
 msgid "mandatory"
@@ -921,14 +964,12 @@ msgid "used"
 msgstr "utilisé"
 
 #: savane/tracker/models.py:191
-#, fuzzy
 msgid "show to project members"
-msgstr "Membres du projet"
+msgstr "montrer aux membres du projet"
 
 #: savane/tracker/models.py:205
-#, fuzzy
 msgid "keep field value changes in history"
-msgstr "Conserver dans l'historique les modifications des valeurs de ce champ"
+msgstr "conserver dans l'historique les modifications des valeurs de ce champ"
 
 #: savane/tracker/models.py:218
 msgid "active"
@@ -949,27 +990,24 @@ msgid ""
 msgstr ""
 
 #: savane/tracker/models.py:234
-#, fuzzy
 msgid "send on all updates"
-msgstr "Poster à toutes les mises à jour de l'item"
+msgstr "poster à toutes les mises à jour de l'item"
 
 #: savane/tracker/models.py:302
 msgid "open/closed"
 msgstr "ouvert/clos"
 
 #: savane/tracker/models.py:309
-#, fuzzy
 msgid "item group"
-msgstr "Quitter un groupe"
+msgstr "groupe de l'item"
 
 #: savane/tracker/models.py:397
 msgid "comment type"
 msgstr "type de commentaire"
 
 #: savane/tracker/models.py:403
-#, fuzzy
 msgid "total spamscore for this comment"
-msgstr "Vous avez déjà signalé ce commentaire"
+msgstr "score de spam cumulé pour ce commentaire"
 
 #: savane/utils/__init__.py:44
 #, python-format
@@ -1291,9 +1329,35 @@ msgstr ""
 "Les changements de licence sont modérés par les administrateurs du site.  "
 "Veuillez les contacter pour changer la licence de votre projet."
 
+#: templates/svmain/group_admin_members.html:17
+msgid "Members"
+msgstr "Membres"
+
+#: templates/svmain/group_admin_members.html:20
+#: templates/svmain/group_admin_members.html:47
+#: templates/svmain/group_admin_members_add.html:25
+msgid "User"
+msgstr "Utilisateur"
+
+#: templates/svmain/group_admin_members.html:20
+msgid "Remove?"
+msgstr "Supprimer ?"
+
 #: templates/svmain/group_admin_members.html:29
 msgid "You are Admin"
 msgstr "Vous êtes Admin"
+
+#: templates/svmain/group_admin_members.html:44
+msgid "Requests for inclusion"
+msgstr "Demandes d'ajout"
+
+#: templates/svmain/group_admin_members.html:47
+msgid "Approve"
+msgstr "Approuver"
+
+#: templates/svmain/group_admin_members.html:47
+msgid "Reject"
+msgstr "Rejeter"
 
 #: templates/svmain/group_admin_members.html:57
 msgid "No requests for inclusion"
@@ -1305,7 +1369,15 @@ msgstr "OK"
 
 #: templates/svmain/group_admin_members.html:63
 msgid "Add users to group"
-msgstr "Ajouter le ou les utilisateurs au groupe"
+msgstr "Ajouter des utilisateurs au groupe"
+
+#: templates/svmain/group_admin_members_add.html:25
+msgid "Full name"
+msgstr "Nom complet"
+
+#: templates/svmain/group_admin_members_add.html:25
+msgid "Profile"
+msgstr "Profil"
 
 #: templates/svmain/group_admin_members_add.html:30
 msgid "view"
@@ -1455,6 +1527,14 @@ msgstr ""
 "Les administrateurs de projet peuvent créer des listes de discussion en "
 "utilisant l'interface d'administration."
 
+#: templates/svmain/group_memberlist.html:18
+msgid "Member"
+msgstr "Membres"
+
+#: templates/svmain/group_memberlist.html:18
+msgid "Resume and skills"
+msgstr "CV et compétences"
+
 #: templates/svmain/group_memberlist.html:24
 msgid "Project Administrator"
 msgstr "Administrateur du projet"
@@ -1561,6 +1641,10 @@ msgstr "Nom de compte :"
 #: templates/svmain/user_list.html:19
 msgid "No users."
 msgstr "Aucun utilisateur."
+
+#, fuzzy
+#~ msgid "nom complet"
+#~ msgstr "Incomplet"
 
 #~ msgid "Use X"
 #~ msgstr "Utiliser X"
@@ -3331,9 +3415,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Main page"
 #~ msgstr "Page principale"
 
-#~ msgid "Pending projects"
-#~ msgstr "Projets en attente"
-
 #~ msgid "Site news approval"
 #~ msgstr "Approbation des dépêches du site"
 
@@ -3975,9 +4056,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Failed to remove CC"
 #~ msgstr "Échec de la suppression de CC"
-
-#~ msgid "CC Removed"
-#~ msgstr "CC supprimée"
 
 #~ msgid "Failed to delete dependancy."
 #~ msgstr "Échec de la suppression de dépendance."
@@ -5337,9 +5415,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Failed to update the database."
 #~ msgstr "Échec de la mise à jour de la base de donnée."
 
-#~ msgid "%s Profile"
-#~ msgstr "Profil de %s"
-
 #~ msgid "Follows the Profile of %s."
 #~ msgstr "Voici le profil de %s."
 
@@ -5383,9 +5458,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "This user is not a member of any Project/Group"
 #~ msgstr "Cet utilisateur ne fait partie d'aucun Projet/Groupe"
-
-#~ msgid "Members"
-#~ msgstr "Membres"
 
 #~ msgid "You Could Send a Message if you were logged in"
 #~ msgstr "Vous auriez pu envoyer un message si vous étiez authentifié"
@@ -6299,9 +6371,6 @@ msgstr "Aucun utilisateur."
 #~ "Pour rejoindre un projet, vous devez fournir un message pour "
 #~ "l'administrateur, une courte explication de vos motivations."
 
-#~ msgid "Request for inclusion already registered"
-#~ msgstr "La requête d'inclusion est déjà prise en compte"
-
 #~ msgid ""
 #~ "Here is the list of groups you are member of, plus a form which allows "
 #~ "you to ask for inclusion in a Group. Clicking on the trash permits you to "
@@ -6711,12 +6780,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "No Such Posting For This Project"
 #~ msgstr "Aucune tâche semblable pour ce projet"
 
-#~ msgid "Short Description:"
-#~ msgstr "Description courte :"
-
-#~ msgid "Long Description:"
-#~ msgstr "Description longue :"
-
 #~ msgid "Update Descriptions"
 #~ msgstr "Mise à jour de la description"
 
@@ -7118,12 +7181,6 @@ msgstr "Aucun utilisateur."
 #~ msgstr ""
 #~ "Voici le résultat de votre recherche dans la liste des utilisateurs."
 
-#~ msgid "User %s added to the project."
-#~ msgstr "%s est ajouté au projet."
-
-#~ msgid "User %s deleted from the project."
-#~ msgstr "%s est supprimé du projet."
-
 #~ msgid ""
 #~ "Configuration for user #%s (you!) ignored to avoid incoherent flags "
 #~ "status. End the superuser session to change your settings in this group "
@@ -7133,9 +7190,6 @@ msgstr "Aucun utilisateur."
 #~ "des situations incohérentes. Fermez la session super-utilisateur pour "
 #~ "modifier les paramètres vous concernant dans ce groupe, ou bien utilisez "
 #~ "l'interface disponible dans la partie d'administration du site."
-
-#~ msgid "permissions of %s updated."
-#~ msgstr "permissions de %s mises à jour."
 
 #~ msgid "personal permissions of %s were overridden by squad permissions."
 #~ msgstr ""
@@ -7200,9 +7254,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "No Members Found"
 #~ msgstr "Aucun membre trouvé"
 
-#~ msgid "Member"
-#~ msgstr "Membres"
-
 #~ msgid "Projects Admins are always allowed to read private items."
 #~ msgstr ""
 #~ "Les administrateurs de projets ont toujours l'autorisation de voir les "
@@ -7244,9 +7295,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Specific Role"
 #~ msgstr "Rôle spécifique"
-
-#~ msgid "Resume and Skills"
-#~ msgstr "CV et compétences"
 
 #~ msgid "Watch"
 #~ msgstr "Suivi"
@@ -7347,9 +7395,6 @@ msgstr "Aucun utilisateur."
 #~ "En confirmant, l'enregistrement de votre projet sera conservé, en "
 #~ "attendant qu'un administrateur le valide. Si vous annulez, cet "
 #~ "enregistrement sera annulé."
-
-#~ msgid "Reject"
-#~ msgstr "Annuler"
 
 #~ msgid "Unable to update database, please contact administrators"
 #~ msgstr ""
@@ -7453,9 +7498,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Please complete both fields"
 #~ msgstr "Veuillez compléter les deux champs"
-
-#~ msgid "Full Name"
-#~ msgstr "Nom complet"
 
 #~ msgid "System Name"
 #~ msgstr "Nom système"
@@ -7693,9 +7735,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Registration Management Shortcuts"
 #~ msgstr "Raccourcis"
 
-#~ msgid "Approve"
-#~ msgstr "Approuve"
-
 #~ msgid "Discard"
 #~ msgstr "Rejette"
 
@@ -7765,9 +7804,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Deleted projects (the backend will remove the record soon)"
 #~ msgstr ""
 #~ "Projets supprimés (le \"backend\" supprimera l'enregistrement bientôt)"
-
-#~ msgid "Incomplete"
-#~ msgstr "Incomplet"
 
 #~ msgid "Maintenance"
 #~ msgstr "Maintenance"
@@ -7902,9 +7938,6 @@ msgstr "Aucun utilisateur."
 #~ msgstr ""
 #~ "Le bannissement d'un utilisateur est un processus sans retour. Faites "
 #~ "attention. Pour des raisons d'efficacité, il n'y aura pas d'avertissement."
-
-#~ msgid "User"
-#~ msgstr "Utilisateur"
 
 #~ msgid "Score"
 #~ msgstr "Score"
@@ -10225,10 +10258,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "It will take %sabout 2 hours%s for your list  to be created."
 #~ msgstr "La création de votre liste prendra %senviron 2 heures%s."
-
-#, fuzzy
-#~ msgid "License Other:"
-#~ msgstr "Autre licence :"
 
 #~ msgid "Lists are named in this manner:"
 #~ msgstr "Les listes sont nommées de la façon suivante :"
