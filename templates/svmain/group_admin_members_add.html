@@ -17,14 +17,14 @@
 {% include "svmain/pagination.inc.html" %}
 
 <form action="." method="get">
-  {% trans "Search" %}: <input type="text" name="q" value="{{q}}" />
+  {% trans "Search" %}{% trans ": " %}<input type="text" name="q" value="{{q}}" />
 </form>
 
 {% if object_list %}
-    <table>
+    <table class="box">
     <tr><th>{% trans "User" %}</th><th>{% trans "Full name" %}</th><th>{% trans "Profile" %}</th><th></th></tr>
     {% for object in object_list %}
-    <tr>
+    <tr class="{% cycle 'boxitem' 'boxitemalt' %}">
       <td>{{ object.username }}</td>
       <td>{{ object.get_full_name }}</td>
       <td><a href="{% url savane:svmain:user_detail object.username %}">{% trans 'view' %}</a></td>
