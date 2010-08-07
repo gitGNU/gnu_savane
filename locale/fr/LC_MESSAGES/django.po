@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-03 16:49-0500\n"
-"PO-Revision-Date: 2010-08-03 23:51+0200\n"
+"POT-Creation-Date: 2010-08-07 08:35-0500\n"
+"PO-Revision-Date: 2010-08-07 15:39+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -335,7 +335,7 @@ msgid "Active"
 msgstr "Actif"
 
 #: savane/svmain/models.py:117 savane/svmain/models.py:396
-#: savane/svmain/models.py:664
+#: savane/svmain/models.py:706
 msgid "Deleted"
 msgstr "Supprimé"
 
@@ -511,37 +511,37 @@ msgstr "Maintenance (accessible seulement aux superutilisateurs)"
 msgid "Incomplete (failure during registration)"
 msgstr "Incomplet (échec lors de l'inscription)"
 
-#: savane/svmain/models.py:562
+#: savane/svmain/models.py:604
 msgid "Admin"
 msgstr "Admin"
 
-#: savane/svmain/models.py:565
+#: savane/svmain/models.py:607
 #, fuzzy
 msgid "Pending moderation"
 msgstr "En attente de modération"
 
-#: savane/svmain/models.py:566
+#: savane/svmain/models.py:608
 msgid "Squad"
 msgstr "Escouade"
 
-#: savane/svmain/models.py:569
+#: savane/svmain/models.py:611
 #, fuzzy
 msgid "membership properties"
 msgstr "propriété de l'appartenance à un projet"
 
-#: savane/svmain/models.py:571
+#: savane/svmain/models.py:613
 msgid "Untick to hide emeritous members from the project page"
 msgstr "Décocher pour masquer les membres émérites de la page de projet"
 
-#: savane/svmain/models.py:665
+#: savane/svmain/models.py:707
 msgid "To be created"
 msgstr "À créer"
 
-#: savane/svmain/models.py:666
+#: savane/svmain/models.py:708
 msgid "To be reconfigured"
 msgstr "À reconfigurer"
 
-#: savane/svmain/models.py:667
+#: savane/svmain/models.py:709
 msgid "Created"
 msgstr "Créée"
 
@@ -561,24 +561,24 @@ msgstr "Projets"
 msgid "Project memberlist"
 msgstr "Liste des membres du projet"
 
-#: savane/svmain/urls.py:119
+#: savane/svmain/urls.py:155
 msgid "Editing public info"
 msgstr "Modifier les infos publiques"
 
-#: savane/svmain/urls.py:122 savane/svmain/templatetags/svtopmenu.py:59
+#: savane/svmain/urls.py:158 savane/svmain/templatetags/svtopmenu.py:59
 msgid "Select features"
 msgstr "Selectionner les outils"
 
-#: savane/svmain/urls.py:126 savane/svmain/urls.py:129
+#: savane/svmain/urls.py:162 savane/svmain/urls.py:165
 #: savane/svmain/templatetags/svtopmenu.py:61
 msgid "Manage members"
 msgstr "Gérer les membres"
 
-#: savane/svmain/urls.py:136
+#: savane/svmain/urls.py:172
 msgid "License list"
 msgstr "Liste des licences"
 
-#: savane/svmain/urls.py:140
+#: savane/svmain/urls.py:176
 msgid "License detail"
 msgstr "Détails de la licence"
 
@@ -621,7 +621,6 @@ msgid "Download area: files released"
 msgstr "Espace de téléchargement: fichier diffusés"
 
 #: savane/svmain/templatetags/svtopmenu.py:75
-#, fuzzy
 msgid "Mailing lists"
 msgstr "Listes de discussion"
 
@@ -637,20 +636,70 @@ msgstr "Consulter"
 msgid "Configure:"
 msgstr "Configurer :"
 
-#: savane/svmain/templatetags/svtopmenu.py:87
+#: savane/svmain/templatetags/svtopmenu.py:89
 msgid "Source code"
 msgstr "Code source"
 
-#: savane/svmain/templatetags/svtopmenu.py:89
+#: savane/svmain/templatetags/svtopmenu.py:91
 msgid "Source Code Management"
 msgstr "Gestion de code source"
 
-#: savane/svmain/templatetags/svtopmenu.py:91
+#: savane/svmain/templatetags/svtopmenu.py:95
+#, fuzzy
+msgid "Use Git"
+msgstr "Utiliser Git"
+
+#: savane/svmain/templatetags/svtopmenu.py:98
+#: savane/svmain/templatetags/svtopmenu.py:108
+#: savane/svmain/templatetags/svtopmenu.py:118
+#: savane/svmain/templatetags/svtopmenu.py:128
+#: savane/svmain/templatetags/svtopmenu.py:138
+#: savane/svmain/templatetags/svtopmenu.py:147
+#: templates/svmain/group_vcs_arch.html:23
+#: templates/svmain/group_vcs_bzr.html:23
+#: templates/svmain/group_vcs_cvs.html:23
+#: templates/svmain/group_vcs_git.html:23
+#: templates/svmain/group_vcs_hg.html:23
+#: templates/svmain/group_vcs_svn.html:23
+msgid "Browse sources repository"
+msgstr "Consulter le dépôt du code source"
+
+#: savane/svmain/templatetags/svtopmenu.py:101
+#: savane/svmain/templatetags/svtopmenu.py:111
+#: savane/svmain/templatetags/svtopmenu.py:121
+#: savane/svmain/templatetags/svtopmenu.py:131
+#: savane/svmain/templatetags/svtopmenu.py:141
+#: savane/svmain/templatetags/svtopmenu.py:150
+#: templates/svmain/group_vcs_arch.html:26
+#: templates/svmain/group_vcs_bzr.html:26
+#: templates/svmain/group_vcs_cvs.html:26
+#: templates/svmain/group_vcs_git.html:26
+#: templates/svmain/group_vcs_hg.html:26
+#: templates/svmain/group_vcs_svn.html:26
+msgid "Browse web pages repository"
+msgstr "Consulter le dépôt du code source du site web"
+
+#: savane/svmain/templatetags/svtopmenu.py:105
+msgid "Use Mercurial"
+msgstr "Utiliser Mercurial"
+
+#: savane/svmain/templatetags/svtopmenu.py:115
+msgid "Use Bazaar"
+msgstr "Utiliser Bazaar"
+
+#: savane/svmain/templatetags/svtopmenu.py:125
+msgid "Use Subversion"
+msgstr "Utiliser Subversion"
+
+#: savane/svmain/templatetags/svtopmenu.py:135
+msgid "Use GNU Arch"
+msgstr "Utiliser GNU Arch"
+
+#: savane/svmain/templatetags/svtopmenu.py:144
 msgid "Use CVS"
 msgstr "Utiliser CVS"
 
 #: savane/tracker/models.py:28
-#, fuzzy
 msgid "anonymous"
 msgstr "anonyme"
 
@@ -765,30 +814,28 @@ msgid "Priority,Status,Severity changes"
 msgstr ""
 
 #: savane/tracker/models.py:60
-msgid "Any other Changes"
-msgstr ""
+msgid "Any other change"
+msgstr "Toute autre modification"
 
 #: savane/tracker/models.py:61
-msgid "Any changes not mentioned above"
-msgstr ""
+msgid "Any change not mentioned above"
+msgstr "Toute modification non mentionnée ci-dessus"
 
 #: savane/tracker/models.py:62
 msgid "I did it"
 msgstr ""
 
 #: savane/tracker/models.py:63
-#, fuzzy
 msgid "I am the author of the change"
-msgstr "Je ne suis pas l'auteur de la mise à jour de l'item"
+msgstr "Je ne suis pas l'auteur de la modification de l'item"
 
 #: savane/tracker/models.py:64
 msgid "New Item"
 msgstr "Nouvel item"
 
 #: savane/tracker/models.py:65
-#, fuzzy
 msgid "A new item has been submitted"
-msgstr "Approuver une dépêche pour le projet %s proposée par %s"
+msgstr "Un nouvel item a été posté"
 
 #: savane/tracker/models.py:143
 msgid "date field"
@@ -824,7 +871,7 @@ msgstr ""
 
 #: savane/tracker/models.py:164
 msgid "let the user change the label and description"
-msgstr ""
+msgstr "permettre à l'utilisateur de changer le libellé et la description"
 
 #: savane/tracker/models.py:173
 msgid "undefined"
@@ -1425,19 +1472,42 @@ msgstr ""
 "Vous pouvez également consulter le %(begin_link)strousseau de clefs GPG des "
 "membres du projet%(end_link)s"
 
-#: templates/svmain/group_scm_cvs.html:17
+#: templates/svmain/group_vcs_arch.html:17
+#: templates/svmain/group_vcs_bzr.html:17
+#: templates/svmain/group_vcs_cvs.html:17
+#: templates/svmain/group_vcs_git.html:17
+#: templates/svmain/group_vcs_hg.html:17
+#: templates/svmain/group_vcs_svn.html:17
 #, python-format
 msgid "Browsing the %(type)s repository"
 msgstr "Consulter le dépôt %(type)s"
 
-#: templates/svmain/group_scm_cvs.html:19
+#: templates/svmain/group_vcs_arch.html:19
+#: templates/svmain/group_vcs_bzr.html:19
+#: templates/svmain/group_vcs_cvs.html:19
+#: templates/svmain/group_vcs_git.html:19
+#: templates/svmain/group_vcs_hg.html:19
+#: templates/svmain/group_vcs_svn.html:19
 #, python-format
 msgid ""
 "You can browse the %(type)s repository of this project with your web "
 "browser. This gives you a good picture of the current status of the source "
 "files. You may also view the complete histories of any file in the "
 "repository as well as differences among two versions."
-msgstr "Vous pouvez consulter le dépôt %(type)s de ce projet avec votre navigateur. Cela peut vous donner une bonne representation de l'état actuel du code source. Vous pouvez également consulter l'historique complet, ainsi que les différences entre deux versions de n'importe quel fichier du dépôt."
+msgstr ""
+"Vous pouvez consulter le dépôt %(type)s de ce projet avec votre navigateur. "
+"Cela peut vous donner une bonne representation de l'état actuel du code "
+"source. Vous pouvez également consulter l'historique complet, ainsi que les "
+"différences entre deux versions de n'importe quel fichier du dépôt."
+
+#: templates/svmain/group_vcs_arch_custom.html:2
+#: templates/svmain/group_vcs_bzr_custom.html:2
+#: templates/svmain/group_vcs_cvs_custom.html:2
+#: templates/svmain/group_vcs_git_custom.html:2
+#: templates/svmain/group_vcs_hg_custom.html:2
+#: templates/svmain/group_vcs_svn_custom.html:2
+msgid "More information"
+msgstr "Informations complémentaires"
 
 #: templates/svmain/license_detail.html:8
 msgid "URL:"
@@ -1923,12 +1993,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "This project has turned off this tool"
 #~ msgstr "Ce projet n'utilise pas cet outil."
-
-#~ msgid "Browse Sources Repository"
-#~ msgstr "Consulter le dépôt du code source"
-
-#~ msgid "Browse Web Pages Repository"
-#~ msgstr "Consulter le dépôt du code source du site web"
 
 #~ msgid "Getting a Copy of the %s Repository"
 #~ msgstr "Obtenir une copie du dépôt %s"
@@ -2793,14 +2857,8 @@ msgstr "Aucun utilisateur."
 #~ msgid "Source Code Manager: Git Repository"
 #~ msgstr "Gestion de code source : Dépôt Git"
 
-#~ msgid "Use Subversion"
-#~ msgstr "Utiliser Subversion"
-
 #~ msgid "Source Code Manager: Subversion Repository"
 #~ msgstr "Gestion de code source : Dépôt Subversion"
-
-#~ msgid "Use GNU Arch"
-#~ msgstr "Utiliser GNU Arch"
 
 #~ msgid "Source Code Manager: GNU Arch Repository"
 #~ msgstr "Gestion de code source : Dépôt GNU Arch"
@@ -7493,10 +7551,6 @@ msgstr "Aucun utilisateur."
 
 #, fuzzy
 #~ msgid "Can use CVS"
-#~ msgstr "Utilise CVS :"
-
-#, fuzzy
-#~ msgid "Can use Git"
 #~ msgstr "Utilise CVS :"
 
 #, fuzzy
