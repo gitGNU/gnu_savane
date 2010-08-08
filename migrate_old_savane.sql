@@ -58,9 +58,9 @@ INSERT INTO auth_user
     WHERE savane_old.user.user_id != 100;
 
 -- Import all extended information except for the 'None' user (#100)
-TRUNCATE svmain_extendeduser;
-INSERT INTO svmain_extendeduser
-    (user_ptr_id, status, spamscore,
+TRUNCATE svmain_svuserinfo;
+INSERT INTO svmain_svuserinfo
+    (user_id, status, spamscore,
      people_view_skills, people_resume,
      timezone, theme, email_hide, gpg_key, gpg_key_count)
   SELECT user_id, status, spamscore,
@@ -138,8 +138,8 @@ INSERT INTO svmain_groupconfiguration
      url_bzr_viewcvs,
      url_download,
      url_mailing_list_listinfo,
-     url_mailing_list_subscribe,
-     url_mailing_list_unsubscribe,
+--      url_mailing_list_subscribe,
+--      url_mailing_list_unsubscribe,
      url_mailing_list_archives,
      url_mailing_list_archives_private,
      url_mailing_list_admin,
@@ -198,8 +198,8 @@ INSERT INTO svmain_groupconfiguration
       url_bzr_viewcvs,
       url_download,
       url_mailing_list_listinfo,
-      url_mailing_list_subscribe,
-      url_mailing_list_unsubscribe,
+--       url_mailing_list_subscribe,
+--       url_mailing_list_unsubscribe,
       url_mailing_list_archives,
       url_mailing_list_archives_private,
       url_mailing_list_admin,
@@ -222,7 +222,6 @@ INSERT INTO auth_group
 -- ./manage.py loaddata savane/svmain/fixtures/developmentstatus.yaml
 
 -- Import groups
--- group_ptr_id <- group_id
 -- full_name <- group_name
 -- license_id <- license+1 (django counts from 1, not from 0)
 -- devel_status_id <- devel_status+1 (django counts from 1, not from 0)
@@ -232,9 +231,9 @@ INSERT INTO auth_group
 -- Using LEFT JOIN so that if the license isn't known, the project is
 -- not ignored (with license_id=NULL).
 -- Using X+0 to convert empty string to 0 without warning
-TRUNCATE svmain_extendedgroup;
-INSERT INTO svmain_extendedgroup
-    (group_ptr_id, full_name, license_id, devel_status_id, type_id,
+TRUNCATE svmain_svgroupinfo;
+INSERT INTO svmain_svgroupinfo
+    (group_id, full_name, license_id, devel_status_id, type_id,
      register_time,
      is_public,
      status,
@@ -281,7 +280,7 @@ INSERT INTO svmain_extendedgroup
      url_task,
      url_patch,
      url_extralink_documentation)
-  SELECT group_id, group_name, svmain_license.id, IFNULL(devel_status+1, 8), type,
+  SELECT group_id, group_name, svmain_license.id, IFNULL(IF(devel_status=0,9,devel_status), 7), type,
       FROM_UNIXTIME(register_time),
       is_public,
       status,
@@ -377,7 +376,8 @@ TRUNCATE auth_user_groups;
 INSERT INTO auth_user_groups
     (user_id, group_id)
   SELECT user_id, group_id
-    FROM savane_old.user_group;
+    FROM savane_old.user_group
+    WHERE admin_flags <> 'P';
 TRUNCATE svmain_membership;
 INSERT INTO svmain_membership
     (user_id, group_id, admin_flags, onduty)

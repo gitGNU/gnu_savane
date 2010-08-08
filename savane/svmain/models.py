@@ -602,7 +602,7 @@ class Membership(models.Model):
 
     class Meta:
         unique_together = (('user', 'group'),)
-        ordering = ('group', 'user', )
+        ordering = ('group__name', 'user__last_name', 'user__first_name',)
 
     user = models.ForeignKey(auth_models.User)
     group = models.ForeignKey(auth_models.Group)
@@ -685,7 +685,7 @@ class Membership(models.Model):
         
             # If a membership does not have a matching User<->Group relationship, remove it
             user_pks = group.user_set.values_list('pk', flat=True)
-            invalid_memberships = Membership.objects.exclude(user__in=user_pks).exclude(admin_flags='P')
+            invalid_memberships = Membership.objects.filter(group=group).exclude(user__in=user_pks).exclude(admin_flags='P')
             invalid_memberships.delete()
         if user is not None:
             # If using a non-Savane groups base, prepare membership metadata
@@ -696,7 +696,7 @@ class Membership(models.Model):
         
             # If a membership does not have a matching User<->Group relationship, remove it
             group_pks = user.groups.values_list('pk', flat=True)
-            invalid_memberships = Membership.objects.exclude(group__in=group_pks).exclude(admin_flags='P')
+            invalid_memberships = Membership.objects.filter(user=user).exclude(group__in=group_pks).exclude(admin_flags='P')
             invalid_memberships.delete()
 
     @staticmethod
