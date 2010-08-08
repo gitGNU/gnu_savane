@@ -49,9 +49,7 @@
 <p>{{group.svgroupinfo.short_description}}</p>
 {% else %}
 {% url savane:svmain:group_admin_info group.name as url_group_admin_info %}
-{% blocktrans with '<a href="'|add:url_group_admin_info|add:'">'|safe as begin_link and '</a>' as end_link %}
-This project has not yet submitted a short description. You can {{begin_link}}submit it{{end_link}} now.
-{% endblocktrans %}
+{% blocktrans with '<a href="'|add:url_group_admin_info|add:'">'|safe as begin_link and '</a>' as end_link %}This project has not yet submitted a short description. You can {{begin_link}}submit it{{end_link}} now.{% endblocktrans %}
 {% endif %}{% endif %}
 <p>
 {% trans "Registration date" %}: {{group.svgroupinfo.register_time}}<br />
