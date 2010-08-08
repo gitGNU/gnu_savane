@@ -1,5 +1,5 @@
-# Add global media URLs to template context
-# Copyright (C) 2009  Sylvain Beucler
+# Add a few more variables to template contexts
+# Copyright (C) 2009, 2010  Sylvain Beucler
 #
 # This file is part of Savane.
 # 
@@ -33,5 +33,4 @@ def site_name(request):
     Returns the current site name.
     Cf. django.contrib.auth.views
     """
-
     return {'site_name' : get_site_name()}

@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load qsup %}
 
 {% if page_obj %}
 <div class="pagination">
@@ -7,21 +8,21 @@
         {% if not page_obj.has_previous %}
 	  {% trans "previous" %}
 	{% else %}
-          <a href="?page={{ page_obj.previous_page_number }}">{% trans "previous" %}</a>
+          <a href="?{% qsup 'page' page_obj.previous_page_number %}">{% trans "previous" %}</a>
         {% endif %}
 	&lt;
 	{% for number in paginator.page_range %}
 	    {% ifequal number page_obj.number %}
 	      {{ number }}
 	    {% else %}
-              <a href="?page={{ number }}">{{ number }}</a>
+              <a href="?{% qsup 'page' number %}">{{ number }}</a>
 	    {% endifequal %}
         {% endfor %}
 	&gt;
         {% if not page_obj.has_next %}
 	    {% trans "next" %}
 	{% else %}
-            <a href="?page={{ page_obj.next_page_number }}">{% trans "next" %}</a>
+            <a href="?{% qsup 'page' page_obj.next_page_number %}">{% trans "next" %}</a>
         {% endif %}
 
         <span class="current">
