@@ -23,6 +23,16 @@ import django.contrib.auth.models as auth_models
 import savane.svmain.models as svmain_models
 import re
 
+# import markup.py doctests
+from savane.utils.markup import *
+__test__ = {
+    "basic": basic,
+    "rich": rich,
+    "full": full,
+    "textoutput": textoutput,
+    }
+
+
 class SimpleTest(TestCase):
     fixtures = [
         'license.yaml',

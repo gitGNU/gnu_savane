@@ -18,16 +18,25 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# The goal is to provide a syntax compatible with Savane 3.  The
+# original implementation uses a line-based parsers with a few issues
+# (e.g. when using \n instead of \r\n).  I (Beuc) think a cleaner
+# implementation would use a tokeniser and a grammar - and would
+# otherwise reuse an existing syntax rather than create yet another
+# one.  We keep it for backward compatibility.  I think we should not
+# improve it and rather add support for an existing syntax (one of
+# reStructuredText, MediaWiki...).
+
 ## Provides functions to allow users to format the text in a secure way:
-##    markup_basic() for very light formatting
-##    markup_rich() for formatting excepting headers
-##    markup_full() for full formatting, including headers
+##    basic() for very light formatting
+##    rich() for formatting excepting headers
+##    full() for full formatting, including headers
 
 from django.conf import settings
 from xml.sax.saxutils import quoteattr
 import re
 
-def markup_info(level):
+def info(level):
     """
     Will tell the user what is the level of markup available in a
     uniformized way.
@@ -57,44 +66,93 @@ def markup_info(level):
         + ' border="0" class="icon" alt="" />' \
         + string + '</span>'
 
-def markup_basic(text):
-    """
+def basic(text):
+    r"""
     Converts special markup characters in the input text to real HTML
     
     The following syntax is supported:
     *word* -> <strong>word</strong>
     _word_ -> <em>word</em>
-    [http://gna.org/] -> <a href="http://gna.org/">http://gna.org/</a>
-    [http://gna.org/ text] -> <a href="http://gna.org/">text</a>
-    (bug|task|...) #1234 -> Link to corresponding page
+    [http://savane-forge.org/] -> <a href="http://savane-forge.org/">http://savane-forge.org/</a>
+    [http://savane-forge.org/ text] -> <a href="http://savane-forge.org/">text</a>
+    [disabled] (bug|task|...) #1234 -> Link to corresponding page
+
+    >>> basic('*word*')
+    '<strong>word</strong>'
+    >>> basic("*word\n*")
+    '*word\n*'
+    >>> basic('_word_')
+    '<em>word</em>'
+    >>> basic('_wo\nrd_')
+    '_wo\nrd_'
+    >>> basic('[http://savane-forge.org/]')
+    '<a href="http://savane-forge.org/">http://savane-forge.org/</a>'
+    >>> basic('[http://savane-forge.org/ text]')
+    '<a href="http://savane-forge.org/">text</a>'
     """
     lines = text.split("\n")
     result = []
 
     for line in lines:
-        result.append(_markup_inline(line))
+        result.append(_inline(line))
 
     return "\n".join(result)
 
-def markup_rich(text):
-    """
+def rich(text):
+    r"""
     Converts special markup characters in the input text to real HTML
     
-    This function does the same markup as utils_basic_markup(), plus
+    This function does the same markup as basic(), plus
     it supports the following:
     * paragraphs
     * lists (<ul> and <ol>)
     * nested lists
     * horizontal rulers
-    """
-    return markup_full(text, False)
 
-def markup_full(text, allow_headings=True):
+    >>> rich("A\nB")
+    '<p>A<br />\nB<br />\n</p>'
+    >>> rich("A\n\nB")
+    '<p>A<br />\n</p>\n<p>B<br />\n</p>'
+    >>> rich("* A")
+    '<ul>\n<li>A\n</li>\n</ul>'
+    >>> rich("* A\n** A.1\n** A.2\n* 2\n")
+    '<ul>\n<li>A\n<ul>\n<li>A.1\n</li>\n<li>A.2\n</li>\n</ul>\n</li>\n<li>2\n</li>\n</ul>'
+    >>> rich("0 A\n0* A.1\n0 2")
+    '<ol>\n<li>A\n<ul>\n<li>A.1\n</li>\n</ul>\n</li>\n<li>2\n</li>\n</ol>'
+    >>> rich("* A\n0 B\n* C")
+    '<ul>\n<li>A\n</li>\n</ul><ol>\n<li>B\n</li>\n</ol><ul>\n<li>C\n</li>\n</ul>'
+    >>> rich("----")
+    '<hr />'
+    >>> rich("+verbatim+\n  indented_code();\n-verbatim-")
+    '<input type="text" class="verbatim" readonly="readonly" size="60" value="  indented_code();" />'
+    >>> rich("+verbatim+\n1\r\n2\n-verbatim-")
+    '<textarea class="verbatim" readonly="readonly" rows="2" cols="80">1\r2</textarea>'
+    >>> rich("+nomarkup+\n_word_\n*word*\n-nomarkup-")
+    '<p><br />\n_word_<br />\n*word*<br />\n<br />\n</p>'
+    >>> rich("+verbatim+\n+nomarkup+\n-verbatim-")
+    '<input type="text" class="verbatim" readonly="readonly" size="60" value="+nomarkup+" />'
     """
+    return full(text, False)
+
+def full(text, allow_headings=True):
+    r"""
     Converts special markup characters in the input text to real HTML
     
-    This function does the same markup as utils_rich_markup(), plus
+    This function does the same markup as rich(), plus
     it converts headings to <h3> ... <h6>
+
+    >>> full('= A =')
+    '<h2>A</h2>'
+    >>> full('== A ==')
+    '<h3>A</h3>'
+    >>> full('=== A ===')
+    '<h4>A</h4>'
+    >>> full('==== A ====')
+    '<h5>A</h5>'
+    >>> full('= A =\n=== B ===')
+    '<h2>A</h2>\n<h4>B</h4>'
+    >>> full('= A =\n\nintro\n\n== B ==')
+    '<h2>A</h2>\n\n<p>intro<br />\n</p>\n<h3>B</h3>'
     """
     lines = text.split("\n")
     result = []
@@ -120,7 +178,7 @@ def markup_full(text, allow_headings=True):
         # yeupou, 2006-10-31: we need a verbatim count, because actually 
         # we may want to put at least one verbatim block into another, for
         # instance in the recipe that explain the verbatim tag
-        if re.match('[+]verbatim[+]') and not verbatim:
+        if re.match('[+]verbatim[+]', line) and not verbatim:
             verbatim = 1
             verbatim_buffer = ''
             verbatim_buffer_linecount = 0
@@ -130,7 +188,7 @@ def markup_full(text, allow_headings=True):
             if not printer:
                 context_stack.insert(0, '</textarea>')
             else:
-                context_stack.insert(0, '</pre')
+                context_stack.insert(0, '</pre>')
 
             # Jump to the next line, assuming that we can ignore the rest of the
             # line
@@ -160,7 +218,7 @@ def markup_full(text, allow_headings=True):
                                       + '" />')
                 else:
                     result.append('<textarea class="verbatim" readonly="readonly" rows="' \
-                                      + verbatim_buffer_linecount + '" cols="80">' \
+                                      + str(verbatim_buffer_linecount) + '" cols="80">' \
                                       + verbatim_buffer + '</textarea>')
             else:
                 result.append('<pre class="verbatim">' + verbatim_buffer + '</pre>')
@@ -188,7 +246,8 @@ def markup_full(text, allow_headings=True):
             verbatim_buffer_linecount += 1
         else:
             # Otherwise, normal run, do the markup
-            result.append(_full_markup(line, allow_headings, context_stack, quoted_text))
+            (line, context_stack, quoted_text) = _full_markup(line, allow_headings, context_stack, quoted_text)
+            result.append(line)
 
     # make sure that all previously used contexts get their
     # proper closing tag by merging in the last closing tags
@@ -197,13 +256,14 @@ def markup_full(text, allow_headings=True):
     # its easiest to markup everything, without supporting the nomarkup
     # tag. afterwards, we replace every nomarkup tag pair with the content
     # between those tags in the original string
+    # keep the '()' in the regexp's so the matched tag is part of the result
     original = re.split('([+-]nomarkup[+-])', "\n".join(lines))
     markup = re.split('([+-]nomarkup[+-])', markup_text)
     # save the HTML tags from the last element in the markup array, see below
     last_tags = markup[len(markup)-1]
     nomarkup_level = 0
 
-    for index,original_text in original:
+    for index,original_text in enumerate(original):
         # keep track of nomarkup tags
         if original_text == '+nomarkup+': nomarkup_level += 1
         if original_text == '-nomarkup-': nomarkup_level -= 1
@@ -220,13 +280,14 @@ def markup_full(text, allow_headings=True):
         if nomarkup_level > 0:
             markup[index] = original_text.replace('\n','<br />\n')
 
-        # normally, $nomarkup_level must be zero at this point. however, if
-        # the user submits wrong markup and forgets to close the -nomarkup-
-        # tag, we need to take care of that.
-        # To do this, we need to look for closing tags which have been deleted.
-        if nomarkup_level > 0:
-            trailing_markup = array_reverse(last_tags.split('\n'))
+    # normally, $nomarkup_level must be zero at this point. however, if
+    # the user submits wrong markup and forgets to close the -nomarkup-
+    # tag, we need to take care of that.
+    # To do this, we need to look for closing tags which have been deleted.
+    if nomarkup_level > 0:
+        trailing_markup = last_tags.split('\n')[::-1]
         restored_tags = ''
+
         for tag in trailing_markup:
             if re.match('^\s*<\/[a-z]+>$', tag):
                 restored_tags = "\n" + tag + restored_tags
@@ -238,13 +299,22 @@ def markup_full(text, allow_headings=True):
     # for verbatim environments
     return ''.join(markup).replace('no-1a4f67a7-4eae-4aa1-a2ef-eecd8af6a997-markup', 'nomarkup')
 
-def markup_textoutput(text):
-    """
+def textoutput(text):
+    r"""
     Convert whatever content that can contain markup to a valid text output
     It wont touch what seems to be valid in text already, or what cannot
     be converted in a very satisfactory way.
     This function should be minimal, just to avoid weird things, not to do
     very fancy things.
+
+    >>> textoutput('[http://savane-forge.org/ Link]')
+    'Link <http://savane-forge.org/>'
+    >>> textoutput('[http://savane-forge.org/]')
+    '[http://savane-forge.org/]'
+    >>> textoutput('a\n-verbatim-\nb')
+    'a\n\nb'
+    >>> textoutput('a\n+nomarkup+\nb')
+    'a\n\nb'
     """
 
     lines = text.split("\n")
@@ -270,8 +340,8 @@ def markup_textoutput(text):
 		     + '(.+?)\]', '\\3 <\\1>', line)
       
         # Remove savane-specific tags
-        line = re.sub('\+' + savane_tags + '\+', '', line)
-        line = re.sub('-' + savane_tags + '-/', '', line)
+        line = re.sub('\+(' + savane_tags + ')\+', '', line)
+        line = re.sub('-(' + savane_tags + ')-', '', line)
         result.append(line)
 
     return "\n".join(result)
@@ -283,8 +353,6 @@ def _full_markup(line, allow_headings, context_stack, quoted_text):
 
     This function is a helper for utils_full_markup() and should
     not be used otherwise.
-
-    'context_stack' and 'quoted_text' -> passed by ref.
     """
 
     #############################################################
@@ -301,10 +369,10 @@ def _full_markup(line, allow_headings, context_stack, quoted_text):
 
     # Match the headings, e.g. === heading ===
     if allow_headings:
-        line = _markup_headings(line, context_stack, start_paragraph)
+        (line, context_stack, start_paragraph) = _headings(line, context_stack, start_paragraph)
 
     # Match list items
-    line = _markup_lists(line, context_stack, start_paragraph)
+    (line, context_stack, start_paragraph) = _lists(line, context_stack, start_paragraph)
 
     # replace four '-' sign with a horizontal ruler
     if re.match('^----\s*$', line):
@@ -319,7 +387,7 @@ def _full_markup(line, allow_headings, context_stack, quoted_text):
     # without starting a new context (e.g. <strong> and <em>)
     #############################################################
 
-    line = _markup_inline(line)
+    line = _inline(line)
 
     #############################################################
     # paragraph formatting
@@ -335,7 +403,7 @@ def _full_markup(line, allow_headings, context_stack, quoted_text):
         if not quoted_text:
             line = "\n".join(context_stack) + "<p class=\"quote\">" + line
             # empty the stack
-            context_stack = array('</p>')
+            context_stack = ['</p>']
             start_paragraph = False
         quoted_text = True
     else:
@@ -357,7 +425,7 @@ def _full_markup(line, allow_headings, context_stack, quoted_text):
         line = "\n".join(context_stack) + line
         # empty the stack
         context_stack = []
-        start_paragraph = false
+        start_paragraph = False
 
     # Finally start a new paragraph if appropriate
     if start_paragraph:
@@ -371,16 +439,14 @@ def _full_markup(line, allow_headings, context_stack, quoted_text):
     if len(context_stack) > 0 and context_stack[0] == '</p>':
         line += '<br />'
 
-    return line
+    return (line, context_stack, quoted_text)
 
-def _markup_headings(line, context_stack, start_paragraph):
+def _headings(line, context_stack, start_paragraph):
     """
     Internal function for recognizing and formatting headings
     
     This function is a helper for _full_markup() and should
     not be used otherwise.
-
-    'context_stack' and 'start_paragraph' -> passed by ref.
     """
     matches = re.search(
         # find one to four '=' signs at the start of a line
@@ -398,73 +464,73 @@ def _markup_headings(line, context_stack, start_paragraph):
         header_level_end = len(matches.group(3))
         if header_level_start == header_level_end:
             # if the user types '= heading =' (one '=' sign), it will
-            # actually be rendered as a level 3 heading <h3>
-            header_level_start += 2
-            header_level_end += 2
+            # actually be rendered as a level 2 heading <h2>
+            header_level_start += 1
+            header_level_end += 1
 
-            line = "<h" + header_level_start + ">" + matches.group(2) + "</h" + header_level_end + ">"
+            line = ("<h" + str(header_level_start) + ">"
+                    + matches.group(2)
+                    + "</h" + str(header_level_end) + ">")
             # make sure that all previously used contexts get their
             # proper closing tag
             line = "\n".join(context_stack) + line
             # empty the stack
             context_stack = []
             start_paragraph = False
-    return line
+    return (line, context_stack, start_paragraph)
 
-def _markup_lists(line, context_stack, start_paragraph):
+def _lists(line, context_stack, start_paragraph):
     """
     Internal function for recognizing and formatting lists
     
     This function is a helper for _full_markup() and should
     not be used otherwise.
-
-    'context_stack' and 'start_paragraph' -> passed by ref.
     """
     matches = re.search('^\s?([*0]+) (.+)$', line)
-    if matches:
+    if matches is not None:
         # determine the list level currently in use
         current_list_level = 0
         for context in context_stack:
             if context == '</ul>' or context == '</ol>':
                 current_list_level += 1
 
-    # determine whether the user list levels match the list
-    # level we have in our context stack
-    #
-    # this will catch (potential) errors of the following form:
-    # * list start
-    # 0 maybe wrong list character
-    # * list end
-    markup_position = 0
-    for context in context_stack[::-1]:
-        # we only care for the list types
-        if context != '</ul>' and context != '</ol>':
-            continue
-
-        markup_character = matches.group(1)[markup_position, markup_position+1]
-
-        if ((markup_character == '*' and context != '</ul>')
-            or (markup_character == '0' and context != '</ol>')):
-            # force a new and clean list start
-            current_list_level = 0
-            break
-        else:
-            markup_position += 1
-
+        # determine whether the user list levels match the list
+        # level we have in our context stack
+        #
+        # this will catch (potential) errors of the following form:
+        # * list start
+        # 0 maybe wrong list character
+        # * list end
+        markup_position = 0
+        for context in context_stack[::-1]:
+            # we only care for the list types
+            if context != '</ul>' and context != '</ol>':
+                continue
+    
+            markup_character = matches.group(1)[markup_position:markup_position+1]
+    
+            if ((markup_character == '*' and context != '</ul>')
+                or (markup_character == '0' and context != '</ol>')):
+                # force a new and clean list start
+                current_list_level = 0
+                break
+            else:
+                markup_position += 1
+    
         # if we are not in a list, close the previous context
         line = ''
         if current_list_level == 0:
             line = "\n".join(context_stack)
             context_stack = []
-
+    
         # determine the list level the user wanted
         wanted_list_level = len(matches.group(1))
-
+    
         # here we start a new list and make sure that the markup
         # is valid, even if the user did skip one or more list levels
         list_level_counter = current_list_level
         while list_level_counter < wanted_list_level:
-            test = matches.group(1)[list_level_counter, list_level_counter+1]
+            test = matches.group(1)[list_level_counter:list_level_counter+1]
             if test == '*':
                 tag = 'ul'
             elif test == '0':
@@ -489,9 +555,10 @@ def _markup_lists(line, context_stack, start_paragraph):
         # finally, append the list item
         line += matches.group(2)
         start_paragraph = False
-    return line
 
-def _markup_inline(line):
+    return (line, context_stack, start_paragraph)
+
+def _inline(line):
     """
     Internal function for recognizing and formatting inline tags and links
     
@@ -499,7 +566,7 @@ def _markup_inline(line):
     used otherwise.
     """
     if len(line) == 0:
-        return
+        return ''
 
     # Regexp of protocols supported in hyperlinks (should be protocols that
     # we can expect web browsers to support)
@@ -529,32 +596,33 @@ def _markup_inline(line):
     # and replace addresses in several fashion. Here we just want to make
     # a link). Make sure that 'cvs -d:pserver:anonymous@cvs.sv.gnu.org:/...'
     # is NOT replaced.
-    line = re.subpreg_replace("(^|\s)([a-z0-9_+-.]+@([a-z0-9_+-]+\.)+[a-z]+)(\s|$)",
-                              '\\1' + '\2' + '\\4', line, re.I)
+    line = re.sub("(^|\s)([a-z0-9_+-.]+@([a-z0-9_+-]+\.)+[a-z]+)(\s|$)",
+                  '\\1' + '\2' + '\\4', line, re.I)
 
     # Links between items
     # FIXME: it should be i18n, but in a clever way, meaning that everytime
     # a form is submitted with such string, the string get converted in
     # english so we always get the links found without having a regexp
     # including every possible language.
-    trackers = {
-        "bugs?" : "bugs/?",
-        "support|sr" : "support/?",
-        "tasks?" : "task/?",
-        "patch" : "patch/?",
-        # In this case, we make the link pointing to support, it wont matter,
-        # the download page is in every tracker and does not check if the tracker
-        # is actually used
-        "files?" : "support/download.php?file_id=",
-        }
-    for regexp,link in trackers:
-        # Allows only two white space between the string and the numeric id
-        # to avoid having too time consuming regexp. People just have to pay
-        # attention.
-        line = re.sub("(^|\s|\W)($regexp)\s{0,2}#([0-9]+)",
-                      '\1<em><a href="' + 'TODO:sys_home'
-                      + link + '\\3">\\2&nbsp;#\\3</a></em>',
-                      line, re.I)
+    # Trackers URLs disabled until trackers are actually implemented :)
+    #trackers = {
+    #    "bugs?" : "bugs/?",
+    #    "support|sr" : "support/?",
+    #    "tasks?" : "task/?",
+    #    "patch" : "patch/?",
+    #    # In this case, we make the link pointing to support, it wont matter,
+    #    # the download page is in every tracker and does not check if the tracker
+    #    # is actually used
+    #    "files?" : "support/download.php?file_id=",
+    #    }
+    #for regexp,link in trackers:
+    #    # Allows only two white space between the string and the numeric id
+    #    # to avoid having too time consuming regexp. People just have to pay
+    #    # attention.
+    #    line = re.sub("(^|\s|\W)($regexp)\s{0,2}#([0-9]+)",
+    #                  '\1<em><a href="' + 'sys_home'
+    #                  + link + '\\3">\\2&nbsp;#\\3</a></em>',
+    #                  line, re.I)
 
     # add an internal link for comments
     line = re.sub('(comments?)\s{0,2}#([0-9]+)',
@@ -562,7 +630,7 @@ def _markup_inline(line):
                   line, re.I)
 
     # Add support for named hyperlinks, e.g.
-    # [http://gna.org/ Text] -> <a href="http://gna.org/">Text</a>
+    # [http://savane-forge.org/ Text] -> <a href="http://savane-forge.org/">Text</a>
     line = re.sub(
         # find the opening brace '['
         '\['
@@ -579,7 +647,7 @@ def _markup_inline(line):
         '<a href="\\1">\\3</a>', line)
 
     # Add support for unnamed hyperlinks, e.g.
-    # [http://gna.org/] -> <a href="http://gna.org/">http://gna.org/</a> 
+    # [http://savane-forge.org/] -> <a href="http://savane-forge.org/">http://savane-forge.org/</a> 
     line = re.sub(
         # find the opening brace '['
         '\['
@@ -589,8 +657,8 @@ def _markup_inline(line):
         + '((' + protocols + '):\/\/'
         # match any character except whitespace (non-greedy) for
         # the actual link, followed by the closing brace ']'
-        + '[^\s]+?)\]/e',
-        "\\1", line)
+        + '[^\s]+?)\]',
+        '<a href="\\1">\\1</a>', line)
 
     # *word* -> <strong>word</strong>
     line = re.sub(
@@ -619,8 +687,12 @@ def _markup_inline(line):
         + '(.+?)'
         # match the ending underscore and either end of line or
         # a non-word character
-        + '_(\W|$)/',
+        + '_(\W|$)',
         '\\1<em>\\2</em>\\3',
         line)
 
     return line
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
