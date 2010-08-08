@@ -42,6 +42,9 @@
 </div>
 
 <div class="indexcenter">
+{% if group.svgroupinfo.status == 'P' %}
+<span class="warn">{% trans "This projects is currently not approved and is waiting for moderation." %}</span>
+{% endif %}
 <p>{{group.svgroupinfo.type.description}}</p>
 {% if group.svgroupinfo.long_description %}
 {{group.svgroupinfo.get_long_description_display}}

@@ -653,15 +653,14 @@ class Membership(models.Model):
     def is_member(user, group):
         return ((user.is_superuser and user.svuserinfo.superuser_is_enabled) or
                 (not user.is_anonymous()
-                 and group.user_set.filter(pk=user.pk).count() > 0))
+                 and group.user_set.filter(pk=user.pk).count() > 0)
+                and user.svuserinfo.status == 'A'
+                and group.svgroupinfo.status == 'A')
 
     @staticmethod
     def is_admin(user, group):
         return ((user.is_superuser and user.svuserinfo.superuser_is_enabled) or
-                (not user.is_anonymous()
-                 and Membership.is_member(user, group)
-                 and Membership.objects
-                 .filter(user=user, group=group, admin_flags='A').count() > 0))
+                Membership.is_nonsuper_admin(user, group))
 
     @staticmethod
     def is_nonsuper_admin(user, group):

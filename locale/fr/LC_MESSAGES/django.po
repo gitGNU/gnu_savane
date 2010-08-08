@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-08 16:17-0500\n"
-"PO-Revision-Date: 2010-08-08 23:18+0200\n"
+"POT-Creation-Date: 2010-08-08 17:02-0500\n"
+"PO-Revision-Date: 2010-08-09 00:03+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -569,7 +569,7 @@ msgstr "À reconfigurer"
 msgid "Created"
 msgstr "Créée"
 
-#: savane/svmain/urls.py:64 templates/base.html:49
+#: savane/svmain/urls.py:64 templates/base.html:50
 msgid "Users"
 msgstr "Utilisateurs"
 
@@ -577,7 +577,7 @@ msgstr "Utilisateurs"
 msgid "User detail"
 msgstr ""
 
-#: savane/svmain/urls.py:84 templates/base.html:50
+#: savane/svmain/urls.py:84 templates/base.html:51
 msgid "Projects"
 msgstr "Projets"
 
@@ -1091,43 +1091,43 @@ msgstr ""
 "Consultez l'aide-mémoire de la mise en forme dans documentation "
 "correspondante pour une description de ces bornes."
 
-#: templates/base.html:16
+#: templates/base.html:17
 msgid "Back to homepage"
 msgstr "Retour à la page d'accueil"
 
-#: templates/base.html:20
+#: templates/base.html:21
 #, python-format
 msgid "%(username)s logged in as superuser"
 msgstr ""
 
-#: templates/base.html:23
+#: templates/base.html:24
 #, python-format
 msgid "Connected as %(username)s"
 msgstr "Authentifié(e) en tant que %(username)s"
 
-#: templates/base.html:25
+#: templates/base.html:26
 msgid "My account"
 msgstr "Mon compte"
 
-#: templates/base.html:26
+#: templates/base.html:27
 msgid "Logout"
 msgstr "Retour à l'anonymat"
 
-#: templates/base.html:30
+#: templates/base.html:31
 msgid "Superuser rights are required to perform site admin tasks"
 msgstr ""
 "Les privilèges de super utilisateur sont requires to accomplir des tâches "
 "d'administration du site"
 
-#: templates/base.html:30
+#: templates/base.html:31
 msgid "Become superuser"
 msgstr "Devenir super-utilisateur"
 
-#: templates/base.html:32
+#: templates/base.html:33
 msgid "Impersonate this user"
 msgstr "Se faire passer pour cet utilisateur"
 
-#: templates/base.html:32 templates/my/contact.html:5 templates/my/i18n.html:5
+#: templates/base.html:33 templates/my/contact.html:5 templates/my/i18n.html:5
 #: templates/my/resume_skill.html:5 templates/my/ssh.html:5
 #: templates/svmain/group_admin_features.html:6
 #: templates/svmain/group_admin_info.html:6
@@ -1139,40 +1139,40 @@ msgstr "Se faire passer pour cet utilisateur"
 msgid ": "
 msgstr " : "
 
-#: templates/base.html:38
+#: templates/base.html:39
 msgid "End the Superuser session, go back to normal user session"
 msgstr "Clore la session Superutilisateur, retour à une session classique"
 
-#: templates/base.html:38
+#: templates/base.html:39
 msgid "Logout Superuser"
 msgstr "Retour en mode utilisateur"
 
-#: templates/base.html:42
+#: templates/base.html:43
 msgid "Login status"
 msgstr "État de la connexion :"
 
-#: templates/base.html:43
+#: templates/base.html:44
 msgid "Not connected"
 msgstr "Vous n'êtes pas authentifié"
 
-#: templates/base.html:44
+#: templates/base.html:45
 msgid "Login"
 msgstr "S'authentifier"
 
-#: templates/base.html:45
+#: templates/base.html:46
 msgid "New user"
 msgstr "Nouvel utilisateur"
 
-#: templates/base.html:48 templates/svmain/group_admin_members_add.html:20
+#: templates/base.html:49 templates/svmain/group_admin_members_add.html:20
 #: templates/svmain/group_list.html:9 templates/svmain/user_list.html:9
 msgid "Search"
 msgstr "Rechercher"
 
-#: templates/base.html:52
+#: templates/base.html:53
 msgid "Site help"
 msgstr "Aide du site"
 
-#: templates/base.html:53
+#: templates/base.html:54
 msgid "Contact us"
 msgstr "Nous contacter"
 
@@ -1541,7 +1541,11 @@ msgstr "Nom :"
 msgid "Group type:"
 msgstr "Type de groupe :"
 
-#: templates/svmain/group_detail.html:52
+#: templates/svmain/group_detail.html:46
+msgid "This projects is currently not approved and is waiting for moderation."
+msgstr "Ce projet n'est pas approuvé pour l'instant et est en attente de modération."
+
+#: templates/svmain/group_detail.html:55
 #, python-format
 msgid ""
 "This project has not yet submitted a short description. You can "
@@ -1551,19 +1555,19 @@ msgstr ""
 "courte. Si vous êtes l'administrateur du projet, vous pouvez "
 "%(begin_link)sl'enregistrer maintenant%(end_link)s."
 
-#: templates/svmain/group_detail.html:55
+#: templates/svmain/group_detail.html:58
 msgid "Registration date"
 msgstr "Date d'enregistrement"
 
-#: templates/svmain/group_detail.html:57
+#: templates/svmain/group_detail.html:60
 msgid "License"
 msgstr "Licence"
 
-#: templates/svmain/group_detail.html:60
+#: templates/svmain/group_detail.html:63
 msgid "Development status"
 msgstr "Stade de développement"
 
-#: templates/svmain/group_detail.html:67
+#: templates/svmain/group_detail.html:70
 msgid "Join this project"
 msgstr "Rejoindre ce projet"
 
