@@ -25,11 +25,12 @@
     &lt;<a href="{% url savane:svmain:user_detail membership.user.username %}">{{ membership.user.username }}</a>&gt;
   </td>
   <td>
-    {% ifequal request.user membership.user %}
+    {% load svmembership %}
+    {% if request.user|is_user_nonsuper_admin:group %}
     <em>{% trans "You are Admin" %}</em>
     {% else %}
     <input type="checkbox" name="admin_{{membership.pk}}" {% ifequal membership.admin_flags "A" %}checked="checked"{% endifequal %}/>
-    {% endifequal %}
+    {% endif %}
   </td>
   <td>
     {% ifequal request.user membership.user %}
@@ -43,10 +44,10 @@
 
 <h2>{% trans "Requests for inclusion" %}</h2>
 {% if pending_memberships %}
-  <table>
+  <table class="box">
   <tr><th>{% trans "User" %}</th><th>{% trans "Approve" %}</th><th>{% trans "Reject" %}</th></tr>
   {% for membership in pending_memberships %}
-  <tr>
+  <tr class="{% cycle 'boxitem' 'boxitemalt' %}">
     <td>{{ membership.user.get_full_name }} &lt;{{ membership.user.username }}&gt;</td>
     <td><input type="checkbox" name="approve_{{membership.pk}}" /></td>
     <td><input type="checkbox" name="reject_{{membership.pk}}" /></td>

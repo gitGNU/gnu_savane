@@ -664,6 +664,13 @@ class Membership(models.Model):
                  .filter(user=user, group=group, admin_flags='A').count() > 0))
 
     @staticmethod
+    def is_nonsuper_admin(user, group):
+        return (not user.is_anonymous()
+                and Membership.is_member(user, group)
+                and Membership.objects
+                .filter(user=user, group=group, admin_flags='A').count() > 0)
+
+    @staticmethod
     def tidy(user=None, group=None):
         """
         If using a non-Savane users&groups base, create missing

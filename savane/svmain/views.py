@@ -252,7 +252,9 @@ def group_admin_members_add(request, slug, extra_context={}):
     context = {}
     context.update(extra_context)
     context.update({'group' : group})
-    queryset = auth_models.User.objects.filter(is_active=True).exclude(pk__in=group.user_set.all())
+    queryset = auth_models.User.objects.filter(is_active=True) \
+        .exclude(pk__in=group.user_set.all()) \
+        .order_by('username')
     return search(object_list)(request,
                                queryset=queryset,
                                paginate_by=20,
