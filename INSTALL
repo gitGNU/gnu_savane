@@ -8,14 +8,21 @@
 - Modify if necessary, e.g.: DATABASES = {...}
 
 
-* Dependencies as Debian packages
+* Dependencies
 
 - Django >= 1.2 (+ YAML support)
-- MySQLdb (mysql-python)
-- MySQL
+- Django annoying (programming helpers)
+- Django registration (users can create an account)
+- MySQLdb (python-mysql)
+- MySQL (database server)
 - PyME (GPG Made Easy for Python)
+- ssh-keygen (optional, to check submitted SSH public keys)
+- gpg (compute group keyrings)
+
+As Debian packages:
 
 apt-get install python-django python-mysqldb python-yaml mysql-server python-pyme
+apt-get install openssh-client gnupg
 
 hg clone http://bitbucket.org/offline/django-annoying/
 hg clone http://bitbucket.org/ubernostrum/django-registration/
