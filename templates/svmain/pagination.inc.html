@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load qsup %}
+{% load range %}
 
 {% if page_obj %}
 <div class="pagination">
@@ -11,12 +12,12 @@
           <a href="?{% qsup 'page' page_obj.previous_page_number %}">{% trans "previous" %}</a>
         {% endif %}
 	&lt;
-	{% for number in paginator.page_range %}
-	    {% ifequal number page_obj.number %}
+	{% for number in paginator.page_range|short_range:page_obj.number %}
+	    {% if number == page_obj.number or number == '...' %}
 	      {{ number }}
 	    {% else %}
               <a href="?{% qsup 'page' number %}">{{ number }}</a>
-	    {% endifequal %}
+	    {% endif %}
         {% endfor %}
 	&gt;
         {% if not page_obj.has_next %}
