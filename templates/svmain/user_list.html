@@ -13,7 +13,7 @@
   <table class="box">
     <tr><th>{% trans "User" %}</th><th>{% trans "Full name" %}</th><th>{% trans "Profile" %}</th></tr>
     {% for object in object_list %}
-    <tr>
+    <tr class="{% cycle 'boxitem' 'boxitemalt' %}">
       <td><a href="{% url savane:svmain:user_detail object.username %}">{{ object.username }}</a></td>
       <td><a href="{% url savane:svmain:user_detail object.username %}">{{ object.svuserinfo.get_full_name_display }}</a></td>
       <td>TODO</td>

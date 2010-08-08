@@ -39,7 +39,9 @@ import smtplib
 @render_to('my/index.html', mimetype=None)
 def index(request, extra_context={}):
     svmain_models.Membership.tidy(user=request.user)
-    membership_list = svmain_models.Membership.objects.filter(user=request.user)
+    membership_list = svmain_models.Membership.objects \
+        .filter(user=request.user) \
+        .order_by('group__name')
 
     context = { 'object_list' : membership_list, }
     context.update(extra_context)

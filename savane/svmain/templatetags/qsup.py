@@ -1,4 +1,4 @@
-# Top-level menu
+# Query_String UPdate to change an URL parameter from a template
 # Copyright (C) 2010  Sylvain Beucler
 #
 # This file is part of Savane.
@@ -17,10 +17,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django import template
-from django.core.urlresolvers import reverse
-from django.conf import settings
-from django.utils.translation import ugettext as _
-import savane.svmain.models as svmain_models
 
 register = template.Library()
 
