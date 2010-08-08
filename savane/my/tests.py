@@ -24,7 +24,7 @@ import re
 import tempfile
 from savane.utils import ssh_key_fingerprint
 
-__test__ = {"doctest": """
+__test__ = {"ssh_key_fingerprint": """
 >>> ssh_key_fingerprint("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbYV67YG54OX3/c7GNIG7zS1sSF3ddhCwhodEGpcbkQs4QOi7gcZHopyjBqvhyJB5fu76odOqI9KngW5IfpPX4lK/3kZZ8QISiF6nekB8wbi49hlB9K8j7NZ7rBTIsKApVNFqd4vriE9m7842soBOc6/sYSEemHxjA7+d+qbkV8j5wuo1QH0ynA5jPMI8RHhTtUBEZIJK2AFUB42bx2XFakhSh5K2DAfZyZ2dKeRkKRRbFzr0eAvbyCPKT93seWAFypETiomKbjMBRvMJyfpTcx4legzs9oGfeLHIb3V0oyM3ysXdqkwoOwO43qCcG/lDFvonzBGlDKh/T07kVXdLh")
 '2048 6e:57:73:c6:92:16:62:b8:cc:ed:01:3f:17:95:24:51 (RSA)\n'
 """}
