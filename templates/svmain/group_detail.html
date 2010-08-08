@@ -43,7 +43,7 @@
 
 <div class="indexcenter">
 <p>{{group.svgroupinfo.type.description}}</p>
-<p>{{group.svgroupinfo.long_description}}</p>
+<p>{{group.svgroupinfo.get_long_description_display}}</p>
 <p>
 {% trans "Registration date" %}: {{group.svgroupinfo.register_time}}<br />
 {% trans "License" %}: <a href="{{group.svgroupinfo.license.get_absolute_url}}">{{group.svgroupinfo.license.name}}</a><br />
