@@ -10,11 +10,16 @@
 </form>
 
 {% if object_list %}
-    <ul>
+  <table class="box">
+    <tr><th>{% trans "Unix name" %}</th><th>{% trans "Full name" %}</th><th>{% trans "Short description" %}</th></tr>
     {% for object in object_list %}
-        <li><a href="{% url savane:svmain:group_detail object.name %}">{{ object.name }}</a></li>
+    <tr class="{% cycle 'boxitem' 'boxitemalt' %}">
+      <td><a href="{% url savane:svmain:group_detail object.name %}">{{ object.name }}</a></td>
+      <td><a href="{% url savane:svmain:group_detail object.name %}">{{ object.svgroupinfo.full_name }}</a></td>
+      <td>{{ object.svgroupinfo.short_description }}</td>
+    </tr>
     {% endfor %}
-    </ul>
+  </table>
 {% else %}
     <p>{% trans "No groups." %}</p>
 {% endif %}
