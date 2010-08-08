@@ -18,10 +18,13 @@
 
 import django.contrib.auth.models as auth_models
 from django.shortcuts import get_object_or_404
+from functools import update_wrapper, wraps
+from django.utils.decorators import available_attrs
+from django.utils.translation import ugettext, ugettext_lazy as _
 from savane.middleware.exception import HttpAppException
 import savane.svmain.models as svmain_models
 
-def only_project_admin(f, error_msg="Permission Denied"):
+def only_project_admin(f, error_msg=_("Permission denied")):
     """
     Decorator to keep non-members out of project administration
     screens.  Identifies the current group using the 'slug' keyword
@@ -33,3 +36,19 @@ def only_project_admin(f, error_msg="Permission Denied"):
             raise HttpAppException(error_msg)
         return f(request, *args, **kwargs)
     return _f
+
+def sv_user_passes_test(test_func, error_msg=_("Permission denied")):
+    """
+    Like Django's django.contrib.auth.decorators import
+    user_passes_test but returns an error message instead of
+    confusingly redirect to the login page.
+    """
+    def decorator(view_func):
+        def _f(request, *args, **kwargs):
+            if test_func(request.user):
+                return view_func(request, *args, **kwargs)
+            raise HttpAppException(error_msg)
+        return wraps(view_func, assigned=available_attrs(view_func))(_f)
+    return decorator
+
+only_superuser = sv_user_passes_test(lambda u: u.is_superuser, _("You are not superuser"))

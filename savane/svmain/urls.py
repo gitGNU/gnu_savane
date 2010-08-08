@@ -26,7 +26,7 @@ import savane.svmain.models as svmain_models
 import django.contrib.auth.models as auth_models
 import views
 from savane.filters import search
-from savane.perms import only_project_admin
+from savane.perms import only_project_admin, only_superuser
 from savane.django_utils import decorated_patterns
 
 urlpatterns = patterns ('',)
@@ -41,6 +41,14 @@ urlpatterns += patterns ('',
       { 'template' : 'svmain/text.html',
         'extra_context' : { 'title' : 'Contact', }, },
       name='contact'),
+)
+
+# Superuser actions
+urlpatterns += decorated_patterns ('', only_superuser,
+  url(r'^superuser/toggle/$', views.superuser_toggle,
+      name='superuser_toggle'),
+  url(r'^superuser/impersonate/$', views.superuser_impersonate,
+      name='superuser_impersonate'),
 )
 
 # TODO: not sure about the views naming convention - all this

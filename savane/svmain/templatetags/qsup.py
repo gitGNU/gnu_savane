@@ -38,3 +38,16 @@ def qsup(context, param_name, param_value):
     # Update query_string
     params[param_name] = param_value
     return { 'text': params.urlencode() }
+
+@register.inclusion_tag('svmain/identity.html', takes_context=True)
+def qsdel(context, param_name):
+    """
+    Same as qsup but removes the entry.
+    This is preferred to qsup(name, '').
+    """
+
+    params = context['request'].GET.copy()
+    # Update query_string
+    if param_name in params:
+        del params[param_name]
+    return { 'text': params.urlencode() }

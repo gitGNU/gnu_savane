@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{LANGUAGE_CODE}}" xml:lang="{{LANGUAGE_CODE}}">
   <head>
     {% load i18n %}
+    {% load qsup %}
     <title>
       {% include "title.html" %}
       [{{ site_name }}]
@@ -15,13 +16,33 @@
       <!-- sitemenu -->
       <li><a href="{% url savane:svmain:homepage %}"><img src="{{STATIC_MEDIA_URL}}savane/images/floating.png" alt="{% trans "Back to homepage" %}" border="0" width="148" height="125" /></a></li>
       {% if user.is_authenticated %}
+        {% if user.is_superuser and user.svuserinfo.superuser_is_enabled %}
+        <li class="menutitle"><span class="warn">
+          {% blocktrans with user.username as username %}{{username}} logged in as superuser{% endblocktrans %}
+        </span></li>
+	{% else %}
         <li class="menutitle">{% blocktrans with user.username as username %}Connected as {{username}}{% endblocktrans %}</li>
+	{% endif %}
         <li class="menuitem"><a href="{% url savane:my:index %}">{% trans "My account" %}</a></li>
         <li class="menuitem"><a href="{% url django.contrib.auth.views.logout %}">{% trans "Logout" %}</a></li>
+        {% if user.is_superuser %}
+        {% if not user.svuserinfo.superuser_is_enabled %}
+        <li class="menuitem"><a href="{% url savane:svmain:superuser_toggle %}?next={{request.get_full_path|urlencode}}"
+          title="{% trans "Superuser rights are required to perform site admin tasks" %}">{% trans "Become superuser" %}</a></li>
+        {% else %}
+        <li>{% trans "Impersonate this user" %}{% trans ": " %}<br />
+        <form method="post" action="{% url savane:svmain:superuser_impersonate %}">{% csrf_token %}
+        <input type="hidden" name="next" value="{{request.get_full_path}}" />
+        <input type="text" name="username" size="10" />
+        </form></li>
+        <li class="menuitem"><a href="{% url savane:svmain:superuser_toggle %}?next={{request.get_full_path|urlencode}}"
+          title="{% trans "End the Superuser session, go back to normal user session" %}">{% trans "Logout Superuser" %}</a></li>
+        {% endif %}
+        {% endif %}
       {% else %}
         <li class="menutitle">{% trans "Login status" %}</li>
         <li class="menuitem"><span class="error">{% trans "Not connected" %}</span></li>
-        <li class="menuitem"><a href="{% url django.contrib.auth.views.login %}?next={{request.get_full_path}}">{% trans "Login" %}</a></li>
+        <li class="menuitem"><a href="{% url django.contrib.auth.views.login %}?next={{request.get_full_path|urlencode}}">{% trans "Login" %}</a></li>
         <li class="menuitem"><a href="{% url registration_register %}">{% trans "New user" %}</a></li>
       {% endif %}
 

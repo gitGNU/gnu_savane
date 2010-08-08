@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-08 13:38-0500\n"
-"PO-Revision-Date: 2010-08-08 20:39+0200\n"
+"POT-Creation-Date: 2010-08-08 16:17-0500\n"
+"PO-Revision-Date: 2010-08-08 23:18+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -88,6 +88,14 @@ msgstr "Russe"
 #: settings_default.py:47
 msgid "Swedish"
 msgstr "Suédois"
+
+#: savane/perms.py:27 savane/perms.py:40
+msgid "Permission denied"
+msgstr "Accès refusé"
+
+#: savane/perms.py:54
+msgid "You are not superuser"
+msgstr "Vous n'êtes pas super-utilisateur"
 
 #: savane/my/forms.py:25
 msgid "E-mail"
@@ -330,16 +338,16 @@ msgstr "Gestionnaire de dépêches"
 msgid "Project Menu Settings"
 msgstr "Configuration du menu du projet"
 
-#: savane/svmain/models.py:118 savane/svmain/models.py:397
+#: savane/svmain/models.py:118 savane/svmain/models.py:399
 msgid "Active"
 msgstr "Actif"
 
-#: savane/svmain/models.py:119 savane/svmain/models.py:399
+#: savane/svmain/models.py:119 savane/svmain/models.py:401
 #: savane/svmain/models.py:720
 msgid "Deleted"
 msgstr "Supprimé"
 
-#: savane/svmain/models.py:120 savane/svmain/models.py:398
+#: savane/svmain/models.py:120 savane/svmain/models.py:400
 msgid "Pending"
 msgstr "En attente"
 
@@ -351,26 +359,26 @@ msgstr "Suspendu"
 msgid "new e-mail address"
 msgstr "nouvelle adresse courriel"
 
-#: savane/svmain/models.py:218
+#: savane/svmain/models.py:220
 msgid "Development statuses"
 msgstr "Stades de développement"
 
-#: savane/svmain/models.py:224
+#: savane/svmain/models.py:226
 msgid "Will be added on each project main page"
 msgstr "Description (qui sera ajouté sur chaque page principale de projet)"
 
-#: savane/svmain/models.py:233
+#: savane/svmain/models.py:235
 msgid "would be %LIST@gnu.org for GNU projects at sv.gnu.org"
 msgstr "ce serait %LIST@gnu.org pour les projets GNU sur sv.gnu.org"
 
-#: savane/svmain/models.py:235
+#: savane/svmain/models.py:237
 msgid ""
 "would be lists.gnu.org or lists.nongnu.org at sv.gnu.org [BACKEND SPECIFIC]"
 msgstr ""
 "ce serait lists.gnu.org or lists.nongnu.org sur sv.gnu.org [spécifique à la "
 "partie système]"
 
-#: savane/svmain/models.py:237
+#: savane/svmain/models.py:239
 msgid ""
 "With this, you can force projects to follow a specific policy for the name "
 "of the %LIST. Here you should use the special wildcard %NAME, which is the "
@@ -385,18 +393,18 @@ msgstr ""
 "projets non-GNU projects sur sv.gnu.org). N'ajoutez pas de @hostname ici! "
 "Vous pouvez spécier plusieurs formats séparés par une \",\" virgule."
 
-#: savane/svmain/models.py:243
+#: savane/svmain/models.py:245
 msgid ""
 "This is useful if you provide directly download areas (created by the "
 "backend) or if you want to allow projects to configure the related menu "
 "entry (see below)."
 msgstr ""
 
-#: savane/svmain/models.py:251
+#: savane/svmain/models.py:253
 msgid "This is useful if you want project to select a license on submission."
 msgstr ""
 
-#: savane/svmain/models.py:253
+#: savane/svmain/models.py:255
 msgid ""
 "This is useful if you want project to be able to defines their development "
 "status that will be shown on their main page. This is purely a matter of "
@@ -404,148 +412,148 @@ msgid ""
 "is useless (it does not makes sense for organizational projects)."
 msgstr ""
 
-#: savane/svmain/models.py:255
+#: savane/svmain/models.py:257
 msgid ""
 "This is one of the main issue tracker of Savane. Projects are supposed to "
 "use it as primary interface with end user."
 msgstr ""
 
-#: savane/svmain/models.py:262
+#: savane/svmain/models.py:264
 msgid "the homepage link can be modified"
 msgstr "le lien vers le site web du projet peut être modifié"
 
-#: savane/svmain/models.py:284
+#: savane/svmain/models.py:286
 msgid ""
 "the download _directory_ can be modified -- beware, if the backend is "
 "running and creating download dir, it can be used maliciously. don't "
 "activate this feature unless you truly know what you're doing"
 msgstr ""
 
-#: savane/svmain/models.py:288
+#: savane/svmain/models.py:290
 msgid "CVS"
 msgstr "CVS"
 
-#: savane/svmain/models.py:289
+#: savane/svmain/models.py:291
 msgid "Subversion"
 msgstr "Subversion"
 
-#: savane/svmain/models.py:290
+#: savane/svmain/models.py:292
 msgid "GNU Arch"
 msgstr "GNU Arch"
 
-#: savane/svmain/models.py:291
+#: savane/svmain/models.py:293
 msgid "Git"
 msgstr "Git"
 
-#: savane/svmain/models.py:292
+#: savane/svmain/models.py:294
 msgid "Mercurial"
 msgstr "Mercurial"
 
-#: savane/svmain/models.py:293
+#: savane/svmain/models.py:295
 msgid "Bazaar"
 msgstr "Bazaar"
 
-#: savane/svmain/models.py:297
+#: savane/svmain/models.py:299
 msgid "Basic directory"
 msgstr "Dossier basique"
 
-#: savane/svmain/models.py:298
+#: savane/svmain/models.py:300
 msgid "Basic CVS directory"
 msgstr "Dossier CVS basique"
 
-#: savane/svmain/models.py:299
+#: savane/svmain/models.py:301
 msgid "Basic Subversion directory"
 msgstr "Dossier Subversion basique"
 
-#: savane/svmain/models.py:300
+#: savane/svmain/models.py:302
 msgid "Basic Git directory"
 msgstr "Dossier Git basique"
 
-#: savane/svmain/models.py:301
+#: savane/svmain/models.py:303
 msgid "Basic Mercurial directory"
 msgstr "Dossier Mercurial basique"
 
-#: savane/svmain/models.py:302
+#: savane/svmain/models.py:304
 msgid "Basic Bazaar directory"
 msgstr "Dossier Bazaar basique"
 
-#: savane/svmain/models.py:303
+#: savane/svmain/models.py:305
 msgid "CVS Attic/Gna!"
 msgstr ""
 
-#: savane/svmain/models.py:304
+#: savane/svmain/models.py:306
 msgid "Subversion Attic/Gna!"
 msgstr ""
 
-#: savane/svmain/models.py:305
+#: savane/svmain/models.py:307
 msgid "Subversion Subdirectory Attic/Gna!"
 msgstr ""
 
-#: savane/svmain/models.py:306
+#: savane/svmain/models.py:308
 msgid "CVS Savannah GNU"
 msgstr ""
 
-#: savane/svmain/models.py:307
+#: savane/svmain/models.py:309
 msgid "CVS Savannah non-GNU"
 msgstr ""
 
-#: savane/svmain/models.py:386
+#: savane/svmain/models.py:388
 msgid "project information"
 msgstr "informations du projet"
 
-#: savane/svmain/models.py:393
+#: savane/svmain/models.py:395
 msgid "full name"
 msgstr "nom complet"
 
-#: savane/svmain/models.py:394
+#: savane/svmain/models.py:396
 msgid "Full project name (not Unix system name)"
 msgstr "Nom complet du projet (pas le nom système Unix!)"
 
-#: savane/svmain/models.py:400
+#: savane/svmain/models.py:402
 msgid "Maintenance (accessible only to superuser)"
 msgstr "Maintenance (accessible seulement aux superutilisateurs)"
 
-#: savane/svmain/models.py:401
+#: savane/svmain/models.py:403
 msgid "Incomplete (failure during registration)"
 msgstr "Incomplet (échec lors de l'inscription)"
 
-#: savane/svmain/models.py:406
+#: savane/svmain/models.py:408
 msgid "short description"
 msgstr "description courte"
 
-#: savane/svmain/models.py:407
+#: savane/svmain/models.py:409
 msgid "long description"
 msgstr "description longue"
 
-#: savane/svmain/models.py:408
+#: savane/svmain/models.py:410
 msgid "license"
 msgstr "licence"
 
-#: savane/svmain/models.py:409
+#: savane/svmain/models.py:411
 msgid "license (other)"
 msgstr "licence (autre)"
 
-#: savane/svmain/models.py:413
+#: savane/svmain/models.py:415
 msgid "development status"
 msgstr "stade de développement"
 
-#: savane/svmain/models.py:611 templates/svmain/group_admin_members.html:20
+#: savane/svmain/models.py:613 templates/svmain/group_admin_members.html:20
 msgid "Admin"
 msgstr "Admin"
 
-#: savane/svmain/models.py:614
+#: savane/svmain/models.py:616
 msgid "Pending moderation"
 msgstr "En attente de modération"
 
-#: savane/svmain/models.py:615
+#: savane/svmain/models.py:617
 msgid "Squad"
 msgstr "Escouade"
 
-#: savane/svmain/models.py:618
+#: savane/svmain/models.py:620
 msgid "membership properties"
 msgstr "propriété de l'appartenance à un projet"
 
-#: savane/svmain/models.py:620
+#: savane/svmain/models.py:622
 msgid "Untick to hide emeritous members from the project page"
 msgstr "Décocher pour masquer les membres émérites de la page de projet"
 
@@ -561,104 +569,104 @@ msgstr "À reconfigurer"
 msgid "Created"
 msgstr "Créée"
 
-#: savane/svmain/urls.py:56 templates/base.html:29
+#: savane/svmain/urls.py:64 templates/base.html:49
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: savane/svmain/urls.py:62
+#: savane/svmain/urls.py:70
 msgid "User detail"
 msgstr ""
 
-#: savane/svmain/urls.py:76 templates/base.html:30
+#: savane/svmain/urls.py:84 templates/base.html:50
 msgid "Projects"
 msgstr "Projets"
 
-#: savane/svmain/urls.py:90
+#: savane/svmain/urls.py:98
 msgid "Project memberlist"
 msgstr "Liste des membres du projet"
 
-#: savane/svmain/urls.py:95
+#: savane/svmain/urls.py:103
 msgid "Project members GPG keyring"
 msgstr "Trousseau de clefs GPG des membres du projet"
 
-#: savane/svmain/urls.py:100 savane/svmain/templatetags/svtopmenu.py:75
+#: savane/svmain/urls.py:108 savane/svmain/templatetags/svtopmenu.py:75
 msgid "Mailing lists"
 msgstr "Listes de discussion"
 
-#: savane/svmain/urls.py:106
+#: savane/svmain/urls.py:114
 msgid "CVS Repositories"
 msgstr "Dépôts CVS"
 
-#: savane/svmain/urls.py:113
+#: savane/svmain/urls.py:121
 msgid "Subversion Repositories"
 msgstr "Dépôts Subversion"
 
-#: savane/svmain/urls.py:120
+#: savane/svmain/urls.py:128
 msgid "GNU Arch Repositories"
 msgstr "Dépôts GNU Arch"
 
-#: savane/svmain/urls.py:127
+#: savane/svmain/urls.py:135
 msgid "Git Repositories"
 msgstr "Dépôts Git"
 
-#: savane/svmain/urls.py:134
+#: savane/svmain/urls.py:142
 msgid "Mercurial Repositories"
 msgstr "Dépôts Mercurial"
 
-#: savane/svmain/urls.py:141
+#: savane/svmain/urls.py:149
 msgid "Bazaar Repositories"
 msgstr "Dépôts Bazaar"
 
-#: savane/svmain/urls.py:155
+#: savane/svmain/urls.py:163
 msgid "Editing public info"
 msgstr "Modifier les infos publiques"
 
-#: savane/svmain/urls.py:158 savane/svmain/templatetags/svtopmenu.py:59
+#: savane/svmain/urls.py:166 savane/svmain/templatetags/svtopmenu.py:59
 msgid "Select features"
 msgstr "Selectionner les outils"
 
-#: savane/svmain/urls.py:162 savane/svmain/urls.py:165
+#: savane/svmain/urls.py:170 savane/svmain/urls.py:173
 #: savane/svmain/templatetags/svtopmenu.py:61
 msgid "Manage members"
 msgstr "Gérer les membres"
 
-#: savane/svmain/urls.py:172
+#: savane/svmain/urls.py:180
 msgid "License list"
 msgstr "Liste des licences"
 
-#: savane/svmain/urls.py:176
+#: savane/svmain/urls.py:184
 msgid "License detail"
 msgstr "Détails de la licence"
 
-#: savane/svmain/views.py:45
+#: savane/svmain/views.py:80
 msgid "Request for inclusion already registered"
 msgstr "La requête d'inclusion est déjà prise en compte"
 
-#: savane/svmain/views.py:49
+#: savane/svmain/views.py:84
 msgid "Request for inclusion sent to project administrators"
 msgstr "La requête d'inclusion a été transmise aux administrateurs"
 
-#: savane/svmain/views.py:120
+#: savane/svmain/views.py:155
 #, python-format
 msgid "GPG Keyring of the project %s"
 msgstr "Trousseau GPG du projet %s"
 
-#: savane/svmain/views.py:150 savane/svmain/views.py:176
+#: savane/svmain/views.py:185 savane/svmain/views.py:211
 #, python-format
 msgid "%s saved."
 msgstr "%s enregistré(e)."
 
-#: savane/svmain/views.py:210 savane/svmain/views.py:215
+#: savane/svmain/views.py:245 savane/svmain/views.py:250
 #, python-format
 msgid "Permissions of %s updated."
 msgstr "Permissions de %s mises à jour."
 
-#: savane/svmain/views.py:219 savane/svmain/views.py:228
+#: savane/svmain/views.py:254 savane/svmain/views.py:263
 #, python-format
 msgid "User %s deleted from the project."
 msgstr "L'utilisateur %s est supprimé du projet."
 
-#: savane/svmain/views.py:225 savane/svmain/views.py:246
+#: savane/svmain/views.py:260 savane/svmain/views.py:281
 #, python-format
 msgid "User %s added to the project."
 msgstr "L'utilisateur %s est ajouté au projet."
@@ -1087,53 +1095,39 @@ msgstr ""
 msgid "Back to homepage"
 msgstr "Retour à la page d'accueil"
 
-#: templates/base.html:18
+#: templates/base.html:20
+#, python-format
+msgid "%(username)s logged in as superuser"
+msgstr ""
+
+#: templates/base.html:23
 #, python-format
 msgid "Connected as %(username)s"
 msgstr "Authentifié(e) en tant que %(username)s"
 
-#: templates/base.html:19
+#: templates/base.html:25
 msgid "My account"
 msgstr "Mon compte"
 
-#: templates/base.html:20
+#: templates/base.html:26
 msgid "Logout"
 msgstr "Retour à l'anonymat"
 
-#: templates/base.html:22
-msgid "Login status"
-msgstr "État de la connexion :"
+#: templates/base.html:30
+msgid "Superuser rights are required to perform site admin tasks"
+msgstr ""
+"Les privilèges de super utilisateur sont requires to accomplir des tâches "
+"d'administration du site"
 
-#: templates/base.html:23
-msgid "Not connected"
-msgstr "Vous n'êtes pas authentifié"
-
-#: templates/base.html:24
-msgid "Login"
-msgstr "S'authentifier"
-
-#: templates/base.html:25
-msgid "New user"
-msgstr "Nouvel utilisateur"
-
-#: templates/base.html:28 templates/svmain/group_admin_members_add.html:20
-#: templates/svmain/group_list.html:9 templates/svmain/user_list.html:9
-msgid "Search"
-msgstr "Rechercher"
+#: templates/base.html:30
+msgid "Become superuser"
+msgstr "Devenir super-utilisateur"
 
 #: templates/base.html:32
-msgid "Site help"
-msgstr "Aide du site"
+msgid "Impersonate this user"
+msgstr "Se faire passer pour cet utilisateur"
 
-#: templates/base.html:33
-msgid "Contact us"
-msgstr "Nous contacter"
-
-#: templates/title.html:3
-msgid "Welcome"
-msgstr "Bienvenue"
-
-#: templates/my/contact.html:5 templates/my/i18n.html:5
+#: templates/base.html:32 templates/my/contact.html:5 templates/my/i18n.html:5
 #: templates/my/resume_skill.html:5 templates/my/ssh.html:5
 #: templates/svmain/group_admin_features.html:6
 #: templates/svmain/group_admin_info.html:6
@@ -1144,6 +1138,47 @@ msgstr "Bienvenue"
 #: templates/svmain/group_memberlist.html:6
 msgid ": "
 msgstr " : "
+
+#: templates/base.html:38
+msgid "End the Superuser session, go back to normal user session"
+msgstr "Clore la session Superutilisateur, retour à une session classique"
+
+#: templates/base.html:38
+msgid "Logout Superuser"
+msgstr "Retour en mode utilisateur"
+
+#: templates/base.html:42
+msgid "Login status"
+msgstr "État de la connexion :"
+
+#: templates/base.html:43
+msgid "Not connected"
+msgstr "Vous n'êtes pas authentifié"
+
+#: templates/base.html:44
+msgid "Login"
+msgstr "S'authentifier"
+
+#: templates/base.html:45
+msgid "New user"
+msgstr "Nouvel utilisateur"
+
+#: templates/base.html:48 templates/svmain/group_admin_members_add.html:20
+#: templates/svmain/group_list.html:9 templates/svmain/user_list.html:9
+msgid "Search"
+msgstr "Rechercher"
+
+#: templates/base.html:52
+msgid "Site help"
+msgstr "Aide du site"
+
+#: templates/base.html:53
+msgid "Contact us"
+msgstr "Nous contacter"
+
+#: templates/title.html:3
+msgid "Welcome"
+msgstr "Bienvenue"
 
 #: templates/my/contact.html:9
 msgid "Change e-mail"
@@ -1222,7 +1257,7 @@ msgstr "L'activation de votre compte a échoué."
 msgid "Your account is now active."
 msgstr "Votre compte est maintenant actif."
 
-#: templates/registration/login.html:12
+#: templates/registration/login.html:13
 msgid "Lost your password?"
 msgstr "Vous avez perdu votre mot de passe ?"
 
@@ -1511,7 +1546,10 @@ msgstr "Type de groupe :"
 msgid ""
 "This project has not yet submitted a short description. You can "
 "%(begin_link)ssubmit it%(end_link)s now."
-msgstr "L'administrateur de ce projet n'a pas encore renseigné de description courte. Si vous êtes l'administrateur du projet, vous pouvez %(begin_link)sl'enregistrer maintenant%(end_link)s."
+msgstr ""
+"L'administrateur de ce projet n'a pas encore renseigné de description "
+"courte. Si vous êtes l'administrateur du projet, vous pouvez "
+"%(begin_link)sl'enregistrer maintenant%(end_link)s."
 
 #: templates/svmain/group_detail.html:55
 msgid "Registration date"
@@ -2626,9 +2664,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Exiting with Error"
 #~ msgstr "Quitte suite à une erreur"
 
-#~ msgid "Permission Denied"
-#~ msgstr "Accès refusé"
-
 #~ msgid "No group chosen"
 #~ msgstr "Aucun groupe choisi"
 
@@ -3530,14 +3565,6 @@ msgstr "Aucun utilisateur."
 #~ msgid "Logged in as %s"
 #~ msgstr "Authentifié(e) en tant que %s"
 
-#~ msgid "Become Superuser"
-#~ msgstr "Devenir super utilisateur"
-
-#~ msgid "Superuser rights are required to perform site admin tasks"
-#~ msgstr ""
-#~ "Les privilèges de super utilisateur sont requires to accomplir des tâches "
-#~ "d'administration du site"
-
 #~ msgid "What's new for me: new items I should have a look at"
 #~ msgstr ""
 #~ "Quoi de neuf pour moi : de nouveaux items auquels je devrais jetter un "
@@ -3548,12 +3575,6 @@ msgstr "Aucun utilisateur."
 
 #~ msgid "Show my bookmarks"
 #~ msgstr "Consulter mes signets"
-
-#~ msgid "Logout Superuser"
-#~ msgstr "Retour en mode utilisateur"
-
-#~ msgid "End the Superuser session, go back to normal user session"
-#~ msgstr "Clore la session Superutilisateur, retour à une session classique"
 
 #~ msgid "End the session, remove the session cookie"
 #~ msgstr "Clore la session, impliquant la suppression du cookie de session"

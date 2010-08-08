@@ -27,6 +27,41 @@ import models as svmain_models
 import forms as svmain_forms
 from annoying.decorators import render_to
 
+
+##
+# Superuser
+##
+
+def superuser_toggle(request):
+    """
+    Take user's superuser status into account.  By default, the user
+    works without any special privileges, so (s)he can test the
+    website as a normal use.
+    """
+    svuserinfo = request.user.svuserinfo
+    svuserinfo.superuser_is_enabled = not svuserinfo.superuser_is_enabled
+    svuserinfo.save()
+    return HttpResponseRedirect(request.REQUEST.get('next', reverse('savane:svmain:homepage')))
+
+def superuser_impersonate(request):
+    """
+    Ugly Django self-breakin
+    """
+    u = get_object_or_404(auth_models.User, username=request.POST['username'])
+
+    from django.contrib.auth import SESSION_KEY
+    data = request.session._get_session()  # not documented
+    data[SESSION_KEY] = u.pk
+    request.session.modified = True
+    # data is cached and will be saved as-is by the middleware
+
+    return HttpResponseRedirect(request.REQUEST.get('next', reverse('savane:svmain:homepage')))
+
+
+##
+# Aliases
+##
+
 def user_redir(request, slug):
     u = get_object_or_404(auth_models.User, username=slug)
     return HttpResponseRedirect(reverse('savane.svmain.user_detail', args=(slug,)))

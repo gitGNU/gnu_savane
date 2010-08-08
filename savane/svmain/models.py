@@ -152,6 +152,8 @@ class SvUserInfo(models.Model):
     timezone = models.CharField(max_length=192, blank=True)
     theme = models.CharField(max_length=45, blank=True)
 
+    superuser_is_enabled = models.BooleanField(default=False)
+
     # Inherit specialized models.Manager with convenience functions
     objects = auth_models.UserManager()
 
@@ -649,15 +651,13 @@ class Membership(models.Model):
 
     @staticmethod
     def is_member(user, group):
-        return (user.is_superuser or
-                user.is_staff or
+        return ((user.is_superuser and user.svuserinfo.superuser_is_enabled) or
                 (not user.is_anonymous()
                  and group.user_set.filter(pk=user.pk).count() > 0))
 
     @staticmethod
     def is_admin(user, group):
-        return (user.is_superuser or
-                user.is_staff or
+        return ((user.is_superuser and user.svuserinfo.superuser_is_enabled) or
                 (not user.is_anonymous()
                  and Membership.is_member(user, group)
                  and Membership.objects
