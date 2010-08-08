@@ -112,12 +112,15 @@ improve it.
     dealt with (so avoid the automatic conversion to sha1$ that Django
     does at each login)
 
-[ ] Translations
+[/] Translations
 
-    [ ] Design the translation build system; cf. doc/DJANGO_I18N.
+    [X] Design the translation build system; cf. doc/DJANGO_I18N.
 
-    [ ] Translate new strings and generally update existing
+    [/] Translate new strings and generally update existing
         translations.
+
+[ ] Project history
+
 
 =====
 
@@ -127,9 +130,7 @@ Goal #1: use it live at Savannah :)
 
 Uncharted territories - and wild ideas.
 
-[ ] Add some tests
-
-[ ] i18n
+[X] Add testing infrastructure
 
 [ ] Optimize models - add DB indexes: db_index=True or unique=True
     (with MySQL) or primary_key=True

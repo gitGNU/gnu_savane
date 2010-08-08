@@ -13,7 +13,7 @@
   <body>
     <ul class="menu">
       <!-- sitemenu -->
-      <li><a href="{% url savane:svmain:homepage %}"><img src="{{STATIC_MEDIA_URL}}savane/images/floating.png" alt="{% trans "Back to homepage" %}" border="0" width="118" height="100" /></a></li>
+      <li><a href="{% url savane:svmain:homepage %}"><img src="{{STATIC_MEDIA_URL}}savane/images/floating.png" alt="{% trans "Back to homepage" %}" border="0" width="148" height="125" /></a></li>
       {% if user.is_authenticated %}
         <li class="menutitle">{% blocktrans with user.username as username %}Connected as {{username}}{% endblocktrans %}</li>
         <li class="menuitem"><a href="{% url savane:my:index %}">{% trans "My account" %}</a></li>
