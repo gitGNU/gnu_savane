@@ -8,4 +8,5 @@ urlpatterns += patterns('',
   (r'', include('savane.svmain.urls', namespace='svmain')),
   # User account
   (r'^my/', include('savane.my.urls', namespace='my')),
+  (r'^people/', include('savane.svpeople.urls', namespace='svpeople')),
 )

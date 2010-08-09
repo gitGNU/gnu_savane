@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% blocktrans %}People at {{site_name}}{% endblocktrans %}{% trans ": " %}{{title}}
+{% endblock %}
+
+{% block icon %}people{% endblock %}
+
+{% block content %}
+
+{% include "svpeople/index_custom.html" %}
+
+<table class="box">
+<tr><th>{% trans "Category" %}</th></tr>
+{% for object in category_list %}
+<tr class="{% cycle 'boxitemalt' 'boxitem' %}"><td>{{object.label}} ({{object.job_set.count}})</td></tr>
+{% endfor %}
+</table>
+
+<table class="box">
+<tr><th>{% trans "Project type" %}</th></tr>
+{% for object in type_list %}
+<tr class="{% cycle 'boxitemalt' 'boxitem' %}"><td>{{object}} ({{object.job_set.count}})</td></tr>
+{% endfor %}
+</table>
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

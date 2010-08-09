@@ -46,11 +46,12 @@
         <li class="menuitem"><a href="{% url registration_register %}">{% trans "New user" %}</a></li>
       {% endif %}
 
-	<li class="menutitle">{% trans "Search" %}</li>
+      <li class="menutitle">{% trans "Search" %}</li>
       <li class="menuitem"><a href="{% url savane:svmain:user_list %}">{% trans "Users" %}</a></li>
       <li class="menuitem"><a href="{% url savane:svmain:group_list %}">{% trans "Projects" %}</a></li>
+      <li class="menuitem"><a href="{% url savane:svpeople:index %}">{% trans "Contributors wanted" %}</a></li>
 
-	<li class="menutitle">{% trans "Site help" %}</li>
+      <li class="menutitle">{% trans "Site help" %}</li>
       <li class="menuitem"><a href="{% url savane:svmain:contact %}">{% trans "Contact us" %}</a></li>
       <!-- /sitemenu -->
     </ul>

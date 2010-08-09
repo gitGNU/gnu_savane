@@ -41,7 +41,7 @@ the proper credentials for your MySQL database.
 Initialize the database::
 
   ./manage.py syncdb
-  ./manage.py loaddata savane/svmain/fixtures/*.yaml
+  ./manage.py loaddata savane/*/fixtures/*.yaml
 
 
 * Run for testing:

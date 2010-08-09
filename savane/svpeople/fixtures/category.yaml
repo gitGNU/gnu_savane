@@ -1,0 +1,32 @@
+- model: svpeople.category
+  pk: 1
+  fields:
+    label: 'Developer'
+- model: svpeople.category
+  pk: 2
+  fields:
+    label: 'Project manager'
+- model: svpeople.category
+  pk: 3
+  fields:
+    label: 'Unix admin'
+- model: svpeople.category
+  pk: 4
+  fields:
+    label: 'Doc writer'
+- model: svpeople.category
+  pk: 5
+  fields:
+    label: 'Tester'
+- model: svpeople.category
+  pk: 6
+  fields:
+    label: 'Support manager'
+- model: svpeople.category
+  pk: 7
+  fields:
+    label: 'Graphic/other designer'
+- model: svpeople.category
+  pk: 8
+  fields:
+    label: 'Translator'
