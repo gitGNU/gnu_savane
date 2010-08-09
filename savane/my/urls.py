@@ -1,5 +1,5 @@
 # Accounts URLs
-# Copyright (C) 2009  Sylvain Beucler
+# Copyright (C) 2009, 2010  Sylvain Beucler
 # Copyright (C) 2009  Jonathan Gonzalez V.
 #
 # This file is part of Savane.

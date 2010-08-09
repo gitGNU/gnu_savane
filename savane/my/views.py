@@ -1,5 +1,5 @@
 # Manage user attributes
-# Copyright (C) 2009  Sylvain Beucler
+# Copyright (C) 2009, 2010  Sylvain Beucler
 # Copyright (C) 2009  Jonathan Gonzalez V.
 #
 # This file is part of Savane.
@@ -17,11 +17,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import ugettext as _, ungettext
@@ -164,12 +162,12 @@ def email_cancel (request, cancel_hex):
         raise HttpAppException(_("Invalid confirmation hash"))
 
 @login_required()
+@render_to('my/resume_skill.html')
 def resume_skills(request, extra_context={}):
-    return render_to_response('my/resume_skill.html',
-                              extra_context,
-                              context_instance=RequestContext(request))
+    return extra_context
 
 @login_required()
+@render_to('my/ssh.html')
 def ssh(request, extra_context={}):
     info = request.user.svuserinfo
 
@@ -225,9 +223,7 @@ def ssh(request, extra_context={}):
                 'success_msg' : success_msg,
                 }
     context.update(extra_context)
-    return render_to_response('my/ssh.html',
-                              context,
-                              context_instance=RequestContext(request))
+    return context
 
 @login_required()
 @render_to('svmain/generic_confirm.html', mimetype=None)

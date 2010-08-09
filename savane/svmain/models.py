@@ -1,6 +1,6 @@
 # User/group extra attributes
 # Copyright (C) 2002-2006 Mathieu Roy <yeupou--gnu.org>
-# Copyright (C) 2007, 2008, 2009  Sylvain Beucler
+# Copyright (C) 2007, 2008, 2009, 2010  Sylvain Beucler
 # Copyright (C) 2008  Aleix Conchillo Flaque
 # Copyright (C) 2009  Jonathan Gonzalez V.
 #
