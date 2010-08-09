@@ -36,5 +36,19 @@ class Job(models.Model):
     status = models.CharField(max_length=1, choices=status_CHOICES)
     category = models.ForeignKey("Category")
 
-class Category(models.Model):
+
+class Label(models.Model):
+    class Meta:
+        abstract = True
+    active = models.BooleanField(default=True)
     label = models.CharField(max_length=255)
+
+class Category(Label):
+    pass
+
+class Skill(Label):
+    pass
+class SkillLevel(Label):
+    pass
+class SkillYear(Label):
+    pass

@@ -1,0 +1,20 @@
+- model: svpeople.skilllevel
+  pk: 1
+  fields:
+    label: 'Base knowledge'
+- model: svpeople.skilllevel
+  pk: 2
+  fields:
+    label: 'Good knowledge'
+- model: svpeople.skilllevel
+  pk: 3
+  fields:
+    label: 'Master'
+- model: svpeople.skilllevel
+  pk: 4
+  fields:
+    label: 'Master apprentice'
+- model: svpeople.skilllevel
+  pk: 5
+  fields:
+    label: 'Expert'

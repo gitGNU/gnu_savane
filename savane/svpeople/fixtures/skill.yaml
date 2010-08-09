@@ -1,0 +1,368 @@
+- model: svpeople.skill
+  pk: 1
+  fields:
+    label: 'GNU/Linux'
+- model: svpeople.skill
+  pk: 2
+  fields:
+    label: 'FreeBSD'
+- model: svpeople.skill
+  pk: 3
+  fields:
+    label: 'NetBSD'
+- model: svpeople.skill
+  pk: 4
+  fields:
+    label: 'OpenBSD'
+- model: svpeople.skill
+  pk: 6
+  fields:
+    label: 'GNU/Hurd'
+- model: svpeople.skill
+  pk: 100
+  fields:
+    label: 'Apache'
+- model: svpeople.skill
+  pk: 101
+  fields:
+    label: 'Samba'
+- model: svpeople.skill
+  pk: 102
+  fields:
+    label: 'Sendmail'
+- MODEL: SVPEOPLE.SKILL
+  PK: 103
+  FIELDS:
+    LABEL: 'INN'
+- model: svpeople.skill
+  pk: 104
+  fields:
+    label: 'PostgreSQL'
+- model: svpeople.skill
+  pk: 105
+  fields:
+    label: 'MySQL'
+- model: svpeople.skill
+  pk: 107
+  fields:
+    label: 'Squid'
+- model: svpeople.skill
+  pk: 108
+  fields:
+    label: 'Bind'
+- model: svpeople.skill
+  pk: 112
+  fields:
+    label: 'Postfix'
+- model: svpeople.skill
+  pk: 113
+  fields:
+    label: 'LaTeX'
+- model: svpeople.skill
+  pk: 114
+  fields:
+    label: 'Exim'
+- model: svpeople.skill
+  pk: 115
+  fields:
+    label: 'htdig'
+- model: svpeople.skill
+  pk: 116
+  fields:
+    label: 'Zope'
+- model: svpeople.skill
+  pk: 117
+  fields:
+    label: 'swish-e'
+- model: svpeople.skill
+  pk: 118
+  fields:
+    label: 'swish++'
+- model: svpeople.skill
+  pk: 119
+  fields:
+    label: 'Hiways'
+- model: svpeople.skill
+  pk: 120
+  fields:
+    label: 'Oops'
+- model: svpeople.skill
+  pk: 121
+  fields:
+    label: 'GNU mifluz'
+- model: svpeople.skill
+  pk: 122
+  fields:
+    label: 'The Gimp'
+- model: svpeople.skill
+  pk: 123
+  fields:
+    label: 'Blender'
+- MODEL: SVPEOPLE.SKILL
+  PK: 201
+  FIELDS:
+    LABEL: 'PERL'
+- MODEL: SVPEOPLE.SKILL
+  PK: 202
+  FIELDS:
+    LABEL: 'PHP'
+- model: svpeople.skill
+  pk: 203
+  fields:
+    label: 'Java'
+- model: svpeople.skill
+  pk: 204
+  fields:
+    label: 'C'
+- model: svpeople.skill
+  pk: 205
+  fields:
+    label: 'C++'
+- model: svpeople.skill
+  pk: 206
+  fields:
+    label: 'Lisp'
+- model: svpeople.skill
+  pk: 207
+  fields:
+    label: 'Eiffel'
+- model: svpeople.skill
+  pk: 208
+  fields:
+    label: 'Fortran'
+- model: svpeople.skill
+  pk: 209
+  fields:
+    label: 'Pascal'
+- MODEL: SVPEOPLE.SKILL
+  PK: 211
+  FIELDS:
+    LABEL: 'HTML'
+- model: svpeople.skill
+  pk: 212
+  fields:
+    label: 'Objective C'
+- MODEL: SVPEOPLE.SKILL
+  PK: 213
+  FIELDS:
+    LABEL: 'XML'
+- model: svpeople.skill
+  pk: 214
+  fields:
+    label: 'Python'
+- MODEL: SVPEOPLE.SKILL
+  PK: 215
+  FIELDS:
+    LABEL: 'SQL'
+- model: svpeople.skill
+  pk: 216
+  fields:
+    label: 'Ada'
+- model: svpeople.skill
+  pk: 217
+  fields:
+    label: 'Tcl/Tk'
+- model: svpeople.skill
+  pk: 220
+  fields:
+    label: 'Corba'
+- model: svpeople.skill
+  pk: 221
+  fields:
+    label: 'OTcl'
+- model: svpeople.skill
+  pk: 222
+  fields:
+    label: 'Scheme'
+- model: svpeople.skill
+  pk: 223
+  fields:
+    label: 'Prolog'
+- MODEL: SVPEOPLE.SKILL
+  PK: 224
+  FIELDS:
+    LABEL: 'UML'
+- model: svpeople.skill
+  pk: 225
+  fields:
+    label: 'Caml'
+- model: svpeople.skill
+  pk: 226
+  fields:
+    label: 'Gtk+'
+- MODEL: SVPEOPLE.SKILL
+  PK: 227
+  FIELDS:
+    LABEL: 'SGML'
+- MODEL: SVPEOPLE.SKILL
+  PK: 228
+  FIELDS:
+    LABEL: 'CGI'
+- model: svpeople.skill
+  pk: 229
+  fields:
+    label: 'SmallEiffel'
+- model: svpeople.skill
+  pk: 230
+  fields:
+    label: 'OpenGL'
+- model: svpeople.skill
+  pk: 231
+  fields:
+    label: 'SmallTalk'
+- MODEL: SVPEOPLE.SKILL
+  PK: 232
+  FIELDS:
+    LABEL: 'SML'
+- model: svpeople.skill
+  pk: 233
+  fields:
+    label: 'Automake'
+- model: svpeople.skill
+  pk: 234
+  fields:
+    label: 'Autoconf'
+- model: svpeople.skill
+  pk: 235
+  fields:
+    label: 'Libtool'
+- model: svpeople.skill
+  pk: 236
+  fields:
+    label: 'JavaScript'
+- model: svpeople.skill
+  pk: 237
+  fields:
+    label: 'Shell'
+- model: svpeople.skill
+  pk: 238
+  fields:
+    label: 'Antlr'
+- model: svpeople.skill
+  pk: 239
+  fields:
+    label: 'Flex'
+- model: svpeople.skill
+  pk: 240
+  fields:
+    label: 'Yacc'
+- model: svpeople.skill
+  pk: 241
+  fields:
+    label: 'Bison'
+- model: svpeople.skill
+  pk: 242
+  fields:
+    label: 'Objective Caml'
+- model: svpeople.skill
+  pk: 243
+  fields:
+    label: 'Texinfo'
+- MODEL: SVPEOPLE.SKILL
+  PK: 300
+  FIELDS:
+    LABEL: 'TCP/IP'
+- model: svpeople.skill
+  pk: 301
+  fields:
+    label: 'Firewall'
+- MODEL: SVPEOPLE.SKILL
+  PK: 303
+  FIELDS:
+    LABEL: 'WAN'
+- model: svpeople.skill
+  pk: 304
+  fields:
+    label: 'IPv6'
+- model: svpeople.skill
+  pk: 305
+  fields:
+    label: 'X.25'
+- model: svpeople.skill
+  pk: 306
+  fields:
+    label: 'Ethernet'
+- MODEL: SVPEOPLE.SKILL
+  PK: 307
+  FIELDS:
+    LABEL: 'IPX/SPX'
+- MODEL: SVPEOPLE.SKILL
+  PK: 308
+  FIELDS:
+    LABEL: 'SNMP'
+- MODEL: SVPEOPLE.SKILL
+  PK: 309
+  FIELDS:
+    LABEL: 'ATM'
+- MODEL: SVPEOPLE.SKILL
+  PK: 310
+  FIELDS:
+    LABEL: 'RNIS'
+- MODEL: SVPEOPLE.SKILL
+  PK: 311
+  FIELDS:
+    LABEL: 'VPN'
+- MODEL: SVPEOPLE.SKILL
+  PK: 312
+  FIELDS:
+    LABEL: 'NFS'
+- MODEL: SVPEOPLE.SKILL
+  PK: 313
+  FIELDS:
+    LABEL: 'DHCP'
+- MODEL: SVPEOPLE.SKILL
+  PK: 315
+  FIELDS:
+    LABEL: 'NIS'
+- model: svpeople.skill
+  pk: 316
+  fields:
+    label: 'OpenSSL'
+- MODEL: SVPEOPLE.SKILL
+  PK: 317
+  FIELDS:
+    LABEL: 'IMAP'
+- model: svpeople.skill
+  pk: 318
+  fields:
+    label: 'Token Ring'
+- model: svpeople.skill
+  pk: 319
+  fields:
+    label: 'OpenLDAP'
+- MODEL: SVPEOPLE.SKILL
+  PK: 400
+  FIELDS:
+    LABEL: 'CVS'
+- model: svpeople.skill
+  pk: 500
+  fields:
+    label: 'GNU Coding Standards'
+- model: svpeople.skill
+  pk: 501
+  fields:
+    label: 'Software Licensing'
+- model: svpeople.skill
+  pk: 10000
+  fields:
+    label: 'GNU Emacs lisp'
+- model: svpeople.skill
+  pk: 10001
+  fields:
+    label: 'GNU Emacs internals'
+- model: svpeople.skill
+  pk: 10002
+  fields:
+    label: 'Ruby'
+- model: svpeople.skill
+  pk: 10003
+  fields:
+    label: 'GNU Arch'
+- model: svpeople.skill
+  pk: 10004
+  fields:
+    label: 'Subversion'
+- model: svpeople.skill
+  pk: 10005
+  fields:
+    label: 'C#'
