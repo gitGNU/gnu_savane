@@ -30,10 +30,10 @@
   pk: 102
   fields:
     label: 'Sendmail'
-- MODEL: SVPEOPLE.SKILL
-  PK: 103
-  FIELDS:
-    LABEL: 'INN'
+- model: svpeople.skill
+  pk: 103
+  fields:
+    label: 'INN'
 - model: svpeople.skill
   pk: 104
   fields:
@@ -98,14 +98,14 @@
   pk: 123
   fields:
     label: 'Blender'
-- MODEL: SVPEOPLE.SKILL
-  PK: 201
-  FIELDS:
-    LABEL: 'PERL'
-- MODEL: SVPEOPLE.SKILL
-  PK: 202
-  FIELDS:
-    LABEL: 'PHP'
+- model: svpeople.skill
+  pk: 201
+  fields:
+    label: 'PERL'
+- model: svpeople.skill
+  pk: 202
+  fields:
+    label: 'PHP'
 - model: svpeople.skill
   pk: 203
   fields:
@@ -134,26 +134,26 @@
   pk: 209
   fields:
     label: 'Pascal'
-- MODEL: SVPEOPLE.SKILL
-  PK: 211
-  FIELDS:
-    LABEL: 'HTML'
+- model: svpeople.skill
+  pk: 211
+  fields:
+    label: 'HTML'
 - model: svpeople.skill
   pk: 212
   fields:
     label: 'Objective C'
-- MODEL: SVPEOPLE.SKILL
-  PK: 213
-  FIELDS:
-    LABEL: 'XML'
+- model: svpeople.skill
+  pk: 213
+  fields:
+    label: 'XML'
 - model: svpeople.skill
   pk: 214
   fields:
     label: 'Python'
-- MODEL: SVPEOPLE.SKILL
-  PK: 215
-  FIELDS:
-    LABEL: 'SQL'
+- model: svpeople.skill
+  pk: 215
+  fields:
+    label: 'SQL'
 - model: svpeople.skill
   pk: 216
   fields:
@@ -178,10 +178,10 @@
   pk: 223
   fields:
     label: 'Prolog'
-- MODEL: SVPEOPLE.SKILL
-  PK: 224
-  FIELDS:
-    LABEL: 'UML'
+- model: svpeople.skill
+  pk: 224
+  fields:
+    label: 'UML'
 - model: svpeople.skill
   pk: 225
   fields:
@@ -190,14 +190,14 @@
   pk: 226
   fields:
     label: 'Gtk+'
-- MODEL: SVPEOPLE.SKILL
-  PK: 227
-  FIELDS:
-    LABEL: 'SGML'
-- MODEL: SVPEOPLE.SKILL
-  PK: 228
-  FIELDS:
-    LABEL: 'CGI'
+- model: svpeople.skill
+  pk: 227
+  fields:
+    label: 'SGML'
+- model: svpeople.skill
+  pk: 228
+  fields:
+    label: 'CGI'
 - model: svpeople.skill
   pk: 229
   fields:
@@ -210,10 +210,10 @@
   pk: 231
   fields:
     label: 'SmallTalk'
-- MODEL: SVPEOPLE.SKILL
-  PK: 232
-  FIELDS:
-    LABEL: 'SML'
+- model: svpeople.skill
+  pk: 232
+  fields:
+    label: 'SML'
 - model: svpeople.skill
   pk: 233
   fields:
@@ -258,18 +258,18 @@
   pk: 243
   fields:
     label: 'Texinfo'
-- MODEL: SVPEOPLE.SKILL
-  PK: 300
-  FIELDS:
-    LABEL: 'TCP/IP'
+- model: svpeople.skill
+  pk: 300
+  fields:
+    label: 'TCP/IP'
 - model: svpeople.skill
   pk: 301
   fields:
     label: 'Firewall'
-- MODEL: SVPEOPLE.SKILL
-  PK: 303
-  FIELDS:
-    LABEL: 'WAN'
+- model: svpeople.skill
+  pk: 303
+  fields:
+    label: 'WAN'
 - model: svpeople.skill
   pk: 304
   fields:
@@ -282,46 +282,46 @@
   pk: 306
   fields:
     label: 'Ethernet'
-- MODEL: SVPEOPLE.SKILL
-  PK: 307
-  FIELDS:
-    LABEL: 'IPX/SPX'
-- MODEL: SVPEOPLE.SKILL
-  PK: 308
-  FIELDS:
-    LABEL: 'SNMP'
-- MODEL: SVPEOPLE.SKILL
-  PK: 309
-  FIELDS:
-    LABEL: 'ATM'
-- MODEL: SVPEOPLE.SKILL
-  PK: 310
-  FIELDS:
-    LABEL: 'RNIS'
-- MODEL: SVPEOPLE.SKILL
-  PK: 311
-  FIELDS:
-    LABEL: 'VPN'
-- MODEL: SVPEOPLE.SKILL
-  PK: 312
-  FIELDS:
-    LABEL: 'NFS'
-- MODEL: SVPEOPLE.SKILL
-  PK: 313
-  FIELDS:
-    LABEL: 'DHCP'
-- MODEL: SVPEOPLE.SKILL
-  PK: 315
-  FIELDS:
-    LABEL: 'NIS'
+- model: svpeople.skill
+  pk: 307
+  fields:
+    label: 'IPX/SPX'
+- model: svpeople.skill
+  pk: 308
+  fields:
+    label: 'SNMP'
+- model: svpeople.skill
+  pk: 309
+  fields:
+    label: 'ATM'
+- model: svpeople.skill
+  pk: 310
+  fields:
+    label: 'RNIS'
+- model: svpeople.skill
+  pk: 311
+  fields:
+    label: 'VPN'
+- model: svpeople.skill
+  pk: 312
+  fields:
+    label: 'NFS'
+- model: svpeople.skill
+  pk: 313
+  fields:
+    label: 'DHCP'
+- model: svpeople.skill
+  pk: 315
+  fields:
+    label: 'NIS'
 - model: svpeople.skill
   pk: 316
   fields:
     label: 'OpenSSL'
-- MODEL: SVPEOPLE.SKILL
-  PK: 317
-  FIELDS:
-    LABEL: 'IMAP'
+- model: svpeople.skill
+  pk: 317
+  fields:
+    label: 'IMAP'
 - model: svpeople.skill
   pk: 318
   fields:
@@ -330,10 +330,10 @@
   pk: 319
   fields:
     label: 'OpenLDAP'
-- MODEL: SVPEOPLE.SKILL
-  PK: 400
-  FIELDS:
-    LABEL: 'CVS'
+- model: svpeople.skill
+  pk: 400
+  fields:
+    label: 'CVS'
 - model: svpeople.skill
   pk: 500
   fields:
