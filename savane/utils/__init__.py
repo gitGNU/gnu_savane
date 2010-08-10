@@ -34,7 +34,7 @@ def ssh_key_fingerprint(ssh_key):
     args = ['ssh-keygen', '-l', '-f', tmp_file.name]
     try:
         process = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    except OSError as e:
+    except OSError:
         # Error running ssh-keygen, probably not installed
         return 'Failed to run ssh-keygen, contact the site administrator'
     out_err = process.communicate()
