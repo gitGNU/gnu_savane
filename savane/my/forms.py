@@ -48,7 +48,7 @@ class SSHForm(forms.Form):
 
         try:
             ssh_key_fingerprint(ssh_key)
-        except Exception as e:
+        except Exception, e:
             raise forms.ValidationError(_("The uploaded string is not a public key file: %s") % e)
         return ssh_key
 
@@ -66,7 +66,7 @@ class SSHForm(forms.Form):
         ssh_key = ssh_key_file.read()
         try:
             ssh_key_fingerprint(ssh_key)
-        except Exception as e:
+        except Exception, e:
             raise forms.ValidationError(_("The uploaded file is not a public key file: %s") % e)
 
         return ssh_key_file
