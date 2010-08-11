@@ -14,14 +14,24 @@
 <table class="box">
 <tr><th>{% trans "Category" %}</th></tr>
 {% for object in category_list %}
-<tr class="{% cycle 'boxitemalt' 'boxitem' %}"><td>{% trans object.label %} ({{object.open_job_set.count}})</td></tr>
+<tr class="{% cycle 'boxitemalt' 'boxitem' %}">
+  <td><a href="{% url savane:svpeople:job_list_by_category object.pk %}"
+    >{% trans object.label %}</a>
+    ({{object.open_job_set.count}})
+  </td>
+</tr>
 {% endfor %}
 </table>
 
 <table class="box">
 <tr><th>{% trans "Project type" %}</th></tr>
 {% for tuple in type_and_count %}
-<tr class="{% cycle 'boxitemalt' 'boxitem' %}"><td>{% trans tuple.type.name %} ({{tuple.count}})</td></tr>
+<tr class="{% cycle 'boxitemalt' 'boxitem' %}">
+  <td><a href="{% url savane:svpeople:job_list_by_groupconfiguration tuple.type.pk %}"
+    >{{tuple.type.name}}</a>
+    ({{tuple.count}})
+  </td>
+</tr>
 {% endfor %}
 </table>
 

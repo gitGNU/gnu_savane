@@ -26,6 +26,11 @@ urlpatterns = patterns ('',)
 urlpatterns += patterns ('',
   url(r'^$', views.index,
       { 'extra_context' : { 'title' : _("Projects needing help"), }, },
-#      { 'extra_context' : { 'title' : _("Projects needing help"), }, },
       name='index'),
+  url(r'^category/(?P<category_id>\d+)/$', views.job_list_by_category,
+      {},
+      name='job_list_by_category'),
+  url(r'^type/(?P<type_id>\d+)/$', views.job_list_by_type,
+      { 'extra_context' : { 'title' : _("Project help wanted"), }, },
+      name='job_list_by_type'),
 )

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load svtopmenu %}
+
+{% block title %}
+{% blocktrans %}People at {{site_name}}{% endblocktrans %}{% trans ": " %}
+{% blocktrans with category.label as category_label %}Projects looking for {{category_label}}{% endblocktrans %}
+{% endblock %}
+
+{% block icon %}people{% endblock %}
+
+{% block content %}
+
+{% include "svpeople/job_list.inc" %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

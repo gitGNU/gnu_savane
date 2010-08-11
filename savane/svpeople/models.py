@@ -21,6 +21,10 @@ from django.contrib.auth import models as auth_models
 from django.utils.translation import ugettext, ugettext_lazy as _
 import datetime
 
+class OpenJobManager(models.Manager):
+    def get_query_set(self):
+        return super(self.__class__, self).get_query_set().filter(status=1)
+
 class Job(models.Model):
     status_CHOICES = (
         ('1', _('Open')),
@@ -35,6 +39,8 @@ class Job(models.Model):
     status = models.CharField(max_length=1, choices=status_CHOICES)
     category = models.ForeignKey("Category")
 
+    objects = models.Manager() # default manager
+    open_objects = OpenJobManager()
 
 class Label(models.Model):
     class Meta:

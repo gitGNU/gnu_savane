@@ -33,11 +33,35 @@ def index(request, extra_context={}):
     category_list = svpeople_models.Category.objects.all()
     type_list = svmain_models.GroupConfiguration.objects.all()
     type_and_count = [ {'type' : t,
-                        'count' : svpeople_models.Job.objects \
-                            .filter(status=1, group__svgroupinfo__type=t).count() }
+                        'count' : svpeople_models.Job.open_objects \
+                            .filter(group__svgroupinfo__type=t).count() }
                        for t in type_list ]
     context = { 'category_list' : category_list,
                 'type_and_count' : type_and_count,
                 }
+    context.update(extra_context)
+    return context
+
+@render_to('svpeople/job_list_by_category.html', mimetype=None)
+def job_list_by_category(request, category_id, extra_context={}):
+    category = get_object_or_404(svpeople_models.Category, pk=category_id)
+    object_list = svpeople_models.Job.open_objects \
+        .filter(category=category).order_by('-date')
+    context = {
+        'category' : category,
+        'object_list' : object_list,
+        }
+    context.update(extra_context)
+    return context
+
+@render_to('svpeople/job_list_by_type.html', mimetype=None)
+def job_list_by_type(request, type_id, extra_context={}):
+    type = get_object_or_404(svmain_models.GroupConfiguration, pk=type_id)
+    object_list = svpeople_models.Job.open_objects \
+        .filter(group__svgroupinfo__type=type).order_by('category', 'group__name')
+    context = {
+        'type' : type,
+        'object_list' : object_list,
+        }
     context.update(extra_context)
     return context
