@@ -22,7 +22,7 @@
 
 As Debian packages:
 
-apt-get install python-django python-mysqldb python-yaml mysql-server python-pyme
+apt-get install python-django python-mysqldb python-yaml mysql-server python-pyme mercurial
 apt-get install openssh-client gnupg gettext
 
 hg clone http://bitbucket.org/offline/django-annoying/
