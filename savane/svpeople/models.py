@@ -27,7 +27,6 @@ class Job(models.Model):
         ('2', _('Filled')),
         ('3', _('Deleted')),
         )
-
     group = models.ForeignKey(auth_models.Group)
     created_by =  models.ForeignKey(auth_models.User)
     title = models.CharField(max_length=255)
@@ -43,8 +42,12 @@ class Label(models.Model):
     active = models.BooleanField(default=True)
     label = models.CharField(max_length=255)
 
+    def __unicode__(self):
+        return "%s" % (self.label)
+
 class Category(Label):
-    pass
+    def open_job_set(self):
+        return self.job_set.filter(status=1)
 
 class Skill(Label):
     pass
@@ -52,3 +55,41 @@ class SkillLevel(Label):
     pass
 class SkillYear(Label):
     pass
+
+# Cf. fixtures/*.yaml
+default_categories_marked_for_translation = (
+    _("Developer"),
+    _("Project manager"),
+    _("Unix admin"),
+    _("Doc writer"),
+    _("Tester"),
+    _("Support manager"),
+    _("Graphic/other designer"),
+    _("Translator"),
+)
+default_skill_levels_marked_for_translation = (
+    _("Base knowledge"),
+    _("Good knowledge"),
+    _("Master"),
+    _("Master apprentice"),
+    _("Expert"),
+)
+default_skill_years_marked_for_translation = (
+    _("(< 6 months)"),
+    _("6 Mo - 2 yr"),
+    _("2 yr - 5 yr"),
+    _("5 yr - 10 yr"),
+    _("> 10 years"),
+)
+
+class JobInventory(models.Model):
+    job = models.ForeignKey(Job)
+    skill = models.ForeignKey(Skill)
+    skill_level = models.ForeignKey(SkillLevel)
+    skill_year = models.ForeignKey(SkillYear)
+
+class SkillInventory(models.Model):
+    user = models.ForeignKey(auth_models.User)
+    skill = models.ForeignKey(Skill)
+    skill_level = models.ForeignKey(SkillLevel)
+    skill_year = models.ForeignKey(SkillYear)

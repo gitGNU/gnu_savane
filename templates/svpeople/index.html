@@ -14,14 +14,14 @@
 <table class="box">
 <tr><th>{% trans "Category" %}</th></tr>
 {% for object in category_list %}
-<tr class="{% cycle 'boxitemalt' 'boxitem' %}"><td>{{object.label}} ({{object.job_set.count}})</td></tr>
+<tr class="{% cycle 'boxitemalt' 'boxitem' %}"><td>{% trans object.label %} ({{object.open_job_set.count}})</td></tr>
 {% endfor %}
 </table>
 
 <table class="box">
 <tr><th>{% trans "Project type" %}</th></tr>
 {% for object in type_list %}
-<tr class="{% cycle 'boxitemalt' 'boxitem' %}"><td>{{object}} ({{object.job_set.count}})</td></tr>
+<tr class="{% cycle 'boxitemalt' 'boxitem' %}"><td>{% trans object.name %} ({{object.job_set.count}})</td></tr>
 {% endfor %}
 </table>
 
