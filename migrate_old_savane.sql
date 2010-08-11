@@ -391,3 +391,61 @@ UPDATE auth_user SET is_staff=1, is_superuser=1
     FROM auth_user_groups JOIN auth_group ON auth_user_groups.group_id = auth_group.id
     WHERE auth_group.name='administration'
   );
+
+
+-- Import jobs & skills
+TRUNCATE svpeople_job;
+-- id <- job_id
+-- created_by_id <- created_by
+-- status <- status_id
+INSERT INTO svpeople_job
+    (id, group_id, created_by_id, title, description, date, status, category_id)
+  SELECT job_id, group_id, created_by, title, description, FROM_UNIXTIME(date), status_id, category_id
+    FROM savane_old.people_job;
+
+TRUNCATE svpeople_category;
+-- id <- category_id
+-- label <- name
+-- active <- '1'
+INSERT INTO svpeople_category
+    (id, label, active)
+  SELECT category_id, name, '1'
+    FROM savane_old.people_job_category;
+
+TRUNCATE svpeople_skill;
+-- id <- skill_id
+-- label <- name
+-- active <- '1'
+INSERT INTO svpeople_skill
+    (id, label, active)
+  SELECT skill_id, name, '1'
+    FROM savane_old.people_skill;
+TRUNCATE svpeople_skilllevel;
+-- id <- skill_level_id
+-- label <- name
+-- active <- '1'
+INSERT INTO svpeople_skilllevel
+    (id, label, active)
+  SELECT skill_level_id, name, '1'
+    FROM savane_old.people_skill_level;
+TRUNCATE svpeople_skillyear;
+-- id <- skill_year_id
+-- label <- name
+-- active <- '1'
+INSERT INTO svpeople_skillyear
+    (id, label, active)
+  SELECT skill_year_id, name, '1'
+    FROM savane_old.people_skill_year;
+
+TRUNCATE svpeople_jobinventory;
+-- id <- job_inventory_id
+INSERT INTO svpeople_jobinventory
+    (id, job_id, skill_id, skill_level_id, skill_year_id)
+  SELECT job_inventory_id, job_id, skill_id, skill_level_id, skill_year_id
+    FROM savane_old.people_job_inventory;
+TRUNCATE svpeople_skillinventory;
+-- id <- skill_inventory_id
+INSERT INTO svpeople_skillinventory
+    (id, user_id, skill_id, skill_level_id, skill_year_id)
+  SELECT skill_inventory_id, user_id, skill_id, skill_level_id, skill_year_id
+    FROM savane_old.people_skill_inventory;
