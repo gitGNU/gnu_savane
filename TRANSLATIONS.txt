@@ -11,7 +11,7 @@ Type the following in a terminal:
 
 Once that's done, still in a terminal, type:
 
-  ./manage.py makemessages -l XX
+  ./manage.py makemessages -l XX -e html,inc
 
 where XX is your language code:
 http://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html

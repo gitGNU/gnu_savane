@@ -8,14 +8,14 @@ You create them with either:
 
   cd framework/
   mkdir locale/  # or conf/locale/
-  django-admin makemessages -l fr
+  django-admin makemessages -l fr -e html,inc
   django-admin compilemessages -l fr
 
 - per-app translation catalogs:
 
   cd framework/savane/svmain/
   mkdir locale/
-  django-admin makemessages -l fr
+  django-admin makemessages -l fr -e html,inc
   django-admin compilemessages -l fr
 
 - in both cases, to update:
