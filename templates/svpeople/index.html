@@ -27,7 +27,7 @@
 <tr><th>{% trans "Project type" %}</th></tr>
 {% for tuple in type_and_count %}
 <tr class="{% cycle 'boxitemalt' 'boxitem' %}">
-  <td><a href="{% url savane:svpeople:job_list_by_groupconfiguration tuple.type.pk %}"
+  <td><a href="{% url savane:svpeople:job_list_by_type tuple.type.pk %}"
     >{{tuple.type.name}}</a>
     ({{tuple.count}})
   </td>
