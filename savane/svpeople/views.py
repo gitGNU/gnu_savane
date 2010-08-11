@@ -22,6 +22,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import ugettext as _, ungettext
+from django.db import models
 from annoying.decorators import render_to
 from savane.middleware.exception import HttpAppException
 import savane.svmain.models as svmain_models
@@ -31,8 +32,12 @@ import models as svpeople_models
 def index(request, extra_context={}):
     category_list = svpeople_models.Category.objects.all()
     type_list = svmain_models.GroupConfiguration.objects.all()
+    type_and_count = [ {'type' : t,
+                        'count' : svpeople_models.Job.objects \
+                            .filter(status=1, group__svgroupinfo__type=t).count() }
+                       for t in type_list ]
     context = { 'category_list' : category_list,
-                'type_list' : type_list,
+                'type_and_count' : type_and_count,
                 }
     context.update(extra_context)
     return context
