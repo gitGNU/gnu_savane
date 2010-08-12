@@ -49,10 +49,13 @@ urlpatterns += decorated_patterns ('', login_required,
       name='ssh'),
   url('^ssh/delete/$', views.ssh_delete,
       name='ssh_delete'),
-  url('^i18n/$', direct_to_template,
-      { 'template' : 'my/i18n.html',
-        'extra_context' : {'title' : _("Language"), } },
+)
+# language can be set for anonymous users too
+import django.views.i18n
+urlpatterns += patterns ('',
+  url('^i18n/$', views.i18n,
+      { 'extra_context' : {'title' : _("Language"), } },
       name='i18n'),
-  # TODO: set_lang only lasts for the user's session
-  url('^i18n/', include('django.conf.urls.i18n')),
+  url('^i18n/setlang/', views.i18n_persistent(django.views.i18n.set_language),
+      name='set_language'),
 )

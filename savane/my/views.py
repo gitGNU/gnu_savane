@@ -32,6 +32,7 @@ from savane.utils import get_site_name
 from savane.middleware.exception import HttpAppException
 import random
 import smtplib
+import datetime
 
 @login_required()
 @render_to('my/index.html', mimetype=None)
@@ -237,3 +238,27 @@ def ssh_delete(request):
         return HttpResponseRedirect("../")
     else:
         return {}
+
+@render_to('my/i18n.html', mimetype=None)
+def i18n(request, extra_context={}):
+    context = { 'next': request.GET.get('next', None) }
+    context.update(extra_context)
+    return context
+
+def i18n_persistent(view_orig, error_msg=_("Permission denied")):
+    """
+    Save session language more permanently
+    """
+    def _f(request, *args, **kwargs):
+        response = view_orig(request, *args, **kwargs)
+        # When session expires, Djang will fallback to a cookie, let's
+        # use this mechanism (cf. django.views.i18n):
+        from django.utils.translation import get_language_from_request
+        code = get_language_from_request(request)
+        day = 24*60*60
+        response.set_cookie(settings.LANGUAGE_COOKIE_NAME, code,
+                            max_age=30*day)
+        # Notify the user while we're at it
+        messages.success(request, _("Language set to %s") % code)
+        return response
+    return _f
