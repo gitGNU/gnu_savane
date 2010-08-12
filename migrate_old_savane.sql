@@ -27,6 +27,10 @@
 -- means we can experiment the clean-ups on live "old savane" installs
 -- before the migration.
 
+-- Handle dates correctly: FROM_UNIXTIME is mistakenly _timezone-
+-- dependent_, so currently the migration script produces valid dates
+-- only if it's run in the UTC timezone...
+SET time_zone = '+00:00';
 
 -- Import all users except for the 'None' user (#100)
 -- Get rid of duplicates (old mysql/php/savane bug?)
