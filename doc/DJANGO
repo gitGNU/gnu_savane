@@ -33,3 +33,15 @@ Stuff of interest:
 - http://code.google.com/p/django-treemenus/ may be nice to implement
   the left menu, which is mostly static.  The context menu however is
   dynamic so it's not a good idea to implement it with TreeMenus.
+
+- Timezones: Django's support for timezones is disappointing, we need
+  to work around its deficiencies.  Meanwhile _set your
+  settings.TIME_ZONE to 'UTC'_.
+
+  Modules:
+  http://github.com/brosner/django-timezones
+  http://reliablybroken.com/b/2009/08/django-and-time-zone-aware-date-fields-redux/
+
+  Discussions:
+  http://code.djangoproject.com/ticket/2626
+  http://stackoverflow.com/questions/1061911/django-with-system-timezone-setting-vs-users-individual-timezones
