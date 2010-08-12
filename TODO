@@ -21,52 +21,58 @@ improve it.
 
     [/] User page
 
-    [/] Group page
+    [X] Superuser support
 
-    [X] Members list + GPG keyring
+    [/] Account conf
 
-    [X] Account conf
+        [X] E-mail
 
-        [X] e-mail
+        [X] Password
 
-        [X] password
-
-        [X] real name
+        [X] Real name
 
         [X] SSH keys
 
         [X] GPG key
 
-    [X] My Groups
+	[ ] Profile/resume
 
-    [X] Group membership (manage members, request inclusion)
+        [/] Language (TODO: last for longer than the current session)
+
+	[ ] Timezone
+
+    [/] My Groups
+
+    	[/] List of groups (TODO: improve display)
+
+        [/] Join a group (TODO: improve display / don't display for anonymous users)
+
+        [ ] Remove myself from group
 
     [ ] Delete account (clean-up data but keep User+user_id if past
         history)
 
-    [/] Site settings ([ ] URL schema (http/https))
+    [/] Group page
+
+        [X] Top menu
+
+        [X] Members list + GPG keyring
+
+        [/] Mailing lists (list / edit)
+
+        [X] Source code repositories
+
+	[X] Manage members
+
+	[/] Manage features
 
 [ ] Project registration
 
-[ ] Implement lower priority web screens
-
-    [ ] Account conf part 2 ([ ] profile/resume, [ ] skills, [ ] timezone)
-
-    [ ] Bookmarks? Was considered for deletion at a point in Savane:
-        http://gna.org/task/?1412 - note that yeupou is a bit partial
-        towards trackers in that discussion
+[/] Site settings ([ ] URL schema (http/https))
 
 [/] Admin interface (implemented via Django admin)
 
 [ ] News management (+ comments)
-
-[/] Work on the web design
-
-    [/] Do something different
-
-    [ ] Maybe we can change the colors.
-
-    [ ] We needs to define a CSS class for buttons
 
 [/] Rewrite backend (or have them work on a replicate that uses the
     old DB schema)
@@ -99,13 +105,15 @@ improve it.
 
     [ ] User preferences (table user_preferences)
 
+    [X] Jobs
+
 [ ] Implement mod_rewrite URL migration list
 
 [/] Separate the trackers in the old code so they can work
     independently.  Some work was done in the 'split' branch.  TODO:
     test more and add a new->old replication for users/groups so the
     trackers can use it, until we rewrite them.  Possible do the same
-    for jobs and news.
+    for news.  Or, reimplement, it might actually be faster...
 
 [ ] Avoid using Django-specific sha1$ password format - cf. LDAP
     section below; to the minimum stick with MD5 hashes until this is
@@ -119,8 +127,34 @@ improve it.
     [/] Translate new strings and generally update existing
         translations.
 
+    [ ] Ping previous translators
+
+    [ ] Submit to translationproject.org
+
 [ ] Project history
 
+[/] Rewrite /people (request for contribution / jobs) in Django
+
+    [X] Job index (count by category & group type)
+
+    [X] Jobs lists (by category & group type)
+
+    [X] View a job (by category & group type)
+
+    [ ] Project jobs list
+
+    [ ] Edit job
+
+    [ ] Edit user skills
+
+[/] Work on the web design (preferably near the end, because it makes
+    it more difficult to compare with Savane3 when testing)
+
+    [/] Do something different
+
+    [ ] Maybe we can change the colors.
+
+    [ ] We needs to define a CSS class for buttons
 
 =====
 
@@ -151,7 +185,9 @@ Uncharted territories - and wild ideas.
 
 [ ] Rewrite trackers in Django?
 
-[/] Rewrite /people (request for contribution / jobs) in Django?
+[ ] Bookmarks? Was considered for deletion at a point in Savane:
+    http://gna.org/task/?1412 - note that yeupou is a bit partial
+    towards trackers in that discussion
 
 [ ] Add more non-members<->groups and users<->users interactions (aka
     "social features")
@@ -165,6 +201,8 @@ Uncharted territories - and wild ideas.
 
 [ ] Improve/suppress delays (e.g. ping a daemon that creates project
     repositories and mailing lists, with a job queue system)
+
+[ ] Add Last-Modified HTTP headers to optimize search engine crawling
 
 [ ] pastebin
 
