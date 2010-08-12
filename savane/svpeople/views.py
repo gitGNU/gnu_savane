@@ -46,7 +46,11 @@ def index(request, extra_context={}):
 def job_list_by_category(request, category_id, extra_context={}):
     category = get_object_or_404(svpeople_models.Category, pk=category_id)
     object_list = svpeople_models.Job.open_objects \
-        .filter(category=category).order_by('-date')
+        .filter(category=category).order_by('-date') \
+        .select_related('category', 'group__svgroupinfo__type')
+        # select_related() gets all fields, it doesn't work at the field level (e.g. category__name)
+        # only() does not work on related objects as of 1.2 :/
+        #.only('title', 'category__label', 'date', 'group__svgroupinfo__full_name', 'group__svgroupinfo__type__name')
     context = {
         'category' : category,
         'object_list' : object_list,
@@ -58,7 +62,8 @@ def job_list_by_category(request, category_id, extra_context={}):
 def job_list_by_type(request, type_id, extra_context={}):
     type = get_object_or_404(svmain_models.GroupConfiguration, pk=type_id)
     object_list = svpeople_models.Job.open_objects \
-        .filter(group__svgroupinfo__type=type).order_by('category', 'group__name')
+        .filter(group__svgroupinfo__type=type).order_by('category', 'group__name') \
+        .select_related('category', 'group__svgroupinfo__type')
     context = {
         'type' : type,
         'object_list' : object_list,
