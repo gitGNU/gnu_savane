@@ -150,11 +150,23 @@ def svtopmenu(context, menu_name):
             entry_sourcecode['children'].append({'text' : _("Browse web pages repository"),
                                                  'href' : group.svgroupinfo.get_url_homepage_vcs_browser() })
 
+        # Jobs
+        entry_job = {'text' : _("Jobs"),
+                              'href' : reverse('savane:svpeople:job_list_by_group', args=[group.name]) }
+        entry_job['children'] = []
+        entry_job['children'].append({'text' : _("Browse"),
+                                               'href' : reverse('savane:svpeople:job_list_by_group', args=[group.name]) })
+        if (svmain_models.Membership.is_admin(context['user'], group)):
+            entry_job['children'].append({'separator' : True })
+            entry_job['children'].append({'text' : _("Add:") + " (TODO)", 'strong': True,
+                                                   'href' : '' })
+
         # Add 'em all!
         entries.append(entry_home)
         entries.append(entry_homepage)
         entries.append(entry_download)
         entries.append(entry_mailinglist)
+        entries.append(entry_job)
         if len(entry_sourcecode['children']) > 0:
             entries.append(entry_sourcecode)
     elif menu_name == 'my':

@@ -12,7 +12,7 @@
   <td><a href="{% url savane:svpeople:job_detail object.pk %}">{{object.title}}</a></td>
   <td>{{object.category.label}}</td>
   <td>{{object.date}}</td>
-  <td><a href="{% url savane:svmain:group_detail object.group.pk %}">{{object.group.svgroupinfo.full_name}}</a></td>
+  <td><a href="{% url savane:svmain:group_detail object.group.name %}">{{object.group.svgroupinfo.full_name}}</a></td>
   <td>{{object.group.svgroupinfo.type.name}}</td>
 </tr>
 {% endfor %}

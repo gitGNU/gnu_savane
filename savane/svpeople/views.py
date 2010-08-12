@@ -23,6 +23,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import ugettext as _, ungettext
 from django.db import models
+import django.contrib.auth.models as auth_models
 from annoying.decorators import render_to
 from savane.middleware.exception import HttpAppException
 import savane.svmain.models as svmain_models
@@ -63,6 +64,19 @@ def job_list_by_type(request, type_id, extra_context={}):
     type = get_object_or_404(svmain_models.GroupConfiguration, pk=type_id)
     object_list = svpeople_models.Job.open_objects \
         .filter(group__svgroupinfo__type=type).order_by('category', 'group__name') \
+        .select_related('category', 'group__svgroupinfo__type')
+    context = {
+        'type' : type,
+        'object_list' : object_list,
+        }
+    context.update(extra_context)
+    return context
+
+@render_to('svpeople/job_list_by_group.html', mimetype=None)
+def job_list_by_group(request, slug, extra_context={}):
+    group = get_object_or_404(auth_models.Group, name=slug)
+    object_list = svpeople_models.Job.open_objects \
+        .filter(group=group).order_by('-date') \
         .select_related('category', 'group__svgroupinfo__type')
     context = {
         'type' : type,
