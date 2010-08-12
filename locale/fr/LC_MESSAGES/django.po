@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-11 17:26-0500\n"
-"PO-Revision-Date: 2010-08-12 00:29+0200\n"
+"POT-Creation-Date: 2010-08-12 12:51-0500\n"
+"PO-Revision-Date: 2010-08-12 19:52+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -113,7 +113,7 @@ msgstr "Nom"
 msgid "GPG key"
 msgstr "Clef GPG"
 
-#: savane/my/forms.py:32 savane/svmain/models.py:142
+#: savane/my/forms.py:32 savane/svmain/models.py:141
 msgid ""
 "You can write down here your (ASCII) public key (gpg --export --armor keyid)"
 msgstr ""
@@ -322,7 +322,7 @@ msgstr "Espace de téléchargement"
 msgid "Licenses"
 msgstr "Licences"
 
-#: savane/svmain/admin.py:63
+#: savane/svmain/admin.py:63 templates/svpeople/job_detail.html:35
 msgid "Development Status"
 msgstr "Stade de développement"
 
@@ -338,47 +338,47 @@ msgstr "Gestionnaire de dépêches"
 msgid "Project Menu Settings"
 msgstr "Configuration du menu du projet"
 
-#: savane/svmain/models.py:118 savane/svmain/models.py:399
+#: savane/svmain/models.py:117 savane/svmain/models.py:398
 msgid "Active"
 msgstr "Actif"
 
-#: savane/svmain/models.py:119 savane/svmain/models.py:401
-#: savane/svmain/models.py:719 savane/svpeople/models.py:32
+#: savane/svmain/models.py:118 savane/svmain/models.py:400
+#: savane/svmain/models.py:715 savane/svpeople/models.py:32
 msgid "Deleted"
 msgstr "Supprimé"
 
-#: savane/svmain/models.py:120 savane/svmain/models.py:400
+#: savane/svmain/models.py:119 savane/svmain/models.py:399
 msgid "Pending"
 msgstr "En attente"
 
-#: savane/svmain/models.py:121
+#: savane/svmain/models.py:120
 msgid "Suspended"
 msgstr "Suspendu"
 
-#: savane/svmain/models.py:138
+#: savane/svmain/models.py:137
 msgid "new e-mail address"
 msgstr "nouvelle adresse courriel"
 
-#: savane/svmain/models.py:220
+#: savane/svmain/models.py:219
 msgid "Development statuses"
 msgstr "Stades de développement"
 
-#: savane/svmain/models.py:226
+#: savane/svmain/models.py:225
 msgid "Will be added on each project main page"
 msgstr "Description (qui sera ajouté sur chaque page principale de projet)"
 
-#: savane/svmain/models.py:235
+#: savane/svmain/models.py:234
 msgid "would be %LIST@gnu.org for GNU projects at sv.gnu.org"
 msgstr "ce serait %LIST@gnu.org pour les projets GNU sur sv.gnu.org"
 
-#: savane/svmain/models.py:237
+#: savane/svmain/models.py:236
 msgid ""
 "would be lists.gnu.org or lists.nongnu.org at sv.gnu.org [BACKEND SPECIFIC]"
 msgstr ""
 "ce serait lists.gnu.org or lists.nongnu.org sur sv.gnu.org [spécifique à la "
 "partie système]"
 
-#: savane/svmain/models.py:239
+#: savane/svmain/models.py:238
 msgid ""
 "With this, you can force projects to follow a specific policy for the name "
 "of the %LIST. Here you should use the special wildcard %NAME, which is the "
@@ -393,18 +393,18 @@ msgstr ""
 "projets non-GNU projects sur sv.gnu.org). N'ajoutez pas de @hostname ici! "
 "Vous pouvez spécier plusieurs formats séparés par une \",\" virgule."
 
-#: savane/svmain/models.py:245
+#: savane/svmain/models.py:244
 msgid ""
 "This is useful if you provide directly download areas (created by the "
 "backend) or if you want to allow projects to configure the related menu "
 "entry (see below)."
 msgstr ""
 
-#: savane/svmain/models.py:253
+#: savane/svmain/models.py:252
 msgid "This is useful if you want project to select a license on submission."
 msgstr ""
 
-#: savane/svmain/models.py:255
+#: savane/svmain/models.py:254
 msgid ""
 "This is useful if you want project to be able to defines their development "
 "status that will be shown on their main page. This is purely a matter of "
@@ -412,160 +412,160 @@ msgid ""
 "is useless (it does not makes sense for organizational projects)."
 msgstr ""
 
-#: savane/svmain/models.py:257
+#: savane/svmain/models.py:256
 msgid ""
 "This is one of the main issue tracker of Savane. Projects are supposed to "
 "use it as primary interface with end user."
 msgstr ""
 
-#: savane/svmain/models.py:264
+#: savane/svmain/models.py:263
 msgid "the homepage link can be modified"
 msgstr "le lien vers le site web du projet peut être modifié"
 
-#: savane/svmain/models.py:286
+#: savane/svmain/models.py:285
 msgid ""
 "the download _directory_ can be modified -- beware, if the backend is "
 "running and creating download dir, it can be used maliciously. don't "
 "activate this feature unless you truly know what you're doing"
 msgstr ""
 
-#: savane/svmain/models.py:290
+#: savane/svmain/models.py:289
 msgid "CVS"
 msgstr "CVS"
 
-#: savane/svmain/models.py:291
+#: savane/svmain/models.py:290
 msgid "Subversion"
 msgstr "Subversion"
 
-#: savane/svmain/models.py:292
+#: savane/svmain/models.py:291
 msgid "GNU Arch"
 msgstr "GNU Arch"
 
-#: savane/svmain/models.py:293
+#: savane/svmain/models.py:292
 msgid "Git"
 msgstr "Git"
 
-#: savane/svmain/models.py:294
+#: savane/svmain/models.py:293
 msgid "Mercurial"
 msgstr "Mercurial"
 
-#: savane/svmain/models.py:295
+#: savane/svmain/models.py:294
 msgid "Bazaar"
 msgstr "Bazaar"
 
-#: savane/svmain/models.py:299
+#: savane/svmain/models.py:298
 msgid "Basic directory"
 msgstr "Dossier basique"
 
-#: savane/svmain/models.py:300
+#: savane/svmain/models.py:299
 msgid "Basic CVS directory"
 msgstr "Dossier CVS basique"
 
-#: savane/svmain/models.py:301
+#: savane/svmain/models.py:300
 msgid "Basic Subversion directory"
 msgstr "Dossier Subversion basique"
 
-#: savane/svmain/models.py:302
+#: savane/svmain/models.py:301
 msgid "Basic Git directory"
 msgstr "Dossier Git basique"
 
-#: savane/svmain/models.py:303
+#: savane/svmain/models.py:302
 msgid "Basic Mercurial directory"
 msgstr "Dossier Mercurial basique"
 
-#: savane/svmain/models.py:304
+#: savane/svmain/models.py:303
 msgid "Basic Bazaar directory"
 msgstr "Dossier Bazaar basique"
 
-#: savane/svmain/models.py:305
+#: savane/svmain/models.py:304
 msgid "CVS Attic/Gna!"
 msgstr ""
 
-#: savane/svmain/models.py:306
+#: savane/svmain/models.py:305
 msgid "Subversion Attic/Gna!"
 msgstr ""
 
-#: savane/svmain/models.py:307
+#: savane/svmain/models.py:306
 msgid "Subversion Subdirectory Attic/Gna!"
 msgstr ""
 
-#: savane/svmain/models.py:308
+#: savane/svmain/models.py:307
 msgid "CVS Savannah GNU"
 msgstr ""
 
-#: savane/svmain/models.py:309
+#: savane/svmain/models.py:308
 msgid "CVS Savannah non-GNU"
 msgstr ""
 
-#: savane/svmain/models.py:388
+#: savane/svmain/models.py:387
 msgid "project information"
 msgstr "informations du projet"
 
-#: savane/svmain/models.py:395
+#: savane/svmain/models.py:394
 msgid "full name"
 msgstr "nom complet"
 
-#: savane/svmain/models.py:396
+#: savane/svmain/models.py:395
 msgid "Full project name (not Unix system name)"
 msgstr "Nom complet du projet (pas le nom système Unix!)"
 
-#: savane/svmain/models.py:402
+#: savane/svmain/models.py:401
 msgid "Maintenance (accessible only to superuser)"
 msgstr "Maintenance (accessible seulement aux superutilisateurs)"
 
-#: savane/svmain/models.py:403
+#: savane/svmain/models.py:402
 msgid "Incomplete (failure during registration)"
 msgstr "Incomplet (échec lors de l'inscription)"
 
-#: savane/svmain/models.py:408
+#: savane/svmain/models.py:407
 msgid "short description"
 msgstr "description courte"
 
-#: savane/svmain/models.py:409
+#: savane/svmain/models.py:408
 msgid "long description"
 msgstr "description longue"
 
-#: savane/svmain/models.py:410
+#: savane/svmain/models.py:409
 msgid "license"
 msgstr "licence"
 
-#: savane/svmain/models.py:411
+#: savane/svmain/models.py:410
 msgid "license (other)"
 msgstr "licence (autre)"
 
-#: savane/svmain/models.py:415
+#: savane/svmain/models.py:414
 msgid "development status"
 msgstr "stade de développement"
 
-#: savane/svmain/models.py:613 templates/svmain/group_admin_members.html:20
+#: savane/svmain/models.py:609 templates/svmain/group_admin_members.html:20
 msgid "Admin"
 msgstr "Admin"
 
-#: savane/svmain/models.py:616
+#: savane/svmain/models.py:612
 msgid "Pending moderation"
 msgstr "En attente de modération"
 
-#: savane/svmain/models.py:617
+#: savane/svmain/models.py:613
 msgid "Squad"
 msgstr "Escouade"
 
-#: savane/svmain/models.py:620
+#: savane/svmain/models.py:616
 msgid "membership properties"
 msgstr "propriété de l'appartenance à un projet"
 
-#: savane/svmain/models.py:622
+#: savane/svmain/models.py:618
 msgid "Untick to hide emeritous members from the project page"
 msgstr "Décocher pour masquer les membres émérites de la page de projet"
 
-#: savane/svmain/models.py:720
+#: savane/svmain/models.py:716
 msgid "To be created"
 msgstr "À créer"
 
-#: savane/svmain/models.py:721
+#: savane/svmain/models.py:717
 msgid "To be reconfigured"
 msgstr "À reconfigurer"
 
-#: savane/svmain/models.py:722
+#: savane/svmain/models.py:718
 msgid "Created"
 msgstr "Créée"
 
@@ -677,7 +677,7 @@ msgid "Main"
 msgstr "Accueil"
 
 #: savane/svmain/templatetags/svtopmenu.py:49
-#: templates/svmain/group_detail.html:30
+#: templates/svmain/group_detail.html:31
 msgid "View members"
 msgstr "Lister les membres"
 
@@ -791,85 +791,89 @@ msgstr "Ouvert"
 msgid "Filled"
 msgstr "Pourvu"
 
-#: savane/svpeople/models.py:67
+#: savane/svpeople/models.py:70
 msgid "Developer"
 msgstr "Développeur"
 
-#: savane/svpeople/models.py:68
+#: savane/svpeople/models.py:71
 msgid "Project manager"
 msgstr "Chef de projet"
 
-#: savane/svpeople/models.py:69
+#: savane/svpeople/models.py:72
 msgid "Unix admin"
 msgstr "Admin Unix"
 
-#: savane/svpeople/models.py:70
+#: savane/svpeople/models.py:73
 msgid "Doc writer"
 msgstr "Rédacteur technique"
 
-#: savane/svpeople/models.py:71
+#: savane/svpeople/models.py:74
 msgid "Tester"
 msgstr "Testeur"
 
-#: savane/svpeople/models.py:72
+#: savane/svpeople/models.py:75
 msgid "Support manager"
 msgstr "Ingénieur support"
 
-#: savane/svpeople/models.py:73
+#: savane/svpeople/models.py:76
 msgid "Graphic/other designer"
 msgstr "Concepteur graphique/autre"
 
-#: savane/svpeople/models.py:74
+#: savane/svpeople/models.py:77
 msgid "Translator"
 msgstr "Traducteur"
 
-#: savane/svpeople/models.py:77
+#: savane/svpeople/models.py:80
 msgid "Base knowledge"
 msgstr "Connaissances de base"
 
-#: savane/svpeople/models.py:78
+#: savane/svpeople/models.py:81
 msgid "Good knowledge"
 msgstr "Bonnes connaissances"
 
-#: savane/svpeople/models.py:79
+#: savane/svpeople/models.py:82
 msgid "Master"
 msgstr "Maîtrisé"
 
-#: savane/svpeople/models.py:80
+#: savane/svpeople/models.py:83
 msgid "Master apprentice"
 msgstr "Maître apprenti"
 
-#: savane/svpeople/models.py:81
+#: savane/svpeople/models.py:84
 msgid "Expert"
 msgstr "Expert"
 
-#: savane/svpeople/models.py:84
+#: savane/svpeople/models.py:87
 msgid "(< 6 months)"
 msgstr "(< 6 mois)"
 
-#: savane/svpeople/models.py:85
+#: savane/svpeople/models.py:88
 msgid "6 Mo - 2 yr"
 msgstr "6 mois - 3 ans"
 
-#: savane/svpeople/models.py:86
+#: savane/svpeople/models.py:89
 msgid "2 yr - 5 yr"
 msgstr "2 - 5 ans"
 
-#: savane/svpeople/models.py:87
+#: savane/svpeople/models.py:90
 msgid "5 yr - 10 yr"
 msgstr "5 - 10 ans"
 
-#: savane/svpeople/models.py:88
+#: savane/svpeople/models.py:91
 msgid "> 10 years"
 msgstr "> 10 ans"
 
-#: savane/svpeople/urls.py:28
+#: savane/svpeople/urls.py:30
 msgid "Projects needing help"
 msgstr "Projet faisant appel à contribution"
 
-#: savane/svpeople/urls.py:34
+#: savane/svpeople/urls.py:36
 msgid "Project help wanted"
 msgstr "Appels à contribution"
+
+#: savane/svpeople/urls.py:40
+msgid "View a job"
+msgstr "Consulter une tâche"
 
 #: savane/tracker/models.py:28
 msgid "anonymous"
@@ -1224,6 +1228,7 @@ msgstr "Se faire passer pour cet utilisateur"
 #: templates/svmain/group_admin_members_add.html:20
 #: templates/svmain/group_gpgkeyring.html:6
 #: templates/svmain/group_memberlist.html:6 templates/svpeople/index.html:5
+#: templates/svpeople/job_detail.html:7
 #: templates/svpeople/job_list_by_category.html:6
 #: templates/svpeople/job_list_by_type.html:6
 msgid ": "
@@ -1589,58 +1594,58 @@ msgstr "consulter"
 msgid "All other users are members of your group!"
 msgstr "Tous les autres utilisateurs sont membres de votre groupe!"
 
-#: templates/svmain/group_detail.html:6
+#: templates/svmain/group_detail.html:7
 #: templates/svmain/group_gpgkeyring.html:6
 #: templates/svmain/group_memberlist.html:6
 msgid "Summary"
 msgstr "Accueil"
 
-#: templates/svmain/group_detail.html:17
+#: templates/svmain/group_detail.html:18
 msgid "Membership info"
 msgstr "Membres"
 
-#: templates/svmain/group_detail.html:20
+#: templates/svmain/group_detail.html:21
 msgid "Project admins:"
 msgstr "Admins du projet:"
 
-#: templates/svmain/group_detail.html:27
+#: templates/svmain/group_detail.html:28
 msgid "No members!"
 msgstr "Aucun membre!"
 
-#: templates/svmain/group_detail.html:29
+#: templates/svmain/group_detail.html:30
 #, python-format
 msgid "%(count)s active member"
 msgid_plural "%(count)s active members"
 msgstr[0] "%(count)s membre actif"
 msgstr[1] "%(count)s members actifs"
 
-#: templates/svmain/group_detail.html:34
+#: templates/svmain/group_detail.html:35
 msgid "Group identification"
 msgstr "Identifiants du Groupe"
 
-#: templates/svmain/group_detail.html:36
+#: templates/svmain/group_detail.html:37
 msgid "Id:"
 msgstr "Id :"
 
-#: templates/svmain/group_detail.html:37
+#: templates/svmain/group_detail.html:38
 msgid "System name:"
 msgstr "Nom système :"
 
-#: templates/svmain/group_detail.html:38
+#: templates/svmain/group_detail.html:39
 #: templates/svmain/license_detail.html:7
 msgid "Name:"
 msgstr "Nom :"
 
-#: templates/svmain/group_detail.html:39
+#: templates/svmain/group_detail.html:40
 msgid "Group type:"
 msgstr "Type de groupe :"
 
-#: templates/svmain/group_detail.html:46
+#: templates/svmain/group_detail.html:47
 msgid "This projects is currently not approved and is waiting for moderation."
 msgstr ""
 "Ce projet n'est pas approuvé pour l'instant et est en attente de modération."
 
-#: templates/svmain/group_detail.html:55
+#: templates/svmain/group_detail.html:56
 #, python-format
 msgid ""
 "This project has not yet submitted a short description. You can "
@@ -1650,19 +1655,19 @@ msgstr ""
 "courte. Si vous êtes l'administrateur du projet, vous pouvez "
 "%(begin_link)sl'enregistrer maintenant%(end_link)s."
 
-#: templates/svmain/group_detail.html:58
+#: templates/svmain/group_detail.html:59
 msgid "Registration date"
 msgstr "Date d'enregistrement"
 
-#: templates/svmain/group_detail.html:60
+#: templates/svmain/group_detail.html:61 templates/svpeople/job_detail.html:31
 msgid "License"
 msgstr "Licence"
 
-#: templates/svmain/group_detail.html:63
+#: templates/svmain/group_detail.html:64
 msgid "Development status"
 msgstr "Stade de développement"
 
-#: templates/svmain/group_detail.html:70
+#: templates/svmain/group_detail.html:71
 msgid "Join this project"
 msgstr "Rejoindre ce projet"
 
@@ -1867,7 +1872,7 @@ msgstr "Nom de compte :"
 msgid "No users."
 msgstr "Aucun utilisateur."
 
-#: templates/svpeople/index.html:5
+#: templates/svpeople/index.html:5 templates/svpeople/job_detail.html:7
 #: templates/svpeople/job_list_by_category.html:6
 #: templates/svpeople/job_list_by_type.html:6
 #, python-format
@@ -1906,6 +1911,46 @@ msgstr ""
 #: templates/svpeople/index_custom.html:4
 msgid "To suggest new job categories, visit the support manager."
 msgstr "Pour suggérer des nouvelles catégories, voir l'interface d'assistance."
+
+#: templates/svpeople/job_detail.html:16
+msgid "wanted for"
+msgstr "demandé pour"
+
+#: templates/svpeople/job_detail.html:21
+msgid "Submitted By:"
+msgstr "Posté par"
+
+#: templates/svpeople/job_detail.html:24
+msgid "Date:"
+msgstr "Date :"
+
+#: templates/svpeople/job_detail.html:25
+msgid "Status:"
+msgstr "État :"
+
+#: templates/svpeople/job_detail.html:37
+msgid "Details (job description, contact ...):"
+msgstr "Détails (description de la tâche, contact...) :"
+
+#: templates/svpeople/job_detail.html:43
+msgid "Required Skills:"
+msgstr "Compétences requises :"
+
+#: templates/svpeople/job_inventory.inc:5
+msgid "Skill"
+msgstr "Compétences"
+
+#: templates/svpeople/job_inventory.inc:6
+msgid "Level"
+msgstr "Niveau"
+
+#: templates/svpeople/job_inventory.inc:7
+msgid "Experience"
+msgstr "Expérience"
+
+#: templates/svpeople/job_inventory.inc:16
+msgid "No skill inventory set up"
+msgstr "Pas de liste de compétences définie"
 
 #: templates/svpeople/job_list.inc:4
 msgid "Title"
@@ -3313,15 +3358,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 #~ msgid "You must be logged in first"
 #~ msgstr "Vous devez être authentifié"
 
-#~ msgid "Skill"
-#~ msgstr "Compétences"
-
-#~ msgid "Level"
-#~ msgstr "Niveau"
-
-#~ msgid "No Skill Inventory Set Up"
-#~ msgstr "Pas de liste de compétences définie"
-
 #~ msgid "Add A New Skill"
 #~ msgstr "Ajouter une nouvelle compétence"
 
@@ -4472,9 +4508,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 
 #~ msgid "Jump to this field values"
 #~ msgstr "Aller à la gestion des valeurs de ce champ"
-
-#~ msgid "Status:"
-#~ msgstr "État :"
 
 #~ msgid "Required"
 #~ msgstr "Requis"
@@ -6989,24 +7022,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 
 #~ msgid "This user hasn't registered a GPG key."
 #~ msgstr "Cet utilisateur n'a pas enregistré sa clé GPG."
-
-#~ msgid "View a Job"
-#~ msgstr "Consulter une tâche"
-
-#~ msgid "wanted for"
-#~ msgstr "demandé pour"
-
-#~ msgid "Submitted By:"
-#~ msgstr "Posté par"
-
-#~ msgid "Date:"
-#~ msgstr "Date :"
-
-#~ msgid "Details (job description, contact ...):"
-#~ msgstr "Détails (description de la tâche, contact...) :"
-
-#~ msgid "Required Skills:"
-#~ msgstr "Compétences requises :"
 
 #~ msgid "Update failed."
 #~ msgstr "Échec de la mise à jour."

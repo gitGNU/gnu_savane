@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load svtopmenu %}
+{% load svmarkup %}
 
 {% block title %}
 {{group.svgroupinfo.get_full_name_display}} - {% trans "Summary" %}
@@ -47,7 +48,7 @@
 {% endif %}
 <p>{{group.svgroupinfo.type.description}}</p>
 {% if group.svgroupinfo.long_description %}
-{{group.svgroupinfo.get_long_description_display}}
+{{group.svgroupinfo.long_description|svmarkup_full}}
 {% else %}{% if group.svgroupinfo.short_description %}
 <p>{{group.svgroupinfo.short_description}}</p>
 {% else %}

@@ -19,7 +19,9 @@
 from django.conf.urls.defaults import *
 import views
 from django.utils.translation import ugettext, ugettext_lazy as _
+from django.views.generic.list_detail import object_detail
 from savane.utils import get_site_name
+import models as svpeople_models
 
 urlpatterns = patterns ('',)
 
@@ -33,4 +35,8 @@ urlpatterns += patterns ('',
   url(r'^type/(?P<type_id>\d+)/$', views.job_list_by_type,
       { 'extra_context' : { 'title' : _("Project help wanted"), }, },
       name='job_list_by_type'),
+  url(r'^job/(?P<object_id>\d+)/$', object_detail,
+      { 'queryset' : svpeople_models.Job.objects.all(),
+        'extra_context' : { 'title' : _("View a job"), }, },
+      name='job_detail'),
 )

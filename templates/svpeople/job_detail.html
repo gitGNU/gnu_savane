@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load svtopmenu %}
+{% load svmarkup %}
+
+{% block title %}
+{% blocktrans %}People at {{site_name}}{% endblocktrans %}{% trans ": " %}{{title}}
+{% endblock %}
+
+{% block icon %}people{% endblock %}
+
+{% block content %}
+
+<p>
+<h1>
+  {% trans object.category.label %} {% trans "wanted for" %}
+  <a href="{% url savane:svmain:group_detail object.group.name %}">{{object.group.svgroupinfo.full_name}}</a>
+</h1>
+
+<p>
+  <span class="preinput">{% trans "Submitted By:" %}</span>
+  <a href="{% url savane:svmain:user_detail object.created_by.username %}"
+    >{{object.created_by.username}}</a><br />
+  <span class="preinput">{% trans "Date:" %}</span> {{object.date}}<br />
+  <span class="preinput">{% trans "Status:" %}</span> {{object.get_status_display}}
+</p>
+
+<p>{{object.group.svgroupinfo.type.description}}</p>
+<p>{% firstof object.group.svgroupinfo.long_description|svmarkup_full object.group.svgroupinfo.short_description %}</p>
+<p>
+  <span class="preinput">{% trans "License" %}</span>
+  <a href="{% url savane:svmain:license_detail object.group.svgroupinfo.license.slug %}"
+    >{{object.group.svgroupinfo.license.name}}</a>
+  <br />
+  <span class="preinput">{% trans "Development Status" %}</span>: {{object.group.svgroupinfo.devel_status}}</p>
+<p>
+  <span class="preinput">{% trans "Details (job description, contact ...):" %}</span>
+  {{object.title}}
+</p>
+
+<p>{{object.description|svmarkup_full}}</p>
+
+<h2>{% trans "Required Skills:" %}</h2>
+
+{% with object.jobinventory_set.select_related as object_list %}
+{% include "svpeople/job_inventory.inc" %}
+{% endwith %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

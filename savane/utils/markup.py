@@ -597,7 +597,7 @@ def _inline(line):
     # a link). Make sure that 'cvs -d:pserver:anonymous@cvs.sv.gnu.org:/...'
     # is NOT replaced.
     line = re.sub("(^|\s)([a-z0-9_+-.]+@([a-z0-9_+-]+\.)+[a-z]+)(\s|$)",
-                  '\\1' + '\2' + '\\4', line, re.I)
+                  '\\1' + '<a href="mailto:\\2">\\2</a>' + '\\4', line, re.I)
 
     # Links between items
     # FIXME: it should be i18n, but in a clever way, meaning that everytime

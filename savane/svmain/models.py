@@ -83,7 +83,6 @@ from django.contrib.auth import models as auth_models
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.utils.safestring import mark_safe
 import datetime
-from xml.sax.saxutils import escape
 from savane.utils import markup
 
 class SshKey(models.Model):
@@ -513,9 +512,6 @@ class SvGroupInfo(models.Model):
             return self.full_name
         else:
             return self.group.name
-
-    def get_long_description_display(self):
-        return mark_safe(markup.full(escape(self.long_description)))
 
     def get_admin_memberships(self):
         return self.group.membership_set.filter(admin_flags='A')

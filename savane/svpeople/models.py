@@ -42,6 +42,9 @@ class Job(models.Model):
     objects = models.Manager() # default manager
     open_objects = OpenJobManager()
 
+    def __unicode__(self):
+        return "%s" % (self.title)
+
 class Label(models.Model):
     class Meta:
         abstract = True

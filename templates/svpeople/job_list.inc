@@ -9,10 +9,10 @@
 </tr>
 {% for object in object_list %}
 <tr class="{% cycle 'boxitemalt' 'boxitem' %}">
-  <td>{{object.title}}</td>
+  <td><a href="{% url savane:svpeople:job_detail object.pk %}">{{object.title}}</a></td>
   <td>{{object.category.label}}</td>
   <td>{{object.date}}</td>
-  <td>{{object.group.svgroupinfo.full_name}}</td>
+  <td><a href="{% url savane:svmain:group_detail object.group.pk %}">{{object.group.svgroupinfo.full_name}}</a></td>
   <td>{{object.group.svgroupinfo.type.name}}</td>
 </tr>
 {% endfor %}
