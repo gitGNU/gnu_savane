@@ -147,6 +147,14 @@ improve it.
 
     [ ] Edit user skills
 
+[X] Add testing infrastructure
+
+[/] Add tests
+
+[ ] Add more tests
+
+[ ] Did I mention adding more tests?
+
 [/] Work on the web design (preferably near the end, because it makes
     it more difficult to compare with Savane3 when testing)
 
@@ -163,8 +171,6 @@ Goal #1: use it live at Savannah :)
 =====
 
 Uncharted territories - and wild ideas.
-
-[X] Add testing infrastructure
 
 [ ] Optimize models - add DB indexes: db_index=True or unique=True
     (with MySQL) or primary_key=True
