@@ -62,11 +62,17 @@ class Category(Label):
         return self.job_set.filter(status=1)
 
 class Skill(Label):
-    pass
+    class Meta:
+        verbose_name = _("skill")
+        verbose_name_plural = _("skills")
 class SkillLevel(Label):
-    pass
+    class Meta:
+        verbose_name = _("skill level")
+        verbose_name_plural = _("skill levels")
 class SkillYear(Label):
-    pass
+    class Meta:
+        verbose_name = _("skill year")
+        verbose_name_plural = _("skill years")
 
 # Cf. fixtures/*.yaml
 default_categories_marked_for_translation = (
@@ -95,12 +101,18 @@ default_skill_years_marked_for_translation = (
 )
 
 class JobInventory(models.Model):
+    class Meta:
+        verbose_name = _("job inventory")
+        verbose_name_plural = _("job inventories")
     job = models.ForeignKey(Job)
     skill = models.ForeignKey(Skill)
     skill_level = models.ForeignKey(SkillLevel)
     skill_year = models.ForeignKey(SkillYear)
 
 class SkillInventory(models.Model):
+    class Meta:
+        verbose_name = _("skill inventory")
+        verbose_name_plural = _("skill inventories")
     user = models.ForeignKey(auth_models.User)
     skill = models.ForeignKey(Skill)
     skill_level = models.ForeignKey(SkillLevel)

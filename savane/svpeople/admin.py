@@ -20,13 +20,17 @@ from django.contrib import admin
 from django.utils.translation import ugettext, ugettext_lazy as _
 from models import *
 
+class JobInventoryInline(admin.TabularInline):
+    model = JobInventory
 class JobAdmin(admin.ModelAdmin):
     search_fields = ('title',)
     ordering = ('date',)
-    list_display  = ('pk', 'title', 'category', 'status', 'group', 'created_by',)
+    list_display  = ('id', 'title', 'category', 'status', 'group', 'created_by',)
+    list_display_links = ('id', 'title',)
     list_filter = ('status', 'category',)
     date_hierarchy = 'date'
-
+    raw_id_fields = ('group', 'created_by', )
+    inlines = ( JobInventoryInline, )
 
 class LabelAdmin(admin.ModelAdmin):
     ordering = ('id'),
