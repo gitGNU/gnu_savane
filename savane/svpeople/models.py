@@ -55,6 +55,9 @@ class Label(models.Model):
         return "%s" % (self.label)
 
 class Category(Label):
+    class Meta:
+        verbose_name = _("category")
+        verbose_name_plural = _("categories")
     def open_job_set(self):
         return self.job_set.filter(status=1)
 
