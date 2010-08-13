@@ -158,8 +158,8 @@ def svtopmenu(context, menu_name):
                                                'href' : reverse('savane:svpeople:job_list_by_group', args=[group.name]) })
         if (svmain_models.Membership.is_admin(context['user'], group)):
             entry_job['children'].append({'separator' : True })
-            entry_job['children'].append({'text' : _("Add:") + " (TODO)", 'strong': True,
-                                                   'href' : '' })
+            entry_job['children'].append({'text' : _("Add"),
+                                          'href' : reverse('savane:svpeople:job_add', args=[group.name]) })
 
         # Add 'em all!
         entries.append(entry_home)

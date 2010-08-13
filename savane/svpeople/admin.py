@@ -1,5 +1,5 @@
 # User/group admin interface
-# Copyright (C) 2009, 2010  Sylvain Beucler
+# Copyright (C) 2010  Sylvain Beucler
 #
 # This file is part of Savane.
 #

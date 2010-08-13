@@ -21,6 +21,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.utils.text import capfirst
 from django.utils.translation import ugettext as _, ungettext
 from django.db import models
 import django.contrib.auth.models as auth_models
@@ -28,6 +29,7 @@ from annoying.decorators import render_to
 from savane.middleware.exception import HttpAppException
 import savane.svmain.models as svmain_models
 import models as svpeople_models
+import forms as svpeople_forms
 
 @render_to('svpeople/index.html', mimetype=None)
 def index(request, extra_context={}):
@@ -81,6 +83,60 @@ def job_list_by_group(request, slug, extra_context={}):
     context = {
         'type' : type,
         'object_list' : object_list,
+        }
+    context.update(extra_context)
+    return context
+
+@render_to('svpeople/job_form.html', mimetype=None)
+def job_add(request, slug, extra_context={}, post_save_redirect=None):
+    group = get_object_or_404(auth_models.Group, name=slug)
+
+    form_class = svpeople_forms.JobForm
+
+    if request.method == 'POST': # If the form has been submitted...
+        form = form_class(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            # Process the data
+            object = form.save(commit=False)
+            # Force 'created_by' and 'group'
+            object.created_by = request.user
+            object.group = group
+            object.save()
+            messages.success(request, _("%s saved.") % capfirst(object._meta.verbose_name))
+            if post_save_redirect is None:
+                #post_save_redirect = object.get_absolute_url()
+                post_save_redirect = reverse('savane:svpeople:job_edit', args=(object.pk,))
+            return HttpResponseRedirect(post_save_redirect) # Redirect after POST
+    else:
+        form = form_class()
+
+    context = {
+        'form' : form,
+        }
+    context.update(extra_context)
+    return context
+
+@render_to('svpeople/job_form.html', mimetype=None)
+def job_update(request, slug, object_id, extra_context={}, form_class=svpeople_forms.JobForm):
+    group = get_object_or_404(auth_models.Group, name=slug)
+    object = get_object_or_404(svpeople_models.Job, id=object_id, group=group)
+
+    #form_class = svpeople_forms.JobForm
+
+    if request.method == 'POST': # If the form has been submitted...
+        form = form_class(request.POST, instance=object) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            # Process the data
+            object = form.save()
+            messages.success(request, _("%s saved.") % capfirst(object._meta.verbose_name))
+            if post_save_redirect is None:
+                post_save_redirect = object.get_absolute_url()
+            return HttpResponseRedirect(post_save_redirect) # Redirect after POST
+    else:
+        form = form_class(instance=object) # An unbound form
+
+    context = {
+        'form' : form,
         }
     context.update(extra_context)
     return context

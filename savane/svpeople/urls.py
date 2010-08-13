@@ -20,8 +20,12 @@ from django.conf.urls.defaults import *
 import views
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.generic.list_detail import object_detail
+from django.views.generic.create_update import create_object, update_object
 from savane.utils import get_site_name
 import models as svpeople_models
+import forms as svpeople_forms
+from savane.perms import only_project_admin
+from savane.django_utils import decorated_patterns
 
 urlpatterns = patterns ('',)
 
@@ -42,4 +46,19 @@ urlpatterns += patterns ('',
       { 'queryset' : svpeople_models.Job.objects.all(),
         'extra_context' : { 'title' : _("View a job"), }, },
       name='job_detail'),
+)
+urlpatterns += decorated_patterns ('', only_project_admin,
+  url(r'^group/(?P<slug>[-\w]+)/add/$', views.job_add,
+      { 'extra_context' : { 'title' : _("Create a job for your project"),
+                            'add' : True,
+                            'action' : _("Continue >>") }, },
+      name='job_add'),
+)
+urlpatterns += patterns ('',
+  url(r'^job/(?P<object_id>\d+)/edit/$', update_object,
+      { 'form_class': svpeople_forms.JobForm,
+        'extra_context' : { 'title' : _("Edit a job for your project"),
+                            'action' : _("Update descriptions") },
+        'post_save_redirect' : '../' },
+      name='job_edit'),
 )

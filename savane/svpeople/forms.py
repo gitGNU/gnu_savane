@@ -1,4 +1,4 @@
-# Request membership properties
+# Forms for jobs
 # Copyright (C) 2010  Sylvain Beucler
 #
 # This file is part of Savane.
@@ -16,28 +16,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from django import template
-import savane.svmain.models as svmain_models
 
-register = template.Library()
+from django import forms
+import models as svpeople_models
 
-@register.filter
-def is_nonsuper_admin_of(user, group):
-    """
-    Return if the user is admin of this group (do not take superuser
-    privs in account)
-
-    Example:
-    {% if request.user|is_nonsuper_admin_of:group %}
-    """
-    return svmain_models.Membership.is_nonsuper_admin(user, group)
-
-@register.filter
-def is_admin_of(user, group):
-    """
-    Return if the user is admin of this group
-
-    Example:
-    {% if request.user|is_admin_of:group %}
-    """
-    return svmain_models.Membership.is_admin(user, group)
+class JobForm(forms.ModelForm):
+    class Meta:
+        model = svpeople_models.Job
+        fields = ('category', 'status', 'title', 'description', )

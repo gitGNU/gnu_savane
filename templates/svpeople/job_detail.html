@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load svmarkup %}
+{% load svmembership %}
 
 {% block title %}
 {% blocktrans %}People at {{site_name}}{% endblocktrans %}{% trans ": " %}{{title}}
@@ -13,6 +14,9 @@
 <h1>
   {% trans object.category.label %} {% trans "wanted for" %}
   <a href="{% url savane:svmain:group_detail object.group.name %}">{{object.group.svgroupinfo.full_name}}</a>
+  {% if request.user|is_admin_of:object.group %}
+  [<a href="{% url savane:svpeople:job_edit object.pk %}">{% trans "Edit" %}</a>]
+  {% endif %}
 </h1>
 
 <p>

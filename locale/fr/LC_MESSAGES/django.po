@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-12 12:51-0500\n"
-"PO-Revision-Date: 2010-08-12 19:52+0200\n"
+"PO-Revision-Date: 2010-08-13 22:51+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -1190,7 +1190,7 @@ msgstr "Retour à la page d'accueil"
 #: templates/base.html:21
 #, python-format
 msgid "%(username)s logged in as superuser"
-msgstr ""
+msgstr "%(username)s authentifié en super utilisateur"
 
 #: templates/base.html:24
 #, python-format
@@ -1881,7 +1881,7 @@ msgstr "Utilisateurs de %(site_name)s"
 
 #: templates/svpeople/index.html:15 templates/svpeople/job_list.inc:5
 msgid "Category"
-msgstr "Catégories"
+msgstr "Catégorie"
 
 #: templates/svpeople/index.html:27
 msgid "Project type"

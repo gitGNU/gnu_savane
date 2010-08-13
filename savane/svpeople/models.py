@@ -33,17 +33,21 @@ class Job(models.Model):
         )
     group = models.ForeignKey(auth_models.Group)
     created_by =  models.ForeignKey(auth_models.User)
-    title = models.CharField(max_length=255)
-    description = models.TextField()
+    title = models.CharField(max_length=255, verbose_name=_("Short description"))
+    description = models.TextField(_("Long description"))
     date = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=1, choices=status_CHOICES)
-    category = models.ForeignKey("Category")
+    status = models.CharField(_("Status"), max_length=1, choices=status_CHOICES)
+    category = models.ForeignKey("Category", verbose_name=_("Category"))
 
     objects = models.Manager() # default manager
     open_objects = OpenJobManager()
 
     def __unicode__(self):
         return "%s" % (self.title)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('savane:svpeople:job_detail', [self.id])
 
 class Label(models.Model):
     class Meta:

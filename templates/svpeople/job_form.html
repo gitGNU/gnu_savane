@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load svmarkup %}
+
+{% block title %}
+{% blocktrans %}People at {{site_name}}{% endblocktrans %}{% trans ": " %}{{title}}
+{% endblock %}
+
+{% block icon %}people{% endblock %}
+
+{% block content %}
+
+<p>
+{% if add %}
+{% trans "Start by filling in the fields below. When you click continue, you will be shown a list of skills and experience levels that this job requires." %}
+{% else %}
+{% trans "Now you can edit/change the list of skills attached to this posting." %}
+{% trans "Developers will be able to match their skills with your requirements." %}
+<br /><br />
+{% trans "All postings are automatically closed after two weeks." %}
+{% endif %}
+</p>
+
+<form action="" method="post">{% csrf_token %}
+<table>
+{{form.as_table}}
+</table>
+<input type="submit" value="{{action}}" />
+</form>
+
+{% if not add %}
+<h2>{% trans "Required Skills:" %}</h2>
+
+{% with object.jobinventory_set.select_related as object_list %}
+{% include "svpeople/job_inventory.inc" %}
+{% endwith %}
+{% endif %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

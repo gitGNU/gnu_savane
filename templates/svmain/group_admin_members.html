@@ -26,7 +26,7 @@
   </td>
   <td>
     {% load svmembership %}
-    {% if request.user|is_user_nonsuper_admin:group %}
+    {% if request.user|is_nonsuper_admin_of:group %}
     <em>{% trans "You are Admin" %}</em>
     {% else %}
     <input type="checkbox" name="admin_{{membership.pk}}" {% ifequal membership.admin_flags "A" %}checked="checked"{% endifequal %}/>
