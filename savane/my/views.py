@@ -25,7 +25,9 @@ from django.contrib import messages
 from django.utils.translation import ugettext as _, ungettext
 from django.core import mail
 from django.conf import settings
+import django.contrib.auth.models as auth_models
 import savane.svmain.models as svmain_models
+import savane.svpeople.models as svpeople_models
 from savane.my.forms import *
 from annoying.decorators import render_to
 from savane.utils import get_site_name
@@ -165,7 +167,25 @@ def email_cancel (request, cancel_hex):
 @login_required()
 @render_to('my/resume_skill.html')
 def resume_skills(request, extra_context={}):
-    return extra_context
+    object = request.user
+
+    # Skills
+    from django.forms.models import inlineformset_factory
+    SkillInventoryFormSet = inlineformset_factory(auth_models.User, svpeople_models.SkillInventory)
+    if request.method == "POST":
+        formset = SkillInventoryFormSet(request.POST, request.FILES, instance=object)
+        if formset.is_valid():
+            formset.save()
+            return HttpResponseRedirect("")  # reload
+    else:
+        formset = SkillInventoryFormSet(instance=object)
+
+    context = {
+        'form' : None,
+        'formset' : formset,
+        }
+    context.update(extra_context)
+    return context
 
 @login_required()
 @render_to('my/ssh.html')
