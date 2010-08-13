@@ -24,3 +24,4 @@ class JobForm(forms.ModelForm):
     class Meta:
         model = svpeople_models.Job
         fields = ('category', 'status', 'title', 'description', )
+    description = forms.CharField(widget=forms.Textarea(attrs={'cols':'70','rows':'15'}))

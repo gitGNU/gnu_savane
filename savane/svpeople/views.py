@@ -117,11 +117,16 @@ def job_add(request, slug, extra_context={}, post_save_redirect=None):
     return context
 
 @render_to('svpeople/job_form.html', mimetype=None)
-def job_update(request, slug, object_id, extra_context={}, form_class=svpeople_forms.JobForm):
-    group = get_object_or_404(auth_models.Group, name=slug)
-    object = get_object_or_404(svpeople_models.Job, id=object_id, group=group)
+def job_update(request, object_id, extra_context={}, form_class=svpeople_forms.JobForm, post_save_redirect=None):
+    object = get_object_or_404(svpeople_models.Job, id=object_id)
+    group = object.group
+
+    if request.user.is_anonymous() or not svmain_models.Membership.is_admin(request.user, group):
+        raise HttpAppException(_("Permission denied"))
 
     #form_class = svpeople_forms.JobForm
+    form_valid = False
+    formset_valid = False
 
     if request.method == 'POST': # If the form has been submitted...
         form = form_class(request.POST, instance=object) # A form bound to the POST data
@@ -129,14 +134,29 @@ def job_update(request, slug, object_id, extra_context={}, form_class=svpeople_f
             # Process the data
             object = form.save()
             messages.success(request, _("%s saved.") % capfirst(object._meta.verbose_name))
-            if post_save_redirect is None:
-                post_save_redirect = object.get_absolute_url()
-            return HttpResponseRedirect(post_save_redirect) # Redirect after POST
+            form_valid = True
     else:
         form = form_class(instance=object) # An unbound form
 
+    # Skills
+    from django.forms.models import inlineformset_factory
+    JobInventoryFormSet = inlineformset_factory(svpeople_models.Job, svpeople_models.JobInventory)
+    if request.method == "POST":
+        formset = JobInventoryFormSet(request.POST, request.FILES, instance=object)
+        if formset.is_valid():
+            formset.save()
+            formset_valid = True
+    else:
+        formset = JobInventoryFormSet(instance=object)
+
+    if form_valid and formset_valid:
+        if post_save_redirect is None:
+            post_save_redirect = object.get_absolute_url()
+        return HttpResponseRedirect(post_save_redirect) # Redirect after POST
+
     context = {
         'form' : form,
+        'formset' : formset,
         }
     context.update(extra_context)
     return context

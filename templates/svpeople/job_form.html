@@ -22,19 +22,35 @@
 </p>
 
 <form action="" method="post">{% csrf_token %}
+
 <table>
 {{form.as_table}}
 </table>
-<input type="submit" value="{{action}}" />
-</form>
 
 {% if not add %}
-<h2>{% trans "Required Skills:" %}</h2>
-
-{% with object.jobinventory_set.select_related as object_list %}
-{% include "svpeople/job_inventory.inc" %}
-{% endwith %}
+{{ formset.management_form }}
+<table class="box">
+  <tr>
+    <th>{% trans "Skill" %}</th>
+    <th>{% trans "Level" %}</th>
+    <th>{% trans "Experience" %}</th>
+    <th>{% trans "Delete" %}</th>
+  </tr>
+  {% for form in formset.forms %}
+  <tr class="{% cycle 'boxitemalt' 'boxitem' %}">
+    {% for field in form %}
+    {% if field.is_hidden %}
+    {{ field }}
+    {% else %}
+    <td>{{ field }}</td>
+    {% endif %}
+    {% endfor %}
+  {% endfor %}
 {% endif %}
+</table>
+
+<input type="submit" value="{{action}}" />
+</form>
 
 {% endblock %}
 
