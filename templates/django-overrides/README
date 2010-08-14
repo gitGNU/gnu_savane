@@ -1,0 +1,4 @@
+These templates override the Django default ones (such as login and
+password recovery).  They are placed in a separate directory so they
+can be easily excluded from the translation catalog: no need to
+translate them, because the Django contributors already did.

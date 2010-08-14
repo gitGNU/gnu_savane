@@ -1,5 +1,1 @@
-'registration/login.html' is the place where Django (more precisely
-'django.contrib.auth.views.login') looks for the login template by
-default.
-
-Other templates are required by the 'django-registration' application.
+These templates are required by the 'django-registration' application.

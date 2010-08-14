@@ -1,28 +1,29 @@
 Translations
 ============
 
-You create them with either:
+(see TRANSLATIONS.txt for the Savane-specific options)
+
+Generally, you create them using Django with either:
 
 - a monolithic translation catalog
   (what we currently use)
 
   cd framework/
   mkdir locale/  # or conf/locale/
-  django-admin makemessages -l fr -e html,inc
+  django-admin makemessages -l fr
   django-admin compilemessages -l fr
 
 - per-app translation catalogs:
 
   cd framework/savane/svmain/
   mkdir locale/
-  django-admin makemessages -l fr -e html,inc
+  django-admin makemessages -l fr
   django-admin compilemessages -l fr
 
 - in both cases, to update:
 
   cd ...
   django-admin makemessages -a
-
 
 Monolithic translations are not suited for deploying reusable apps
 (because they are installed in the projects rather than in the
