@@ -18,6 +18,8 @@
 
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
+import django.contrib.auth.models as auth_models
+import datetime
 
 # TODO: default '100' (aka 'nobody' or 'None', depending on
 # fields) -> change to NULL?
@@ -28,13 +30,13 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 RESTRICTION_CHOICES = (('2', _('anonymous')),
                        ('3', _('logged-in user')),
                        ('5', _('project member')),)
-NEW_ITEM_POSTING_RESTRICTION_CHOICES = PERMISSION_CHOICES + (('', _('group type default')),)
-COMMENT_POSTING_RESTRICTION_CHOICES = PERMISSION_CHOICES + (('', _('same as new item')),)
 PERMISSION_CHOICES = (('', _('group type default')),
                       ('9', _('none')),
                       ('1', _('technician')),
                       ('3', _('manager')),
                       ('2', _('technician & manager')),)
+NEW_ITEM_POSTING_RESTRICTION_CHOICES = PERMISSION_CHOICES + (('', _('group type default')),)
+COMMENT_POSTING_RESTRICTION_CHOICES = PERMISSION_CHOICES + (('', _('same as new item')),)
 
 
 NOTIFICATION_ROLES = (
@@ -79,7 +81,7 @@ class Tracker(models.Model):
                     ('support', 'support'),
                     ('tasks', 'tasks'),
                     )
-    name = models.CharField(max_length=7, choices=NAME_CHOICES)
+    name = models.CharField(max_length=7, choices=NAME_CHOICES, primary_key=True)
 
 class GroupTypeConfiguration(models.Model):
     """
@@ -94,30 +96,30 @@ class GroupTypeConfiguration(models.Model):
     comment_posting_restriction = models.CharField(max_length=1,
                                                    choices=COMMENT_POSTING_RESTRICTION_CHOICES,
                                                    blank=True)
-    default_member_permission = models.CharField(max_length=1, choices=PERMISSION, blank=True)
+    default_member_permission = models.CharField(max_length=1, choices=PERMISSION_CHOICES, blank=True)
 
 class GroupConfiguration(models.Model):
     """
     Previously in table "groups_default_permissions"
     """
     tracker = models.ForeignKey('Tracker')
-    group = models.ForeignKey('auth.Group')
+    group = models.ForeignKey(auth_models.Group)
     new_item_restriction = models.CharField(max_length=1,
                                             choices=NEW_ITEM_POSTING_RESTRICTION_CHOICES,
                                             blank=True)
     comment_restriction = models.CharField(max_length=1,
                                            choices=COMMENT_POSTING_RESTRICTION_CHOICES,
                                            blank=True)
-    default_member_permission = models.CharField(max_length=1, choices=PERMISSION, blank=True)
+    default_member_permission = models.CharField(max_length=1, choices=PERMISSION_CHOICES, blank=True)
 
 class MemberPermission(models.Model):
     """
     Previously in table "user_group"
     """
     tracker = models.ForeignKey('Tracker')
-    group = models.ForeignKey('auth.Group')
-    user = models.ForeignKey('auth.Group')
-    permission = models.CharField(max_length=1, choices=Tracker.PERMISSION, blank=True)
+    group = models.ForeignKey(auth_models.Group)
+    user = models.ForeignKey(auth_models.User)
+    permission = models.CharField(max_length=1, choices=PERMISSION_CHOICES, blank=True)
 
 #class SquadPermission(models.Model): pass
 
@@ -181,7 +183,7 @@ class FieldUsage(models.Model):
                                ('1', _('optional (empty values are accepted)')),
                                ('3', _('mandatory')),)
     bug_field = models.ForeignKey('Field')
-    group = models.ForeignKey('auth.Group')
+    group = models.ForeignKey(auth_models.Group)
     use_it = models.BooleanField(_("used"))
     show_on_add = models.CharField(max_length=1, choices=SHOW_ON_ADD_CHOICES,
                                    default='0', blank=True, null=True)
@@ -190,7 +192,7 @@ class FieldUsage(models.Model):
       # show_on_add_anonymous = models.BooleanField("show to anonymous users")
     show_on_add_members = models.BooleanField(_("show to project members"))
     place = models.IntegerField() # new:rank
-    transition_default_auth = models.CharField(max_lenth=1, choices=TRANSITION_DEFAULT_AUTH, default='A')
+    transition_default_auth = models.CharField(max_length=1, choices=TRANSITION_DEFAULT_AUTH_CHOICES, default='A')
 
     custom_empty_ok = models.CharField(max_length=1, choices=CUSTOM_EMPTY_OK_CHOICES,
                                        default='0', blank=True, null=True)
@@ -219,7 +221,7 @@ class FieldValue(models.Model):
                       ('H', _('hidden')), # mask previously-active or system fields
                       ('P', _('permanent')),) # status cannot be modified, always visible
     bug_field = models.ForeignKey('Field')
-    group = models.ForeignKey('auth.Group') # =100 for system-wide values
+    group = models.ForeignKey(auth_models.Group) # =100 for system-wide values
     value_id = models.IntegerField(db_index=True) # group_specific value identifier
       # It's not a duplicate of 'id', as it's the value referenced by
       # Item fields, and the configuration of that value can be
@@ -259,22 +261,22 @@ class Item(models.Model):
     # Per-tracker public item identifier.  Reason is historical:
     # trackers were stored in different tables, each with its own
     # auto_increment field:
-    bugs_id    = models.ForeignKey(BugsPublicId,    blank=True, null=True)
-    task_id    = models.ForeignKey(TaskPublicId,    blank=True, null=True)
-    support_id = models.ForeignKey(SupportPublicId, blank=True, null=True)
-    patch_id   = models.ForeignKey(PatchPublicId,   blank=True, null=True)
+    bugs_id    = models.OneToOneField(BugsPublicId,    blank=True, null=True)
+    task_id    = models.OneToOneField(TaskPublicId,    blank=True, null=True)
+    support_id = models.OneToOneField(SupportPublicId, blank=True, null=True)
+    patch_id   = models.OneToOneField(PatchPublicId,   blank=True, null=True)
 
     # Non-fields values
-    group = models.ForeignKey('auth.Group')
+    group = models.ForeignKey(auth_models.Group)
     spamscore = models.IntegerField(default=0)
-    ip = IPAddressField(blank=True, null=True)
-    submitted_by = models.ForeignKey('auth.User', default=100)
+    ip = models.IPAddressField(blank=True, null=True)
+    submitted_by = models.ForeignKey(auth_models.User, default=100)
     date = models.DateTimeField(default=datetime.date.today)
     close_date = models.DateTimeField(blank=True, null=True)
 
     # Forward dependencies
-    dependencies = ManyToManyField('self', symmetrical=False,
-                                   related_name='reverse_dependencies')
+    dependencies = models.ManyToManyField('self', symmetrical=False,
+                                          related_name='reverse_dependencies')
 
     ##
     # Field values
@@ -388,9 +390,9 @@ class ItemHistory(models.Model):
        # But as it's a history field, adding constraints might be just bad.
     old_value= models.TextField(blank=True, null=True)
     new_value= models.TextField()
-    mod_by = models.ForeignKey('auth.User')
+    mod_by = models.ForeignKey(auth_models.User)
     date = models.DateTimeField(default=datetime.date.today)
-    ip = IPAddressField(blank=True, null=True)
+    ip = models.IPAddressField(blank=True, null=True)
 
     # Specific (bad!) field for 'details'
     # I guess 'details' could be stored separately.
@@ -408,7 +410,7 @@ class ItemCc(models.Model):
     """
     item = models.ForeignKey('Item')
     email = models.EmailField(max_length=255)
-    added_by = models.ForeignKey('auth.User')
+    added_by = models.ForeignKey(auth_models.User)
     comment = models.TextField()
     date = models.DateTimeField(default=datetime.date.today)
 
@@ -420,7 +422,7 @@ class ItemFile(models.Model):
     One file attached to an item.
     """
     item = models.ForeignKey('Item')
-    submitted_by = models.ForeignKey('auth.User')
+    submitted_by = models.ForeignKey(auth_models.User)
     date = models.DateTimeField(default=datetime.date.today)
     description = models.TextField()
     filename = models.TextField()
@@ -435,8 +437,8 @@ class ItemSpamScore(models.Model):
     Score is summed in ItemHistory.spamscore.
     """
     score = models.IntegerField(default=1)
-    affected_user = models.ForeignKey('auth.User')
-    reporter_user = models.ForeignKey('auth.User')
+    affected_user = models.ForeignKey(auth_models.User, related_name='itemspamscore_affected_set')
+    reporter_user = models.ForeignKey(auth_models.User, related_name='itemspamscore_reported_set')
     item = models.ForeignKey('Item')
     comment_id = models.ForeignKey('ItemHistory', null=True)
 
