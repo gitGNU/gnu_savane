@@ -46,6 +46,7 @@ LANGUAGES = (
     ('it',    'Italian'),
     ('ja',    'Japanese'),
     ('pt_BR', 'Brazilian Portuguese'),
+    ('ro',    'Romanian'),
     ('ru',    'Russian'),
     ('sv',    'Swedish'),
 )

@@ -1,0 +1,1831 @@
+# Copyright (C) 2010  Sorin-Mihai Vârgolici
+#
+# This file is part of Savane.
+#
+# Savane is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# Savane is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Savane\n"
+"Report-Msgid-Bugs-To: Savane-dev-i18n\n"
+"POT-Creation-Date: 2010-08-14 12:30+0000\n"
+"PO-Revision-Date: 2010-08-14 20:28+0200\n"
+"Last-Translator: Sorin-Mihai Vârgolici\n"
+"Language-Team: Romanian <TP??>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: savane/perms.py:27
+#: savane/perms.py:40
+#: savane/my/views.py:256
+#: savane/svpeople/views.py:126
+msgid "Permission denied"
+msgstr "Accesul interzis"
+
+#: savane/perms.py:54
+msgid "You are not superuser"
+msgstr "Nu ești superutilizator"
+
+#: savane/my/forms.py:25
+msgid "E-mail"
+msgstr "Email"
+
+#: savane/my/forms.py:28
+msgid "First name"
+msgstr "Prenume"
+
+#: savane/my/forms.py:29
+msgid "Last name"
+msgstr "Nume"
+
+#: savane/my/forms.py:31
+msgid "GPG key"
+msgstr "Cheie GPG"
+
+#: savane/my/forms.py:32
+#: savane/svmain/models.py:141
+msgid "You can write down here your (ASCII) public key (gpg --export --armor keyid)"
+msgstr "Poti scrie aici cheia ta publică (ASCII) (gpg --export --armor keyid)"
+
+#: savane/my/forms.py:36
+msgid "Key file"
+msgstr "Fișier cheie"
+
+#: savane/my/forms.py:37
+msgid "Be sure to upload the file ending with .pub"
+msgstr "Asigură-te că încarci fișierul ce se termină în .pub"
+
+#: savane/my/forms.py:40
+msgid "Key"
+msgstr "Cheie"
+
+#: savane/my/forms.py:52
+#, python-format
+msgid "The uploaded string is not a public key file: %s"
+msgstr "Șirul încărcat nu e o cheie publică: %s"
+
+#: savane/my/forms.py:70
+#, python-format
+msgid "The uploaded file is not a public key file: %s"
+msgstr "Fișierul încărcat nu e o cheie publică: %s"
+
+#: savane/my/urls.py:35
+#: templates/my/contact.html:5
+#: templates/my/i18n.html:5
+#: templates/my/resume_skill.html:5
+#: templates/my/ssh.html:5
+#: templates/svpeople/skillinventory_form.html:5
+msgid "My account configuration"
+msgstr "Configurația contului meu"
+
+#: savane/my/urls.py:38
+#: templates/my/index.html:9
+msgid "Contact info"
+msgstr "Informații de contact"
+
+#: savane/my/urls.py:45
+msgid "Edit your resume & skills"
+msgstr "Editează-ți CV-ul și abilităţile"
+
+#: savane/my/urls.py:48
+msgid "Change authorized keys"
+msgstr "Schimbă cheile autorizate"
+
+#: savane/my/urls.py:57
+msgid "Language"
+msgstr "Limbă"
+
+#: savane/my/views.py:80
+#: savane/my/views.py:92
+msgid "verification"
+msgstr "verificare"
+
+#: savane/my/views.py:81
+#, python-format
+msgid ""
+"You have requested a change of email address on %s.\n"
+"Please visit the following URL to complete the email change:"
+msgstr ""
+"Ai solicitat schimbarea adresei de email în %s.\n"
+"Vizitează următorul URL pentru a completa schimbarea emailului:"
+
+#: savane/my/views.py:86
+#: savane/my/views.py:106
+#, python-format
+msgid "-- the %s team."
+msgstr "-- echipa %s."
+
+#: savane/my/views.py:93
+#, python-format
+msgid ""
+"Someone, presumably you, has requested a change of email address on %(site_name)s.\n"
+"If it wasn't you, maybe someone is trying to steal your account...\n"
+"\n"
+"Your current address is %(email_current)s, the supposedly new address is %(email_new)s.\n"
+"\n"
+msgstr ""
+
+#: savane/my/views.py:101
+msgid ""
+"If you did not request that change, please visit the following URL to discard\n"
+"the email change and report the problem to us:"
+msgstr ""
+
+#: savane/my/views.py:112
+msgid "The system reported a failure when trying to send the confirmation mail. Please retry and report that problem to administrators."
+msgstr ""
+
+#: savane/my/views.py:113
+#, python-format
+msgid "Confirmation mailed to %s."
+msgstr "Confirmarea trimisă la %s."
+
+#: savane/my/views.py:114
+msgid "Follow the instructions in the email to complete the email change."
+msgstr ""
+
+#: savane/my/views.py:124
+msgid "Personal information changed."
+msgstr "Informația personală s-a schimbat."
+
+#: savane/my/views.py:144
+msgid "Email address updated."
+msgstr "Adresa de email actualizată."
+
+#: savane/my/views.py:146
+msgid "Confirm Email change"
+msgstr "Confirmă schimbarea emailului"
+
+#: savane/my/views.py:147
+#, python-format
+msgid "Confirm your e-mail change to %s?"
+msgstr "Confirmi schimbarea emailului tău în %s?"
+
+#: savane/my/views.py:149
+#: savane/my/views.py:165
+msgid "Invalid confirmation hash"
+msgstr ""
+
+#: savane/my/views.py:160
+msgid "Address change process discarded."
+msgstr ""
+
+#: savane/my/views.py:162
+msgid "Cancel Email change"
+msgstr "Anulează schimbarea emailului"
+
+#: savane/my/views.py:163
+#, python-format
+msgid "Cancel your e-mail change to %s?"
+msgstr ""
+
+#: savane/my/views.py:215
+#, python-format
+msgid "Key registered"
+msgid_plural "%(count)d keys registered"
+msgstr[0] "Cheie înregistrată"
+msgstr[1] "%(count)d chey înregistrate"
+
+#: savane/my/views.py:219
+msgid "Error while registering keys"
+msgstr ""
+
+#: savane/my/views.py:245
+msgid "Cannot remove the selected key"
+msgstr ""
+
+#: savane/my/views.py:270
+#, python-format
+msgid "Language set to %s"
+msgstr ""
+
+#: savane/svmain/admin.py:40
+msgid "Savane"
+msgstr "Savane"
+
+#: savane/svmain/admin.py:54
+msgid "General Settings"
+msgstr "Setări generale"
+
+#: savane/svmain/admin.py:55
+msgid "Project WWW Homepage"
+msgstr ""
+
+#: savane/svmain/admin.py:58
+msgid "Source Code Manager: CVS"
+msgstr ""
+
+#: savane/svmain/admin.py:61
+msgid "Source Code Manager: GNU Arch"
+msgstr ""
+
+#: savane/svmain/admin.py:64
+msgid "Source Code Manager: Subversion"
+msgstr ""
+
+#: savane/svmain/admin.py:67
+msgid "Source Code Manager: Git"
+msgstr ""
+
+#: savane/svmain/admin.py:70
+msgid "Source Code Manager: Mercurial"
+msgstr ""
+
+#: savane/svmain/admin.py:73
+msgid "Source Code Manager: Bazaar"
+msgstr ""
+
+#: savane/svmain/admin.py:76
+msgid "Download area"
+msgstr ""
+
+#: savane/svmain/admin.py:79
+msgid "Licenses"
+msgstr "Licențe"
+
+#: savane/svmain/admin.py:80
+#: templates/svpeople/job_detail.html:37
+msgid "Development Status"
+msgstr ""
+
+#: savane/svmain/admin.py:81
+msgid "Mailing List"
+msgstr ""
+
+#: savane/svmain/admin.py:87
+msgid "News Manager"
+msgstr ""
+
+#: savane/svmain/admin.py:88
+msgid "Project Menu Settings"
+msgstr ""
+
+#: savane/svmain/models.py:117
+#: savane/svmain/models.py:394
+msgid "Active"
+msgstr "Activ"
+
+#: savane/svmain/models.py:118
+#: savane/svmain/models.py:396
+#: savane/svmain/models.py:711
+#: savane/svpeople/models.py:32
+msgid "Deleted"
+msgstr "Sters"
+
+#: savane/svmain/models.py:119
+#: savane/svmain/models.py:395
+msgid "Pending"
+msgstr "În așteptare"
+
+#: savane/svmain/models.py:120
+msgid "Suspended"
+msgstr "Suspendat"
+
+#: savane/svmain/models.py:137
+msgid "new e-mail address"
+msgstr "adresă de email nouă"
+
+#: savane/svmain/models.py:215
+msgid "Development statuses"
+msgstr ""
+
+#: savane/svmain/models.py:221
+msgid "Will be added on each project main page"
+msgstr ""
+
+#: savane/svmain/models.py:230
+msgid "would be %LIST@gnu.org for GNU projects at sv.gnu.org"
+msgstr ""
+
+#: savane/svmain/models.py:232
+msgid "would be lists.gnu.org or lists.nongnu.org at sv.gnu.org [BACKEND SPECIFIC]"
+msgstr ""
+
+#: savane/svmain/models.py:234
+msgid "With this, you can force projects to follow a specific policy for the name of the %LIST. Here you should use the special wildcard %NAME, which is the part of the mailing list name that the project admin can define (would be %PROJECT-%NAME for non-GNU projects at sv.gnu.org). Do no add any @hostname here! You can specify multiple formats separated by a \",\" comma."
+msgstr ""
+
+#: savane/svmain/models.py:240
+msgid "This is useful if you provide directly download areas (created by the backend) or if you want to allow projects to configure the related menu entry (see below)."
+msgstr ""
+
+#: savane/svmain/models.py:248
+msgid "This is useful if you want project to select a license on submission."
+msgstr ""
+
+#: savane/svmain/models.py:250
+msgid "This is useful if you want project to be able to defines their development status that will be shown on their main page. This is purely a matter of cosmetics. This option is mainly here just to remove this content in case it is useless (it does not makes sense for organizational projects)."
+msgstr ""
+
+#: savane/svmain/models.py:252
+msgid "This is one of the main issue tracker of Savane. Projects are supposed to use it as primary interface with end user."
+msgstr ""
+
+#: savane/svmain/models.py:259
+msgid "the homepage link can be modified"
+msgstr ""
+
+#: savane/svmain/models.py:281
+msgid "the download _directory_ can be modified -- beware, if the backend is running and creating download dir, it can be used maliciously. don't activate this feature unless you truly know what you're doing"
+msgstr ""
+
+#: savane/svmain/models.py:285
+msgid "CVS"
+msgstr "CVS"
+
+#: savane/svmain/models.py:286
+msgid "Subversion"
+msgstr "Subversion"
+
+#: savane/svmain/models.py:287
+msgid "GNU Arch"
+msgstr "GNU Arch"
+
+#: savane/svmain/models.py:288
+msgid "Git"
+msgstr "Git"
+
+#: savane/svmain/models.py:289
+msgid "Mercurial"
+msgstr "Mercurial"
+
+#: savane/svmain/models.py:290
+msgid "Bazaar"
+msgstr "Bazaar"
+
+#: savane/svmain/models.py:294
+msgid "Basic directory"
+msgstr ""
+
+#: savane/svmain/models.py:295
+msgid "Basic CVS directory"
+msgstr ""
+
+#: savane/svmain/models.py:296
+msgid "Basic Subversion directory"
+msgstr ""
+
+#: savane/svmain/models.py:297
+msgid "Basic Git directory"
+msgstr ""
+
+#: savane/svmain/models.py:298
+msgid "Basic Mercurial directory"
+msgstr ""
+
+#: savane/svmain/models.py:299
+msgid "Basic Bazaar directory"
+msgstr ""
+
+#: savane/svmain/models.py:300
+msgid "CVS Attic/Gna!"
+msgstr "CVS Attic/Gna!"
+
+#: savane/svmain/models.py:301
+msgid "Subversion Attic/Gna!"
+msgstr "Subversion Attic/Gna!"
+
+#: savane/svmain/models.py:302
+msgid "Subversion Subdirectory Attic/Gna!"
+msgstr ""
+
+#: savane/svmain/models.py:303
+msgid "CVS Savannah GNU"
+msgstr ""
+
+#: savane/svmain/models.py:304
+msgid "CVS Savannah non-GNU"
+msgstr ""
+
+#: savane/svmain/models.py:383
+msgid "project information"
+msgstr "informații despre proiect"
+
+#: savane/svmain/models.py:390
+msgid "full name"
+msgstr "nume complet"
+
+#: savane/svmain/models.py:391
+msgid "Full project name (not Unix system name)"
+msgstr ""
+
+#: savane/svmain/models.py:397
+msgid "Maintenance (accessible only to superuser)"
+msgstr ""
+
+#: savane/svmain/models.py:398
+msgid "Incomplete (failure during registration)"
+msgstr ""
+
+#: savane/svmain/models.py:403
+msgid "short description"
+msgstr "descriere scurtă"
+
+#: savane/svmain/models.py:404
+msgid "long description"
+msgstr "descriere lungă"
+
+#: savane/svmain/models.py:405
+msgid "license"
+msgstr "licență"
+
+#: savane/svmain/models.py:406
+msgid "license (other)"
+msgstr "licență (altele)"
+
+#: savane/svmain/models.py:410
+msgid "development status"
+msgstr "stadiul dezvoltării"
+
+#: savane/svmain/models.py:605
+#: templates/svmain/group_admin_members.html:20
+msgid "Admin"
+msgstr "Admin"
+
+#: savane/svmain/models.py:608
+msgid "Pending moderation"
+msgstr "Așteaptă moderarea"
+
+#: savane/svmain/models.py:609
+msgid "Squad"
+msgstr "Echipă"
+
+#: savane/svmain/models.py:612
+msgid "membership properties"
+msgstr ""
+
+#: savane/svmain/models.py:614
+msgid "Untick to hide emeritous members from the project page"
+msgstr ""
+
+#: savane/svmain/models.py:712
+msgid "To be created"
+msgstr "De creat"
+
+#: savane/svmain/models.py:713
+msgid "To be reconfigured"
+msgstr "De reconfigurat"
+
+#: savane/svmain/models.py:714
+msgid "Created"
+msgstr "Creat"
+
+#: savane/svmain/urls.py:64
+#: templates/base.html:51
+msgid "Users"
+msgstr "Utilizatori"
+
+#: savane/svmain/urls.py:70
+msgid "User detail"
+msgstr "Detalii utilizator"
+
+#: savane/svmain/urls.py:84
+#: templates/base.html:52
+msgid "Projects"
+msgstr "Proiecte"
+
+#: savane/svmain/urls.py:98
+msgid "Project memberlist"
+msgstr "Lista membrilor proiectului"
+
+#: savane/svmain/urls.py:103
+msgid "Project members GPG keyring"
+msgstr "Inelul de chei GPG al membrilor proiectului"
+
+#: savane/svmain/urls.py:108
+#: savane/svmain/templatetags/svtopmenu.py:75
+msgid "Mailing lists"
+msgstr "Liste de discuții"
+
+#: savane/svmain/urls.py:114
+msgid "CVS Repositories"
+msgstr ""
+
+#: savane/svmain/urls.py:121
+msgid "Subversion Repositories"
+msgstr ""
+
+#: savane/svmain/urls.py:128
+msgid "GNU Arch Repositories"
+msgstr ""
+
+#: savane/svmain/urls.py:135
+msgid "Git Repositories"
+msgstr ""
+
+#: savane/svmain/urls.py:142
+msgid "Mercurial Repositories"
+msgstr ""
+
+#: savane/svmain/urls.py:149
+msgid "Bazaar Repositories"
+msgstr ""
+
+#: savane/svmain/urls.py:163
+msgid "Editing public info"
+msgstr ""
+
+#: savane/svmain/urls.py:166
+#: savane/svmain/templatetags/svtopmenu.py:59
+msgid "Select features"
+msgstr ""
+
+#: savane/svmain/urls.py:170
+#: savane/svmain/urls.py:173
+#: savane/svmain/templatetags/svtopmenu.py:61
+msgid "Manage members"
+msgstr ""
+
+#: savane/svmain/urls.py:180
+msgid "License list"
+msgstr "Lista licențelor"
+
+#: savane/svmain/urls.py:184
+msgid "License detail"
+msgstr "Detaliile licenței"
+
+#: savane/svmain/views.py:80
+msgid "Request for inclusion already registered"
+msgstr ""
+
+#: savane/svmain/views.py:84
+msgid "Request for inclusion sent to project administrators"
+msgstr ""
+
+#: savane/svmain/views.py:155
+#, python-format
+msgid "GPG Keyring of the project %s"
+msgstr ""
+
+#: savane/svmain/views.py:185
+#: savane/svmain/views.py:211
+#: savane/svpeople/views.py:106
+#, python-format
+msgid "%s saved."
+msgstr "%s salvat."
+
+#: savane/svmain/views.py:245
+#: savane/svmain/views.py:250
+#, python-format
+msgid "Permissions of %s updated."
+msgstr ""
+
+#: savane/svmain/views.py:254
+#: savane/svmain/views.py:263
+#, python-format
+msgid "User %s deleted from the project."
+msgstr ""
+
+#: savane/svmain/views.py:260
+#: savane/svmain/views.py:281
+#, python-format
+msgid "User %s added to the project."
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:43
+#: savane/svmain/templatetags/svtopmenu.py:47
+msgid "Main"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:49
+#: templates/svmain/group_detail.html:31
+msgid "View members"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:51
+msgid "GPG keyring"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:55
+msgid "Administer:"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:57
+msgid "Edit public info"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:65
+msgid "Homepage"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:67
+msgid "Browse project homepage (outside of Savane)"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:70
+msgid "Download"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:72
+msgid "Download area: files released"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:77
+msgid "List existing mailing lists"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:79
+#: savane/svmain/templatetags/svtopmenu.py:157
+msgid "Browse"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:83
+msgid "Configure:"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:89
+msgid "Source code"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:91
+msgid "Source Code Management"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:95
+msgid "Use Git"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:98
+#: savane/svmain/templatetags/svtopmenu.py:108
+#: savane/svmain/templatetags/svtopmenu.py:118
+#: savane/svmain/templatetags/svtopmenu.py:128
+#: savane/svmain/templatetags/svtopmenu.py:138
+#: savane/svmain/templatetags/svtopmenu.py:147
+#: templates/svmain/group_vcs_arch.html:23
+#: templates/svmain/group_vcs_bzr.html:23
+#: templates/svmain/group_vcs_cvs.html:23
+#: templates/svmain/group_vcs_git.html:23
+#: templates/svmain/group_vcs_hg.html:23
+#: templates/svmain/group_vcs_svn.html:23
+msgid "Browse sources repository"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:101
+#: savane/svmain/templatetags/svtopmenu.py:111
+#: savane/svmain/templatetags/svtopmenu.py:121
+#: savane/svmain/templatetags/svtopmenu.py:131
+#: savane/svmain/templatetags/svtopmenu.py:141
+#: savane/svmain/templatetags/svtopmenu.py:150
+#: templates/svmain/group_vcs_arch.html:26
+#: templates/svmain/group_vcs_bzr.html:26
+#: templates/svmain/group_vcs_cvs.html:26
+#: templates/svmain/group_vcs_git.html:26
+#: templates/svmain/group_vcs_hg.html:26
+#: templates/svmain/group_vcs_svn.html:26
+msgid "Browse web pages repository"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:105
+msgid "Use Mercurial"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:115
+msgid "Use Bazaar"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:125
+msgid "Use Subversion"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:135
+msgid "Use GNU Arch"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:144
+msgid "Use CVS"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:154
+msgid "Jobs"
+msgstr ""
+
+#: savane/svmain/templatetags/svtopmenu.py:161
+#: templates/my/ssh.html:30
+#: templates/svmain/group_admin_members_add.html:34
+msgid "Add"
+msgstr ""
+
+#: savane/svpeople/models.py:30
+msgid "Open"
+msgstr ""
+
+#: savane/svpeople/models.py:31
+msgid "Filled"
+msgstr ""
+
+#: savane/svpeople/models.py:36
+#: templates/svmain/group_list.html:14
+msgid "Short description"
+msgstr ""
+
+#: savane/svpeople/models.py:37
+msgid "Long description"
+msgstr ""
+
+#: savane/svpeople/models.py:39
+msgid "Status"
+msgstr ""
+
+#: savane/svpeople/models.py:40
+#: templates/svpeople/index.html:15
+#: templates/svpeople/job_list.inc:5
+msgid "Category"
+msgstr ""
+
+#: savane/svpeople/models.py:63
+msgid "category"
+msgstr ""
+
+#: savane/svpeople/models.py:64
+msgid "categories"
+msgstr ""
+
+#: savane/svpeople/models.py:70
+msgid "skill"
+msgstr ""
+
+#: savane/svpeople/models.py:71
+msgid "skills"
+msgstr ""
+
+#: savane/svpeople/models.py:75
+msgid "skill level"
+msgstr ""
+
+#: savane/svpeople/models.py:76
+msgid "skill levels"
+msgstr ""
+
+#: savane/svpeople/models.py:79
+msgid "skill year"
+msgstr ""
+
+#: savane/svpeople/models.py:80
+msgid "skill years"
+msgstr ""
+
+#: savane/svpeople/models.py:84
+msgid "Developer"
+msgstr ""
+
+#: savane/svpeople/models.py:85
+msgid "Project manager"
+msgstr ""
+
+#: savane/svpeople/models.py:86
+msgid "Unix admin"
+msgstr ""
+
+#: savane/svpeople/models.py:87
+msgid "Doc writer"
+msgstr ""
+
+#: savane/svpeople/models.py:88
+msgid "Tester"
+msgstr ""
+
+#: savane/svpeople/models.py:89
+msgid "Support manager"
+msgstr ""
+
+#: savane/svpeople/models.py:90
+msgid "Graphic/other designer"
+msgstr ""
+
+#: savane/svpeople/models.py:91
+msgid "Translator"
+msgstr ""
+
+#: savane/svpeople/models.py:94
+msgid "Base knowledge"
+msgstr ""
+
+#: savane/svpeople/models.py:95
+msgid "Good knowledge"
+msgstr ""
+
+#: savane/svpeople/models.py:96
+msgid "Master"
+msgstr ""
+
+#: savane/svpeople/models.py:97
+msgid "Master apprentice"
+msgstr ""
+
+#: savane/svpeople/models.py:98
+msgid "Expert"
+msgstr ""
+
+#: savane/svpeople/models.py:101
+msgid "(< 6 months)"
+msgstr ""
+
+#: savane/svpeople/models.py:102
+msgid "6 Mo - 2 yr"
+msgstr ""
+
+#: savane/svpeople/models.py:103
+msgid "2 yr - 5 yr"
+msgstr ""
+
+#: savane/svpeople/models.py:104
+msgid "5 yr - 10 yr"
+msgstr ""
+
+#: savane/svpeople/models.py:105
+msgid "> 10 years"
+msgstr ""
+
+#: savane/svpeople/models.py:110
+msgid "job inventory"
+msgstr ""
+
+#: savane/svpeople/models.py:111
+msgid "job inventories"
+msgstr ""
+
+#: savane/svpeople/models.py:125
+msgid "skill inventory"
+msgstr ""
+
+#: savane/svpeople/models.py:126
+msgid "skill inventories"
+msgstr ""
+
+#: savane/svpeople/urls.py:35
+msgid "Projects needing help"
+msgstr ""
+
+#: savane/svpeople/urls.py:41
+msgid "Project help wanted"
+msgstr ""
+
+#: savane/svpeople/urls.py:44
+msgid "Looking for a job to edit"
+msgstr ""
+
+#: savane/svpeople/urls.py:48
+msgid "View a job"
+msgstr ""
+
+#: savane/svpeople/urls.py:53
+msgid "Edit a job for your project"
+msgstr ""
+
+#: savane/svpeople/urls.py:54
+#: templates/my/contact.html:14
+#: templates/my/contact.html.py:22
+#: templates/my/i18n.html:22
+#: templates/svpeople/skillinventory_form.html:18
+msgid "Update"
+msgstr ""
+
+#: savane/svpeople/urls.py:60
+msgid "Create a job for your project"
+msgstr ""
+
+#: savane/svpeople/urls.py:62
+msgid "Continue >>"
+msgstr ""
+
+#: savane/svpeople/urls.py:67
+msgid "Edit your skills"
+msgstr ""
+
+#: savane/svpeople/views.py:137
+msgid "Job description saved."
+msgstr ""
+
+#: savane/svpeople/views.py:153
+#: savane/svpeople/views.py:174
+msgid "Skills updated."
+msgstr ""
+
+#: savane/tracker/models.py:30
+msgid "anonymous"
+msgstr ""
+
+#: savane/tracker/models.py:31
+msgid "logged-in user"
+msgstr ""
+
+#: savane/tracker/models.py:32
+msgid "project member"
+msgstr ""
+
+#: savane/tracker/models.py:33
+#: savane/tracker/models.py:38
+msgid "group type default"
+msgstr ""
+
+#: savane/tracker/models.py:34
+msgid "none"
+msgstr ""
+
+#: savane/tracker/models.py:35
+msgid "technician"
+msgstr ""
+
+#: savane/tracker/models.py:36
+msgid "manager"
+msgstr ""
+
+#: savane/tracker/models.py:37
+msgid "technician & manager"
+msgstr ""
+
+#: savane/tracker/models.py:39
+msgid "same as new item"
+msgstr ""
+
+#: savane/tracker/models.py:43
+#: savane/tracker/models.py:46
+msgid "Submitter"
+msgstr ""
+
+#: savane/tracker/models.py:43
+msgid "The person who submitted the item"
+msgstr ""
+
+#: savane/tracker/models.py:44
+msgid "Assignee"
+msgstr ""
+
+#: savane/tracker/models.py:44
+msgid "The person to whom the item was assigned"
+msgstr ""
+
+#: savane/tracker/models.py:45
+msgid "CC"
+msgstr ""
+
+#: savane/tracker/models.py:45
+msgid "The person who is in the CC list"
+msgstr ""
+
+#: savane/tracker/models.py:46
+msgid "A person who once posted a follow-up comment"
+msgstr ""
+
+#: savane/tracker/models.py:50
+msgid "Role has changed"
+msgstr ""
+
+#: savane/tracker/models.py:51
+msgid "I'm added to or removed from this role"
+msgstr ""
+
+#: savane/tracker/models.py:52
+msgid "New comment"
+msgstr ""
+
+#: savane/tracker/models.py:53
+msgid "A new followup comment is added"
+msgstr ""
+
+#: savane/tracker/models.py:54
+msgid "New attachment"
+msgstr ""
+
+#: savane/tracker/models.py:55
+msgid "A new file attachment is added"
+msgstr ""
+
+#: savane/tracker/models.py:56
+msgid "CC Change"
+msgstr ""
+
+#: savane/tracker/models.py:57
+msgid "A new CC address is added/removed"
+msgstr ""
+
+#: savane/tracker/models.py:58
+msgid "Item closed"
+msgstr ""
+
+#: savane/tracker/models.py:59
+msgid "The item is closed"
+msgstr ""
+
+#: savane/tracker/models.py:60
+msgid "PSS change"
+msgstr ""
+
+#: savane/tracker/models.py:61
+msgid "Priority,Status,Severity changes"
+msgstr ""
+
+#: savane/tracker/models.py:62
+msgid "Any other change"
+msgstr ""
+
+#: savane/tracker/models.py:63
+msgid "Any change not mentioned above"
+msgstr ""
+
+#: savane/tracker/models.py:64
+msgid "I did it"
+msgstr ""
+
+#: savane/tracker/models.py:65
+msgid "I am the author of the change"
+msgstr ""
+
+#: savane/tracker/models.py:66
+msgid "New Item"
+msgstr ""
+
+#: savane/tracker/models.py:67
+msgid "A new item has been submitted"
+msgstr ""
+
+#: savane/tracker/models.py:145
+msgid "date field"
+msgstr ""
+
+#: savane/tracker/models.py:146
+msgid "select box"
+msgstr ""
+
+#: savane/tracker/models.py:147
+msgid "text area"
+msgstr ""
+
+#: savane/tracker/models.py:148
+msgid "text field"
+msgstr ""
+
+#: savane/tracker/models.py:149
+msgid "system"
+msgstr ""
+
+#: savane/tracker/models.py:150
+msgid "project"
+msgstr ""
+
+#: savane/tracker/models.py:162
+msgid "field cannot be disabled in configuration"
+msgstr ""
+
+#: savane/tracker/models.py:165
+msgid "field is not entered by the user but by the system"
+msgstr ""
+
+#: savane/tracker/models.py:166
+msgid "let the user change the label and description"
+msgstr ""
+
+#: savane/tracker/models.py:175
+msgid "undefined"
+msgstr ""
+
+#: savane/tracker/models.py:176
+msgid "allowed"
+msgstr ""
+
+#: savane/tracker/models.py:177
+msgid "forbidden"
+msgstr ""
+
+#: savane/tracker/models.py:178
+msgid "no"
+msgstr ""
+
+#: savane/tracker/models.py:179
+msgid "show to logged in users"
+msgstr ""
+
+#: savane/tracker/models.py:180
+msgid "show to anonymous users"
+msgstr ""
+
+#: savane/tracker/models.py:181
+msgid "show to both logged in and anonymous users"
+msgstr ""
+
+#: savane/tracker/models.py:182
+msgid "mandatory only if it was presented to the original submitter"
+msgstr ""
+
+#: savane/tracker/models.py:183
+msgid "optional (empty values are accepted)"
+msgstr ""
+
+#: savane/tracker/models.py:184
+msgid "mandatory"
+msgstr ""
+
+#: savane/tracker/models.py:187
+msgid "used"
+msgstr ""
+
+#: savane/tracker/models.py:193
+msgid "show to project members"
+msgstr ""
+
+#: savane/tracker/models.py:207
+msgid "keep field value changes in history"
+msgstr ""
+
+#: savane/tracker/models.py:220
+msgid "active"
+msgstr ""
+
+#: savane/tracker/models.py:221
+msgid "hidden"
+msgstr ""
+
+#: savane/tracker/models.py:222
+msgid "permanent"
+msgstr ""
+
+#: savane/tracker/models.py:235
+msgid "comma-separated list of e-mail addresses to notify when an item is created or modified in this category"
+msgstr ""
+
+#: savane/tracker/models.py:236
+msgid "send on all updates"
+msgstr ""
+
+#: savane/tracker/models.py:304
+msgid "open/closed"
+msgstr ""
+
+#: savane/tracker/models.py:311
+msgid "item group"
+msgstr ""
+
+#: savane/tracker/models.py:399
+msgid "comment type"
+msgstr ""
+
+#: savane/tracker/models.py:405
+msgid "total spamscore for this comment"
+msgstr ""
+
+#: savane/utils/__init__.py:44
+#, python-format
+msgid "SSH error: %s"
+msgstr ""
+
+#: savane/utils/markup.py:48
+msgid "Basic markup"
+msgstr ""
+
+#: savane/utils/markup.py:49
+msgid "Only basic text tags are available in this input field."
+msgstr ""
+
+#: savane/utils/markup.py:51
+msgid "Rich markup"
+msgstr ""
+
+#: savane/utils/markup.py:52
+msgid "Rich and basic text tags are available in this input field."
+msgstr ""
+
+#: savane/utils/markup.py:54
+msgid "Full markup"
+msgstr ""
+
+#: savane/utils/markup.py:55
+msgid "Every tags are available in this input field."
+msgstr ""
+
+#: savane/utils/markup.py:57
+msgid "No markup"
+msgstr ""
+
+#: savane/utils/markup.py:58
+msgid "No tags are available in this input field."
+msgstr ""
+
+#: savane/utils/markup.py:61
+msgid "Check the markup reminder in related documentation for a description of these tags."
+msgstr ""
+
+#: templates/base.html:17
+msgid "Back to homepage"
+msgstr ""
+
+#: templates/base.html:21
+#, python-format
+msgid "%(username)s logged in as superuser"
+msgstr ""
+
+#: templates/base.html:24
+#, python-format
+msgid "Connected as %(username)s"
+msgstr ""
+
+#: templates/base.html:26
+msgid "My account"
+msgstr ""
+
+#: templates/base.html:27
+msgid "Logout"
+msgstr ""
+
+#: templates/base.html:31
+msgid "Superuser rights are required to perform site admin tasks"
+msgstr ""
+
+#: templates/base.html:31
+msgid "Become superuser"
+msgstr ""
+
+#: templates/base.html:33
+msgid "Impersonate this user"
+msgstr ""
+
+#: templates/base.html:33
+#: templates/my/contact.html:5
+#: templates/my/i18n.html:5
+#: templates/my/resume_skill.html:5
+#: templates/my/ssh.html:5
+#: templates/svmain/group_admin_features.html:6
+#: templates/svmain/group_admin_info.html:6
+#: templates/svmain/group_admin_members.html:6
+#: templates/svmain/group_admin_members_add.html:6
+#: templates/svmain/group_admin_members_add.html:20
+#: templates/svmain/group_gpgkeyring.html:6
+#: templates/svmain/group_memberlist.html:6
+#: templates/svpeople/index.html:5
+#: templates/svpeople/job_detail.html:7
+#: templates/svpeople/job_form.html:6
+#: templates/svpeople/job_list_by_category.html:5
+#: templates/svpeople/job_list_by_group.html:5
+#: templates/svpeople/job_list_by_type.html:5
+#: templates/svpeople/skillinventory_form.html:5
+msgid ": "
+msgstr ""
+
+#: templates/base.html:39
+msgid "End the Superuser session, go back to normal user session"
+msgstr ""
+
+#: templates/base.html:39
+msgid "Logout Superuser"
+msgstr ""
+
+#: templates/base.html:43
+msgid "Login status"
+msgstr ""
+
+#: templates/base.html:44
+msgid "Not connected"
+msgstr ""
+
+#: templates/base.html:45
+msgid "Login"
+msgstr ""
+
+#: templates/base.html:46
+msgid "New user"
+msgstr ""
+
+#: templates/base.html:48
+msgid "Set language"
+msgstr ""
+
+#: templates/base.html:50
+#: templates/svmain/group_admin_members_add.html:20
+#: templates/svmain/group_list.html:9
+#: templates/svmain/user_list.html:9
+msgid "Search"
+msgstr ""
+
+#: templates/base.html:53
+msgid "Contributors wanted"
+msgstr ""
+
+#: templates/base.html:55
+msgid "Site help"
+msgstr ""
+
+#: templates/base.html:56
+msgid "Contact us"
+msgstr ""
+
+#: templates/title.html:3
+msgid "Welcome"
+msgstr ""
+
+#: templates/my/contact.html:9
+msgid "Change e-mail"
+msgstr ""
+
+#: templates/my/contact.html:17
+msgid "Change name"
+msgstr ""
+
+#: templates/my/index.html:6
+msgid "Account configuration"
+msgstr ""
+
+#: templates/my/index.html:10
+msgid "SSH public keys"
+msgstr ""
+
+#: templates/my/index.html:11
+msgid "Edit resume and skills"
+msgstr ""
+
+#: templates/my/index.html:12
+msgid "Change password"
+msgstr ""
+
+#: templates/my/index.html:17
+msgid "Public information"
+msgstr ""
+
+#: templates/my/index.html:20
+msgid "View your public profile"
+msgstr ""
+
+#: templates/my/index.html:25
+msgid "My groups"
+msgstr ""
+
+#: templates/my/index.html:43
+#: templates/svmain/group_list.html:24
+msgid "No groups."
+msgstr ""
+
+#: templates/my/resume_skill.html:10
+msgid "Publicly viewable"
+msgstr ""
+
+#: templates/my/resume_skill.html:14
+msgid "Resume - Description of experience"
+msgstr ""
+
+#: templates/my/resume_skill.html:18
+#: templates/svpeople/skillinventory_form.html:10
+msgid "Skills"
+msgstr ""
+
+#: templates/my/resume_skill.html:20
+#: templates/svpeople/job_detail.html:18
+msgid "Edit"
+msgstr ""
+
+#: templates/my/ssh.html:9
+msgid "Working SSH Keys"
+msgstr ""
+
+#: templates/my/ssh.html:19
+#: templates/svpeople/skill_inventory_edit.inc:9
+msgid "Delete"
+msgstr ""
+
+#: templates/my/ssh.html:24
+msgid "No SSH keys yet."
+msgstr ""
+
+#: templates/my/ssh.html:27
+msgid "SSH keys"
+msgstr ""
+
+#: templates/svmain/generic_confirm.html:9
+msgid "Are you sure?"
+msgstr ""
+
+#: templates/svmain/generic_confirm.html:13
+msgid "Yes"
+msgstr ""
+
+#: templates/svmain/group_admin.html:6
+#: templates/svmain/group_admin_features.html:6
+#: templates/svmain/group_admin_info.html:6
+#: templates/svmain/group_admin_members.html:6
+#: templates/svmain/group_admin_members_add.html:6
+msgid "Administration summary"
+msgstr ""
+
+#: templates/svmain/group_admin_features.html:22
+#: templates/svmain/group_admin_info.html:26
+msgid "Submit"
+msgstr ""
+
+#: templates/svmain/group_admin_info.html:22
+msgid "License:"
+msgstr ""
+
+#: templates/svmain/group_admin_info.html:23
+msgid "License changes are moderated by the site administrators. Please contact them to change your project license."
+msgstr ""
+
+#: templates/svmain/group_admin_members.html:17
+msgid "Members"
+msgstr ""
+
+#: templates/svmain/group_admin_members.html:20
+#: templates/svmain/group_admin_members.html:48
+#: templates/svmain/group_admin_members_add.html:25
+#: templates/svmain/user_list.html:14
+msgid "User"
+msgstr ""
+
+#: templates/svmain/group_admin_members.html:20
+msgid "Remove?"
+msgstr ""
+
+#: templates/svmain/group_admin_members.html:30
+msgid "You are Admin"
+msgstr ""
+
+#: templates/svmain/group_admin_members.html:45
+msgid "Requests for inclusion"
+msgstr ""
+
+#: templates/svmain/group_admin_members.html:48
+msgid "Approve"
+msgstr ""
+
+#: templates/svmain/group_admin_members.html:48
+msgid "Reject"
+msgstr ""
+
+#: templates/svmain/group_admin_members.html:58
+msgid "No requests for inclusion"
+msgstr ""
+
+#: templates/svmain/group_admin_members.html:61
+msgid "OK"
+msgstr ""
+
+#: templates/svmain/group_admin_members.html:64
+msgid "Add users to group"
+msgstr ""
+
+#: templates/svmain/group_admin_members_add.html:25
+#: templates/svmain/group_list.html:14
+#: templates/svmain/user_list.html:14
+msgid "Full name"
+msgstr ""
+
+#: templates/svmain/group_admin_members_add.html:25
+#: templates/svmain/user_list.html:14
+msgid "Profile"
+msgstr ""
+
+#: templates/svmain/group_admin_members_add.html:30
+msgid "view"
+msgstr ""
+
+#: templates/svmain/group_admin_members_add.html:41
+msgid "All other users are members of your group!"
+msgstr ""
+
+#: templates/svmain/group_detail.html:7
+#: templates/svmain/group_gpgkeyring.html:6
+#: templates/svmain/group_memberlist.html:6
+msgid "Summary"
+msgstr ""
+
+#: templates/svmain/group_detail.html:18
+msgid "Membership info"
+msgstr ""
+
+#: templates/svmain/group_detail.html:21
+msgid "Project admins:"
+msgstr ""
+
+#: templates/svmain/group_detail.html:28
+msgid "No members!"
+msgstr ""
+
+#: templates/svmain/group_detail.html:30
+#, python-format
+msgid "%(count)s active member"
+msgid_plural "%(count)s active members"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/svmain/group_detail.html:35
+msgid "Group identification"
+msgstr ""
+
+#: templates/svmain/group_detail.html:37
+msgid "Id:"
+msgstr ""
+
+#: templates/svmain/group_detail.html:38
+msgid "System name:"
+msgstr ""
+
+#: templates/svmain/group_detail.html:39
+#: templates/svmain/license_detail.html:7
+msgid "Name:"
+msgstr ""
+
+#: templates/svmain/group_detail.html:40
+msgid "Group type:"
+msgstr ""
+
+#: templates/svmain/group_detail.html:47
+msgid "This projects is currently not approved and is waiting for moderation."
+msgstr ""
+
+#: templates/svmain/group_detail.html:56
+#, python-format
+msgid "This project has not yet submitted a short description. You can %(begin_link)ssubmit it%(end_link)s now."
+msgstr ""
+
+#: templates/svmain/group_detail.html:59
+msgid "Registration date"
+msgstr ""
+
+#: templates/svmain/group_detail.html:61
+#: templates/svpeople/job_detail.html:33
+msgid "License"
+msgstr ""
+
+#: templates/svmain/group_detail.html:64
+msgid "Development status"
+msgstr ""
+
+#: templates/svmain/group_detail.html:71
+msgid "Join this project"
+msgstr ""
+
+#: templates/svmain/group_gpgkeyring.html:18
+msgid "Below is the content of this project's keyring. These are the successfully registered keys of project members."
+msgstr ""
+
+#: templates/svmain/group_gpgkeyring.html:22
+#, python-format
+msgid "You can %(begin_link)sdownload the keyring%(end_link)s and import it with the command %(command)s"
+msgstr ""
+
+#: templates/svmain/group_gpgkeyring.html:25
+msgid "They GPG Keyring of the project is empty, no keys were registered"
+msgstr ""
+
+#: templates/svmain/group_list.html:14
+msgid "Unix name"
+msgstr ""
+
+#: templates/svmain/group_mailinglist.html:24
+#, python-format
+msgid "To see the collection of prior posting to the list, visit the %(begin_link)s%(list_name)s archives%(end_link)s"
+msgstr ""
+
+#: templates/svmain/group_mailinglist.html:26
+#, python-format
+msgid "To see the collection of prior posting to the list, visit the %(begin_link)s%(list_name)s archives%(end_link)s (authorization required)."
+msgstr ""
+
+#: templates/svmain/group_mailinglist.html:29
+#, python-format
+msgid "To post a message to all the list members, write to %(list_address)s"
+msgstr ""
+
+#: templates/svmain/group_mailinglist.html:31
+#, python-format
+msgid "You can (un)subscribe to the list by following instructions on the %(begin_link)slist information page%(end_link)s"
+msgstr ""
+
+#: templates/svmain/group_mailinglist.html:33
+#, python-format
+msgid "Project administrators can use the %(begin_link)sadministrative interface%(end_link)s to manage the list."
+msgstr ""
+
+#: templates/svmain/group_mailinglist.html:37
+#, python-format
+msgid "No Lists found for %(group_name)s"
+msgstr ""
+
+#: templates/svmain/group_mailinglist.html:38
+msgid "Project administrators can add mailing lists using the admin interface."
+msgstr ""
+
+#: templates/svmain/group_memberlist.html:18
+msgid "Member"
+msgstr ""
+
+#: templates/svmain/group_memberlist.html:18
+msgid "Resume and skills"
+msgstr ""
+
+#: templates/svmain/group_memberlist.html:24
+msgid "Project Administrator"
+msgstr ""
+
+#: templates/svmain/group_memberlist.html:28
+msgid "Project Member"
+msgstr ""
+
+#: templates/svmain/group_memberlist.html:40
+#, python-format
+msgid "You may also be interested in the %(begin_link)sGPG Keyring of this project%(end_link)s"
+msgstr ""
+
+#: templates/svmain/group_vcs_arch.html:17
+#: templates/svmain/group_vcs_bzr.html:17
+#: templates/svmain/group_vcs_cvs.html:17
+#: templates/svmain/group_vcs_git.html:17
+#: templates/svmain/group_vcs_hg.html:17
+#: templates/svmain/group_vcs_svn.html:17
+#, python-format
+msgid "Browsing the %(type)s repository"
+msgstr ""
+
+#: templates/svmain/group_vcs_arch.html:19
+#: templates/svmain/group_vcs_bzr.html:19
+#: templates/svmain/group_vcs_cvs.html:19
+#: templates/svmain/group_vcs_git.html:19
+#: templates/svmain/group_vcs_hg.html:19
+#: templates/svmain/group_vcs_svn.html:19
+#, python-format
+msgid "You can browse the %(type)s repository of this project with your web browser. This gives you a good picture of the current status of the source files. You may also view the complete histories of any file in the repository as well as differences among two versions."
+msgstr ""
+
+#: templates/svmain/group_vcs_arch_custom.html:2
+#: templates/svmain/group_vcs_bzr_custom.html:2
+#: templates/svmain/group_vcs_cvs_custom.html:2
+#: templates/svmain/group_vcs_git_custom.html:2
+#: templates/svmain/group_vcs_hg_custom.html:2
+#: templates/svmain/group_vcs_svn_custom.html:2
+msgid "More information"
+msgstr ""
+
+#: templates/svmain/license_detail.html:8
+msgid "URL:"
+msgstr ""
+
+#: templates/svmain/license_detail.html:11
+msgid "Projects that use it:"
+msgstr ""
+
+#: templates/svmain/license_detail.html:13
+#, python-format
+msgid "1 project use this license"
+msgid_plural "%(count)s projects use this license"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/svmain/license_detail.html:20
+msgid "Go to license list"
+msgstr ""
+
+#: templates/svmain/pagination.inc.html:10
+#: templates/svmain/pagination.inc.html:12
+msgid "previous"
+msgstr ""
+
+#: templates/svmain/pagination.inc.html:24
+#: templates/svmain/pagination.inc.html:26
+msgid "next"
+msgstr ""
+
+#: templates/svmain/pagination.inc.html:31
+#, python-format
+msgid "Page %(number)s on %(num_pages)s (%(count)s)"
+msgstr ""
+
+#: templates/svmain/pagination.inc.html:34
+#, python-format
+msgid "%(count)s element"
+msgid_plural "%(count)s elements"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/svmain/user_detail.html:7
+msgid "Real name:"
+msgstr ""
+
+#: templates/svmain/user_detail.html:8
+msgid "Login name:"
+msgstr ""
+
+#: templates/svmain/user_list.html:24
+msgid "No users."
+msgstr ""
+
+#: templates/svpeople/index.html:5
+#: templates/svpeople/job_detail.html:7
+#: templates/svpeople/job_form.html:6
+#: templates/svpeople/job_list_by_category.html:5
+#: templates/svpeople/job_list_by_group.html:5
+#: templates/svpeople/job_list_by_type.html:5
+#, python-format
+msgid "People at %(site_name)s"
+msgstr ""
+
+#: templates/svpeople/index.html:27
+msgid "Project type"
+msgstr ""
+
+#: templates/svpeople/index_custom.html:2
+msgid "Browse through the category menu to find projects looking for your help."
+msgstr ""
+
+#: templates/svpeople/index_custom.html:3
+#, python-format
+msgid "If you're a project admin, log in, enter your project page, follow the project admin link (in the navigation bar) and you will find a %(begin_em)sPost Jobs%(end_em)s section where you can submit help wanted requests to appear in this list."
+msgstr ""
+
+#: templates/svpeople/index_custom.html:4
+msgid "To suggest new job categories, visit the support manager."
+msgstr ""
+
+#: templates/svpeople/job_detail.html:15
+msgid "wanted for"
+msgstr ""
+
+#: templates/svpeople/job_detail.html:23
+msgid "Submitted By:"
+msgstr ""
+
+#: templates/svpeople/job_detail.html:26
+msgid "Date:"
+msgstr ""
+
+#: templates/svpeople/job_detail.html:27
+msgid "Status:"
+msgstr ""
+
+#: templates/svpeople/job_detail.html:39
+msgid "Details (job description, contact ...):"
+msgstr ""
+
+#: templates/svpeople/job_detail.html:45
+msgid "Required Skills:"
+msgstr ""
+
+#: templates/svpeople/job_form.html:21
+msgid "Start by filling in the fields below. When you click continue, you will be shown a list of skills and experience levels that this job requires."
+msgstr ""
+
+#: templates/svpeople/job_form.html:23
+msgid "Now you can edit/change the list of skills attached to this posting."
+msgstr ""
+
+#: templates/svpeople/job_form.html:24
+msgid "Developers will be able to match their skills with your requirements."
+msgstr ""
+
+#: templates/svpeople/job_form.html:26
+msgid "All postings are automatically closed after two weeks."
+msgstr ""
+
+#: templates/svpeople/job_inventory.inc:5
+#: templates/svpeople/skill_inventory_edit.inc:6
+msgid "Skill"
+msgstr ""
+
+#: templates/svpeople/job_inventory.inc:6
+#: templates/svpeople/skill_inventory_edit.inc:7
+msgid "Level"
+msgstr ""
+
+#: templates/svpeople/job_inventory.inc:7
+#: templates/svpeople/skill_inventory_edit.inc:8
+msgid "Experience"
+msgstr ""
+
+#: templates/svpeople/job_inventory.inc:16
+msgid "No skill inventory set up"
+msgstr ""
+
+#: templates/svpeople/job_list.inc:4
+msgid "Title"
+msgstr ""
+
+#: templates/svpeople/job_list.inc:6
+msgid "Date opened"
+msgstr ""
+
+#: templates/svpeople/job_list.inc:7
+msgid "Project"
+msgstr ""
+
+#: templates/svpeople/job_list.inc:8
+msgid "Type"
+msgstr ""
+
+#: templates/svpeople/job_list_by_category.html:6
+#, python-format
+msgid "Projects looking for %(category_label)s"
+msgstr ""
+
+#: templates/svpeople/job_list_by_group.html:12
+msgid "Here is a list of positions available for this project."
+msgstr "Aici este o listă cu pozițiile disponibile pentru acest proiect."
+
