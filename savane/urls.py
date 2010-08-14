@@ -9,4 +9,5 @@ urlpatterns += patterns('',
   # User account
   (r'^my/', include('savane.my.urls', namespace='my')),
   (r'^people/', include('savane.svpeople.urls', namespace='svpeople')),
+  (r'^tracker/', include('savane.tracker.urls', namespace='tracker')),
 )

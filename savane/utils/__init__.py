@@ -55,3 +55,17 @@ def get_site_name():
     else:
         site_name = 'Savane'
     return site_name
+
+# http://wiki.python.org/moin/EscapingHtml
+import re
+from htmlentitydefs import name2codepoint
+# doesn't handle stuff like '&#039;'
+def htmlentitydecode(s):
+    return re.sub('&(%s);' % '|'.join(name2codepoint),
+            lambda m: unichr(name2codepoint[m.group(1)]), s)
+import htmllib
+def unescape(s):
+    p = htmllib.HTMLParser(None)
+    p.save_bgn()
+    p.feed(s)
+    return p.save_end()

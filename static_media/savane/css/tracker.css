@@ -1,0 +1,225 @@
+/* CSS style use by the 'tracker' app
+ * 
+ * Copyright (C) 2002-2006  Mathieu Roy
+ *
+ * This file is part of Savane.
+ * 
+ * Savane is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * Savane is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+*/
+
+/**********************************************************************
+ *
+ * Trackers specific
+ *
+ **********************************************************************/
+
+.trackersoriginalsubmission {
+	padding-left: 0.2em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	border-left: thin #b5b5b5 solid;
+}
+
+/**********************************************************************
+ *
+ * Priorities
+ *
+ **********************************************************************/
+
+
+.priora {
+	background-color: #fff2f2;
+	border: thin solid #ef6e6e;
+	text-indent: 0;
+	list-style-type: none; }
+
+
+.priorb {
+	background-color: #ffe8e8;
+	border: thin solid #ef6e6e;
+	text-indent: 0;
+	list-style-type: none; }
+
+.priorc {
+	background-color: #ffe0e0;
+	border: thin solid #ef6e6e;
+	text-indent: 0;
+	list-style-type: none; }
+
+.priord {
+	background-color: #ffd8d8;
+	border: thin solid #ef6e6e;
+	text-indent: 0;
+	list-style-type: none; }
+
+.priore {
+	background-color: #ffcece;
+	border: thin solid #ef6e6e;
+	text-indent: 0;
+	list-style-type: none;  }
+
+.priorf {
+	background-color: #ffc6c6;
+	border: thin solid #ef6e6e;
+	text-indent: 0;
+	list-style-type: none; }
+.priorg {
+	background-color: #ffbfbf;
+	border: thin solid #ef6e6e;
+	text-indent: 0;
+	list-style-type: none; }
+.priorh {
+	background-color: #ffb7b7;
+	border: thin solid #ef6e6e;
+	text-indent: 0;
+	list-style-type: none; }
+.priori {
+	background-color: #ffadad;
+	border: thin solid #ef6e6e;
+	text-indent: 0;
+	list-style-type: none; }
+
+
+.prioraclosed {
+	background-color: #F5FFEB;
+	border: thin solid #51DA96;
+	text-indent: 0;
+	list-style-type: none; }
+.priorbclosed {
+	background-color: #EDFFE6;
+	border: thin solid #51DA96;
+	text-indent: 0;
+	list-style-type: none; }
+.priorcclosed {
+	background-color: #EEFFE1;
+	border: thin solid #51DA96;
+	text-indent: 0;
+	list-style-type: none; }
+.priordclosed {
+	background-color: #E0FFD5;
+	border: thin solid #51DA96;
+	text-indent: 0;
+	list-style-type: none; }
+
+.prioreclosed {
+	background-color: #CCFFBB;
+	border: thin solid #51DA96;
+	text-indent: 0;
+	list-style-type: none; }
+
+.priorfclosed {
+	background-color: #C6FFB9;
+	border: thin solid #51DA96;
+	text-indent: 0;
+	list-style-type: none; }
+.priorgclosed {
+	background-color: #C0FFB2;
+	border: thin solid #51DA96;
+	text-indent: 0;
+	list-style-type: none; }
+.priorhclosed {
+	background-color: #ADFFA4;
+	border: thin solid #51DA96;
+	text-indent: 0;
+	list-style-type: none; }
+.prioriclosed {
+	background-color: #A0FF9D;
+	border: thin solid #51DA96;
+	text-indent: 0;
+	list-style-type: none; }
+
+
+h1.priora { text-shadow: 0.1em 0.1em #f89b9b; }
+h1.priorb { text-shadow: 0.1em 0.1em #f89b9b; }
+h1.priorc { text-shadow: 0.1em 0.1em #f89b9b; }
+h1.priord { text-shadow: 0.1em 0.1em #f89b9b; }
+h1.priore { text-shadow: 0.1em 0.1em #f89b9b; }
+h1.priorf { text-shadow: 0.1em 0.1em #f89b9b; }
+h1.priorg { text-shadow: 0.1em 0.1em #f89b9b; }
+h1.priorh { text-shadow: 0.1em 0.1em #f89b9b; }
+h1.priori { text-shadow: 0.1em 0.1em #f89b9b; }
+
+h1.prioraclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
+h1.priorbclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
+h1.priorcclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
+h1.priordclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
+h1.prioreclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
+h1.priorfclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
+h1.priorgclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
+h1.priorhclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
+h1.prioriclosed { text-shadow: 0.1em 0.1em #8cf2bf; }
+
+
+tr.priora a {
+	display: block;
+}
+tr.priorb a {
+	display: block;
+}
+tr.priorc a {
+	display: block;
+}
+tr.priord a {
+	display: block;
+}
+tr.priore a {
+	display: block;
+}
+tr.priorf a {
+	display: block;
+}
+tr.priorg a {
+	display: block;
+}
+tr.priorh a {
+	display: block;
+}
+tr.priori a {
+	display: block;
+}
+
+tr.prioraclosed a {
+	display: block;
+}
+tr.priorbclosed a {
+	display: block;
+}
+tr.priorcclosed a {
+	display: block;
+}
+tr.priordclosed a {
+	display: block;
+}
+tr.prioreclosed a {
+	display: block;
+}
+tr.priorfclosed a {
+	display: block;
+}
+tr.priorgclosed a {
+	display: block;
+}
+tr.priorhclosed a {
+	display: block;
+}
+tr.prioriclosed a {
+	display: block;
+}
+
+.menu .priore
+{
+ /* when the priority is included in a menu, we dont want any border effect */
+ border: none;
+}

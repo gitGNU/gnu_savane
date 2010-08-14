@@ -20,6 +20,7 @@ from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 import django.contrib.auth.models as auth_models
 import datetime
+from savane.utils import htmlentitydecode, unescape
 
 # TODO: default '100' (aka 'nobody' or 'None', depending on
 # fields) -> change to NULL?
@@ -76,12 +77,18 @@ class Tracker(models.Model):
     Item.bugs_id / Item.patch_id / Item.support_id / Item.task_id
     (previous PHP implementation duplicated all tables).
     """
-    NAME_CHOICES = (('bugs', 'bugs'),
-                    ('patches', 'patches'),
-                    ('support', 'support'),
-                    ('tasks', 'tasks'),
+    NAME_CHOICES = (('bugs', _('Bugs')),
+                    ('patch', _('Patches')),
+                    ('support', _('Support')),
+                    ('task', _('Tasks')),
                     )
     name = models.CharField(max_length=7, choices=NAME_CHOICES, primary_key=True)
+
+    ITEM_NAMES = (('bugs', _('bug')),
+                  ('patch', _('patch')),
+                  ('support', _('support')),
+                  ('task', _('task')),
+                  )
 
 class GroupTypeConfiguration(models.Model):
     """
@@ -366,6 +373,38 @@ class Item(models.Model):
     custom_df3  = models.DateTimeField()
     custom_df4  = models.DateTimeField()
     custom_df5  = models.DateTimeField()
+
+    def get_public_id(self):
+        if self.tracker_id == 'bugs':
+            return self.public_bugs_id
+        elif self.tracker_id == 'patch':
+            return self.public_patch_id
+        elif self.tracker_id == 'support':
+            return self.public_support_id
+        elif self.tracker_id == 'task':
+            return self.public_task_id
+
+    def get_item_name(self):
+        for (k,v) in Tracker.ITEM_NAMES:
+            if k == self.tracker_id:
+                return v
+
+    def get_tracker_name(self):
+        for (k,v) in Tracker.NAME_CHOICES:
+            if k == self.tracker_id:
+                return v
+
+    def get_summary(self):
+        # Unapply HTML entities
+        # TODO: convert field to plain text
+        return unescape(self.summary)
+
+    def get_priority_css_class(self):
+        from string import ascii_letters
+        return "prior" + ascii_letters[self.priority-1]
+
+    def __unicode__(self):
+        return "%s #%d" % (self.tracker_id, self.get_public_id())
 
 class ItemMsgId(models.Model):
     """
