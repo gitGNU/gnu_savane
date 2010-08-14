@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-14 15:08+0000\n"
-"PO-Revision-Date: 2010-08-14 17:08+0200\n"
+"POT-Creation-Date: 2010-08-14 16:52+0000\n"
+"PO-Revision-Date: 2010-08-14 18:53+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -240,63 +240,59 @@ msgstr "Impossible de supprimer la clef sélectionnée"
 msgid "Language set to %s"
 msgstr "Langue définie en %s"
 
-#: savane/svmain/admin.py:40
-msgid "Savane"
-msgstr "Savane"
-
-#: savane/svmain/admin.py:54
+#: savane/svmain/admin.py:52
 msgid "General Settings"
 msgstr "Configuration générale"
 
-#: savane/svmain/admin.py:55
+#: savane/svmain/admin.py:53
 msgid "Project WWW Homepage"
 msgstr "Page web du projet"
 
-#: savane/svmain/admin.py:58
+#: savane/svmain/admin.py:56
 msgid "Source Code Manager: CVS"
 msgstr "Gestion de code source : CVS"
 
-#: savane/svmain/admin.py:61
+#: savane/svmain/admin.py:59
 msgid "Source Code Manager: GNU Arch"
 msgstr "Gestion de code source : GNU Arch"
 
-#: savane/svmain/admin.py:64
+#: savane/svmain/admin.py:62
 msgid "Source Code Manager: Subversion"
 msgstr "Gestion de code source : Subversion"
 
-#: savane/svmain/admin.py:67
+#: savane/svmain/admin.py:65
 msgid "Source Code Manager: Git"
 msgstr "Gestion de code source : Git"
 
-#: savane/svmain/admin.py:70
+#: savane/svmain/admin.py:68
 msgid "Source Code Manager: Mercurial"
 msgstr "Gestion de code source: Mercurial"
 
-#: savane/svmain/admin.py:73
+#: savane/svmain/admin.py:71
 msgid "Source Code Manager: Bazaar"
 msgstr "Gestion de code source : Bazaar"
 
-#: savane/svmain/admin.py:76
+#: savane/svmain/admin.py:74
 msgid "Download area"
 msgstr "Espace de téléchargement"
 
-#: savane/svmain/admin.py:79
+#: savane/svmain/admin.py:77
 msgid "Licenses"
 msgstr "Licences"
 
-#: savane/svmain/admin.py:80 templates/svpeople/job_detail.html:37
+#: savane/svmain/admin.py:78 templates/svpeople/job_detail.html:37
 msgid "Development Status"
 msgstr "Stade de développement"
 
-#: savane/svmain/admin.py:81
+#: savane/svmain/admin.py:79
 msgid "Mailing List"
 msgstr "Listes de discussion"
 
-#: savane/svmain/admin.py:87
+#: savane/svmain/admin.py:85
 msgid "News Manager"
 msgstr "Gestionnaire de dépêches"
 
-#: savane/svmain/admin.py:88
+#: savane/svmain/admin.py:86
 msgid "Project Menu Settings"
 msgstr "Configuration du menu du projet"
 

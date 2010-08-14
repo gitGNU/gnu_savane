@@ -33,11 +33,9 @@ class SshKeyInline(admin.TabularInline):
     extra = 2  # to add several keys in the ExtendedUser page
 
 class SvUserInfoAdmin(admin.ModelAdmin):
-    # Copy/pasted from django.contrib.auth.admin; inheritance fails
-    # when you attempt to display extended fields..
     fieldsets = (
         (None, {'fields': ('user',)}),
-        (_('Savane'),
+        ('Savane',
          {'fields': ('status', 'spamscore',
                      'gpg_key', 'gpg_key_count',
                      'email_hide', 'timezone', 'theme',)}),
