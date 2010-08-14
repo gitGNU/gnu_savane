@@ -30,5 +30,5 @@ class JobForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
         # Translate categories from database
-        self.base_fields['category'].choices = \
-            [ (k,ugettext(v)) for k,v in self.base_fields['category'].choices ]
+        self.fields['category'].choices = \
+            [ (k,ugettext(v)) for k,v in self.fields['category'].choices ]

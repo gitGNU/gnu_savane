@@ -139,6 +139,7 @@ def job_update(request, object_id, extra_context={}, form_class=svpeople_forms.J
         form = form_class(instance=object) # An unbound form
 
     # Skills
+    # TODO: translate skill_year and skill_level
     from django.forms.models import inlineformset_factory
     JobInventoryFormSet = inlineformset_factory(svpeople_models.Job, svpeople_models.JobInventory)
     if request.method == "POST":

@@ -415,6 +415,12 @@ INSERT INTO svpeople_category
     (id, label, active)
   SELECT category_id, name, '1'
     FROM savane_old.people_job_category;
+# Decapitalize, used in translations
+UPDATE svpeople_category SET label='Project manager' WHERE label='Project Manager';
+UPDATE svpeople_category SET label='Unix admin' WHERE label='Unix Admin';
+UPDATE svpeople_category SET label='Doc writer' WHERE label='Doc Writer';
+UPDATE svpeople_category SET label='Support manager' WHERE label='Support Manager';
+UPDATE svpeople_category SET label='Graphic/other designer' WHERE label='Graphic/Other Designer';
 
 TRUNCATE svpeople_skill;
 -- id <- skill_id
