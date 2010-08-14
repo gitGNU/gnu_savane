@@ -38,9 +38,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
-"Report-Msgid-Bugs-To: savane-dev-i18n@gna.org\n"
-"POT-Creation-Date: 2010-08-14 16:52+0000\n"
-"PO-Revision-Date: 2010-08-14 20:33+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-14 21:18+0000\n"
+"PO-Revision-Date: 2010-08-14 23:20+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -509,7 +509,7 @@ msgstr "À reconfigurer"
 msgid "Created"
 msgstr "Créée"
 
-#: savane/svmain/urls.py:64 templates/base.html:51
+#: savane/svmain/urls.py:64 templates/base.html:52
 msgid "Users"
 msgstr "Utilisateurs"
 
@@ -517,7 +517,7 @@ msgstr "Utilisateurs"
 msgid "User detail"
 msgstr ""
 
-#: savane/svmain/urls.py:84 templates/base.html:52
+#: savane/svmain/urls.py:84 templates/base.html:53
 msgid "Projects"
 msgstr "Projets"
 
@@ -937,265 +937,297 @@ msgstr "Compétences enregistrées."
 msgid "Resume updated."
 msgstr "CV mis à jour."
 
-#: savane/tracker/models.py:30
+#: savane/tracker/models.py:31
 msgid "anonymous"
 msgstr "anonyme"
 
-#: savane/tracker/models.py:31
+#: savane/tracker/models.py:32
 msgid "logged-in user"
 msgstr "utilisateur authentifié"
 
-#: savane/tracker/models.py:32
+#: savane/tracker/models.py:33
 msgid "project member"
 msgstr "membre du projet"
 
-#: savane/tracker/models.py:33 savane/tracker/models.py:38
+#: savane/tracker/models.py:34 savane/tracker/models.py:39
 msgid "group type default"
 msgstr "selon le type de groupe"
 
-#: savane/tracker/models.py:34
+#: savane/tracker/models.py:35
 msgid "none"
 msgstr "aucun"
 
-#: savane/tracker/models.py:35
+#: savane/tracker/models.py:36
 msgid "technician"
 msgstr "technicien"
 
-#: savane/tracker/models.py:36
+#: savane/tracker/models.py:37
 msgid "manager"
 msgstr "gestionnaire"
 
-#: savane/tracker/models.py:37
+#: savane/tracker/models.py:38
 msgid "technician & manager"
 msgstr "techn. & gestion."
 
-#: savane/tracker/models.py:39
+#: savane/tracker/models.py:40
 msgid "same as new item"
 msgstr "comme pour les nouveaux items"
 
-#: savane/tracker/models.py:43 savane/tracker/models.py:46
+#: savane/tracker/models.py:44 savane/tracker/models.py:47
 msgid "Submitter"
 msgstr "Poster"
 
-#: savane/tracker/models.py:43
+#: savane/tracker/models.py:44
 msgid "The person who submitted the item"
 msgstr "La personne qui a posté l'item"
 
-#: savane/tracker/models.py:44
+#: savane/tracker/models.py:45
 msgid "Assignee"
 msgstr "Responsable"
 
-#: savane/tracker/models.py:44
+#: savane/tracker/models.py:45
 msgid "The person to whom the item was assigned"
 msgstr "La personne à qui cet item a été assigné"
 
-#: savane/tracker/models.py:45
+#: savane/tracker/models.py:46
 msgid "CC"
 msgstr "CC"
 
-#: savane/tracker/models.py:45
+#: savane/tracker/models.py:46
 msgid "The person who is in the CC list"
 msgstr "La personne qui est la dans la liste de CC"
 
-#: savane/tracker/models.py:46
+#: savane/tracker/models.py:47
 msgid "A person who once posted a follow-up comment"
 msgstr "La personne qui a posté un commentaire"
 
-#: savane/tracker/models.py:50
+#: savane/tracker/models.py:51
 msgid "Role has changed"
 msgstr "Le rôle a changé"
 
-#: savane/tracker/models.py:51
+#: savane/tracker/models.py:52
 msgid "I'm added to or removed from this role"
 msgstr ""
 
-#: savane/tracker/models.py:52
+#: savane/tracker/models.py:53
 msgid "New comment"
 msgstr "Nouveau commentaire"
 
-#: savane/tracker/models.py:53
+#: savane/tracker/models.py:54
 msgid "A new followup comment is added"
 msgstr "Un nouveau commentaire est ajouté"
 
-#: savane/tracker/models.py:54
+#: savane/tracker/models.py:55
 msgid "New attachment"
 msgstr "Nouveau documents joint"
 
-#: savane/tracker/models.py:55
+#: savane/tracker/models.py:56
 msgid "A new file attachment is added"
 msgstr "Un nouveau fichier attaché est ajoutéé"
 
-#: savane/tracker/models.py:56
+#: savane/tracker/models.py:57
 msgid "CC Change"
 msgstr "CC changée"
 
-#: savane/tracker/models.py:57
+#: savane/tracker/models.py:58
 msgid "A new CC address is added/removed"
 msgstr "Une nouvelle adresse CC est ajouté/supprimée"
 
-#: savane/tracker/models.py:58
+#: savane/tracker/models.py:59
 msgid "Item closed"
 msgstr "Item fermé"
 
-#: savane/tracker/models.py:59
+#: savane/tracker/models.py:60
 msgid "The item is closed"
 msgstr "L'item vient d'être fermé"
 
-#: savane/tracker/models.py:60
+#: savane/tracker/models.py:61
 msgid "PSS change"
 msgstr ""
 
-#: savane/tracker/models.py:61
+#: savane/tracker/models.py:62
 msgid "Priority,Status,Severity changes"
 msgstr ""
 
-#: savane/tracker/models.py:62
+#: savane/tracker/models.py:63
 msgid "Any other change"
 msgstr "Toute autre modification"
 
-#: savane/tracker/models.py:63
+#: savane/tracker/models.py:64
 msgid "Any change not mentioned above"
 msgstr "Toute modification non mentionnée ci-dessus"
 
-#: savane/tracker/models.py:64
+#: savane/tracker/models.py:65
 msgid "I did it"
 msgstr ""
 
-#: savane/tracker/models.py:65
+#: savane/tracker/models.py:66
 msgid "I am the author of the change"
 msgstr "Je ne suis pas l'auteur de la modification de l'item"
 
-#: savane/tracker/models.py:66
+#: savane/tracker/models.py:67
 msgid "New Item"
 msgstr "Nouvel item"
 
-#: savane/tracker/models.py:67
+#: savane/tracker/models.py:68
 msgid "A new item has been submitted"
 msgstr "Un nouvel item a été posté"
 
-#: savane/tracker/models.py:145
+#: savane/tracker/models.py:80
+msgid "Bugs"
+msgstr "Anomalies"
+
+#: savane/tracker/models.py:81
+msgid "Patches"
+msgstr "Patchs"
+
+#: savane/tracker/models.py:82
+msgid "Support"
+msgstr "Assistance"
+
+#: savane/tracker/models.py:83
+msgid "Tasks"
+msgstr "Tâches"
+
+#: savane/tracker/models.py:87
+msgid "bug"
+msgstr "anomalie"
+
+#: savane/tracker/models.py:88
+msgid "patch"
+msgstr "patch"
+
+#: savane/tracker/models.py:89
+msgid "support"
+msgstr "assistance"
+
+#: savane/tracker/models.py:90
+msgid "task"
+msgstr "tâche"
+
+#: savane/tracker/models.py:152
 msgid "date field"
 msgstr "champ date"
 
-#: savane/tracker/models.py:146
+#: savane/tracker/models.py:153
 msgid "select box"
 msgstr "liste déroulante"
 
-#: savane/tracker/models.py:147
+#: savane/tracker/models.py:154
 msgid "text area"
 msgstr "zone de texte"
 
-#: savane/tracker/models.py:148
+#: savane/tracker/models.py:155
 msgid "text field"
 msgstr "champ de texte"
 
-#: savane/tracker/models.py:149
+#: savane/tracker/models.py:156
 msgid "system"
 msgstr "système"
 
-#: savane/tracker/models.py:150
+#: savane/tracker/models.py:157
 msgid "project"
 msgstr "projet"
 
-#: savane/tracker/models.py:162
+#: savane/tracker/models.py:169
 msgid "field cannot be disabled in configuration"
 msgstr "le champ ne peut pas être désactivé dans la configuration"
 
-#: savane/tracker/models.py:165
+#: savane/tracker/models.py:172
 msgid "field is not entered by the user but by the system"
 msgstr "le champ n'est pas rempli par l'utilisateur, mais par le système"
 
-#: savane/tracker/models.py:166
+#: savane/tracker/models.py:173
 msgid "let the user change the label and description"
 msgstr "permettre à l'utilisateur de changer le libellé et la description"
 
-#: savane/tracker/models.py:175
+#: savane/tracker/models.py:182
 msgid "undefined"
 msgstr "indéfini"
 
-#: savane/tracker/models.py:176
+#: savane/tracker/models.py:183
 msgid "allowed"
 msgstr "autorisé"
 
-#: savane/tracker/models.py:177
+#: savane/tracker/models.py:184
 msgid "forbidden"
 msgstr "interdit"
 
-#: savane/tracker/models.py:178
+#: savane/tracker/models.py:185
 msgid "no"
 msgstr "non"
 
-#: savane/tracker/models.py:179
+#: savane/tracker/models.py:186
 msgid "show to logged in users"
 msgstr "montrer aux utilisateurs authentifiés"
 
-#: savane/tracker/models.py:180
+#: savane/tracker/models.py:187
 msgid "show to anonymous users"
 msgstr "montrer aux utilisateurs anonymes"
 
-#: savane/tracker/models.py:181
+#: savane/tracker/models.py:188
 msgid "show to both logged in and anonymous users"
 msgstr "montrer aux utilisateurs authentifiés comme anonymes"
 
-#: savane/tracker/models.py:182
+#: savane/tracker/models.py:189
 msgid "mandatory only if it was presented to the original submitter"
 msgstr "obligatoire seulement s'il a été présenté à celui ayant posté l'item"
 
-#: savane/tracker/models.py:183
+#: savane/tracker/models.py:190
 msgid "optional (empty values are accepted)"
 msgstr "facultatif (les valeurs nulles sont acceptées)"
 
-#: savane/tracker/models.py:184
+#: savane/tracker/models.py:191
 msgid "mandatory"
 msgstr "obligatoire"
 
-#: savane/tracker/models.py:187
+#: savane/tracker/models.py:194
 msgid "used"
 msgstr "utilisé"
 
-#: savane/tracker/models.py:193
+#: savane/tracker/models.py:200
 msgid "show to project members"
 msgstr "montrer aux membres du projet"
 
-#: savane/tracker/models.py:207
+#: savane/tracker/models.py:214
 msgid "keep field value changes in history"
 msgstr "conserver dans l'historique les modifications des valeurs de ce champ"
 
-#: savane/tracker/models.py:220
+#: savane/tracker/models.py:227
 msgid "active"
 msgstr "actif"
 
-#: savane/tracker/models.py:221
+#: savane/tracker/models.py:228
 msgid "hidden"
 msgstr "caché"
 
-#: savane/tracker/models.py:222
+#: savane/tracker/models.py:229
 msgid "permanent"
 msgstr "permanent"
 
-#: savane/tracker/models.py:235
+#: savane/tracker/models.py:242
 msgid ""
 "comma-separated list of e-mail addresses to notify when an item is created "
 "or modified in this category"
 msgstr ""
 
-#: savane/tracker/models.py:236
+#: savane/tracker/models.py:243
 msgid "send on all updates"
 msgstr "poster à toutes les mises à jour de l'item"
 
-#: savane/tracker/models.py:304
+#: savane/tracker/models.py:311
 msgid "open/closed"
 msgstr "ouvert/clos"
 
-#: savane/tracker/models.py:311
+#: savane/tracker/models.py:318
 msgid "item group"
 msgstr "groupe de l'item"
 
-#: savane/tracker/models.py:399
+#: savane/tracker/models.py:438
 msgid "comment type"
 msgstr "type de commentaire"
 
-#: savane/tracker/models.py:405
+#: savane/tracker/models.py:444
 msgid "total spamscore for this comment"
 msgstr "score de spam cumulé pour ce commentaire"
 
@@ -1245,43 +1277,43 @@ msgstr ""
 "Consultez l'aide-mémoire de la mise en forme dans documentation "
 "correspondante pour une description de ces bornes."
 
-#: templates/base.html:17
+#: templates/base.html:18
 msgid "Back to homepage"
 msgstr "Retour à la page d'accueil"
 
-#: templates/base.html:21
+#: templates/base.html:22
 #, python-format
 msgid "%(username)s logged in as superuser"
 msgstr "%(username)s authentifié en super utilisateur"
 
-#: templates/base.html:24
+#: templates/base.html:25
 #, python-format
 msgid "Connected as %(username)s"
 msgstr "Authentifié(e) en tant que %(username)s"
 
-#: templates/base.html:26
+#: templates/base.html:27
 msgid "My account"
 msgstr "Mon compte"
 
-#: templates/base.html:27
+#: templates/base.html:28
 msgid "Logout"
 msgstr "Retour à l'anonymat"
 
-#: templates/base.html:31
+#: templates/base.html:32
 msgid "Superuser rights are required to perform site admin tasks"
 msgstr ""
 "Les privilèges de super utilisateur sont requires to accomplir des tâches "
 "d'administration du site"
 
-#: templates/base.html:31
+#: templates/base.html:32
 msgid "Become superuser"
 msgstr "Devenir super-utilisateur"
 
-#: templates/base.html:33
+#: templates/base.html:34
 msgid "Impersonate this user"
 msgstr "Se faire passer pour cet utilisateur"
 
-#: templates/base.html:33 templates/my/contact.html:5 templates/my/i18n.html:5
+#: templates/base.html:34 templates/my/contact.html:5 templates/my/i18n.html:5
 #: templates/my/ssh.html:5 templates/svmain/group_admin_features.html:6
 #: templates/svmain/group_admin_info.html:6
 #: templates/svmain/group_admin_members.html:6
@@ -1293,52 +1325,53 @@ msgstr "Se faire passer pour cet utilisateur"
 #: templates/svpeople/job_list_by_category.html:5
 #: templates/svpeople/job_list_by_group.html:5
 #: templates/svpeople/job_list_by_type.html:5
-#: templates/svpeople/userinfo_form.html:5
+#: templates/svpeople/userinfo_form.html:5 templates/tracker/item_form.html:5
+#: templates/tracker/item_form.html:20
 msgid ": "
 msgstr " : "
 
-#: templates/base.html:39
+#: templates/base.html:40
 msgid "End the Superuser session, go back to normal user session"
 msgstr "Clore la session Superutilisateur, retour à une session classique"
 
-#: templates/base.html:39
+#: templates/base.html:40
 msgid "Logout Superuser"
 msgstr "Retour en mode utilisateur"
 
-#: templates/base.html:43
+#: templates/base.html:44
 msgid "Login status"
 msgstr "État de la connexion :"
 
-#: templates/base.html:44
+#: templates/base.html:45
 msgid "Not connected"
 msgstr "Vous n'êtes pas authentifié"
 
-#: templates/base.html:45
+#: templates/base.html:46
 msgid "Login"
 msgstr "S'authentifier"
 
-#: templates/base.html:46
+#: templates/base.html:47
 msgid "New user"
 msgstr "Nouvel utilisateur"
 
-#: templates/base.html:48
+#: templates/base.html:49
 msgid "Set language"
 msgstr "Définir la langue"
 
-#: templates/base.html:50 templates/svmain/group_admin_members_add.html:20
+#: templates/base.html:51 templates/svmain/group_admin_members_add.html:20
 #: templates/svmain/group_list.html:9 templates/svmain/user_list.html:9
 msgid "Search"
 msgstr "Rechercher"
 
-#: templates/base.html:53
+#: templates/base.html:54
 msgid "Contributors wanted"
 msgstr "Appels à contribution"
 
-#: templates/base.html:55
+#: templates/base.html:56
 msgid "Site help"
 msgstr "Aide du site"
 
-#: templates/base.html:56
+#: templates/base.html:57
 msgid "Contact us"
 msgstr "Nous contacter"
 
@@ -1929,6 +1962,38 @@ msgstr "CV - Description de votre expérience"
 #: templates/svpeople/userinfo_form.html:18
 msgid "Skills"
 msgstr "Compétences"
+
+#: templates/tracker/item_form.html:24
+msgid "Post a comment"
+msgstr "Poster un commentaire"
+
+#: templates/tracker/item_form.html:28
+msgid "Discussion"
+msgstr "Discussion"
+
+#: templates/tracker/item_form.html:30
+msgid "Attached files"
+msgstr "Documents joints"
+
+#: templates/tracker/item_form.html:32
+msgid "Dependencies"
+msgstr "Dépendances"
+
+#: templates/tracker/item_form.html:34
+msgid "Mail notification carbon-copy list"
+msgstr "Liste des copies-carbones des notifications par courriel"
+
+#: templates/tracker/item_form.html:36
+msgid "Votes"
+msgstr "Votes"
+
+#: templates/tracker/item_form.html:38
+msgid "Submit changes"
+msgstr "Poster les modifications"
+
+#: templates/tracker/item_form.html:41
+msgid "History"
+msgstr "Historique"
 
 #~ msgid "Update profile"
 #~ msgstr "Mettre à jour mon profil"
@@ -2753,26 +2818,14 @@ msgstr "Compétences"
 #~ msgid "Support Tracker Administration"
 #~ msgstr "Administration du gestionnaire d'assistance technique"
 
-#~ msgid "Support"
-#~ msgstr "Assistance"
-
 #~ msgid "Bugs Tracker Administration"
 #~ msgstr "Administration du suivi d'anomalies"
-
-#~ msgid "Bugs"
-#~ msgstr "Anomalies"
 
 #~ msgid "Tasks Manager Administration"
 #~ msgstr "Administration du gestionnaire de tâches"
 
-#~ msgid "Tasks"
-#~ msgstr "Tâches"
-
 #~ msgid "Patch Manager Administration"
 #~ msgstr "Administration du suivi de patchs"
-
-#~ msgid "Patches"
-#~ msgstr "Patchs"
 
 #~ msgid "News Manager Administration"
 #~ msgstr "Administration du gestionnaire de dépêches"
@@ -3098,9 +3151,6 @@ msgstr "Compétences"
 
 #~ msgid "Browse my items (bugs, tasks, bookmarks...)"
 #~ msgstr "Consulter mes items (anomalies, tâches...)"
-
-#~ msgid "Votes"
-#~ msgstr "Votes"
 
 #~ msgid "Browse items I voted for"
 #~ msgstr "Consulter les items en faveur desquels j'ai voté"
@@ -4103,9 +4153,6 @@ msgstr "Compétences"
 #~ msgid "No files currently attached"
 #~ msgstr "Il n'y a aucun document joint actuellement"
 
-#~ msgid "Attached Files"
-#~ msgstr "Documents joints"
-
 #~ msgid "%s added by %s"
 #~ msgstr "%s ajouté par %s"
 
@@ -4114,9 +4161,6 @@ msgstr "Compétences"
 
 #~ msgid "Carbon-Copy List"
 #~ msgstr "Liste des Copies-Carbone"
-
-#~ msgid "Posted a comment"
-#~ msgstr "A posté un commentaire"
 
 #~ msgid "Updated the item"
 #~ msgstr "A mis à jour l'item"
@@ -4877,9 +4921,6 @@ msgstr "Compétences"
 #~ msgid "Changed notification email settings"
 #~ msgstr "Paramètres des notifications par courriel mis à jour"
 
-#~ msgid "Submit Changes"
-#~ msgstr "Poster les modifications"
-
 #~ msgid "NO DATA CHANGED!"
 #~ msgstr "AUCUNE DONNÉE MODIFIÉE !"
 
@@ -5100,15 +5141,6 @@ msgstr "Compétences"
 #~ msgid "Discussion locked!"
 #~ msgstr "Discussion verrouillée !"
 
-#~ msgid "Discussion"
-#~ msgstr "Discussion"
-
-#~ msgid "Dependencies"
-#~ msgstr "Dépendances"
-
-#~ msgid "Mail Notification Carbon-Copy List"
-#~ msgstr "Liste des copies-carbones des notifications par courriel"
-
 #~ msgid "Your vote:"
 #~ msgstr "Votre vote :"
 
@@ -5122,9 +5154,6 @@ msgstr "Compétences"
 
 #~ msgid "Only project members can vote."
 #~ msgstr "Seuls les membres du projet peuvent voter."
-
-#~ msgid "History"
-#~ msgstr "Historique"
 
 #~ msgid "No item found with that id."
 #~ msgstr "Aucun item trouvé avec cet id."
@@ -5678,20 +5707,11 @@ msgstr "Compétences"
 #~ msgid "Closed Items Priority Colors:"
 #~ msgstr "Nuancier des priorités des items fermés :"
 
-#~ msgid "bugs"
-#~ msgstr "anomalies"
-
 #~ msgid "recipes"
 #~ msgstr "recettes"
 
-#~ msgid "patches"
-#~ msgstr "patchs"
-
 #~ msgid "support requests"
 #~ msgstr "requêtes d'assistance"
-
-#~ msgid "tasks"
-#~ msgstr "tâches"
 
 #~ msgid "Lowest"
 #~ msgstr "la plus faible"
