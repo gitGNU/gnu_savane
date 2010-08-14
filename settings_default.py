@@ -33,18 +33,21 @@ TIME_ZONE = 'UTC'
 LANGUAGE_CODE = 'en-us'
 
 # http://docs.djangoproject.com/en/dev/topics/i18n/deployment/#how-django-discovers-language-preference
-ugettext = lambda s: s
+# Don't translate the languages: they are already translated in
+# Django, and anyway, we'll only show them in English, because showing
+# it in the current locale (say, Japanese) makes it difficult to
+# revert from a bad locale
 LANGUAGES = (
-    ('ca',    ugettext('Catalan')),
-    ('de',    ugettext('German')),
-    ('en',    ugettext('English')),
-    ('es',    ugettext('Spanish')),
-    ('fr',    ugettext('French')),
-    ('it',    ugettext('Italian')),
-    ('ja',    ugettext('Japanese')),
-    ('pt_BR', ugettext('Portuguese (Brazil)')),
-    ('ru',    ugettext('Russian')),
-    ('sv',    ugettext('Swedish')),
+    ('ca',    'Catalan'),
+    ('de',    'German'),
+    ('en',    'English'),
+    ('es',    'Spanish'),
+    ('fr',    'French'),
+    ('it',    'Italian'),
+    ('ja',    'Japanese'),
+    ('pt_BR', 'Brazilian Portuguese'),
+    ('ru',    'Russian'),
+    ('sv',    'Swedish'),
 )
 
 SITE_ID = 1
