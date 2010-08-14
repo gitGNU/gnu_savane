@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-12 12:51-0500\n"
-"PO-Revision-Date: 2010-08-13 22:51+0200\n"
+"POT-Creation-Date: 2010-08-14 07:04+0000\n"
+"PO-Revision-Date: 2010-08-14 09:22+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -89,7 +89,8 @@ msgstr "Russe"
 msgid "Swedish"
 msgstr "Suédois"
 
-#: savane/perms.py:27 savane/perms.py:40
+#: savane/perms.py:27 savane/perms.py:40 savane/my/views.py:268
+#: savane/svpeople/views.py:125
 msgid "Permission denied"
 msgstr "Accès refusé"
 
@@ -116,9 +117,7 @@ msgstr "Clef GPG"
 #: savane/my/forms.py:32 savane/svmain/models.py:141
 msgid ""
 "You can write down here your (ASCII) public key (gpg --export --armor keyid)"
-msgstr ""
-"Vous pouvez ajouter ici votre clef publique ASCII (gpg --export --armor "
-"keyid) :"
+msgstr "Vous pouvez ajouter ici votre clef publique ASCII (gpg --export --armor keyid)"
 
 #: savane/my/forms.py:36
 msgid "Key file"
@@ -159,15 +158,15 @@ msgstr "Modifier votre CV & vos compétences"
 msgid "Change authorized keys"
 msgstr "Modifier vos clefs publiques"
 
-#: savane/my/urls.py:54
+#: savane/my/urls.py:57
 msgid "Language"
 msgstr "Langue"
 
-#: savane/my/views.py:77 savane/my/views.py:89
+#: savane/my/views.py:80 savane/my/views.py:92
 msgid "verification"
 msgstr "vérification"
 
-#: savane/my/views.py:78
+#: savane/my/views.py:81
 #, python-format
 msgid ""
 "You have requested a change of email address on %s.\n"
@@ -176,12 +175,12 @@ msgstr ""
 "Vous avez demandé le changement de votre courriel à %s.\n"
 " Veuillez vous rendre l'adresse suivante pour valider le changement:"
 
-#: savane/my/views.py:83 savane/my/views.py:103
+#: savane/my/views.py:86 savane/my/views.py:106
 #, python-format
 msgid "-- the %s team."
 msgstr "-- L'équipe de %s"
 
-#: savane/my/views.py:90
+#: savane/my/views.py:93
 #, python-format
 msgid ""
 "Someone, presumably you, has requested a change of email address on "
@@ -201,16 +200,16 @@ msgstr ""
 "%(email_new)s.\n"
 "\n"
 
-#: savane/my/views.py:98
+#: savane/my/views.py:101
 msgid ""
 "If you did not request that change, please visit the following URL to "
 "discard\n"
 "the email change and report the problem to us:"
 msgstr ""
 "Si vous n'avez pas demandé ce changement, visitez cette URL pour annuler\n"
-"l'opération and signalez-nous le problème :"
+"l'opération and signalez-nous le problème :"
 
-#: savane/my/views.py:109
+#: savane/my/views.py:112
 msgid ""
 "The system reported a failure when trying to send the confirmation mail. "
 "Please retry and report that problem to administrators."
@@ -218,123 +217,128 @@ msgstr ""
 "Le système a signalé un échec de l'envoi du courriel de confirmation. "
 "Réessayez et signalez le problème aux administrateurs."
 
-#: savane/my/views.py:110
+#: savane/my/views.py:113
 #, python-format
 msgid "Confirmation mailed to %s."
 msgstr "Confirmation envoyée à %s."
 
-#: savane/my/views.py:111
+#: savane/my/views.py:114
 msgid "Follow the instructions in the email to complete the email change."
 msgstr ""
 "Un couriel a été envoyé. Suivez les instructions dans le message pour "
 "valider le changement."
 
-#: savane/my/views.py:121
+#: savane/my/views.py:124
 msgid "Personal information changed."
 msgstr "Informations personnelles modifiées"
 
-#: savane/my/views.py:141
+#: savane/my/views.py:144
 msgid "Email address updated."
 msgstr "Courriel mis à jour."
 
-#: savane/my/views.py:143
+#: savane/my/views.py:146
 msgid "Confirm Email change"
 msgstr "Confirmer le changement de courriel"
 
-#: savane/my/views.py:144
+#: savane/my/views.py:147
 #, python-format
 msgid "Confirm your e-mail change to %s?"
 msgstr "Confirmer le changement de votre courriel en %s?"
 
-#: savane/my/views.py:146 savane/my/views.py:162
+#: savane/my/views.py:149 savane/my/views.py:165
 msgid "Invalid confirmation hash"
 msgstr "Code de confirmation non valide."
 
-#: savane/my/views.py:157
+#: savane/my/views.py:160
 msgid "Address change process discarded."
 msgstr "Processus de changement d'adresse annulé."
 
-#: savane/my/views.py:159
+#: savane/my/views.py:162
 msgid "Cancel Email change"
 msgstr "Annuler le changement de courriel"
 
-#: savane/my/views.py:160
+#: savane/my/views.py:163
 #, python-format
 msgid "Cancel your e-mail change to %s?"
 msgstr "Annuler le changement de courriel en %s?"
 
-#: savane/my/views.py:206
+#: savane/my/views.py:227
 #, python-format
 msgid "Key registered"
 msgid_plural "%(count)d keys registered"
 msgstr[0] "Clef enregistrée"
 msgstr[1] "%(count)d clefs enregistrées"
 
-#: savane/my/views.py:210
+#: savane/my/views.py:231
 msgid "Error while registering keys"
 msgstr "Erreur lors de l'enregistrement des clefs"
 
-#: savane/my/views.py:236
+#: savane/my/views.py:257
 msgid "Cannot remove the selected key"
 msgstr "Impossible de supprimer la clef sélectionnée"
 
-#: savane/svmain/admin.py:23
+#: savane/my/views.py:282
+#, python-format
+msgid "Language set to %s"
+msgstr "Langue définie en %s"
+
+#: savane/svmain/admin.py:40
 msgid "Savane"
 msgstr "Savane"
 
-#: savane/svmain/admin.py:37
+#: savane/svmain/admin.py:54
 msgid "General Settings"
 msgstr "Configuration générale"
 
-#: savane/svmain/admin.py:38
+#: savane/svmain/admin.py:55
 msgid "Project WWW Homepage"
 msgstr "Page web du projet"
 
-#: savane/svmain/admin.py:41
+#: savane/svmain/admin.py:58
 msgid "Source Code Manager: CVS"
 msgstr "Gestion de code source : CVS"
 
-#: savane/svmain/admin.py:44
+#: savane/svmain/admin.py:61
 msgid "Source Code Manager: GNU Arch"
 msgstr "Gestion de code source : GNU Arch"
 
-#: savane/svmain/admin.py:47
+#: savane/svmain/admin.py:64
 msgid "Source Code Manager: Subversion"
 msgstr "Gestion de code source : Subversion"
 
-#: savane/svmain/admin.py:50
+#: savane/svmain/admin.py:67
 msgid "Source Code Manager: Git"
 msgstr "Gestion de code source : Git"
 
-#: savane/svmain/admin.py:53
+#: savane/svmain/admin.py:70
 msgid "Source Code Manager: Mercurial"
 msgstr "Gestion de code source: Mercurial"
 
-#: savane/svmain/admin.py:56
+#: savane/svmain/admin.py:73
 msgid "Source Code Manager: Bazaar"
 msgstr "Gestion de code source : Bazaar"
 
-#: savane/svmain/admin.py:59
+#: savane/svmain/admin.py:76
 msgid "Download area"
 msgstr "Espace de téléchargement"
 
-#: savane/svmain/admin.py:62
+#: savane/svmain/admin.py:79
 msgid "Licenses"
 msgstr "Licences"
 
-#: savane/svmain/admin.py:63 templates/svpeople/job_detail.html:35
+#: savane/svmain/admin.py:80 templates/svpeople/job_detail.html:37
 msgid "Development Status"
 msgstr "Stade de développement"
 
-#: savane/svmain/admin.py:64
+#: savane/svmain/admin.py:81
 msgid "Mailing List"
 msgstr "Listes de discussion"
 
-#: savane/svmain/admin.py:70
+#: savane/svmain/admin.py:87
 msgid "News Manager"
 msgstr "Gestionnaire de dépêches"
 
-#: savane/svmain/admin.py:71
+#: savane/svmain/admin.py:88
 msgid "Project Menu Settings"
 msgstr "Configuration du menu du projet"
 
@@ -569,7 +573,7 @@ msgstr "À reconfigurer"
 msgid "Created"
 msgstr "Créée"
 
-#: savane/svmain/urls.py:64 templates/base.html:50
+#: savane/svmain/urls.py:64 templates/base.html:51
 msgid "Users"
 msgstr "Utilisateurs"
 
@@ -577,7 +581,7 @@ msgstr "Utilisateurs"
 msgid "User detail"
 msgstr ""
 
-#: savane/svmain/urls.py:84 templates/base.html:51
+#: savane/svmain/urls.py:84 templates/base.html:52
 msgid "Projects"
 msgstr "Projets"
 
@@ -652,6 +656,7 @@ msgid "GPG Keyring of the project %s"
 msgstr "Trousseau GPG du projet %s"
 
 #: savane/svmain/views.py:185 savane/svmain/views.py:211
+#: savane/svpeople/views.py:105 savane/svpeople/views.py:136
 #, python-format
 msgid "%s saved."
 msgstr "%s enregistré(e)."
@@ -714,12 +719,13 @@ msgid "List existing mailing lists"
 msgstr "Liste les listes de discussion du projet"
 
 #: savane/svmain/templatetags/svtopmenu.py:79
+#: savane/svmain/templatetags/svtopmenu.py:157
 msgid "Browse"
 msgstr "Consulter"
 
 #: savane/svmain/templatetags/svtopmenu.py:83
 msgid "Configure:"
-msgstr "Configurer :"
+msgstr "Configurer :"
 
 #: savane/svmain/templatetags/svtopmenu.py:89
 msgid "Source code"
@@ -783,6 +789,15 @@ msgstr "Utiliser GNU Arch"
 msgid "Use CVS"
 msgstr "Utiliser CVS"
 
+#: savane/svmain/templatetags/svtopmenu.py:154
+msgid "Jobs"
+msgstr "Postes"
+
+#: savane/svmain/templatetags/svtopmenu.py:161 templates/my/ssh.html:30
+#: templates/svmain/group_admin_members_add.html:34
+msgid "Add"
+msgstr "Ajouter"
+
 #: savane/svpeople/models.py:30
 msgid "Open"
 msgstr "Ouvert"
@@ -791,89 +806,175 @@ msgstr "Ouvert"
 msgid "Filled"
 msgstr "Pourvu"
 
+#: savane/svpeople/models.py:36 templates/svmain/group_list.html:14
+msgid "Short description"
+msgstr "Description courte"
+
+#: savane/svpeople/models.py:37
+msgid "Long description"
+msgstr "Description longue"
+
+#: savane/svpeople/models.py:39
+msgid "Status"
+msgstr "État"
+
+#: savane/svpeople/models.py:40 templates/svpeople/index.html:15
+#: templates/svpeople/job_list.inc:5
+msgid "Category"
+msgstr "Catégorie"
+
+#: savane/svpeople/models.py:63
+msgid "category"
+msgstr "catégorie"
+
+#: savane/svpeople/models.py:64
+msgid "categories"
+msgstr "catégories"
+
 #: savane/svpeople/models.py:70
+msgid "skill"
+msgstr "compétence"
+
+#: savane/svpeople/models.py:71
+msgid "skills"
+msgstr "compétences"
+
+#: savane/svpeople/models.py:74
+msgid "skill level"
+msgstr "niveau de compétence"
+
+#: savane/svpeople/models.py:75
+msgid "skill levels"
+msgstr "niveaux de compétence"
+
+#: savane/svpeople/models.py:78
+msgid "skill year"
+msgstr "expérience dans une compétence"
+
+#: savane/svpeople/models.py:79
+msgid "skill years"
+msgstr "expériences dans une compétence"
+
+#: savane/svpeople/models.py:83
 msgid "Developer"
 msgstr "Développeur"
 
-#: savane/svpeople/models.py:71
+#: savane/svpeople/models.py:84
 msgid "Project manager"
 msgstr "Chef de projet"
 
-#: savane/svpeople/models.py:72
+#: savane/svpeople/models.py:85
 msgid "Unix admin"
 msgstr "Admin Unix"
 
-#: savane/svpeople/models.py:73
+#: savane/svpeople/models.py:86
 msgid "Doc writer"
 msgstr "Rédacteur technique"
 
-#: savane/svpeople/models.py:74
+#: savane/svpeople/models.py:87
 msgid "Tester"
 msgstr "Testeur"
 
-#: savane/svpeople/models.py:75
+#: savane/svpeople/models.py:88
 msgid "Support manager"
 msgstr "Ingénieur support"
 
-#: savane/svpeople/models.py:76
+#: savane/svpeople/models.py:89
 msgid "Graphic/other designer"
 msgstr "Concepteur graphique/autre"
 
-#: savane/svpeople/models.py:77
+#: savane/svpeople/models.py:90
 msgid "Translator"
 msgstr "Traducteur"
 
-#: savane/svpeople/models.py:80
+#: savane/svpeople/models.py:93
 msgid "Base knowledge"
 msgstr "Connaissances de base"
 
-#: savane/svpeople/models.py:81
+#: savane/svpeople/models.py:94
 msgid "Good knowledge"
 msgstr "Bonnes connaissances"
 
-#: savane/svpeople/models.py:82
+#: savane/svpeople/models.py:95
 msgid "Master"
 msgstr "Maîtrisé"
 
-#: savane/svpeople/models.py:83
+#: savane/svpeople/models.py:96
 msgid "Master apprentice"
 msgstr "Maître apprenti"
 
-#: savane/svpeople/models.py:84
+#: savane/svpeople/models.py:97
 msgid "Expert"
 msgstr "Expert"
 
-#: savane/svpeople/models.py:87
+#: savane/svpeople/models.py:100
 msgid "(< 6 months)"
 msgstr "(< 6 mois)"
 
-#: savane/svpeople/models.py:88
+#: savane/svpeople/models.py:101
 msgid "6 Mo - 2 yr"
 msgstr "6 mois - 3 ans"
 
-#: savane/svpeople/models.py:89
+#: savane/svpeople/models.py:102
 msgid "2 yr - 5 yr"
 msgstr "2 - 5 ans"
 
-#: savane/svpeople/models.py:90
+#: savane/svpeople/models.py:103
 msgid "5 yr - 10 yr"
 msgstr "5 - 10 ans"
 
-#: savane/svpeople/models.py:91
+#: savane/svpeople/models.py:104
 msgid "> 10 years"
 msgstr "> 10 ans"
 
-#: savane/svpeople/urls.py:30
+#: savane/svpeople/models.py:109
+msgid "job inventory"
+msgstr "compétences pour un poste"
+
+#: savane/svpeople/models.py:110
+msgid "job inventories"
+msgstr "compétences pour un poste"
+
+#: savane/svpeople/models.py:118
+msgid "skill inventory"
+msgstr "compétence d'un utilisateur"
+
+#: savane/svpeople/models.py:119
+msgid "skill inventories"
+msgstr "compétences d'un utilisateur"
+
+#: savane/svpeople/urls.py:34
 msgid "Projects needing help"
 msgstr "Projet faisant appel à contribution"
 
-#: savane/svpeople/urls.py:36
+#: savane/svpeople/urls.py:40
 msgid "Project help wanted"
 msgstr "Appels à contribution"
 
-#: savane/svpeople/urls.py:40
+#: savane/svpeople/urls.py:43
+msgid "Looking for a job to edit"
+msgstr "Recherche d'une demande de contribution à modifier"
+
+#: savane/svpeople/urls.py:47
 msgid "View a job"
-msgstr "Consulter une tâche"
+msgstr "Consulter une demande de contribution"
+
+#: savane/svpeople/urls.py:52
+msgid "Edit a job for your project"
+msgstr "Modifier un poste pour votre projet"
+
+#: savane/svpeople/urls.py:53 templates/my/contact.html:14
+#: templates/my/contact.html.py:22 templates/my/i18n.html:22
+msgid "Update"
+msgstr "Mise à jour"
+
+#: savane/svpeople/urls.py:59
+msgid "Create a job for your project"
+msgstr "Créer une demande de contribution pour votre projet"
+
+#: savane/svpeople/urls.py:61
+msgid "Continue >>"
+msgstr "Poursuivre >>"
 
 #: savane/tracker/models.py:28
 msgid "anonymous"
@@ -1037,11 +1138,11 @@ msgstr "projet"
 
 #: savane/tracker/models.py:160
 msgid "field cannot be disabled in configuration"
-msgstr ""
+msgstr "le champ ne peut pas être désactivé dans la configuration"
 
 #: savane/tracker/models.py:163
 msgid "field is not entered by the user but by the system"
-msgstr ""
+msgstr "le champ n'est pas rempli par l'utilisateur, mais par le système"
 
 #: savane/tracker/models.py:164
 msgid "let the user change the label and description"
@@ -1228,9 +1329,10 @@ msgstr "Se faire passer pour cet utilisateur"
 #: templates/svmain/group_admin_members_add.html:20
 #: templates/svmain/group_gpgkeyring.html:6
 #: templates/svmain/group_memberlist.html:6 templates/svpeople/index.html:5
-#: templates/svpeople/job_detail.html:7
-#: templates/svpeople/job_list_by_category.html:6
-#: templates/svpeople/job_list_by_type.html:6
+#: templates/svpeople/job_detail.html:7 templates/svpeople/job_form.html:6
+#: templates/svpeople/job_list_by_category.html:5
+#: templates/svpeople/job_list_by_group.html:5
+#: templates/svpeople/job_list_by_type.html:5
 msgid ": "
 msgstr " : "
 
@@ -1258,20 +1360,24 @@ msgstr "S'authentifier"
 msgid "New user"
 msgstr "Nouvel utilisateur"
 
-#: templates/base.html:49 templates/svmain/group_admin_members_add.html:20
+#: templates/base.html:48
+msgid "Set language"
+msgstr "Définir la langue"
+
+#: templates/base.html:50 templates/svmain/group_admin_members_add.html:20
 #: templates/svmain/group_list.html:9 templates/svmain/user_list.html:9
 msgid "Search"
 msgstr "Rechercher"
 
-#: templates/base.html:52
+#: templates/base.html:53
 msgid "Contributors wanted"
 msgstr "Appels à contribution"
 
-#: templates/base.html:54
+#: templates/base.html:55
 msgid "Site help"
 msgstr "Aide du site"
 
-#: templates/base.html:55
+#: templates/base.html:56
 msgid "Contact us"
 msgstr "Nous contacter"
 
@@ -1282,11 +1388,6 @@ msgstr "Bienvenue"
 #: templates/my/contact.html:9
 msgid "Change e-mail"
 msgstr "Modifier l'e-mail"
-
-#: templates/my/contact.html:14 templates/my/contact.html.py:22
-#: templates/my/i18n.html:22
-msgid "Update"
-msgstr "Mise à jour"
 
 #: templates/my/contact.html:17
 msgid "Change name"
@@ -1305,34 +1406,46 @@ msgid "Edit resume and skills"
 msgstr "Modifier CV et compétences"
 
 #: templates/my/index.html:12
-msgid "Set language"
-msgstr "Définir la langue"
-
-#: templates/my/index.html:13
 msgid "Change password"
 msgstr "Modifier votre mot de passe"
 
-#: templates/my/index.html:18
+#: templates/my/index.html:17
 msgid "Public information"
 msgstr "Informations publiques"
 
-#: templates/my/index.html:21
+#: templates/my/index.html:20
 msgid "View your public profile"
 msgstr "Consulter mon profil public"
 
-#: templates/my/index.html:26
+#: templates/my/index.html:25
 msgid "My groups"
 msgstr "Mes groupes"
 
-#: templates/my/index.html:44 templates/svmain/group_list.html:24
+#: templates/my/index.html:43 templates/svmain/group_list.html:24
 msgid "No groups."
 msgstr "Aucun groupe."
+
+#: templates/my/resume_skill.html:10
+msgid "Publicly viewable"
+msgstr "Public"
+
+#: templates/my/resume_skill.html:14
+msgid "Resume - Description of experience"
+msgstr "CV - Description de votre expérience %s"
+
+#: templates/my/resume_skill.html:18
+msgid "Skills"
+msgstr "Compétences"
+
+#: templates/my/resume_skill.html:22
+msgid "Update profile"
+msgstr "Mettre à jour mon profil"
 
 #: templates/my/ssh.html:9
 msgid "Working SSH Keys"
 msgstr "Clefs SSH fonctionnelles"
 
-#: templates/my/ssh.html:19
+#: templates/my/ssh.html:19 templates/svpeople/skill_inventory_edit.inc:9
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -1343,10 +1456,6 @@ msgstr "Pas encore de clef SSH."
 #: templates/my/ssh.html:27
 msgid "SSH keys"
 msgstr "Clefs SSH"
-
-#: templates/my/ssh.html:30 templates/svmain/group_admin_members_add.html:34
-msgid "Add"
-msgstr "Ajouter"
 
 #: templates/registration/activate.html:8
 msgid "Your account activation failed."
@@ -1659,7 +1768,7 @@ msgstr ""
 msgid "Registration date"
 msgstr "Date d'enregistrement"
 
-#: templates/svmain/group_detail.html:61 templates/svpeople/job_detail.html:31
+#: templates/svmain/group_detail.html:61 templates/svpeople/job_detail.html:33
 msgid "License"
 msgstr "Licence"
 
@@ -1697,10 +1806,6 @@ msgstr ""
 #: templates/svmain/group_list.html:14
 msgid "Unix name"
 msgstr "Nom Unix"
-
-#: templates/svmain/group_list.html:14
-msgid "Short description"
-msgstr "Description courte"
 
 #: templates/svmain/group_mailinglist.html:24
 #, python-format
@@ -1873,15 +1978,13 @@ msgid "No users."
 msgstr "Aucun utilisateur."
 
 #: templates/svpeople/index.html:5 templates/svpeople/job_detail.html:7
-#: templates/svpeople/job_list_by_category.html:6
-#: templates/svpeople/job_list_by_type.html:6
+#: templates/svpeople/job_form.html:6
+#: templates/svpeople/job_list_by_category.html:5
+#: templates/svpeople/job_list_by_group.html:5
+#: templates/svpeople/job_list_by_type.html:5
 #, python-format
 msgid "People at %(site_name)s"
 msgstr "Utilisateurs de %(site_name)s"
-
-#: templates/svpeople/index.html:15 templates/svpeople/job_list.inc:5
-msgid "Category"
-msgstr "Catégorie"
 
 #: templates/svpeople/index.html:27
 msgid "Project type"
@@ -1912,39 +2015,72 @@ msgstr ""
 msgid "To suggest new job categories, visit the support manager."
 msgstr "Pour suggérer des nouvelles catégories, voir l'interface d'assistance."
 
-#: templates/svpeople/job_detail.html:16
+#: templates/svpeople/job_detail.html:15
 msgid "wanted for"
 msgstr "demandé pour"
 
-#: templates/svpeople/job_detail.html:21
+#: templates/svpeople/job_detail.html:18
+msgid "Edit"
+msgstr "Modifier"
+
+#: templates/svpeople/job_detail.html:23
 msgid "Submitted By:"
 msgstr "Posté par"
 
-#: templates/svpeople/job_detail.html:24
+#: templates/svpeople/job_detail.html:26
 msgid "Date:"
-msgstr "Date :"
+msgstr "Date :"
 
-#: templates/svpeople/job_detail.html:25
+#: templates/svpeople/job_detail.html:27
 msgid "Status:"
-msgstr "État :"
+msgstr "État :"
 
-#: templates/svpeople/job_detail.html:37
+#: templates/svpeople/job_detail.html:39
 msgid "Details (job description, contact ...):"
-msgstr "Détails (description de la tâche, contact...) :"
+msgstr "Détails (description de la tâche, contact...) :"
 
-#: templates/svpeople/job_detail.html:43
+#: templates/svpeople/job_detail.html:45
 msgid "Required Skills:"
-msgstr "Compétences requises :"
+msgstr "Compétences requises :"
+
+#: templates/svpeople/job_form.html:15
+msgid ""
+"Start by filling in the fields below. When you click continue, you will be "
+"shown a list of skills and experience levels that this job requires."
+msgstr ""
+"Commencez par remplir les champs ci-dessous. Lorsque vous cliquerez sur "
+"\"poursuivre\", on vous montrera une liste de compétences et d'expériences, "
+"afin que vous puissiez définir quels sont requises par votre tâche."
+
+#: templates/svpeople/job_form.html:17
+msgid "Now you can edit/change the list of skills attached to this posting."
+msgstr ""
+"Maintenant, vous pouvez éditer ou changer la liste des compétences requises "
+"pour cette tâche."
+
+#: templates/svpeople/job_form.html:18
+msgid "Developers will be able to match their skills with your requirements."
+msgstr ""
+"Les développeurs seront capables de comparer leurs compétences avec celles "
+"qui sont requises ici."
+
+#: templates/svpeople/job_form.html:20
+msgid "All postings are automatically closed after two weeks."
+msgstr ""
+"Toutes les annonces seront automatiquement fermées au bout de deux semaines."
 
 #: templates/svpeople/job_inventory.inc:5
+#: templates/svpeople/skill_inventory_edit.inc:6
 msgid "Skill"
 msgstr "Compétences"
 
 #: templates/svpeople/job_inventory.inc:6
+#: templates/svpeople/skill_inventory_edit.inc:7
 msgid "Level"
 msgstr "Niveau"
 
 #: templates/svpeople/job_inventory.inc:7
+#: templates/svpeople/skill_inventory_edit.inc:8
 msgid "Experience"
 msgstr "Expérience"
 
@@ -1968,10 +2104,16 @@ msgstr "Projets"
 msgid "Type"
 msgstr "Type"
 
-#: templates/svpeople/job_list_by_category.html:7
+#: templates/svpeople/job_list_by_category.html:6
 #, python-format
 msgid "Projects looking for %(category_label)s"
 msgstr "Projets à la recherche de %(category_label)s"
+
+#: templates/svpeople/job_list_by_group.html:12
+msgid "Here is a list of positions available for this project."
+msgstr ""
+"Voici une liste des positions disponibles pour ce projet. Choisissez celle "
+"que vous voulez modifier."
 
 #, fuzzy
 #~ msgid "nom complet"
@@ -3181,9 +3323,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 #~ msgid "Copy Configuration"
 #~ msgstr "Copier une configuration"
 
-#~ msgid "Post Jobs"
-#~ msgstr "Proposer un travail"
-
 #~ msgid "Post a request for contribution"
 #~ msgstr "Poster un appel à contribution"
 
@@ -3256,9 +3395,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 
 #~ msgid "Browse Documentation that is located outside of Savane"
 #~ msgstr "Consulter la documentation (hors de Savane)"
-
-#~ msgid "Edit"
-#~ msgstr "Modifier"
 
 #~ msgid "Digest recipes"
 #~ msgstr "Compiler des recettes"
@@ -3602,9 +3738,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 
 #~ msgid "Message sent via/by %s"
 #~ msgstr "Message posté via/par %s"
-
-#~ msgid "Mail sent to %s"
-#~ msgstr "Courriel envoyé à %s"
 
 #~ msgid "Send a Message to %s"
 #~ msgstr "Poster un message à %s"
@@ -4556,9 +4689,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 
 #~ msgid "Rank on screen"
 #~ msgstr "Rang à l'écran"
-
-#~ msgid "Status"
-#~ msgstr "État"
 
 #~ msgid "Custom Field"
 #~ msgstr "Champ personnalisé"
@@ -6483,21 +6613,9 @@ msgstr "Projets à la recherche de %(category_label)s"
 #~ msgid "No such user"
 #~ msgstr "Aucun utilisateur ne correspond"
 
-#~ msgid "Publicly Viewable"
-#~ msgstr "Disponibilité"
-
 #~ msgid "Do you want your resume to be activated:"
 #~ msgstr ""
 #~ "Désirez-vous rendre public votre CV et la liste de vos compétences :"
-
-#~ msgid "Resume - Description of Experience %s"
-#~ msgstr "CV - Description de votre expérience %s"
-
-#~ msgid "Update Profile"
-#~ msgstr "Mettre à jour mon profil"
-
-#~ msgid "Skills"
-#~ msgstr "Compétences"
 
 #~ msgid "Old session deleted"
 #~ msgstr "Vieille session supprimée"
@@ -6875,9 +6993,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 #~ msgid "Existing Categories"
 #~ msgstr "Catégories existantes"
 
-#~ msgid "No job categories"
-#~ msgstr "Pas de catégories de travail trouvée"
-
 #~ msgid "Add a new job category:"
 #~ msgstr "Ajouter une nouvelle catégorie de travail :"
 
@@ -6912,9 +7027,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 #~ msgid "Help Wanted Administration"
 #~ msgstr "Administration des requêtes d'aide"
 
-#~ msgid "Create a job for your project"
-#~ msgstr "Créer une demande de contribution pour votre projet"
-
 #~ msgid "Category:"
 #~ msgstr "Catégorie :"
 
@@ -6923,9 +7035,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 
 #~ msgid "Details (job description, contact...):"
 #~ msgstr "Détails (description de la tâche, contact...) :"
-
-#~ msgid "continue >>"
-#~ msgstr "poursuivre >>"
 
 #~ msgid "error - missing info"
 #~ msgstr "erreur - information manquante"
@@ -6969,9 +7078,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 #~ msgstr ""
 #~ "Échec de la supression d'une compétence requise - mauvais project_id"
 
-#~ msgid "Edit a job for your project"
-#~ msgstr "Modifier une tâche pour votre projet"
-
 #~ msgid "POSTING fetch FAILED"
 #~ msgstr "Aucun utilisateur ne correspond"
 
@@ -6980,16 +7086,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 
 #~ msgid "Update Descriptions"
 #~ msgstr "Mise à jour de la description"
-
-#~ msgid "Looking for a job to Edit"
-#~ msgstr "Recherche d'une tâche à éditer"
-
-#~ msgid ""
-#~ "Here is a list of positions available for this project, choose the one "
-#~ "you want to modify."
-#~ msgstr ""
-#~ "Voici une liste des positions disponibles pour ce projet. Choisissez "
-#~ "celle que vous voulez modifier."
 
 #~ msgid "people"
 #~ msgstr "utilisateurs"
@@ -9791,9 +9887,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 #~ msgid "Return to my Account Configuration"
 #~ msgstr "Retour à mes préférences"
 
-#~ msgid "Skill inventory:"
-#~ msgstr "Liste des compétences :"
-
 #~ msgid "User update FAILED"
 #~ msgstr "ECHEC de la mise à jour de l'utilisateur"
 
@@ -10250,9 +10343,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 
 #~ msgid "Canned Response Updated"
 #~ msgstr "Réponse prédéfinie Mise A Jour"
-
-#~ msgid "Categories"
-#~ msgstr "Catégories"
 
 #~ msgid "Change Project/Task Manager Status"
 #~ msgstr "Modifier le statut du gestionnaire de tâches/de projet"
@@ -10864,9 +10954,6 @@ msgstr "Projets à la recherche de %(category_label)s"
 
 #~ msgid "rotate (a different theme each day in the list order)"
 #~ msgstr "cyclique (rotation des thèmes dans l'ordre)"
-
-#~ msgid "skills"
-#~ msgstr "Compétences"
 
 #~ msgid "use the search box in the left menu pane"
 #~ msgstr "utilisez la boîte de recherche dans le menu à gauche"

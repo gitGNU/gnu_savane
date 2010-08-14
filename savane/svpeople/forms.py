@@ -19,9 +19,16 @@
 
 from django import forms
 import models as svpeople_models
+from django.utils.translation import ugettext
 
 class JobForm(forms.ModelForm):
     class Meta:
         model = svpeople_models.Job
         fields = ('category', 'status', 'title', 'description', )
     description = forms.CharField(widget=forms.Textarea(attrs={'cols':'70','rows':'15'}))
+
+    def __init__(self, *args, **kwargs):
+        super(self.__class__, self).__init__(*args, **kwargs)
+        # Translate categories from database
+        self.base_fields['category'].choices = \
+            [ (k,ugettext(v)) for k,v in self.base_fields['category'].choices ]
