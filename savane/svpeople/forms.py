@@ -20,7 +20,7 @@
 from django import forms
 import django.contrib.auth.models as auth_models
 import models as svpeople_models
-from django.utils.translation import ugettext
+from django.utils.translation import ugettext as _
 
 class JobForm(forms.ModelForm):
     class Meta:
@@ -64,4 +64,4 @@ class UserInfoForm(forms.ModelForm):
     class Meta:
         model = svpeople_models.UserInfo
         fields = ('view_skills', 'resume')
-    resume = forms.CharField(widget=forms.Textarea(attrs={'cols':'70','rows':'15'}))
+    resume = forms.CharField(widget=forms.Textarea(attrs={'cols':'70','rows':'15'}), label=_("Resume"))

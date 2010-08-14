@@ -297,11 +297,11 @@ class GroupConfiguration(models.Model):
         ('basicgit', _('Basic Git directory')),
         ('basichg', _('Basic Mercurial directory')),
         ('basicbzr', _('Basic Bazaar directory')),
-        ('cvsattic', _('CVS Attic/Gna!')),
-        ('svnattic', _('Subversion Attic/Gna!')),
-        ('svnatticwebsite', _('Subversion Subdirectory Attic/Gna!')),
-        ('savannah-gnu', _('CVS Savannah GNU')),
-        ('savannah-nongnu', _('CVS Savannah non-GNU')),
+        ('cvsattic', 'CVS Attic/Gna!'),
+        ('svnattic', 'Subversion Attic/Gna!'),
+        ('svnatticwebsite', 'Subversion Subdirectory Attic/Gna!'),
+        ('savannah-gnu', 'CVS Savannah GNU'),
+        ('savannah-nongnu', 'CVS Savannah non-GNU'),
         )
     dir_type_cvs      = models.CharField(max_length=15, choices=DIR_TYPE_CHOICES, default='basiccvs')
     dir_type_arch     = models.CharField(max_length=15, choices=DIR_TYPE_CHOICES, default='basicdirectory')
