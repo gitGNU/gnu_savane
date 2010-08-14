@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-14 07:04+0000\n"
-"PO-Revision-Date: 2010-08-14 09:22+0200\n"
+"PO-Revision-Date: 2010-08-14 13:21+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -1431,7 +1431,7 @@ msgstr "Public"
 
 #: templates/my/resume_skill.html:14
 msgid "Resume - Description of experience"
-msgstr "CV - Description de votre expérience %s"
+msgstr "CV - Description de votre expérience"
 
 #: templates/my/resume_skill.html:18
 msgid "Skills"

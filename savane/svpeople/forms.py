@@ -18,6 +18,7 @@
 
 
 from django import forms
+import django.contrib.auth.models as auth_models
 import models as svpeople_models
 from django.utils.translation import ugettext
 
@@ -33,12 +34,10 @@ class JobForm(forms.ModelForm):
         self.fields['category'].choices = \
             [ (k,ugettext(v)) for k,v in self.fields['category'].choices ]
 
-from django.forms.models import inlineformset_factory
-GenericJobInventoryFormSet = inlineformset_factory(svpeople_models.Job, svpeople_models.JobInventory)
-class JobInventoryFormSet(GenericJobInventoryFormSet):
+class DuplicateValidation(object):
     # Check that the same skill is not submitted twice
     def clean(self, *args, **kwargs):
-        super(self.__class__, self).clean(*args, **kwargs)
+        super(DuplicateValidation, self).clean(*args, **kwargs)
         if any(self.errors):
             # Don't bother validating the formset unless each form is valid on its own
             return
@@ -53,3 +52,10 @@ class JobInventoryFormSet(GenericJobInventoryFormSet):
             if skill in skills:
                 raise forms.ValidationError, "Skill already in your inventory"
             skills.append(skill)
+
+from django.forms.models import inlineformset_factory
+GenericJobInventoryFormSet = inlineformset_factory(svpeople_models.Job, svpeople_models.JobInventory)
+class JobInventoryFormSet(DuplicateValidation, GenericJobInventoryFormSet): pass
+
+GenericSkillInventoryFormSet = inlineformset_factory(auth_models.User, svpeople_models.SkillInventory)
+class SkillInventoryFormSet(DuplicateValidation, GenericSkillInventoryFormSet): pass

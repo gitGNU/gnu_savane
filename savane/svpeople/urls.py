@@ -21,6 +21,7 @@ import views
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.generic.list_detail import object_detail
 from django.views.generic.create_update import create_object, update_object
+from django.contrib.auth.decorators import login_required
 from savane.utils import get_site_name
 import models as svpeople_models
 import forms as svpeople_forms
@@ -60,4 +61,9 @@ urlpatterns += decorated_patterns ('', only_project_admin,
                             'add' : True,
                             'action' : _("Continue >>") }, },
       name='job_add'),
+)
+urlpatterns += decorated_patterns ('', login_required,
+  url(r'^my_skills/$', views.skillinventory_update,
+      { 'extra_context' : { 'title' : _("Edit your skills"), }, },
+      name='skillinventory_update'),
 )

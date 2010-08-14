@@ -7,17 +7,16 @@
 
 {% block content %}
 
-<h2>{% trans "Publicly viewable" %}</h2>
-
-<p>To Be Done</p>
-
-<h2>{% trans "Resume - Description of experience" %}</h2>
-
-<p>To Be Implemented</p>
-
 <h2>{% trans "Skills" %}</h2>
 
-<p><a href="{% url savane:svpeople:skillinventory_update %}">{% trans "Edit" %}</a></p>
+{% if formset.non_form_errors %}
+<div class="warn">{{formset.non_form_errors}}</div>
+{% endif %}
+
+<form action="" method="post">{% csrf_token %}
+{% include "svpeople/skill_inventory_edit.inc" %}
+<input type="submit" value="{% trans "Update" %}" />
+</form>
 
 {% endblock %}
 {% comment %}

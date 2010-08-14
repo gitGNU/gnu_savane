@@ -169,20 +169,8 @@ def email_cancel (request, cancel_hex):
 def resume_skills(request, extra_context={}):
     object = request.user
 
-    # Skills
-    from django.forms.models import inlineformset_factory
-    SkillInventoryFormSet = inlineformset_factory(auth_models.User, svpeople_models.SkillInventory)
-    if request.method == "POST":
-        formset = SkillInventoryFormSet(request.POST, request.FILES, instance=object)
-        if formset.is_valid():
-            formset.save()
-            return HttpResponseRedirect("")  # reload
-    else:
-        formset = SkillInventoryFormSet(instance=object)
-
     context = {
         'form' : None,
-        'formset' : formset,
         }
     context.update(extra_context)
     return context

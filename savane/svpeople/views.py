@@ -150,12 +150,33 @@ def job_update(request, object_id, extra_context={}, form_class=svpeople_forms.J
         formset = svpeople_forms.JobInventoryFormSet(instance=object)
 
     if form_valid and formset_valid:
+        messages.success(request, _("Skills updated."))
         if post_save_redirect is None:
             post_save_redirect = object.get_absolute_url()
         return HttpResponseRedirect(post_save_redirect) # Redirect after POST
 
     context = {
         'form' : form,
+        'formset' : formset,
+        }
+    context.update(extra_context)
+    return context
+
+@render_to('svpeople/skillinventory_form.html', mimetype=None)
+def skillinventory_update(request, extra_context={}, post_save_redirect=None):
+    object = request.user
+
+    # Skills
+    if request.method == "POST":
+        formset = svpeople_forms.SkillInventoryFormSet(request.POST, request.FILES, instance=object)
+        if formset.is_valid():
+            formset.save()
+            messages.success(request, _("Skills updated."))
+            return HttpResponseRedirect(reverse('savane:my:resume_skills')) # Redirect after POST
+    else:
+        formset = svpeople_forms.SkillInventoryFormSet(instance=object)
+
+    context = {
         'formset' : formset,
         }
     context.update(extra_context)
