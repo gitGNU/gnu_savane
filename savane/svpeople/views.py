@@ -24,6 +24,7 @@ from django.contrib import messages
 from django.utils.text import capfirst
 from django.utils.translation import ugettext as _, ungettext
 from django.db import models
+from django import forms
 import django.contrib.auth.models as auth_models
 from annoying.decorators import render_to
 from savane.middleware.exception import HttpAppException
@@ -133,22 +134,20 @@ def job_update(request, object_id, extra_context={}, form_class=svpeople_forms.J
         if form.is_valid(): # All validation rules pass
             # Process the data
             object = form.save()
-            messages.success(request, _("%s saved.") % capfirst(object._meta.verbose_name))
+            messages.success(request, _("Job description saved."))
             form_valid = True
     else:
         form = form_class(instance=object) # An unbound form
 
     # Skills
     # TODO: translate skill_year and skill_level
-    from django.forms.models import inlineformset_factory
-    JobInventoryFormSet = inlineformset_factory(svpeople_models.Job, svpeople_models.JobInventory)
     if request.method == "POST":
-        formset = JobInventoryFormSet(request.POST, request.FILES, instance=object)
+        formset = svpeople_forms.JobInventoryFormSet(request.POST, request.FILES, instance=object)
         if formset.is_valid():
             formset.save()
             formset_valid = True
     else:
-        formset = JobInventoryFormSet(instance=object)
+        formset = svpeople_forms.JobInventoryFormSet(instance=object)
 
     if form_valid and formset_valid:
         if post_save_redirect is None:

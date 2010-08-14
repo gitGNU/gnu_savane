@@ -10,6 +10,12 @@
 
 {% block content %}
 
+{% if not add %}
+  {% if formset.non_form_errors %}
+  <div class="warn">{{formset.non_form_errors}}</div>
+  {% endif %}
+{% endif %}
+
 <p>
 {% if add %}
 {% trans "Start by filling in the fields below. When you click continue, you will be shown a list of skills and experience levels that this job requires." %}

@@ -32,3 +32,24 @@ class JobForm(forms.ModelForm):
         # Translate categories from database
         self.fields['category'].choices = \
             [ (k,ugettext(v)) for k,v in self.fields['category'].choices ]
+
+from django.forms.models import inlineformset_factory
+GenericJobInventoryFormSet = inlineformset_factory(svpeople_models.Job, svpeople_models.JobInventory)
+class JobInventoryFormSet(GenericJobInventoryFormSet):
+    # Check that the same skill is not submitted twice
+    def clean(self, *args, **kwargs):
+        super(self.__class__, self).clean(*args, **kwargs)
+        if any(self.errors):
+            # Don't bother validating the formset unless each form is valid on its own
+            return
+        skills = []
+        for i in range(0, self.total_form_count()):
+            form = self.forms[i]
+            if form.cleaned_data.get('DELETE', False):
+                continue
+            if not form.cleaned_data.get('skill', False):
+                continue
+            skill = form.cleaned_data['skill'].pk
+            if skill in skills:
+                raise forms.ValidationError, "Skill already in your inventory"
+            skills.append(skill)

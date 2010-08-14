@@ -69,6 +69,7 @@ class Skill(Label):
     class Meta:
         verbose_name = _("skill")
         verbose_name_plural = _("skills")
+        ordering = ('label',)
 class SkillLevel(Label):
     class Meta:
         verbose_name = _("skill level")
