@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-14 14:03+0000\n"
-"PO-Revision-Date: 2010-08-14 16:07+0200\n"
+"POT-Creation-Date: 2010-08-14 15:08+0000\n"
+"PO-Revision-Date: 2010-08-14 17:08+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
@@ -364,7 +364,9 @@ msgstr ""
 
 #: savane/svmain/models.py:248
 msgid "This is useful if you want project to select a license on submission."
-msgstr "C'est utile si vous voulez que le projet puisse choisir une licence lors de son inscription."
+msgstr ""
+"C'est utile si vous voulez que le projet puisse choisir une licence lors de "
+"son inscription."
 
 #: savane/svmain/models.py:250
 msgid ""
@@ -524,7 +526,7 @@ msgid "Projects"
 msgstr "Projets"
 
 #: savane/svmain/urls.py:98
-msgid "Project memberlist"
+msgid "Project members list"
 msgstr "Liste des membres du projet"
 
 #: savane/svmain/urls.py:103
@@ -736,6 +738,10 @@ msgstr "Postes"
 msgid "Add"
 msgstr "Ajouter"
 
+#: savane/svpeople/forms.py:67 savane/svpeople/models.py:121
+msgid "Resume"
+msgstr "CV"
+
 #: savane/svpeople/models.py:30
 msgid "Open"
 msgstr "Ouvert"
@@ -872,10 +878,6 @@ msgstr "compétences pour un poste"
 #: savane/svpeople/models.py:111
 msgid "job inventories"
 msgstr "compétences pour un poste"
-
-#: savane/svpeople/models.py:121
-msgid "Resume"
-msgstr "CV"
 
 #: savane/svpeople/models.py:122
 msgid "Publicly viewable"
@@ -1414,7 +1416,9 @@ msgstr "Votre compte est maintenant actif."
 
 #: templates/registration/registration_complete.html:8
 msgid "An email containing account-activation information has been sent."
-msgstr "Un courriel contenant les instructions d'activation du compte vous a été envoyé."
+msgstr ""
+"Un courriel contenant les instructions d'activation du compte vous a été "
+"envoyé."
 
 #: templates/svmain/generic_confirm.html:9
 msgid "Are you sure?"
