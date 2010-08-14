@@ -7,14 +7,22 @@
 
 {% block content %}
 
+<form action="" method="post">{% csrf_token %}
+
+<h2>{% trans "Resume - Description of experience" %}</h2>
+
+<table>
+{{form}}
+</table>
+
 <h2>{% trans "Skills" %}</h2>
 
 {% if formset.non_form_errors %}
 <div class="warn">{{formset.non_form_errors}}</div>
 {% endif %}
 
-<form action="" method="post">{% csrf_token %}
 {% include "svpeople/skill_inventory_edit.inc" %}
+
 <input type="submit" value="{% trans "Update" %}" />
 </form>
 

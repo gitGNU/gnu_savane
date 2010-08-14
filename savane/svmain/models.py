@@ -142,11 +142,7 @@ class SvUserInfo(models.Model):
     gpg_key_count = models.IntegerField(null=True, blank=True)
     # SSH keys: cf. SshKey above
 
-    # Personal info
-    people_resume = models.TextField()
-
     # Preferences - /!\ some are also in the user_preferences table
-    people_view_skills = models.BooleanField(default=False)
     email_hide = models.BooleanField(default=False)
     timezone = models.CharField(max_length=192, blank=True)
     theme = models.CharField(max_length=45, blank=True)

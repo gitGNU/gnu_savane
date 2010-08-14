@@ -21,10 +21,10 @@ from django.contrib.auth import models as auth_models
 from django.utils.translation import ugettext, ugettext_lazy as _
 import datetime
 
+
 class OpenJobManager(models.Manager):
     def get_query_set(self):
         return super(self.__class__, self).get_query_set().filter(status=1)
-
 class Job(models.Model):
     status_CHOICES = (
         ('1', _('Open')),
@@ -113,6 +113,13 @@ class JobInventory(models.Model):
     skill = models.ForeignKey(Skill)
     skill_level = models.ForeignKey(SkillLevel)
     skill_year = models.ForeignKey(SkillYear)
+
+
+from savane.utils.fields import AutoOneToOneField
+class UserInfo(models.Model):
+    user = AutoOneToOneField(auth_models.User, primary_key=True, related_name="svpeopleuserinfo")
+    resume = models.TextField(_("Resume"))
+    view_skills = models.BooleanField(_("Publicly viewable"), default=False)
 
 class SkillInventory(models.Model):
     class Meta:

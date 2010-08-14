@@ -65,12 +65,18 @@ INSERT INTO auth_user
 TRUNCATE svmain_svuserinfo;
 INSERT INTO svmain_svuserinfo
     (user_id, status, spamscore,
-     people_view_skills, people_resume,
-     timezone, theme, email_hide, gpg_key, gpg_key_count)
+     timezone, email_hide, gpg_key, gpg_key_count)
   SELECT user_id, status, spamscore,
-      people_view_skills,
-      people_resume, IFNULL(timezone, ''), IFNULL(theme, ''),
-      IFNULl(email_hide, 0), IFNULL(gpg_key, ''), gpg_key_count
+      IFNULL(timezone, ''), IFNULL(email_hide, 0), IFNULL(gpg_key, ''), gpg_key_count
+    FROM savane_old.user
+    WHERE savane_old.user.user_id != 100;
+
+-- view_skills <- people_view_skills
+-- resume <- people_resume
+TRUNCATE svpeople_userinfo;
+INSERT INTO svpeople_userinfo
+    (user_id, view_skills, resume)
+  SELECT user_id, people_view_skills, people_resume
     FROM savane_old.user
     WHERE savane_old.user.user_id != 100;
 

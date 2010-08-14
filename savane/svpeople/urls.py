@@ -49,10 +49,8 @@ urlpatterns += patterns ('',
       name='job_detail'),
   # access restriction done in job_update():
   url(r'^job/(?P<object_id>\d+)/edit/$', views.job_update,
-      { 'form_class': svpeople_forms.JobForm,
-        'extra_context' : { 'title' : _("Edit a job for your project"),
-                            'action' : _("Update") },
-        'post_save_redirect' : '../' },
+      { 'extra_context' : { 'title' : _("Edit a job for your project"),
+                            'action' : _("Update") }, },
       name='job_edit'),
 )
 urlpatterns += decorated_patterns ('', only_project_admin,
@@ -63,7 +61,7 @@ urlpatterns += decorated_patterns ('', only_project_admin,
       name='job_add'),
 )
 urlpatterns += decorated_patterns ('', login_required,
-  url(r'^my_skills/$', views.skillinventory_update,
-      { 'extra_context' : { 'title' : _("Edit your skills"), }, },
-      name='skillinventory_update'),
+  url(r'^my_info/$', views.userinfo_update,
+      { 'extra_context' : { 'title' : _("Edit your resume & skills"), }, },
+      name='userinfo_update'),
 )

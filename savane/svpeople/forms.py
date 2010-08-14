@@ -59,3 +59,9 @@ class JobInventoryFormSet(DuplicateValidation, GenericJobInventoryFormSet): pass
 
 GenericSkillInventoryFormSet = inlineformset_factory(auth_models.User, svpeople_models.SkillInventory)
 class SkillInventoryFormSet(DuplicateValidation, GenericSkillInventoryFormSet): pass
+
+class UserInfoForm(forms.ModelForm):
+    class Meta:
+        model = svpeople_models.UserInfo
+        fields = ('view_skills', 'resume')
+    resume = forms.CharField(widget=forms.Textarea(attrs={'cols':'70','rows':'15'}))

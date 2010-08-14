@@ -21,6 +21,10 @@ improve it.
 
     [/] User page
 
+        [ ] Improve presentation
+
+        [ ] Display resume and skills
+
     [X] Superuser support
 
     [/] Account conf
@@ -34,8 +38,6 @@ improve it.
         [X] SSH keys
 
         [X] GPG key
-
-	[ ] Profile/resume
 
 	[ ] Timezone (cf. doc/DJANGO)
 
@@ -146,6 +148,8 @@ improve it.
     [X] Edit job
 
     [X] Edit user skills
+
+    [ ] Edit user resume
 
 [X] Add testing infrastructure
 

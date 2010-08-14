@@ -118,14 +118,14 @@ def job_add(request, slug, extra_context={}, post_save_redirect=None):
     return context
 
 @render_to('svpeople/job_form.html', mimetype=None)
-def job_update(request, object_id, extra_context={}, form_class=svpeople_forms.JobForm, post_save_redirect=None):
+def job_update(request, object_id, extra_context={}, post_save_redirect=None):
     object = get_object_or_404(svpeople_models.Job, id=object_id)
     group = object.group
 
     if request.user.is_anonymous() or not svmain_models.Membership.is_admin(request.user, group):
         raise HttpAppException(_("Permission denied"))
 
-    #form_class = svpeople_forms.JobForm
+    form_class = svpeople_forms.JobForm
     form_valid = False
     formset_valid = False
 
@@ -145,12 +145,12 @@ def job_update(request, object_id, extra_context={}, form_class=svpeople_forms.J
         formset = svpeople_forms.JobInventoryFormSet(request.POST, request.FILES, instance=object)
         if formset.is_valid():
             formset.save()
+            messages.success(request, _("Skills updated."))
             formset_valid = True
     else:
         formset = svpeople_forms.JobInventoryFormSet(instance=object)
 
     if form_valid and formset_valid:
-        messages.success(request, _("Skills updated."))
         if post_save_redirect is None:
             post_save_redirect = object.get_absolute_url()
         return HttpResponseRedirect(post_save_redirect) # Redirect after POST
@@ -162,21 +162,43 @@ def job_update(request, object_id, extra_context={}, form_class=svpeople_forms.J
     context.update(extra_context)
     return context
 
-@render_to('svpeople/skillinventory_form.html', mimetype=None)
-def skillinventory_update(request, extra_context={}, post_save_redirect=None):
-    object = request.user
+@render_to('svpeople/userinfo_form.html', mimetype=None)
+def userinfo_update(request, extra_context={}):
+    """
+    Modify current user's resume and skills
+    """
+
+    form_valid = False
+    formset_valid = False
+
+    form_class = svpeople_forms.UserInfoForm
+    userinfo = request.user.svpeopleuserinfo
+    if request.method == 'POST': # If the form has been submitted...
+        form = form_class(request.POST, instance=userinfo) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            # Process the data
+            userinfo = form.save()
+            messages.success(request, _("Resume updated."))
+            form_valid = True
+    else:
+        form = form_class(instance=userinfo) # An unbound form
 
     # Skills
+    user = request.user
     if request.method == "POST":
-        formset = svpeople_forms.SkillInventoryFormSet(request.POST, request.FILES, instance=object)
+        formset = svpeople_forms.SkillInventoryFormSet(request.POST, request.FILES, instance=user)
         if formset.is_valid():
             formset.save()
             messages.success(request, _("Skills updated."))
-            return HttpResponseRedirect(reverse('savane:my:resume_skills')) # Redirect after POST
+            formset_valid = True
     else:
-        formset = svpeople_forms.SkillInventoryFormSet(instance=object)
+        formset = svpeople_forms.SkillInventoryFormSet(instance=user)
+
+    if form_valid and formset_valid:
+        return HttpResponseRedirect(reverse('savane:my:index')) # Redirect after POST
 
     context = {
+        'form' : form,
         'formset' : formset,
         }
     context.update(extra_context)
