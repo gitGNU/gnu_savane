@@ -109,6 +109,8 @@ improve it.
 
     [X] Jobs
 
+    [.] Trackers
+
 [ ] Implement mod_rewrite URL migration list
 
 [/] Separate the trackers in the old code so they can work
@@ -135,7 +137,7 @@ improve it.
 
 [ ] Project history
 
-[/] Rewrite /people (request for contribution / jobs) in Django
+[X] Rewrite /people (request for contribution / jobs) in Django
 
     [X] Job index (count by category & group type)
 
@@ -149,7 +151,7 @@ improve it.
 
     [X] Edit user skills
 
-    [ ] Edit user resume
+    [X] Edit user resume
 
 [X] Add testing infrastructure
 

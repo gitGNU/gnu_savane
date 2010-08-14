@@ -249,10 +249,10 @@ class Item(models.Model):
     """
 
     class Meta:
-        unique_together = (('tracker', 'bugs_id'),
-                           ('tracker', 'patch_id'),
-                           ('tracker', 'support_id'),
-                           ('tracker', 'task_id'),)
+        unique_together = (('tracker', 'public_bugs'),
+                           ('tracker', 'public_patch'),
+                           ('tracker', 'public_support'),
+                           ('tracker', 'public_task'),)
 
     # Rename 'id' to avoid confusion with public ids below
     internal_id = models.AutoField(primary_key=True)
@@ -261,10 +261,10 @@ class Item(models.Model):
     # Per-tracker public item identifier.  Reason is historical:
     # trackers were stored in different tables, each with its own
     # auto_increment field:
-    bugs_id    = models.OneToOneField(BugsPublicId,    blank=True, null=True)
-    task_id    = models.OneToOneField(TaskPublicId,    blank=True, null=True)
-    support_id = models.OneToOneField(SupportPublicId, blank=True, null=True)
-    patch_id   = models.OneToOneField(PatchPublicId,   blank=True, null=True)
+    public_bugs    = models.OneToOneField(BugsPublicId,    blank=True, null=True)
+    public_task    = models.OneToOneField(TaskPublicId,    blank=True, null=True)
+    public_support = models.OneToOneField(SupportPublicId, blank=True, null=True)
+    public_patch   = models.OneToOneField(PatchPublicId,   blank=True, null=True)
 
     # Non-fields values
     group = models.ForeignKey(auth_models.Group)
