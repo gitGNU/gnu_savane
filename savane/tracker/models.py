@@ -183,7 +183,7 @@ class FieldUsage(models.Model):
     Field configuration for each group
     """
     class Meta:
-        unique_together = (('bug_field', 'group'),)
+        unique_together = (('field', 'group'),)
 
     TRANSITION_DEFAULT_AUTH_CHOICES = (('', _('undefined')),
                                        ('A', _('allowed')),
@@ -195,7 +195,7 @@ class FieldUsage(models.Model):
     CUSTOM_EMPTY_OK_CHOICES = (('0', _('mandatory only if it was presented to the original submitter')),
                                ('1', _('optional (empty values are accepted)')),
                                ('3', _('mandatory')),)
-    bug_field = models.ForeignKey('Field')
+    field = models.ForeignKey('Field')
     group = models.ForeignKey(auth_models.Group)
     use_it = models.BooleanField(_("used"))
     show_on_add = models.CharField(max_length=1, choices=SHOW_ON_ADD_CHOICES,

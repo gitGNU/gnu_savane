@@ -532,13 +532,64 @@ INSERT INTO tracker_item
     FROM_UNIXTIME(IF(custom_df5<0,0,custom_df5))
     FROM savane_old.bugs;
 
-TRUNCATE tracker_field;
--- id <- bug_field_id
+-- We're merging all the *_field tables, so we need to assign new ids
+CREATE TEMPORARY TABLE conv_field_ids (
+  new INT auto_increment PRIMARY KEY,
+  tracker_id VARCHAR(7), old INT,
+  INDEX(tracker_id), INDEX(old));
+INSERT INTO conv_field_ids (tracker_id, old)
+        SELECT 'bugs',    bug_field_id FROM savane_old.bugs_field
+  UNION SELECT 'patch',   bug_field_id FROM savane_old.patch_field
+  UNION SELECT 'support', bug_field_id FROM savane_old.patch_field
+  UNION SELECT 'task',    bug_field_id FROM savane_old.patch_field;
+
+-- id <- conv_field_ids.new  (duplicates in savane_old.*_field tables)
 -- name <- field_name
 -- tracker_id <- 'bugs'
+TRUNCATE tracker_field;
 INSERT INTO tracker_field
     (id, tracker_id, name, display_type, display_size, label,
-    description, scope, required, empty_ok, keep_history, special, custom)
-  SELECT bug_field_id, 'bugs', field_name, display_type, display_size, label,
+     description, scope, required, empty_ok, keep_history, special, custom)
+  SELECT
+      conv_field_ids.new, 'bugs', field_name, display_type, display_size, label,
       description, scope, required, empty_ok, keep_history, special, custom
-    FROM savane_old.bugs_field;
+    FROM savane_old.bugs_field JOIN conv_field_ids
+      ON (bug_field_id = old AND tracker_id = 'bugs');
+INSERT INTO tracker_field
+    (id, tracker_id, name, display_type, display_size, label,
+     description, scope, required, empty_ok, keep_history, special, custom)
+  SELECT
+      conv_field_ids.new, 'patch', field_name, display_type, display_size, label,
+      description, scope, required, empty_ok, keep_history, special, custom
+    FROM savane_old.patch_field JOIN conv_field_ids
+      ON (bug_field_id = old AND tracker_id = 'patch');
+
+-- Get rid of duplicates (old mysql/php/savane bug?)
+-- It only affected group_id=100, maybe the installation was done
+-- twice or something.
+-- Give priority to the last one.
+-- Need to create a real table - a temporary one has issues with being "reopened" in joins
+CREATE TABLE temp_bugs_field_usage AS SELECT * FROM savane_old.bugs_field_usage;
+ALTER TABLE temp_bugs_field_usage ADD (id INT auto_increment PRIMARY KEY);
+DELETE FROM temp_bugs_field_usage
+  WHERE id IN (
+    SELECT id FROM (
+      SELECT B.id FROM temp_bugs_field_usage A, temp_bugs_field_usage B
+        WHERE A.id > B.id
+          AND A.bug_field_id = B.bug_field_id AND A.group_id = B.group_id
+      ) AS temp
+    );
+-- id <- <auto>
+-- field_id <- bug_field_id
+TRUNCATE tracker_fieldusage;
+INSERT INTO tracker_fieldusage
+    (field_id, group_id, use_it, show_on_add, show_on_add_members, place,
+     custom_label, custom_description, custom_display_size, custom_empty_ok,
+     custom_keep_history, transition_default_auth)
+  SELECT
+      conv_field_ids.new, group_id, use_it, show_on_add, show_on_add_members, place,
+      custom_label, custom_description, custom_display_size, custom_empty_ok,
+      IFNULL(custom_keep_history, 0), transition_default_auth
+   FROM temp_bugs_field_usage JOIN conv_field_ids
+      ON (bug_field_id = old AND tracker_id = 'bugs');
+DROP TABLE temp_bugs_field_usage;
