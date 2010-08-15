@@ -67,54 +67,56 @@ def contact(request, extra_context={}):
 
         if form is not None and form.is_valid():
             if 'update_mail' in request.POST:
-                request.user.svuserinfo.email_new = request.POST['email']
-                request.user.svuserinfo.email_hash_confirm = random.getrandbits(64-1)
-                request.user.svuserinfo.email_hash_cancel = random.getrandbits(64-1)
-                request.user.svuserinfo.save()
-
-                hex_confirm = hex(request.user.svuserinfo.email_hash_confirm)[2:-1]
-                hex_cancel = hex(request.user.svuserinfo.email_hash_cancel)[2:-1]
-                try:
-                    # TODO: we might use templates instead of plain string concatenation
-                    url = 'http://' + Site.objects.get_current().domain + reverse('savane:my:email_confirm', args=[hex_confirm])
-                    subject = get_site_name() + ' ' + _("verification")
-                    message = (_("""You have requested a change of email address on %s.
-Please visit the following URL to complete the email change:""") % get_site_name()
-                               + "\n\n"
-                               + url
-                               + "\n\n"
-                               + _("-- the %s team.") % get_site_name()
-                               + "\n")
-                    to = [request.user.svuserinfo.email_new]
-                    mail.send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, to)
-		  
-                    url = 'http://' + Site.objects.get_current().domain + reverse('savane:my:email_cancel', args=[hex_cancel])
-                    subject = get_site_name() + ' ' + _("verification")
-                    message = (_("""Someone, presumably you, has requested a change of email address on %(site_name)s.
+                if request.POST['email'] == request.user.email:
+                    messages.error(request, _("The email is identical."))
+                else:
+                    request.user.svuserinfo.email_new = request.POST['email']
+                    request.user.svuserinfo.email_hash_confirm = random.getrandbits(64-1)
+                    request.user.svuserinfo.email_hash_cancel = random.getrandbits(64-1)
+                    request.user.svuserinfo.save()
+    
+                    hex_confirm = hex(request.user.svuserinfo.email_hash_confirm)[2:-1]
+                    hex_cancel = hex(request.user.svuserinfo.email_hash_cancel)[2:-1]
+                    try:
+                        # TODO: we might use templates instead of plain string concatenation
+                        url = 'http://' + Site.objects.get_current().domain + reverse('savane:my:email_confirm', args=[hex_confirm])
+                        subject = get_site_name() + ' ' + _("verification")
+                        message = (_("""You have requested a change of email address on %s.
+    Please visit the following URL to complete the email change:""") % get_site_name()
+                                   + "\n\n"
+                                   + url
+                                   + "\n\n"
+                                   + _("-- the %s team.") % get_site_name()
+                                   + "\n")
+                        to = [request.user.svuserinfo.email_new]
+                        mail.send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, to)
+    		  
+                        url = 'http://' + Site.objects.get_current().domain + reverse('savane:my:email_cancel', args=[hex_cancel])
+                        subject = get_site_name() + ' ' + _("verification")
+                        message = (_("""Someone, presumably you, has requested a change of email address on %(site_name)s.
 If it wasn't you, maybe someone is trying to steal your account...
 
 Your current address is %(email_current)s, the supposedly new address is %(email_new)s.
 
 """) % {'site_name': get_site_name(),
-        'email_current': request.user.email,
-        'email_new': request.user.svuserinfo.email_new}
-                               + _("""If you did not request that change, please visit the following URL to discard
+            'email_current': request.user.email,
+            'email_new': request.user.svuserinfo.email_new}
+                                   + _("""If you did not request that change, please visit the following URL to discard
 the email change and report the problem to us:""")
-                               + "\n\n"
-                               + url
-                               + "\n\n"
-                               + _("-- the %s team.") % get_site_name()
-                               + "\n")
-                    to = [request.user.email]
-                    if request.user.email != '':
-                        mail.send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, to)
-                except smtplib.SMTPException:
-		      messages.error(request, _("The system reported a failure when trying to send the confirmation mail. Please retry and report that problem to administrators."))
-                messages.success(request, _("Confirmation mailed to %s.") % request.user.svuserinfo.email_new
-                                 + ' ' + _("Follow the instructions in the email to complete the email change."))
-                
-                
-                return HttpResponseRedirect("")  # reload
+                                   + "\n\n"
+                                   + url
+                                   + "\n\n"
+                                   + _("-- the %s team.") % get_site_name()
+                                   + "\n")
+                        to = [request.user.email]
+                        if request.user.email != '':
+                            mail.send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, to)
+                    except smtplib.SMTPException:
+                        messages.error(request, _("The system reported a failure when trying to send the confirmation mail. Please retry and report that problem to administrators."))
+                    messages.success(request, _("Confirmation mailed to %s.") % request.user.svuserinfo.email_new
+                                     + ' ' + _("Follow the instructions in the email to complete the email change."))
+                    return HttpResponseRedirect("")  # reload
+                    
             elif 'update_identity' in request.POST:
                 request.user.first_name = request.POST['first_name']
                 request.user.last_name = request.POST['last_name']
