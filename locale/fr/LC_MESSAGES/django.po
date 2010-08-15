@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-14 21:18+0000\n"
-"PO-Revision-Date: 2010-08-14 23:20+0200\n"
+"POT-Creation-Date: 2010-08-15 10:27+0000\n"
+"PO-Revision-Date: 2010-08-15 12:28+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: savane/perms.py:27 savane/perms.py:40 savane/my/views.py:256
+#: savane/perms.py:27 savane/perms.py:40 savane/my/views.py:258
 #: savane/svpeople/views.py:126
 msgid "Permission denied"
 msgstr "Accès refusé"
@@ -120,25 +120,29 @@ msgstr "Modifier vos clefs publiques"
 msgid "Language"
 msgstr "Langue"
 
-#: savane/my/views.py:80 savane/my/views.py:92
+#: savane/my/views.py:71
+msgid "The email is identical."
+msgstr "L'adresse courriel est identique."
+
+#: savane/my/views.py:83 savane/my/views.py:95
 msgid "verification"
 msgstr "vérification"
 
-#: savane/my/views.py:81
+#: savane/my/views.py:84
 #, python-format
 msgid ""
 "You have requested a change of email address on %s.\n"
 "Please visit the following URL to complete the email change:"
 msgstr ""
 "Vous avez demandé le changement de votre courriel à %s.\n"
-" Veuillez vous rendre l'adresse suivante pour valider le changement:"
+"Veuillez vous rendre l'adresse suivante pour valider le changement:"
 
-#: savane/my/views.py:86 savane/my/views.py:106
+#: savane/my/views.py:89 savane/my/views.py:109
 #, python-format
 msgid "-- the %s team."
 msgstr "-- L'équipe de %s"
 
-#: savane/my/views.py:93
+#: savane/my/views.py:96
 #, python-format
 msgid ""
 "Someone, presumably you, has requested a change of email address on "
@@ -158,7 +162,7 @@ msgstr ""
 "%(email_new)s.\n"
 "\n"
 
-#: savane/my/views.py:101
+#: savane/my/views.py:104
 msgid ""
 "If you did not request that change, please visit the following URL to "
 "discard\n"
@@ -167,7 +171,7 @@ msgstr ""
 "Si vous n'avez pas demandé ce changement, visitez cette URL pour annuler\n"
 "l'opération and signalez-nous le problème :"
 
-#: savane/my/views.py:112
+#: savane/my/views.py:115
 msgid ""
 "The system reported a failure when trying to send the confirmation mail. "
 "Please retry and report that problem to administrators."
@@ -175,67 +179,67 @@ msgstr ""
 "Le système a signalé un échec de l'envoi du courriel de confirmation. "
 "Réessayez et signalez le problème aux administrateurs."
 
-#: savane/my/views.py:113
+#: savane/my/views.py:116
 #, python-format
 msgid "Confirmation mailed to %s."
 msgstr "Confirmation envoyée à %s."
 
-#: savane/my/views.py:114
+#: savane/my/views.py:117
 msgid "Follow the instructions in the email to complete the email change."
 msgstr ""
 "Un couriel a été envoyé. Suivez les instructions dans le message pour "
 "valider le changement."
 
-#: savane/my/views.py:124
+#: savane/my/views.py:126
 msgid "Personal information changed."
 msgstr "Informations personnelles modifiées"
 
-#: savane/my/views.py:144
+#: savane/my/views.py:146
 msgid "Email address updated."
 msgstr "Courriel mis à jour."
 
-#: savane/my/views.py:146
+#: savane/my/views.py:148
 msgid "Confirm Email change"
 msgstr "Confirmer le changement de courriel"
 
-#: savane/my/views.py:147
+#: savane/my/views.py:149
 #, python-format
 msgid "Confirm your e-mail change to %s?"
 msgstr "Confirmer le changement de votre courriel en %s?"
 
-#: savane/my/views.py:149 savane/my/views.py:165
+#: savane/my/views.py:151 savane/my/views.py:167
 msgid "Invalid confirmation hash"
 msgstr "Code de confirmation non valide."
 
-#: savane/my/views.py:160
+#: savane/my/views.py:162
 msgid "Address change process discarded."
 msgstr "Processus de changement d'adresse annulé."
 
-#: savane/my/views.py:162
+#: savane/my/views.py:164
 msgid "Cancel Email change"
 msgstr "Annuler le changement de courriel"
 
-#: savane/my/views.py:163
+#: savane/my/views.py:165
 #, python-format
 msgid "Cancel your e-mail change to %s?"
 msgstr "Annuler le changement de courriel en %s?"
 
-#: savane/my/views.py:215
+#: savane/my/views.py:217
 #, python-format
 msgid "Key registered"
 msgid_plural "%(count)d keys registered"
 msgstr[0] "Clef enregistrée"
 msgstr[1] "%(count)d clefs enregistrées"
 
-#: savane/my/views.py:219
+#: savane/my/views.py:221
 msgid "Error while registering keys"
 msgstr "Erreur lors de l'enregistrement des clefs"
 
-#: savane/my/views.py:245
+#: savane/my/views.py:247
 msgid "Cannot remove the selected key"
 msgstr "Impossible de supprimer la clef sélectionnée"
 
-#: savane/my/views.py:270
+#: savane/my/views.py:272
 #, python-format
 msgid "Language set to %s"
 msgstr "Langue définie en %s"
@@ -1007,7 +1011,7 @@ msgstr "Le rôle a changé"
 
 #: savane/tracker/models.py:52
 msgid "I'm added to or removed from this role"
-msgstr ""
+msgstr "Je suis ajouté ou supprimé de ce rôle"
 
 #: savane/tracker/models.py:53
 msgid "New comment"
@@ -1059,7 +1063,7 @@ msgstr "Toute modification non mentionnée ci-dessus"
 
 #: savane/tracker/models.py:65
 msgid "I did it"
-msgstr ""
+msgstr "Je l'ai faite"
 
 #: savane/tracker/models.py:66
 msgid "I am the author of the change"
@@ -1105,129 +1109,137 @@ msgstr "assistance"
 msgid "task"
 msgstr "tâche"
 
-#: savane/tracker/models.py:152
+#: savane/tracker/models.py:155
+msgid "field"
+msgstr "champ"
+
+#: savane/tracker/models.py:156
+msgid "fields"
+msgstr "champs"
+
+#: savane/tracker/models.py:158
 msgid "date field"
 msgstr "champ date"
 
-#: savane/tracker/models.py:153
+#: savane/tracker/models.py:159
 msgid "select box"
 msgstr "liste déroulante"
 
-#: savane/tracker/models.py:154
+#: savane/tracker/models.py:160
 msgid "text area"
 msgstr "zone de texte"
 
-#: savane/tracker/models.py:155
+#: savane/tracker/models.py:161
 msgid "text field"
 msgstr "champ de texte"
 
-#: savane/tracker/models.py:156
+#: savane/tracker/models.py:162
 msgid "system"
 msgstr "système"
 
-#: savane/tracker/models.py:157
+#: savane/tracker/models.py:163
 msgid "project"
 msgstr "projet"
 
-#: savane/tracker/models.py:169
+#: savane/tracker/models.py:175
 msgid "field cannot be disabled in configuration"
 msgstr "le champ ne peut pas être désactivé dans la configuration"
 
-#: savane/tracker/models.py:172
+#: savane/tracker/models.py:178
 msgid "field is not entered by the user but by the system"
 msgstr "le champ n'est pas rempli par l'utilisateur, mais par le système"
 
-#: savane/tracker/models.py:173
+#: savane/tracker/models.py:179
 msgid "let the user change the label and description"
 msgstr "permettre à l'utilisateur de changer le libellé et la description"
 
-#: savane/tracker/models.py:182
+#: savane/tracker/models.py:188
 msgid "undefined"
 msgstr "indéfini"
 
-#: savane/tracker/models.py:183
+#: savane/tracker/models.py:189
 msgid "allowed"
 msgstr "autorisé"
 
-#: savane/tracker/models.py:184
+#: savane/tracker/models.py:190
 msgid "forbidden"
 msgstr "interdit"
 
-#: savane/tracker/models.py:185
+#: savane/tracker/models.py:191
 msgid "no"
 msgstr "non"
 
-#: savane/tracker/models.py:186
+#: savane/tracker/models.py:192
 msgid "show to logged in users"
 msgstr "montrer aux utilisateurs authentifiés"
 
-#: savane/tracker/models.py:187
+#: savane/tracker/models.py:193
 msgid "show to anonymous users"
 msgstr "montrer aux utilisateurs anonymes"
 
-#: savane/tracker/models.py:188
+#: savane/tracker/models.py:194
 msgid "show to both logged in and anonymous users"
 msgstr "montrer aux utilisateurs authentifiés comme anonymes"
 
-#: savane/tracker/models.py:189
+#: savane/tracker/models.py:195
 msgid "mandatory only if it was presented to the original submitter"
 msgstr "obligatoire seulement s'il a été présenté à celui ayant posté l'item"
 
-#: savane/tracker/models.py:190
+#: savane/tracker/models.py:196
 msgid "optional (empty values are accepted)"
 msgstr "facultatif (les valeurs nulles sont acceptées)"
 
-#: savane/tracker/models.py:191
+#: savane/tracker/models.py:197
 msgid "mandatory"
 msgstr "obligatoire"
 
-#: savane/tracker/models.py:194
+#: savane/tracker/models.py:200
 msgid "used"
 msgstr "utilisé"
 
-#: savane/tracker/models.py:200
+#: savane/tracker/models.py:206
 msgid "show to project members"
 msgstr "montrer aux membres du projet"
 
-#: savane/tracker/models.py:214
+#: savane/tracker/models.py:220
 msgid "keep field value changes in history"
 msgstr "conserver dans l'historique les modifications des valeurs de ce champ"
 
-#: savane/tracker/models.py:227
+#: savane/tracker/models.py:233
 msgid "active"
 msgstr "actif"
 
-#: savane/tracker/models.py:228
+#: savane/tracker/models.py:234
 msgid "hidden"
 msgstr "caché"
 
-#: savane/tracker/models.py:229
+#: savane/tracker/models.py:235
 msgid "permanent"
 msgstr "permanent"
 
-#: savane/tracker/models.py:242
+#: savane/tracker/models.py:248
 msgid ""
 "comma-separated list of e-mail addresses to notify when an item is created "
 "or modified in this category"
 msgstr ""
 
-#: savane/tracker/models.py:243
+#: savane/tracker/models.py:249
 msgid "send on all updates"
 msgstr "poster à toutes les mises à jour de l'item"
 
-#: savane/tracker/models.py:311
+#: savane/tracker/models.py:317
 msgid "open/closed"
 msgstr "ouvert/clos"
 
-#: savane/tracker/models.py:318
+#: savane/tracker/models.py:324
 msgid "item group"
 msgstr "groupe de l'item"
 
-#: savane/tracker/models.py:438
+#: savane/tracker/models.py:448
 msgid "comment type"
 msgstr "type de commentaire"
 
-#: savane/tracker/models.py:444
+#: savane/tracker/models.py:454
 msgid "total spamscore for this comment"
 msgstr "score de spam cumulé pour ce commentaire"
 
@@ -1424,6 +1436,7 @@ msgid "Working SSH Keys"
 msgstr "Clefs SSH fonctionnelles"
 
 #: templates/my/ssh.html:19 templates/svpeople/skill_inventory_edit.inc:9
+#: templates/webmail_locmem/mail_detail.html:28
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -1450,10 +1463,12 @@ msgstr ""
 "envoyé."
 
 #: templates/svmain/generic_confirm.html:9
+#: templates/webmail_locmem/mail_delete.html:9
 msgid "Are you sure?"
 msgstr "Êtes-vous sûr(e)?"
 
 #: templates/svmain/generic_confirm.html:13
+#: templates/webmail_locmem/mail_delete.html:13
 msgid "Yes"
 msgstr "Oui"
 
@@ -1994,6 +2009,63 @@ msgstr "Poster les modifications"
 #: templates/tracker/item_form.html:41
 msgid "History"
 msgstr "Historique"
+
+#: templates/webmail_locmem/mail_detail.html:13
+#: templates/webmail_locmem/mail_list.html:14
+msgid "From"
+msgstr "De"
+
+#: templates/webmail_locmem/mail_detail.html:14
+#: templates/webmail_locmem/mail_list.html:15
+msgid "To"
+msgstr "À"
+
+#: templates/webmail_locmem/mail_detail.html:15
+msgid "Bcc"
+msgstr "Cci"
+
+#: templates/webmail_locmem/mail_detail.html:16
+#: templates/webmail_locmem/mail_list.html:16
+msgid "Subject"
+msgstr "Sujet"
+
+#: templates/webmail_locmem/mail_detail.html:17
+msgid "Body"
+msgstr "Corps"
+
+#: templates/webmail_locmem/mail_detail.html:18
+msgid "Attachments"
+msgstr "Pièces jointes"
+
+#: templates/webmail_locmem/mail_detail.html:24
+msgid "Full message"
+msgstr "Message complet"
+
+#: templates/webmail_locmem/mail_list.html:9
+msgid "No mail yet."
+msgstr "Pas encore de message."
+
+#: templates/webmail_locmem/mail_list.html:13
+msgid "Id"
+msgstr "Id"
+
+#: webmail_locmem/urls.py:28
+msgid "Savane hacker's mailbox"
+msgstr "Boîte aux lettres du programmeur astucieux Savane"
+
+#: webmail_locmem/views.py:61 webmail_locmem/views.py:76
+msgid "No such message"
+msgstr "Pas de message correspondant"
+
+#: webmail_locmem/views.py:65
+#, python-format
+msgid "Message #%d"
+msgstr "Message n°%d"
+
+#: webmail_locmem/views.py:86
+#, python-format
+msgid "Delete message #%d?"
+msgstr "Supprimer le message n°%d ?"
 
 #~ msgid "Update profile"
 #~ msgstr "Mettre à jour mon profil"
@@ -3094,9 +3166,6 @@ msgstr "Historique"
 #~ msgid "You could post if you were logged in"
 #~ msgstr "Il faut être authentifié pour pouvoir poster"
 
-#~ msgid "Subject"
-#~ msgstr "Sujet"
-
 #~ msgid "Message:"
 #~ msgstr "Message :"
 
@@ -3370,9 +3439,6 @@ msgstr "Historique"
 
 #~ msgid "Group Change History"
 #~ msgstr "Historique des modifications du projet"
-
-#~ msgid "Field"
-#~ msgstr "Champ"
 
 #~ msgid "Value"
 #~ msgstr "Valeur"
@@ -4462,9 +4528,6 @@ msgstr "Historique"
 #~ msgid "Modify a Query Form"
 #~ msgstr "Modifier un formulaire de requête"
 
-#~ msgid "Id"
-#~ msgstr "Id"
-
 #~ msgid "Query form name"
 #~ msgstr "Nom du formulaire de requête"
 
@@ -4677,12 +4740,6 @@ msgstr "Historique"
 #~ msgid "Registered Transitions"
 #~ msgstr "Transitions enregistrées"
 
-#~ msgid "From"
-#~ msgstr "De"
-
-#~ msgid "To"
-#~ msgstr "À"
-
 #~ msgid "Is Allowed"
 #~ msgstr "Est autorisé"
 
@@ -4786,9 +4843,6 @@ msgstr "Historique"
 
 #~ msgid "Modify Canned Response"
 #~ msgstr "Modifier les réponses prédéfinies"
-
-#~ msgid "No such response!"
-#~ msgstr "Pas de telle réponse !"
 
 #~ msgid ""
 #~ "Creating generic messages can save you a lot of time when giving common "
@@ -9003,9 +9057,6 @@ msgstr "Historique"
 #~ msgid "Expand"
 #~ msgstr "Détailler"
 
-#~ msgid "Message"
-#~ msgstr "Message"
-
 #~ msgid "Filelist (Download area)"
 #~ msgstr "Espace de téléchargement"
 
@@ -10136,9 +10187,6 @@ msgstr "Historique"
 
 #~ msgid "Bug Administration - Report Management"
 #~ msgstr "Administration des bugs - Gestion des rapports"
-
-#~ msgid "Bug Attachments"
-#~ msgstr "Anomalies attachés"
 
 #~ msgid "Bug Change History"
 #~ msgstr "Historique du bogue"
