@@ -36,6 +36,12 @@ urlpatterns += patterns('',
   (r'^accounts/', include('django.contrib.auth.urls')),
 )
 
+# Browse the false mailbox, for demo websites:
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^dev/webmail/', include('webmail_locmem.urls')),
+    )
+
 # Enable the auto-admin:
 from django.contrib import admin
 import django
@@ -44,11 +50,14 @@ admin.autodiscover()
 urlpatterns += patterns('',
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'^dev/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^admin/', include(admin.site.urls)),
+    (r'^dev/', include(admin.site.urls)),
 )
+# TODO: implement a lighter admin interface for non-dev admins (to
+# manage project configurations, skills categories, etc.)
+# It could reside at '^siteadmin/'.
 
 # Static content
 if settings.DEBUG:

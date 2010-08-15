@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block icon %}mail{% endblock %}
+
+{% block content %}
+
+{% if empty %}
+<p>No mail yet :(</p>
+{% else %}
+<table class="box">
+<tr>
+  <th>{% trans "Id" %}</th>
+  <th>{% trans "From" %}</th>
+  <th>{% trans "To" %}</th>
+  <th>{% trans "Subject" %}</th>
+</tr>
+{% for object in object_list %}
+{% if object %}
+<tr class="{% cycle 'boxitemalt' 'boxitem' %}">
+  <td><a href="{% url mail_detail forloop.counter %}">{{forloop.counter}}</a></td>
+  <td>{{object.from_email}}</td>
+  <td>{{object.to|join:", "}}</td>
+  <td><a href="{% url mail_detail forloop.counter %}">{{object.subject}}</a></td>
+{% endif %}
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

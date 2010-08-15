@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block icon %}mail{% endblock %}
+
+{% block content %}
+
+<table>
+{% comment %}
+<tr><th>attach</th><td>{{object.attach}}</td></tr>
+<tr><th>send</th><td>{{object.send}}</td></tr>
+{% endcomment %}
+<tr><th>From</th><td>{{object.from_email}}</td></tr>
+<tr><th>To</th><td>{{object.to|join:", "}}</td></tr>
+<tr><th>Bcc</th><td>{{object.bcc|join:", "}}</td></tr>
+<tr><th>Subject</th><td>{{object.subject}}</td></tr>
+<tr><th>Body</th><td><pre>{{object.body}}</pre></td></tr>
+<tr><th>Attachments</th><td>{{object.attachments|join:", "}}</td></tr>
+<tr><th>content_subtype</th><td>{{object.content_subtype}}</td></tr>
+<tr><th>mixed_subtype</th><td>{{object.mixed_subtype}}</td></tr>
+<tr><th>encoding</th><td>{{object.encoding}}</td></tr>
+<tr><th>recipients</th><td>{{object.recipients|join:", "}}</td></tr>
+<tr><th>extra_headers</th><td>{{object.extra_headers}}</td></tr>
+<tr><th>Full message</th><td><pre>{{object.message}}</pre></td></tr>
+</table>
+
+<form action="{% url mail_delete object_id %}" method="post">{% csrf_token %}
+  <input type="submit" value="{% trans "Delete" %}" />
+</form>
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}
