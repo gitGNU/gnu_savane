@@ -6,7 +6,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Alternatively, local mailbox:
 #EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 #EMAIL_FILE_PATH = '/tmp/app-messages' # change this to a proper location
-# Alternatively: in memory, with an interface at /dev/mail/
+# Alternatively: in memory, with an interface at localhost:8000/dev/webmail/
 #EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 
 # Configure database access

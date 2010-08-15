@@ -82,7 +82,7 @@ def contact(request, extra_context={}):
                         url = 'http://' + Site.objects.get_current().domain + reverse('savane:my:email_confirm', args=[hex_confirm])
                         subject = get_site_name() + ' ' + _("verification")
                         message = (_("""You have requested a change of email address on %s.
-    Please visit the following URL to complete the email change:""") % get_site_name()
+Please visit the following URL to complete the email change:""") % get_site_name()
                                    + "\n\n"
                                    + url
                                    + "\n\n"
