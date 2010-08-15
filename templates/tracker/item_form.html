@@ -3,7 +3,7 @@
 
 {% block title %}
 {{object.group.name}} - {{object.get_tracker_name}}{% trans ": " %}
-  {{object.get_item_name}} #{{object.get_public_id}},
+  {{object.get_shortcut}},
   {{object.get_summary|truncatewords:5}}
 {% endblock %}
 
@@ -17,7 +17,7 @@
 
 <h1 class="{{object.get_priority_css_class}}">
   <em><a href="{% url savane:tracker:item_detail object.tracker_id object.get_public_id %}"
-    >{{object.get_item_name}} #{{object.get_public_id}}</a></em>{% trans ": " %}
+    >{{object.get_shortcut}}</a></em>{% trans ": " %}
   {{object.get_summary}}
 </h1>
 

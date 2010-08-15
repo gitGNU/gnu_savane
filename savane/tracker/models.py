@@ -84,12 +84,6 @@ class Tracker(models.Model):
                     )
     name = models.CharField(max_length=7, choices=NAME_CHOICES, primary_key=True)
 
-    ITEM_NAMES = (('bugs', _('bug')),
-                  ('patch', _('patch')),
-                  ('support', _('support')),
-                  ('task', _('task')),
-                  )
-
     def __unicode__(self):
         "Used in the admin interface fields list"
         return self.name
@@ -178,12 +172,17 @@ class Field(models.Model):
     special = models.BooleanField(help_text=_("field is not entered by the user but by the system"))
     custom = models.BooleanField(help_text=_("let the user change the label and description"))
 
+    def __unicode__(self):
+        return "%s.%s" % (self.tracker_id, self.name)
+
 class FieldUsage(models.Model):
     """
     Field configuration for each group
     """
     class Meta:
         unique_together = (('field', 'group'),)
+        verbose_name = _("field usage")
+        verbose_name_plural = _("field usages")
 
     TRANSITION_DEFAULT_AUTH_CHOICES = (('', _('undefined')),
                                        ('A', _('allowed')),
@@ -196,7 +195,7 @@ class FieldUsage(models.Model):
                                ('1', _('optional (empty values are accepted)')),
                                ('3', _('mandatory')),)
     field = models.ForeignKey('Field')
-    group = models.ForeignKey(auth_models.Group)
+    group = models.ForeignKey(auth_models.Group, blank=True, null=True, help_text=_("NULL == default"))
     use_it = models.BooleanField(_("used"))
     show_on_add = models.CharField(max_length=1, choices=SHOW_ON_ADD_CHOICES,
                                    default='0', blank=True, null=True)
@@ -204,7 +203,7 @@ class FieldUsage(models.Model):
       # show_on_add_logged_in = models.BooleanField("show to logged in users")
       # show_on_add_anonymous = models.BooleanField("show to anonymous users")
     show_on_add_members = models.BooleanField(_("show to project members"))
-    place = models.IntegerField() # new:rank
+    place = models.IntegerField(help_text=_("display rank")) # new:rank
     transition_default_auth = models.CharField(max_length=1, choices=TRANSITION_DEFAULT_AUTH_CHOICES, default='A')
 
     custom_empty_ok = models.CharField(max_length=1, choices=CUSTOM_EMPTY_OK_CHOICES,
@@ -390,10 +389,15 @@ class Item(models.Model):
         elif self.tracker_id == 'task':
             return self.public_task_id
 
-    def get_item_name(self):
-        for (k,v) in Tracker.ITEM_NAMES:
-            if k == self.tracker_id:
-                return v
+    def get_shortcut(self):
+        if self.tracker_id == 'bugs':
+            return "bug #%d" % self.public_bugs_id
+        elif self.tracker_id == 'patch':
+            return "patch #%d" % self.public_bugs_id
+        elif self.tracker_id == 'support':
+            return "sr #%d" % self.public_bugs_id
+        elif self.tracker_id == 'task':
+            return "task #%d" % self.public_bugs_id
 
     def get_tracker_name(self):
         for (k,v) in Tracker.NAME_CHOICES:
@@ -418,8 +422,8 @@ class Item(models.Model):
 
 class ItemMsgId(models.Model):
     """
-    Identifier for in 'Message-Id' and 'References' e-mail fields,
-    used to group messages by conversation
+    Identifier for 'Message-Id' and 'References' e-mail fields, used
+    to group messages by conversation
     """
     item = models.ForeignKey('Item')
     msg_id = models.CharField(max_length=255)

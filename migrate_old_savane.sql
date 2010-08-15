@@ -592,4 +592,6 @@ INSERT INTO tracker_fieldusage
       IFNULL(custom_keep_history, 0), transition_default_auth
    FROM temp_bugs_field_usage JOIN conv_field_ids
       ON (bug_field_id = old AND tracker_id = 'bugs');
+-- Specify "default" differently
+UPDATE tracker_fieldusage SET group_id=NULL WHERE group_id=100;
 DROP TABLE temp_bugs_field_usage;

@@ -24,6 +24,9 @@ from models import *
 #class TrackerAdmin(admin.ModelAdmin):
 #    list_display  = ('name',)
 
+class FieldUsageInline(admin.TabularInline):
+    model = FieldUsage
+    raw_id_fields = ('group',)
 class FieldAdmin(admin.ModelAdmin):
     search_fields = ('name', 'label', 'description', )
     ordering = ('tracker', 'name', )
@@ -32,6 +35,15 @@ class FieldAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'name', 'label')
     list_filter = ('tracker', 'display_type', 'scope',
                    'required', 'empty_ok', 'keep_history', 'special', 'custom', )
-    #inlines = ( FieldUsage??, )
+    inlines = ( FieldUsageInline, )
+
+class FieldUsageAdmin(admin.ModelAdmin):
+    search_fields = ('group', 'custom_label', 'custom_description', )
+    ordering = ('group', 'field',)
+    list_display  = ('id', 'group', 'field', 'use_it', 'place', )
+    list_display_links = ('id',)
+    list_filter = ('use_it', 'show_on_add', 'show_on_add_members', 'custom_empty_ok', 'custom_keep_history',)
+    raw_id_fields = ('group',)
 
 admin.site.register(Field, FieldAdmin)
+admin.site.register(FieldUsage, FieldUsageAdmin)
