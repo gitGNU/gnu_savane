@@ -484,6 +484,11 @@ INSERT INTO svpeople_skillinventory
 -- TRACKERS
 ----
 
+INSERT INTO tracker_tracker (`name`) VALUES ('bugs');
+INSERT INTO tracker_tracker (`name`) VALUES ('patch');
+INSERT INTO tracker_tracker (`name`) VALUES ('support');
+INSERT INTO tracker_tracker (`name`) VALUES ('task');
+
 TRUNCATE tracker_item;
 INSERT INTO tracker_item
     (tracker_id, public_bugs_id, group_id, status_id, severity, privacy,
@@ -526,3 +531,14 @@ INSERT INTO tracker_item
     FROM_UNIXTIME(IF(custom_df4<0,0,custom_df4)),
     FROM_UNIXTIME(IF(custom_df5<0,0,custom_df5))
     FROM savane_old.bugs;
+
+TRUNCATE tracker_field;
+-- id <- bug_field_id
+-- name <- field_name
+-- tracker_id <- 'bugs'
+INSERT INTO tracker_field
+    (id, tracker_id, name, display_type, display_size, label,
+    description, scope, required, empty_ok, keep_history, special, custom)
+  SELECT bug_field_id, 'bugs', field_name, display_type, display_size, label,
+      description, scope, required, empty_ok, keep_history, special, custom
+    FROM savane_old.bugs_field;

@@ -90,6 +90,10 @@ class Tracker(models.Model):
                   ('task', _('task')),
                   )
 
+    def __unicode__(self):
+        "Used in the admin interface fields list"
+        return self.name
+
 class GroupTypeConfiguration(models.Model):
     """
     Previously in table "groups_type"
@@ -148,6 +152,8 @@ class Field(models.Model):
     """
     class Meta:
         unique_together = (('tracker', 'name'),)
+        verbose_name = _("field")
+        verbose_name_plural = _("fields")
 
     DISPLAY_TYPE_CHOICES = (('DF', _('date field')),
                             ('SB', _('select box')),
@@ -402,6 +408,10 @@ class Item(models.Model):
     def get_priority_css_class(self):
         from string import ascii_letters
         return "prior" + ascii_letters[self.priority-1]
+
+    def get_form(self, user):
+        
+        pass
 
     def __unicode__(self):
         return "%s #%d" % (self.tracker_id, self.get_public_id())
