@@ -11,7 +11,8 @@ Type the following in a terminal:
 
 Once that's done, still in a terminal, type:
 
-  ./manage.py makemessages -l XX -e .html,.inc -i '*/django-overrides/*'
+  ./manage.py makemessages -l XX -e .html,.inc \
+    -i '*/django-overrides/*' -i 'django-registration/*'
 
 where XX is your language code:
 http://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html
@@ -47,7 +48,8 @@ Update your catalog
 
 In a terminal, just type again:
 
-  ./manage.py makemessages -l XX -e .html,.inc -i '*/django-overrides/*'
+  ./manage.py makemessages -l XX -e .html,.inc \
+    -i '*/django-overrides/*' -i 'django-registration/*'
 
 Don't use Poedit to update your catalog, as it doesn't know how to
 search for strings in the Savane templates (Django format).
