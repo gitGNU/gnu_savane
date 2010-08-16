@@ -131,7 +131,8 @@ class MemberPermission(models.Model):
 
 class Field(models.Model):
     """
-    Site-wide field definitions for the 4 trackers (~70 fields each).
+    Site-wide field definitions for the 4 trackers: 70 fields each, +
+    2 more for 'task' (planned_starting_date, planned_close_date).
 
     Most fields cannot be redefined (such as display_type or
     scope). Usually fields that can be redefined are in FieldUsage,
@@ -153,8 +154,8 @@ class Field(models.Model):
                             ('SB', _('select box')),
                             ('TA', _('text area')),
                             ('TF', _('text field')),)
-    SCOPE_CHOICES = (('S', _('system')),
-                     ('P', _('project')),)
+    SCOPE_CHOICES = (('S', _('system')), # user cannot modify related FieldValue's
+                     ('P', _('project')),)  # user can modify related FieldValue's
 
     tracker = models.ForeignKey('Tracker')
     name = models.CharField(max_length=255, db_index=True)
@@ -177,7 +178,7 @@ class Field(models.Model):
 
 class FieldUsage(models.Model):
     """
-    Field configuration for each group
+    Field configuration overlay for each group
     """
     class Meta:
         unique_together = (('field', 'group'),)
