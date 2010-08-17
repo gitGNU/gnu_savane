@@ -132,18 +132,63 @@ class MemberPermission(models.Model):
 class Field(models.Model):
     """
     Site-wide field definitions for the 4 trackers: 70 fields each, +
-    2 more for 'task' (planned_starting_date, planned_close_date).
+    2 more for 'task' ('planned_starting_date', 'planned_close_date'),
+    1 more for 'patch' ('revision tag').
 
     Most fields cannot be redefined (such as display_type or
     scope). Usually fields that can be redefined are in FieldUsage,
     where an entry with special group_id=100 contains the default
     value.
 
-    However some of the fields in this class can be redefined through
-    similar fields in FieldUsage (display_size and keep_history) - in
-    which case it's not clear whether the default value is in Field or
-    in FieldUsage, at first glance it's defined here, all related
-    values in FieldUsage are set to NULL.
+    However some of the fields in this class ('display_size',
+    'empty_ok', and 'keep_history') can be redefined through similar
+    fields in FieldUsage - in which case it's not clear whether the
+    default value is:
+
+    - in Field(tracker_id, field_name)
+
+    - or FieldUsage(tracker_id, group_id=100, field_name)
+
+    At first glance it's defined here, all related values in
+    FieldUsage are set to NULL.
+
+    Field definition is almost identical for all trackers (59 fields /
+    73 have the same configuration).  They could be regrouped.
+
+    SELECT COUNT(*) FROM (
+            SELECT field_name FROM bugs_field
+      UNION SELECT field_name FROM patch_field
+      UNION SELECT field_name FROM support_field
+      UNION SELECT field_name FROM task_field
+    ) subquery;
+    => 73
+
+    SELECT COUNT(*), field_name FROM (
+            SELECT * FROM bugs_field
+      UNION SELECT * FROM patch_field
+      UNION SELECT * FROM support_field
+      UNION SELECT * FROM task_field
+    ) subquery
+    GROUP BY field_name HAVING COUNT(*) > 1;
+    +----------+---------------------+
+    | COUNT(*) | field_name          |
+    +----------+---------------------+
+    |        2 | assigned_to         |
+    |        2 | category_version_id |
+    |        2 | close_date          |
+    |        3 | comment_type_id     |
+    |        2 | date                |
+    |        3 | fix_release         |
+    |        3 | fix_release_id      |
+    |        3 | hours               |
+    |        2 | keywords            |
+    |        4 | plan_release        |
+    |        3 | plan_release_id     |
+    |        4 | priority            |
+    |        2 | resolution_id       |
+    |        2 | size_id             |
+    +----------+---------------------+
+    14 rows in set (0.00 sec)
     """
     class Meta:
         unique_together = (('tracker', 'name'),)
@@ -154,23 +199,33 @@ class Field(models.Model):
                             ('SB', _('select box')),
                             ('TA', _('text area')),
                             ('TF', _('text field')),)
-    SCOPE_CHOICES = (('S', _('system')), # user cannot modify related FieldValue's
-                     ('P', _('project')),)  # user can modify related FieldValue's
+    SCOPE_CHOICES = (('S', _('system')), # user cannot modify related FieldValue's (TF)
+                     ('P', _('project')),)  # user can modify related FieldValue's (TF)
 
     tracker = models.ForeignKey('Tracker')
     name = models.CharField(max_length=255, db_index=True)
     display_type = models.CharField(max_length=255, choices=DISPLAY_TYPE_CHOICES)
     display_size = models.CharField(max_length=255)
-      # new:
-      # display_size_min = models.IntegerField(blank=True, null=True)
-      # display_size_max = models.IntegerField(blank=True, null=True)
+      # DF: unused
+      # SB: unused
+      # TA: cols/rows
+      # TF: visible_length/max_length
     label  = models.CharField(max_length=255)
     description = models.TextField()
+
+    # Field values can be changed (if TF)
     scope = models.CharField(max_length=1, choices=SCOPE_CHOICES)
+    # Field cannot be hidden (but can be made optional)
     required = models.BooleanField(help_text=_("field cannot be disabled in configuration"))
+    # Default value (fields can always override this except for 'summary' and 'details', cf. 'special')
     empty_ok = models.BooleanField()
+    # Default value + Field may store history changes
     keep_history = models.BooleanField()
-    special = models.BooleanField(help_text=_("field is not entered by the user but by the system"))
+    # Field cannot be made optional (displayed unless 'bug_id' and 'group_id')
+    # Also, field are not displayed (filled by the system) - except for 'summary', 'comment_type' and 'details'
+    # (consequently, they cannot be customized in any way, except for 'summary' and 'details' where you can only customize the display size)
+    special = models.BooleanField()
+    # Field may change label and description
     custom = models.BooleanField(help_text=_("let the user change the label and description"))
 
     def __unicode__(self):
@@ -179,6 +234,7 @@ class Field(models.Model):
 class FieldUsage(models.Model):
     """
     Field configuration overlay for each group
+    group == NULL means default
     """
     class Meta:
         unique_together = (('field', 'group'),)
@@ -197,6 +253,8 @@ class FieldUsage(models.Model):
                                ('3', _('mandatory')),)
     field = models.ForeignKey('Field')
     group = models.ForeignKey(auth_models.Group, blank=True, null=True, help_text=_("NULL == default"))
+
+    # If not Field.required:
     use_it = models.BooleanField(_("used"))
     show_on_add = models.CharField(max_length=1, choices=SHOW_ON_ADD_CHOICES,
                                    default='0', blank=True, null=True)
@@ -204,21 +262,26 @@ class FieldUsage(models.Model):
       # show_on_add_logged_in = models.BooleanField("show to logged in users")
       # show_on_add_anonymous = models.BooleanField("show to anonymous users")
     show_on_add_members = models.BooleanField(_("show to project members"))
-    place = models.IntegerField(help_text=_("display rank")) # new:rank
-    transition_default_auth = models.CharField(max_length=1, choices=TRANSITION_DEFAULT_AUTH_CHOICES, default='A')
 
+    # Can always be changed (expect for special 'summary' and 'details')
     custom_empty_ok = models.CharField(max_length=1, choices=CUSTOM_EMPTY_OK_CHOICES,
                                        default='0', blank=True, null=True)
 
-    # Some global parameters can be customized
+    # Can always be changed
+    place = models.IntegerField(help_text=_("display rank")) # new:rank
+
+    # ???
+    # Specific to SB
+    transition_default_auth = models.CharField(max_length=1, choices=TRANSITION_DEFAULT_AUTH_CHOICES, default='A')
+
+    # Specific to TA and TF
+    # Works for both custom and non-custom fields
     custom_display_size = models.CharField(max_length=255, blank=True, null=True)
-      # new:
-      # custom_display_size_min = models.IntegerField(blank=True, null=True)
-      # custom_display_size_max = models.IntegerField(blank=True, null=True)
       # The default value is in Field.display_size
       #   rather than FieldUsage(group_id=100).custom_display_size
     custom_keep_history = models.BooleanField(_("keep field value changes in history"))
-    
+
+    # If Field.custom
     # Specific (bad!) fields for custom fields (if Field.custom is True):
     custom_label = models.CharField(max_length=255, blank=True, null=True)
     custom_description = models.CharField(max_length=255, blank=True, null=True)
