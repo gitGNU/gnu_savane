@@ -326,6 +326,31 @@ class FieldUsage(models.Model):
 class FieldValue(models.Model):
     """
     Choices overlay for a select-box (SB) field of a specific group
+
+    Values that change between trackers:
+          SELECT bug_field_id,group_id,value_id,value FROM bugs_field_value WHERE group_id=100
+    UNION SELECT bug_field_id,group_id,value_id,value FROM patch_field_value WHERE group_id=100
+    UNION SELECT bug_field_id,group_id,value_id,value FROM support_field_value WHERE group_id=100
+    UNION SELECT bug_field_id,group_id,value_id,value FROM task_field_value WHERE group_id=100
+    ORDER BY bug_field_id,group_id,value_id;
+
+    |          108 |      100 |        1 | Fixed             | bugs
+    |          108 |      100 |        1 | Done              | patch,support,task
+    
+    |          108 |      100 |        3 | Wont Fix          | bugs
+    |          108 |      100 |        3 | Wont Do           | patch,support
+    |          108 |      100 |        3 | Cancelled         | task
+    
+    Savannah and Gna!-specific:
+    |          201 |      100 |      120 | Microsoft Windows | bugs,task
+    |          201 |      100 |      120 | *BSD              | support
+                                                               patch: (None)
+    |          201 |      100 |      130 | *BSD              | bugs,task
+    |          201 |      100 |      130 | Microsoft Windows | support
+                                                               patch: (None)
+
+    => Regroup: put "Wont Do" everywhere, "Done" everywhere, and
+       manually revert woe/bsd in support.items
     """
     class Meta:
         unique_together = (('field', 'group', 'value_id'),)
