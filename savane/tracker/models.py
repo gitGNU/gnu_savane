@@ -232,6 +232,49 @@ class FieldUsage(models.Model):
     """
     Field configuration overlay for each group
     group == NULL means default
+
+
+    Differences between trackers for default values:
+
+    SELECT COUNT(*) FROM (
+            SELECT bug_field_id FROM bugs_field_usage
+      UNION SELECT bug_field_id FROM patch_field_usage
+      UNION SELECT bug_field_id FROM support_field_usage
+      UNION SELECT bug_field_id FROM task_field_usage
+    ) subquery;
+    => 73
+
+    SELECT bug_field_id, COUNT(*) FROM (
+            SELECT * FROM bugs_field_usage    WHERE group_id=100
+      UNION SELECT * FROM patch_field_usage   WHERE group_id=100
+      UNION SELECT * FROM support_field_usage WHERE group_id=100
+      UNION SELECT * FROM task_field_usage    WHERE group_id=100
+    ) subquery GROUP BY bug_field_id HAVING COUNT(*) > 2;
+    +--------------+----------+
+    | bug_field_id | COUNT(*) |
+    +--------------+----------+
+    |           92 |        2 | submitted_by
+    |          102 |        2 | severity
+    |          107 |        2 | bug_group_id
+    |          201 |        2 | platform_version_id
+    |          206 |        2 | hours
+    |          211 |        4 | priority
+    |          216 |        2 | originator_email
+    |          220 |        2 | percent_complete
+    +--------------+----------+
+
+     92 -> (use_it=0)(patch,support) | (use_it=1)(bugs,task)
+    102 -> (use_it,show_on_add,show_on_add_members=0)(patch,task) | (use_it,show_on_add,show_on_add_members=1)(bugs,support)
+    107 -> (show_on_add,show_on_add_members=0)(patch,support) | (show_on_add,show_on_add_members=1)(bugs,task) [but use_it=0]
+    201 -> (use_it,show_on_add,show_on_add_members=0)(bugs,patch,task) | (use_it,show_on_add,show_on_add_members=1)(support)
+    201 -> (use_it,show_on_add,show_on_add_members=0)(bugs,patch,support) | (use_it,show_on_add,show_on_add_members=1)(task)
+    211 -> (show_on_add,show_on_add_members,place)
+           bugs: 0,1,200
+           patch: 1,1,150
+           support: 0,0,150
+           task: 1,1,200
+    216 -> (use_it,show_on_add=0)(task) | (use_it=1,show_on_add=2)(bugs,patch,support)
+    220 -> (use_it,show_on_add_members=0)(bugs,patch,support) | (use_it,show_on_add_members=1)(task)
     """
     class Meta:
         unique_together = (('field', 'group'),)
@@ -282,16 +325,16 @@ class FieldUsage(models.Model):
 
 class FieldValue(models.Model):
     """
-    Choice for a select-box (SB) field of a specific group
+    Choices overlay for a select-box (SB) field of a specific group
     """
     class Meta:
-        unique_together = (('bug_field', 'group', 'value_id'),)
+        unique_together = (('field', 'group', 'value_id'),)
 
     STATUS_CHOICES = (('A', _('active')),
                       ('H', _('hidden')), # mask previously-active or system fields
                       ('P', _('permanent')),) # status cannot be modified, always visible
-    bug_field = models.ForeignKey('Field')
-    group = models.ForeignKey(auth_models.Group) # =100 for system-wide values
+    field = models.ForeignKey('Field')
+    group = models.ForeignKey(auth_models.Group, blank=True, null=True, help_text=_("NULL == default"))
     value_id = models.IntegerField(db_index=True) # group_specific value identifier
       # It's not a duplicate of 'id', as it's the value referenced by
       # Item fields, and the configuration of that value can be
@@ -302,7 +345,8 @@ class FieldValue(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='A', db_index=True)
 
     # Field category: specific (bad!) field for e-mail notifications
-    email_ad = models.TextField(help_text=_("comma-separated list of e-mail addresses to notify when an item is created or modified in this category"))
+    email_ad = models.TextField(blank=True, null=True,
+                                help_text=_("comma-separated list of e-mail addresses to notify when an item is created or modified in this category"))
     send_all_flag = models.BooleanField(_("send on all updates"), default=True)
 
 # Auto_increment counters
@@ -358,8 +402,10 @@ class Item(models.Model):
     # To avoid unnecessary burden, let's drop the above incomplete ForeignKey
 
     # More generally one can wonder if this should be moved to a M2M
-    # bug<->field table; but after we're done with the migration from
-    # the previous database :)
+    # item<->field_value table; but after we're done with the
+    # migration from the previous database :) Plus it might just be
+    # cumbersome, given there's already several hardcoded fields
+    # behavior.
 
     # - fields with hard-coded processing
     summary = models.TextField()

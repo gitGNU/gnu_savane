@@ -484,6 +484,7 @@ INSERT INTO svpeople_skillinventory
 -- TRACKERS
 ----
 
+TRUNCATE tracker_tracker;
 INSERT INTO tracker_tracker (`name`) VALUES ('bugs');
 INSERT INTO tracker_tracker (`name`) VALUES ('patch');
 INSERT INTO tracker_tracker (`name`) VALUES ('support');
@@ -532,7 +533,9 @@ INSERT INTO tracker_item
     FROM_UNIXTIME(IF(custom_df5<0,0,custom_df5))
     FROM savane_old.bugs;
 
--- We're merging all the *_field tables, so we need to assign new ids
+-- We're merging all the *_field tables, so we need to assign new ids.
+-- (Not needed if we merge the tracker fields definitions, because
+-- they are mostly identical (cf. models.py).)
 CREATE TEMPORARY TABLE conv_field_ids (
   new INT auto_increment PRIMARY KEY,
   tracker_id VARCHAR(7), old INT,
@@ -592,6 +595,32 @@ INSERT INTO tracker_fieldusage
       IFNULL(custom_keep_history, 0), transition_default_auth
    FROM temp_bugs_field_usage JOIN conv_field_ids
       ON (bug_field_id = old AND tracker_id = 'bugs');
+DROP TABLE temp_bugs_field_usage;
 -- Specify "default" differently
 UPDATE tracker_fieldusage SET group_id=NULL WHERE group_id=100;
-DROP TABLE temp_bugs_field_usage;
+
+-- Get rid of duplicates (old mysql/php/savane bug?)
+-- Apparently this affects 'None' values.
+-- Give priority to the last one (arbitrarily).
+-- Need to create a real table - a temporary one has issues with being "reopened" in joins
+DELETE FROM savane_old.bugs_field_value
+  WHERE bug_fv_id IN (
+    SELECT bug_fv_id FROM (
+      SELECT B.bug_fv_id FROM savane_old.bugs_field_value A, savane_old.bugs_field_value B
+        WHERE A.bug_fv_id > B.bug_fv_id
+          AND A.bug_field_id = B.bug_field_id AND A.group_id = B.group_id AND A.value_id = B.value_id
+      ) AS temp
+    );
+-- id <- <auto>
+-- field_id <- bug_field_id
+TRUNCATE tracker_fieldvalue;
+INSERT INTO tracker_fieldvalue
+    (field_id, group_id, value_id, `value`, description,
+     order_id, status, email_ad, send_all_flag)
+  SELECT
+     conv_field_ids.new, group_id, value_id, `value`, description,
+     order_id, status, email_ad, send_all_flag
+   FROM savane_old.bugs_field_value JOIN conv_field_ids
+      ON (bug_field_id = old AND tracker_id = 'bugs');
+-- Specify "default" differently
+UPDATE tracker_fieldvalue SET group_id=NULL WHERE group_id=100;

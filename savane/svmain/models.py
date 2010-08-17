@@ -134,7 +134,7 @@ class SvUserInfo(models.Model):
     # Allow a user to counter-act an account hijack
     email_hash_cancel = models.BigIntegerField(blank=True, null=True)
     # The new e-mail to use if validated
-    email_new = models.EmailField(_("new e-mail address"))
+    email_new = models.EmailField(_("new e-mail address"), blank=True, null=True)
 
     # Keys
     gpg_key = models.TextField(blank=True,
@@ -145,7 +145,7 @@ class SvUserInfo(models.Model):
     # Preferences - /!\ some are also in the user_preferences table
     email_hide = models.BooleanField(default=False)
     timezone = models.CharField(max_length=192, blank=True)
-    theme = models.CharField(max_length=45, blank=True)
+    #theme = models.CharField(max_length=45, blank=True)
 
     superuser_is_enabled = models.BooleanField(default=False)
 
