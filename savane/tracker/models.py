@@ -170,25 +170,18 @@ class Field(models.Model):
       UNION SELECT * FROM task_field
     ) subquery
     GROUP BY field_name HAVING COUNT(*) > 1;
+    -- Only slight differences in description , except for these 2:
     +----------+---------------------+
     | COUNT(*) | field_name          |
     +----------+---------------------+
-    |        2 | assigned_to         |
-    |        2 | category_version_id |
-    |        2 | close_date          |
-    |        3 | comment_type_id     |
-    |        2 | date                |
-    |        3 | fix_release         |
-    |        3 | fix_release_id      |
-    |        3 | hours               |
-    |        2 | keywords            |
-    |        4 | plan_release        |
-    |        3 | plan_release_id     |
-    |        4 | priority            |
-    |        2 | resolution_id       |
-    |        2 | size_id             |
+    ...
+    |        4 | priority            | -- (required=1,empty_ok=0)(bugs,task) | (required=0,empty_ok=1)(patch,support)
+    |        2 | resolution_id       | -- (required=1)(bugs,task) | (required=0)(patch,support)
+    ...
     +----------+---------------------+
     14 rows in set (0.00 sec)
+    
+    So we could just set required=0,empty_ok=1 for those 2.
     """
     class Meta:
         unique_together = (('tracker', 'name'),)
@@ -201,6 +194,9 @@ class Field(models.Model):
                             ('TF', _('text field')),)
     SCOPE_CHOICES = (('S', _('system')), # user cannot modify related FieldValue's (TF)
                      ('P', _('project')),)  # user can modify related FieldValue's (TF)
+    EMPTY_OK_CHOICES = (('0', _('mandatory only if it was presented to the original submitter')),
+                        ('1', _('optional (empty values are accepted)')),
+                        ('3', _('mandatory')),)
 
     tracker = models.ForeignKey('Tracker')
     name = models.CharField(max_length=255, db_index=True)
@@ -218,7 +214,8 @@ class Field(models.Model):
     # Field cannot be hidden (but can be made optional)
     required = models.BooleanField(help_text=_("field cannot be disabled in configuration"))
     # Default value (fields can always override this except for 'summary' and 'details', cf. 'special')
-    empty_ok = models.BooleanField()
+    empty_ok = models.CharField(max_length=1, choices=EMPTY_OK_CHOICES,
+                                default='0')
     # Default value + Field may store history changes
     keep_history = models.BooleanField()
     # Field cannot be made optional (displayed unless 'bug_id' and 'group_id')
@@ -248,9 +245,6 @@ class FieldUsage(models.Model):
                            ('1', _('show to logged in users')),
                            ('2', _('show to anonymous users')),
                            ('3', _('show to both logged in and anonymous users')),)
-    CUSTOM_EMPTY_OK_CHOICES = (('0', _('mandatory only if it was presented to the original submitter')),
-                               ('1', _('optional (empty values are accepted)')),
-                               ('3', _('mandatory')),)
     field = models.ForeignKey('Field')
     group = models.ForeignKey(auth_models.Group, blank=True, null=True, help_text=_("NULL == default"))
 
@@ -264,14 +258,14 @@ class FieldUsage(models.Model):
     show_on_add_members = models.BooleanField(_("show to project members"))
 
     # Can always be changed (expect for special 'summary' and 'details')
-    custom_empty_ok = models.CharField(max_length=1, choices=CUSTOM_EMPTY_OK_CHOICES,
+    custom_empty_ok = models.CharField(max_length=1, choices=Field.EMPTY_OK_CHOICES,
                                        default='0', blank=True, null=True)
 
     # Can always be changed
     place = models.IntegerField(help_text=_("display rank")) # new:rank
 
-    # ???
     # Specific to SB
+    # Can always be changed
     transition_default_auth = models.CharField(max_length=1, choices=TRANSITION_DEFAULT_AUTH_CHOICES, default='A')
 
     # Specific to TA and TF
