@@ -34,18 +34,27 @@ def short_range(page_range, cur_page):
     short_page_range = []
     orig_last = page_range[-1]
 
-    middle_start = max(1, cur_page - ADJACENT)
-    middle_end = min(middle_start + ADJACENT*2, page_range[-1])
-    if middle_start < (1 + FAR + 1):
-        middle_start = 1
-    if middle_end > (orig_last - FAR - 1):
-        middle_end = orig_last
-    short_page_range = range(middle_start, middle_end+1)
-    
-    if middle_start > 1+FAR:
-        short_page_range = range(1, FAR+1) + ['...'] + short_page_range
+    middle = cur_page
+    if middle - ADJACENT < 1:
+        middle = 1 + ADJACENT
+    if middle + ADJACENT > orig_last:
+        middle = orig_last - ADJACENT
 
-    if middle_end < orig_last-FAR:
-        short_page_range = short_page_range + ['...'] + range(orig_last-FAR+1, orig_last+1)
+    middle_start = max(middle - ADJACENT, 1)
+    middle_end = min(middle + ADJACENT, orig_last)
+
+    short_page_range = range(middle_start, middle_end+1)
+
+    if middle_start > 1:
+        if middle_start > 1+FAR:
+            short_page_range = range(1, FAR+1) + ['...'] + short_page_range
+        else:
+            short_page_range = range(1, middle_start) + short_page_range
+
+    if middle_end < orig_last:
+        if middle_end < orig_last-FAR:
+            short_page_range = short_page_range + ['...'] + range(orig_last-FAR+1, orig_last+1)
+        else:
+            short_page_range = short_page_range + range(middle_end+1, orig_last+1)
 
     return short_page_range
