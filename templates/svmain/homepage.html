@@ -1,0 +1,68 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block top %}{% endblock %}
+
+{% block content %}
+
+<div class="indexright">
+<!-- stats -->
+  <div class="box">
+    <div class="boxtitle"><a class="sortbutton" href="TODO">
+	{% blocktrans %}{{site_name}} statistics{% endblocktrans %}</a></div>
+    <div class="{% cycle 'boxitemalt' 'boxitem' as rowcolor %}">
+      {% blocktrans count nb_users as count and '<strong>'|add:nb_users|add:'</strong>'|safe as html %}{{html}} registered user{% plural %}{{html}} registered users{% endblocktrans %}
+    </div>
+    <div class="{% cycle rowcolor %}">
+      {% blocktrans count nb_groups as count and '<strong>'|add:nb_groups|add:'</strong>'|safe as html %}{{html}} hosted project{% plural %}{{html}} hosted projects{% endblocktrans %}
+    </div>
+    {% for conf in group_confs %}
+    <div class="{% cycle rowcolor %}">
+      - <a href="{% url savane:svmain:group_list %}?group_configuration=TODO">{{conf.count}} {{conf.conf.name}}</a>
+    </div>
+    {% endfor %}
+    <div class="{% cycle rowcolor %}">+
+      {% blocktrans count nb_pending as count %}{{count}} registration pending{% plural %}{{count}} registrations pending{% endblocktrans %}
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="boxtitle">{% trans "Help wanted" %}</div>
+  </div>
+
+  <div class="box">
+    <div class="boxtitle">{% trans "Most popular items" %}</div>
+  </div>
+
+  <div class="box">
+    <div class="boxtitle">{% blocktrans %}Newest %s1 projects{% endblocktrans %}</div>
+  </div>
+
+  <div class="box">
+    <div class="boxtitle">{% blocktrans %}Newest %s2 projects{% endblocktrans %}</div>
+  </div>
+<!-- /stats -->
+</div>
+
+
+<div class="intro">
+<!-- intro -->
+Intro
+<!-- /intro -->
+</div>
+
+<div class="news">
+<!-- news -->
+News
+<!-- /news -->
+</div>
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

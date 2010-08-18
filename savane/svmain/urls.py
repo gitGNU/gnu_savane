@@ -32,9 +32,8 @@ from savane.django_utils import decorated_patterns
 urlpatterns = patterns ('',)
 
 urlpatterns += patterns ('',
-  url(r'^$', 'django.views.generic.simple.direct_to_template',
-      { 'template' : 'index.html',
-        'extra_context' : { 'has_left_menu': False } },
+  url(r'^$', views.homepage,
+      { },
       name='homepage'),
   # TODO: add a web interface to edit some static content (using Django template notation?)
   url(r'^contact/$', 'django.views.generic.simple.direct_to_template',

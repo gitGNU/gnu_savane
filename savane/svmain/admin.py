@@ -38,7 +38,7 @@ class SvUserInfoAdmin(admin.ModelAdmin):
         ('Savane',
          {'fields': ('status', 'spamscore',
                      'gpg_key', 'gpg_key_count',
-                     'email_hide', 'timezone', 'theme',)}),
+                     'email_hide', 'timezone',)}),
         )
     list_display = ('user', 'status')
     list_filter = ('status',)

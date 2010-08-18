@@ -74,6 +74,25 @@ def group_redir(request, slug):
 # Main
 ##
 
+@render_to('svmain/homepage.html')
+def homepage(request):
+    group_confs_obj = svmain_models.GroupConfiguration.objects.order_by('name')
+    group_confs = []
+    for conf in group_confs_obj:
+        group_confs.append({'count' : auth_models.Group.objects \
+                                .filter(svgroupinfo__type=conf,svgroupinfo__status='A') \
+                                .count(),
+                            'conf' : conf})
+    # nb_users and nb_groups as string, because the |add: template
+    # filter only accepts strings.
+    context = {
+        'nb_users' : str(auth_models.User.objects.count()),
+        'nb_groups' : str(auth_models.Group.objects.count()),
+        'nb_pending' : str(999), # TODO
+        'group_confs' : group_confs,
+        }
+    return context
+
 def group_join(request, slug):
     g = get_object_or_404(auth_models.Group, name=slug)
     if svmain_models.Membership.objects.filter(user=request.user, group=g).count():
