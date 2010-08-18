@@ -46,15 +46,23 @@ def short_range(page_range, cur_page):
     short_page_range = range(middle_start, middle_end+1)
 
     if middle_start > 1:
-        if middle_start > 1+FAR:
+        if middle_start <= 1+FAR:
+            short_page_range = range(1, middle_start) + short_page_range
+        elif middle_start <= 1+FAR+(2*ADJACENT+1):
             short_page_range = range(1, FAR+1) + ['...'] + short_page_range
         else:
-            short_page_range = range(1, middle_start) + short_page_range
+            # dichotomy if you can fit more than the display range in the '...'
+            short_page_range = range(1, FAR+1) + ['...'] \
+                + [1+FAR + ((middle_start-1) - FAR) / 2] + ['...'] + short_page_range
 
     if middle_end < orig_last:
-        if middle_end < orig_last-FAR:
+        if middle_end >= orig_last-FAR:
+            short_page_range = short_page_range + range(middle_end+1, orig_last+1)
+        elif middle_end >= orig_last-FAR-(2*ADJACENT+1):
             short_page_range = short_page_range + ['...'] + range(orig_last-FAR+1, orig_last+1)
         else:
-            short_page_range = short_page_range + range(middle_end+1, orig_last+1)
+            # dichotomy if you can fit more than the display range in the '...'
+            short_page_range = short_page_range + ['...'] \
+                + [orig_last-FAR - ((orig_last-FAR) - middle_end) / 2] + ['...'] + range(orig_last-FAR+1, orig_last+1)
 
     return short_page_range
