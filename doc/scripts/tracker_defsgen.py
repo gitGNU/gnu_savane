@@ -15,7 +15,7 @@ tfields = ['bug_field_id','field_name','display_type','display_size',
 defs = {}
 field_names = []
 c.execute("""SELECT * FROM bugs_field""")
-for row in c.fetchall():
+def process_row(row):
     name = row[1]
     field_names.append(name)
     defs[name] = ''
@@ -29,11 +29,28 @@ for row in c.fetchall():
                 + ": "
             if tfields[i] == 'label' or tfields[i] == 'description':
                 defs[name] += '_("' + val + '"),'
+            elif (name=='priority' or name=='resolution_id' or name=='planned_starting_date' or name=='planned_close_date') \
+                    and tfields[i] == 'required':
+                # override priority.required so we have a common
+                # definition for all trackers
+                defs[name] += str(0)+","
+            elif (name=='priority' or name=='resolution_id') \
+                    and tfields[i] == 'empty_ok':
+                # override priority.empty_ok so we have a common
+                # definition for all trackers
+                defs[name] += str(1)+","
             elif type(val) == long:
                 defs[name] += str(val)+","
             else:
                 defs[name] += "'"+val+"',"
             defs[name] += "\n"
+
+for row in c.fetchall():
+    process_row(row)
+
+c.execute("""SELECT * FROM task_field WHERE field_name IN ('planned_starting_date', 'planned_close_date')""")
+for row in c.fetchall():
+    process_row(row)
 
 tfields = ['name','bug_field_id','group_id','use_it','show_on_add',
            'show_on_add_members','place','custom_label',

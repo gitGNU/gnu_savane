@@ -140,57 +140,6 @@ class MemberPermission(models.Model):
 
 class Field(models.Model):
     """
-    Site-wide field definitions for the 4 trackers: 70 fields each, +
-    2 more for 'task' ('planned_starting_date', 'planned_close_date'),
-    1 more for 'patch' ('revision tag').
-
-    Most fields cannot be redefined (such as display_type or
-    scope). Usually fields that can be redefined are in FieldUsage,
-    where an entry with special group_id=100 contains the default
-    value.
-
-    However some of the fields in this class ('display_size',
-    'empty_ok', and 'keep_history') can be redefined through similar
-    fields in FieldUsage - in which case it's not clear whether the
-    default value is:
-
-    - in Field(tracker_id, field_name)
-
-    - or FieldUsage(tracker_id, group_id=100, field_name)
-
-    At first glance it's defined here, all related values in
-    FieldUsage are set to NULL.
-
-    Field definition is almost identical for all trackers (59 fields /
-    73 have the same configuration).  They could be regrouped.
-
-    SELECT COUNT(*) FROM (
-            SELECT field_name FROM bugs_field
-      UNION SELECT field_name FROM patch_field
-      UNION SELECT field_name FROM support_field
-      UNION SELECT field_name FROM task_field
-    ) subquery;
-    => 73
-
-    SELECT COUNT(*), field_name FROM (
-            SELECT * FROM bugs_field
-      UNION SELECT * FROM patch_field
-      UNION SELECT * FROM support_field
-      UNION SELECT * FROM task_field
-    ) subquery
-    GROUP BY field_name HAVING COUNT(*) > 1;
-    -- Only slight differences in description , except for these 2:
-    +----------+---------------------+
-    | COUNT(*) | field_name          |
-    +----------+---------------------+
-    ...
-    |        4 | priority            | -- (required=1,empty_ok=0)(bugs,task) | (required=0,empty_ok=1)(patch,support)
-    |        2 | resolution_id       | -- (required=1)(bugs,task) | (required=0)(patch,support)
-    ...
-    +----------+---------------------+
-    14 rows in set (0.00 sec)
-    
-    So we could just set required=0,empty_ok=1 for those 2.
     """
     class Meta:
         unique_together = (('tracker', 'name'),)
@@ -225,7 +174,7 @@ class Field(models.Model):
     # Default value (fields can always override this except for 'summary' and 'details', cf. 'special')
     empty_ok = models.CharField(max_length=1, choices=EMPTY_OK_CHOICES,
                                 default='0')
-    # Default value + Field may store history changes
+    # Default value
     keep_history = models.BooleanField()
     # Field cannot be made optional (displayed unless 'bug_id' and 'group_id')
     # Also, field are not displayed (filled by the system) - except for 'summary', 'comment_type' and 'details'
@@ -237,53 +186,9 @@ class Field(models.Model):
     def __unicode__(self):
         return "%s.%s" % (self.tracker_id, self.name)
 
-class FieldUsage(models.Model):
+class FieldOverlay(models.Model):
     """
-    Field configuration overlay for each group
-    group == NULL means default
-
-
-    Differences between trackers for default values:
-
-    SELECT COUNT(*) FROM (
-            SELECT bug_field_id FROM bugs_field_usage
-      UNION SELECT bug_field_id FROM patch_field_usage
-      UNION SELECT bug_field_id FROM support_field_usage
-      UNION SELECT bug_field_id FROM task_field_usage
-    ) subquery;
-    => 73
-
-    SELECT bug_field_id, COUNT(*) FROM (
-            SELECT * FROM bugs_field_usage    WHERE group_id=100
-      UNION SELECT * FROM patch_field_usage   WHERE group_id=100
-      UNION SELECT * FROM support_field_usage WHERE group_id=100
-      UNION SELECT * FROM task_field_usage    WHERE group_id=100
-    ) subquery GROUP BY bug_field_id HAVING COUNT(*) > 2;
-    +--------------+----------+
-    | bug_field_id | COUNT(*) |
-    +--------------+----------+
-    |           92 |        2 | submitted_by
-    |          102 |        2 | severity
-    |          107 |        2 | bug_group_id
-    |          201 |        2 | platform_version_id
-    |          206 |        2 | hours
-    |          211 |        4 | priority
-    |          216 |        2 | originator_email
-    |          220 |        2 | percent_complete
-    +--------------+----------+
-
-     92 -> (use_it=0)(patch,support) | (use_it=1)(bugs,task)
-    102 -> (use_it,show_on_add,show_on_add_members=0)(patch,task) | (use_it,show_on_add,show_on_add_members=1)(bugs,support)
-    107 -> (show_on_add,show_on_add_members=0)(patch,support) | (show_on_add,show_on_add_members=1)(bugs,task) [but use_it=0]
-    201 -> (use_it,show_on_add,show_on_add_members=0)(bugs,patch,task) | (use_it,show_on_add,show_on_add_members=1)(support)
-    201 -> (use_it,show_on_add,show_on_add_members=0)(bugs,patch,support) | (use_it,show_on_add,show_on_add_members=1)(task)
-    211 -> (show_on_add,show_on_add_members,place)
-           bugs: 0,1,200
-           patch: 1,1,150
-           support: 0,0,150
-           task: 1,1,200
-    216 -> (use_it,show_on_add=0)(task) | (use_it=1,show_on_add=2)(bugs,patch,support)
-    220 -> (use_it,show_on_add_members=0)(bugs,patch,support) | (use_it,show_on_add_members=1)(task)
+    Per-group tracker item definition override
     """
     class Meta:
         unique_together = (('field', 'group'),)
@@ -325,6 +230,7 @@ class FieldUsage(models.Model):
     custom_display_size = models.CharField(max_length=255, blank=True, null=True)
       # The default value is in Field.display_size
       #   rather than FieldUsage(group_id=100).custom_display_size
+    # If !Field.special
     custom_keep_history = models.BooleanField(_("keep field value changes in history"))
 
     # If Field.custom
@@ -334,32 +240,7 @@ class FieldUsage(models.Model):
 
 class FieldValue(models.Model):
     """
-    Choices overlay for a select-box (SB) field of a specific group
-
-    Values that change between trackers:
-          SELECT bug_field_id,group_id,value_id,value FROM bugs_field_value WHERE group_id=100
-    UNION SELECT bug_field_id,group_id,value_id,value FROM patch_field_value WHERE group_id=100
-    UNION SELECT bug_field_id,group_id,value_id,value FROM support_field_value WHERE group_id=100
-    UNION SELECT bug_field_id,group_id,value_id,value FROM task_field_value WHERE group_id=100
-    ORDER BY bug_field_id,group_id,value_id;
-
-    |          108 |      100 |        1 | Fixed             | bugs
-    |          108 |      100 |        1 | Done              | patch,support,task
-    
-    |          108 |      100 |        3 | Wont Fix          | bugs
-    |          108 |      100 |        3 | Wont Do           | patch,support
-    |          108 |      100 |        3 | Cancelled         | task
-    
-    Savannah and Gna!-specific:
-    |          201 |      100 |      120 | Microsoft Windows | bugs,task
-    |          201 |      100 |      120 | *BSD              | support
-                                                               patch: (None)
-    |          201 |      100 |      130 | *BSD              | bugs,task
-    |          201 |      100 |      130 | Microsoft Windows | support
-                                                               patch: (None)
-
-    => Regroup: put "Wont Do" everywhere, "Done" everywhere, and
-       manually revert woe/bsd in support.items
+    Per-group tracker select box values override
     """
     class Meta:
         unique_together = (('field', 'group', 'value_id'),)

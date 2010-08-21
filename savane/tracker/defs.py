@@ -18,6 +18,8 @@
 
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+fields = {}
+
 common = {
     'bug_id' : {
         'field_name': 'bug_id',
@@ -242,7 +244,7 @@ common = {
         'label': _("Status"),
         'description': _("Current resolution of the item"),
         'scope': 'P',
-        'required': 1,
+        'required': 0,
         'empty_ok': 1,
         'keep_history': 1,
         'special': 0,
@@ -494,8 +496,8 @@ common = {
         'label': _("Priority"),
         'description': _("How quickly the item should be handled"),
         'scope': 'S',
-        'required': 1,
-        'empty_ok': 0,
+        'required': 0,
+        'empty_ok': 1,
         'keep_history': 1,
         'special': 0,
         'custom': 0,
@@ -1279,4 +1281,33 @@ common = {
         'place': 800,
         'transition_default_auth': 'A',
     },
+    'planned_close_date' : {
+        'field_name': 'planned_close_date',
+        'display_type': 'DF',
+        'display_size': '10/15',
+        'label': _("Should be Finished on"),
+        'description': _("Date and time when the item should be completed"),
+        'scope': 'S',
+        'required': 0,
+        'empty_ok': 1,
+        'keep_history': 1,
+        'special': 0,
+        'custom': 0,
+    'planned_starting_date' : {
+        'field_name': 'planned_starting_date',
+        'display_type': 'DF',
+        'display_size': '10/15',
+        'label': _("Should Start On"),
+        'description': _("Date and time when someone should start working on the item"),
+        'scope': 'S',
+        'required': 0,
+        'empty_ok': 1,
+        'keep_history': 1,
+        'special': 0,
+        'custom': 0,
 }
+
+fields['bugs']    = common.copy()
+fields['patch']   = common.copy()
+fields['support'] = common.copy()
+fields['task']    = common.copy()
