@@ -21,7 +21,9 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 import django.contrib.auth.models as auth_models
 from django.utils.safestring import mark_safe
 import datetime
+from copy import deepcopy
 from savane.utils import htmlentitydecode, unescape
+from defs import *
 
 ##
 # Trackers definition
@@ -36,6 +38,13 @@ from savane.utils import htmlentitydecode, unescape
 # auto_now_add cannot be overriden, hence it would mess data imports.
 # EDIT: actually I think only forms fields cannot be overriden, it
 # still can be done programmatically
+
+DISPLAY_TYPE_CHOICES = (('DF', _('date field')),
+                        ('SB', _('select box')),
+                        ('TA', _('text area')),
+                        ('TF', _('text field')),)
+SCOPE_CHOICES = (('S', _('system')), # user cannot modify related FieldValue's (TF)
+                 ('P', _('project')),)  # user can modify related FieldValue's (TF)
 
 RESTRICTION_CHOICES = (('2', _('anonymous')),
                        ('3', _('logged-in user')),
@@ -178,6 +187,7 @@ class FieldOverlay(models.Model):
     display_size = models.CharField(max_length=255, blank=True, null=True)
       # The default value is in Field.display_size
       #   rather than FieldUsage(group_id=100).custom_display_size
+
     # If !Field.special
     keep_history = models.BooleanField(_("keep field value changes in history"))
 
@@ -185,6 +195,28 @@ class FieldOverlay(models.Model):
     # Specific (bad!) fields for custom fields (if Field.custom is True):
     label = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
+
+    def apply_on(field_definition):
+        """
+        Modify a default field definition with FieldOverlay's override
+        values.  Only apply sensible overlays.
+        """
+        if not field_definition['required']:
+            field_definition['use_it'] = overlay.use_it
+            field_definition['show_on_add_anonymous'] = overlay.show_on_add_anonymous
+            field_definition['show_on_add_connected'] = overlay.show_on_add_connected
+            field_definition['show_on_add_members'] = overlay.show_on_add_members
+        field_definition['empty_ok'] = overlay.empty_ok
+        field_definition['rank'] = overlay.rank
+        if field_definition['type'] == 'SB':
+            field_definition['transition_default_auth'] = overlay.transition_default_auth
+        elif field_definition['type'] in ('TA', 'TF'):
+            field_definition['display_size'] = overlay.display_size
+        if field_definition['special'] == 1:
+            field_definition['keep_history'] = overlay.keep_history
+        if field_definition['custom'] == 1:
+            field_definition['label'] = overlay.label
+            field_definition['description'] = overlay.description
 
 class FieldValue(models.Model):
     """
@@ -380,17 +412,37 @@ class Item(models.Model):
         from string import ascii_letters
         return "prior" + ascii_letters[self.priority-1]
 
-    def get_form_fields(self):
-        fields = self.tracker.field_set.filter(special=0)
-        usages_default = self.tracker.fieldusage_set.filter(group=None, field__special=0)
-        usages_group   = self.tracker.fieldusage_set.filter(group=self.group, field__special=0)
+    def get_fields(self):
+        """
+        Return fields definition for this group tracker (default
+        values + group-specific overlay).  Only apply sensible
+        overlay values (cf. FieldOverlay model definition).
+        """
+        fields = deepcopy(default_fields[self.tracker_id])
+        overlays = FieldOverlay.objects.filter(group=self.group)
+        for overlay in overlays:
+            name = overlay.field_name
+            overlay.apply_on[fields[name]]
         return fields
+
+    def get_form_fields(self, user=None):
+        """
+        Return displayable fields, ordered by rank
+        """
+        fields = self.get_fields().copy()
+        ret = []
+        for name in fields.keys():
+            if (not (fields[name]['required'] or fields[name]['use_it'])
+                or fields[name]['special']):
+                continue
+            ret.append((name,fields[name]))
+        ret.sort(key=lambda x: x[1]['rank'])
+        return ret
 
     def get_form(self, user=None):
         # TODO: privacy
         form_fields = self.get_form_fields()
-        print form_fields
-        return mark_safe(''.join([f.name + '<br />' for f in form_fields]))
+        return mark_safe(''.join(['%s (%d)<br />' % (f, v['rank']) for f,v in form_fields]))
 
     def __unicode__(self):
         return "%s #%d" % (self.tracker_id, self.get_public_id())

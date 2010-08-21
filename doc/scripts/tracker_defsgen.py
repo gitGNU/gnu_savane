@@ -14,14 +14,16 @@ tfields = ['bug_field_id','field_name','display_type','display_size',
 
 defs = {}
 field_names = []
-c.execute("""SELECT * FROM bugs_field""")
+complex_defs = {}
+
 def process_field_row(row):
     name = row[1]
     field_names.append(name)
     defs[name] = ''
     defs[name] += "    '"+name+"' : {\n"
     for i,val in enumerate(row):
-        if i <= 0:
+        if i <= 0 \
+                or (complex_defs[name]['display_type'] not in ('TA', 'TF') and tfields[i] == 'display_size'):
             continue
         else:
             defs[name] += "        " \
@@ -45,10 +47,29 @@ def process_field_row(row):
                 defs[name] += "'"+val+"',"
             defs[name] += "\n"
 
+query = """SELECT * FROM bugs_field"""
+c.execute(query)
+for row in c.fetchall():
+    name = row[1]
+    complex_defs[name] = {}
+    for i,val in enumerate(row):
+        complex_defs[name][tfields[i]] = val
+complex_defs['priority']['required'] = 0
+complex_defs['resolution_id']['required'] = 0
+c.execute(query)
 for row in c.fetchall():
     process_field_row(row)
 
-c.execute("""SELECT * FROM task_field WHERE field_name IN ('planned_starting_date', 'planned_close_date')""")
+query = """SELECT * FROM task_field WHERE field_name IN ('planned_starting_date', 'planned_close_date')"""
+c.execute(query)
+for row in c.fetchall():
+    name = row[1]
+    complex_defs[name] = {}
+    for i,val in enumerate(row):
+        complex_defs[name][tfields[i]] = val
+complex_defs['planned_starting_date']['required'] = 0
+complex_defs['planned_close_date']['required'] = 0
+c.execute(query)
 for row in c.fetchall():
     process_field_row(row)
 
@@ -64,12 +85,10 @@ tfields = ['name','bug_field_id','group_id','use_it','show_on_add',
            'custom_description','custom_display_size',
            'custom_empty_ok','custom_keep_history',
            'transition_default_auth']
-c.execute("""SELECT bugs_field.field_name,bugs_field_usage.*
-  FROM bugs_field_usage JOIN bugs_field USING (bug_field_id) WHERE group_id=100""")
+tfields[6] = 'rank' 
+
 def process_field_usage_row(row):
     name = row[0]
-    if name == 'place':
-        name = 'rank'
     for i,val in enumerate(row):
         if i <= 2:
             continue
@@ -78,6 +97,8 @@ def process_field_usage_row(row):
                 or tfields[i] == 'custom_display_size' \
                 or tfields[i] == 'custom_empty_ok' \
                 or tfields[i] == 'custom_keep_history' \
+                or (complex_defs[name]['required'] == 1 and tfields[i] == 'use_it') \
+                or (complex_defs[name]['display_type'] != 'SB' and tfields[i] == 'transition_default_auth') \
                 :
             # overlays, duplicates of bugs_field in this context
             continue
@@ -106,13 +127,18 @@ def process_field_usage_row(row):
                 defs[name] += "'"+val+"',"
             defs[name] += "\n"
     defs[name] += "    },\n"
+
+c.execute("""SELECT bugs_field.field_name,bugs_field_usage.*
+  FROM bugs_field_usage JOIN bugs_field USING (bug_field_id) WHERE group_id=100""")
 for row in c.fetchall():
     process_field_usage_row(row)
+
 c.execute("""SELECT task_field.field_name,task_field_usage.*
   FROM task_field_usage JOIN task_field USING (bug_field_id) WHERE group_id=100
   AND field_name IN ('planned_starting_date', 'planned_close_date')""")
 for row in c.fetchall():
     process_field_usage_row(row)
+
 
 for name in field_names:
     print defs[name],
