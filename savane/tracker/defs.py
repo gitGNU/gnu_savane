@@ -1293,6 +1293,12 @@ common = {
         'keep_history': 1,
         'special': 0,
         'custom': 0,
+        'use_it': 1,
+        'show_on_add': 1,
+        'show_on_add_members': 1,
+        'place': 56,
+        'transition_default_auth': 'A',
+    },
     'planned_starting_date' : {
         'field_name': 'planned_starting_date',
         'display_type': 'DF',
@@ -1305,9 +1311,54 @@ common = {
         'keep_history': 1,
         'special': 0,
         'custom': 0,
+        'use_it': 1,
+        'show_on_add': 1,
+        'show_on_add_members': 1,
+        'place': 55,
+        'transition_default_auth': 'A',
+    },
 }
 
 fields['bugs']    = common.copy()
 fields['patch']   = common.copy()
 fields['support'] = common.copy()
 fields['task']    = common.copy()
+
+# A couple changes per-tracker in the default configuration
+#submitted_by     92 -> (use_it=0)(patch,support) | (use_it=1)(bugs,task)
+fields['patch']['submitted_by']['use_it'] = fields['support']['submitted_by']['use_it'] = 0
+#severity    102 -> (use_it,show_on_add,show_on_add_members=0)(patch,task) | (use_it,show_on_add,show_on_add_members=1)(bugs,support)
+fields['patch']['severity']['use_it'] = fields['task']['severity']['use_it'] = 0
+fields['patch']['severity']['show_on_add'] = fields['task']['severity']['show_on_add'] = 0
+fields['patch']['severity']['show_on_add_members'] = fields['task']['severity']['show_on_add_members'] = 0
+#bug_group_id    107 -> (show_on_add,show_on_add_members=0)(patch,support) | (show_on_add,show_on_add_members=1)(bugs,task) [but use_it=0]
+#fields['patch']['bug_group_id']['show_on_add'] = fields['support']['bug_group_id']['show_on_add'] = 0
+#fields['patch']['bug_group_id']['show_on_add_members'] = fields['support']['bug_group_id']['show_on_add_members'] = 0
+#platform_version_id    201 -> (use_it,show_on_add,show_on_add_members=0)(bugs,patch,task) | (use_it,show_on_add,show_on_add_members=1)(support)
+fields['support']['platform_version_id']['use_it'] = 1
+fields['support']['platform_version_id']['show_on_add'] = 1
+fields['support']['platform_version_id']['show_on_add_members'] = 1
+#hours    201 -> (use_it,show_on_add,show_on_add_members=0)(bugs,patch,support) | (use_it,show_on_add,show_on_add_members=1)(task)
+fields['task']['hours']['use_it'] = 1
+fields['task']['hours']['show_on_add'] = 1
+fields['task']['hours']['show_on_add_members'] = 1
+#priority    211 -> (show_on_add,show_on_add_members,place)
+#           bugs: 0,1,200
+#           patch: 1,1,150
+fields['patch']['priority']['show_on_add'] = 1
+fields['patch']['priority']['show_on_add_members'] = 1
+fields['patch']['priority']['place'] = 150
+#           support: 0,0,150
+fields['support']['priority']['show_on_add'] = 0
+fields['support']['priority']['show_on_add_members'] = 0
+fields['support']['priority']['place'] = 150
+#           task: 1,1,200
+fields['task']['priority']['show_on_add'] = 1
+fields['task']['priority']['show_on_add_members'] = 1
+fields['task']['priority']['place'] = 200
+#originator_email    216 -> (use_it,show_on_add=0)(task) | (use_it=1,show_on_add=2)(bugs,patch,support)
+fields['task']['originator_email']['use_it'] = 0
+fields['task']['originator_email']['show_on_add'] = 0
+#percent_complete    220 -> (use_it,show_on_add_members=0)(bugs,patch,support) | (use_it,show_on_add_members=1)(task)
+fields['task']['originator_email']['use_it'] = 1
+fields['task']['originator_email']['show_on_add_members'] = 1

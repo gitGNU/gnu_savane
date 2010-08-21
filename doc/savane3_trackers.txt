@@ -83,7 +83,7 @@ to build this new implementation:
     +----------+---------------------+
     14 rows in set (0.00 sec)
     
-    So we could just set required=0,empty_ok=1 for those 2.
+    So we just set required=0,empty_ok=1 for those 2.
 
 - Field usage:
 
@@ -124,7 +124,7 @@ to build this new implementation:
     102 -> (use_it,show_on_add,show_on_add_members=0)(patch,task) | (use_it,show_on_add,show_on_add_members=1)(bugs,support)
     107 -> (show_on_add,show_on_add_members=0)(patch,support) | (show_on_add,show_on_add_members=1)(bugs,task) [but use_it=0]
     201 -> (use_it,show_on_add,show_on_add_members=0)(bugs,patch,task) | (use_it,show_on_add,show_on_add_members=1)(support)
-    201 -> (use_it,show_on_add,show_on_add_members=0)(bugs,patch,support) | (use_it,show_on_add,show_on_add_members=1)(task)
+    206 -> (use_it,show_on_add,show_on_add_members=0)(bugs,patch,support) | (use_it,show_on_add,show_on_add_members=1)(task)
     211 -> (show_on_add,show_on_add_members,place)
            bugs: 0,1,200
            patch: 1,1,150

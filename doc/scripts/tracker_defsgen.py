@@ -15,7 +15,7 @@ tfields = ['bug_field_id','field_name','display_type','display_size',
 defs = {}
 field_names = []
 c.execute("""SELECT * FROM bugs_field""")
-def process_row(row):
+def process_field_row(row):
     name = row[1]
     field_names.append(name)
     defs[name] = ''
@@ -46,11 +46,11 @@ def process_row(row):
             defs[name] += "\n"
 
 for row in c.fetchall():
-    process_row(row)
+    process_field_row(row)
 
 c.execute("""SELECT * FROM task_field WHERE field_name IN ('planned_starting_date', 'planned_close_date')""")
 for row in c.fetchall():
-    process_row(row)
+    process_field_row(row)
 
 tfields = ['name','bug_field_id','group_id','use_it','show_on_add',
            'show_on_add_members','place','custom_label',
@@ -59,7 +59,7 @@ tfields = ['name','bug_field_id','group_id','use_it','show_on_add',
            'transition_default_auth']
 c.execute("""SELECT bugs_field.field_name,bugs_field_usage.*
   FROM bugs_field_usage JOIN bugs_field USING (bug_field_id) WHERE group_id=100""")
-for row in c.fetchall():
+def process_field_usage_row(row):
     name = row[0]
     for i,val in enumerate(row):
         if i <= 2:
@@ -84,6 +84,13 @@ for row in c.fetchall():
                 defs[name] += "'"+val+"',"
             defs[name] += "\n"
     defs[name] += "    },\n"
+for row in c.fetchall():
+    process_field_usage_row(row)
+c.execute("""SELECT task_field.field_name,task_field_usage.*
+  FROM task_field_usage JOIN task_field USING (bug_field_id) WHERE group_id=100
+  AND field_name IN ('planned_starting_date', 'planned_close_date')""")
+for row in c.fetchall():
+    process_field_usage_row(row)
 
 for name in field_names:
     print defs[name],
