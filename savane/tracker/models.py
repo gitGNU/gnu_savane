@@ -137,89 +137,37 @@ class MemberPermission(models.Model):
 
 #class SquadPermission(models.Model): pass
 
-
-class Field(models.Model):
-    """
-    """
-    class Meta:
-        unique_together = (('tracker', 'name'),)
-        verbose_name = _("field")
-        verbose_name_plural = _("fields")
-
-    DISPLAY_TYPE_CHOICES = (('DF', _('date field')),
-                            ('SB', _('select box')),
-                            ('TA', _('text area')),
-                            ('TF', _('text field')),)
-    SCOPE_CHOICES = (('S', _('system')), # user cannot modify related FieldValue's (TF)
-                     ('P', _('project')),)  # user can modify related FieldValue's (TF)
-    EMPTY_OK_CHOICES = (('0', _('mandatory only if it was presented to the original submitter')),
-                        ('1', _('optional (empty values are accepted)')),
-                        ('3', _('mandatory')),)
-
-    tracker = models.ForeignKey('Tracker')
-    name = models.CharField(max_length=255, db_index=True)
-    display_type = models.CharField(max_length=255, choices=DISPLAY_TYPE_CHOICES)
-    display_size = models.CharField(max_length=255)
-      # DF: unused
-      # SB: unused
-      # TA: cols/rows
-      # TF: visible_length/max_length
-    label  = models.CharField(max_length=255)
-    description = models.TextField()
-
-    # Field values can be changed (if TF)
-    scope = models.CharField(max_length=1, choices=SCOPE_CHOICES)
-    # Field cannot be hidden (but can be made optional)
-    required = models.BooleanField(help_text=_("field cannot be disabled in configuration"))
-    # Default value (fields can always override this except for 'summary' and 'details', cf. 'special')
-    empty_ok = models.CharField(max_length=1, choices=EMPTY_OK_CHOICES,
-                                default='0')
-    # Default value
-    keep_history = models.BooleanField()
-    # Field cannot be made optional (displayed unless 'bug_id' and 'group_id')
-    # Also, field are not displayed (filled by the system) - except for 'summary', 'comment_type' and 'details'
-    # (consequently, they cannot be customized in any way, except for 'summary' and 'details' where you can only customize the display size)
-    special = models.BooleanField()
-    # Field may change label and description
-    custom = models.BooleanField(help_text=_("let the user change the label and description"))
-
-    def __unicode__(self):
-        return "%s.%s" % (self.tracker_id, self.name)
-
 class FieldOverlay(models.Model):
     """
     Per-group tracker item definition override
     """
     class Meta:
-        unique_together = (('field', 'group'),)
+        unique_together = (('group', 'field_name'),)
         verbose_name = _("field usage")
         verbose_name_plural = _("field usages")
 
+    EMPTY_OK_CHOICES = (('0', _('mandatory only if it was presented to the original submitter')),
+                        ('1', _('optional (empty values are accepted)')),
+                        ('3', _('mandatory')),)
     TRANSITION_DEFAULT_AUTH_CHOICES = (('', _('undefined')),
                                        ('A', _('allowed')),
                                        ('F', _('forbidden')),)
-    SHOW_ON_ADD_CHOICES = (('0', _('no')),
-                           ('1', _('show to logged in users')),
-                           ('2', _('show to anonymous users')),
-                           ('3', _('show to both logged in and anonymous users')),)
-    field = models.ForeignKey('Field')
-    group = models.ForeignKey(auth_models.Group, blank=True, null=True, help_text=_("NULL == default"))
+    group = models.ForeignKey(auth_models.Group)
+    field_name = models.CharField(max_length=32)
 
     # If not Field.required:
     use_it = models.BooleanField(_("used"))
-    show_on_add = models.CharField(max_length=1, choices=SHOW_ON_ADD_CHOICES,
-                                   default='0', blank=True, null=True)
-      # new:
-      # show_on_add_logged_in = models.BooleanField("show to logged in users")
-      # show_on_add_anonymous = models.BooleanField("show to anonymous users")
-    show_on_add_members = models.BooleanField(_("show to project members"))
+    # When posting a new item:
+    show_on_add_anonymous = models.NullBooleanField(_("show to anonymous users"), blank=True, null=True)
+    show_on_add_connected = models.NullBooleanField(_("show to connected users"), blank=True, null=True)
+    show_on_add_members   = models.NullBooleanField(_("show to project members"), blank=True, null=True)
 
     # Can always be changed (expect for special 'summary' and 'details')
-    custom_empty_ok = models.CharField(max_length=1, choices=Field.EMPTY_OK_CHOICES,
+    empty_ok = models.CharField(max_length=1, choices=EMPTY_OK_CHOICES,
                                        default='0', blank=True, null=True)
 
     # Can always be changed
-    place = models.IntegerField(help_text=_("display rank")) # new:rank
+    rank = models.IntegerField(help_text=_("display rank"))
 
     # Specific to SB
     # Can always be changed
@@ -227,29 +175,29 @@ class FieldOverlay(models.Model):
 
     # Specific to TA and TF
     # Works for both custom and non-custom fields
-    custom_display_size = models.CharField(max_length=255, blank=True, null=True)
+    display_size = models.CharField(max_length=255, blank=True, null=True)
       # The default value is in Field.display_size
       #   rather than FieldUsage(group_id=100).custom_display_size
     # If !Field.special
-    custom_keep_history = models.BooleanField(_("keep field value changes in history"))
+    keep_history = models.BooleanField(_("keep field value changes in history"))
 
     # If Field.custom
     # Specific (bad!) fields for custom fields (if Field.custom is True):
-    custom_label = models.CharField(max_length=255, blank=True, null=True)
-    custom_description = models.CharField(max_length=255, blank=True, null=True)
+    label = models.CharField(max_length=255, blank=True, null=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
 
 class FieldValue(models.Model):
     """
     Per-group tracker select box values override
     """
     class Meta:
-        unique_together = (('field', 'group', 'value_id'),)
+        unique_together = (('group', 'field_name', 'value_id'),)
 
     STATUS_CHOICES = (('A', _('active')),
                       ('H', _('hidden')), # mask previously-active or system fields
                       ('P', _('permanent')),) # status cannot be modified, always visible
-    field = models.ForeignKey('Field')
-    group = models.ForeignKey(auth_models.Group, blank=True, null=True, help_text=_("NULL == default"))
+    group = models.ForeignKey(auth_models.Group)
+    field_name = models.CharField(max_length=32)
     value_id = models.IntegerField(db_index=True) # group_specific value identifier
       # It's not a duplicate of 'id', as it's the value referenced by
       # Item fields, and the configuration of that value can be
@@ -299,7 +247,7 @@ class Item(models.Model):
     group = models.ForeignKey(auth_models.Group)
     spamscore = models.IntegerField(default=0)
     ip = models.IPAddressField(blank=True, null=True)
-    submitted_by = models.ForeignKey(auth_models.User, blank=True, null=True)
+    submitted_by = models.ForeignKey(auth_models.User, blank=True, null=True, related_name='items_submitted')
     date = models.DateTimeField(default=datetime.date.today)
     close_date = models.DateTimeField(blank=True, null=True)
 
@@ -329,7 +277,7 @@ class Item(models.Model):
     discussion_lock = models.IntegerField(default=0)
     vote = models.IntegerField(default=0)
     category_id = models.IntegerField(default=100)
-    assigned_to = models.IntegerField(blank=True, null=True)
+    assigned_to = models.ForeignKey(auth_models.User, related_name='items_assigned', blank=True, null=True)
 
     # - other fields
     status_id = models.IntegerField(default=100, verbose_name=_("open/closed"))

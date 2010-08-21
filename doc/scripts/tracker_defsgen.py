@@ -52,6 +52,13 @@ c.execute("""SELECT * FROM task_field WHERE field_name IN ('planned_starting_dat
 for row in c.fetchall():
     process_field_row(row)
 
+
+# Doc:
+#SHOW_ON_ADD_CHOICES = (('0', _('no')),
+#                       ('1', _('show to logged in users')),
+#                       ('2', _('show to anonymous users')),
+#                       ('3', _('show to both logged in and anonymous users')),)
+
 tfields = ['name','bug_field_id','group_id','use_it','show_on_add',
            'show_on_add_members','place','custom_label',
            'custom_description','custom_display_size',
@@ -61,6 +68,8 @@ c.execute("""SELECT bugs_field.field_name,bugs_field_usage.*
   FROM bugs_field_usage JOIN bugs_field USING (bug_field_id) WHERE group_id=100""")
 def process_field_usage_row(row):
     name = row[0]
+    if name == 'place':
+        name = 'rank'
     for i,val in enumerate(row):
         if i <= 2:
             continue
@@ -72,6 +81,19 @@ def process_field_usage_row(row):
                 :
             # overlays, duplicates of bugs_field in this context
             continue
+        elif tfields[i] == 'show_on_add':
+            if val == 0:
+                defs[name] += "        'show_on_add_anonymous': 0,\n"
+                defs[name] += "        'show_on_add_connected': 0,\n"
+            elif val == 1:
+                defs[name] += "        'show_on_add_anonymous': 0,\n"
+                defs[name] += "        'show_on_add_connected': 1,\n"
+            elif val == 2:
+                defs[name] += "        'show_on_add_anonymous': 1,\n"
+                defs[name] += "        'show_on_add_connected': 0,\n"
+            elif val == 3:
+                defs[name] += "        'show_on_add_anonymous': 1,\n"
+                defs[name] += "        'show_on_add_connected': 1,\n"
         else:
             defs[name] += "        " \
                 + "'"+tfields[i]+"'" \

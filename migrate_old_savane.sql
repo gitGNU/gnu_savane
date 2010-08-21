@@ -494,7 +494,7 @@ TRUNCATE tracker_item;
 INSERT INTO tracker_item
     (tracker_id, public_bugs_id, group_id, status_id, severity, privacy,
     discussion_lock,
-    vote, spamscore, ip, category_id, submitted_by_id, assigned_to,
+    vote, spamscore, ip, category_id, submitted_by_id, assigned_to_id,
     date, summary, details, close_date, bug_group_id, resolution_id,
     category_version_id, platform_version_id, reproducibility_id,
     size_id, fix_release_id, plan_release_id, hours, component_version,
@@ -533,48 +533,15 @@ INSERT INTO tracker_item
     FROM_UNIXTIME(IF(custom_df5<0,0,custom_df5))
   FROM savane_old.bugs;
 -- Specify "default" differently
-UPDATE tracker_item SET assigned_to=NULL WHERE submitted_by=100;
-UPDATE tracker_item SET submitted_by=NULL WHERE submitted_by=100;
-
--- We're merging all the *_field tables, so we need to assign new ids.
--- (Not needed if we merge the tracker fields definitions, because
--- they are mostly identical (cf. models.py).)
-CREATE TEMPORARY TABLE conv_field_ids (
-  new INT auto_increment PRIMARY KEY,
-  tracker_id VARCHAR(7), old INT,
-  INDEX(tracker_id), INDEX(old));
-INSERT INTO conv_field_ids (tracker_id, old)
-        SELECT 'bugs',    bug_field_id FROM savane_old.bugs_field
-  UNION SELECT 'patch',   bug_field_id FROM savane_old.patch_field
-  UNION SELECT 'support', bug_field_id FROM savane_old.patch_field
-  UNION SELECT 'task',    bug_field_id FROM savane_old.patch_field;
-
--- id <- conv_field_ids.new  (duplicates in savane_old.*_field tables)
--- name <- field_name
--- tracker_id <- 'bugs'
-TRUNCATE tracker_field;
-INSERT INTO tracker_field
-    (id, tracker_id, name, display_type, display_size, label,
-     description, scope, required, empty_ok, keep_history, special, custom)
-  SELECT
-      conv_field_ids.new, 'bugs', field_name, display_type, display_size, label,
-      description, scope, required, empty_ok, keep_history, special, custom
-    FROM savane_old.bugs_field JOIN conv_field_ids
-      ON (bug_field_id = old AND tracker_id = 'bugs');
-INSERT INTO tracker_field
-    (id, tracker_id, name, display_type, display_size, label,
-     description, scope, required, empty_ok, keep_history, special, custom)
-  SELECT
-      conv_field_ids.new, 'patch', field_name, display_type, display_size, label,
-      description, scope, required, empty_ok, keep_history, special, custom
-    FROM savane_old.patch_field JOIN conv_field_ids
-      ON (bug_field_id = old AND tracker_id = 'patch');
+UPDATE tracker_item SET assigned_to_id=NULL WHERE assigned_to_id=100;
+UPDATE tracker_item SET submitted_by_id=NULL WHERE submitted_by_id=100;
 
 -- Get rid of duplicates (old mysql/php/savane bug?)
 -- It only affected group_id=100, maybe the installation was done
 -- twice or something.
 -- Give priority to the last one.
 -- Need to create a real table - a temporary one has issues with being "reopened" in joins
+DROP TABLE IF EXISTS temp_bugs_field_usage;
 CREATE TABLE temp_bugs_field_usage AS SELECT * FROM savane_old.bugs_field_usage;
 ALTER TABLE temp_bugs_field_usage ADD (id INT auto_increment PRIMARY KEY);
 DELETE FROM temp_bugs_field_usage
@@ -587,20 +554,23 @@ DELETE FROM temp_bugs_field_usage
     );
 -- id <- <auto>
 -- field_id <- bug_field_id
-TRUNCATE tracker_fieldusage;
-INSERT INTO tracker_fieldusage
-    (field_id, group_id, use_it, show_on_add, show_on_add_members, place,
-     custom_label, custom_description, custom_display_size, custom_empty_ok,
-     custom_keep_history, transition_default_auth)
+-- Don't import default values, they are now defined statically in
+-- tracker.defs.
+TRUNCATE tracker_fieldoverlay;
+INSERT INTO tracker_fieldoverlay
+    (group_id, field_name, use_it, show_on_add_anonymous, show_on_add_connected, show_on_add_members, rank,
+     label, description, display_size, empty_ok,
+     keep_history, transition_default_auth)
   SELECT
-      conv_field_ids.new, group_id, use_it, show_on_add, show_on_add_members, place,
+      group_id, field_name, use_it, IF(show_on_add<2,0,1), IF(show_on_add%2=0,0,1), show_on_add_members, place,
       custom_label, custom_description, custom_display_size, custom_empty_ok,
       IFNULL(custom_keep_history, 0), transition_default_auth
-   FROM temp_bugs_field_usage JOIN conv_field_ids
-      ON (bug_field_id = old AND tracker_id = 'bugs');
+    FROM temp_bugs_field_usage JOIN savane_old.bugs_field
+        USING (bug_field_id)
+      WHERE group_id != 100;
 DROP TABLE temp_bugs_field_usage;
 -- Specify "default" differently
-UPDATE tracker_fieldusage SET group_id=NULL WHERE group_id=100;
+-- UPDATE tracker_fieldoverlay SET group_id=NULL WHERE group_id=100;
 
 -- Get rid of duplicates (old mysql/php/savane bug?)
 -- Apparently this affects 'None' values.
@@ -613,17 +583,17 @@ DELETE FROM savane_old.bugs_field_value
         WHERE A.bug_fv_id > B.bug_fv_id
           AND A.bug_field_id = B.bug_field_id AND A.group_id = B.group_id AND A.value_id = B.value_id
       ) AS temp
-    );
+  );
 -- id <- <auto>
 -- field_id <- bug_field_id
 TRUNCATE tracker_fieldvalue;
 INSERT INTO tracker_fieldvalue
-    (field_id, group_id, value_id, `value`, description,
+    (group_id, field_name, value_id, `value`, description,
      order_id, status, email_ad, send_all_flag)
   SELECT
-     conv_field_ids.new, group_id, value_id, `value`, description,
+     group_id, field_name, value_id, `value`, savane_old.bugs_field_value.description,
      order_id, status, email_ad, send_all_flag
-   FROM savane_old.bugs_field_value JOIN conv_field_ids
-      ON (bug_field_id = old AND tracker_id = 'bugs');
+   FROM savane_old.bugs_field_value JOIN savane_old.bugs_field
+      USING (bug_field_id);
 -- Specify "default" differently
 UPDATE tracker_fieldvalue SET group_id=NULL WHERE group_id=100;
