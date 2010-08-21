@@ -43,10 +43,10 @@
       {% else %}
         <li class="menutitle">{% trans "Login status" %}</li>
         <li class="menuitem"><span class="error">{% trans "Not connected" %}</span></li>
-        <li class="menuitem"><a href="{% url django.contrib.auth.views.login %}?next={{request.get_full_path|urlencode}}">{% trans "Login" %}</a></li>
+        <li class="menuitem"><a rel="nofollow" href="{% url django.contrib.auth.views.login %}?next={{request.get_full_path|urlencode}}">{% trans "Login" %}</a></li>
         <li class="menuitem"><a href="{% url registration_register %}">{% trans "New user" %}</a></li>
       {% endif %}
-      <li class="menuitem"><a href="{% url savane:my:i18n %}?next={{request.get_full_path|urlencode}}">{% trans "Set language" %}</a></li>
+      <li class="menuitem"><a rel="nofollow" href="{% url savane:my:i18n %}?next={{request.get_full_path|urlencode}}">{% trans "Set language" %}</a></li>
 
       <li class="menutitle">{% trans "Search" %}</li>
       <li class="menuitem"><a href="{% url savane:svmain:user_list %}">{% trans "Users" %}</a></li>
