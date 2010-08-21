@@ -531,7 +531,10 @@ INSERT INTO tracker_item
     FROM_UNIXTIME(IF(custom_df3<0,0,custom_df3)),
     FROM_UNIXTIME(IF(custom_df4<0,0,custom_df4)),
     FROM_UNIXTIME(IF(custom_df5<0,0,custom_df5))
-    FROM savane_old.bugs;
+  FROM savane_old.bugs;
+-- Specify "default" differently
+UPDATE tracker_item SET assigned_to=NULL WHERE submitted_by=100;
+UPDATE tracker_item SET submitted_by=NULL WHERE submitted_by=100;
 
 -- We're merging all the *_field tables, so we need to assign new ids.
 -- (Not needed if we merge the tracker fields definitions, because

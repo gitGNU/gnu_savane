@@ -19,14 +19,23 @@
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 import django.contrib.auth.models as auth_models
+from django.utils.safestring import mark_safe
 import datetime
 from savane.utils import htmlentitydecode, unescape
+
+##
+# Trackers definition
+##
+
+
 
 # TODO: default '100' (aka 'nobody' or 'None', depending on
 # fields) -> change to NULL?
 
 # Date fields: use default=... rather than auto_now_add=...; indeed,
 # auto_now_add cannot be overriden, hence it would mess data imports.
+# EDIT: actually I think only forms fields cannot be overriden, it
+# still can be done programmatically
 
 RESTRICTION_CHOICES = (('2', _('anonymous')),
                        ('3', _('logged-in user')),
@@ -409,7 +418,7 @@ class Item(models.Model):
     group = models.ForeignKey(auth_models.Group)
     spamscore = models.IntegerField(default=0)
     ip = models.IPAddressField(blank=True, null=True)
-    submitted_by = models.ForeignKey(auth_models.User, default=100)
+    submitted_by = models.ForeignKey(auth_models.User, blank=True, null=True)
     date = models.DateTimeField(default=datetime.date.today)
     close_date = models.DateTimeField(blank=True, null=True)
 
@@ -439,7 +448,7 @@ class Item(models.Model):
     discussion_lock = models.IntegerField(default=0)
     vote = models.IntegerField(default=0)
     category_id = models.IntegerField(default=100)
-    assigned_to = models.IntegerField(default=100)
+    assigned_to = models.IntegerField(blank=True, null=True)
 
     # - other fields
     status_id = models.IntegerField(default=100, verbose_name=_("open/closed"))
@@ -542,9 +551,17 @@ class Item(models.Model):
         from string import ascii_letters
         return "prior" + ascii_letters[self.priority-1]
 
-    def get_form(self, user):
-        
-        pass
+    def get_form_fields(self):
+        fields = self.tracker.field_set.filter(special=0)
+        usages_default = self.tracker.fieldusage_set.filter(group=None, field__special=0)
+        usages_group   = self.tracker.fieldusage_set.filter(group=self.group, field__special=0)
+        return fields
+
+    def get_form(self, user=None):
+        # TODO: privacy
+        form_fields = self.get_form_fields()
+        print form_fields
+        return mark_safe(''.join([f.name + '<br />' for f in form_fields]))
 
     def __unicode__(self):
         return "%s #%d" % (self.tracker_id, self.get_public_id())
