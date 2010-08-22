@@ -17,6 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import ugettext, ugettext_lazy as _
 import django.contrib.auth.models as auth_models
 from django.utils.safestring import mark_safe
@@ -182,7 +183,7 @@ class FieldOverlay(models.Model):
 
     # Can always be changed (expect for special 'summary' and 'details')
     empty_ok = models.CharField(max_length=1, choices=EMPTY_OK_CHOICES,
-                                       default='0', blank=True, null=True)
+                                default='0', blank=True, null=True)
 
     # Can always be changed
     rank = models.IntegerField(help_text=_("display rank"))
@@ -233,7 +234,7 @@ class FieldChoice(models.Model):
     STATUS_CHOICES = (('A', _('active')),
                       ('H', _('hidden')), # mask previously-active or system fields
                       ('P', _('permanent')),) # status cannot be modified, always visible
-    tracker = models.ForeignKey(Tracker)
+    tracker = models.ForeignKey(Tracker, blank=True, null=True)
     group = models.ForeignKey(auth_models.Group, blank=True, null=True,
                               help_text=_("NULL == default for all groups"))
     field = models.CharField(max_length=32)
@@ -258,23 +259,56 @@ class FieldChoice(models.Model):
             group_name = self.group.name
         return "%s.%s: %s (%d)" % (group_name, self.field, self.value, self.value_id)
 
-def field_get_values(tracker_id, group, field):
+##
+# Field
+##
+
+def field_get_values(tracker_id, group, field_def, cur_item_value_id=None):
     """
     Return all possible values for this select box field
     """
-    if field == 'assigned_to':
+    name = field_def['name']
+    if name == 'submitted_by':
+        # Not editable
+        return []
+    if name == 'assigned_to':
         # Hard-coded processing: it's a list of project members
-        default_values = [{'value_id' : -1, 'value' : _("None")}]
-        for user in group.user_set.order_by('username'):
-            default_values.append({'value_id' : user.pk, 'value' : user.username})
+        values = [{'value_id' : -1, 'value' : _("None")}]
+        pks = list(group.user_set.order_by('username').values_list('pk', flat=True))
+        # Add the current value if the user was previously part of the
+        # project and assigned this time
+        if cur_item_value_id not in pks:
+            pks.insert(0, cur_item_value_id)
+        for user in auth_models.User.objects.filter(pk__in=pks):
+            values.append({'value_id' : user.pk, 'value' : user.username})
     else:
-        #tracker_id=tracker_id, 
-        default_values = list(FieldChoice.objects \
-            .filter(group=None, field=field).exclude(status='H') \
+        values = list(FieldChoice.objects \
+            .filter(tracker=tracker_id, group=None, field=name) \
+            .filter(~Q(status='H')|Q(value_id=cur_item_value_id)) \
             .values('value_id', 'value', 'rank'))
         # value overlays
-        default_values.sort(key=lambda x: x['rank'])
-    return default_values
+        overlay_values = list(FieldChoice.objects \
+            .filter(tracker=tracker_id, group=group, field=name) \
+            .values('value_id', 'value', 'rank', 'status'))
+        for o in overlay_values:
+            found = False
+            i = 0
+            for v in values:
+                if v['value_id'] == o['value_id']:
+                    found = True
+                    if v['status'] == 'H':
+                        del values[i]
+                        i -= 1
+                    else:
+                        v['value'] = o['value']
+                        v['rank'] = o['rank']
+                    break
+                i += 1
+            if not found and o['status'] != 'H' and field_def['scope'] != 'S':
+                v.append(o)
+        values.sort(key=lambda x: x['rank'])
+
+    return values
 
 # Auto_increment counters
 # We could make this more generic, but we'd have to implement
@@ -468,7 +502,8 @@ class Item(models.Model):
                 overlay.apply_on(fields[name])
         for name in fields:
             if fields[name]['display_type'] == 'SB':
-                fields[name]['values'] = field_get_values(self.tracker_id, self.group, name)
+                fields[name]['values'] = field_get_values(self.tracker_id, self.group,
+                                                          fields[name], self.get_value(name))
         return fields
 
     def get_form_fields(self, user=None):
@@ -478,7 +513,6 @@ class Item(models.Model):
         fields = self.get_fields().copy()
         ret = []
         for name in fields.keys():
-            print fields[name]
             if (not (fields[name]['required'] or fields[name]['use_it'])
                 or fields[name]['special']):
                 continue
@@ -486,12 +520,29 @@ class Item(models.Model):
         ret.sort(key=lambda x: x[1]['rank'])
         return ret
 
+    def get_value(self, key):
+        if key == 'comment_type_id':
+            # not stored in the item, but in the history
+            # TODO: it actually has nothing do in fields definitions
+            # (not part of the generic form, not a stored value); move
+            # it out!
+            return None
+        elif key in ('submitted_by', 'assigned_to'):
+            user = getattr(self, key)
+            if user is None:
+                return None
+            else:
+                return user.pk
+        else:
+            return getattr(self, key)
+
     def get_form(self, user=None):
         # TODO: privacy
+        # TODO: privileges
         form_fields = self.get_form_fields()
         html = '';
         for field_no, (name,field) in enumerate(form_fields):
-            value = getattr(self, name)
+            value = self.get_value(name)
 
             if field_no % 2 == 0:
                 html += '<tr>'

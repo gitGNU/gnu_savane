@@ -18,7 +18,10 @@ def process_field_row(row):
     name = row[1]
     field_names.append(name)
     defs[name] = ''
-    defs[name] += "    '"+name+"' : {\n"
+    if name == 'field_name':
+        defs[name] += "    'name' : {\n"
+    else:
+        defs[name] += "    '"+name+"' : {\n"
     for i,val in enumerate(row):
         if i <= 0 \
                 or (complex_defs[name]['display_type'] not in ('TA', 'TF') and tfields[i] == 'display_size'):

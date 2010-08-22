@@ -62,7 +62,7 @@ from copy import deepcopy
 
 field_defs = {
     'bug_id' : {
-        'field_name': 'bug_id',
+        'name': 'bug_id',
         'display_type': 'TF',
         'scope': 'S',
         'required': 1,
@@ -70,7 +70,7 @@ field_defs = {
         'custom': 0,
     },
     'group_id' : {
-        'field_name': 'group_id',
+        'name': 'group_id',
         'display_type': 'TF',
         'scope': 'S',
         'required': 1,
@@ -78,7 +78,7 @@ field_defs = {
         'custom': 0,
     },
     'submitted_by' : {
-        'field_name': 'submitted_by',
+        'name': 'submitted_by',
         'display_type': 'SB',
         'scope': 'S',
         'required': 1,
@@ -86,7 +86,7 @@ field_defs = {
         'custom': 0,
     },
     'date' : {
-        'field_name': 'date',
+        'name': 'date',
         'display_type': 'DF',
         'scope': 'S',
         'required': 1,
@@ -94,7 +94,7 @@ field_defs = {
         'custom': 0,
     },
     'close_date' : {
-        'field_name': 'close_date',
+        'name': 'close_date',
         'display_type': 'DF',
         'scope': 'S',
         'required': 1,
@@ -102,7 +102,7 @@ field_defs = {
         'custom': 0,
     },
     'status_id' : {
-        'field_name': 'status_id',
+        'name': 'status_id',
         'display_type': 'SB',
         'scope': 'S',
         'required': 1,
@@ -110,7 +110,7 @@ field_defs = {
         'custom': 0,
     },
     'severity' : {
-        'field_name': 'severity',
+        'name': 'severity',
         'display_type': 'SB',
         'scope': 'S',
         'required': 0,
@@ -118,7 +118,7 @@ field_defs = {
         'custom': 0,
     },
     'category_id' : {
-        'field_name': 'category_id',
+        'name': 'category_id',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -126,7 +126,7 @@ field_defs = {
         'custom': 0,
     },
     'assigned_to' : {
-        'field_name': 'assigned_to',
+        'name': 'assigned_to',
         'display_type': 'SB',
         'scope': 'S',
         'required': 1,
@@ -134,7 +134,7 @@ field_defs = {
         'custom': 0,
     },
     'summary' : {
-        'field_name': 'summary',
+        'name': 'summary',
         'display_type': 'TF',
         'scope': 'S',
         'required': 1,
@@ -142,7 +142,7 @@ field_defs = {
         'custom': 0,
     },
     'details' : {
-        'field_name': 'details',
+        'name': 'details',
         'display_type': 'TA',
         'scope': 'S',
         'required': 1,
@@ -150,7 +150,7 @@ field_defs = {
         'custom': 0,
     },
     'bug_group_id' : {
-        'field_name': 'bug_group_id',
+        'name': 'bug_group_id',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -158,7 +158,7 @@ field_defs = {
         'custom': 0,
     },
     'resolution_id' : {
-        'field_name': 'resolution_id',
+        'name': 'resolution_id',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -166,7 +166,7 @@ field_defs = {
         'custom': 0,
     },
     'privacy' : {
-        'field_name': 'privacy',
+        'name': 'privacy',
         'display_type': 'SB',
         'scope': 'S',
         'required': 0,
@@ -174,7 +174,7 @@ field_defs = {
         'custom': 0,
     },
     'vote' : {
-        'field_name': 'vote',
+        'name': 'vote',
         'display_type': 'TF',
         'scope': 'S',
         'required': 0,
@@ -182,7 +182,7 @@ field_defs = {
         'custom': 0,
     },
     'category_version_id' : {
-        'field_name': 'category_version_id',
+        'name': 'category_version_id',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -190,7 +190,7 @@ field_defs = {
         'custom': 0,
     },
     'platform_version_id' : {
-        'field_name': 'platform_version_id',
+        'name': 'platform_version_id',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -198,7 +198,7 @@ field_defs = {
         'custom': 0,
     },
     'reproducibility_id' : {
-        'field_name': 'reproducibility_id',
+        'name': 'reproducibility_id',
         'display_type': 'SB',
         'scope': 'S',
         'required': 0,
@@ -206,7 +206,7 @@ field_defs = {
         'custom': 0,
     },
     'size_id' : {
-        'field_name': 'size_id',
+        'name': 'size_id',
         'display_type': 'SB',
         'scope': 'S',
         'required': 0,
@@ -214,7 +214,7 @@ field_defs = {
         'custom': 0,
     },
     'fix_release_id' : {
-        'field_name': 'fix_release_id',
+        'name': 'fix_release_id',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -222,7 +222,7 @@ field_defs = {
         'custom': 0,
     },
     'comment_type_id' : {
-        'field_name': 'comment_type_id',
+        'name': 'comment_type_id',
         'display_type': 'SB',
         'scope': 'P',
         'required': 1,
@@ -230,7 +230,7 @@ field_defs = {
         'custom': 0,
     },
     'hours' : {
-        'field_name': 'hours',
+        'name': 'hours',
         'display_type': 'TF',
         'scope': 'S',
         'required': 0,
@@ -238,7 +238,7 @@ field_defs = {
         'custom': 0,
     },
     'plan_release_id' : {
-        'field_name': 'plan_release_id',
+        'name': 'plan_release_id',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -246,7 +246,7 @@ field_defs = {
         'custom': 0,
     },
     'component_version' : {
-        'field_name': 'component_version',
+        'name': 'component_version',
         'display_type': 'TF',
         'scope': 'S',
         'required': 0,
@@ -254,7 +254,7 @@ field_defs = {
         'custom': 0,
     },
     'fix_release' : {
-        'field_name': 'fix_release',
+        'name': 'fix_release',
         'display_type': 'TF',
         'scope': 'S',
         'required': 0,
@@ -262,7 +262,7 @@ field_defs = {
         'custom': 0,
     },
     'plan_release' : {
-        'field_name': 'plan_release',
+        'name': 'plan_release',
         'display_type': 'TF',
         'scope': 'S',
         'required': 0,
@@ -270,7 +270,7 @@ field_defs = {
         'custom': 0,
     },
     'priority' : {
-        'field_name': 'priority',
+        'name': 'priority',
         'display_type': 'SB',
         'scope': 'S',
         'required': 0,
@@ -278,7 +278,7 @@ field_defs = {
         'custom': 0,
     },
     'keywords' : {
-        'field_name': 'keywords',
+        'name': 'keywords',
         'display_type': 'TF',
         'scope': 'S',
         'required': 0,
@@ -286,7 +286,7 @@ field_defs = {
         'custom': 0,
     },
     'release_id' : {
-        'field_name': 'release_id',
+        'name': 'release_id',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -294,7 +294,7 @@ field_defs = {
         'custom': 0,
     },
     'release' : {
-        'field_name': 'release',
+        'name': 'release',
         'display_type': 'TF',
         'scope': 'S',
         'required': 0,
@@ -302,7 +302,7 @@ field_defs = {
         'custom': 0,
     },
     'originator_name' : {
-        'field_name': 'originator_name',
+        'name': 'originator_name',
         'display_type': 'TF',
         'scope': 'S',
         'required': 0,
@@ -310,7 +310,7 @@ field_defs = {
         'custom': 0,
     },
     'originator_email' : {
-        'field_name': 'originator_email',
+        'name': 'originator_email',
         'display_type': 'TF',
         'scope': 'S',
         'required': 0,
@@ -318,7 +318,7 @@ field_defs = {
         'custom': 0,
     },
     'originator_phone' : {
-        'field_name': 'originator_phone',
+        'name': 'originator_phone',
         'display_type': 'TF',
         'scope': 'S',
         'required': 0,
@@ -326,7 +326,7 @@ field_defs = {
         'custom': 0,
     },
     'percent_complete' : {
-        'field_name': 'percent_complete',
+        'name': 'percent_complete',
         'display_type': 'SB',
         'scope': 'S',
         'required': 0,
@@ -334,7 +334,7 @@ field_defs = {
         'custom': 0,
     },
     'custom_tf1' : {
-        'field_name': 'custom_tf1',
+        'name': 'custom_tf1',
         'display_type': 'TF',
         'scope': 'P',
         'required': 0,
@@ -342,7 +342,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_tf2' : {
-        'field_name': 'custom_tf2',
+        'name': 'custom_tf2',
         'display_type': 'TF',
         'scope': 'P',
         'required': 0,
@@ -350,7 +350,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_tf3' : {
-        'field_name': 'custom_tf3',
+        'name': 'custom_tf3',
         'display_type': 'TF',
         'scope': 'P',
         'required': 0,
@@ -358,7 +358,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_tf4' : {
-        'field_name': 'custom_tf4',
+        'name': 'custom_tf4',
         'display_type': 'TF',
         'scope': 'P',
         'required': 0,
@@ -366,7 +366,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_tf5' : {
-        'field_name': 'custom_tf5',
+        'name': 'custom_tf5',
         'display_type': 'TF',
         'scope': 'P',
         'required': 0,
@@ -374,7 +374,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_tf6' : {
-        'field_name': 'custom_tf6',
+        'name': 'custom_tf6',
         'display_type': 'TF',
         'scope': 'P',
         'required': 0,
@@ -382,7 +382,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_tf7' : {
-        'field_name': 'custom_tf7',
+        'name': 'custom_tf7',
         'display_type': 'TF',
         'scope': 'P',
         'required': 0,
@@ -390,7 +390,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_tf8' : {
-        'field_name': 'custom_tf8',
+        'name': 'custom_tf8',
         'display_type': 'TF',
         'scope': 'P',
         'required': 0,
@@ -398,7 +398,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_tf9' : {
-        'field_name': 'custom_tf9',
+        'name': 'custom_tf9',
         'display_type': 'TF',
         'scope': 'P',
         'required': 0,
@@ -406,7 +406,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_tf10' : {
-        'field_name': 'custom_tf10',
+        'name': 'custom_tf10',
         'display_type': 'TF',
         'scope': 'P',
         'required': 0,
@@ -414,7 +414,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_ta1' : {
-        'field_name': 'custom_ta1',
+        'name': 'custom_ta1',
         'display_type': 'TA',
         'scope': 'P',
         'required': 0,
@@ -422,7 +422,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_ta2' : {
-        'field_name': 'custom_ta2',
+        'name': 'custom_ta2',
         'display_type': 'TA',
         'scope': 'P',
         'required': 0,
@@ -430,7 +430,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_ta3' : {
-        'field_name': 'custom_ta3',
+        'name': 'custom_ta3',
         'display_type': 'TA',
         'scope': 'P',
         'required': 0,
@@ -438,7 +438,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_ta4' : {
-        'field_name': 'custom_ta4',
+        'name': 'custom_ta4',
         'display_type': 'TA',
         'scope': 'P',
         'required': 0,
@@ -446,7 +446,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_ta5' : {
-        'field_name': 'custom_ta5',
+        'name': 'custom_ta5',
         'display_type': 'TA',
         'scope': 'P',
         'required': 0,
@@ -454,7 +454,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_ta6' : {
-        'field_name': 'custom_ta6',
+        'name': 'custom_ta6',
         'display_type': 'TA',
         'scope': 'P',
         'required': 0,
@@ -462,7 +462,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_ta7' : {
-        'field_name': 'custom_ta7',
+        'name': 'custom_ta7',
         'display_type': 'TA',
         'scope': 'P',
         'required': 0,
@@ -470,7 +470,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_ta8' : {
-        'field_name': 'custom_ta8',
+        'name': 'custom_ta8',
         'display_type': 'TA',
         'scope': 'P',
         'required': 0,
@@ -478,7 +478,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_ta9' : {
-        'field_name': 'custom_ta9',
+        'name': 'custom_ta9',
         'display_type': 'TA',
         'scope': 'P',
         'required': 0,
@@ -486,7 +486,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_ta10' : {
-        'field_name': 'custom_ta10',
+        'name': 'custom_ta10',
         'display_type': 'TA',
         'scope': 'P',
         'required': 0,
@@ -494,7 +494,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_sb1' : {
-        'field_name': 'custom_sb1',
+        'name': 'custom_sb1',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -502,7 +502,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_sb2' : {
-        'field_name': 'custom_sb2',
+        'name': 'custom_sb2',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -510,7 +510,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_sb3' : {
-        'field_name': 'custom_sb3',
+        'name': 'custom_sb3',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -518,7 +518,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_sb4' : {
-        'field_name': 'custom_sb4',
+        'name': 'custom_sb4',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -526,7 +526,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_sb5' : {
-        'field_name': 'custom_sb5',
+        'name': 'custom_sb5',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -534,7 +534,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_sb6' : {
-        'field_name': 'custom_sb6',
+        'name': 'custom_sb6',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -542,7 +542,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_sb7' : {
-        'field_name': 'custom_sb7',
+        'name': 'custom_sb7',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -550,7 +550,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_sb8' : {
-        'field_name': 'custom_sb8',
+        'name': 'custom_sb8',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -558,7 +558,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_sb9' : {
-        'field_name': 'custom_sb9',
+        'name': 'custom_sb9',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -566,7 +566,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_sb10' : {
-        'field_name': 'custom_sb10',
+        'name': 'custom_sb10',
         'display_type': 'SB',
         'scope': 'P',
         'required': 0,
@@ -574,7 +574,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_df1' : {
-        'field_name': 'custom_df1',
+        'name': 'custom_df1',
         'display_type': 'DF',
         'scope': 'P',
         'required': 0,
@@ -582,7 +582,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_df2' : {
-        'field_name': 'custom_df2',
+        'name': 'custom_df2',
         'display_type': 'DF',
         'scope': 'P',
         'required': 0,
@@ -590,7 +590,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_df3' : {
-        'field_name': 'custom_df3',
+        'name': 'custom_df3',
         'display_type': 'DF',
         'scope': 'P',
         'required': 0,
@@ -598,7 +598,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_df4' : {
-        'field_name': 'custom_df4',
+        'name': 'custom_df4',
         'display_type': 'DF',
         'scope': 'P',
         'required': 0,
@@ -606,7 +606,7 @@ field_defs = {
         'custom': 1,
     },
     'custom_df5' : {
-        'field_name': 'custom_df5',
+        'name': 'custom_df5',
         'display_type': 'DF',
         'scope': 'P',
         'required': 0,
@@ -614,7 +614,7 @@ field_defs = {
         'custom': 1,
     },
     'discussion_lock' : {
-        'field_name': 'discussion_lock',
+        'name': 'discussion_lock',
         'display_type': 'SB',
         'scope': 'S',
         'required': 1,
@@ -622,7 +622,7 @@ field_defs = {
         'custom': 0,
     },
     'planned_close_date' : {
-        'field_name': 'planned_close_date',
+        'name': 'planned_close_date',
         'display_type': 'DF',
         'scope': 'S',
         'required': 0,
@@ -630,7 +630,7 @@ field_defs = {
         'custom': 0,
     },
     'planned_starting_date' : {
-        'field_name': 'planned_starting_date',
+        'name': 'planned_starting_date',
         'display_type': 'DF',
         'scope': 'S',
         'required': 0,
