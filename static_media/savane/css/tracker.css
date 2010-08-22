@@ -25,6 +25,21 @@
  *
  **********************************************************************/
 
+table.tracker_item {
+    width: 100%;
+    text-align: left;
+}
+table.tracker_item th {
+    width: 15%;
+    font-style: italic;
+    font-weight: normal;
+    color: #727272;
+    font-style: italic;
+}
+table.tracker_item td.button {
+    text-align: center;
+}
+
 .trackersoriginalsubmission {
 	padding-left: 0.2em;
 	padding-top: 0.5em;

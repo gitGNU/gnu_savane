@@ -21,6 +21,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 import django.contrib.auth.models as auth_models
 from django.utils.safestring import mark_safe
 import datetime
+import locale
 from copy import deepcopy
 from savane.utils import htmlentitydecode, unescape
 from defs import *
@@ -442,7 +443,44 @@ class Item(models.Model):
     def get_form(self, user=None):
         # TODO: privacy
         form_fields = self.get_form_fields()
-        return mark_safe(''.join(['%s (%d)<br />' % (f, v['rank']) for f,v in form_fields]))
+        html = '';
+        for field_no, (name,field) in enumerate(form_fields):
+            value = getattr(self, name)
+
+            if field_no % 2 == 0:
+                html += '<tr>'
+
+            html += u'<th><span class="help" title="%s">%s</span></th>\n' % (field['description'], field['label']+ugettext(": "))
+
+            html += '<td>'
+            if   field['display_type'] == 'DF':
+                html += u'<select name="%s_dayfd" value="TODO">\n' % (name)
+                for i in range(1,31+1):
+                    html += '<option value="%d">%d</option>\n' % (i, i)
+                html += '</select>\n'
+                html += u'<select name="%s_monthfd" value="TODO">\n' % (name)
+                for i,langinfo_constant in enumerate( \
+                    (locale.MON_1, locale.MON_2, locale.MON_3, locale.MON_4,
+                     locale.MON_4, locale.MON_6, locale.MON_7, locale.MON_8,
+                     locale.MON_9, locale.MON_10, locale.MON_11, locale.MON_12)):
+                    html += '<option value="%d">%s</option>\n' % (i, locale.nl_langinfo(langinfo_constant))
+                html += '</select>\n'
+                html += u'<input type="text" length="4" maxlength="4" name="%s_yearfd" value="TODO">' % (name)
+            elif field['display_type'] == 'SB':
+                html += u'<select name="%s"><option value="-1">TODO</option></select>' % (name)
+            elif field['display_type'] == 'TA':
+                html += u'<textarea name="%s">%s</textarea>' % (name, value)
+            elif field['display_type'] == 'TF':
+                html += u'<input type="text" name="%s" value="%s" />' % (name, value)
+            html += '</td>\n'
+
+            if field_no % 2 == 1:
+                html += '</tr>\n'
+        if field_no % 2 == 0:  # close if odd number of fields
+            html += '</tr>\n'
+
+        #return mark_safe(''.join(['%s (%d)<br />' % (f, v['rank']) for f,v in form_fields]))
+        return mark_safe(html)
 
     def __unicode__(self):
         return "%s #%d" % (self.tracker_id, self.get_public_id())

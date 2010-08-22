@@ -21,9 +21,28 @@
   {{object.get_summary}}
 </h1>
 
-<h2>{% trans "Post a comment" %}</h2>
+<table class="tracker_item">
+<tr>
+  <th>{% trans "Submitted by" %}{% trans ": " %}</th>
+  <td>
+  {% if object.submitted_by %}
+  <a href="{% url savane:svmain:user_detail object.submitted_by.username %}"
+  >{{object.submitted_by.get_full_name}}
+    &lt;{{object.submitted_by.username}}&gt;</a>
+  {% else %}
+  {% trans "Anonymous" %}
+  {% endif %}</td>
+  <td colspan="2" class="button"><input type="submit" style="font-weight: bold;" value="{% trans "Submit changes and browse items" %}" />
+</tr>
+<tr>
+  <th>{% trans "Submitted on" %}{% trans ": " %}</th>
+  <td>{{ object.date }}</td>
+  <td colspan="2" class="button"><input type="submit" value="{% trans "Submit changes and return to this item" %}" /></td>
+</tr>
+{{object.get_form}}
+</table>
 
-<div>{{object.get_form}}</div>
+<h2>{% trans "Post a comment" %}</h2>
 
 <h2>{% trans "Discussion" %}</h2>
 
