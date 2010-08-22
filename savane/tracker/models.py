@@ -413,6 +413,16 @@ class Item(models.Model):
         from string import ascii_letters
         return "prior" + ascii_letters[self.priority-1]
 
+    def get_icon_name(self):
+        if self.tracker_id == 'bugs':
+            return "bug"
+        elif self.tracker_id == 'patch':
+            return "patch"
+        elif self.tracker_id == 'support':
+            return "help"
+        elif self.tracker_id == 'task':
+            return "task"
+
     def get_fields(self):
         """
         Return fields definition for this group tracker (default

@@ -7,6 +7,8 @@
   {{object.get_summary|truncatewords:5}}
 {% endblock %}
 
+{% block icon %}{{object.get_icon_name}}{% endblock %}
+
 {% block extrahead %}
 <link rel="stylesheet" type="text/css" href="{{STATIC_MEDIA_URL}}savane/css/tracker.css" />
 {% endblock %}
