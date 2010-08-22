@@ -162,7 +162,8 @@ class FieldOverlay(models.Model):
     TRANSITION_DEFAULT_AUTH_CHOICES = (('', _('undefined')),
                                        ('A', _('allowed')),
                                        ('F', _('forbidden')),)
-    group = models.ForeignKey(auth_models.Group)
+    tracker = models.ForeignKey(Tracker)
+    group = models.ForeignKey(auth_models.Group, blank=True, null=True, help_text=_("NULL == default"))
     field_name = models.CharField(max_length=32)
 
     # If not Field.required:
@@ -229,7 +230,8 @@ class FieldValue(models.Model):
     STATUS_CHOICES = (('A', _('active')),
                       ('H', _('hidden')), # mask previously-active or system fields
                       ('P', _('permanent')),) # status cannot be modified, always visible
-    group = models.ForeignKey(auth_models.Group)
+    tracker = models.ForeignKey(Tracker)
+    group = models.ForeignKey(auth_models.Group, blank=True, null=True, help_text=_("NULL == default"))
     field_name = models.CharField(max_length=32)
     value_id = models.IntegerField(db_index=True) # group_specific value identifier
       # It's not a duplicate of 'id', as it's the value referenced by
@@ -237,13 +239,38 @@ class FieldValue(models.Model):
       # customized per-project.
     value = models.CharField(max_length=255) # label
     description = models.TextField()
-    order_id = models.IntegerField() # new:rank
+    rank = models.IntegerField()
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='A', db_index=True)
 
     # Field category: specific (bad!) field for e-mail notifications
     email_ad = models.TextField(blank=True, null=True,
                                 help_text=_("comma-separated list of e-mail addresses to notify when an item is created or modified in this category"))
     send_all_flag = models.BooleanField(_("send on all updates"), default=True)
+
+    def __unicode__(self):
+        #return "%s.%s: %s (%d)" % (self.tracker_id, self.field_name, self.value, self.value_id)
+        group_name = '<default>'
+        if self.group_id != 0:
+            group_name = self.group.name
+        return "%s.%s: %s (%d)" % (group_name, self.field_name, self.value, self.value_id)
+
+def field_get_values(tracker_id, group, field_name):
+    """
+    Return all possible values for this select box field
+    """
+    if field_name == 'assigned_to':
+        # Hard-coded processing: it's a list of project members
+        default_values = [{'value_id' : -1, 'value' : _("None")}]
+        for user in group.user_set.order_by('username'):
+            default_values.append({'value_id' : user.pk, 'value' : user.username})
+    else:
+        #tracker_id=tracker_id, 
+        default_values = list(FieldValue.objects \
+            .filter(group=None, field_name=field_name).exclude(status='H') \
+            .values('value_id', 'value', 'rank'))
+        # value overlays
+        default_values.sort(key=lambda x: x['rank'])
+    return default_values
 
 # Auto_increment counters
 # We could make this more generic, but we'd have to implement
@@ -430,10 +457,13 @@ class Item(models.Model):
         overlay values (cf. FieldOverlay model definition).
         """
         fields = deepcopy(default_fields[self.tracker_id])
-        overlays = FieldOverlay.objects.filter(group=self.group)
+        overlays = FieldOverlay.objects.filter(tracker=self.tracker_id, group=self.group)
         for overlay in overlays:
             name = overlay.field_name
             overlay.apply_on[fields[name]]
+        for name in fields:
+            if fields[name]['display_type'] == 'SB':
+                fields[name]['values'] = field_get_values(self.tracker_id, self.group, name)
         return fields
 
     def get_form_fields(self, user=None):
@@ -477,7 +507,13 @@ class Item(models.Model):
                 html += '</select>\n'
                 html += u'<input type="text" length="4" maxlength="4" name="%s_yearfd" value="TODO">' % (name)
             elif field['display_type'] == 'SB':
-                html += u'<select name="%s"><option value="-1">TODO</option></select>' % (name)
+                html += u'<select name="%s">\n' % name
+                for option in field['values']:
+                    selected = ''
+                    if option['value_id'] == value:
+                        selected = ' selected="selected"'
+                    html += u'<option value="%d"%s>%s</option>\n' % (option['value_id'], selected, ugettext(option['value']))
+                html += '</select>'
             elif field['display_type'] == 'TA':
                 html += u'<textarea name="%s">%s</textarea>' % (name, value)
             elif field['display_type'] == 'TF':

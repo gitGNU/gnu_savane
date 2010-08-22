@@ -541,7 +541,10 @@ UPDATE tracker_item SET submitted_by_id=NULL WHERE submitted_by_id=100;
 -- twice or something.
 -- Give priority to the last one.
 -- Need to create a real table - a temporary one has issues with being "reopened" in joins
-DROP TABLE IF EXISTS temp_bugs_field_usage;
+-- The following produces a warning that and MySQL employees can't
+-- understand that it's a problem - commenting:
+-- (http://bugs.mysql.com/bug.php?id=2839)
+-- DROP TABLE IF EXISTS temp_bugs_field_usage;
 CREATE TABLE temp_bugs_field_usage AS SELECT * FROM savane_old.bugs_field_usage;
 ALTER TABLE temp_bugs_field_usage ADD (id INT auto_increment PRIMARY KEY);
 DELETE FROM temp_bugs_field_usage
@@ -558,11 +561,11 @@ DELETE FROM temp_bugs_field_usage
 -- tracker.defs.
 TRUNCATE tracker_fieldoverlay;
 INSERT INTO tracker_fieldoverlay
-    (group_id, field_name, use_it, show_on_add_anonymous, show_on_add_connected, show_on_add_members, rank,
+    (tracker_id, group_id, field_name, use_it, show_on_add_anonymous, show_on_add_connected, show_on_add_members, rank,
      label, description, display_size, empty_ok,
      keep_history, transition_default_auth)
   SELECT
-      group_id, field_name, use_it, IF(show_on_add<2,0,1), IF(show_on_add%2=0,0,1), show_on_add_members, place,
+      'bugs', group_id, field_name, use_it, IF(show_on_add<2,0,1), IF(show_on_add%2=0,0,1), show_on_add_members, place,
       custom_label, custom_description, custom_display_size, custom_empty_ok,
       IFNULL(custom_keep_history, 0), transition_default_auth
     FROM temp_bugs_field_usage JOIN savane_old.bugs_field
@@ -587,10 +590,10 @@ DELETE FROM savane_old.bugs_field_value
 -- field_id <- bug_field_id
 TRUNCATE tracker_fieldvalue;
 INSERT INTO tracker_fieldvalue
-    (group_id, field_name, value_id, `value`, description,
-     order_id, status, email_ad, send_all_flag)
+    (tracker_id, group_id, field_name, value_id, `value`, description,
+     rank, status, email_ad, send_all_flag)
   SELECT
-     group_id, field_name, value_id, `value`, savane_old.bugs_field_value.description,
+     'bugs', group_id, field_name, value_id, `value`, savane_old.bugs_field_value.description,
      order_id, status, email_ad, send_all_flag
    FROM savane_old.bugs_field_value JOIN savane_old.bugs_field
       USING (bug_field_id);
