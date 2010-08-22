@@ -105,6 +105,9 @@ class Tracker(models.Model):
                     )
     name = models.CharField(max_length=7, choices=NAME_CHOICES, primary_key=True)
 
+    def get_public_id_item_field(self):
+        return 'public_%s' % self.name
+
     def __unicode__(self):
         "Used in the admin interface fields list"
         return self.name
@@ -385,7 +388,7 @@ class Item(models.Model):
     # - fields with hard-coded processing
     summary = models.TextField()
     details = models.TextField()
-    privacy = models.IntegerField(default=5)
+    privacy = models.IntegerField(default=1)
     discussion_lock = models.IntegerField(default=0)
     vote = models.IntegerField(default=0)
     category_id = models.IntegerField(default=100)

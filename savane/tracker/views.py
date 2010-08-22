@@ -33,13 +33,12 @@ def item_list(request, tracker, extra_context={}, paginate_by=None):
 
 @render_to('tracker/item_form.html', mimetype=None)
 def item_detail(request, tracker, object_id, extra_context={}):
-    if tracker not in [k for (k,v) in tracker_models.Tracker.NAME_CHOICES]:
-        raise HttpAppException("Invalid tracker")
+    tracker = get_object_or_404(tracker_models.Tracker, name=tracker)
 
-    kwargs = {'public_%s' % tracker : object_id}
+    kwargs = {tracker.get_public_id_item_field() : object_id}
     item = get_object_or_404(tracker_models.Item, **kwargs)
 
-    if item.privacy == 1:
+    if item.privacy == 0:  # reverse meaning...
         # Allowed: members with 'private items' privs
         if not request.user.is_superuser:
             raise HttpAppException(_("Access denied") + _(": ") + _("private item"))
