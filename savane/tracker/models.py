@@ -220,12 +220,13 @@ class FieldOverlay(models.Model):
             field_definition['display_size'] = self.display_size
             print field_definition['name'], field_definition['display_size']
             # Make it easier to access the field from templates:
-            if field_definition['display_type'] == 'TF':
-                field_definition['input_size'] = field_definition['display_size'].split("/")[0]
-                field_definition['input_maxlength'] = field_definition['display_size'].split("/")[1]
-            else:
-                field_definition['textarea_cols'] = field_definition['display_size'].split("/")[0]
-                field_definition['textarea_rows'] = field_definition['display_size'].split("/")[1]
+            if field_definition['display_size'] is not None:  # some old data may have weird values
+                if field_definition['display_type'] == 'TF':
+                    field_definition['input_size'] = field_definition['display_size'].split("/")[0]
+                    field_definition['input_maxlength'] = field_definition['display_size'].split("/")[1]
+                else:
+                    field_definition['textarea_cols'] = field_definition['display_size'].split("/")[0]
+                    field_definition['textarea_rows'] = field_definition['display_size'].split("/")[1]
         if self.group_id is None or field_definition['special'] != 1:
             field_definition['keep_history'] = self.keep_history
         if self.group_id is None or field_definition['custom'] == 1:
@@ -305,7 +306,7 @@ def field_get_values(tracker_id, group, field_def, cur_item_value_id=None):
             for v in values:
                 if v['value_id'] == o['value_id']:
                     found = True
-                    if v['status'] == 'H':
+                    if o['status'] == 'H':
                         del values[i]
                         i -= 1
                     else:
@@ -314,7 +315,7 @@ def field_get_values(tracker_id, group, field_def, cur_item_value_id=None):
                     break
                 i += 1
             if not found and o['status'] != 'H' and field_def['scope'] != 'S':
-                v.append(o)
+                values.append(o)
         values.sort(key=lambda x: x['rank'])
 
     # Try to apply a translation:
@@ -541,11 +542,7 @@ class Item(models.Model):
             # it out!
             return None
         elif key in ('submitted_by', 'assigned_to'):
-            user = getattr(self, key)
-            if user is None:
-                return None
-            else:
-                return user.pk
+            return getattr(self, key+'_id')
         else:
             return getattr(self, key)
 
@@ -599,6 +596,10 @@ class Item(models.Model):
 
         #return mark_safe(''.join(['%s (%d)<br />' % (f, v['rank']) for f,v in form_fields]))
         return mark_safe(html)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('savane:tracker:item_detail', [self.tracker_id, self.get_public_id()])
 
     def __unicode__(self):
         return "%s #%d" % (self.tracker_id, self.get_public_id())

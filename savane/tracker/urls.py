@@ -17,18 +17,23 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls.defaults import *
-import views
 from django.utils.translation import ugettext, ugettext_lazy as _
-from django.views.generic.list_detail import object_detail
+from django.views.generic.list_detail import object_detail, object_list
 from django.views.generic.create_update import create_object, update_object
 from django.contrib.auth.decorators import login_required
 from savane.utils import get_site_name
 from savane.perms import only_project_admin
 from savane.django_utils import decorated_patterns
+import views
+import models as tracker_models
 
 urlpatterns = patterns ('',)
 
 urlpatterns += patterns ('',
+  url(r'^(?P<tracker>[-\w]+)/$', views.item_list,
+      { 'paginate_by': 50,
+        'extra_context' : { 'title' : _("Bugs") }, },
+      name='item_list'),
   url(r'^(?P<tracker>[-\w]+)/(?P<object_id>\d+)/$', views.item_detail,
       {},
       name='item_detail'),

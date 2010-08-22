@@ -21,9 +21,15 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _, ungettext
 import django.contrib.auth.models as auth_models
+from django.views.generic.list_detail import object_detail, object_list
 import savane.tracker.models as tracker_models
 from annoying.decorators import render_to
 from savane.middleware.exception import HttpAppException
+
+def item_list(request, tracker, extra_context={}, paginate_by=None):
+    queryset = tracker_models.Item.objects.filter(tracker=tracker).order_by('-public_%s' % tracker)
+    return object_list(request, queryset=queryset, extra_context=extra_context,
+                       paginate_by=paginate_by)
 
 @render_to('tracker/item_form.html', mimetype=None)
 def item_detail(request, tracker, object_id, extra_context={}):
@@ -32,6 +38,11 @@ def item_detail(request, tracker, object_id, extra_context={}):
 
     kwargs = {'public_%s' % tracker : object_id}
     item = get_object_or_404(tracker_models.Item, **kwargs)
+
+    if item.privacy == 1:
+        # Allowed: members with 'private items' privs
+        if not request.user.is_superuser:
+            raise HttpAppException(_("Access denied") + _(": ") + _("private item"))
 
     context = {
         'object' : item,

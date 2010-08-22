@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block icon %}bug{% endblock %}
+
+{% block content %}
+
+{% include "svmain/pagination.inc.html" %}
+
+<form action="." method="get">
+  {% trans "Search" %}: <input type="text" name="q" value="TODO {{q}}" />
+</form>
+
+{% if object_list %}
+  <table class="box">
+    <tr><th>{% trans "Id" %}</th><th>{% trans "Summary" %}</th></tr>
+    {% for object in object_list %}
+    <tr class="{% cycle 'boxitem' 'boxitemalt' %}">
+      <td><a href="{{ object.get_absolute_url }}">{{ object.get_public_id }}</a></td>
+      <td><a href="{{ object.get_absolute_url }}">{{ object.get_summary }}</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+    <p>{% trans "No users." %}</p>
+{% endif %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}
