@@ -20,17 +20,38 @@ from django.contrib import admin
 from django.utils.translation import ugettext, ugettext_lazy as _
 from models import *
 
-# It's not sensible to edit this, it's only a PK
-#class TrackerAdmin(admin.ModelAdmin):
-#    list_display  = ('name',)
+class TrackerAdmin(admin.ModelAdmin):
+    list_display  = ('name',)
+
+# class FieldOverlayInline(admin.TabularInline):
+#     model = FieldOverlay
+#     raw_id_fields = ('group',)
+# class FieldAdmin(admin.ModelAdmin):
+#     search_fields = ('name', 'label', 'description', )
+#     ordering = ('name', )
+#     list_display  = ('name', 'scope', 'required', 'special', 'custom', )
+#     list_display_links = ('name', )
+#     list_filter = ('display_type', 'scope', 'required', 'special', 'custom', )
+#     inlines = ( FieldOverlayInline, )
+#admin.site.register(Field, FieldAdmin)
 
 class FieldOverlayAdmin(admin.ModelAdmin):
     search_fields = ('group', 'label', 'description', )
-    ordering = ('group', 'field_name',)
-    list_display  = ('id', 'group', 'field_name', 'use_it', 'rank', )
+    ordering = ('group', 'field',)
+    list_display  = ('id', 'tracker', 'group', 'field', 'use_it', 'rank', )
     list_display_links = ('id',)
     list_filter = ('use_it', 'show_on_add_anonymous', 'show_on_add_connected', 'show_on_add_members',
                    'empty_ok', 'keep_history',)
     raw_id_fields = ('group',)
 
+class FieldChoiceAdmin(admin.ModelAdmin):
+    search_fields = ('group', 'value_id', 'value', 'description', )
+    ordering = ('group', 'field', 'tracker', 'rank')
+    list_display  = ('id', 'tracker', 'group', 'field', 'value_id', 'value', 'status', 'rank')
+    list_display_links = ('id',)
+    list_filter = ('status',)
+    raw_id_fields = ('group',)
+
+ 
 admin.site.register(FieldOverlay, FieldOverlayAdmin)
+admin.site.register(FieldChoice, FieldChoiceAdmin)

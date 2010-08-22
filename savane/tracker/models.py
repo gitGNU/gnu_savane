@@ -44,8 +44,8 @@ DISPLAY_TYPE_CHOICES = (('DF', _('date field')),
                         ('SB', _('select box')),
                         ('TA', _('text area')),
                         ('TF', _('text field')),)
-SCOPE_CHOICES = (('S', _('system')), # user cannot modify related FieldValue's (TF)
-                 ('P', _('project')),)  # user can modify related FieldValue's (TF)
+SCOPE_CHOICES = (('S', _('system')), # user cannot modify related FieldChoice's (TF)
+                 ('P', _('project')),)  # user can modify related FieldChoice's (TF)
 
 RESTRICTION_CHOICES = (('2', _('anonymous')),
                        ('3', _('logged-in user')),
@@ -147,14 +147,16 @@ class MemberPermission(models.Model):
 
 #class SquadPermission(models.Model): pass
 
+
 class FieldOverlay(models.Model):
     """
-    Per-group tracker item definition override
+    Per-group tracker field definition override
+    (or site-wide field default if group==NULL)
     """
     class Meta:
-        unique_together = (('group', 'field_name'),)
-        verbose_name = _("field usage")
-        verbose_name_plural = _("field usages")
+        unique_together = (('tracker', 'group', 'field'),)
+        verbose_name = _("field overlay")
+        verbose_name_plural = _("field overlays")
 
     EMPTY_OK_CHOICES = (('0', _('mandatory only if it was presented to the original submitter')),
                         ('1', _('optional (empty values are accepted)')),
@@ -163,8 +165,13 @@ class FieldOverlay(models.Model):
                                        ('A', _('allowed')),
                                        ('F', _('forbidden')),)
     tracker = models.ForeignKey(Tracker)
-    group = models.ForeignKey(auth_models.Group, blank=True, null=True, help_text=_("NULL == default"))
-    field_name = models.CharField(max_length=32)
+    group = models.ForeignKey(auth_models.Group, blank=True, null=True,
+                              help_text=_("NULL == default for all groups"))
+    field = models.CharField(max_length=32)
+
+    # If Field.custom
+    label = models.CharField(max_length=255, blank=True, null=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
 
     # If not Field.required:
     use_it = models.BooleanField(_("used"))
@@ -193,46 +200,43 @@ class FieldOverlay(models.Model):
     # If !Field.special
     keep_history = models.BooleanField(_("keep field value changes in history"))
 
-    # If Field.custom
-    # Specific (bad!) fields for custom fields (if Field.custom is True):
-    label = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
-
-    def apply_on(field_definition):
+    def apply_on(self, field_definition):
         """
         Modify a default field definition with FieldOverlay's override
         values.  Only apply sensible overlays.
         """
         if not field_definition['required']:
-            field_definition['use_it'] = overlay.use_it
-            field_definition['show_on_add_anonymous'] = overlay.show_on_add_anonymous
-            field_definition['show_on_add_connected'] = overlay.show_on_add_connected
-            field_definition['show_on_add_members'] = overlay.show_on_add_members
-        field_definition['empty_ok'] = overlay.empty_ok
-        field_definition['rank'] = overlay.rank
-        if field_definition['type'] == 'SB':
-            field_definition['transition_default_auth'] = overlay.transition_default_auth
-        elif field_definition['type'] in ('TA', 'TF'):
-            field_definition['display_size'] = overlay.display_size
-        if field_definition['special'] == 1:
-            field_definition['keep_history'] = overlay.keep_history
-        if field_definition['custom'] == 1:
-            field_definition['label'] = overlay.label
-            field_definition['description'] = overlay.description
+            field_definition['use_it'] = self.use_it
+            field_definition['show_on_add_anonymous'] = self.show_on_add_anonymous
+            field_definition['show_on_add_connected'] = self.show_on_add_connected
+            field_definition['show_on_add_members'] = self.show_on_add_members
+        field_definition['empty_ok'] = self.empty_ok
+        field_definition['rank'] = self.rank
+        if field_definition['display_type'] == 'SB':
+            field_definition['transition_default_auth'] = self.transition_default_auth
+        elif field_definition['display_type'] in ('TA', 'TF'):
+            field_definition['display_size'] = self.display_size
+        if self.group_id is None or field_definition['special'] != 1:
+            field_definition['keep_history'] = self.keep_history
+        if self.group_id is None or field_definition['custom'] == 1:
+            field_definition['label'] = self.label
+            field_definition['description'] = self.description
 
-class FieldValue(models.Model):
+class FieldChoice(models.Model):
     """
     Per-group tracker select box values override
+    (or site-wide field default if group==NULL)
     """
     class Meta:
-        unique_together = (('group', 'field_name', 'value_id'),)
+        unique_together = (('tracker', 'group', 'field', 'value_id'),)
 
     STATUS_CHOICES = (('A', _('active')),
                       ('H', _('hidden')), # mask previously-active or system fields
                       ('P', _('permanent')),) # status cannot be modified, always visible
     tracker = models.ForeignKey(Tracker)
-    group = models.ForeignKey(auth_models.Group, blank=True, null=True, help_text=_("NULL == default"))
-    field_name = models.CharField(max_length=32)
+    group = models.ForeignKey(auth_models.Group, blank=True, null=True,
+                              help_text=_("NULL == default for all groups"))
+    field = models.CharField(max_length=32)
     value_id = models.IntegerField(db_index=True) # group_specific value identifier
       # It's not a duplicate of 'id', as it's the value referenced by
       # Item fields, and the configuration of that value can be
@@ -248,25 +252,25 @@ class FieldValue(models.Model):
     send_all_flag = models.BooleanField(_("send on all updates"), default=True)
 
     def __unicode__(self):
-        #return "%s.%s: %s (%d)" % (self.tracker_id, self.field_name, self.value, self.value_id)
+        #return "%s.%s: %s (%d)" % (self.tracker_id, self.field, self.value, self.value_id)
         group_name = '<default>'
-        if self.group_id != 0:
+        if self.group_id is not None:
             group_name = self.group.name
-        return "%s.%s: %s (%d)" % (group_name, self.field_name, self.value, self.value_id)
+        return "%s.%s: %s (%d)" % (group_name, self.field, self.value, self.value_id)
 
-def field_get_values(tracker_id, group, field_name):
+def field_get_values(tracker_id, group, field):
     """
     Return all possible values for this select box field
     """
-    if field_name == 'assigned_to':
+    if field == 'assigned_to':
         # Hard-coded processing: it's a list of project members
         default_values = [{'value_id' : -1, 'value' : _("None")}]
         for user in group.user_set.order_by('username'):
             default_values.append({'value_id' : user.pk, 'value' : user.username})
     else:
         #tracker_id=tracker_id, 
-        default_values = list(FieldValue.objects \
-            .filter(group=None, field_name=field_name).exclude(status='H') \
+        default_values = list(FieldChoice.objects \
+            .filter(group=None, field=field).exclude(status='H') \
             .values('value_id', 'value', 'rank'))
         # value overlays
         default_values.sort(key=lambda x: x['rank'])
@@ -320,8 +324,8 @@ class Item(models.Model):
     ##
     # Note: For select boxes, FK should be limited to same group, and
     # to a specific field each e.g.:
-    # severity = models.ForeignKey('FieldValue', to_field='value_id', default=5)
-    #            + constraint(same group or 100) + constraint(field_name='severity')
+    # severity = models.ForeignKey('FieldChoice', to_field='value_id', default=5)
+    #            + constraint(same group or 100) + constraint(field='severity')
     # To avoid unnecessary burden, let's drop the above incomplete ForeignKey
 
     # More generally one can wonder if this should be moved to a M2M
@@ -456,11 +460,12 @@ class Item(models.Model):
         values + group-specific overlay).  Only apply sensible
         overlay values (cf. FieldOverlay model definition).
         """
-        fields = deepcopy(default_fields[self.tracker_id])
-        overlays = FieldOverlay.objects.filter(tracker=self.tracker_id, group=self.group)
-        for overlay in overlays:
-            name = overlay.field_name
-            overlay.apply_on[fields[name]]
+        fields = deepcopy(field_defs)
+        for overlays in (FieldOverlay.objects.filter(tracker=self.tracker_id, group=None),
+                         FieldOverlay.objects.filter(tracker=self.tracker_id, group=self.group)):
+            for overlay in overlays:
+                name = overlay.field
+                overlay.apply_on(fields[name])
         for name in fields:
             if fields[name]['display_type'] == 'SB':
                 fields[name]['values'] = field_get_values(self.tracker_id, self.group, name)
@@ -473,6 +478,7 @@ class Item(models.Model):
         fields = self.get_fields().copy()
         ret = []
         for name in fields.keys():
+            print fields[name]
             if (not (fields[name]['required'] or fields[name]['use_it'])
                 or fields[name]['special']):
                 continue
@@ -493,7 +499,7 @@ class Item(models.Model):
             html += u'<th><span class="help" title="%s">%s</span></th>\n' % (field['description'], field['label']+ugettext(": "))
 
             html += '<td>'
-            if   field['display_type'] == 'DF':
+            if field['display_type'] == 'DF':
                 html += u'<select name="%s_dayfd" value="TODO">\n' % (name)
                 for i in range(1,31+1):
                     html += '<option value="%d">%d</option>\n' % (i, i)
@@ -505,7 +511,7 @@ class Item(models.Model):
                      locale.MON_9, locale.MON_10, locale.MON_11, locale.MON_12)):
                     html += '<option value="%d">%s</option>\n' % (i, locale.nl_langinfo(langinfo_constant))
                 html += '</select>\n'
-                html += u'<input type="text" length="4" maxlength="4" name="%s_yearfd" value="TODO">' % (name)
+                html += u'<input type="text" size="4" maxlength="4" name="%s_yearfd" value="TODO">' % (name)
             elif field['display_type'] == 'SB':
                 html += u'<select name="%s">\n' % name
                 for option in field['values']:
@@ -543,14 +549,14 @@ class ItemMsgId(models.Model):
 class ItemHistory(models.Model):
     """
     This stores 2 kinds of values:
-    - item comments (field_name='details')
+    - item comments (field='details')
     - value changes, for fields that have history tracking enabled
     """
     item = models.ForeignKey('Item')
-    field_name = models.CharField(max_length=255)
-       # Should be: field_name = models.ForeignKey('Field', to_field='name')
+    field = models.CharField(max_length=32)
+       # Should be: field = models.ForeignKey('Field', to_field='name')
        #            + constraint (item.tracker=field.tracker)
-       # or simply: field_name = models.ForeignKey('Field')
+       # or simply: field = models.ForeignKey('Field')
        # But as it's a history field, adding constraints might be just bad.
     old_value= models.TextField(blank=True, null=True)
     new_value= models.TextField()
@@ -562,8 +568,8 @@ class ItemHistory(models.Model):
     # I guess 'details' could be stored separately.
     type = models.IntegerField(_("comment type"), blank=True, null=True)
       # Should be:
-      # type = models.ForeignKey('FieldValue', to_field='value_id')
-      #        + constraint(same group or 100) + constraint(field_name='comment_type_id')
+      # type = models.ForeignKey('FieldChoice', to_field='value_id')
+      #        + constraint(same group or 100) + constraint(field='comment_type_id')
       # The purpose is to add <strong>[$comment_type]</strong> when
       # displaying an item comment.
     spamscore = models.IntegerField(_("total spamscore for this comment"))

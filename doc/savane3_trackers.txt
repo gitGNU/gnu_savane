@@ -11,14 +11,9 @@ Trackers are described in Savane3 using a 3-level structure:
 - Field value : possible values for dropdown (<select>) widgets
   (default values and overlays)
 
-In trackers.defs we now have a single structure for field definition,
-which was actually static in Savane3 despite being stored in the
-database.  The database now only contains per-group optional overlays.
-In addition similar structures and values (common to
-bugs/patch/support/task) are only defined once.
-
-EDIT: it happens that the Savannah database has some inconsistency and
-differs in the definition of 4 fields for the bugs tracker:
+In tracker.models we now have a single structure for field definition,
+which is pretty much static in Savane3 except that Savannah has
+historical inconsistencies:
 
 mysql> SELECT bug_field_id, group_id, use_it, show_on_add, show_on_add_members, place, id FROM temp_bugs_field_usage WHERE id IN (SELECT id FROM (SELECT B.id FROM temp_bugs_field_usage A, temp_bugs_field_usage B WHERE A.bug_field_id = B.bug_field_id AND A.group_id = B.group_id AND (A.use_it != B.use_it OR A.show_on_add != B.show_on_add OR A.show_on_add_members != B.show_on_add_members OR A.place != B.place)) AS temp) AND group_id=100 ORDER BY bug_field_id;
 +--------------+----------+--------+-------------+---------------------+-------+-----+
@@ -46,14 +41,13 @@ mysql> SELECT bug_field_id, field_name, required FROM savane_old.bugs_field WHER
 +--------------+------------------+----------+
 4 rows in set (0.00 sec)
 
-In addition, if we want to convert trackers from other forges, we may
-need the extra flexibility of defining site-wide default for a given
-tracker.
+Not: if we want to convert trackers from other forges, we may need the
+extra flexibility of defining site-wide default for a given tracker.
 
-Consequently we'll probably have to revert to in-base definition of
-tracker defaults.
+Consequently let's keep in-base definition of tracker defaults.  Field
+definition is static until the field themselves are dynamic (if ever).
 
-However, merging the fields definition and their default values was
+Merging the fields definition and their default values was still
 beneficial as it allowed reworking the data structure and removing
 duplicate columns (display/custom_display, etc.).
 
@@ -124,7 +118,7 @@ to build this new implementation:
     +----------+---------------------+
     14 rows in set (0.00 sec)
     
-    So we just set required=0,empty_ok=1 for those 2.
+    So we could just set required=0,empty_ok=1 for those 2.
 
 - Field usage:
 
@@ -200,5 +194,5 @@ to build this new implementation:
     |          201 |      100 |      130 | Microsoft Windows | support
                                                                patch: (None)
 
-    => Regroup: put "Wont Do" everywhere, "Done" everywhere, and
+    => To regroup: put "Wont Do" everywhere, "Done" everywhere, and
        manually revert woe/bsd in support.items

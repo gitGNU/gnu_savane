@@ -490,6 +490,126 @@ INSERT INTO tracker_tracker (`name`) VALUES ('patch');
 INSERT INTO tracker_tracker (`name`) VALUES ('support');
 INSERT INTO tracker_tracker (`name`) VALUES ('task');
 
+-- Currently done statically (tracker.defs)
+-- -- id <- (none - using name instead)
+-- -- tracker_id <- (none - definitions are now site-wide)
+-- -- name <- field_name
+-- -- other columns moved to FieldOverlay
+-- TRUNCATE tracker_field;
+-- INSERT INTO tracker_field
+--     (name, display_type, scope, required, special, custom)
+--   SELECT
+--       field_name, display_type, scope, required, special, custom
+--     FROM savane_old.bugs_field;
+-- INSERT INTO tracker_field
+--     (name, display_type, scope, required, special, custom)
+--   SELECT
+--       field_name, display_type, scope, required, special, custom
+--     FROM savane_old.task_field WHERE field_name IN ('planned_starting_date', 'planned_close_date');
+-- -- Homogeneify field definitions
+-- UPDATE tracker_field SET required=0
+--   WHERE name IN ('priority', 'resolution_id', 'planned_starting_date', 'planned_close_date');
+
+-- Get rid of field_usage duplicates (old mysql/php/savane bug?)
+-- It only affected group_id=100, maybe the installation was done
+-- twice or something.
+-- Give priority to the last one.
+-- Need to create a real table - a temporary one has issues with being "reopened" in joins
+-- The following produces a warning that and MySQL employees can't
+-- understand that it's a problem - commenting:
+-- (http://bugs.mysql.com/bug.php?id=2839)
+-- DROP TABLE IF EXISTS temp_bugs_field_usage;
+CREATE TABLE temp_bugs_field_usage AS SELECT * FROM savane_old.bugs_field_usage;
+ALTER TABLE temp_bugs_field_usage ADD (id INT auto_increment PRIMARY KEY);
+DELETE FROM temp_bugs_field_usage
+  WHERE id IN (
+    SELECT id FROM (
+      SELECT B.id FROM temp_bugs_field_usage A, temp_bugs_field_usage B
+        WHERE A.id > B.id
+          AND A.bug_field_id = B.bug_field_id AND A.group_id = B.group_id
+      ) AS temp
+    );
+CREATE TABLE temp_task_field_usage AS SELECT * FROM savane_old.task_field_usage;
+ALTER TABLE temp_task_field_usage ADD (id INT auto_increment PRIMARY KEY);
+DELETE FROM temp_task_field_usage
+  WHERE id IN (
+    SELECT id FROM (
+      SELECT B.id FROM temp_task_field_usage A, temp_task_field_usage B
+        WHERE A.id > B.id
+          AND A.bug_field_id = B.bug_field_id AND A.group_id = B.group_id
+      ) AS temp
+    );
+-- id <- <auto>
+-- field <- field_name
+-- Don't import default values, they are now defined statically in
+-- tracker.defs.
+TRUNCATE tracker_fieldoverlay;
+-- Default values:
+INSERT INTO tracker_fieldoverlay
+    (tracker_id, group_id, field, use_it, show_on_add_anonymous, show_on_add_connected, show_on_add_members, rank,
+     label, description, display_size, empty_ok,
+     keep_history, transition_default_auth)
+  SELECT
+      'bugs', NULL, field_name, use_it, IF(show_on_add<2,0,1), IF(show_on_add%2=0,0,1), show_on_add_members, place,
+      label, description, custom_display_size, custom_empty_ok,
+      keep_history, transition_default_auth
+    FROM temp_bugs_field_usage JOIN savane_old.bugs_field
+        USING (bug_field_id)
+      WHERE group_id = 100;
+INSERT INTO tracker_fieldoverlay
+    (tracker_id, group_id, field, use_it, show_on_add_anonymous, show_on_add_connected, show_on_add_members, rank,
+     label, description, display_size, empty_ok,
+     keep_history, transition_default_auth)
+  SELECT
+      'bugs', NULL, field_name, 0, IF(show_on_add<2,0,1), IF(show_on_add%2=0,0,1), show_on_add_members, place,
+      label, description, custom_display_size, custom_empty_ok,
+      keep_history, transition_default_auth
+    FROM temp_task_field_usage JOIN savane_old.task_field
+        USING (bug_field_id)
+      WHERE group_id = 100 AND field_name IN ('planned_starting_date', 'planned_close_date');
+-- Group-specific values (JOINed to get 'field_name'):
+INSERT INTO tracker_fieldoverlay
+    (tracker_id, group_id, field, use_it, show_on_add_anonymous, show_on_add_connected, show_on_add_members, rank,
+     label, description, display_size, empty_ok,
+     keep_history, transition_default_auth)
+  SELECT
+      'bugs', group_id, field_name, use_it, IF(show_on_add<2,0,1), IF(show_on_add%2=0,0,1), show_on_add_members, place,
+      custom_label, custom_description, custom_display_size, custom_empty_ok,
+      IFNULL(custom_keep_history, 0), transition_default_auth
+    FROM temp_bugs_field_usage JOIN savane_old.bugs_field
+        USING (bug_field_id)
+      WHERE group_id != 100;
+DROP TABLE temp_bugs_field_usage;
+DROP TABLE temp_task_field_usage;
+
+
+-- Get rid of field_value duplicates (old mysql/php/savane bug?)
+-- Apparently this affects 'None' values.
+-- Give priority to the last one (arbitrarily).
+DELETE FROM savane_old.bugs_field_value
+  WHERE bug_fv_id IN (
+    SELECT bug_fv_id FROM (
+      SELECT B.bug_fv_id FROM savane_old.bugs_field_value A, savane_old.bugs_field_value B
+        WHERE A.bug_fv_id > B.bug_fv_id
+          AND A.bug_field_id = B.bug_field_id AND A.group_id = B.group_id AND A.value_id = B.value_id
+      ) AS temp
+  );
+-- fieldchoice <- field_value
+-- id <- <auto>
+-- field <- field_name
+TRUNCATE tracker_fieldchoice;
+INSERT INTO tracker_fieldchoice
+    (tracker_id, group_id, field, value_id, `value`, description,
+     rank, status, email_ad, send_all_flag)
+  SELECT
+     'bugs', group_id, field_name, value_id, `value`, savane_old.bugs_field_value.description,
+     order_id, status, email_ad, send_all_flag
+   FROM savane_old.bugs_field_value JOIN savane_old.bugs_field
+      USING (bug_field_id);
+-- Specify "default" differently
+UPDATE tracker_fieldchoice SET group_id=NULL WHERE group_id=100;
+
+
 TRUNCATE tracker_item;
 INSERT INTO tracker_item
     (tracker_id, public_bugs_id, group_id, status_id, severity, privacy,
@@ -535,67 +655,3 @@ INSERT INTO tracker_item
 -- Specify "default" differently
 UPDATE tracker_item SET assigned_to_id=NULL WHERE assigned_to_id=100;
 UPDATE tracker_item SET submitted_by_id=NULL WHERE submitted_by_id=100;
-
--- Get rid of field_usage duplicates (old mysql/php/savane bug?)
--- It only affected group_id=100, maybe the installation was done
--- twice or something.
--- Give priority to the last one.
--- Need to create a real table - a temporary one has issues with being "reopened" in joins
--- The following produces a warning that and MySQL employees can't
--- understand that it's a problem - commenting:
--- (http://bugs.mysql.com/bug.php?id=2839)
--- DROP TABLE IF EXISTS temp_bugs_field_usage;
-CREATE TABLE temp_bugs_field_usage AS SELECT * FROM savane_old.bugs_field_usage;
-ALTER TABLE temp_bugs_field_usage ADD (id INT auto_increment PRIMARY KEY);
-DELETE FROM temp_bugs_field_usage
-  WHERE id IN (
-    SELECT id FROM (
-      SELECT B.id FROM temp_bugs_field_usage A, temp_bugs_field_usage B
-        WHERE A.id > B.id
-          AND A.bug_field_id = B.bug_field_id AND A.group_id = B.group_id
-      ) AS temp
-    );
--- id <- <auto>
--- field_id <- bug_field_id
--- Don't import default values, they are now defined statically in
--- tracker.defs.
-TRUNCATE tracker_fieldoverlay;
-INSERT INTO tracker_fieldoverlay
-    (tracker_id, group_id, field_name, use_it, show_on_add_anonymous, show_on_add_connected, show_on_add_members, rank,
-     label, description, display_size, empty_ok,
-     keep_history, transition_default_auth)
-  SELECT
-      'bugs', group_id, field_name, use_it, IF(show_on_add<2,0,1), IF(show_on_add%2=0,0,1), show_on_add_members, place,
-      custom_label, custom_description, custom_display_size, custom_empty_ok,
-      IFNULL(custom_keep_history, 0), transition_default_auth
-    FROM temp_bugs_field_usage JOIN savane_old.bugs_field
-        USING (bug_field_id)
-      WHERE group_id != 100;
-DROP TABLE temp_bugs_field_usage;
--- Specify "default" differently
--- UPDATE tracker_fieldoverlay SET group_id=NULL WHERE group_id=100;
-
--- Get rid of field_value duplicates (old mysql/php/savane bug?)
--- Apparently this affects 'None' values.
--- Give priority to the last one (arbitrarily).
-DELETE FROM savane_old.bugs_field_value
-  WHERE bug_fv_id IN (
-    SELECT bug_fv_id FROM (
-      SELECT B.bug_fv_id FROM savane_old.bugs_field_value A, savane_old.bugs_field_value B
-        WHERE A.bug_fv_id > B.bug_fv_id
-          AND A.bug_field_id = B.bug_field_id AND A.group_id = B.group_id AND A.value_id = B.value_id
-      ) AS temp
-  );
--- id <- <auto>
--- field_id <- bug_field_id
-TRUNCATE tracker_fieldvalue;
-INSERT INTO tracker_fieldvalue
-    (tracker_id, group_id, field_name, value_id, `value`, description,
-     rank, status, email_ad, send_all_flag)
-  SELECT
-     'bugs', group_id, field_name, value_id, `value`, savane_old.bugs_field_value.description,
-     order_id, status, email_ad, send_all_flag
-   FROM savane_old.bugs_field_value JOIN savane_old.bugs_field
-      USING (bug_field_id);
--- Specify "default" differently
-UPDATE tracker_fieldvalue SET group_id=NULL WHERE group_id=100;
