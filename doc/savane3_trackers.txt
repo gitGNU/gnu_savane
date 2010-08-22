@@ -17,6 +17,47 @@ database.  The database now only contains per-group optional overlays.
 In addition similar structures and values (common to
 bugs/patch/support/task) are only defined once.
 
+EDIT: it happens that the Savannah database has some inconsistency and
+differs in the definition of 4 fields for the bugs tracker:
+
+mysql> SELECT bug_field_id, group_id, use_it, show_on_add, show_on_add_members, place, id FROM temp_bugs_field_usage WHERE id IN (SELECT id FROM (SELECT B.id FROM temp_bugs_field_usage A, temp_bugs_field_usage B WHERE A.bug_field_id = B.bug_field_id AND A.group_id = B.group_id AND (A.use_it != B.use_it OR A.show_on_add != B.show_on_add OR A.show_on_add_members != B.show_on_add_members OR A.place != B.place)) AS temp) AND group_id=100 ORDER BY bug_field_id;
++--------------+----------+--------+-------------+---------------------+-------+-----+
+| bug_field_id | group_id | use_it | show_on_add | show_on_add_members | place | id  |
++--------------+----------+--------+-------------+---------------------+-------+-----+
+|          102 |      100 |      1 |           1 |                   1 |   200 |   7 |
+|          102 |      100 |      1 |           0 |                   1 |   200 |  73 |
+|          107 |      100 |      0 |           1 |                   1 |   300 |  12 |
+|          107 |      100 |      1 |           1 |                   1 |   300 |  78 |
+|          211 |      100 |      1 |           0 |                   1 |   200 |  25 |
+|          211 |      100 |      0 |           0 |                   0 |   250 |  91 |
+|          216 |      100 |      1 |           2 |                   0 |   560 |  30 |
+|          216 |      100 |      0 |           0 |                   0 |   560 | 160 |
++--------------+----------+--------+-------------+---------------------+-------+-----+
+8 rows in set (0.11 sec)
+
+mysql> SELECT bug_field_id, field_name, required FROM savane_old.bugs_field WHERE bug_field_id IN (102, 107, 211, 216);
++--------------+------------------+----------+
+| bug_field_id | field_name       | required |
++--------------+------------------+----------+
+|          102 | severity         |        0 |
+|          107 | bug_group_id     |        0 |
+|          211 | priority         |        1 |
+|          216 | originator_email |        0 |
++--------------+------------------+----------+
+4 rows in set (0.00 sec)
+
+In addition, if we want to convert trackers from other forges, we may
+need the extra flexibility of defining site-wide default for a given
+tracker.
+
+Consequently we'll probably have to revert to in-base definition of
+tracker defaults.
+
+However, merging the fields definition and their default values was
+beneficial as it allowed reworking the data structure and removing
+duplicate columns (display/custom_display, etc.).
+
+- - - - - - -
 
 Here is a description of the Savane_3_ data structure, used as reference
 to build this new implementation:

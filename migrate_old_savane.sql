@@ -536,7 +536,7 @@ INSERT INTO tracker_item
 UPDATE tracker_item SET assigned_to_id=NULL WHERE assigned_to_id=100;
 UPDATE tracker_item SET submitted_by_id=NULL WHERE submitted_by_id=100;
 
--- Get rid of duplicates (old mysql/php/savane bug?)
+-- Get rid of field_usage duplicates (old mysql/php/savane bug?)
 -- It only affected group_id=100, maybe the installation was done
 -- twice or something.
 -- Give priority to the last one.
@@ -572,10 +572,9 @@ DROP TABLE temp_bugs_field_usage;
 -- Specify "default" differently
 -- UPDATE tracker_fieldoverlay SET group_id=NULL WHERE group_id=100;
 
--- Get rid of duplicates (old mysql/php/savane bug?)
+-- Get rid of field_value duplicates (old mysql/php/savane bug?)
 -- Apparently this affects 'None' values.
 -- Give priority to the last one (arbitrarily).
--- Need to create a real table - a temporary one has issues with being "reopened" in joins
 DELETE FROM savane_old.bugs_field_value
   WHERE bug_fv_id IN (
     SELECT bug_fv_id FROM (
