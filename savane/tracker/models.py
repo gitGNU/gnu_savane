@@ -106,7 +106,7 @@ class Tracker(models.Model):
     name = models.CharField(max_length=7, choices=NAME_CHOICES, primary_key=True)
 
     def get_public_id_item_field(self):
-        return 'public_%s' % self.name
+        return 'public_' + str(self.name)  # don't transform to unicode
 
     def __unicode__(self):
         "Used in the admin interface fields list"
@@ -221,7 +221,6 @@ class FieldOverlay(models.Model):
             field_definition['transition_default_auth'] = self.transition_default_auth
         elif field_definition['display_type'] in ('TA', 'TF'):
             field_definition['display_size'] = self.display_size
-            print field_definition['name'], field_definition['display_size']
             # Make it easier to access the field from templates:
             if field_definition['display_size'] is not None:  # some old data may have weird values
                 if field_definition['display_type'] == 'TF':
