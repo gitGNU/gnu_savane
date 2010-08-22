@@ -41,7 +41,8 @@ from defs import *
 # EDIT: actually I think only forms fields cannot be overriden, it
 # still can be done programmatically
 
-DISPLAY_TYPE_CHOICES = (('DF', _('date field')),
+DISPLAY_TYPE_CHOICES = (('', _('not editable')),
+                        ('DF', _('date field')),
                         ('SB', _('select box')),
                         ('TA', _('text area')),
                         ('TF', _('text field')),)
@@ -217,6 +218,14 @@ class FieldOverlay(models.Model):
             field_definition['transition_default_auth'] = self.transition_default_auth
         elif field_definition['display_type'] in ('TA', 'TF'):
             field_definition['display_size'] = self.display_size
+            print field_definition['name'], field_definition['display_size']
+            # Make it easier to access the field from templates:
+            if field_definition['display_type'] == 'TF':
+                field_definition['input_size'] = field_definition['display_size'].split("/")[0]
+                field_definition['input_maxlength'] = field_definition['display_size'].split("/")[1]
+            else:
+                field_definition['textarea_cols'] = field_definition['display_size'].split("/")[0]
+                field_definition['textarea_rows'] = field_definition['display_size'].split("/")[1]
         if self.group_id is None or field_definition['special'] != 1:
             field_definition['keep_history'] = self.keep_history
         if self.group_id is None or field_definition['custom'] == 1:
@@ -307,6 +316,10 @@ def field_get_values(tracker_id, group, field_def, cur_item_value_id=None):
             if not found and o['status'] != 'H' and field_def['scope'] != 'S':
                 v.append(o)
         values.sort(key=lambda x: x['rank'])
+
+    # Try to apply a translation:
+    for v in values:
+        v['value'] = ugettext(v['value'])
 
     return values
 
@@ -488,7 +501,7 @@ class Item(models.Model):
         elif self.tracker_id == 'task':
             return "task"
 
-    def get_fields(self):
+    def get_field_defs(self):
         """
         Return fields definition for this group tracker (default
         values + group-specific overlay).  Only apply sensible
@@ -502,7 +515,7 @@ class Item(models.Model):
                 overlay.apply_on(fields[name])
         for name in fields:
             if fields[name]['display_type'] == 'SB':
-                fields[name]['values'] = field_get_values(self.tracker_id, self.group,
+                fields[name]['choices'] = field_get_values(self.tracker_id, self.group,
                                                           fields[name], self.get_value(name))
         return fields
 
@@ -510,7 +523,7 @@ class Item(models.Model):
         """
         Return displayable fields, ordered by rank
         """
-        fields = self.get_fields().copy()
+        fields = self.get_field_defs()
         ret = []
         for name in fields.keys():
             if (not (fields[name]['required'] or fields[name]['use_it'])
@@ -565,15 +578,17 @@ class Item(models.Model):
                 html += u'<input type="text" size="4" maxlength="4" name="%s_yearfd" value="TODO">' % (name)
             elif field['display_type'] == 'SB':
                 html += u'<select name="%s">\n' % name
-                for option in field['values']:
+                for option in field['choices']:
                     selected = ''
                     if option['value_id'] == value:
                         selected = ' selected="selected"'
-                    html += u'<option value="%d"%s>%s</option>\n' % (option['value_id'], selected, ugettext(option['value']))
+                    html += u'<option value="%d"%s>%s</option>\n' % (option['value_id'], selected, option['value'])
                 html += '</select>'
             elif field['display_type'] == 'TA':
+                # TODO: display_size
                 html += u'<textarea name="%s">%s</textarea>' % (name, value)
             elif field['display_type'] == 'TF':
+                # TODO: display_size
                 html += u'<input type="text" name="%s" value="%s" />' % (name, value)
             html += '</td>\n'
 

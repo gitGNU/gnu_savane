@@ -27,14 +27,17 @@
 <tr>
   <th>{% trans "Submitted by" %}{% trans ": " %}</th>
   <td>
-  {% if object.submitted_by %}
-  <a href="{% url savane:svmain:user_detail object.submitted_by.username %}"
-  >{{object.submitted_by.get_full_name}}
-    &lt;{{object.submitted_by.username}}&gt;</a>
-  {% else %}
-  {% trans "Anonymous" %}
-  {% endif %}</td>
-  <td colspan="2" class="button"><input type="submit" style="font-weight: bold;" value="{% trans "Submit changes and browse items" %}" />
+    {% if object.submitted_by %}
+    <a href="{% url savane:svmain:user_detail object.submitted_by.username %}"
+    >{{object.submitted_by.get_full_name}}
+      &lt;{{object.submitted_by.username}}&gt;</a>
+    {% else %}
+    {% trans "Anonymous" %}
+    {% endif %}
+  </td>
+  <td colspan="2" class="button">
+    <input type="submit" style="font-weight: bold;" value="{% trans "Submit changes and browse items" %}" />
+  </td>
 </tr>
 <tr>
   <th>{% trans "Submitted on" %}{% trans ": " %}</th>
@@ -43,9 +46,42 @@
 </tr>
 <tr><td colspan="4" style="height: 15px;"></td></tr>
 {{object.get_form}}
+<tr>
+  <th>{% trans "Summary" %}{% trans ": "%}</th>
+  <td colspan="3">
+    <input type="text" name="summary" value="{{object.get_summary}}"
+      maxlength="{{object.get_field_defs.summary.input_maxlength}}"
+      size="{{object.get_field_defs.summary.input_size}}"
+    />
+  </td>
+</tr>
 </table>
 
+
 <h2>{% trans "Post a comment" %}</h2>
+
+<p class="preinput">{% trans "Add a new comment" %}{% trans ": " %}<br />
+  <textarea cols="65" rows="16" name="comment"></textarea>
+</p>
+<p class="preinput">{% trans "Comment type & canned response" %}{% trans ": " %}<br />
+  <select name="comment_type_id">
+    {% for choice in object.get_field_defs.comment_type_id.choices %}
+    <option value="{{choice.value_id}}">{{choice.value}}</option>
+    {% endfor %}
+  </select>
+  &nbsp;
+  {% if 0 %}
+  <select named="canned_response">
+  <option value="">TODO</option>
+  </select>
+  {% else %}
+  {% trans "No canned response available" %}
+  &nbsp;
+  <a class="smaller" href="TODO">
+  ({% trans "Or define a new canned response" %})
+  </a>
+  {% endif %}
+</p>
 
 <h2>{% trans "Discussion" %}</h2>
 

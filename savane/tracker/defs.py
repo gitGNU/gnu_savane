@@ -63,7 +63,7 @@ from copy import deepcopy
 field_defs = {
     'bug_id' : {
         'name': 'bug_id',
-        'display_type': 'TF',
+        'display_type': '',
         'scope': 'S',
         'required': 1,
         'special': 1,
@@ -71,7 +71,7 @@ field_defs = {
     },
     'group_id' : {
         'name': 'group_id',
-        'display_type': 'TF',
+        'display_type': '',
         'scope': 'S',
         'required': 1,
         'special': 1,
@@ -79,7 +79,7 @@ field_defs = {
     },
     'submitted_by' : {
         'name': 'submitted_by',
-        'display_type': 'SB',
+        'display_type': '',
         'scope': 'S',
         'required': 1,
         'special': 1,
@@ -87,7 +87,7 @@ field_defs = {
     },
     'date' : {
         'name': 'date',
-        'display_type': 'DF',
+        'display_type': '',
         'scope': 'S',
         'required': 1,
         'special': 1,
@@ -95,7 +95,7 @@ field_defs = {
     },
     'close_date' : {
         'name': 'close_date',
-        'display_type': 'DF',
+        'display_type': '',
         'scope': 'S',
         'required': 1,
         'special': 1,

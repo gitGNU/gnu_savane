@@ -551,7 +551,7 @@ INSERT INTO tracker_fieldoverlay
      keep_history, transition_default_auth)
   SELECT
       'bugs', NULL, field_name, use_it, IF(show_on_add<2,0,1), IF(show_on_add%2=0,0,1), show_on_add_members, place,
-      label, description, custom_display_size, custom_empty_ok,
+      label, description, display_size, custom_empty_ok,
       keep_history, transition_default_auth
     FROM temp_bugs_field_usage JOIN savane_old.bugs_field
         USING (bug_field_id)
@@ -562,7 +562,7 @@ INSERT INTO tracker_fieldoverlay
      keep_history, transition_default_auth)
   SELECT
       'bugs', NULL, field_name, 0, IF(show_on_add<2,0,1), IF(show_on_add%2=0,0,1), show_on_add_members, place,
-      label, description, custom_display_size, custom_empty_ok,
+      label, description, display_size, custom_empty_ok,
       keep_history, transition_default_auth
     FROM temp_task_field_usage JOIN savane_old.task_field
         USING (bug_field_id)
@@ -581,7 +581,6 @@ INSERT INTO tracker_fieldoverlay
       WHERE group_id != 100;
 DROP TABLE temp_bugs_field_usage;
 DROP TABLE temp_task_field_usage;
-
 
 -- Get rid of field_value duplicates (old mysql/php/savane bug?)
 -- Apparently this affects 'None' values.

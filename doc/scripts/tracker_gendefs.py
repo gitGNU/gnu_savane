@@ -18,17 +18,17 @@ def process_field_row(row):
     name = row[1]
     field_names.append(name)
     defs[name] = ''
-    if name == 'field_name':
-        defs[name] += "    'name' : {\n"
-    else:
-        defs[name] += "    '"+name+"' : {\n"
+    defs[name] += "    '"+name+"' : {\n"
     for i,val in enumerate(row):
         if i <= 0 \
                 or (complex_defs[name]['display_type'] not in ('TA', 'TF') and tfields[i] == 'display_size'):
             continue
         else:
+            col_name = tfields[i]
+            if col_name == 'field_name':
+                col_name = 'name'
             defs[name] += "        " \
-                + "'"+tfields[i]+"'" \
+                + "'"+col_name+"'" \
                 + ": "
             if tfields[i] == 'label' or tfields[i] == 'description':
                 defs[name] += '_("' + val + '"),'
@@ -37,11 +37,10 @@ def process_field_row(row):
                 # override priority.required so we have a common
                 # definition for all trackers
                 defs[name] += str(0)+","
-            elif (name=='priority' or name=='resolution_id') \
-                    and tfields[i] == 'empty_ok':
-                # override priority.empty_ok so we have a common
-                # definition for all trackers
-                defs[name] += str(1)+","
+            elif name in ('bug_id','group_id','submitted_by','date','close_date',) \
+                    and tfields[i] == 'display_type':
+                # not editable, no display_type
+                defs[name] += "'',"
             elif type(val) == long:
                 defs[name] += str(val)+","
             else:
