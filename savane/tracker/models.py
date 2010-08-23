@@ -510,6 +510,9 @@ class Item(models.Model):
         values + group-specific overlay).  Only apply sensible
         overlay values (cf. FieldOverlay model definition).
         """
+        if hasattr(self, '_cache_field_defs'):
+            return self._cache_field_defs
+
         fields = deepcopy(field_defs)
         for overlays in (FieldOverlay.objects.filter(tracker=self.tracker_id, group=None),
                          FieldOverlay.objects.filter(tracker=self.tracker_id, group=self.group)):
@@ -520,7 +523,8 @@ class Item(models.Model):
             if fields[name]['display_type'] == 'SB':
                 fields[name]['choices'] = field_get_values(self.tracker_id, self.group,
                                                           fields[name], self.get_value(name))
-        return fields
+        self._cache_field_defs = fields
+        return self._cache_field_defs
 
     def get_form_fields(self, user=None):
         """
