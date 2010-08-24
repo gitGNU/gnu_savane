@@ -579,6 +579,9 @@ INSERT INTO tracker_fieldoverlay
     FROM temp_bugs_field_usage JOIN savane_old.bugs_field
         USING (bug_field_id)
       WHERE group_id != 100;
+-- TODO: import 'patch'
+-- TODO: import 'support'
+-- TODO: import 'task'
 DROP TABLE temp_bugs_field_usage;
 DROP TABLE temp_task_field_usage;
 
@@ -605,6 +608,9 @@ INSERT INTO tracker_fieldchoice
      order_id, status, email_ad, send_all_flag
    FROM savane_old.bugs_field_value JOIN savane_old.bugs_field
       USING (bug_field_id);
+-- TODO: import 'patch'
+-- TODO: import 'support'
+-- TODO: import 'task'
 -- Specify "default" differently
 UPDATE tracker_fieldchoice SET group_id=NULL WHERE group_id=100;
 
@@ -654,3 +660,12 @@ INSERT INTO tracker_item
 -- Specify "default" differently
 UPDATE tracker_item SET assigned_to_id=NULL WHERE assigned_to_id=100;
 UPDATE tracker_item SET submitted_by_id=NULL WHERE submitted_by_id=100;
+
+-- Message IDs
+TRUNCATE tracker_itemmsgid;
+INSERT INTO tracker_itemmsgid
+    (item_id, msg_id)
+  SELECT tracker_item.internal_id, msg_id
+  FROM savane_old.trackers_msgid JOIN tracker_item
+      ON (savane_old.trackers_msgid.item_id = tracker_item.public_bugs_id
+          AND savane_old.trackers_msgid.artifact = tracker_item.tracker_id);
