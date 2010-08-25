@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-15 10:27+0000\n"
-"PO-Revision-Date: 2010-08-15 12:28+0200\n"
+"PO-Revision-Date: 2010-08-25 21:32+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -96,12 +96,12 @@ msgstr "Clef"
 #: savane/my/forms.py:52
 #, python-format
 msgid "The uploaded string is not a public key file: %s"
-msgstr "La chaîne transmise n'est pas une clef publique : %s"
+msgstr "La chaîne transmise n'est pas une clef publique : %s"
 
 #: savane/my/forms.py:70
 #, python-format
 msgid "The uploaded file is not a public key file: %s"
-msgstr "Le fichier transmis n'est pas une clef publique : %s"
+msgstr "Le fichier transmis n'est pas une clef publique : %s"
 
 #: savane/my/urls.py:35 templates/my/contact.html:5 templates/my/i18n.html:5
 #: templates/my/ssh.html:5 templates/svpeople/userinfo_form.html:5
@@ -169,7 +169,7 @@ msgid ""
 "the email change and report the problem to us:"
 msgstr ""
 "Si vous n'avez pas demandé ce changement, visitez cette URL pour annuler\n"
-"l'opération and signalez-nous le problème :"
+"l'opération and signalez-nous le problème :"
 
 #: savane/my/views.py:115
 msgid ""
@@ -254,19 +254,19 @@ msgstr "Page web du projet"
 
 #: savane/svmain/admin.py:56
 msgid "Source Code Manager: CVS"
-msgstr "Gestion de code source : CVS"
+msgstr "Gestion de code source : CVS"
 
 #: savane/svmain/admin.py:59
 msgid "Source Code Manager: GNU Arch"
-msgstr "Gestion de code source : GNU Arch"
+msgstr "Gestion de code source : GNU Arch"
 
 #: savane/svmain/admin.py:62
 msgid "Source Code Manager: Subversion"
-msgstr "Gestion de code source : Subversion"
+msgstr "Gestion de code source : Subversion"
 
 #: savane/svmain/admin.py:65
 msgid "Source Code Manager: Git"
-msgstr "Gestion de code source : Git"
+msgstr "Gestion de code source : Git"
 
 #: savane/svmain/admin.py:68
 msgid "Source Code Manager: Mercurial"
@@ -274,7 +274,7 @@ msgstr "Gestion de code source: Mercurial"
 
 #: savane/svmain/admin.py:71
 msgid "Source Code Manager: Bazaar"
-msgstr "Gestion de code source : Bazaar"
+msgstr "Gestion de code source : Bazaar"
 
 #: savane/svmain/admin.py:74
 msgid "Download area"
@@ -632,7 +632,7 @@ msgstr "Trousseau GPG"
 
 #: savane/svmain/templatetags/svtopmenu.py:55
 msgid "Administer:"
-msgstr "Administrer :"
+msgstr "Administrer :"
 
 #: savane/svmain/templatetags/svtopmenu.py:57
 msgid "Edit public info"
@@ -665,7 +665,7 @@ msgstr "Consulter"
 
 #: savane/svmain/templatetags/svtopmenu.py:83
 msgid "Configure:"
-msgstr "Configurer :"
+msgstr "Configurer :"
 
 #: savane/svmain/templatetags/svtopmenu.py:89
 msgid "Source code"
@@ -1246,7 +1246,7 @@ msgstr "score de spam cumulé pour ce commentaire"
 #: savane/utils/__init__.py:44
 #, python-format
 msgid "SSH error: %s"
-msgstr "Erreur SSH : %s"
+msgstr "Erreur SSH : %s"
 
 #: savane/utils/markup.py:48
 msgid "Basic markup"
@@ -1340,7 +1340,7 @@ msgstr "Se faire passer pour cet utilisateur"
 #: templates/svpeople/userinfo_form.html:5 templates/tracker/item_form.html:5
 #: templates/tracker/item_form.html:20
 msgid ": "
-msgstr " : "
+msgstr " : "
 
 #: templates/base.html:40
 msgid "End the Superuser session, go back to normal user session"
@@ -1352,7 +1352,7 @@ msgstr "Retour en mode utilisateur"
 
 #: templates/base.html:44
 msgid "Login status"
-msgstr "État de la connexion :"
+msgstr "État de la connexion :"
 
 #: templates/base.html:45
 msgid "Not connected"
@@ -1487,7 +1487,7 @@ msgstr "Poster"
 
 #: templates/svmain/group_admin_info.html:22
 msgid "License:"
-msgstr "Licence :"
+msgstr "Licence :"
 
 #: templates/svmain/group_admin_info.html:23
 msgid ""
@@ -1510,7 +1510,7 @@ msgstr "Utilisateur"
 
 #: templates/svmain/group_admin_members.html:20
 msgid "Remove?"
-msgstr "Supprimer ?"
+msgstr "Supprimer ?"
 
 #: templates/svmain/group_admin_members.html:30
 msgid "You are Admin"
@@ -1589,20 +1589,20 @@ msgstr "Identifiants du Groupe"
 
 #: templates/svmain/group_detail.html:37
 msgid "Id:"
-msgstr "Id :"
+msgstr "Id :"
 
 #: templates/svmain/group_detail.html:38
 msgid "System name:"
-msgstr "Nom système :"
+msgstr "Nom système :"
 
 #: templates/svmain/group_detail.html:39
 #: templates/svmain/license_detail.html:7
 msgid "Name:"
-msgstr "Nom :"
+msgstr "Nom :"
 
 #: templates/svmain/group_detail.html:40
 msgid "Group type:"
-msgstr "Type de groupe :"
+msgstr "Type de groupe :"
 
 #: templates/svmain/group_detail.html:47
 msgid "This projects is currently not approved and is waiting for moderation."
@@ -1781,11 +1781,11 @@ msgstr "Informations complémentaires"
 
 #: templates/svmain/license_detail.html:8
 msgid "URL:"
-msgstr "URL :"
+msgstr "URL :"
 
 #: templates/svmain/license_detail.html:11
 msgid "Projects that use it:"
-msgstr "Projets qui l'utilisent :"
+msgstr "Projets qui l'utilisent :"
 
 #: templates/svmain/license_detail.html:13
 #, python-format
@@ -1822,11 +1822,11 @@ msgstr[1] "%(count)s éléments"
 
 #: templates/svmain/user_detail.html:7
 msgid "Real name:"
-msgstr "Nom :"
+msgstr "Nom :"
 
 #: templates/svmain/user_detail.html:8
 msgid "Login name:"
-msgstr "Nom de compte :"
+msgstr "Nom de compte :"
 
 #: templates/svmain/user_list.html:24
 msgid "No users."
@@ -1884,19 +1884,19 @@ msgstr "Posté par"
 
 #: templates/svpeople/job_detail.html:26
 msgid "Date:"
-msgstr "Date :"
+msgstr "Date :"
 
 #: templates/svpeople/job_detail.html:27
 msgid "Status:"
-msgstr "État :"
+msgstr "État :"
 
 #: templates/svpeople/job_detail.html:39
 msgid "Details (job description, contact ...):"
-msgstr "Détails (description de la tâche, contact...) :"
+msgstr "Détails (description de la tâche, contact...) :"
 
 #: templates/svpeople/job_detail.html:45
 msgid "Required Skills:"
-msgstr "Compétences requises :"
+msgstr "Compétences requises :"
 
 #: templates/svpeople/job_form.html:21
 msgid ""
@@ -2065,7 +2065,7 @@ msgstr "Message n°%d"
 #: webmail_locmem/views.py:86
 #, python-format
 msgid "Delete message #%d?"
-msgstr "Supprimer le message n°%d ?"
+msgstr "Supprimer le message n°%d ?"
 
 #~ msgid "Update profile"
 #~ msgstr "Mettre à jour mon profil"
@@ -2498,7 +2498,7 @@ msgstr "Supprimer le message n°%d ?"
 #~ msgstr "Groupe non valide"
 
 #~ msgid "Invalid repository name: "
-#~ msgstr "Nom de dépôt invalide : "
+#~ msgstr "Nom de dépôt invalide : "
 
 #~ msgid "Invalid matching type"
 #~ msgstr "Type de correspondance invalide"
