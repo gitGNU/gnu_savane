@@ -1,5 +1,6 @@
 {%  extends "base.html" %}
 {% load i18n %}
+{% load svmarkup %}
 
 {% block top %}{% endblock %}
 
@@ -54,17 +55,30 @@
 <!-- /stats -->
 </div>
 
+<div class="indexcenter">
+  <div class="intro">
+  <!-- intro -->
+  Intro
+  <!-- /intro -->
+  </div>
 
-<div class="intro">
-<!-- intro -->
-Intro
-<!-- /intro -->
-</div>
-
-<div class="news">
-<!-- news -->
-News
-<!-- /news -->
+  <div class="boxtitle"><a href="TODO">{% trans "Latest news" %}</a></div>
+  {% for object in news_list %}
+  <div class="{% cycle 'boxitem' 'boxitemalt' %}">
+    <a href="TODO"><strong>{{object.summary}}</strong></a><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="smaller"><em>
+      {% trans "posted by" %}
+      <a href="{% url savane:svmain:user_detail object.submitted_by.username %}"
+      >{{object.submitted_by.username}}</a>,
+      {{object.date}} -
+      {% blocktrans count object.comment_set.count as count %}{{count}} comment{% plural %}{{count}} comments{% endblocktrans %}
+    </em></span>
+    <br />
+    {{object.details|svmarkup_full}}
+    TODO: conditional [Read more]
+  </div>
+  {% endfor %}
 </div>
 
 {% endblock %}

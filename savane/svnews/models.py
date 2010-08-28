@@ -38,6 +38,8 @@ class News(models.Model):
     date_last_edit = models.DateTimeField(auto_now=True, db_index=True)
     summary = models.CharField(max_length=255)
     details = models.TextField()
+    # Savane3's 'forum_id', the most visible id, is now 'id'.
+    # Savane3's 'id', only used in administration screens, is dropped.
 
 class Comment(models.Model):
     """
@@ -45,7 +47,7 @@ class Comment(models.Model):
     """
     news = models.ForeignKey(News)  # savane_old: uses forum_id through forum_group_list
     posted_by = models.ForeignKey(auth_models.User, related_name='svnews_comment_set')
-    body = models.CharField(max_length=255)
+    subject = models.CharField(max_length=255)
     body = models.TextField(blank=True)
     date = models.DateTimeField(auto_now_add=True, db_index=True)
     is_followup_to = models.ForeignKey("Comment")

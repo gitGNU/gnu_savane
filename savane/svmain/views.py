@@ -87,6 +87,9 @@ def homepage(request):
     import savane.svpeople.models as svpeople_models
     category_list = svpeople_models.Category.objects.all()
 
+    import savane.svnews.models as svnews_models
+    news_list = svnews_models.News.objects.filter(is_approved=1).order_by('-date')[:9]
+
     # nb_users and nb_groups as string, because the |add: template
     # filter only accepts strings.
     context = {
@@ -95,6 +98,7 @@ def homepage(request):
         'nb_pending' : str(666), # TODO
         'group_confs' : group_confs,
         'category_list' : category_list,
+        'news_list' : news_list,
         }
     return context
 

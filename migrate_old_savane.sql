@@ -696,3 +696,39 @@ INSERT INTO tracker_itemhistory
 -- TODO: import 'support'
 -- TODO: import 'task'
 
+
+----
+-- NEWS
+----
+
+TRUNCATE svnews_news;
+INSERT INTO svnews_news
+    (id, group_id, submitted_by_id, is_approved, date, date_last_edit, summary, details)
+  SELECT forum_id, group_id, submitted_by, is_approved,
+  FROM_UNIXTIME(date), FROM_UNIXTIME(date_last_edit), summary, details
+  FROM savane_old.news_bytes
+  WHERE id<>100;
+
+TRUNCATE svnews_comment;
+INSERT INTO svnews_comment
+    (id, news_id, posted_by_id, subject, body, date, is_followup_to_id, thread_id)
+  SELECT msg_id, group_forum_id, posted_by, subject, body, FROM_UNIXTIME(date), is_followup_to, thread_id
+  FROM savane_old.forum;
+
+TRUNCATE svnews_notification;
+INSERT INTO svnews_notification
+    (news_id, user_id)
+  SELECT forum_id, user_id
+  FROM savane_old.forum_monitored_forums;
+
+TRUNCATE svnews_lastvisit;
+INSERT INTO svnews_lastvisit
+    (news_id, user_id, date)
+  SELECT user_id, forum_id, FROM_UNIXTIME(save_date)
+  FROM savane_old.forum_saved_place;
+
+TRUNCATE svnews_thread;
+INSERT INTO svnews_thread
+    (id)
+  SELECT thread_id
+  FROM savane_old.forum_thread_id;
