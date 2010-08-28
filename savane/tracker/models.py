@@ -626,7 +626,7 @@ class Comment(models.Model):
         ordering = ('item','date',)
     item = models.ForeignKey('Item')
     date = models.DateTimeField(default=datetime.date.today)
-    posted_by = models.ForeignKey(auth_models.User)
+    posted_by = models.ForeignKey(auth_models.User, related_name='tracker_comment_set')
     message = models.TextField(blank=True, null=True)
     comment_type = models.IntegerField(_("comment type"), blank=True, null=True)
       # Should be:

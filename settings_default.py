@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'savane.svmain',
     'savane.my',
     'savane.svpeople',
+    'savane.svnews',
     'savane.tracker',
 )
 
