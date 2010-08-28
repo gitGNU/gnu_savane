@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load svmarkup %}
 
 {% block title %}
 {{object.group.name}} - {{object.get_tracker_name}}{% trans ": " %}
@@ -67,7 +68,7 @@
 <p class="preinput">{% trans "Add a new comment" %}{% trans ": " %}<br />
   <textarea cols="65" rows="16" name="comment"></textarea>
 </p>
-<p class="preinput">{% trans "Comment type & canned response" %}{% trans ": " %}<br />
+<p class="preinput">{% filter force_escape %}{% trans "Comment type & canned response" %}{% endfilter %}{% trans ": " %}<br />
   <select name="comment_type_id">
     {% for choice in object.get_field_defs.comment_type_id.choices %}
     <option value="{{choice.value_id}}">{{choice.value}}</option>
@@ -89,6 +90,58 @@
 
 <h2>{% trans "Discussion" %}</h2>
 
+<table class="comments">
+{% for comment in object.comment_set.all reversed %}
+<tr class="{% cycle 'boxitem' 'boxitemalt' as rowcolor %}">
+  <td>
+    <a name="comment{{forloop.counter}}" href="#comment{{forloop.count}}"
+      class="preinput">
+      {{comment.date}},
+      {% blocktrans with forloop.counter as number %}comment #{{number}}{% endblocktrans %}{% trans ": " %}
+    </a><br />
+    {{ comment.message|svmarkup_rich }}
+  </td>
+  <td class="boxitemextra">
+    {% if comment.posted_by_id %}
+      {% if comment.posted_by %}
+      <a href="{% url savane:svmain:user_detail comment.posted_by.username %}"
+      >{{comment.posted_by.get_full_name}}
+        &lt;{{comment.posted_by.username}}&gt;</a>
+      {% else %}
+        <strong>{% trans "Invalid user ID" %}</strong>
+      {% endif %}
+    {% else %}
+    {% trans "Anonymous" %}
+    {% endif %}
+    <!-- TODO: display poster privs -->
+  </td>
+</tr>
+{% endfor %}
+<tr class="{% cycle rowcolor %}">
+  <td>
+    <a name="comment0" href="#comment0"
+      class="preinput">
+      {{object.date}}, <strong>{% trans "original submission" %}{% trans ": " %}</strong>
+    </a><br />
+    {{ object.details|svmarkup_full }}
+  </td>
+  <td class="boxitemextra">
+    {% if object.submitted_by_id %}
+      {% if object.submitted_by %}
+      <a href="{% url savane:svmain:user_detail object.submitted_by.username %}"
+      >{{object.submitted_by.get_full_name}}
+        &lt;{{object.submitted_by.username}}&gt;</a>
+      {% else %}
+        <strong>{% trans "Invalid user ID" %}</strong>
+      {% endif %}
+    {% else %}
+    {% trans "Anonymous" %}
+    {% endif %}
+    <!-- TODO: display poster privs -->
+  </td>
+</tr>
+</table>
+
 <h2>{% trans "Attached files" %}</h2>
 
 <h2>{% trans "Dependencies" %}</h2>
@@ -101,6 +154,48 @@
 </form>
 
 <h2>{% trans "History" %}</h2>
+
+<p>
+{% blocktrans count object.itemhistory_set.count as count %}Follows {{count}} latest change.{% plural %}Follow {{count}} latest changes.{% endblocktrans %}
+</p>
+
+<table class="history smaller box">
+<tr>
+  <th>Date</th>
+  <th>Changed by</th>
+  <th>Updated field</th>
+  <th>Previous value</th>
+  <th width="1">=&gt;</th>
+  <th>Replaced By</th>
+</tr>
+{% for history in object.itemhistory_set.all %}
+{% ifchanged history.date history.mod_by %}
+<tr class="{% cycle 'boxitem' 'boxitemalt' as rowcolor %}">
+  <td>{{history.date}}</td>
+  <td>
+    {% if history.mod_by_id %}
+      {% if history.mod_by %}
+      <a href="{% url savane:svmain:user_detail history.mod_by.username %}"
+      >{{history.mod_by.username}}</a>
+      {% else %}
+        <strong>{% trans "Invalid user ID" %}</strong>
+      {% endif %}
+    {% else %}
+    {% trans "Anonymous" %}
+    {% endif %}
+  </td>
+{% else %}
+<!-- skip {% cycle rowcolor %} once -->
+<tr class="{% cycle rowcolor %}">
+  <td></td><td></td>
+{% endifchanged %}
+  <td>{{history.field}}</td><!-- TODO: field definition['label'] -->
+  <td class="old_value">{{history.old_value}}</td><!-- TODO: if SB, use FieldChoice -->
+  <td><img width="24" src="{{STATIC_MEDIA_URL}}savane/images/common/arrows1/next.orig.png" border="0" alt="=&gt;" /></td>
+  <td>{{history.new_value}}</td>
+</tr>
+{% endfor %}
+</table>
 
 {% endblock %}
 {% comment %}

@@ -669,3 +669,30 @@ INSERT INTO tracker_itemmsgid
   FROM savane_old.trackers_msgid JOIN tracker_item
       ON (savane_old.trackers_msgid.item_id = tracker_item.public_bugs_id
           AND savane_old.trackers_msgid.artifact = tracker_item.tracker_id);
+
+-- Comments
+TRUNCATE tracker_comment;
+INSERT INTO tracker_comment
+    (item_id, message, posted_by_id, date, comment_type, spamscore, ip)
+  SELECT internal_id, old_value, mod_by, FROM_UNIXTIME(savane_old.bugs_history.date),
+    type, savane_old.bugs_history.spamscore, savane_old.bugs_history.ip
+  FROM savane_old.bugs_history JOIN tracker_item
+      ON (savane_old.bugs_history.bug_id = tracker_item.public_bugs_id)
+  WHERE field_name='details';
+-- TODO: import 'patch'
+-- TODO: import 'support'
+-- TODO: import 'task'
+
+-- Field history
+TRUNCATE tracker_itemhistory;
+INSERT INTO tracker_itemhistory
+    (item_id, date, mod_by_id, field, old_value, new_value)
+  SELECT internal_id, FROM_UNIXTIME(savane_old.bugs_history.date),
+    mod_by, field_name, old_value, new_value
+  FROM savane_old.bugs_history JOIN tracker_item
+      ON (savane_old.bugs_history.bug_id = tracker_item.public_bugs_id)
+  WHERE field_name <> 'details';
+-- TODO: import 'patch'
+-- TODO: import 'support'
+-- TODO: import 'task'
+

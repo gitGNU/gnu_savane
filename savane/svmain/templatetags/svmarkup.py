@@ -26,3 +26,11 @@ register = template.Library()
 @register.filter
 def svmarkup_full(text):
     return mark_safe(markup.full(escape(text)))
+
+@register.filter
+def svmarkup_rich(text):
+    return mark_safe(markup.rich(escape(text)))
+
+@register.filter
+def svmarkup_basic(text):
+    return mark_safe(markup.basic(escape(text)))

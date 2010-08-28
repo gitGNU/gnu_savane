@@ -618,14 +618,34 @@ class ItemMsgId(models.Model):
     item = models.ForeignKey('Item')
     msg_id = models.CharField(max_length=255)
 
+class Comment(models.Model):
+    """
+    Item comments (field='details')
+    """
+    class Meta:
+        ordering = ('item','date',)
+    item = models.ForeignKey('Item')
+    date = models.DateTimeField(default=datetime.date.today)
+    posted_by = models.ForeignKey(auth_models.User)
+    message = models.TextField(blank=True, null=True)
+    comment_type = models.IntegerField(_("comment type"), blank=True, null=True)
+      # Should be:
+      # type = models.ForeignKey('FieldChoice', to_field='value_id')
+      #        + constraint(same group or NULL) + constraint(field='comment_type_id')
+      # The purpose is to add <strong>[$comment_type]</strong> when
+      # displaying an item comment.
+    spamscore = models.IntegerField(_("total spamscore for this comment"))
+    ip = models.IPAddressField(blank=True, null=True)
 
 class ItemHistory(models.Model):
     """
-    This stores 2 kinds of values:
-    - item comments (field='details')
-    - value changes, for fields that have history tracking enabled
+    Value changes, for fields that have history tracking enabled
     """
+    class Meta:
+        ordering = ('item','date','id',)
     item = models.ForeignKey('Item')
+    date = models.DateTimeField(default=datetime.date.today)
+    mod_by = models.ForeignKey(auth_models.User)
     field = models.CharField(max_length=32)
        # Should be: field = models.ForeignKey('Field', to_field='name')
        #            + constraint (item.tracker=field.tracker)
@@ -633,31 +653,19 @@ class ItemHistory(models.Model):
        # But as it's a history field, adding constraints might be just bad.
     old_value= models.TextField(blank=True, null=True)
     new_value= models.TextField()
-    mod_by = models.ForeignKey(auth_models.User)
-    date = models.DateTimeField(default=datetime.date.today)
-    ip = models.IPAddressField(blank=True, null=True)
-
-    # Specific (bad!) field for 'details'
-    # I guess 'details' could be stored separately.
-    type = models.IntegerField(_("comment type"), blank=True, null=True)
-      # Should be:
-      # type = models.ForeignKey('FieldChoice', to_field='value_id')
-      #        + constraint(same group or 100) + constraint(field='comment_type_id')
-      # The purpose is to add <strong>[$comment_type]</strong> when
-      # displaying an item comment.
-    spamscore = models.IntegerField(_("total spamscore for this comment"))
 
 class ItemCc(models.Model):
     """
     Item carbon copies for mail notifications
     """
     item = models.ForeignKey('Item')
-    email = models.EmailField(max_length=255)
+    contact = models.CharField(max_length=255)
     added_by = models.ForeignKey(auth_models.User)
     comment = models.TextField()
     date = models.DateTimeField(default=datetime.date.today)
 
 #class ItemDependencies:
+# TODO: import
 # => cf. Item.dependencies
 
 class ItemFile(models.Model):
@@ -673,17 +681,17 @@ class ItemFile(models.Model):
     filetype = models.TextField()
     # /!\ `file` longblob NOT NULL - if not savane-cleanup
 
-class ItemSpamScore(models.Model):
-    """
-    Spam reports
-
-    Score is summed in ItemHistory.spamscore.
-    """
-    score = models.IntegerField(default=1)
-    affected_user = models.ForeignKey(auth_models.User, related_name='itemspamscore_affected_set')
-    reporter_user = models.ForeignKey(auth_models.User, related_name='itemspamscore_reported_set')
-    item = models.ForeignKey('Item')
-    comment_id = models.ForeignKey('ItemHistory', null=True)
+#class CommentSpamScore(models.Model):
+#    """
+#    Spam reports
+#
+#    Score is summed in ItemHistory.spamscore.
+#    """
+#    score = models.IntegerField(default=1)
+#    affected = models.ForeignKey(auth_models.User, related_name='commentspamscore_affected_set')
+#    reporter = models.ForeignKey(auth_models.User, related_name='commentspamscore_reported_set')
+#    item = models.ForeignKey('Item')
+#    comment_id = models.ForeignKey('ItemComment', null=True)
 
 
 # TODO:
