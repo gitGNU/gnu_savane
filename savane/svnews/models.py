@@ -20,10 +20,16 @@ from django.db import models
 import django.contrib.auth.models as auth_models
 
 # - news_byte
+class ApprovedNewsManager(models.Manager):
+    def get_query_set(self):
+        return super(self.__class__, self).get_query_set().filter(is_approved__in=(0,1,2))
 class News(models.Model):
     """
     One piece of news
     """
+    class Meta:
+        ordering = ('-date',)
+
     IS_APPROVED_CHOICES = (
         ('0', 'approved for project page'),
         ('1', 'approved for site frontpage news'),
@@ -40,6 +46,9 @@ class News(models.Model):
     details = models.TextField()
     # Savane3's 'forum_id', the most visible id, is now 'id'.
     # Savane3's 'id', only used in administration screens, is dropped.
+
+    objects = models.Manager() # default manager
+    approved_objects = ApprovedNewsManager()
 
 class Comment(models.Model):
     """

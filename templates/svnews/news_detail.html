@@ -10,15 +10,39 @@
 
 {% block content %}
 
-<h2><a href="">{{object.summary}}</a></h2>
+<div class="indexright">
+  <div class="box">
+    <div class="boxtitle">{% trans "Latest news" %}</div>
+    {% with group_news|slice:":5" as object_list %}
+    {% include 'svnews/news_list_short.inc' %}
+    {% endwith %}
+    <div class="smaller">
+      <a href="{% url savane:svnews:news_list_admin_group %}"
+        >[{% blocktrans count group_news.count as count %}{{count}} news in archive{% plural %}{{count}} news in archive{% endblocktrans %}]
+      </a>
+    </div>
+  </div>
+</div>
 
-<p><em>
-  {% trans "Posted by" %}
-  {% include 'svnews/user_submitted_by_link.inc' %}
-  {{object.date}}
-</em></p>
+<div class="indexcenter">
+  <h2><a href="">{{object.summary}}</a></h2>
 
-{{object.details|svmarkup_full}}
+  <p><em>
+    {% trans "Posted by" %}
+    {% include 'svnews/user_submitted_by_link.inc' %}
+    {{object.date}}
+  </em></p>
+
+  {{object.details|svmarkup_full}}
+
+  <h2><a name="comments" href="#comments">{% trans "Comments" %}</a></h2>
+
+  <h2><a name="newthread" href="#newthread">{% trans "Start a new thread" %}</a></h2>
+  {% if not user.is_anonymous %}
+  {% else %}
+  <p class="error" style="text-align: center">{% trans "You could post if you were logged in" %}</p>
+  {% endif %}
+</div>
 
 {% endblock %}
 

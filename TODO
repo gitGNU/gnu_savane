@@ -74,7 +74,19 @@ improve it.
 
 [/] Admin interface (implemented via Django admin)
 
-[ ] News management (+ comments)
+[/] News management
+
+    [X] Display frontpage news
+
+    [X] Display group news
+
+    [ ] Manage news
+
+    [ ] Post news item
+
+    [ ] Edit news item
+
+    [ ] Comments
 
 [/] Rewrite backend (or have them work on a replicate that uses the
     old DB schema)
@@ -109,7 +121,9 @@ improve it.
 
     [X] Jobs
 
-    [.] Trackers
+    [X] Import news
+
+    [/] Trackers
 
 [ ] Implement mod_rewrite URL migration list
 

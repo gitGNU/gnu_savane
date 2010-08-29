@@ -19,10 +19,11 @@
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.views.generic.simple import redirect_to
-from django.views.generic.list_detail import object_list
+from django.views.generic.list_detail import object_list, object_detail
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _, ungettext
 import django.contrib.auth.models as auth_models
+import models as svnews_models
 
 def redirect_to_admin_group(*args, **kwargs):
     group = get_object_or_404(auth_models.Group, name=settings.SV_ADMIN_GROUP)
@@ -35,3 +36,13 @@ def news_list_by_group(request, slug, *args, **kwargs):
     kwargs['extra_context'] = kwargs.get('extra_context', {})
     kwargs['extra_context']['group'] = group
     return object_list(request, *args, **kwargs)
+
+def news_detail(request, *args, **kwargs):
+    news = get_object_or_404(svnews_models.News, pk=kwargs['object_id'])
+    group = news.group
+    kwargs['extra_context'] = kwargs.get('extra_context', {})
+    kwargs['extra_context']['group'] = group
+    kwargs['extra_context']['group_news'] = svnews_models.News \
+        .approved_objects.filter(group=group) \
+        .select_related()
+    return object_detail(request, *args, **kwargs)
