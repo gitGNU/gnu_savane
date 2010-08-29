@@ -62,23 +62,15 @@
   <!-- /intro -->
   </div>
 
-  <div class="boxtitle"><a href="TODO">{% trans "Latest news" %}</a></div>
-  {% for object in news_list %}
-  <div class="{% cycle 'boxitem' 'boxitemalt' %}">
-    <a href="TODO"><strong>{{object.summary}}</strong></a><br />
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="smaller"><em>
-      {% trans "posted by" %}
-      <a href="{% url savane:svmain:user_detail object.submitted_by.username %}"
-      >{{object.submitted_by.username}}</a>,
-      {{object.date}} -
-      {% blocktrans count object.comment_set.count as count %}{{count}} comment{% plural %}{{count}} comments{% endblocktrans %}
-    </em></span>
-    <br />
-    {{object.details|svmarkup_full}}
-    TODO: conditional [Read more]
+  <div class="boxtitle"><a href="{% url savane:svnews:news_list_admin_group %}">{% trans "Latest news" %}</a></div>
+  {% with news_list as object_list %}
+  {% include 'svnews/news_list.inc' %}
+  {% endwith %}
+  <div class="smaller {% cycle rowcolor %}">
+    <a href="{% url savane:svnews:news_list_admin_group %}"
+      >[{% blocktrans count news_count as count %}{{count}} news in archive{% plural %}{{count}} news in archive{% endblocktrans %}]
+    </a>
   </div>
-  {% endfor %}
 </div>
 
 {% endblock %}

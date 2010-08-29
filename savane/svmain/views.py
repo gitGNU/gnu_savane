@@ -89,6 +89,7 @@ def homepage(request):
 
     import savane.svnews.models as svnews_models
     news_list = svnews_models.News.objects.filter(is_approved=1).order_by('-date')[:9]
+    news_count = svnews_models.News.objects.filter(is_approved=1).count()
 
     # nb_users and nb_groups as string, because the |add: template
     # filter only accepts strings.
@@ -99,6 +100,7 @@ def homepage(request):
         'group_confs' : group_confs,
         'category_list' : category_list,
         'news_list' : news_list,
+        'news_count' : news_count,
         }
     return context
 

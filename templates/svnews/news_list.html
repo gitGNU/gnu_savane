@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{{group.svgroupinfo.get_full_name_display}}{% trans ": " %}{{title}}
+{% endblock %}
+
+{% block icon %}news{% endblock %}
+
+{% block content %}
+
+<div class="box">
+  <div class="boxtitle">{% trans "Latest approved news - with summaries" %}</div>
+  {% with object_list|slice:":10" as object_list %}
+  {% if object_list %}
+  {% include 'svnews/news_list.inc' %}
+  {% else %}
+  <h2>{% trans "No news items found" %}</h2>
+  {% endif %}
+  {% endwith %}
+</div>
+
+<br />
+
+{% if object_list.count > 10 %}
+<div class="box">
+  <div class="boxtitle">{% trans "Older approved news" %}</div>
+  {% with object_list|slice:"10:" as object_list %}
+  {% include 'svnews/news_list_short.inc' %}
+  {% endwith %}
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}

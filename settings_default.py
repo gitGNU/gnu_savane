@@ -153,3 +153,7 @@ MEDIA_URL = '/upload/'
 
 # django-registration
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
+
+
+# Savane-specific
+SV_ADMIN_GROUP = 'siteadmin'

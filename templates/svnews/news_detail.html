@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load svmarkup %}
+
+{% block title %}
+{% trans "News" %}{% trans ": " %}{{object.summary}}
+{% endblock %}
+
+{% block icon %}news{% endblock %}
+
+{% block content %}
+
+<h2><a href="">{{object.summary}}</a></h2>
+
+<p><em>
+  {% trans "Posted by" %}
+  {% include 'svnews/user_submitted_by_link.inc' %}
+  {{object.date}}
+</em></p>
+
+{{object.details|svmarkup_full}}
+
+{% endblock %}
+
+{% comment %}
+Local Variables: **
+mode: django-html **
+tab-width: 4 **
+indent-tabs-mode: nil **
+End: **
+{% endcomment %}
