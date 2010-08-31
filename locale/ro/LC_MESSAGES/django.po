@@ -1,4 +1,4 @@
-# Copyright (C) 2010  Sorin-Mihai Vârgolici
+# Copyright (C) 2010  Sorin-Mihai Vârgolici <smv@yobicore.info>
 #
 # This file is part of Savane.
 #
@@ -19,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-17 21:38+0300\n"
-"PO-Revision-Date: 2010-08-17 21:37+0200\n"
-"Last-Translator: Sorin-Mihai Vârgolici\n"
+"POT-Creation-Date: 2010-08-29 23:29+0000\n"
+"PO-Revision-Date: 2010-08-30 03:40+0200\n"
+"Last-Translator: Sorin-Mihai Vârgolici <smv@yobicore.info>\n"
 "Language-Team: Romanian <TP??>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -29,92 +29,91 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: savane/perms.py:27 savane/perms.py:40 savane-forge/savane/perms.py:27
-#: savane-forge/savane/perms.py:40 savane-forge/savane/my/views.py:258
-#: savane-forge/savane/svpeople/views.py:126 savane/my/views.py:258
+#: savane/perms.py:27
+#: savane/perms.py:40
+#: savane/my/views.py:258
 #: savane/svpeople/views.py:126
 msgid "Permission denied"
 msgstr "Accesul interzis"
 
-#: savane/perms.py:54 savane-forge/savane/perms.py:54
+#: savane/perms.py:54
 msgid "You are not superuser"
 msgstr "Nu ești superutilizator"
 
-#: savane-forge/savane/my/forms.py:25 savane/my/forms.py:25
+#: savane/my/forms.py:25
 msgid "E-mail"
 msgstr "Email"
 
-#: savane-forge/savane/my/forms.py:28 savane/my/forms.py:28
+#: savane/my/forms.py:28
 msgid "First name"
 msgstr "Prenume"
 
-#: savane-forge/savane/my/forms.py:29 savane/my/forms.py:29
+#: savane/my/forms.py:29
 msgid "Last name"
 msgstr "Nume"
 
-#: savane-forge/savane/my/forms.py:31 savane/my/forms.py:31
+#: savane/my/forms.py:31
 msgid "GPG key"
 msgstr "Cheie GPG"
 
-#: savane-forge/savane/my/forms.py:32 savane-forge/savane/svmain/models.py:141
-#: savane/my/forms.py:32 savane/svmain/models.py:141
-msgid ""
-"You can write down here your (ASCII) public key (gpg --export --armor keyid)"
+#: savane/my/forms.py:32
+#: savane/svmain/models.py:140
+msgid "You can write down here your (ASCII) public key (gpg --export --armor keyid)"
 msgstr "Poți scrie aici cheia ta (ASCII) publică (gpg --export --armor keyid)"
 
-#: savane-forge/savane/my/forms.py:36 savane/my/forms.py:36
+#: savane/my/forms.py:36
 msgid "Key file"
 msgstr "Fișier cheie"
 
-#: savane-forge/savane/my/forms.py:37 savane/my/forms.py:37
+#: savane/my/forms.py:37
 msgid "Be sure to upload the file ending with .pub"
 msgstr "Asigură-te că încarci fișierul ce se termină cu .pub"
 
-#: savane-forge/savane/my/forms.py:40 savane/my/forms.py:40
+#: savane/my/forms.py:40
 msgid "Key"
 msgstr "Cheie"
 
-#: savane-forge/savane/my/forms.py:52 savane/my/forms.py:52
+#: savane/my/forms.py:52
 #, python-format
 msgid "The uploaded string is not a public key file: %s"
 msgstr "Șirul încărcat nu este o cheie publică: %s"
 
-#: savane-forge/savane/my/forms.py:70 savane/my/forms.py:70
+#: savane/my/forms.py:70
 #, python-format
 msgid "The uploaded file is not a public key file: %s"
 msgstr "Fișierul încărcat nu este o cheie publică: %s"
 
-#: savane-forge/savane/my/urls.py:35 savane-forge/templates/my/contact.html:5
-#: savane-forge/templates/my/i18n.html:5 savane-forge/templates/my/ssh.html:5
-#: savane-forge/templates/svpeople/userinfo_form.html:5 savane/my/urls.py:35
-#: templates/my/contact.html:5 templates/my/i18n.html:5
-#: templates/my/ssh.html:5 templates/svpeople/userinfo_form.html:5
+#: savane/my/urls.py:35
+#: templates/my/contact.html:5
+#: templates/my/i18n.html:5
+#: templates/my/ssh.html:5
+#: templates/svpeople/userinfo_form.html:5
 msgid "My account configuration"
 msgstr "Configurația contului meu"
 
-#: savane-forge/savane/my/urls.py:38 savane-forge/templates/my/index.html:9
-#: savane/my/urls.py:38 templates/my/index.html:9
+#: savane/my/urls.py:38
+#: templates/my/index.html:9
 msgid "Contact info"
 msgstr "Informații de contact"
 
-#: savane-forge/savane/my/urls.py:45 savane/my/urls.py:45
+#: savane/my/urls.py:45
 msgid "Change authorized keys"
 msgstr "Schimbă cheile autorizate"
 
-#: savane-forge/savane/my/urls.py:54 savane/my/urls.py:54
+#: savane/my/urls.py:54
 msgid "Language"
 msgstr "Limbă"
 
-#: savane-forge/savane/my/views.py:71 savane/my/views.py:71
+#: savane/my/views.py:71
 msgid "The email is identical."
-msgstr ""
+msgstr "Emailul este identic."
 
-#: savane-forge/savane/my/views.py:83 savane-forge/savane/my/views.py:95
-#: savane/my/views.py:83 savane/my/views.py:95
+#: savane/my/views.py:83
+#: savane/my/views.py:95
 msgid "verification"
 msgstr "verificare"
 
-#: savane-forge/savane/my/views.py:84 savane/my/views.py:84
+#: savane/my/views.py:84
 #, python-format
 msgid ""
 "You have requested a change of email address on %s.\n"
@@ -123,585 +122,518 @@ msgstr ""
 "Ai solicitat schimbarea adresei de email în %s.\n"
 "Vizitează următorul URL pentru a completa schimbarea emailului:"
 
-#: savane-forge/savane/my/views.py:89 savane-forge/savane/my/views.py:109
-#: savane/my/views.py:89 savane/my/views.py:109
+#: savane/my/views.py:89
+#: savane/my/views.py:109
 #, python-format
 msgid "-- the %s team."
 msgstr "-- echipa %s."
 
-#: savane-forge/savane/my/views.py:96 savane/my/views.py:96
+#: savane/my/views.py:96
 #, python-format
 msgid ""
-"Someone, presumably you, has requested a change of email address on "
-"%(site_name)s.\n"
+"Someone, presumably you, has requested a change of email address on %(site_name)s.\n"
 "If it wasn't you, maybe someone is trying to steal your account...\n"
 "\n"
-"Your current address is %(email_current)s, the supposedly new address is "
-"%(email_new)s.\n"
+"Your current address is %(email_current)s, the supposedly new address is %(email_new)s.\n"
 "\n"
 msgstr ""
 
-#: savane-forge/savane/my/views.py:104 savane/my/views.py:104
+#: savane/my/views.py:104
 msgid ""
-"If you did not request that change, please visit the following URL to "
-"discard\n"
+"If you did not request that change, please visit the following URL to discard\n"
 "the email change and report the problem to us:"
 msgstr ""
 
-#: savane-forge/savane/my/views.py:115 savane/my/views.py:115
-msgid ""
-"The system reported a failure when trying to send the confirmation mail. "
-"Please retry and report that problem to administrators."
+#: savane/my/views.py:115
+msgid "The system reported a failure when trying to send the confirmation mail. Please retry and report that problem to administrators."
 msgstr ""
 
-#: savane-forge/savane/my/views.py:116 savane/my/views.py:116
+#: savane/my/views.py:116
 #, python-format
 msgid "Confirmation mailed to %s."
 msgstr "Confirmarea trimisă la %s."
 
-#: savane-forge/savane/my/views.py:117 savane/my/views.py:117
+#: savane/my/views.py:117
 msgid "Follow the instructions in the email to complete the email change."
 msgstr ""
 
-#: savane-forge/savane/my/views.py:126 savane/my/views.py:126
+#: savane/my/views.py:126
 msgid "Personal information changed."
 msgstr "Informația personală s-a schimbat."
 
-#: savane-forge/savane/my/views.py:146 savane/my/views.py:146
+#: savane/my/views.py:146
 msgid "Email address updated."
 msgstr "Adresa de email actualizată."
 
-#: savane-forge/savane/my/views.py:148 savane/my/views.py:148
+#: savane/my/views.py:148
 msgid "Confirm Email change"
 msgstr "Confirmă schimbarea emailului"
 
-#: savane-forge/savane/my/views.py:149 savane/my/views.py:149
+#: savane/my/views.py:149
 #, python-format
 msgid "Confirm your e-mail change to %s?"
 msgstr "Confirmi schimbarea emailului tău în %s?"
 
-#: savane-forge/savane/my/views.py:151 savane-forge/savane/my/views.py:167
-#: savane/my/views.py:151 savane/my/views.py:167
+#: savane/my/views.py:151
+#: savane/my/views.py:167
 msgid "Invalid confirmation hash"
 msgstr "Valoare de dispersie pentru confirmare invalidă"
 
-#: savane-forge/savane/my/views.py:162 savane/my/views.py:162
+#: savane/my/views.py:162
 msgid "Address change process discarded."
-msgstr ""
+msgstr "Procedura de schimbare a adresei anulată."
 
-#: savane-forge/savane/my/views.py:164 savane/my/views.py:164
+#: savane/my/views.py:164
 msgid "Cancel Email change"
 msgstr "Anulează schimbarea emailului"
 
-#: savane-forge/savane/my/views.py:165 savane/my/views.py:165
+#: savane/my/views.py:165
 #, python-format
 msgid "Cancel your e-mail change to %s?"
 msgstr "Anulați schimbarea emailului la %s?"
 
-#: savane-forge/savane/my/views.py:217 savane/my/views.py:217
+#: savane/my/views.py:217
 #, python-format
 msgid "Key registered"
 msgid_plural "%(count)d keys registered"
 msgstr[0] "Cheie înregistrată"
 msgstr[1] "%(count)d chei înregistrate"
 
-#: savane-forge/savane/my/views.py:221 savane/my/views.py:221
+#: savane/my/views.py:221
 msgid "Error while registering keys"
 msgstr "Eroare în timpul înregistrării cheilor"
 
-#: savane-forge/savane/my/views.py:247 savane/my/views.py:247
+#: savane/my/views.py:247
 msgid "Cannot remove the selected key"
 msgstr "Nu se poate înlătura cheia selectată"
 
-#: savane-forge/savane/my/views.py:272 savane/my/views.py:272
+#: savane/my/views.py:272
 #, python-format
 msgid "Language set to %s"
 msgstr "Limbă stabilită la %s"
 
-#: savane-forge/savane/svmain/admin.py:52 savane/svmain/admin.py:52
+#: savane/svmain/admin.py:52
 msgid "General Settings"
 msgstr "Setări generale"
 
-#: savane-forge/savane/svmain/admin.py:53 savane/svmain/admin.py:53
+#: savane/svmain/admin.py:53
 msgid "Project WWW Homepage"
-msgstr ""
+msgstr "Pagina web a proiectului"
 
-#: savane-forge/savane/svmain/admin.py:56 savane/svmain/admin.py:56
+#: savane/svmain/admin.py:56
 msgid "Source Code Manager: CVS"
 msgstr "Administrator de cod sursă: CVS"
 
-#: savane-forge/savane/svmain/admin.py:59 savane/svmain/admin.py:59
+#: savane/svmain/admin.py:59
 msgid "Source Code Manager: GNU Arch"
 msgstr "Administrator de cod sursă: GNU Arch"
 
-#: savane-forge/savane/svmain/admin.py:62 savane/svmain/admin.py:62
+#: savane/svmain/admin.py:62
 msgid "Source Code Manager: Subversion"
 msgstr "Administrator de cod sursă: Subversion"
 
-#: savane-forge/savane/svmain/admin.py:65 savane/svmain/admin.py:65
+#: savane/svmain/admin.py:65
 msgid "Source Code Manager: Git"
 msgstr "Administrator de cod sursă: Git"
 
-#: savane-forge/savane/svmain/admin.py:68 savane/svmain/admin.py:68
+#: savane/svmain/admin.py:68
 msgid "Source Code Manager: Mercurial"
 msgstr "Administrator de cod sursă: Mercurial"
 
-#: savane-forge/savane/svmain/admin.py:71 savane/svmain/admin.py:71
+#: savane/svmain/admin.py:71
 msgid "Source Code Manager: Bazaar"
 msgstr "Administrator de cod sursă: Bazaar"
 
-#: savane-forge/savane/svmain/admin.py:74 savane/svmain/admin.py:74
+#: savane/svmain/admin.py:74
 msgid "Download area"
 msgstr "Zona de descărcări"
 
-#: savane-forge/savane/svmain/admin.py:77 savane/svmain/admin.py:77
+#: savane/svmain/admin.py:77
 msgid "Licenses"
 msgstr "Licențe"
 
-#: savane-forge/savane/svmain/admin.py:78
-#: savane-forge/templates/svpeople/job_detail.html:37
-#: savane/svmain/admin.py:78 templates/svpeople/job_detail.html:37
+#: savane/svmain/admin.py:78
+#: templates/svpeople/job_detail.html:37
 msgid "Development Status"
 msgstr "Starea dezvoltării"
 
-#: savane-forge/savane/svmain/admin.py:79 savane/svmain/admin.py:79
+#: savane/svmain/admin.py:79
 msgid "Mailing List"
 msgstr "Listă de discuții"
 
-#: savane-forge/savane/svmain/admin.py:85 savane/svmain/admin.py:85
+#: savane/svmain/admin.py:85
 msgid "News Manager"
-msgstr ""
+msgstr "Administrator de știri"
 
-#: savane-forge/savane/svmain/admin.py:86 savane/svmain/admin.py:86
+#: savane/svmain/admin.py:86
 msgid "Project Menu Settings"
 msgstr "Meniul preferințelor proiectului"
 
-#: savane-forge/savane/svmain/models.py:117
-#: savane-forge/savane/svmain/models.py:394 savane/svmain/models.py:117
-#: savane/svmain/models.py:394
+#: savane/svmain/models.py:116
+#: savane/svmain/models.py:393
 msgid "Active"
 msgstr "Activ"
 
-#: savane-forge/savane/svmain/models.py:118
-#: savane-forge/savane/svmain/models.py:396
-#: savane-forge/savane/svmain/models.py:711
-#: savane-forge/savane/svpeople/models.py:32 savane/svmain/models.py:118
-#: savane/svmain/models.py:396 savane/svmain/models.py:711
+#: savane/svmain/models.py:117
+#: savane/svmain/models.py:395
+#: savane/svmain/models.py:710
 #: savane/svpeople/models.py:32
 msgid "Deleted"
 msgstr "Șters"
 
-#: savane-forge/savane/svmain/models.py:119
-#: savane-forge/savane/svmain/models.py:395 savane/svmain/models.py:119
-#: savane/svmain/models.py:395
+#: savane/svmain/models.py:118
+#: savane/svmain/models.py:394
 msgid "Pending"
 msgstr "În așteptare"
 
-#: savane-forge/savane/svmain/models.py:120 savane/svmain/models.py:120
+#: savane/svmain/models.py:119
 msgid "Suspended"
 msgstr "Suspendat"
 
-#: savane-forge/savane/svmain/models.py:137 savane/svmain/models.py:137
+#: savane/svmain/models.py:136
 msgid "new e-mail address"
 msgstr "adresă de email nouă"
 
-#: savane-forge/savane/svmain/models.py:215 savane/svmain/models.py:215
+#: savane/svmain/models.py:214
 msgid "Development statuses"
 msgstr "Stările dezvoltării"
 
-#: savane-forge/savane/svmain/models.py:221 savane/svmain/models.py:221
+#: savane/svmain/models.py:220
 msgid "Will be added on each project main page"
-msgstr ""
+msgstr "Va fi adăugat pe pagina principală a fiecărui proiect."
 
-#: savane-forge/savane/svmain/models.py:230 savane/svmain/models.py:230
+#: savane/svmain/models.py:229
 msgid "would be %LIST@gnu.org for GNU projects at sv.gnu.org"
+msgstr "ar fi %LIST@gnu.org pentru proiecte GNU aflate la sv.gnu.org"
+
+#: savane/svmain/models.py:231
+msgid "would be lists.gnu.org or lists.nongnu.org at sv.gnu.org [BACKEND SPECIFIC]"
+msgstr "ar fi lists.gnu.org sau lists.nongnu.org la sv.gnu.org [BACKEND SPECIFIC]"
+
+#: savane/svmain/models.py:233
+msgid "With this, you can force projects to follow a specific policy for the name of the %LIST. Here you should use the special wildcard %NAME, which is the part of the mailing list name that the project admin can define (would be %PROJECT-%NAME for non-GNU projects at sv.gnu.org). Do no add any @hostname here! You can specify multiple formats separated by a \",\" comma."
 msgstr ""
 
-#: savane-forge/savane/svmain/models.py:232 savane/svmain/models.py:232
-msgid ""
-"would be lists.gnu.org or lists.nongnu.org at sv.gnu.org [BACKEND SPECIFIC]"
+#: savane/svmain/models.py:239
+msgid "This is useful if you provide directly download areas (created by the backend) or if you want to allow projects to configure the related menu entry (see below)."
 msgstr ""
 
-#: savane-forge/savane/svmain/models.py:234 savane/svmain/models.py:234
-msgid ""
-"With this, you can force projects to follow a specific policy for the name "
-"of the %LIST. Here you should use the special wildcard %NAME, which is the "
-"part of the mailing list name that the project admin can define (would be "
-"%PROJECT-%NAME for non-GNU projects at sv.gnu.org). Do no add any @hostname "
-"here! You can specify multiple formats separated by a \",\" comma."
-msgstr ""
-
-#: savane-forge/savane/svmain/models.py:240 savane/svmain/models.py:240
-msgid ""
-"This is useful if you provide directly download areas (created by the "
-"backend) or if you want to allow projects to configure the related menu "
-"entry (see below)."
-msgstr ""
-
-#: savane-forge/savane/svmain/models.py:248 savane/svmain/models.py:248
+#: savane/svmain/models.py:247
 msgid "This is useful if you want project to select a license on submission."
 msgstr ""
 
-#: savane-forge/savane/svmain/models.py:250 savane/svmain/models.py:250
-msgid ""
-"This is useful if you want project to be able to defines their development "
-"status that will be shown on their main page. This is purely a matter of "
-"cosmetics. This option is mainly here just to remove this content in case it "
-"is useless (it does not makes sense for organizational projects)."
+#: savane/svmain/models.py:249
+msgid "This is useful if you want project to be able to defines their development status that will be shown on their main page. This is purely a matter of cosmetics. This option is mainly here just to remove this content in case it is useless (it does not makes sense for organizational projects)."
 msgstr ""
 
-#: savane-forge/savane/svmain/models.py:252 savane/svmain/models.py:252
-msgid ""
-"This is one of the main issue tracker of Savane. Projects are supposed to "
-"use it as primary interface with end user."
+#: savane/svmain/models.py:251
+msgid "This is one of the main issue tracker of Savane. Projects are supposed to use it as primary interface with end user."
 msgstr ""
 
-#: savane-forge/savane/svmain/models.py:259 savane/svmain/models.py:259
+#: savane/svmain/models.py:258
 msgid "the homepage link can be modified"
 msgstr ""
 
-#: savane-forge/savane/svmain/models.py:281 savane/svmain/models.py:281
-msgid ""
-"the download _directory_ can be modified -- beware, if the backend is "
-"running and creating download dir, it can be used maliciously. don't "
-"activate this feature unless you truly know what you're doing"
+#: savane/svmain/models.py:280
+msgid "the download _directory_ can be modified -- beware, if the backend is running and creating download dir, it can be used maliciously. don't activate this feature unless you truly know what you're doing"
 msgstr ""
 
-#: savane-forge/savane/svmain/models.py:285 savane/svmain/models.py:285
+#: savane/svmain/models.py:284
 msgid "CVS"
 msgstr "CVS"
 
-#: savane-forge/savane/svmain/models.py:286 savane/svmain/models.py:286
+#: savane/svmain/models.py:285
 msgid "Subversion"
 msgstr "Subversion"
 
-#: savane-forge/savane/svmain/models.py:287 savane/svmain/models.py:287
+#: savane/svmain/models.py:286
 msgid "GNU Arch"
 msgstr "GNU Arch"
 
-#: savane-forge/savane/svmain/models.py:288 savane/svmain/models.py:288
+#: savane/svmain/models.py:287
 msgid "Git"
 msgstr "Git"
 
-#: savane-forge/savane/svmain/models.py:289 savane/svmain/models.py:289
+#: savane/svmain/models.py:288
 msgid "Mercurial"
 msgstr "Mercurial"
 
-#: savane-forge/savane/svmain/models.py:290 savane/svmain/models.py:290
+#: savane/svmain/models.py:289
 msgid "Bazaar"
 msgstr "Bazaar"
 
-#: savane-forge/savane/svmain/models.py:294 savane/svmain/models.py:294
+#: savane/svmain/models.py:293
 msgid "Basic directory"
-msgstr ""
+msgstr "Dosar simplu"
 
-#: savane-forge/savane/svmain/models.py:295 savane/svmain/models.py:295
+#: savane/svmain/models.py:294
 msgid "Basic CVS directory"
-msgstr ""
+msgstr "Dosar CVS simplu"
 
-#: savane-forge/savane/svmain/models.py:296 savane/svmain/models.py:296
+#: savane/svmain/models.py:295
 msgid "Basic Subversion directory"
-msgstr ""
+msgstr "Dosar Subversion simplu"
 
-#: savane-forge/savane/svmain/models.py:297 savane/svmain/models.py:297
+#: savane/svmain/models.py:296
 msgid "Basic Git directory"
-msgstr ""
+msgstr "Dosar Git simplu"
 
-#: savane-forge/savane/svmain/models.py:298 savane/svmain/models.py:298
+#: savane/svmain/models.py:297
 msgid "Basic Mercurial directory"
-msgstr ""
+msgstr "Director Mercurial simplu"
 
-#: savane-forge/savane/svmain/models.py:299 savane/svmain/models.py:299
+#: savane/svmain/models.py:298
 msgid "Basic Bazaar directory"
-msgstr ""
+msgstr "Director Bazaar simplu"
 
-#: savane-forge/savane/svmain/models.py:383 savane/svmain/models.py:383
+#: savane/svmain/models.py:382
 msgid "project information"
 msgstr "informații despre proiect"
 
-#: savane-forge/savane/svmain/models.py:390 savane/svmain/models.py:390
+#: savane/svmain/models.py:389
 msgid "full name"
 msgstr "nume complet"
 
-#: savane-forge/savane/svmain/models.py:391 savane/svmain/models.py:391
+#: savane/svmain/models.py:390
 msgid "Full project name (not Unix system name)"
-msgstr ""
+msgstr "Numele complet al proiectului (nu numele de sistem Unix)"
 
-#: savane-forge/savane/svmain/models.py:397 savane/svmain/models.py:397
+#: savane/svmain/models.py:396
 msgid "Maintenance (accessible only to superuser)"
-msgstr ""
+msgstr "Mentenanță (disponibil doar superutilizatorului)"
 
-#: savane-forge/savane/svmain/models.py:398 savane/svmain/models.py:398
+#: savane/svmain/models.py:397
 msgid "Incomplete (failure during registration)"
-msgstr ""
+msgstr "Incomplet (eșuat în timpul înregistrării)"
 
-#: savane-forge/savane/svmain/models.py:403 savane/svmain/models.py:403
+#: savane/svmain/models.py:402
 msgid "short description"
 msgstr "descriere scurtă"
 
-#: savane-forge/savane/svmain/models.py:404 savane/svmain/models.py:404
+#: savane/svmain/models.py:403
 msgid "long description"
 msgstr "descriere lungă"
 
-#: savane-forge/savane/svmain/models.py:405 savane/svmain/models.py:405
+#: savane/svmain/models.py:404
 msgid "license"
 msgstr "licență"
 
-#: savane-forge/savane/svmain/models.py:406 savane/svmain/models.py:406
+#: savane/svmain/models.py:405
 msgid "license (other)"
 msgstr "licență (altele)"
 
-#: savane-forge/savane/svmain/models.py:410 savane/svmain/models.py:410
+#: savane/svmain/models.py:409
 msgid "development status"
 msgstr "stadiul dezvoltării"
 
-#: savane-forge/savane/svmain/models.py:605
-#: savane-forge/templates/svmain/group_admin_members.html:20
-#: savane/svmain/models.py:605 templates/svmain/group_admin_members.html:20
+#: savane/svmain/models.py:604
+#: templates/svmain/group_admin_members.html:20
 msgid "Admin"
 msgstr "Administrator"
 
-#: savane-forge/savane/svmain/models.py:608 savane/svmain/models.py:608
+#: savane/svmain/models.py:607
 msgid "Pending moderation"
 msgstr "Așteaptă moderarea"
 
-#: savane-forge/savane/svmain/models.py:609 savane/svmain/models.py:609
+#: savane/svmain/models.py:608
 msgid "Squad"
 msgstr "Echipă"
 
-#: savane-forge/savane/svmain/models.py:612 savane/svmain/models.py:612
+#: savane/svmain/models.py:611
 msgid "membership properties"
-msgstr ""
+msgstr "propritățile membralității"
 
-#: savane-forge/savane/svmain/models.py:614 savane/svmain/models.py:614
+#: savane/svmain/models.py:613
 msgid "Untick to hide emeritous members from the project page"
-msgstr ""
+msgstr "Debifează pentru a ascunde membrii emeriți din pagina proiectului"
 
-#: savane-forge/savane/svmain/models.py:712 savane/svmain/models.py:712
+#: savane/svmain/models.py:711
 msgid "To be created"
 msgstr "De creat"
 
-#: savane-forge/savane/svmain/models.py:713 savane/svmain/models.py:713
+#: savane/svmain/models.py:712
 msgid "To be reconfigured"
 msgstr "De reconfigurat"
 
-#: savane-forge/savane/svmain/models.py:714 savane/svmain/models.py:714
+#: savane/svmain/models.py:713
 msgid "Created"
 msgstr "Creat"
 
-#: savane-forge/savane/svmain/urls.py:64 savane-forge/templates/base.html:52
-#: savane/svmain/urls.py:64 templates/base.html:52
+#: savane/svmain/urls.py:63
+#: templates/base.html:52
 msgid "Users"
 msgstr "Utilizatori"
 
-#: savane-forge/savane/svmain/urls.py:70 savane/svmain/urls.py:70
+#: savane/svmain/urls.py:69
 msgid "User detail"
 msgstr "Detalii utilizator"
 
-#: savane-forge/savane/svmain/urls.py:84 savane-forge/templates/base.html:53
-#: savane/svmain/urls.py:84 templates/base.html:53
+#: savane/svmain/urls.py:83
+#: templates/base.html:53
 msgid "Projects"
 msgstr "Proiecte"
 
-#: savane-forge/savane/svmain/urls.py:98 savane/svmain/urls.py:98
+#: savane/svmain/urls.py:97
 msgid "Project members list"
 msgstr "Lista membrilor proiectului"
 
-#: savane-forge/savane/svmain/urls.py:103 savane/svmain/urls.py:103
+#: savane/svmain/urls.py:102
 msgid "Project members GPG keyring"
 msgstr "Inelul de chei GPG al membrilor proiectului"
 
-#: savane-forge/savane/svmain/urls.py:108
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:75
-#: savane/svmain/urls.py:108 savane/svmain/templatetags/svtopmenu.py:75
+#: savane/svmain/urls.py:107
+#: savane/svmain/templatetags/svtopmenu.py:75
 msgid "Mailing lists"
 msgstr "Liste de discuții"
 
-#: savane-forge/savane/svmain/urls.py:114 savane/svmain/urls.py:114
+#: savane/svmain/urls.py:113
 msgid "CVS Repositories"
-msgstr ""
+msgstr "Depozite CVS"
 
-#: savane-forge/savane/svmain/urls.py:121 savane/svmain/urls.py:121
+#: savane/svmain/urls.py:120
 msgid "Subversion Repositories"
-msgstr ""
+msgstr "Depozite Subversion"
 
-#: savane-forge/savane/svmain/urls.py:128 savane/svmain/urls.py:128
+#: savane/svmain/urls.py:127
 msgid "GNU Arch Repositories"
-msgstr ""
+msgstr "Depozite GNU Arch"
 
-#: savane-forge/savane/svmain/urls.py:135 savane/svmain/urls.py:135
+#: savane/svmain/urls.py:134
 msgid "Git Repositories"
-msgstr ""
+msgstr "Depozite Git"
 
-#: savane-forge/savane/svmain/urls.py:142 savane/svmain/urls.py:142
+#: savane/svmain/urls.py:141
 msgid "Mercurial Repositories"
-msgstr ""
+msgstr "Depozite Mercurial"
 
-#: savane-forge/savane/svmain/urls.py:149 savane/svmain/urls.py:149
+#: savane/svmain/urls.py:148
 msgid "Bazaar Repositories"
-msgstr ""
+msgstr "Depozite Bazaar"
 
-#: savane-forge/savane/svmain/urls.py:163 savane/svmain/urls.py:163
+#: savane/svmain/urls.py:162
 msgid "Editing public info"
-msgstr ""
+msgstr "Editează informații publice"
 
-#: savane-forge/savane/svmain/urls.py:166
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:59
-#: savane/svmain/urls.py:166 savane/svmain/templatetags/svtopmenu.py:59
+#: savane/svmain/urls.py:165
+#: savane/svmain/templatetags/svtopmenu.py:59
 msgid "Select features"
-msgstr ""
+msgstr "Alege facilități"
 
-#: savane-forge/savane/svmain/urls.py:170
-#: savane-forge/savane/svmain/urls.py:173
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:61
-#: savane/svmain/urls.py:170 savane/svmain/urls.py:173
+#: savane/svmain/urls.py:169
+#: savane/svmain/urls.py:172
 #: savane/svmain/templatetags/svtopmenu.py:61
 msgid "Manage members"
-msgstr ""
+msgstr "Administrează membri"
 
-#: savane-forge/savane/svmain/urls.py:180 savane/svmain/urls.py:180
+#: savane/svmain/urls.py:179
 msgid "License list"
 msgstr "Lista licențelor"
 
-#: savane-forge/savane/svmain/urls.py:184 savane/svmain/urls.py:184
+#: savane/svmain/urls.py:183
 msgid "License detail"
 msgstr "Detaliile licenței"
 
-#: savane-forge/savane/svmain/views.py:80 savane/svmain/views.py:80
+#: savane/svmain/views.py:110
 msgid "Request for inclusion already registered"
-msgstr ""
+msgstr "Cerere de includere înregistrată deja"
 
-#: savane-forge/savane/svmain/views.py:84 savane/svmain/views.py:84
+#: savane/svmain/views.py:114
 msgid "Request for inclusion sent to project administrators"
-msgstr ""
+msgstr "Cererea pentru includere trimisă către administratorii proiectului"
 
-#: savane-forge/savane/svmain/views.py:155 savane/svmain/views.py:155
+#: savane/svmain/views.py:185
 #, python-format
 msgid "GPG Keyring of the project %s"
-msgstr ""
+msgstr "Inelul de chei GPG al proiectului %s"
 
-#: savane-forge/savane/svmain/views.py:185
-#: savane-forge/savane/svmain/views.py:211
-#: savane-forge/savane/svpeople/views.py:106 savane/svmain/views.py:185
-#: savane/svmain/views.py:211 savane/svpeople/views.py:106
+#: savane/svmain/views.py:215
+#: savane/svmain/views.py:241
+#: savane/svpeople/views.py:106
 #, python-format
 msgid "%s saved."
 msgstr "%s salvat."
 
-#: savane-forge/savane/svmain/views.py:245
-#: savane-forge/savane/svmain/views.py:250 savane/svmain/views.py:245
-#: savane/svmain/views.py:250
+#: savane/svmain/views.py:275
+#: savane/svmain/views.py:280
 #, python-format
 msgid "Permissions of %s updated."
-msgstr ""
+msgstr "Permisiuni actualizate pentru %s"
 
-#: savane-forge/savane/svmain/views.py:254
-#: savane-forge/savane/svmain/views.py:263 savane/svmain/views.py:254
-#: savane/svmain/views.py:263
+#: savane/svmain/views.py:284
+#: savane/svmain/views.py:293
 #, python-format
 msgid "User %s deleted from the project."
-msgstr ""
+msgstr "Utilizatorul %s înlăturat de la proiect."
 
-#: savane-forge/savane/svmain/views.py:260
-#: savane-forge/savane/svmain/views.py:281 savane/svmain/views.py:260
-#: savane/svmain/views.py:281
+#: savane/svmain/views.py:290
+#: savane/svmain/views.py:311
 #, python-format
 msgid "User %s added to the project."
-msgstr ""
+msgstr "Utilizatorul %s adăugat la proiect"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:43
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:47
 #: savane/svmain/templatetags/svtopmenu.py:43
 #: savane/svmain/templatetags/svtopmenu.py:47
 msgid "Main"
 msgstr "Principal"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:49
-#: savane-forge/templates/svmain/group_detail.html:31
 #: savane/svmain/templatetags/svtopmenu.py:49
 #: templates/svmain/group_detail.html:31
 msgid "View members"
-msgstr ""
+msgstr "Vizualizează membri"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:51
 #: savane/svmain/templatetags/svtopmenu.py:51
 msgid "GPG keyring"
-msgstr ""
+msgstr "Inel de chei GPG"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:55
 #: savane/svmain/templatetags/svtopmenu.py:55
 msgid "Administer:"
-msgstr ""
+msgstr "Administrează:"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:57
 #: savane/svmain/templatetags/svtopmenu.py:57
 msgid "Edit public info"
-msgstr ""
+msgstr "Editează informația publică"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:65
 #: savane/svmain/templatetags/svtopmenu.py:65
 msgid "Homepage"
 msgstr "Pagină principală"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:67
 #: savane/svmain/templatetags/svtopmenu.py:67
 msgid "Browse project homepage (outside of Savane)"
-msgstr ""
+msgstr "Explorează pagina principală a proiectului (în exteriorul Savane)"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:70
 #: savane/svmain/templatetags/svtopmenu.py:70
 msgid "Download"
 msgstr "Descarcă"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:72
 #: savane/svmain/templatetags/svtopmenu.py:72
 msgid "Download area: files released"
-msgstr ""
+msgstr "Zona de descărcări: fișiere publicate"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:77
 #: savane/svmain/templatetags/svtopmenu.py:77
 msgid "List existing mailing lists"
-msgstr ""
+msgstr "Enumeră listele de discuții existente"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:79
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:157
 #: savane/svmain/templatetags/svtopmenu.py:79
 #: savane/svmain/templatetags/svtopmenu.py:157
 msgid "Browse"
 msgstr "Răsfoieşte"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:83
 #: savane/svmain/templatetags/svtopmenu.py:83
 msgid "Configure:"
 msgstr "Configurare:"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:89
 #: savane/svmain/templatetags/svtopmenu.py:89
 msgid "Source code"
 msgstr "Cod sursă"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:91
 #: savane/svmain/templatetags/svtopmenu.py:91
 msgid "Source Code Management"
 msgstr "Administrare de cod sursă"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:95
 #: savane/svmain/templatetags/svtopmenu.py:95
 msgid "Use Git"
 msgstr "Folosește Git"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:98
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:108
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:118
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:128
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:138
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:147
-#: savane-forge/templates/svmain/group_vcs_arch.html:23
-#: savane-forge/templates/svmain/group_vcs_bzr.html:23
-#: savane-forge/templates/svmain/group_vcs_cvs.html:23
-#: savane-forge/templates/svmain/group_vcs_git.html:23
-#: savane-forge/templates/svmain/group_vcs_hg.html:23
-#: savane-forge/templates/svmain/group_vcs_svn.html:23
 #: savane/svmain/templatetags/svtopmenu.py:98
 #: savane/svmain/templatetags/svtopmenu.py:108
 #: savane/svmain/templatetags/svtopmenu.py:118
@@ -715,20 +647,8 @@ msgstr "Folosește Git"
 #: templates/svmain/group_vcs_hg.html:23
 #: templates/svmain/group_vcs_svn.html:23
 msgid "Browse sources repository"
-msgstr ""
+msgstr "Răsfoiește depozitele de surse"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:101
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:111
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:121
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:131
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:141
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:150
-#: savane-forge/templates/svmain/group_vcs_arch.html:26
-#: savane-forge/templates/svmain/group_vcs_bzr.html:26
-#: savane-forge/templates/svmain/group_vcs_cvs.html:26
-#: savane-forge/templates/svmain/group_vcs_git.html:26
-#: savane-forge/templates/svmain/group_vcs_hg.html:26
-#: savane-forge/templates/svmain/group_vcs_svn.html:26
 #: savane/svmain/templatetags/svtopmenu.py:101
 #: savane/svmain/templatetags/svtopmenu.py:111
 #: savane/svmain/templatetags/svtopmenu.py:121
@@ -742,830 +662,791 @@ msgstr ""
 #: templates/svmain/group_vcs_hg.html:26
 #: templates/svmain/group_vcs_svn.html:26
 msgid "Browse web pages repository"
-msgstr ""
+msgstr "Răsfoiește depozitele paginilor web"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:105
 #: savane/svmain/templatetags/svtopmenu.py:105
 msgid "Use Mercurial"
 msgstr "Folosește Mercurial"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:115
 #: savane/svmain/templatetags/svtopmenu.py:115
 msgid "Use Bazaar"
 msgstr "Folosește Bazaar"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:125
 #: savane/svmain/templatetags/svtopmenu.py:125
 msgid "Use Subversion"
 msgstr "Folosește Subversion"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:135
 #: savane/svmain/templatetags/svtopmenu.py:135
 msgid "Use GNU Arch"
 msgstr "Folosește GNU Arch"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:144
 #: savane/svmain/templatetags/svtopmenu.py:144
 msgid "Use CVS"
 msgstr "Folosește CVS"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:154
 #: savane/svmain/templatetags/svtopmenu.py:154
 msgid "Jobs"
 msgstr "Slujbe"
 
-#: savane-forge/savane/svmain/templatetags/svtopmenu.py:161
-#: savane-forge/templates/my/ssh.html:30
-#: savane-forge/templates/svmain/group_admin_members_add.html:34
-#: savane/svmain/templatetags/svtopmenu.py:161 templates/my/ssh.html:30
+#: savane/svmain/templatetags/svtopmenu.py:161
+#: templates/my/ssh.html:30
 #: templates/svmain/group_admin_members_add.html:34
 msgid "Add"
 msgstr "Adaugă"
 
-#: savane-forge/savane/svpeople/forms.py:67
-#: savane-forge/savane/svpeople/models.py:121 savane/svpeople/forms.py:67
+#: savane/svnews/urls.py:46
+#: savane/svnews/urls.py:50
+msgid "Manage"
+msgstr "Administrează"
+
+#: savane/svpeople/forms.py:67
 #: savane/svpeople/models.py:121
 msgid "Resume"
-msgstr ""
+msgstr "CV"
 
-#: savane-forge/savane/svpeople/models.py:30 savane/svpeople/models.py:30
+#: savane/svpeople/models.py:30
 msgid "Open"
 msgstr "Deschide"
 
-#: savane-forge/savane/svpeople/models.py:31 savane/svpeople/models.py:31
+#: savane/svpeople/models.py:31
 msgid "Filled"
 msgstr "Umplut"
 
-#: savane-forge/savane/svpeople/models.py:36
-#: savane-forge/templates/svmain/group_list.html:14
-#: savane/svpeople/models.py:36 templates/svmain/group_list.html:14
+#: savane/svpeople/models.py:36
+#: templates/svmain/group_list.html:14
 msgid "Short description"
 msgstr "Descriere scurtă"
 
-#: savane-forge/savane/svpeople/models.py:37 savane/svpeople/models.py:37
+#: savane/svpeople/models.py:37
 msgid "Long description"
 msgstr "Descriere detaliată"
 
-#: savane-forge/savane/svpeople/models.py:39 savane/svpeople/models.py:39
+#: savane/svpeople/models.py:39
 msgid "Status"
 msgstr "Stare"
 
-#: savane-forge/savane/svpeople/models.py:40
-#: savane-forge/templates/svpeople/index.html:15
-#: savane-forge/templates/svpeople/job_list.inc:5 savane/svpeople/models.py:40
-#: templates/svpeople/index.html:15 templates/svpeople/job_list.inc:5
+#: savane/svpeople/models.py:40
+#: templates/svpeople/index.html:15
+#: templates/svpeople/job_list.inc:5
 msgid "Category"
 msgstr "Categorie"
 
-#: savane-forge/savane/svpeople/models.py:63 savane/svpeople/models.py:63
+#: savane/svpeople/models.py:63
 msgid "category"
 msgstr "categorie"
 
-#: savane-forge/savane/svpeople/models.py:64 savane/svpeople/models.py:64
+#: savane/svpeople/models.py:64
 msgid "categories"
 msgstr "categorii"
 
-#: savane-forge/savane/svpeople/models.py:70 savane/svpeople/models.py:70
+#: savane/svpeople/models.py:70
 msgid "skill"
 msgstr "abilitate"
 
-#: savane-forge/savane/svpeople/models.py:71 savane/svpeople/models.py:71
+#: savane/svpeople/models.py:71
 msgid "skills"
 msgstr "abilități"
 
-#: savane-forge/savane/svpeople/models.py:75 savane/svpeople/models.py:75
+#: savane/svpeople/models.py:75
 msgid "skill level"
 msgstr "nivel de abilitate"
 
-#: savane-forge/savane/svpeople/models.py:76 savane/svpeople/models.py:76
+#: savane/svpeople/models.py:76
 msgid "skill levels"
 msgstr "niveluri de abilitate"
 
-#: savane-forge/savane/svpeople/models.py:79 savane/svpeople/models.py:79
+#: savane/svpeople/models.py:79
 msgid "skill year"
 msgstr ""
 
-#: savane-forge/savane/svpeople/models.py:80 savane/svpeople/models.py:80
+#: savane/svpeople/models.py:80
 msgid "skill years"
 msgstr ""
 
-#: savane-forge/savane/svpeople/models.py:84 savane/svpeople/models.py:84
+#: savane/svpeople/models.py:84
 msgid "Developer"
-msgstr ""
+msgstr "Dezvoltator"
 
-#: savane-forge/savane/svpeople/models.py:85 savane/svpeople/models.py:85
+#: savane/svpeople/models.py:85
 msgid "Project manager"
-msgstr ""
+msgstr "Administrator de proiect"
 
-#: savane-forge/savane/svpeople/models.py:86 savane/svpeople/models.py:86
+#: savane/svpeople/models.py:86
 msgid "Unix admin"
-msgstr ""
+msgstr "Administrator Unix"
 
-#: savane-forge/savane/svpeople/models.py:87 savane/svpeople/models.py:87
+#: savane/svpeople/models.py:87
 msgid "Doc writer"
-msgstr ""
+msgstr "Scriitor de documentație"
 
-#: savane-forge/savane/svpeople/models.py:88 savane/svpeople/models.py:88
+#: savane/svpeople/models.py:88
 msgid "Tester"
-msgstr ""
+msgstr "Tester"
 
-#: savane-forge/savane/svpeople/models.py:89 savane/svpeople/models.py:89
+#: savane/svpeople/models.py:89
 msgid "Support manager"
-msgstr ""
+msgstr "Administrator de asistență"
 
-#: savane-forge/savane/svpeople/models.py:90 savane/svpeople/models.py:90
+#: savane/svpeople/models.py:90
 msgid "Graphic/other designer"
 msgstr ""
 
-#: savane-forge/savane/svpeople/models.py:91 savane/svpeople/models.py:91
+#: savane/svpeople/models.py:91
 msgid "Translator"
 msgstr "Traducător"
 
-#: savane-forge/savane/svpeople/models.py:94 savane/svpeople/models.py:94
+#: savane/svpeople/models.py:94
 msgid "Base knowledge"
-msgstr ""
+msgstr "Cunoaștere de bază"
 
-#: savane-forge/savane/svpeople/models.py:95 savane/svpeople/models.py:95
+#: savane/svpeople/models.py:95
 msgid "Good knowledge"
-msgstr ""
+msgstr "Cunoaștere bună"
 
-#: savane-forge/savane/svpeople/models.py:96 savane/svpeople/models.py:96
+#: savane/svpeople/models.py:96
 msgid "Master"
 msgstr "Stăpân"
 
-#: savane-forge/savane/svpeople/models.py:97 savane/svpeople/models.py:97
+#: savane/svpeople/models.py:97
 msgid "Master apprentice"
 msgstr ""
 
-#: savane-forge/savane/svpeople/models.py:98 savane/svpeople/models.py:98
+#: savane/svpeople/models.py:98
 msgid "Expert"
 msgstr "Expert"
 
-#: savane-forge/savane/svpeople/models.py:101 savane/svpeople/models.py:101
+#: savane/svpeople/models.py:101
 msgid "(< 6 months)"
 msgstr "(< 6 luni)"
 
-#: savane-forge/savane/svpeople/models.py:102 savane/svpeople/models.py:102
+#: savane/svpeople/models.py:102
 msgid "6 Mo - 2 yr"
 msgstr "6 luni - 2 ani"
 
-#: savane-forge/savane/svpeople/models.py:103 savane/svpeople/models.py:103
+#: savane/svpeople/models.py:103
 msgid "2 yr - 5 yr"
 msgstr "2 ani - 5 ani"
 
-#: savane-forge/savane/svpeople/models.py:104 savane/svpeople/models.py:104
+#: savane/svpeople/models.py:104
 msgid "5 yr - 10 yr"
 msgstr "5 ani - 10 ani"
 
-#: savane-forge/savane/svpeople/models.py:105 savane/svpeople/models.py:105
+#: savane/svpeople/models.py:105
 msgid "> 10 years"
 msgstr "> 10 ani"
 
-#: savane-forge/savane/svpeople/models.py:110 savane/svpeople/models.py:110
+#: savane/svpeople/models.py:110
 msgid "job inventory"
 msgstr ""
 
-#: savane-forge/savane/svpeople/models.py:111 savane/svpeople/models.py:111
+#: savane/svpeople/models.py:111
 msgid "job inventories"
 msgstr ""
 
-#: savane-forge/savane/svpeople/models.py:122 savane/svpeople/models.py:122
+#: savane/svpeople/models.py:122
 msgid "Publicly viewable"
 msgstr ""
 
-#: savane-forge/savane/svpeople/models.py:126 savane/svpeople/models.py:126
+#: savane/svpeople/models.py:126
 msgid "skill inventory"
 msgstr ""
 
-#: savane-forge/savane/svpeople/models.py:127 savane/svpeople/models.py:127
+#: savane/svpeople/models.py:127
 msgid "skill inventories"
 msgstr ""
 
-#: savane-forge/savane/svpeople/urls.py:35 savane/svpeople/urls.py:35
+#: savane/svpeople/urls.py:35
 msgid "Projects needing help"
 msgstr ""
 
-#: savane-forge/savane/svpeople/urls.py:41 savane/svpeople/urls.py:41
+#: savane/svpeople/urls.py:41
 msgid "Project help wanted"
 msgstr ""
 
-#: savane-forge/savane/svpeople/urls.py:44 savane/svpeople/urls.py:44
+#: savane/svpeople/urls.py:44
 msgid "Looking for a job to edit"
 msgstr ""
 
-#: savane-forge/savane/svpeople/urls.py:48 savane/svpeople/urls.py:48
+#: savane/svpeople/urls.py:48
 msgid "View a job"
 msgstr ""
 
-#: savane-forge/savane/svpeople/urls.py:52 savane/svpeople/urls.py:52
+#: savane/svpeople/urls.py:52
 msgid "Edit a job for your project"
 msgstr ""
 
-#: savane-forge/savane/svpeople/urls.py:53
-#: savane-forge/templates/my/contact.html:14
-#: savane-forge/templates/my/contact.html:22
-#: savane-forge/templates/my/i18n.html:22
-#: savane-forge/templates/svpeople/userinfo_form.html:26
-#: savane/svpeople/urls.py:53 templates/my/contact.html:14
-#: templates/my/contact.html.py:22 templates/my/i18n.html:22
+#: savane/svpeople/urls.py:53
+#: templates/my/contact.html:14
+#: templates/my/contact.html.py:22
+#: templates/my/i18n.html:22
 #: templates/svpeople/userinfo_form.html:26
 msgid "Update"
 msgstr "Actualizează"
 
-#: savane-forge/savane/svpeople/urls.py:58 savane/svpeople/urls.py:58
+#: savane/svpeople/urls.py:58
 msgid "Create a job for your project"
 msgstr ""
 
-#: savane-forge/savane/svpeople/urls.py:60 savane/svpeople/urls.py:60
+#: savane/svpeople/urls.py:60
 msgid "Continue >>"
 msgstr "Continuă >>"
 
-#: savane-forge/savane/svpeople/urls.py:65 savane/svpeople/urls.py:65
+#: savane/svpeople/urls.py:65
 msgid "Edit your resume & skills"
 msgstr "Editează-ți CV-ul și abilităţile"
 
-#: savane-forge/savane/svpeople/views.py:137 savane/svpeople/views.py:137
+#: savane/svpeople/views.py:137
 msgid "Job description saved."
 msgstr ""
 
-#: savane-forge/savane/svpeople/views.py:148
-#: savane-forge/savane/svpeople/views.py:192 savane/svpeople/views.py:148
+#: savane/svpeople/views.py:148
 #: savane/svpeople/views.py:192
 msgid "Skills updated."
 msgstr ""
 
-#: savane-forge/savane/svpeople/views.py:181 savane/svpeople/views.py:181
+#: savane/svpeople/views.py:181
 msgid "Resume updated."
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:31 savane/tracker/models.py:31
-msgid "anonymous"
-msgstr "anonim"
-
-#: savane-forge/savane/tracker/models.py:32 savane/tracker/models.py:32
-msgid "logged-in user"
+#: savane/tracker/models.py:44
+msgid "not editable"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:33 savane/tracker/models.py:33
-msgid "project member"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:34
-#: savane-forge/savane/tracker/models.py:39 savane/tracker/models.py:34
-#: savane/tracker/models.py:39
-msgid "group type default"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:35 savane/tracker/models.py:35
-msgid "none"
-msgstr "nimic"
-
-#: savane-forge/savane/tracker/models.py:36 savane/tracker/models.py:36
-msgid "technician"
-msgstr "tehnician"
-
-#: savane-forge/savane/tracker/models.py:37 savane/tracker/models.py:37
-msgid "manager"
-msgstr "manager"
-
-#: savane-forge/savane/tracker/models.py:38 savane/tracker/models.py:38
-msgid "technician & manager"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:40 savane/tracker/models.py:40
-msgid "same as new item"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:44
-#: savane-forge/savane/tracker/models.py:47 savane/tracker/models.py:44
-#: savane/tracker/models.py:47
-msgid "Submitter"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:44 savane/tracker/models.py:44
-msgid "The person who submitted the item"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:45 savane/tracker/models.py:45
-msgid "Assignee"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:45 savane/tracker/models.py:45
-msgid "The person to whom the item was assigned"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:46 savane/tracker/models.py:46
-msgid "CC"
-msgstr "CC"
-
-#: savane-forge/savane/tracker/models.py:46 savane/tracker/models.py:46
-msgid "The person who is in the CC list"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:47 savane/tracker/models.py:47
-msgid "A person who once posted a follow-up comment"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:51 savane/tracker/models.py:51
-msgid "Role has changed"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:52 savane/tracker/models.py:52
-msgid "I'm added to or removed from this role"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:53 savane/tracker/models.py:53
-msgid "New comment"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:54 savane/tracker/models.py:54
-msgid "A new followup comment is added"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:55 savane/tracker/models.py:55
-msgid "New attachment"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:56 savane/tracker/models.py:56
-msgid "A new file attachment is added"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:57 savane/tracker/models.py:57
-msgid "CC Change"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:58 savane/tracker/models.py:58
-msgid "A new CC address is added/removed"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:59 savane/tracker/models.py:59
-msgid "Item closed"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:60 savane/tracker/models.py:60
-msgid "The item is closed"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:61 savane/tracker/models.py:61
-msgid "PSS change"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:62 savane/tracker/models.py:62
-msgid "Priority,Status,Severity changes"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:63 savane/tracker/models.py:63
-msgid "Any other change"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:64 savane/tracker/models.py:64
-msgid "Any change not mentioned above"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:65 savane/tracker/models.py:65
-msgid "I did it"
-msgstr "Eu am făcut-o"
-
-#: savane-forge/savane/tracker/models.py:66 savane/tracker/models.py:66
-msgid "I am the author of the change"
-msgstr "Eu sunt autorul schimbării"
-
-#: savane-forge/savane/tracker/models.py:67 savane/tracker/models.py:67
-msgid "New Item"
-msgstr "Element nou"
-
-#: savane-forge/savane/tracker/models.py:68 savane/tracker/models.py:68
-msgid "A new item has been submitted"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:80 savane/tracker/models.py:80
-msgid "Bugs"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:81 savane/tracker/models.py:81
-msgid "Patches"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:82 savane/tracker/models.py:82
-msgid "Support"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:83 savane/tracker/models.py:83
-msgid "Tasks"
-msgstr ""
-
-#: savane-forge/savane/tracker/models.py:150 savane/tracker/models.py:195
-msgid "field"
-msgstr "câmp"
-
-#: savane-forge/savane/tracker/models.py:151 savane/tracker/models.py:196
-msgid "fields"
-msgstr "câmpuri"
-
-#: savane-forge/savane/tracker/models.py:153 savane/tracker/models.py:198
+#: savane/tracker/models.py:45
 msgid "date field"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:154 savane/tracker/models.py:199
+#: savane/tracker/models.py:46
 msgid "select box"
-msgstr ""
+msgstr "selectează căsuța"
 
-#: savane-forge/savane/tracker/models.py:155 savane/tracker/models.py:200
+#: savane/tracker/models.py:47
 msgid "text area"
 msgstr "zonă text"
 
-#: savane-forge/savane/tracker/models.py:156 savane/tracker/models.py:201
+#: savane/tracker/models.py:48
 msgid "text field"
 msgstr "câmp text"
 
-#: savane-forge/savane/tracker/models.py:157 savane/tracker/models.py:202
+#: savane/tracker/models.py:49
 msgid "system"
 msgstr "sistem"
 
-#: savane-forge/savane/tracker/models.py:158 savane/tracker/models.py:203
+#: savane/tracker/models.py:50
 msgid "project"
 msgstr "proiect"
 
-#: savane-forge/savane/tracker/models.py:170 savane/tracker/models.py:219
-msgid "field cannot be disabled in configuration"
+#: savane/tracker/models.py:52
+msgid "anonymous"
+msgstr "anonim"
+
+#: savane/tracker/models.py:53
+msgid "logged-in user"
+msgstr "utilizator autentificat"
+
+#: savane/tracker/models.py:54
+msgid "project member"
+msgstr "membru al proiectului"
+
+#: savane/tracker/models.py:55
+#: savane/tracker/models.py:60
+msgid "group type default"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:173
-msgid "field is not entered by the user but by the system"
+#: savane/tracker/models.py:56
+msgid "none"
+msgstr "nimic"
+
+#: savane/tracker/models.py:57
+msgid "technician"
+msgstr "tehnician"
+
+#: savane/tracker/models.py:58
+msgid "manager"
+msgstr "manager"
+
+#: savane/tracker/models.py:59
+msgid "technician & manager"
+msgstr "tehnician & manager"
+
+#: savane/tracker/models.py:61
+msgid "same as new item"
+msgstr "la fel ca element nou"
+
+#: savane/tracker/models.py:65
+#: savane/tracker/models.py:68
+msgid "Submitter"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:174 savane/tracker/models.py:229
-msgid "let the user change the label and description"
+#: savane/tracker/models.py:65
+msgid "The person who submitted the item"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:185 savane/tracker/models.py:241
-msgid "field usage"
+#: savane/tracker/models.py:66
+msgid "Assignee"
+msgstr "Delegat"
+
+#: savane/tracker/models.py:66
+msgid "The person to whom the item was assigned"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:186 savane/tracker/models.py:242
-msgid "field usages"
+#: savane/tracker/models.py:67
+msgid "CC"
+msgstr "CC"
+
+#: savane/tracker/models.py:67
+msgid "The person who is in the CC list"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:188 savane/tracker/models.py:244
-msgid "undefined"
-msgstr "nedefinit"
-
-#: savane-forge/savane/tracker/models.py:189 savane/tracker/models.py:245
-msgid "allowed"
-msgstr "permis"
-
-#: savane-forge/savane/tracker/models.py:190 savane/tracker/models.py:246
-msgid "forbidden"
-msgstr "interzis"
-
-#: savane-forge/savane/tracker/models.py:191 savane/tracker/models.py:247
-msgid "no"
-msgstr "nu"
-
-#: savane-forge/savane/tracker/models.py:192 savane/tracker/models.py:248
-msgid "show to logged in users"
+#: savane/tracker/models.py:68
+msgid "A person who once posted a follow-up comment"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:193 savane/tracker/models.py:249
-msgid "show to anonymous users"
+#: savane/tracker/models.py:72
+msgid "Role has changed"
+msgstr "Rolul s-a schimbat"
+
+#: savane/tracker/models.py:73
+msgid "I'm added to or removed from this role"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:194 savane/tracker/models.py:250
-msgid "show to both logged in and anonymous users"
+#: savane/tracker/models.py:74
+msgid "New comment"
+msgstr "Comentariu nou"
+
+#: savane/tracker/models.py:75
+msgid "A new followup comment is added"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:195 savane/tracker/models.py:251
+#: savane/tracker/models.py:76
+msgid "New attachment"
+msgstr "Ataș nou"
+
+#: savane/tracker/models.py:77
+msgid "A new file attachment is added"
+msgstr ""
+
+#: savane/tracker/models.py:78
+msgid "CC Change"
+msgstr ""
+
+#: savane/tracker/models.py:79
+msgid "A new CC address is added/removed"
+msgstr ""
+
+#: savane/tracker/models.py:80
+msgid "Item closed"
+msgstr "Element închis"
+
+#: savane/tracker/models.py:81
+msgid "The item is closed"
+msgstr "Elementul este închis"
+
+#: savane/tracker/models.py:82
+msgid "PSS change"
+msgstr ""
+
+#: savane/tracker/models.py:83
+msgid "Priority,Status,Severity changes"
+msgstr ""
+
+#: savane/tracker/models.py:84
+msgid "Any other change"
+msgstr "Orice altă schimbare"
+
+#: savane/tracker/models.py:85
+msgid "Any change not mentioned above"
+msgstr ""
+
+#: savane/tracker/models.py:86
+msgid "I did it"
+msgstr "Eu am făcut-o"
+
+#: savane/tracker/models.py:87
+msgid "I am the author of the change"
+msgstr "Eu sunt autorul schimbării"
+
+#: savane/tracker/models.py:88
+msgid "New Item"
+msgstr "Element nou"
+
+#: savane/tracker/models.py:89
+msgid "A new item has been submitted"
+msgstr ""
+
+#: savane/tracker/models.py:101
+#: savane/tracker/urls.py:35
+#: templates/base.html:57
+msgid "Bugs"
+msgstr "Defecte"
+
+#: savane/tracker/models.py:102
+msgid "Patches"
+msgstr "Petice"
+
+#: savane/tracker/models.py:103
+msgid "Support"
+msgstr "Asistență"
+
+#: savane/tracker/models.py:104
+msgid "Tasks"
+msgstr "Sarcini"
+
+#: savane/tracker/models.py:163
+msgid "field overlay"
+msgstr ""
+
+#: savane/tracker/models.py:164
+msgid "field overlays"
+msgstr ""
+
+#: savane/tracker/models.py:166
 msgid "mandatory only if it was presented to the original submitter"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:196 savane/tracker/models.py:252
+#: savane/tracker/models.py:167
 msgid "optional (empty values are accepted)"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:197 savane/tracker/models.py:253
+#: savane/tracker/models.py:168
 msgid "mandatory"
 msgstr "obligatoriu"
 
-#: savane-forge/savane/tracker/models.py:199 savane/tracker/models.py:255
-msgid "NULL == default"
+#: savane/tracker/models.py:169
+msgid "undefined"
+msgstr "nedefinit"
+
+#: savane/tracker/models.py:170
+msgid "allowed"
+msgstr "permis"
+
+#: savane/tracker/models.py:171
+msgid "forbidden"
+msgstr "interzis"
+
+#: savane/tracker/models.py:174
+#: savane/tracker/models.py:251
+msgid "NULL == default for all groups"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:200 savane/tracker/models.py:258
+#: savane/tracker/models.py:182
 msgid "used"
 msgstr "folosit"
 
-#: savane-forge/savane/tracker/models.py:206 savane/tracker/models.py:264
+#: savane/tracker/models.py:184
+msgid "show to anonymous users"
+msgstr ""
+
+#: savane/tracker/models.py:185
+msgid "show to connected users"
+msgstr "arată utilizatorii contectați"
+
+#: savane/tracker/models.py:186
 msgid "show to project members"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:207 savane/tracker/models.py:271
+#: savane/tracker/models.py:193
 msgid "display rank"
 msgstr "arată gradul"
 
-#: savane-forge/savane/tracker/models.py:220 savane/tracker/models.py:282
+#: savane/tracker/models.py:206
 msgid "keep field value changes in history"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:233 savane/tracker/models.py:296
+#: savane/tracker/models.py:246
 msgid "active"
 msgstr "activ"
 
-#: savane-forge/savane/tracker/models.py:234 savane/tracker/models.py:297
+#: savane/tracker/models.py:247
 msgid "hidden"
 msgstr "ascuns"
 
-#: savane-forge/savane/tracker/models.py:235 savane/tracker/models.py:298
+#: savane/tracker/models.py:248
 msgid "permanent"
 msgstr "permanent"
 
-#: savane-forge/savane/tracker/models.py:248 savane/tracker/models.py:311
-msgid ""
-"comma-separated list of e-mail addresses to notify when an item is created "
-"or modified in this category"
+#: savane/tracker/models.py:264
+msgid "comma-separated list of e-mail addresses to notify when an item is created or modified in this category"
 msgstr ""
 
-#: savane-forge/savane/tracker/models.py:249 savane/tracker/models.py:312
+#: savane/tracker/models.py:265
 msgid "send on all updates"
 msgstr "trimite la toate actualizările"
 
-#: savane-forge/savane/tracker/models.py:317 savane/tracker/models.py:380
+#: savane/tracker/models.py:288
+msgid "None"
+msgstr "Nimic"
+
+#: savane/tracker/models.py:397
 msgid "open/closed"
 msgstr "deschis/închis"
 
-#: savane-forge/savane/tracker/models.py:324 savane/tracker/models.py:387
+#: savane/tracker/models.py:404
 msgid "item group"
 msgstr "grup de elemente"
 
-#: savane-forge/savane/tracker/models.py:453 savane/tracker/models.py:516
-msgid "comment type"
-msgstr "tipul comentariului"
-
-#: savane-forge/savane/tracker/models.py:459 savane/tracker/models.py:522
-msgid "total spamscore for this comment"
-msgstr ""
-
-#: savane-forge/savane/utils/__init__.py:44 savane/utils/__init__.py:44
-#, python-format
-msgid "SSH error: %s"
-msgstr "Erori SSH: %s"
-
-#: savane-forge/savane/utils/markup.py:48 savane/utils/markup.py:48
-msgid "Basic markup"
-msgstr ""
-
-#: savane-forge/savane/utils/markup.py:49 savane/utils/markup.py:49
-msgid "Only basic text tags are available in this input field."
-msgstr ""
-
-#: savane-forge/savane/utils/markup.py:51 savane/utils/markup.py:51
-msgid "Rich markup"
-msgstr ""
-
-#: savane-forge/savane/utils/markup.py:52 savane/utils/markup.py:52
-msgid "Rich and basic text tags are available in this input field."
-msgstr ""
-
-#: savane-forge/savane/utils/markup.py:54 savane/utils/markup.py:54
-msgid "Full markup"
-msgstr ""
-
-#: savane-forge/savane/utils/markup.py:55 savane/utils/markup.py:55
-msgid "Every tags are available in this input field."
-msgstr ""
-
-#: savane-forge/savane/utils/markup.py:57 savane/utils/markup.py:57
-msgid "No markup"
-msgstr ""
-
-#: savane-forge/savane/utils/markup.py:58 savane/utils/markup.py:58
-msgid "No tags are available in this input field."
-msgstr ""
-
-#: savane-forge/savane/utils/markup.py:61 savane/utils/markup.py:61
-msgid ""
-"Check the markup reminder in related documentation for a description of "
-"these tags."
-msgstr ""
-
-#: savane-forge/templates/base.html:18 templates/base.html:18
-msgid "Back to homepage"
-msgstr "Înapoi la pagina de start"
-
-#: savane-forge/templates/base.html:22 templates/base.html:22
-#, python-format
-msgid "%(username)s logged in as superuser"
-msgstr "%(username)s autentificat ca superutilizator"
-
-#: savane-forge/templates/base.html:25 templates/base.html:25
-#, python-format
-msgid "Connected as %(username)s"
-msgstr "Conectat ca %(username)s"
-
-#: savane-forge/templates/base.html:27 templates/base.html:27
-msgid "My account"
-msgstr "Contul meu"
-
-#: savane-forge/templates/base.html:28 templates/base.html:28
-msgid "Logout"
-msgstr "Deautentificare"
-
-#: savane-forge/templates/base.html:32 templates/base.html:32
-msgid "Superuser rights are required to perform site admin tasks"
-msgstr ""
-
-#: savane-forge/templates/base.html:32 templates/base.html:32
-msgid "Become superuser"
-msgstr "Devino superutilizator"
-
-#: savane-forge/templates/base.html:34 templates/base.html:34
-msgid "Impersonate this user"
-msgstr ""
-
-#: savane-forge/templates/base.html:34
-#: savane-forge/templates/my/contact.html:5
-#: savane-forge/templates/my/i18n.html:5 savane-forge/templates/my/ssh.html:5
-#: savane-forge/templates/svmain/group_admin_features.html:6
-#: savane-forge/templates/svmain/group_admin_info.html:6
-#: savane-forge/templates/svmain/group_admin_members.html:6
-#: savane-forge/templates/svmain/group_admin_members_add.html:6
-#: savane-forge/templates/svmain/group_admin_members_add.html:20
-#: savane-forge/templates/svmain/group_gpgkeyring.html:6
-#: savane-forge/templates/svmain/group_memberlist.html:6
-#: savane-forge/templates/svpeople/index.html:5
-#: savane-forge/templates/svpeople/job_detail.html:7
-#: savane-forge/templates/svpeople/job_form.html:6
-#: savane-forge/templates/svpeople/job_list_by_category.html:5
-#: savane-forge/templates/svpeople/job_list_by_group.html:5
-#: savane-forge/templates/svpeople/job_list_by_type.html:5
-#: savane-forge/templates/svpeople/userinfo_form.html:5
-#: savane-forge/templates/tracker/item_form.html:5
-#: savane-forge/templates/tracker/item_form.html:20 templates/base.html:34
-#: templates/my/contact.html:5 templates/my/i18n.html:5
-#: templates/my/ssh.html:5 templates/svmain/group_admin_features.html:6
+#: savane/tracker/models.py:566
+#: savane/tracker/views.py:44
+#: templates/base.html:34
+#: templates/my/contact.html:5
+#: templates/my/i18n.html:5
+#: templates/my/ssh.html:5
+#: templates/svmain/group_admin_features.html:6
 #: templates/svmain/group_admin_info.html:6
 #: templates/svmain/group_admin_members.html:6
 #: templates/svmain/group_admin_members_add.html:6
 #: templates/svmain/group_admin_members_add.html:20
 #: templates/svmain/group_gpgkeyring.html:6
-#: templates/svmain/group_memberlist.html:6 templates/svpeople/index.html:5
-#: templates/svpeople/job_detail.html:7 templates/svpeople/job_form.html:6
+#: templates/svmain/group_memberlist.html:6
+#: templates/svnews/news_detail.html:6
+#: templates/svnews/news_list.html:5
+#: templates/svpeople/index.html:5
+#: templates/svpeople/job_detail.html:7
+#: templates/svpeople/job_form.html:6
 #: templates/svpeople/job_list_by_category.html:5
 #: templates/svpeople/job_list_by_group.html:5
 #: templates/svpeople/job_list_by_type.html:5
-#: templates/svpeople/userinfo_form.html:5 templates/tracker/item_form.html:5
-#: templates/tracker/item_form.html:20
+#: templates/svpeople/userinfo_form.html:5
+#: templates/tracker/item_form.html:6
+#: templates/tracker/item_form.html:23
+#: templates/tracker/item_form.html:29
+#: templates/tracker/item_form.html:48
+#: templates/tracker/item_form.html:55
+#: templates/tracker/item_form.html:68
+#: templates/tracker/item_form.html:71
+#: templates/tracker/item_form.html:100
+#: templates/tracker/item_form.html:124
 msgid ": "
 msgstr ": "
 
-#: savane-forge/templates/base.html:40 templates/base.html:40
-msgid "End the Superuser session, go back to normal user session"
+#: savane/tracker/models.py:631
+msgid "comment type"
+msgstr "tipul comentariului"
+
+#: savane/tracker/models.py:637
+msgid "total spamscore for this comment"
 msgstr ""
 
-#: savane-forge/templates/base.html:40 templates/base.html:40
+#: savane/tracker/views.py:44
+msgid "Access denied"
+msgstr "Accesul interzis"
+
+#: savane/tracker/views.py:44
+msgid "private item"
+msgstr "element privat"
+
+#: savane/utils/__init__.py:44
+#, python-format
+msgid "SSH error: %s"
+msgstr "Erori SSH: %s"
+
+#: savane/utils/markup.py:48
+msgid "Basic markup"
+msgstr ""
+
+#: savane/utils/markup.py:49
+msgid "Only basic text tags are available in this input field."
+msgstr ""
+
+#: savane/utils/markup.py:51
+msgid "Rich markup"
+msgstr ""
+
+#: savane/utils/markup.py:52
+msgid "Rich and basic text tags are available in this input field."
+msgstr ""
+
+#: savane/utils/markup.py:54
+msgid "Full markup"
+msgstr ""
+
+#: savane/utils/markup.py:55
+msgid "Every tags are available in this input field."
+msgstr ""
+
+#: savane/utils/markup.py:57
+msgid "No markup"
+msgstr ""
+
+#: savane/utils/markup.py:58
+msgid "No tags are available in this input field."
+msgstr ""
+
+#: savane/utils/markup.py:61
+msgid "Check the markup reminder in related documentation for a description of these tags."
+msgstr ""
+
+#: templates/base.html:18
+msgid "Back to homepage"
+msgstr "Înapoi la pagina de start"
+
+#: templates/base.html:22
+#, python-format
+msgid "%(username)s logged in as superuser"
+msgstr "%(username)s autentificat ca superutilizator"
+
+#: templates/base.html:25
+#, python-format
+msgid "Connected as %(username)s"
+msgstr "Conectat ca %(username)s"
+
+#: templates/base.html:27
+msgid "My account"
+msgstr "Contul meu"
+
+#: templates/base.html:28
+msgid "Logout"
+msgstr "Deautentificare"
+
+#: templates/base.html:32
+msgid "Superuser rights are required to perform site admin tasks"
+msgstr ""
+
+#: templates/base.html:32
+msgid "Become superuser"
+msgstr "Devino superutilizator"
+
+#: templates/base.html:34
+msgid "Impersonate this user"
+msgstr ""
+
+#: templates/base.html:40
+msgid "End the Superuser session, go back to normal user session"
+msgstr "Încheie sesiunea ca superutilizator, mergi înapoi la sesiunea ca utilizator normal"
+
+#: templates/base.html:40
 msgid "Logout Superuser"
 msgstr "Deautentifică superutilizatorul"
 
-#: savane-forge/templates/base.html:44 templates/base.html:44
+#: templates/base.html:44
 msgid "Login status"
 msgstr "Starea autentificării"
 
-#: savane-forge/templates/base.html:45 templates/base.html:45
+#: templates/base.html:45
 msgid "Not connected"
 msgstr "Neconectat"
 
-#: savane-forge/templates/base.html:46 templates/base.html:46
+#: templates/base.html:46
 msgid "Login"
 msgstr "Autentificare"
 
-#: savane-forge/templates/base.html:47 templates/base.html:47
+#: templates/base.html:47
 msgid "New user"
 msgstr "Utilizator nou"
 
-#: savane-forge/templates/base.html:49 templates/base.html:49
+#: templates/base.html:49
 msgid "Set language"
 msgstr "Definire limbă"
 
-#: savane-forge/templates/base.html:51
-#: savane-forge/templates/svmain/group_admin_members_add.html:20
-#: savane-forge/templates/svmain/group_list.html:9
-#: savane-forge/templates/svmain/user_list.html:9 templates/base.html:51
+#: templates/base.html:51
 #: templates/svmain/group_admin_members_add.html:20
-#: templates/svmain/group_list.html:9 templates/svmain/user_list.html:9
+#: templates/svmain/group_list.html:9
+#: templates/svmain/user_list.html:9
+#: templates/tracker/item_list.html:11
 msgid "Search"
 msgstr "Caută"
 
-#: savane-forge/templates/base.html:54 templates/base.html:54
+#: templates/base.html:54
 msgid "Contributors wanted"
+msgstr "Contribuitori doriți"
+
+#: templates/base.html:56
+msgid "Trackers"
 msgstr ""
 
-#: savane-forge/templates/base.html:56 templates/base.html:56
+#: templates/base.html:59
 msgid "Site help"
-msgstr ""
+msgstr "Ajutor pentru sit"
 
-#: savane-forge/templates/base.html:57 templates/base.html:57
+#: templates/base.html:60
 msgid "Contact us"
 msgstr "Contactați-ne"
 
-#: savane-forge/templates/title.html:3 templates/title.html:3
+#: templates/title.html:3
 msgid "Welcome"
 msgstr "Bine ați venit"
 
-#: savane-forge/templates/my/contact.html:9 templates/my/contact.html:9
+#: templates/my/contact.html:9
 msgid "Change e-mail"
 msgstr "Schimbă emailul"
 
-#: savane-forge/templates/my/contact.html:17 templates/my/contact.html:17
+#: templates/my/contact.html:17
 msgid "Change name"
 msgstr "Schimbă numele"
 
-#: savane-forge/templates/my/index.html:6 templates/my/index.html:6
+#: templates/my/index.html:6
 msgid "Account configuration"
 msgstr "Configurația contului"
 
-#: savane-forge/templates/my/index.html:10 templates/my/index.html:10
+#: templates/my/index.html:10
 msgid "SSH public keys"
 msgstr "Chei publice SSH"
 
-#: savane-forge/templates/my/index.html:11 templates/my/index.html:11
+#: templates/my/index.html:11
 msgid "Edit resume and skills"
 msgstr "Editează CV și abilități"
 
-#: savane-forge/templates/my/index.html:12 templates/my/index.html:12
+#: templates/my/index.html:12
 msgid "Change password"
 msgstr "Schimbă parola"
 
-#: savane-forge/templates/my/index.html:17 templates/my/index.html:17
+#: templates/my/index.html:17
 msgid "Public information"
 msgstr "Informație publică"
 
-#: savane-forge/templates/my/index.html:20 templates/my/index.html:20
+#: templates/my/index.html:20
 msgid "View your public profile"
 msgstr "Vizualizează profilul tău public"
 
-#: savane-forge/templates/my/index.html:25 templates/my/index.html:25
+#: templates/my/index.html:25
 msgid "My groups"
 msgstr "Grupurile mele"
 
-#: savane-forge/templates/my/index.html:43
-#: savane-forge/templates/svmain/group_list.html:24 templates/my/index.html:43
+#: templates/my/index.html:43
 #: templates/svmain/group_list.html:24
 msgid "No groups."
 msgstr "Niciun grup."
 
-#: savane-forge/templates/my/ssh.html:9 templates/my/ssh.html:9
+#: templates/my/ssh.html:9
 msgid "Working SSH Keys"
 msgstr "Chei SSH funcționale"
 
-#: savane-forge/templates/my/ssh.html:19
-#: savane-forge/templates/svpeople/skill_inventory_edit.inc:9
-#: savane-forge/templates/webmail_locmem/mail_detail.html:28
-#: templates/my/ssh.html:19 templates/svpeople/skill_inventory_edit.inc:9
+#: templates/my/ssh.html:19
+#: templates/svpeople/skill_inventory_edit.inc:9
 #: templates/webmail_locmem/mail_detail.html:28
 msgid "Delete"
 msgstr "Șterge"
 
-#: savane-forge/templates/my/ssh.html:24 templates/my/ssh.html:24
+#: templates/my/ssh.html:24
 msgid "No SSH keys yet."
 msgstr "Fără chei SSH momentan."
 
-#: savane-forge/templates/my/ssh.html:27 templates/my/ssh.html:27
+#: templates/my/ssh.html:27
 msgid "SSH keys"
 msgstr "Chei SSH"
 
-#: savane-forge/templates/registration/activate.html:8
 #: templates/registration/activate.html:8
 msgid "Your account activation failed."
 msgstr "Activarea contului tău a eșuat."
 
-#: savane-forge/templates/registration/activation_complete.html:8
 #: templates/registration/activation_complete.html:8
 msgid "Your account is now active."
 msgstr "Contul tău este acum activ."
 
-#: savane-forge/templates/registration/registration_complete.html:8
 #: templates/registration/registration_complete.html:8
 msgid "An email containing account-activation information has been sent."
 msgstr ""
 
-#: savane-forge/templates/svmain/generic_confirm.html:9
-#: savane-forge/templates/webmail_locmem/mail_delete.html:9
 #: templates/svmain/generic_confirm.html:9
 #: templates/webmail_locmem/mail_delete.html:9
 msgid "Are you sure?"
 msgstr "Eşti sigur?"
 
-#: savane-forge/templates/svmain/generic_confirm.html:13
-#: savane-forge/templates/webmail_locmem/mail_delete.html:13
 #: templates/svmain/generic_confirm.html:13
 #: templates/webmail_locmem/mail_delete.html:13
 msgid "Yes"
 msgstr "Da"
 
-#: savane-forge/templates/svmain/group_admin.html:6
-#: savane-forge/templates/svmain/group_admin_features.html:6
-#: savane-forge/templates/svmain/group_admin_info.html:6
-#: savane-forge/templates/svmain/group_admin_members.html:6
-#: savane-forge/templates/svmain/group_admin_members_add.html:6
 #: templates/svmain/group_admin.html:6
 #: templates/svmain/group_admin_features.html:6
 #: templates/svmain/group_admin_info.html:6
@@ -1574,34 +1455,23 @@ msgstr "Da"
 msgid "Administration summary"
 msgstr "Sumarul administrării"
 
-#: savane-forge/templates/svmain/group_admin_features.html:22
-#: savane-forge/templates/svmain/group_admin_info.html:26
 #: templates/svmain/group_admin_features.html:22
 #: templates/svmain/group_admin_info.html:26
 msgid "Submit"
 msgstr "Trimite"
 
-#: savane-forge/templates/svmain/group_admin_info.html:22
 #: templates/svmain/group_admin_info.html:22
 msgid "License:"
 msgstr "Licență:"
 
-#: savane-forge/templates/svmain/group_admin_info.html:23
 #: templates/svmain/group_admin_info.html:23
-msgid ""
-"License changes are moderated by the site administrators. Please contact "
-"them to change your project license."
+msgid "License changes are moderated by the site administrators. Please contact them to change your project license."
 msgstr ""
 
-#: savane-forge/templates/svmain/group_admin_members.html:17
 #: templates/svmain/group_admin_members.html:17
 msgid "Members"
 msgstr "Membri"
 
-#: savane-forge/templates/svmain/group_admin_members.html:20
-#: savane-forge/templates/svmain/group_admin_members.html:48
-#: savane-forge/templates/svmain/group_admin_members_add.html:25
-#: savane-forge/templates/svmain/user_list.html:14
 #: templates/svmain/group_admin_members.html:20
 #: templates/svmain/group_admin_members.html:48
 #: templates/svmain/group_admin_members_add.html:25
@@ -1609,96 +1479,77 @@ msgstr "Membri"
 msgid "User"
 msgstr "Utilizator"
 
-#: savane-forge/templates/svmain/group_admin_members.html:20
 #: templates/svmain/group_admin_members.html:20
 msgid "Remove?"
 msgstr "Ştergi?"
 
-#: savane-forge/templates/svmain/group_admin_members.html:30
 #: templates/svmain/group_admin_members.html:30
 msgid "You are Admin"
 msgstr "Ești administrator"
 
-#: savane-forge/templates/svmain/group_admin_members.html:45
 #: templates/svmain/group_admin_members.html:45
 msgid "Requests for inclusion"
 msgstr "Cereri pentru includere"
 
-#: savane-forge/templates/svmain/group_admin_members.html:48
 #: templates/svmain/group_admin_members.html:48
 msgid "Approve"
 msgstr "Aprobă"
 
-#: savane-forge/templates/svmain/group_admin_members.html:48
 #: templates/svmain/group_admin_members.html:48
 msgid "Reject"
 msgstr "Respinge"
 
-#: savane-forge/templates/svmain/group_admin_members.html:58
 #: templates/svmain/group_admin_members.html:58
 msgid "No requests for inclusion"
 msgstr "Nicio cerere pentru includere"
 
-#: savane-forge/templates/svmain/group_admin_members.html:61
 #: templates/svmain/group_admin_members.html:61
 msgid "OK"
 msgstr "OK"
 
-#: savane-forge/templates/svmain/group_admin_members.html:64
 #: templates/svmain/group_admin_members.html:64
 msgid "Add users to group"
 msgstr "Adaugă utilizatori grupului"
 
-#: savane-forge/templates/svmain/group_admin_members_add.html:25
-#: savane-forge/templates/svmain/group_list.html:14
-#: savane-forge/templates/svmain/user_list.html:14
 #: templates/svmain/group_admin_members_add.html:25
-#: templates/svmain/group_list.html:14 templates/svmain/user_list.html:14
+#: templates/svmain/group_list.html:14
+#: templates/svmain/user_list.html:14
 msgid "Full name"
 msgstr "Nume complet"
 
-#: savane-forge/templates/svmain/group_admin_members_add.html:25
-#: savane-forge/templates/svmain/user_list.html:14
 #: templates/svmain/group_admin_members_add.html:25
 #: templates/svmain/user_list.html:14
 msgid "Profile"
 msgstr "Profil"
 
-#: savane-forge/templates/svmain/group_admin_members_add.html:30
 #: templates/svmain/group_admin_members_add.html:30
 msgid "view"
 msgstr "vizualizare"
 
-#: savane-forge/templates/svmain/group_admin_members_add.html:41
 #: templates/svmain/group_admin_members_add.html:41
 msgid "All other users are members of your group!"
 msgstr "Toți utilizatorii sunt membri ai grupului tău!"
 
-#: savane-forge/templates/svmain/group_detail.html:7
-#: savane-forge/templates/svmain/group_gpgkeyring.html:6
-#: savane-forge/templates/svmain/group_memberlist.html:6
 #: templates/svmain/group_detail.html:7
 #: templates/svmain/group_gpgkeyring.html:6
 #: templates/svmain/group_memberlist.html:6
+#: templates/tracker/item_form.html:55
+#: templates/tracker/item_list.html:16
 msgid "Summary"
 msgstr "Rezumat"
 
-#: savane-forge/templates/svmain/group_detail.html:18
 #: templates/svmain/group_detail.html:18
 msgid "Membership info"
 msgstr "Informații despre membralitate"
 
-#: savane-forge/templates/svmain/group_detail.html:21
 #: templates/svmain/group_detail.html:21
 msgid "Project admins:"
 msgstr "Administratorii proiectului:"
 
-#: savane-forge/templates/svmain/group_detail.html:28
 #: templates/svmain/group_detail.html:28
 msgid "No members!"
 msgstr "Fără membri!"
 
-#: savane-forge/templates/svmain/group_detail.html:30
 #: templates/svmain/group_detail.html:30
 #, python-format
 msgid "%(count)s active member"
@@ -1706,175 +1557,125 @@ msgid_plural "%(count)s active members"
 msgstr[0] "%(count)s membru activ"
 msgstr[1] "%(count)s membri activi"
 
-#: savane-forge/templates/svmain/group_detail.html:35
 #: templates/svmain/group_detail.html:35
 msgid "Group identification"
 msgstr "Identificarea grupuilui"
 
-#: savane-forge/templates/svmain/group_detail.html:37
 #: templates/svmain/group_detail.html:37
 msgid "Id:"
 msgstr "Identitate:"
 
-#: savane-forge/templates/svmain/group_detail.html:38
 #: templates/svmain/group_detail.html:38
 msgid "System name:"
 msgstr "Numele de system:"
 
-#: savane-forge/templates/svmain/group_detail.html:39
-#: savane-forge/templates/svmain/license_detail.html:7
 #: templates/svmain/group_detail.html:39
 #: templates/svmain/license_detail.html:7
 msgid "Name:"
 msgstr "Nume:"
 
-#: savane-forge/templates/svmain/group_detail.html:40
 #: templates/svmain/group_detail.html:40
 msgid "Group type:"
 msgstr "Tipul grupului:"
 
-#: savane-forge/templates/svmain/group_detail.html:47
 #: templates/svmain/group_detail.html:47
 msgid "This projects is currently not approved and is waiting for moderation."
 msgstr ""
 
-#: savane-forge/templates/svmain/group_detail.html:56
 #: templates/svmain/group_detail.html:56
 #, python-format
-msgid ""
-"This project has not yet submitted a short description. You can "
-"%(begin_link)ssubmit it%(end_link)s now."
+msgid "This project has not yet submitted a short description. You can %(begin_link)ssubmit it%(end_link)s now."
 msgstr ""
 
-#: savane-forge/templates/svmain/group_detail.html:59
 #: templates/svmain/group_detail.html:59
 msgid "Registration date"
 msgstr "Data "
 
-#: savane-forge/templates/svmain/group_detail.html:61
-#: savane-forge/templates/svpeople/job_detail.html:33
-#: templates/svmain/group_detail.html:61 templates/svpeople/job_detail.html:33
+#: templates/svmain/group_detail.html:61
+#: templates/svpeople/job_detail.html:33
 msgid "License"
 msgstr "Licență"
 
-#: savane-forge/templates/svmain/group_detail.html:64
 #: templates/svmain/group_detail.html:64
 msgid "Development status"
 msgstr "Starea dezvoltării"
 
-#: savane-forge/templates/svmain/group_detail.html:71
 #: templates/svmain/group_detail.html:71
 msgid "Join this project"
 msgstr "Alătură-te acestui proiect"
 
-#: savane-forge/templates/svmain/group_gpgkeyring.html:18
 #: templates/svmain/group_gpgkeyring.html:18
-msgid ""
-"Below is the content of this project's keyring. These are the successfully "
-"registered keys of project members."
+msgid "Below is the content of this project's keyring. These are the successfully registered keys of project members."
 msgstr ""
 
-#: savane-forge/templates/svmain/group_gpgkeyring.html:22
 #: templates/svmain/group_gpgkeyring.html:22
 #, python-format
-msgid ""
-"You can %(begin_link)sdownload the keyring%(end_link)s and import it with "
-"the command %(command)s"
+msgid "You can %(begin_link)sdownload the keyring%(end_link)s and import it with the command %(command)s"
 msgstr ""
 
-#: savane-forge/templates/svmain/group_gpgkeyring.html:25
 #: templates/svmain/group_gpgkeyring.html:25
 msgid "They GPG Keyring of the project is empty, no keys were registered"
 msgstr ""
 
-#: savane-forge/templates/svmain/group_list.html:14
 #: templates/svmain/group_list.html:14
 msgid "Unix name"
-msgstr ""
+msgstr "Nume Unix"
 
-#: savane-forge/templates/svmain/group_mailinglist.html:24
 #: templates/svmain/group_mailinglist.html:24
 #, python-format
-msgid ""
-"To see the collection of prior posting to the list, visit the %(begin_link)s"
-"%(list_name)s archives%(end_link)s"
+msgid "To see the collection of prior posting to the list, visit the %(begin_link)s%(list_name)s archives%(end_link)s"
 msgstr ""
 
-#: savane-forge/templates/svmain/group_mailinglist.html:26
 #: templates/svmain/group_mailinglist.html:26
 #, python-format
-msgid ""
-"To see the collection of prior posting to the list, visit the %(begin_link)s"
-"%(list_name)s archives%(end_link)s (authorization required)."
+msgid "To see the collection of prior posting to the list, visit the %(begin_link)s%(list_name)s archives%(end_link)s (authorization required)."
 msgstr ""
 
-#: savane-forge/templates/svmain/group_mailinglist.html:29
 #: templates/svmain/group_mailinglist.html:29
 #, python-format
 msgid "To post a message to all the list members, write to %(list_address)s"
 msgstr ""
 
-#: savane-forge/templates/svmain/group_mailinglist.html:31
 #: templates/svmain/group_mailinglist.html:31
 #, python-format
-msgid ""
-"You can (un)subscribe to the list by following instructions on the "
-"%(begin_link)slist information page%(end_link)s"
+msgid "You can (un)subscribe to the list by following instructions on the %(begin_link)slist information page%(end_link)s"
 msgstr ""
 
-#: savane-forge/templates/svmain/group_mailinglist.html:33
 #: templates/svmain/group_mailinglist.html:33
 #, python-format
-msgid ""
-"Project administrators can use the %(begin_link)sadministrative interface"
-"%(end_link)s to manage the list."
+msgid "Project administrators can use the %(begin_link)sadministrative interface%(end_link)s to manage the list."
 msgstr ""
 
-#: savane-forge/templates/svmain/group_mailinglist.html:37
 #: templates/svmain/group_mailinglist.html:37
 #, python-format
 msgid "No Lists found for %(group_name)s"
-msgstr ""
+msgstr "Nu s-a găsit nicio listă pentru %(group_name)s"
 
-#: savane-forge/templates/svmain/group_mailinglist.html:38
 #: templates/svmain/group_mailinglist.html:38
 msgid "Project administrators can add mailing lists using the admin interface."
 msgstr ""
 
-#: savane-forge/templates/svmain/group_memberlist.html:18
 #: templates/svmain/group_memberlist.html:18
 msgid "Member"
 msgstr "Membru"
 
-#: savane-forge/templates/svmain/group_memberlist.html:18
 #: templates/svmain/group_memberlist.html:18
 msgid "Resume and skills"
 msgstr "CV și abilități"
 
-#: savane-forge/templates/svmain/group_memberlist.html:24
 #: templates/svmain/group_memberlist.html:24
 msgid "Project Administrator"
 msgstr "Administrator al proiectului"
 
-#: savane-forge/templates/svmain/group_memberlist.html:28
 #: templates/svmain/group_memberlist.html:28
 msgid "Project Member"
 msgstr "Membru al proiectului"
 
-#: savane-forge/templates/svmain/group_memberlist.html:40
 #: templates/svmain/group_memberlist.html:40
 #, python-format
-msgid ""
-"You may also be interested in the %(begin_link)sGPG Keyring of this project"
-"%(end_link)s"
+msgid "You may also be interested in the %(begin_link)sGPG Keyring of this project%(end_link)s"
 msgstr ""
 
-#: savane-forge/templates/svmain/group_vcs_arch.html:17
-#: savane-forge/templates/svmain/group_vcs_bzr.html:17
-#: savane-forge/templates/svmain/group_vcs_cvs.html:17
-#: savane-forge/templates/svmain/group_vcs_git.html:17
-#: savane-forge/templates/svmain/group_vcs_hg.html:17
-#: savane-forge/templates/svmain/group_vcs_svn.html:17
 #: templates/svmain/group_vcs_arch.html:17
 #: templates/svmain/group_vcs_bzr.html:17
 #: templates/svmain/group_vcs_cvs.html:17
@@ -1883,14 +1684,8 @@ msgstr ""
 #: templates/svmain/group_vcs_svn.html:17
 #, python-format
 msgid "Browsing the %(type)s repository"
-msgstr ""
+msgstr "Răsfoind depozitul %(type)s"
 
-#: savane-forge/templates/svmain/group_vcs_arch.html:19
-#: savane-forge/templates/svmain/group_vcs_bzr.html:19
-#: savane-forge/templates/svmain/group_vcs_cvs.html:19
-#: savane-forge/templates/svmain/group_vcs_git.html:19
-#: savane-forge/templates/svmain/group_vcs_hg.html:19
-#: savane-forge/templates/svmain/group_vcs_svn.html:19
 #: templates/svmain/group_vcs_arch.html:19
 #: templates/svmain/group_vcs_bzr.html:19
 #: templates/svmain/group_vcs_cvs.html:19
@@ -1898,19 +1693,9 @@ msgstr ""
 #: templates/svmain/group_vcs_hg.html:19
 #: templates/svmain/group_vcs_svn.html:19
 #, python-format
-msgid ""
-"You can browse the %(type)s repository of this project with your web "
-"browser. This gives you a good picture of the current status of the source "
-"files. You may also view the complete histories of any file in the "
-"repository as well as differences among two versions."
-msgstr ""
+msgid "You can browse the %(type)s repository of this project with your web browser. This gives you a good picture of the current status of the source files. You may also view the complete histories of any file in the repository as well as differences among two versions."
+msgstr "Poți răsfoi depozitul %(type)s acestui proiect cu navigatorul tău web. Aceasta îți va oferi o imagine bună a stării curente a fișierelor sursă. De asemenea poți vedea istoricul complet al oricărui fisier din depozit precum și diferențele dintre 2 versiuni ale acestuia."
 
-#: savane-forge/templates/svmain/group_vcs_arch_custom.html:2
-#: savane-forge/templates/svmain/group_vcs_bzr_custom.html:2
-#: savane-forge/templates/svmain/group_vcs_cvs_custom.html:2
-#: savane-forge/templates/svmain/group_vcs_git_custom.html:2
-#: savane-forge/templates/svmain/group_vcs_hg_custom.html:2
-#: savane-forge/templates/svmain/group_vcs_svn_custom.html:2
 #: templates/svmain/group_vcs_arch_custom.html:2
 #: templates/svmain/group_vcs_bzr_custom.html:2
 #: templates/svmain/group_vcs_cvs_custom.html:2
@@ -1920,17 +1705,67 @@ msgstr ""
 msgid "More information"
 msgstr "Mai multe informații"
 
-#: savane-forge/templates/svmain/license_detail.html:8
+#: templates/svmain/homepage.html:13
+#, python-format
+msgid "%(site_name)s statistics"
+msgstr "Statisticile %(site_name)s"
+
+#: templates/svmain/homepage.html:16
+#, python-format
+msgid "%(html)s registered user"
+msgid_plural "%(html)s registered users"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/svmain/homepage.html:19
+#, python-format
+msgid "%(html)s hosted project"
+msgid_plural "%(html)s hosted projects"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/svmain/homepage.html:27
+#, python-format
+msgid "%(count)s registration pending"
+msgid_plural "%(count)s registrations pending"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/svmain/homepage.html:33
+msgid "Help wanted"
+msgstr "Ajutor dorit"
+
+#: templates/svmain/homepage.html:45
+msgid "Most popular items"
+msgstr "Cele mai populare elemente"
+
+#: templates/svmain/homepage.html:49
+#: templates/svmain/homepage.html.py:53
+#, python-format
+msgid "Newest %(group_type)s projects"
+msgstr ""
+
+#: templates/svmain/homepage.html:65
+#: templates/svnews/news_detail.html:15
+msgid "Latest news"
+msgstr "Ultimele știri"
+
+#: templates/svmain/homepage.html:71
+#: templates/svnews/news_detail.html:21
+#, python-format
+msgid "%(count)s news in archive"
+msgid_plural "%(count)s news in archive"
+msgstr[0] "%(count)s știre în arhivă"
+msgstr[1] "%(count)s știri în arhivă"
+
 #: templates/svmain/license_detail.html:8
 msgid "URL:"
 msgstr "URL:"
 
-#: savane-forge/templates/svmain/license_detail.html:11
 #: templates/svmain/license_detail.html:11
 msgid "Projects that use it:"
 msgstr "Proiecte ce-l utilizează:"
 
-#: savane-forge/templates/svmain/license_detail.html:13
 #: templates/svmain/license_detail.html:13
 #, python-format
 msgid "1 project use this license"
@@ -1938,32 +1773,25 @@ msgid_plural "%(count)s projects use this license"
 msgstr[0] "1 proiect folosește această licență"
 msgstr[1] "%(count)s proiecte folosesc această licență"
 
-#: savane-forge/templates/svmain/license_detail.html:20
 #: templates/svmain/license_detail.html:20
 msgid "Go to license list"
 msgstr "Mergi la lista de licențe"
 
-#: savane-forge/templates/svmain/pagination.inc.html:10
-#: savane-forge/templates/svmain/pagination.inc.html:12
 #: templates/svmain/pagination.inc.html:10
 #: templates/svmain/pagination.inc.html:12
 msgid "previous"
 msgstr "precedent"
 
-#: savane-forge/templates/svmain/pagination.inc.html:24
-#: savane-forge/templates/svmain/pagination.inc.html:26
 #: templates/svmain/pagination.inc.html:24
 #: templates/svmain/pagination.inc.html:26
 msgid "next"
 msgstr "următor"
 
-#: savane-forge/templates/svmain/pagination.inc.html:31
 #: templates/svmain/pagination.inc.html:31
 #, python-format
 msgid "Page %(number)s on %(num_pages)s (%(count)s)"
 msgstr ""
 
-#: savane-forge/templates/svmain/pagination.inc.html:34
 #: templates/svmain/pagination.inc.html:34
 #, python-format
 msgid "%(count)s element"
@@ -1971,28 +1799,82 @@ msgid_plural "%(count)s elements"
 msgstr[0] "%(count)s element"
 msgstr[1] "%(count)s elemente"
 
-#: savane-forge/templates/svmain/user_detail.html:7
 #: templates/svmain/user_detail.html:7
 msgid "Real name:"
 msgstr "Nume real:"
 
-#: savane-forge/templates/svmain/user_detail.html:8
 #: templates/svmain/user_detail.html:8
 msgid "Login name:"
 msgstr "Nume autentificare:"
 
-#: savane-forge/templates/svmain/user_list.html:24
 #: templates/svmain/user_list.html:24
+#: templates/tracker/item_list.html:25
 msgid "No users."
 msgstr "Fără utilizatori."
 
-#: savane-forge/templates/svpeople/index.html:5
-#: savane-forge/templates/svpeople/job_detail.html:7
-#: savane-forge/templates/svpeople/job_form.html:6
-#: savane-forge/templates/svpeople/job_list_by_category.html:5
-#: savane-forge/templates/svpeople/job_list_by_group.html:5
-#: savane-forge/templates/svpeople/job_list_by_type.html:5
-#: templates/svpeople/index.html:5 templates/svpeople/job_detail.html:7
+#: templates/svnews/news_detail.html:6
+msgid "News"
+msgstr "Știri"
+
+#: templates/svnews/news_detail.html:31
+msgid "Posted by"
+msgstr "Trimis de"
+
+#: templates/svnews/news_detail.html:38
+msgid "Comments"
+msgstr "Comentarii"
+
+#: templates/svnews/news_detail.html:40
+msgid "Start a new thread"
+msgstr "Pornește un nou fir"
+
+#: templates/svnews/news_detail.html:43
+msgid "You could post if you were logged in"
+msgstr "Ați fi putut trimite dacă erați autentificat"
+
+#: templates/svnews/news_list.html:13
+msgid "Latest approved news - with summaries"
+msgstr "Ultimele știri aprobate - cu rezumate"
+
+#: templates/svnews/news_list.html:18
+msgid "No news items found"
+msgstr "Nu s-au găsit elemente de știri"
+
+#: templates/svnews/news_list.html:27
+msgid "Older approved news"
+msgstr "Știri aprobate mai vechi"
+
+#: templates/svnews/news_list.inc:9
+#: templates/svnews/news_list_short.inc:8
+msgid "posted by"
+msgstr "trimis de"
+
+#: templates/svnews/news_list.inc:12
+#: templates/svnews/news_list_short.inc:11
+#, python-format
+msgid "%(count)s comment"
+msgid_plural "%(count)s comments"
+msgstr[0] "%(count)s comentariu"
+msgstr[1] "%(count)s comentarii"
+
+#: templates/svnews/user_submitted_by_link.inc:9
+#: templates/tracker/item_form.html:37
+#: templates/tracker/item_form.html:111
+#: templates/tracker/item_form.html:135
+#: templates/tracker/item_form.html:181
+msgid "Invalid user ID"
+msgstr "Identificator de utilizator invalid"
+
+#: templates/svnews/user_submitted_by_link.inc:12
+#: templates/tracker/item_form.html:40
+#: templates/tracker/item_form.html:114
+#: templates/tracker/item_form.html:138
+#: templates/tracker/item_form.html:184
+msgid "Anonymous"
+msgstr "Anonim"
+
+#: templates/svpeople/index.html:5
+#: templates/svpeople/job_detail.html:7
 #: templates/svpeople/job_form.html:6
 #: templates/svpeople/job_list_by_category.html:5
 #: templates/svpeople/job_list_by_group.html:5
@@ -2001,288 +1883,272 @@ msgstr "Fără utilizatori."
 msgid "People at %(site_name)s"
 msgstr "Persoane la %(site_name)s"
 
-#: savane-forge/templates/svpeople/index.html:27
 #: templates/svpeople/index.html:27
 msgid "Project type"
 msgstr "Tipul proiectului"
 
-#: savane-forge/templates/svpeople/index_custom.html:2
 #: templates/svpeople/index_custom.html:2
-msgid ""
-"Browse through the category menu to find projects looking for your help."
+msgid "Browse through the category menu to find projects looking for your help."
 msgstr ""
 
-#: savane-forge/templates/svpeople/index_custom.html:3
 #: templates/svpeople/index_custom.html:3
 #, python-format
-msgid ""
-"If you're a project admin, log in, enter your project page, follow the "
-"project admin link (in the navigation bar) and you will find a "
-"%(begin_em)sPost Jobs%(end_em)s section where you can submit help wanted "
-"requests to appear in this list."
+msgid "If you're a project admin, log in, enter your project page, follow the project admin link (in the navigation bar) and you will find a %(begin_em)sPost Jobs%(end_em)s section where you can submit help wanted requests to appear in this list."
 msgstr ""
 
-#: savane-forge/templates/svpeople/index_custom.html:4
 #: templates/svpeople/index_custom.html:4
 msgid "To suggest new job categories, visit the support manager."
-msgstr ""
-"Pentru a sugera noi categorii de slujbe, vizitează adminstratorul de "
-"asistență. "
+msgstr "Pentru a sugera noi categorii de slujbe, vizitează adminstratorul de asistență. "
 
-#: savane-forge/templates/svpeople/job_detail.html:15
 #: templates/svpeople/job_detail.html:15
 msgid "wanted for"
 msgstr "dorit pentru"
 
-#: savane-forge/templates/svpeople/job_detail.html:18
 #: templates/svpeople/job_detail.html:18
 msgid "Edit"
 msgstr "Editează"
 
-#: savane-forge/templates/svpeople/job_detail.html:23
 #: templates/svpeople/job_detail.html:23
 msgid "Submitted By:"
 msgstr "Trimis de:"
 
-#: savane-forge/templates/svpeople/job_detail.html:26
 #: templates/svpeople/job_detail.html:26
 msgid "Date:"
 msgstr "Dată:"
 
-#: savane-forge/templates/svpeople/job_detail.html:27
 #: templates/svpeople/job_detail.html:27
 msgid "Status:"
 msgstr "Stare:"
 
-#: savane-forge/templates/svpeople/job_detail.html:39
 #: templates/svpeople/job_detail.html:39
 msgid "Details (job description, contact ...):"
 msgstr "Detalii (descrierea slujbei, contact ...):"
 
-#: savane-forge/templates/svpeople/job_detail.html:45
 #: templates/svpeople/job_detail.html:45
 msgid "Required Skills:"
 msgstr "Abilități necesare:"
 
-#: savane-forge/templates/svpeople/job_form.html:21
 #: templates/svpeople/job_form.html:21
-msgid ""
-"Start by filling in the fields below. When you click continue, you will be "
-"shown a list of skills and experience levels that this job requires."
-msgstr ""
-"Începe prin a completa câmpurile de mai jos. Când vei da clic pe continuă, "
-"ți se va arăta o listă cu abilitățile și nivelurile de experiență pe care "
-"această slujbă le necesită."
+msgid "Start by filling in the fields below. When you click continue, you will be shown a list of skills and experience levels that this job requires."
+msgstr "Începe prin a completa câmpurile de mai jos. Când vei da clic pe continuă, ți se va arăta o listă cu abilitățile și nivelurile de experiență pe care această slujbă le necesită."
 
-#: savane-forge/templates/svpeople/job_form.html:23
 #: templates/svpeople/job_form.html:23
 msgid "Now you can edit/change the list of skills attached to this posting."
 msgstr "Acum poți edita/schimba lista abilităților atașate acestei programări"
 
-#: savane-forge/templates/svpeople/job_form.html:24
 #: templates/svpeople/job_form.html:24
 msgid "Developers will be able to match their skills with your requirements."
-msgstr ""
-"Dezvoltatorii vor putea să-și potrivească abilitățile lor cu cerințele tale."
+msgstr "Dezvoltatorii vor putea să-și potrivească abilitățile lor cu cerințele tale."
 
-#: savane-forge/templates/svpeople/job_form.html:26
 #: templates/svpeople/job_form.html:26
 msgid "All postings are automatically closed after two weeks."
 msgstr "Toate programările sunt închise automat după două săptămâni."
 
-#: savane-forge/templates/svpeople/job_inventory.inc:5
-#: savane-forge/templates/svpeople/skill_inventory_edit.inc:6
 #: templates/svpeople/job_inventory.inc:5
 #: templates/svpeople/skill_inventory_edit.inc:6
 msgid "Skill"
 msgstr "Abilitate"
 
-#: savane-forge/templates/svpeople/job_inventory.inc:6
-#: savane-forge/templates/svpeople/skill_inventory_edit.inc:7
 #: templates/svpeople/job_inventory.inc:6
 #: templates/svpeople/skill_inventory_edit.inc:7
 msgid "Level"
 msgstr "Nivel"
 
-#: savane-forge/templates/svpeople/job_inventory.inc:7
-#: savane-forge/templates/svpeople/skill_inventory_edit.inc:8
 #: templates/svpeople/job_inventory.inc:7
 #: templates/svpeople/skill_inventory_edit.inc:8
 msgid "Experience"
 msgstr "Experiență"
 
-#: savane-forge/templates/svpeople/job_inventory.inc:16
 #: templates/svpeople/job_inventory.inc:16
 msgid "No skill inventory set up"
 msgstr "Niciun inventar de abilități configurat"
 
-#: savane-forge/templates/svpeople/job_list.inc:4
 #: templates/svpeople/job_list.inc:4
 msgid "Title"
 msgstr "Titlu"
 
-#: savane-forge/templates/svpeople/job_list.inc:6
 #: templates/svpeople/job_list.inc:6
 msgid "Date opened"
 msgstr "Data deschiderii"
 
-#: savane-forge/templates/svpeople/job_list.inc:7
 #: templates/svpeople/job_list.inc:7
 msgid "Project"
 msgstr "Proiect"
 
-#: savane-forge/templates/svpeople/job_list.inc:8
 #: templates/svpeople/job_list.inc:8
 msgid "Type"
 msgstr "Tip"
 
-#: savane-forge/templates/svpeople/job_list_by_category.html:6
 #: templates/svpeople/job_list_by_category.html:6
 #, python-format
 msgid "Projects looking for %(category_label)s"
 msgstr "Proiecte în căutare de %(category_label)s"
 
-#: savane-forge/templates/svpeople/job_list_by_group.html:12
 #: templates/svpeople/job_list_by_group.html:12
 msgid "Here is a list of positions available for this project."
 msgstr "Aici este o listă cu pozițiile disponibile pentru acest proiect."
 
-#: savane-forge/templates/svpeople/userinfo_form.html:12
 #: templates/svpeople/userinfo_form.html:12
 msgid "Resume - Description of experience"
 msgstr "CV - Descrierea experienței"
 
-#: savane-forge/templates/svpeople/userinfo_form.html:18
 #: templates/svpeople/userinfo_form.html:18
 msgid "Skills"
 msgstr "Abilități"
 
-#: savane-forge/templates/tracker/item_form.html:24
-#: templates/tracker/item_form.html:24
+#: templates/tracker/item_form.html:29
+msgid "Submitted by"
+msgstr "Trimis de:"
+
+#: templates/tracker/item_form.html:44
+msgid "Submit changes and browse items"
+msgstr "Trimite schimbări și răsfoiește elemente"
+
+#: templates/tracker/item_form.html:48
+msgid "Submitted on"
+msgstr "Trimis la:"
+
+#: templates/tracker/item_form.html:50
+msgid "Submit changes and return to this item"
+msgstr "Trimite schimbări și întoarce la acest element"
+
+#: templates/tracker/item_form.html:66
 msgid "Post a comment"
 msgstr "Trimite un comentariu"
 
-#: savane-forge/templates/tracker/item_form.html:28
-#: templates/tracker/item_form.html:28
+#: templates/tracker/item_form.html:68
+msgid "Add a new comment"
+msgstr "Adaugă un comentariu now"
+
+#: templates/tracker/item_form.html:71
+msgid "Comment type & canned response"
+msgstr "Tipul comentariului & răspunsul prestabilit"
+
+#: templates/tracker/item_form.html:83
+msgid "No canned response available"
+msgstr "Niciun răspuns prestabilit disponibil"
+
+#: templates/tracker/item_form.html:86
+msgid "Or define a new canned response"
+msgstr "Sau definește un răspuns prestabilit"
+
+#: templates/tracker/item_form.html:91
 msgid "Discussion"
 msgstr "Discuție"
 
-#: savane-forge/templates/tracker/item_form.html:30
-#: templates/tracker/item_form.html:30
+#: templates/tracker/item_form.html:100
+#, python-format
+msgid "comment #%(number)s"
+msgstr "comentariul #%(number)s"
+
+#: templates/tracker/item_form.html:124
+msgid "original submission"
+msgstr "trimiterea originală"
+
+#: templates/tracker/item_form.html:145
 msgid "Attached files"
 msgstr "Fișiere atașate"
 
-#: savane-forge/templates/tracker/item_form.html:32
-#: templates/tracker/item_form.html:32
+#: templates/tracker/item_form.html:147
 msgid "Dependencies"
 msgstr "Dependențe"
 
-#: savane-forge/templates/tracker/item_form.html:34
-#: templates/tracker/item_form.html:34
+#: templates/tracker/item_form.html:149
 msgid "Mail notification carbon-copy list"
-msgstr ""
+msgstr "Lista de copii carbon ale notificărilor poștale"
 
-#: savane-forge/templates/tracker/item_form.html:36
-#: templates/tracker/item_form.html:36
+#: templates/tracker/item_form.html:151
 msgid "Votes"
 msgstr "Voturi"
 
-#: savane-forge/templates/tracker/item_form.html:38
-#: templates/tracker/item_form.html:38
+#: templates/tracker/item_form.html:153
 msgid "Submit changes"
 msgstr "Trimite schimbări"
 
-#: savane-forge/templates/tracker/item_form.html:41
-#: templates/tracker/item_form.html:41
+#: templates/tracker/item_form.html:156
 msgid "History"
 msgstr "Istoric"
 
-#: savane-forge/templates/webmail_locmem/mail_detail.html:13
-#: savane-forge/templates/webmail_locmem/mail_list.html:14
+#: templates/tracker/item_form.html:159
+#, fuzzy, python-format
+msgid "Follows %(count)s latest change."
+msgid_plural "Follow %(count)s latest changes."
+msgstr[0] "Urmărește %(count)s ultima schimbare."
+msgstr[1] "Urmărește ultimele %(count)s schimbări."
+
+#: templates/tracker/item_list.html:16
+#: templates/webmail_locmem/mail_list.html:13
+msgid "Id"
+msgstr "Identitate"
+
 #: templates/webmail_locmem/mail_detail.html:13
 #: templates/webmail_locmem/mail_list.html:14
 msgid "From"
 msgstr "De la"
 
-#: savane-forge/templates/webmail_locmem/mail_detail.html:14
-#: savane-forge/templates/webmail_locmem/mail_list.html:15
 #: templates/webmail_locmem/mail_detail.html:14
 #: templates/webmail_locmem/mail_list.html:15
 msgid "To"
 msgstr "Către"
 
-#: savane-forge/templates/webmail_locmem/mail_detail.html:15
 #: templates/webmail_locmem/mail_detail.html:15
 msgid "Bcc"
 msgstr "Bcc"
 
-#: savane-forge/templates/webmail_locmem/mail_detail.html:16
-#: savane-forge/templates/webmail_locmem/mail_list.html:16
 #: templates/webmail_locmem/mail_detail.html:16
 #: templates/webmail_locmem/mail_list.html:16
 msgid "Subject"
 msgstr "Subiect"
 
-#: savane-forge/templates/webmail_locmem/mail_detail.html:17
 #: templates/webmail_locmem/mail_detail.html:17
 msgid "Body"
 msgstr "Corp"
 
-#: savane-forge/templates/webmail_locmem/mail_detail.html:18
 #: templates/webmail_locmem/mail_detail.html:18
 msgid "Attachments"
 msgstr "Ataș"
 
-#: savane-forge/templates/webmail_locmem/mail_detail.html:24
 #: templates/webmail_locmem/mail_detail.html:24
 msgid "Full message"
 msgstr "Mesaj complet"
 
-#: savane-forge/templates/webmail_locmem/mail_list.html:9
 #: templates/webmail_locmem/mail_list.html:9
 msgid "No mail yet."
 msgstr "Niciun mesaj deocamdată."
 
-#: savane-forge/templates/webmail_locmem/mail_list.html:13
-#: templates/webmail_locmem/mail_list.html:13
-msgid "Id"
-msgstr "Identitate"
-
-#: savane-forge/webmail_locmem/urls.py:28 webmail_locmem/urls.py:28
+#: webmail_locmem/urls.py:28
 msgid "Savane hacker's mailbox"
-msgstr ""
+msgstr "Cutia postală a hackerului Savane"
 
-#: savane-forge/webmail_locmem/views.py:61
-#: savane-forge/webmail_locmem/views.py:76 webmail_locmem/views.py:61
+#: webmail_locmem/views.py:61
 #: webmail_locmem/views.py:76
 msgid "No such message"
 msgstr "Niciun mesaj de acest fel"
 
-#: savane-forge/webmail_locmem/views.py:65 webmail_locmem/views.py:65
+#: webmail_locmem/views.py:65
 #, python-format
 msgid "Message #%d"
 msgstr "Mesajul #%d"
 
-#: savane-forge/webmail_locmem/views.py:86 webmail_locmem/views.py:86
+#: webmail_locmem/views.py:86
 #, python-format
 msgid "Delete message #%d?"
 msgstr "Ștergi mesajul #%d?"
 
+#~ msgid "field"
+#~ msgstr "câmp"
+#~ msgid "no"
+#~ msgstr "nu"
 #~ msgid "Activate users"
 #~ msgstr "Utilizatori activi"
-
 #~ msgid "Username"
 #~ msgstr "Nume utilizator"
-
 #~ msgid "Email address"
 #~ msgstr "Adresa de email"
-
 #~ msgid "Password"
 #~ msgstr "Parola"
-
 #~ msgid "user"
 #~ msgstr "utilizator"
-
 #~ msgid "activation key"
 #~ msgstr "cheia de activare"
 
@@ -2343,22 +2209,16 @@ msgstr "Ștergi mesajul #%d?"
 #~ msgstr "Personae la %(site_name)s"
 
 #, fuzzy
-#~ msgid "The %(site_name)s team"
-#~ msgstr "Personae la %(site_name)s"
-
-#, fuzzy
 #~ msgid "E-mail address:"
 #~ msgstr "Adresa de email"
 
 #, fuzzy
 #~ msgid "Reset my password"
 #~ msgstr "Schimbă parola"
-
 #~ msgid "Savane"
 #~ msgstr "Savane"
-
 #~ msgid "CVS Attic/Gna!"
 #~ msgstr "CVS Attic/Gna!"
-
 #~ msgid "Subversion Attic/Gna!"
 #~ msgstr "Subversion Attic/Gna!"
+
