@@ -101,6 +101,7 @@ def homepage(request):
         'category_list' : category_list,
         'news_list' : news_list,
         'news_count' : news_count,
+        'group_type': 'TODO',
         }
     return context
 
