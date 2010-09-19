@@ -512,7 +512,7 @@ class SvGroupInfo(models.Model):
         return self.group.membership_set.filter(admin_flags='A')
 
     def get_active_memberships(self):
-        return self.group.membership_set.exclude(admin_flags='P')
+        return self.group.membership_set.exclude(admin_flags='P').select_related('user__svuserinfo')
 
     # Download
     def get_url_download(self):
