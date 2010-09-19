@@ -1,4 +1,5 @@
 # News and comments structure
+# Copyright (C) 2004, 2005  Mathieu Roy
 # Copyright (C) 2010  Sylvain Beucler
 #
 # This file is part of Savane.
@@ -18,6 +19,9 @@
 
 from django.db import models
 import django.contrib.auth.models as auth_models
+from savane.utils import markup
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _, ungettext
 
 # - news_byte
 class ApprovedNewsManager(models.Manager):
@@ -49,6 +53,37 @@ class News(models.Model):
 
     objects = models.Manager() # default manager
     approved_objects = ApprovedNewsManager()
+
+    def get_details_short(self):
+        # if the news item is large (>500 characters),
+        # only show about 250 characters of the story
+        story = self.details
+        strlen_story = len(story);
+        if strlen_story > 500:
+            # if there is a linebreak close to the 250 character
+            # mark, we use it to truncate the news item, so that
+            # the markup will not be confused.
+            # We accept the range from 240 to 350 characters, else
+            # the news item will be split on whitespace.
+            # See bug #7634
+            linebreak = self.details.find("\n", min(strlen_story, 240))
+            if linebreak >= 0 and linebreak < 350:
+                truncate = linebreak
+            else:
+                truncate = story[:250].rfind(' ')
+                if truncate == False:
+                    truncate = 250
+            summ_txt = story[:truncate]
+            summ_txt += " ..."
+            summ_txt = markup.full(summ_txt)
+            summ_txt += '<br />'
+            summ_txt += '<a href="%s">' % reverse('savane:svnews:news_detail', args=[self.pk])
+            summ_txt += _("[Read more]")
+            summ_txt += '</a>'
+        else:
+            # this is a short news item. just display it.
+            summ_txt = markup.full(story)
+        return summ_txt
 
 class Comment(models.Model):
     """

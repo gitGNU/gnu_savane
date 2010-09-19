@@ -12,7 +12,6 @@
     {% blocktrans count object.comment_set.count as count %}{{count}} comment{% plural %}{{count}} comments{% endblocktrans %}
   </em></span>
   <br />
-  {{object.details|svmarkup_full}}
-  TODO: conditional [Read more]
+  {{object.get_details_short|safe}}
 </div>
 {% endfor %}
