@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-29 10:52+0000\n"
-"PO-Revision-Date: 2010-08-29 12:53+0200\n"
+"POT-Creation-Date: 2010-09-19 18:21+0000\n"
+"PO-Revision-Date: 2010-09-19 20:21+0200\n"
 "Last-Translator: Sylvain Beucler <beuc@beuc.net>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -582,36 +582,36 @@ msgstr "Liste des licences"
 msgid "License detail"
 msgstr "Détails de la licence"
 
-#: savane/svmain/views.py:110
+#: savane/svmain/views.py:111
 msgid "Request for inclusion already registered"
 msgstr "La requête d'inclusion est déjà prise en compte"
 
-#: savane/svmain/views.py:114
+#: savane/svmain/views.py:115
 msgid "Request for inclusion sent to project administrators"
 msgstr "La requête d'inclusion a été transmise aux administrateurs"
 
-#: savane/svmain/views.py:185
+#: savane/svmain/views.py:186
 #, python-format
 msgid "GPG Keyring of the project %s"
 msgstr "Trousseau GPG du projet %s"
 
-#: savane/svmain/views.py:215 savane/svmain/views.py:241
+#: savane/svmain/views.py:216 savane/svmain/views.py:242
 #: savane/svpeople/views.py:106
 #, python-format
 msgid "%s saved."
 msgstr "%s enregistré(e)."
 
-#: savane/svmain/views.py:275 savane/svmain/views.py:280
+#: savane/svmain/views.py:276 savane/svmain/views.py:281
 #, python-format
 msgid "Permissions of %s updated."
 msgstr "Permissions de %s mises à jour."
 
-#: savane/svmain/views.py:284 savane/svmain/views.py:293
+#: savane/svmain/views.py:285 savane/svmain/views.py:294
 #, python-format
 msgid "User %s deleted from the project."
 msgstr "L'utilisateur %s est supprimé du projet."
 
-#: savane/svmain/views.py:290 savane/svmain/views.py:311
+#: savane/svmain/views.py:291 savane/svmain/views.py:312
 #, python-format
 msgid "User %s added to the project."
 msgstr "L'utilisateur %s est ajouté au projet."
@@ -737,6 +737,10 @@ msgstr "Postes"
 #: templates/svmain/group_admin_members_add.html:34
 msgid "Add"
 msgstr "Ajouter"
+
+#: savane/svnews/models.py:81
+msgid "[Read more]"
+msgstr "[Lire la suite]"
 
 #: savane/svnews/urls.py:46 savane/svnews/urls.py:50
 msgid "Manage"
@@ -3324,9 +3328,6 @@ msgstr "Supprimer le message n°%d ?"
 
 #~ msgid "Post Comment"
 #~ msgstr "Poster un commentaire"
-
-#~ msgid "%s[Read more]%s"
-#~ msgstr "%s[Lire la suite]%s"
 
 #~ msgid "%s reply"
 #~ msgid_plural "%s replies"
