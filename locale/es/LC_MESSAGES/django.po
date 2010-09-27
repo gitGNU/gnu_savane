@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-09-16 06:19+0000\n"
-"PO-Revision-Date: 2010-09-25 12:18+0100\n"
+"PO-Revision-Date: 2010-09-27 19:12+0200\n"
 "Last-Translator: Carolina <tforfree@rocketmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
@@ -1612,7 +1612,7 @@ msgstr "El contenido de este depósito de claves del proyecto se ecuentra abajo.
 #: templates/svmain/group_gpgkeyring.html:22
 #, python-format
 msgid "You can %(begin_link)sdownload the keyring%(end_link)s and import it with the command %(command)s"
-msgstr "Usted puede %(begin_link)descargar el depósito de claves%(end_link)s e importarlo con el mandato %(command)s"
+msgstr "Usted puede %(begin_link)s descargar el depósito de claves%(end_link)s e importarlo con el mandato %(command)s"
 
 #: templates/svmain/group_gpgkeyring.html:25
 msgid "They GPG Keyring of the project is empty, no keys were registered"
@@ -1645,7 +1645,7 @@ msgstr "Usted puede suscribirse o borrarse de la lista siguiendo las instruccion
 #: templates/svmain/group_mailinglist.html:33
 #, python-format
 msgid "Project administrators can use the %(begin_link)sadministrative interface%(end_link)s to manage the list."
-msgstr "Los administradores del proyecto pueden usar la %sinterfaz administrativa%s para gestionar la lista."
+msgstr "Los administradores del proyecto pueden usar la %(begin_link)sinterfaz administrativa%(end_link)s para gestionar la lista."
 
 #: templates/svmain/group_mailinglist.html:37
 #, python-format
