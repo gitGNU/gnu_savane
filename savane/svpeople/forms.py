@@ -20,6 +20,7 @@
 from django import forms
 import django.contrib.auth.models as auth_models
 import models as svpeople_models
+from django.utils.translation import ugettext
 from django.utils.translation import ugettext as _
 
 class JobForm(forms.ModelForm):

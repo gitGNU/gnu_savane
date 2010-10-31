@@ -1,0 +1,445 @@
+# Only the 'bugs' tracker for now
+- fields: {description: '', display_size: '', empty_ok: null, field: percent_complete,
+    group: null, keep_history: true, label: Percent Complete, rank: 500, show_on_add_anonymous: false,
+    show_on_add_connected: false, show_on_add_members: false, tracker: bugs, transition_default_auth: A,
+    use_it: false}
+  model: tracker.fieldoverlay
+  pk: 1
+- fields: {description: User who originally submitted the item, display_size: '',
+    empty_ok: null, field: submitted_by, group: null, keep_history: false, label: Submitted
+      by, rank: 20, show_on_add_anonymous: false, show_on_add_connected: false, show_on_add_members: false,
+    tracker: bugs, transition_default_auth: A, use_it: true}
+  model: tracker.fieldoverlay
+  pk: 2
+- fields: {description: Date and time of the initial submission, display_size: 10/15,
+    empty_ok: null, field: date, group: null, keep_history: false, label: Submitted
+      on, rank: 40, show_on_add_anonymous: false, show_on_add_connected: false, show_on_add_members: false,
+    tracker: bugs, transition_default_auth: A, use_it: true}
+  model: tracker.fieldoverlay
+  pk: 3
+- fields: {description: Date and time when the item  status was changed to 'Closed',
+    display_size: 10/15, empty_ok: null, field: close_date, group: null, keep_history: false,
+    label: Closed on, rank: 50, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: true}
+  model: tracker.fieldoverlay
+  pk: 4
+- fields: {description: 'Most basic status of the item: is the item considered as
+      dealt with or not.', display_size: '', empty_ok: null, field: status_id, group: null,
+    keep_history: true, label: Open/Closed, rank: 600, show_on_add_anonymous: false,
+    show_on_add_connected: false, show_on_add_members: false, tracker: bugs, transition_default_auth: A,
+    use_it: true}
+  model: tracker.fieldoverlay
+  pk: 5
+- fields: {description: 'Impact of the item on the system (Critical, Major,...)',
+    display_size: '', empty_ok: null, field: severity, group: null, keep_history: true,
+    label: Severity, rank: 200, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: true, tracker: bugs, transition_default_auth: A, use_it: true}
+  model: tracker.fieldoverlay
+  pk: 6
+- fields: {description: 'Generally high level modules or functionalities of the software
+      (e.g. User interface, Configuration Manager, etc)', display_size: '', empty_ok: null,
+    field: category_id, group: null, keep_history: true, label: Category, rank: 100,
+    show_on_add_anonymous: false, show_on_add_connected: true, show_on_add_members: true,
+    tracker: bugs, transition_default_auth: A, use_it: true}
+  model: tracker.fieldoverlay
+  pk: 7
+- fields: {description: Who is in charge of handling this item, display_size: '',
+    empty_ok: null, field: assigned_to, group: null, keep_history: true, label: Assigned
+      to, rank: 500, show_on_add_anonymous: false, show_on_add_connected: false, show_on_add_members: true,
+    tracker: bugs, transition_default_auth: A, use_it: true}
+  model: tracker.fieldoverlay
+  pk: 8
+- fields: {description: One line description of the item, display_size: 65/120, empty_ok: null,
+    field: summary, group: null, keep_history: true, label: Summary, rank: 700000,
+    show_on_add_anonymous: false, show_on_add_connected: true, show_on_add_members: true,
+    tracker: bugs, transition_default_auth: A, use_it: true}
+  model: tracker.fieldoverlay
+  pk: 9
+- fields: {description: Full description of the item, display_size: 65/20, empty_ok: null,
+    field: details, group: null, keep_history: true, label: Original Submission, rank: 700001,
+    show_on_add_anonymous: false, show_on_add_connected: true, show_on_add_members: true,
+    tracker: bugs, transition_default_auth: A, use_it: true}
+  model: tracker.fieldoverlay
+  pk: 10
+- fields: {description: 'Characterizes the nature of the item (e.g. Crash Error, Documentation
+      Typo, Installation Problem, etc', display_size: '', empty_ok: null, field: bug_group_id,
+    group: null, keep_history: true, label: Item Group, rank: 300, show_on_add_anonymous: false,
+    show_on_add_connected: true, show_on_add_members: true, tracker: bugs, transition_default_auth: A,
+    use_it: true}
+  model: tracker.fieldoverlay
+  pk: 11
+- fields: {description: Current status of the item, display_size: '', empty_ok: null,
+    field: resolution_id, group: null, keep_history: true, label: Status, rank: 400,
+    show_on_add_anonymous: false, show_on_add_connected: false, show_on_add_members: true,
+    tracker: bugs, transition_default_auth: A, use_it: true}
+  model: tracker.fieldoverlay
+  pk: 12
+- fields: {description: Version of the System Component (aka Item Category) impacted
+      by the item, display_size: '', empty_ok: null, field: category_version_id, group: null,
+    keep_history: true, label: Component Version, rank: 1000, show_on_add_anonymous: false,
+    show_on_add_connected: false, show_on_add_members: false, tracker: bugs, transition_default_auth: A,
+    use_it: false}
+  model: tracker.fieldoverlay
+  pk: 13
+- fields: {description: Operating System impacted by the issue, display_size: '',
+    empty_ok: null, field: platform_version_id, group: null, keep_history: true, label: Operating
+      System, rank: 1100, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 14
+- fields: {description: How easy it is to reproduce the item, display_size: '', empty_ok: null,
+    field: reproducibility_id, group: null, keep_history: true, label: Reproducibility,
+    rank: 1200, show_on_add_anonymous: false, show_on_add_connected: false, show_on_add_members: false,
+    tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 15
+- fields: {description: Estimated size of the code to be developed or reworked to
+      fix the item, display_size: '', empty_ok: null, field: size_id, group: null,
+    keep_history: true, label: Size (loc), rank: 1300, show_on_add_anonymous: false,
+    show_on_add_connected: false, show_on_add_members: false, tracker: bugs, transition_default_auth: A,
+    use_it: false}
+  model: tracker.fieldoverlay
+  pk: 16
+- fields: {description: Release in which the item was actually fixed, display_size: '',
+    empty_ok: null, field: fix_release_id, group: null, keep_history: true, label: Fixed
+      Release, rank: 1400, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 17
+- fields: {description: Specify the nature of the follow up comment attached to this
+      item, display_size: '', empty_ok: null, field: comment_type_id, group: null,
+    keep_history: false, label: Comment Type, rank: 1500, show_on_add_anonymous: false,
+    show_on_add_connected: false, show_on_add_members: false, tracker: bugs, transition_default_auth: A,
+    use_it: true}
+  model: tracker.fieldoverlay
+  pk: 18
+- fields: {description: Number of hours of work needed to fix the item, display_size: 5/5,
+    empty_ok: null, field: hours, group: null, keep_history: true, label: Effort,
+    rank: 1700, show_on_add_anonymous: false, show_on_add_connected: false, show_on_add_members: false,
+    tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 19
+- fields: {description: Release in which it is planned to have the item fixed, display_size: '',
+    empty_ok: null, field: plan_release_id, group: null, keep_history: true, label: Planned
+      Release, rank: 1600, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 20
+- fields: {description: Version of the system component (or work product) impacted
+      by the item (<u>in free text</u>), display_size: 10/40, empty_ok: null, field: component_version,
+    group: null, keep_history: true, label: Component Version, rank: 1800, show_on_add_anonymous: false,
+    show_on_add_connected: false, show_on_add_members: false, tracker: bugs, transition_default_auth: A,
+    use_it: false}
+  model: tracker.fieldoverlay
+  pk: 21
+- fields: {description: Release in which the bug was actually fixed (<u>in free text</u>),
+    display_size: 10/40, empty_ok: null, field: fix_release, group: null, keep_history: true,
+    label: Fixed Release, rank: 1900, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 22
+- fields: {description: Release in which it is planned to have the item fixed (<u>in
+      free text</u>), display_size: 10/40, empty_ok: null, field: plan_release, group: null,
+    keep_history: true, label: Planned Release, rank: 2000, show_on_add_anonymous: false,
+    show_on_add_connected: false, show_on_add_members: false, tracker: bugs, transition_default_auth: A,
+    use_it: false}
+  model: tracker.fieldoverlay
+  pk: 23
+- fields: {description: How quickly the item should be handled, display_size: '',
+    empty_ok: null, field: priority, group: null, keep_history: true, label: Priority,
+    rank: 250, show_on_add_anonymous: false, show_on_add_connected: false, show_on_add_members: false,
+    tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 24
+- fields: {description: Unique item identifier, display_size: 6/10, empty_ok: null,
+    field: bug_id, group: null, keep_history: false, label: Item ID, rank: 10, show_on_add_anonymous: false,
+    show_on_add_connected: false, show_on_add_members: false, tracker: bugs, transition_default_auth: A,
+    use_it: true}
+  model: tracker.fieldoverlay
+  pk: 25
+- fields: {description: Unique project identifier, display_size: '', empty_ok: null,
+    field: group_id, group: null, keep_history: false, label: Group ID, rank: 30,
+    show_on_add_anonymous: false, show_on_add_connected: true, show_on_add_members: true,
+    tracker: bugs, transition_default_auth: A, use_it: true}
+  model: tracker.fieldoverlay
+  pk: 26
+- fields: {description: List of comma separated keywords associated with this item,
+    display_size: 60/120, empty_ok: null, field: keywords, group: null, keep_history: true,
+    label: Keywords, rank: 3000, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 27
+- fields: {description: Release (global version number) impacted by the item, display_size: '',
+    empty_ok: null, field: release_id, group: null, keep_history: true, label: Release,
+    rank: 800, show_on_add_anonymous: false, show_on_add_connected: false, show_on_add_members: false,
+    tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 28
+- fields: {description: Release (global version number) impacted by the item (<u>in
+      free text</u>), display_size: 10/40, empty_ok: null, field: release, group: null,
+    keep_history: true, label: Release, rank: 800, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 29
+- fields: {description: Name of the person who submitted the item (if different from
+      the submitter field), display_size: 20/40, empty_ok: null, field: originator_name,
+    group: null, keep_history: true, label: Originator Name, rank: 550, show_on_add_anonymous: false,
+    show_on_add_connected: false, show_on_add_members: false, tracker: bugs, transition_default_auth: A,
+    use_it: false}
+  model: tracker.fieldoverlay
+  pk: 30
+- fields: {description: 'Email address of the person who submitted the item (if different
+      from the submitter field, add address to CC list)', display_size: 20/40, empty_ok: null,
+    field: originator_email, group: null, keep_history: true, label: Originator Email,
+    rank: 560, show_on_add_anonymous: false, show_on_add_connected: false, show_on_add_members: false,
+    tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 31
+- fields: {description: Phone number of the person who submitted the item, display_size: 10/40,
+    empty_ok: null, field: originator_phone, group: null, keep_history: true, label: Originator
+      Phone, rank: 570, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 32
+- fields: {description: 'Customizable Text Field (one line, up to 255 characters',
+    display_size: 10/15, empty_ok: null, field: custom_tf1, group: null, keep_history: true,
+    label: 'Custom Text Field #1', rank: 30000, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 33
+- fields: {description: 'Customizable Text Field (one line, up to 255 characters',
+    display_size: 10/15, empty_ok: null, field: custom_tf2, group: null, keep_history: true,
+    label: 'Custom Text Field #2', rank: 30100, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 34
+- fields: {description: 'Customizable Text Field (one line, up to 255 characters',
+    display_size: 10/15, empty_ok: null, field: custom_tf3, group: null, keep_history: true,
+    label: 'Custom Text Field #3', rank: 30200, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 35
+- fields: {description: 'Customizable Text Field (one line, up to 255 characters',
+    display_size: 10/15, empty_ok: null, field: custom_tf4, group: null, keep_history: true,
+    label: 'Custom Text Field #4', rank: 30300, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 36
+- fields: {description: 'Customizable Text Field (one line, up to 255 characters',
+    display_size: 10/15, empty_ok: null, field: custom_tf5, group: null, keep_history: true,
+    label: 'Custom Text Field #5', rank: 30400, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 37
+- fields: {description: 'Customizable Text Field (one line, up to 255 characters',
+    display_size: 10/15, empty_ok: null, field: custom_tf6, group: null, keep_history: true,
+    label: 'Custom Text Field #6', rank: 30500, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 38
+- fields: {description: 'Customizable Text Field (one line, up to 255 characters',
+    display_size: 10/15, empty_ok: null, field: custom_tf7, group: null, keep_history: true,
+    label: 'Custom Text Field #7', rank: 30600, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 39
+- fields: {description: 'Customizable Text Field (one line, up to 255 characters',
+    display_size: 10/15, empty_ok: null, field: custom_tf8, group: null, keep_history: true,
+    label: 'Custom Text Field #8', rank: 30700, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 40
+- fields: {description: 'Customizable Text Field (one line, up to 255 characters',
+    display_size: 10/15, empty_ok: null, field: custom_tf9, group: null, keep_history: true,
+    label: 'Custom Text Field #9', rank: 30800, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 41
+- fields: {description: 'Customizable Text Field (one line, up to 255 characters',
+    display_size: 10/15, empty_ok: null, field: custom_tf10, group: null, keep_history: true,
+    label: 'Custom Text Field #10', rank: 30900, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 42
+- fields: {description: Customizable Text Area (multi-line text), display_size: 60/3,
+    empty_ok: null, field: custom_ta1, group: null, keep_history: true, label: 'Custom
+      Text Area #1', rank: 40000, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 43
+- fields: {description: Customizable Text Area (multi-line text), display_size: 60/3,
+    empty_ok: null, field: custom_ta2, group: null, keep_history: true, label: 'Custom
+      Text Area #2', rank: 40100, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 44
+- fields: {description: Customizable Text Area (multi-line text), display_size: 60/3,
+    empty_ok: null, field: custom_ta3, group: null, keep_history: true, label: 'Custom
+      Text Area #3', rank: 40200, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 45
+- fields: {description: Customizable Text Area (multi-line text), display_size: 60/3,
+    empty_ok: null, field: custom_ta4, group: null, keep_history: true, label: 'Custom
+      Text Area #4', rank: 40300, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 46
+- fields: {description: Customizable Text Area (multi-line text), display_size: 60/3,
+    empty_ok: null, field: custom_ta5, group: null, keep_history: true, label: 'Custom
+      Text Area #5', rank: 40400, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 47
+- fields: {description: Customizable Text Area (multi-line text), display_size: 60/3,
+    empty_ok: null, field: custom_ta6, group: null, keep_history: true, label: 'Custom
+      Text Area #6', rank: 40500, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 48
+- fields: {description: Customizable Text Area (multi-line text), display_size: 60/3,
+    empty_ok: null, field: custom_ta7, group: null, keep_history: true, label: 'Custom
+      Text Area #7', rank: 40600, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 49
+- fields: {description: Customizable Text Area (multi-line text), display_size: 60/3,
+    empty_ok: null, field: custom_ta8, group: null, keep_history: true, label: 'Custom
+      Text Area #8', rank: 40700, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 50
+- fields: {description: Customizable Text Area (multi-line text), display_size: 60/3,
+    empty_ok: null, field: custom_ta9, group: null, keep_history: true, label: 'Custom
+      Text Area #9', rank: 40800, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 51
+- fields: {description: Customizable Text Area (multi-line text), display_size: 60/3,
+    empty_ok: null, field: custom_ta10, group: null, keep_history: true, label: 'Custom
+      Text Area #10', rank: 40900, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 52
+- fields: {description: Customizable Select Box (pull down menu with predefined values),
+    display_size: '', empty_ok: null, field: custom_sb1, group: null, keep_history: true,
+    label: 'Custom Select Box #1', rank: 50000, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 53
+- fields: {description: Customizable Select Box (pull down menu with predefined values),
+    display_size: '', empty_ok: null, field: custom_sb2, group: null, keep_history: true,
+    label: 'Custom Select Box #2', rank: 50100, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 54
+- fields: {description: Customizable Select Box (pull down menu with predefined values),
+    display_size: '', empty_ok: null, field: custom_sb3, group: null, keep_history: true,
+    label: 'Custom Select Box #3', rank: 50200, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 55
+- fields: {description: Customizable Select Box (pull down menu with predefined values),
+    display_size: '', empty_ok: null, field: custom_sb4, group: null, keep_history: true,
+    label: 'Custom Select Box #4', rank: 50300, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 56
+- fields: {description: Customizable Select Box (pull down menu with predefined values),
+    display_size: '', empty_ok: null, field: custom_sb5, group: null, keep_history: true,
+    label: 'Custom Select Box #5', rank: 50400, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 57
+- fields: {description: Customizable Select Box (pull down menu with predefined values),
+    display_size: '', empty_ok: null, field: custom_sb6, group: null, keep_history: true,
+    label: 'Custom Select Box #6', rank: 50500, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 58
+- fields: {description: Customizable Select Box (pull down menu with predefined values),
+    display_size: '', empty_ok: null, field: custom_sb7, group: null, keep_history: true,
+    label: 'Custom Select Box #7', rank: 50600, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 59
+- fields: {description: Customizable Select Box (pull down menu with predefined values),
+    display_size: '', empty_ok: null, field: custom_sb8, group: null, keep_history: true,
+    label: 'Custom Select Box #8', rank: 50700, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 60
+- fields: {description: Customizable Select Box (pull down menu with predefined values),
+    display_size: '', empty_ok: null, field: custom_sb9, group: null, keep_history: true,
+    label: 'Custom Select Box #9', rank: 50800, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 61
+- fields: {description: Customizable Select Box (pull down menu with predefined values),
+    display_size: '', empty_ok: null, field: custom_sb10, group: null, keep_history: true,
+    label: 'Custom Select Box #10', rank: 50900, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 62
+- fields: {description: Customizable Date Field, display_size: 10/10, empty_ok: null,
+    field: custom_df1, group: null, keep_history: true, label: 'Custom Date Field
+      #1', rank: 60000, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 63
+- fields: {description: Customizable Date Field, display_size: 10/10, empty_ok: null,
+    field: custom_df2, group: null, keep_history: true, label: 'Custom Date Field
+      #2', rank: 60100, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 64
+- fields: {description: Customizable Date Field, display_size: 10/10, empty_ok: null,
+    field: custom_df3, group: null, keep_history: true, label: 'Custom Date Field
+      #3', rank: 60200, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 65
+- fields: {description: Customizable Date Field, display_size: 10/10, empty_ok: null,
+    field: custom_df4, group: null, keep_history: true, label: 'Custom Date Field
+      #4', rank: 60300, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 66
+- fields: {description: Customizable Date Field, display_size: 10/10, empty_ok: null,
+    field: custom_df5, group: null, keep_history: true, label: 'Custom Date Field
+      #5', rank: 60400, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 67
+- fields: {description: Determines whether the item can be seen by members of the
+      project only or anybody., display_size: '', empty_ok: null, field: privacy,
+    group: null, keep_history: true, label: Privacy, rank: 402, show_on_add_anonymous: false,
+    show_on_add_connected: true, show_on_add_members: true, tracker: bugs, transition_default_auth: A,
+    use_it: true}
+  model: tracker.fieldoverlay
+  pk: 68
+- fields: {description: How many votes this item received., display_size: 6/10, empty_ok: null,
+    field: vote, group: null, keep_history: false, label: Votes, rank: 405, show_on_add_anonymous: false,
+    show_on_add_connected: true, show_on_add_members: true, tracker: bugs, transition_default_auth: A,
+    use_it: true}
+  model: tracker.fieldoverlay
+  pk: 69
+- fields: {description: Determines whether comments can still be added to the item,
+    display_size: '', empty_ok: null, field: discussion_lock, group: null, keep_history: true,
+    label: Discussion Lock, rank: 800, show_on_add_anonymous: false, show_on_add_connected: false,
+    show_on_add_members: false, tracker: bugs, transition_default_auth: A, use_it: true}
+  model: tracker.fieldoverlay
+  pk: 70
+- fields: {description: Date and time when someone should start working on the item,
+    display_size: 10/15, empty_ok: null, field: planned_starting_date, group: null,
+    keep_history: true, label: Should Start On, rank: 55, show_on_add_anonymous: false,
+    show_on_add_connected: true, show_on_add_members: true, tracker: bugs, transition_default_auth: A,
+    use_it: false}
+  model: tracker.fieldoverlay
+  pk: 71
+- fields: {description: Date and time when the item should be completed, display_size: 10/15,
+    empty_ok: null, field: planned_close_date, group: null, keep_history: true, label: Should
+      be Finished on, rank: 56, show_on_add_anonymous: false, show_on_add_connected: true,
+    show_on_add_members: true, tracker: bugs, transition_default_auth: A, use_it: false}
+  model: tracker.fieldoverlay
+  pk: 72

@@ -1,0 +1,334 @@
+# Only the 'bugs' tracker for now
+- fields: {description: The bug has been submitted, email_ad: null, field: status_id,
+    group: null, rank: 20, send_all_flag: true, status: P, tracker: bugs, value: Open,
+    value_id: 1}
+  model: tracker.fieldchoice
+  pk: 1
+- fields: {description: The bug is no longer active. See the Resolution field for
+      details on how it was resolved., email_ad: null, field: status_id, group: null,
+    rank: 400, send_all_flag: true, status: P, tracker: bugs, value: Closed, value_id: 3}
+  model: tracker.fieldchoice
+  pk: 2
+- fields: {description: Issue which is mainly a matter of taste, email_ad: null, field: severity,
+    group: null, rank: 10, send_all_flag: true, status: A, tracker: bugs, value: 1
+      - Wish, value_id: 1}
+  model: tracker.fieldchoice
+  pk: 3
+- fields: {description: '', email_ad: null, field: severity, group: null, rank: 20,
+    send_all_flag: true, status: H, tracker: bugs, value: '1,5', value_id: 2}
+  model: tracker.fieldchoice
+  pk: 4
+- fields: {description: 'Issue which doesn''t affect the object''s usefulness, and
+      is presumably trivial to handle', email_ad: null, field: severity, group: null,
+    rank: 30, send_all_flag: true, status: A, tracker: bugs, value: 2 - Minor, value_id: 3}
+  model: tracker.fieldchoice
+  pk: 5
+- fields: {description: '', email_ad: null, field: severity, group: null, rank: 40,
+    send_all_flag: true, status: H, tracker: bugs, value: '2,5', value_id: 4}
+  model: tracker.fieldchoice
+  pk: 6
+- fields: {description: '', email_ad: null, field: severity, group: null, rank: 50,
+    send_all_flag: true, status: A, tracker: bugs, value: 3 - Normal, value_id: 5}
+  model: tracker.fieldchoice
+  pk: 7
+- fields: {description: '', email_ad: null, field: severity, group: null, rank: 60,
+    send_all_flag: true, status: H, tracker: bugs, value: '3,5', value_id: 6}
+  model: tracker.fieldchoice
+  pk: 8
+- fields: {description: 'Issue which has a major effect on the usability of the object,
+      without rendering it completely unusable to everyone', email_ad: null, field: severity,
+    group: null, rank: 70, send_all_flag: true, status: A, tracker: bugs, value: 4
+      - Important, value_id: 7}
+  model: tracker.fieldchoice
+  pk: 9
+- fields: {description: 'Issue which makes the object in question unusable or mostly
+      so, or causes data loss', email_ad: null, field: severity, group: null, rank: 80,
+    send_all_flag: true, status: A, tracker: bugs, value: 5 - Blocker, value_id: 8}
+  model: tracker.fieldchoice
+  pk: 10
+- fields: {description: Issue which introduces a security breach, email_ad: null,
+    field: severity, group: null, rank: 90, send_all_flag: true, status: A, tracker: bugs,
+    value: 6 - Security, value_id: 9}
+  model: tracker.fieldchoice
+  pk: 11
+- fields: {description: '', email_ad: null, field: category_id, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 12
+- fields: {description: '', email_ad: null, field: bug_group_id, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 13
+- fields: {description: This item is already covered by another item, email_ad: null,
+    field: resolution_id, group: null, rank: 120, send_all_flag: true, status: A,
+    tracker: bugs, value: Duplicate, value_id: 7}
+  model: tracker.fieldchoice
+  pk: 14
+- fields: {description: No problem found for the project team, email_ad: null, field: resolution_id,
+    group: null, rank: 60, send_all_flag: true, status: A, tracker: bugs, value: Works
+      For Me, value_id: 6}
+  model: tracker.fieldchoice
+  pk: 15
+- fields: {description: 'This field is a deprecated duplicate of Postponed, existing
+      only for historical reason', email_ad: null, field: resolution_id, group: null,
+    rank: 60, send_all_flag: true, status: H, tracker: bugs, value: Remind, value_id: 5}
+  model: tracker.fieldchoice
+  pk: 16
+- fields: {description: The issue will be handled later, email_ad: null, field: resolution_id,
+    group: null, rank: 80, send_all_flag: true, status: A, tracker: bugs, value: Postponed,
+    value_id: 4}
+  model: tracker.fieldchoice
+  pk: 17
+- fields: {description: More information is need to be able to handle this item, email_ad: null,
+    field: resolution_id, group: null, rank: 90, send_all_flag: true, status: A, tracker: bugs,
+    value: Need Info, value_id: 8}
+  model: tracker.fieldchoice
+  pk: 18
+- fields: {description: The issue won't be fixed (see comments), email_ad: null, field: resolution_id,
+    group: null, rank: 40, send_all_flag: true, status: A, tracker: bugs, value: Wont
+      Fix, value_id: 3}
+  model: tracker.fieldchoice
+  pk: 19
+- fields: {description: This item is not valid for some reason (see comments), email_ad: null,
+    field: resolution_id, group: null, rank: 130, send_all_flag: true, status: A,
+    tracker: bugs, value: Invalid, value_id: 2}
+  model: tracker.fieldchoice
+  pk: 20
+- fields: {description: '', email_ad: null, field: category_version_id, group: null,
+    rank: 10, send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 21
+- fields: {description: '', email_ad: null, field: platform_version_id, group: null,
+    rank: 10, send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 22
+- fields: {description: '', email_ad: null, field: reproducibility_id, group: null,
+    rank: 10, send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 23
+- fields: {description: '', email_ad: null, field: reproducibility_id, group: null,
+    rank: 20, send_all_flag: true, status: P, tracker: bugs, value: Every Time, value_id: 110}
+  model: tracker.fieldchoice
+  pk: 24
+- fields: {description: '', email_ad: null, field: reproducibility_id, group: null,
+    rank: 30, send_all_flag: true, status: P, tracker: bugs, value: Intermittent,
+    value_id: 120}
+  model: tracker.fieldchoice
+  pk: 25
+- fields: {description: '', email_ad: null, field: reproducibility_id, group: null,
+    rank: 40, send_all_flag: true, status: P, tracker: bugs, value: Once, value_id: 130}
+  model: tracker.fieldchoice
+  pk: 26
+- fields: {description: '', email_ad: null, field: size_id, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 27
+- fields: {description: '', email_ad: null, field: size_id, group: null, rank: 20,
+    send_all_flag: true, status: A, tracker: bugs, value: Low <30, value_id: 110}
+  model: tracker.fieldchoice
+  pk: 28
+- fields: {description: '', email_ad: null, field: size_id, group: null, rank: 30,
+    send_all_flag: true, status: A, tracker: bugs, value: Medium 30 - 200, value_id: 120}
+  model: tracker.fieldchoice
+  pk: 29
+- fields: {description: '', email_ad: null, field: size_id, group: null, rank: 40,
+    send_all_flag: true, status: A, tracker: bugs, value: High >200, value_id: 130}
+  model: tracker.fieldchoice
+  pk: 30
+- fields: {description: '', email_ad: null, field: fix_release_id, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 31
+- fields: {description: '', email_ad: null, field: comment_type_id, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 32
+- fields: {description: '', email_ad: null, field: plan_release_id, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 33
+- fields: {description: '', email_ad: null, field: priority, group: null, rank: 10,
+    send_all_flag: true, status: A, tracker: bugs, value: 1 - Later, value_id: 1}
+  model: tracker.fieldchoice
+  pk: 34
+- fields: {description: '', email_ad: null, field: priority, group: null, rank: 20,
+    send_all_flag: true, status: A, tracker: bugs, value: '2', value_id: 2}
+  model: tracker.fieldchoice
+  pk: 35
+- fields: {description: '', email_ad: null, field: priority, group: null, rank: 30,
+    send_all_flag: true, status: A, tracker: bugs, value: 3 - Low, value_id: 3}
+  model: tracker.fieldchoice
+  pk: 36
+- fields: {description: '', email_ad: null, field: priority, group: null, rank: 40,
+    send_all_flag: true, status: A, tracker: bugs, value: '4', value_id: 4}
+  model: tracker.fieldchoice
+  pk: 37
+- fields: {description: '', email_ad: null, field: priority, group: null, rank: 50,
+    send_all_flag: true, status: A, tracker: bugs, value: 5 - Normal, value_id: 5}
+  model: tracker.fieldchoice
+  pk: 38
+- fields: {description: '', email_ad: null, field: priority, group: null, rank: 60,
+    send_all_flag: true, status: A, tracker: bugs, value: '6', value_id: 6}
+  model: tracker.fieldchoice
+  pk: 39
+- fields: {description: '', email_ad: null, field: priority, group: null, rank: 70,
+    send_all_flag: true, status: A, tracker: bugs, value: 7 - High, value_id: 7}
+  model: tracker.fieldchoice
+  pk: 40
+- fields: {description: '', email_ad: null, field: priority, group: null, rank: 80,
+    send_all_flag: true, status: A, tracker: bugs, value: '8', value_id: 8}
+  model: tracker.fieldchoice
+  pk: 41
+- fields: {description: '', email_ad: null, field: priority, group: null, rank: 90,
+    send_all_flag: true, status: A, tracker: bugs, value: 9 - Immediate, value_id: 9}
+  model: tracker.fieldchoice
+  pk: 42
+- fields: {description: '', email_ad: null, field: release_id, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 43
+- fields: {description: '', email_ad: null, field: percent_complete, group: null,
+    rank: 1, send_all_flag: true, status: A, tracker: bugs, value: 0%, value_id: 1}
+  model: tracker.fieldchoice
+  pk: 44
+- fields: {description: '', email_ad: null, field: percent_complete, group: null,
+    rank: 10, send_all_flag: true, status: A, tracker: bugs, value: 10%, value_id: 10}
+  model: tracker.fieldchoice
+  pk: 45
+- fields: {description: '', email_ad: null, field: percent_complete, group: null,
+    rank: 20, send_all_flag: true, status: A, tracker: bugs, value: 20%, value_id: 20}
+  model: tracker.fieldchoice
+  pk: 46
+- fields: {description: '', email_ad: null, field: percent_complete, group: null,
+    rank: 30, send_all_flag: true, status: A, tracker: bugs, value: 30%, value_id: 30}
+  model: tracker.fieldchoice
+  pk: 47
+- fields: {description: '', email_ad: null, field: percent_complete, group: null,
+    rank: 40, send_all_flag: true, status: A, tracker: bugs, value: 40%, value_id: 40}
+  model: tracker.fieldchoice
+  pk: 48
+- fields: {description: '', email_ad: null, field: percent_complete, group: null,
+    rank: 50, send_all_flag: true, status: A, tracker: bugs, value: 50%, value_id: 50}
+  model: tracker.fieldchoice
+  pk: 49
+- fields: {description: '', email_ad: null, field: percent_complete, group: null,
+    rank: 60, send_all_flag: true, status: A, tracker: bugs, value: 60%, value_id: 60}
+  model: tracker.fieldchoice
+  pk: 50
+- fields: {description: '', email_ad: null, field: percent_complete, group: null,
+    rank: 70, send_all_flag: true, status: A, tracker: bugs, value: 70%, value_id: 70}
+  model: tracker.fieldchoice
+  pk: 51
+- fields: {description: '', email_ad: null, field: percent_complete, group: null,
+    rank: 80, send_all_flag: true, status: A, tracker: bugs, value: 80%, value_id: 80}
+  model: tracker.fieldchoice
+  pk: 52
+- fields: {description: '', email_ad: null, field: percent_complete, group: null,
+    rank: 90, send_all_flag: true, status: A, tracker: bugs, value: 90%, value_id: 90}
+  model: tracker.fieldchoice
+  pk: 53
+- fields: {description: '', email_ad: null, field: percent_complete, group: null,
+    rank: 100, send_all_flag: true, status: A, tracker: bugs, value: 100%, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 54
+- fields: {description: '', email_ad: null, field: resolution_id, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 56
+- fields: {description: '', email_ad: null, field: platform_version_id, group: null,
+    rank: 50, send_all_flag: true, status: A, tracker: bugs, value: Mac OS, value_id: 140}
+  model: tracker.fieldchoice
+  pk: 58
+- fields: {description: The bug was resolved, email_ad: null, field: resolution_id,
+    group: null, rank: 30, send_all_flag: true, status: A, tracker: bugs, value: Fixed,
+    value_id: 1}
+  model: tracker.fieldchoice
+  pk: 59
+- fields: {description: '', email_ad: null, field: platform_version_id, group: null,
+    rank: 20, send_all_flag: true, status: A, tracker: bugs, value: GNU/Linux, value_id: 110}
+  model: tracker.fieldchoice
+  pk: 60
+- fields: {description: '', email_ad: null, field: platform_version_id, group: null,
+    rank: 30, send_all_flag: true, status: A, tracker: bugs, value: Microsoft Windows,
+    value_id: 120}
+  model: tracker.fieldchoice
+  pk: 61
+- fields: {description: '', email_ad: null, field: platform_version_id, group: null,
+    rank: 40, send_all_flag: true, status: A, tracker: bugs, value: '*BSD', value_id: 130}
+  model: tracker.fieldchoice
+  pk: 62
+- fields: {description: '', email_ad: null, field: custom_sb1, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 620
+- fields: {description: '', email_ad: null, field: custom_sb2, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 621
+- fields: {description: '', email_ad: null, field: custom_sb3, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 622
+- fields: {description: '', email_ad: null, field: custom_sb4, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 623
+- fields: {description: '', email_ad: null, field: custom_sb5, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 624
+- fields: {description: '', email_ad: null, field: custom_sb6, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 625
+- fields: {description: '', email_ad: null, field: custom_sb7, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 626
+- fields: {description: '', email_ad: null, field: custom_sb8, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 627
+- fields: {description: '', email_ad: null, field: custom_sb9, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 628
+- fields: {description: '', email_ad: null, field: custom_sb10, group: null, rank: 10,
+    send_all_flag: true, status: P, tracker: bugs, value: None, value_id: 100}
+  model: tracker.fieldchoice
+  pk: 629
+- fields: {description: This item can be seen by everybody., email_ad: null, field: privacy,
+    group: null, rank: 10, send_all_flag: true, status: A, tracker: bugs, value: Public,
+    value_id: 1}
+  model: tracker.fieldchoice
+  pk: 3108
+- fields: {description: This item can be seen only by project members., email_ad: null,
+    field: privacy, group: null, rank: 20, send_all_flag: true, status: A, tracker: bugs,
+    value: Private, value_id: 2}
+  model: tracker.fieldchoice
+  pk: 3109
+- fields: {description: This item is currently being worked on, email_ad: null, field: resolution_id,
+    group: null, rank: 70, send_all_flag: true, status: A, tracker: bugs, value: In
+      Progress, value_id: 9}
+  model: tracker.fieldchoice
+  pk: 3431
+- fields: {description: This item should be tested now, email_ad: null, field: resolution_id,
+    group: null, rank: 65, send_all_flag: true, status: A, tracker: bugs, value: Ready
+      For Test, value_id: 10}
+  model: tracker.fieldchoice
+  pk: 3432
+- fields: {description: The issue is confirmed, email_ad: null, field: resolution_id,
+    group: null, rank: 82, send_all_flag: true, status: A, tracker: bugs, value: Confirmed,
+    value_id: 11}
+  model: tracker.fieldchoice
+  pk: 3460
+- fields: {description: Comment can be added freely, email_ad: null, field: discussion_lock,
+    group: null, rank: 20, send_all_flag: true, status: P, tracker: bugs, value: Unlocked,
+    value_id: 0}
+  model: tracker.fieldchoice
+  pk: 4251
+- fields: {description: Discussion about this item is over, email_ad: null, field: discussion_lock,
+    group: null, rank: 30, send_all_flag: true, status: P, tracker: bugs, value: Locked,
+    value_id: 1}
+  model: tracker.fieldchoice
+  pk: 4252
