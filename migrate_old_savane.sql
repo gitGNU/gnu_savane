@@ -651,11 +651,11 @@ INSERT INTO tracker_item
     custom_ta6, custom_ta7, custom_ta8, custom_ta9, custom_ta10,
     custom_sb1, custom_sb2, custom_sb3, custom_sb4, custom_sb5,
     custom_sb6, custom_sb7, custom_sb8, custom_sb9, custom_sb10,
-    FROM_UNIXTIME(IF(custom_df1<0,0,custom_df1)),
-    FROM_UNIXTIME(IF(custom_df2<0,0,custom_df2)),
-    FROM_UNIXTIME(IF(custom_df3<0,0,custom_df3)),
-    FROM_UNIXTIME(IF(custom_df4<0,0,custom_df4)),
-    FROM_UNIXTIME(IF(custom_df5<0,0,custom_df5))
+    FROM_UNIXTIME(IF(custom_df1<=0,NULL,custom_df1)),
+    FROM_UNIXTIME(IF(custom_df2<=0,NULL,custom_df2)),
+    FROM_UNIXTIME(IF(custom_df3<=0,NULL,custom_df3)),
+    FROM_UNIXTIME(IF(custom_df4<=0,NULL,custom_df4)),
+    FROM_UNIXTIME(IF(custom_df5<=0,NULL,custom_df5))
   FROM savane_old.bugs;
 -- Specify "default" differently
 UPDATE tracker_item SET assigned_to_id=NULL WHERE assigned_to_id=100;

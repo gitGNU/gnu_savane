@@ -454,11 +454,11 @@ class Item(models.Model):
     custom_sb9  = models.IntegerField(default=100)
     custom_sb10 = models.IntegerField(default=100)
 
-    custom_df1  = models.DateTimeField()
-    custom_df2  = models.DateTimeField()
-    custom_df3  = models.DateTimeField()
-    custom_df4  = models.DateTimeField()
-    custom_df5  = models.DateTimeField()
+    custom_df1  = models.DateTimeField(null=True)
+    custom_df2  = models.DateTimeField(null=True)
+    custom_df3  = models.DateTimeField(null=True)
+    custom_df4  = models.DateTimeField(null=True)
+    custom_df5  = models.DateTimeField(null=True)
 
     def get_public_id(self):
         if self.tracker_id == 'bugs':

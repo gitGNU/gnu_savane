@@ -6,18 +6,18 @@ Replace these with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from django.core.urlresolvers import reverse
 
 class SimpleTest(TestCase):
-    def test_basic_addition(self):
+    fixtures = [
+        'tracker.yaml',
+        'demo/item.yaml',
+        ]
+
+    def test_010_view_item(self):
         """
-        Tests that 1 + 1 always equals 2.
+        Consult a tracker item
         """
-        self.failUnlessEqual(1 + 1, 2)
-
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
-
->>> 1 + 1 == 2
-True
-"""}
-
+        response = self.client.get(reverse('savane:tracker:item_detail', args=('bugs', 1)))
+        self.assertEqual(response.status_code, 200)
+        print response.content

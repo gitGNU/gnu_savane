@@ -1,0 +1,12 @@
+- model: tracker.tracker
+  pk: 'bugs'
+  fields: {}
+- model: tracker.tracker
+  pk: 'patch'
+  fields: {}
+- model: tracker.tracker
+  pk: 'support'
+  fields: {}
+- model: tracker.tracker
+  pk: 'task'
+  fields: {}

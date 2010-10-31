@@ -1,0 +1,9 @@
+- model: tracker.Item
+  pk: 1
+  fields:
+    tracker: bugs
+    group: 1
+    public_bugs: 1
+- model: tracker.bugspublicid
+  pk: 1
+  fields: {}
