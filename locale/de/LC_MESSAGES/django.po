@@ -26,27 +26,30 @@
 # ###    news   = Nachrichten
 # ###    edit   = Bearbeiten
 # ###    manage = Verwaltung
-# ###    manager = Verwalter, oder <xyz>verwalter (ohne Bindestrich/Leerzeichen)
+# ###    manager = Verwalter, oder
+# ###              <xyz>verwalter (ohne Bindestrich/Leerzeichen)
 # ###    bug    = Fehler
-# ###    support = Unterstützung
-# ###    Tracker = Verfolgungssystem, oder <xyz>verfolgung
+# ###    support = Unterst??tzung
+# ###    Tracker = Verfolgungssystem, oder
+# ###              <xyz>verfolgung
 # ###    repository = Projektarchiv
 # ###    squad  = Team
 # ###    user   = Benutzer
-# ###    you    = Sie (nicht „Du‟. Wenn möglich unpersönlich, keine Ich-Form)
+# ###    you    = Sie (nicht ???Du???. Wenn m??glich unpers??nlich, keine Ich-Form)
 # ###
-# ###    Anführungszeichen = „…‟ (statt "...") [(&#8222;) und (&#8223;)]
-# ###                        KEINE Gänsefüße!!!
+# ###    Anf??hrungszeichen =  ????????? (statt "...") [(&#8222;) und (&#8223;)]
+# ###                        KEINE G??nsef????e!!!
 # ###    GNU xyz = GNU xyz (generell ohne Bindestrich,
-# ###              evtl.geschütztes Leerzeichen (&nbsp;)
-# ###              z. B. „GNU Savannah‟, „GNU Projekt‟, „GNU Betriebssystem‟
+# ###              evtl. mit gesch??tztem Leerzeichen (&nbsp;),
+# ###              um Trennungen am Zeilenende zu vermeiden
+# ###              z. B. ???GNU Savannah???, ???GNU Projekt???,  ???GNU Betriebssystem???
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Savane \n"
-"Report-Msgid-Bugs-To: savane-dev@gna.org\n"
+"Project-Id-Version: Savane 4\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-04 21:11+0000\n"
-"PO-Revision-Date: 2011-01-14 15:29+0100\n"
+"PO-Revision-Date: 2011-01-10 00:16+0100\n"
 "Last-Translator: Joerg Kohne <joeko (AT) online (PUNKT) de>\n"
 "Language-Team: German <>\n"
 "Language: de\n"
@@ -80,16 +83,16 @@ msgstr "Nachname"
 
 #: savane/my/forms.py:31
 msgid "GPG key"
-msgstr "GPG-Schlüssel"
+msgstr "GPG-Schl??ssel"
 
 #: savane/my/forms.py:32
 #: savane/svmain/models.py:140
 msgid "You can write down here your (ASCII) public key (gpg --export --armor keyid)"
-msgstr "Sie können hier Ihren öffentlichen Schlüssel (ASCII) eintragen (gpg --export --armor keyid)"
+msgstr "Sie k??nnen hier Ihren ??ffentlichen Schl??ssel (ASCII) eintragen (gpg --export --armor keyid)"
 
 #: savane/my/forms.py:36
 msgid "Key file"
-msgstr "Schlüsseldatei"
+msgstr "Schl??sseldatei"
 
 #: savane/my/forms.py:37
 msgid "Be sure to upload the file ending with .pub"
@@ -97,17 +100,17 @@ msgstr "Achten Sie darauf, die Datei mit der Endung .pub hochzuladen"
 
 #: savane/my/forms.py:40
 msgid "Key"
-msgstr "Schlüssel"
+msgstr "Schl??ssel"
 
 #: savane/my/forms.py:52
 #, python-format
 msgid "The uploaded string is not a public key file: %s"
-msgstr "Die hochgeladene Zeichenfolge ist keine öffentliche Schlüsseldatei: %s"
+msgstr "Die hochgeladene Zeichenfolge ist keine ??ffentliche Schl??sseldatei: %s"
 
 #: savane/my/forms.py:70
 #, python-format
 msgid "The uploaded file is not a public key file: %s"
-msgstr "Die hochgeladene Datei ist keine öffentliche Schlüsseldatei: %s"
+msgstr "Die hochgeladene Datei ist keine ??ffentliche Schl??sseldatei: %s"
 
 #: savane/my/urls.py:35
 #: templates/my/contact.html:5
@@ -124,7 +127,7 @@ msgstr "Kontaktinformationen"
 
 #: savane/my/urls.py:45
 msgid "Change authorized keys"
-msgstr "Autorisierte Schlüssel ändern"
+msgstr "Autorisierte Schl??ssel ??ndern"
 
 #: savane/my/urls.py:54
 msgid "Language"
@@ -137,7 +140,7 @@ msgstr "Die E-Mail ist identisch."
 #: savane/my/views.py:83
 #: savane/my/views.py:95
 msgid "verification"
-msgstr "Überprüfung"
+msgstr "??berpr??fung"
 
 #: savane/my/views.py:84
 #, python-format
@@ -145,8 +148,8 @@ msgid ""
 "You have requested a change of email address on %s.\n"
 "Please visit the following URL to complete the email change:"
 msgstr ""
-"Sie haben eine Änderung der E-Mail-Adresse auf %s angefordert.\n"
-"Bitte besuchen Sie folgende URL, um die Änderung abzuschließen:"
+"Sie haben eine ??nderung der E-Mail-Adresse auf %s angefordert.\n"
+"Bitte besuchen Sie folgende URL, um die ??nderung abzuschlie??en:"
 
 #: savane/my/views.py:89
 #: savane/my/views.py:109
@@ -163,8 +166,8 @@ msgid ""
 "Your current address is %(email_current)s, the supposedly new address is %(email_new)s.\n"
 "\n"
 msgstr ""
-"Jemand, vermutlich Sie, hat eine Änderung der E-Mail-Adresse auf %(site_name)s angefordert.\n"
-"Wenn dies nicht Sie waren, versucht vielleicht jemand Ihr Konto zu stehlen…\n"
+"Jemand, vermutlich Sie, hat eine ??nderung der E-Mail-Adresse auf %(site_name)s angefordert.\n"
+"Wenn dies nicht Sie waren, versucht vielleicht jemand Ihr Konto zu stehlen???\n"
 "\n"
 "Ihre aktuelle Adresse ist %(email_current)s, die angeblich neue Adresse ist %(email_new)s.\n"
 "\n"
@@ -174,25 +177,25 @@ msgid ""
 "If you did not request that change, please visit the following URL to discard\n"
 "the email change and report the problem to us:"
 msgstr ""
-"Wenn Sie die Änderung nicht angefordert haben, besuchen Sie bitte folgende URL,\n"
-"um die Änderung der E-Mail-Adresse zu verwerfen und uns das Problem zu melden:"
+"Wenn Sie die ??nderung nicht angefordert haben, besuchen Sie bitte folgende URL,\n"
+"um die ??nderung der E-Mail-Adresse zu verwerfen und uns das Problem zu melden:"
 
 #: savane/my/views.py:115
 msgid "The system reported a failure when trying to send the confirmation mail. Please retry and report that problem to administrators."
-msgstr "Das System meldete beim Versuch die Bestätigungs-E-Mail zu versenden einen Fehler. Bitte wiederholen Sie den Vorgang und melden das Problem an die Administratoren."
+msgstr "Das System meldete beim Versuch die Best??tigungs-E-Mail zu versenden einen Fehler. Bitte wiederholen Sie den Vorgang und melden das Problem an die Administratoren."
 
 #: savane/my/views.py:116
 #, python-format
 msgid "Confirmation mailed to %s."
-msgstr "Bestätigung wurde an %s versendet."
+msgstr "Best??tigung versendet an %s."
 
 #: savane/my/views.py:117
 msgid "Follow the instructions in the email to complete the email change."
-msgstr "Folgen Sie den Anweisungen in der E-Mail, um die Änderung der E-Mail-Adresse abzuschließen."
+msgstr "Folgen Sie den Anweisungen in der E-Mail, um die ??nderung der E-Mail-Adresse abzuschlie??en."
 
 #: savane/my/views.py:126
 msgid "Personal information changed."
-msgstr "Persönliche Informationen geändert."
+msgstr "Pers??nliche Informationen ge??ndert."
 
 #: savane/my/views.py:146
 msgid "Email address updated."
@@ -200,50 +203,50 @@ msgstr "E-Mail-Adresse aktualisiert."
 
 #: savane/my/views.py:148
 msgid "Confirm Email change"
-msgstr "Bestätigung der E-Mail-Adressänderung "
+msgstr "Best??tigung der E-Mail-Adress??nderung "
 
 #: savane/my/views.py:149
 #, python-format
 msgid "Confirm your e-mail change to %s?"
-msgstr "Bestätigung Ihrer E-Mail-Adressänderung in %s?"
+msgstr "Best??tigung Ihrer E-Mail-Adress??nderung in %s?"
 
 #: savane/my/views.py:151
 #: savane/my/views.py:167
 msgid "Invalid confirmation hash"
-msgstr "Hash-Bestätigung ungültig"
+msgstr "Hash-Best??tigung ung??ltig"
 
 #: savane/my/views.py:162
 msgid "Address change process discarded."
-msgstr "Adressänderung verworfen."
+msgstr "Adress??nderung verworfen."
 
 #: savane/my/views.py:164
 msgid "Cancel Email change"
-msgstr "E-Mail-Änderung abgebrochen"
+msgstr "E-Mail-??nderung abgebrochen"
 
 #: savane/my/views.py:165
 #, python-format
 msgid "Cancel your e-mail change to %s?"
-msgstr "Ihre E-Mail-Adressänderung in %s abbrechen?"
+msgstr "Ihre E-Mail-Adress??nderung in %s abbrechen?"
 
 #: savane/my/views.py:217
 #, python-format
 msgid "Key registered"
 msgid_plural "%(count)d keys registered"
-msgstr[0] "Schlüssel registriert"
-msgstr[1] "%(count)d Schlüssel registriert"
+msgstr[0] "Schl??ssel registriert"
+msgstr[1] "%(count)d Schl??ssel registriert"
 
 #: savane/my/views.py:221
 msgid "Error while registering keys"
-msgstr "Fehler bei der Registrierung der Schlüssel aufgetreten"
+msgstr "Fehler bei der Registrierung der Schl??ssel aufgetreten"
 
 #: savane/my/views.py:247
 msgid "Cannot remove the selected key"
-msgstr "Der ausgewählte Schlüssel kann nicht entfernt werden"
+msgstr "Der ausgew??hlte Schl??ssel kann nicht entfernt werden"
 
 #: savane/my/views.py:272
 #, python-format
 msgid "Language set to %s"
-msgstr "Ausgewählte Sprache ist %s"
+msgstr "Ausgew??hlte Sprache ist %s"
 
 #: savane/svmain/admin.py:52
 msgid "General Settings"
@@ -300,7 +303,7 @@ msgstr "Nachrichtenverwalter"
 
 #: savane/svmain/admin.py:86
 msgid "Project Menu Settings"
-msgstr "Projektmenü - Einstellungen"
+msgstr "Projektmen?? - Einstellungen"
 
 #: savane/svmain/models.py:116
 #: savane/svmain/models.py:393
@@ -312,7 +315,7 @@ msgstr "Aktiv"
 #: savane/svmain/models.py:710
 #: savane/svpeople/models.py:32
 msgid "Deleted"
-msgstr "Gelöscht"
+msgstr "Gel??scht"
 
 #: savane/svmain/models.py:118
 #: savane/svmain/models.py:394
@@ -329,48 +332,48 @@ msgstr "Neue E-Mail-Adresse"
 
 #: savane/svmain/models.py:214
 msgid "Development statuses"
-msgstr "Entwicklungsstände"
+msgstr "Entwicklungsst??nde"
 
 #: savane/svmain/models.py:220
 msgid "Will be added on each project main page"
-msgstr "Wird auf jeder Projekt-Hauptseite hinzugefügt"
+msgstr "Wird auf jeder Projekt-Hauptseite hinzugef??gt"
 
 #: savane/svmain/models.py:229
 msgid "would be %LIST@gnu.org for GNU projects at sv.gnu.org"
-msgstr "wäre „%LIST@gnu.org‟ für GNU Projekte auf sv.gnu.org"
+msgstr "w??re ???%LIST@gnu.org??? f??r GNU Projekte auf sv.gnu.org"
 
 #: savane/svmain/models.py:231
 msgid "would be lists.gnu.org or lists.nongnu.org at sv.gnu.org [BACKEND SPECIFIC]"
-msgstr "wäre „lists.gnu.org‟ oder „lists.nongnu.org‟ auf sv.gnu.org [BACKEND-SPEZIFISCH]"
+msgstr "w??re ???lists.gnu.org??? oder ???lists.nongnu.org??? auf sv.gnu.org [BACKEND-SPEZIFISCH]"
 
 #: savane/svmain/models.py:233
 msgid "With this, you can force projects to follow a specific policy for the name of the %LIST. Here you should use the special wildcard %NAME, which is the part of the mailing list name that the project admin can define (would be %PROJECT-%NAME for non-GNU projects at sv.gnu.org). Do no add any @hostname here! You can specify multiple formats separated by a \",\" comma."
-msgstr "Hiermit Sie Projekte zwingen, eine bestimmte Richtlinie für den Namen der „%LIST‟ zu befolgen. Hier sollten Sie spezielle Platzhalter „%NAME‟ verwenden, welcher Teil des Mailinglistennamens ist, dass der Projekt-Administrator festlegen kann (wäre „%PROJECT-%NAME‟ für Nicht-GNU-Projekte auf sv.gnu.org). Bitte verwenden Sie hier keinen @hostnamen! Sie können mehrere Formate durch „,‟ (Komma) trennen."
+msgstr "Hiermit Sie Projekte zwingen, eine bestimmte Richtlinie f??r den Namen der ???%LIST??? zu befolgen. Hier sollten Sie spezielle Platzhalter ???%NAME??? verwenden, welcher Teil des Mailinglistennamens ist, dass der Projekt-Administrator festlegen kann (w??re ???%PROJECT-%NAME??? f??r Nicht-GNU-Projekte auf sv.gnu.org). Bitte verwenden Sie hier keinen @hostnamen! Sie k??nnen mehrere Formate durch ???,??? (Komma) trennen."
 
 #: savane/svmain/models.py:239
 msgid "This is useful if you provide directly download areas (created by the backend) or if you want to allow projects to configure the related menu entry (see below)."
-msgstr "Dies ist nützlich, wenn Sie Bereiche direkt zum Herunterladen anbieten (erstellt vom Backend) oder Projekten erlauben, den zugehörigen Menüeintrag konfigurieren zu können (siehe unten)."
+msgstr "Dies ist n??tzlich, wenn Sie Bereiche direkt zum Herunterladen anbieten (erstellt vom Backend) oder Projekten erlauben, den zugeh??rigen Men??eintrag konfigurieren zu k??nnen (siehe unten)."
 
 # This is useful if you want to select the project of a license on submission.
 #: savane/svmain/models.py:247
 msgid "This is useful if you want project to select a license on submission."
-msgstr "Dies ist nützlich, wenn Sie das Projekt aufgrund einer vorgegebenen Lizenz auswählen möchten."
+msgstr "Dies ist n??tzlich, wenn Sie das Projekt aufgrund einer vorgegebenen Lizenz ausw??hlen m??chten."
 
 #: savane/svmain/models.py:249
 msgid "This is useful if you want project to be able to defines their development status that will be shown on their main page. This is purely a matter of cosmetics. This option is mainly here just to remove this content in case it is useless (it does not makes sense for organizational projects)."
-msgstr "Dies ist nützlich, wenn Sie möchten, dass das Projekt in der Lage sein soll, den Entwicklungsstand auf der Hauptseite anzuzeigen. Dies ist reine Kosmetik. Diese Option soll hauptsächlich Inhalt entfernen, wenn er nutzlos wird (nicht sinnvoll für organisatorische Projekte)."
+msgstr "Dies ist n??tzlich, wenn Sie m??chten, dass das Projekt in der Lage sein soll, den Entwicklungsstand auf der Hauptseite anzuzeigen. Dies ist reine Kosmetik. Diese Option soll haupts??chlich Inhalt entfernen, wenn er nutzlos wird (nicht sinnvoll f??r organisatorische Projekte)."
 
 #: savane/svmain/models.py:251
 msgid "This is one of the main issue tracker of Savane. Projects are supposed to use it as primary interface with end user."
-msgstr "Dies ist eins der wichtigsten Verfolgungssysteme von Savannah. Die Projekte sollen als primäre Oberfläche für Endbenutzer nutzbar sein."
+msgstr "Dies ist eins der wichtigsten Verfolgungssysteme von Savannah. Die Projekte sollen als prim??re Oberfl??che f??r Endbenutzer nutzbar sein."
 
 #: savane/svmain/models.py:258
 msgid "the homepage link can be modified"
-msgstr "der Verweis zur Startseite kann geändert werden"
+msgstr "der Verweis zur Startseite kann ge??ndert werden"
 
 #: savane/svmain/models.py:280
 msgid "the download _directory_ can be modified -- beware, if the backend is running and creating download dir, it can be used maliciously. don't activate this feature unless you truly know what you're doing"
-msgstr "der _Ordner_ zum Herunterladen kann geändert werden – Vorsicht, wenn das Backend ausgeführt und ein Ordner zum Herunterladen angelegt wird, kann es böswillig verwendet werden. Aktivieren Sie diese Funktion nicht, wenn Sie nicht wirklich wissen, was Sie tun"
+msgstr "der _Ordner_ zum Herunterladen kann ge??ndert werden ??? Vorsicht, wenn das Backend ausgef??hrt und ein Ordner zum Herunterladen angelegt wird, kann es b??swillig verwendet werden. Aktivieren Sie diese Funktion nicht, wenn Sie nicht wirklich wissen, was Sie tun"
 
 #: savane/svmain/models.py:284
 msgid "CVS"
@@ -426,19 +429,19 @@ msgstr "Informationen zum Projekt"
 
 #: savane/svmain/models.py:389
 msgid "full name"
-msgstr "Vollständiger Name"
+msgstr "Vollst??ndiger Name"
 
 #: savane/svmain/models.py:390
 msgid "Full project name (not Unix system name)"
-msgstr "Vollständiger Projektname (nicht Unix-Systemname.) "
+msgstr "Vollst??ndiger Projektname (nicht Unix-Systemname.) "
 
 #: savane/svmain/models.py:396
 msgid "Maintenance (accessible only to superuser)"
-msgstr "Wartung (nur zugänglich für Superuser)"
+msgstr "Wartung (nur zug??nglich f??r Superuser)"
 
 #: savane/svmain/models.py:397
 msgid "Incomplete (failure during registration)"
-msgstr "Unvollständig (Fehler bei der Registrierung)"
+msgstr "Unvollst??ndig (Fehler bei der Registrierung)"
 
 #: savane/svmain/models.py:402
 msgid "short description"
@@ -479,7 +482,7 @@ msgstr "Mitgliedschaft-Eigenschaften"
 
 #: savane/svmain/models.py:613
 msgid "Untick to hide emeritous members from the project page"
-msgstr "Entfernen Sie das Häkchen, um verdienstvolle Mitglieder von der Projektseite auszublenden"
+msgstr "Entfernen Sie das H??kchen, um verdienstvolle Mitglieder von der Projektseite auszublenden"
 
 #: savane/svmain/models.py:711
 msgid "To be created"
@@ -513,7 +516,7 @@ msgstr "Projektmitglieder"
 
 #: savane/svmain/urls.py:102
 msgid "Project members GPG keyring"
-msgstr "GPG-Schlüsselbund der Projektmitglieder"
+msgstr "GPG-Schl??sselbund der Projektmitglieder"
 
 #: savane/svmain/urls.py:107
 #: savane/svmain/templatetags/svtopmenu.py:75
@@ -546,12 +549,12 @@ msgstr "Bazaar-Projektarchive"
 
 #: savane/svmain/urls.py:162
 msgid "Editing public info"
-msgstr "Bearbeitung von öffentlichen Informationen"
+msgstr "Bearbeitung von ??ffentlichen Informationen"
 
 #: savane/svmain/urls.py:165
 #: savane/svmain/templatetags/svtopmenu.py:59
 msgid "Select features"
-msgstr "Funktionen auswählen"
+msgstr "Funktionen ausw??hlen"
 
 #: savane/svmain/urls.py:169
 #: savane/svmain/urls.py:172
@@ -578,7 +581,7 @@ msgstr "Antrag auf Aufnahme an Projekt-Administratoren gesendet"
 #: savane/svmain/views.py:186
 #, python-format
 msgid "GPG Keyring of the project %s"
-msgstr "GPG-Schlüsselbund des Projekts %s"
+msgstr "GPG-Schl??sselbund des Projekts %s"
 
 #: savane/svmain/views.py:216
 #: savane/svmain/views.py:242
@@ -597,13 +600,13 @@ msgstr "Berechtigungen von %s aktualisiert."
 #: savane/svmain/views.py:294
 #, python-format
 msgid "User %s deleted from the project."
-msgstr "Benutzer %s aus dem Projekt gelöscht."
+msgstr "Benutzer %s aus dem Projekt gel??scht."
 
 #: savane/svmain/views.py:291
 #: savane/svmain/views.py:312
 #, python-format
 msgid "User %s added to the project."
-msgstr "Benutzer %s zum Projekt hinzugefügt."
+msgstr "Benutzer %s zum Projekt hinzugef??gt."
 
 #: savane/svmain/templatetags/svtopmenu.py:43
 #: savane/svmain/templatetags/svtopmenu.py:47
@@ -617,7 +620,7 @@ msgstr "Mitglieder anzeigen"
 
 #: savane/svmain/templatetags/svtopmenu.py:51
 msgid "GPG keyring"
-msgstr "GPG-Schlüsselbund"
+msgstr "GPG-Schl??sselbund"
 
 #: savane/svmain/templatetags/svtopmenu.py:55
 msgid "Administer:"
@@ -625,7 +628,7 @@ msgstr "Verwalten:"
 
 #: savane/svmain/templatetags/svtopmenu.py:57
 msgid "Edit public info"
-msgstr "Bearbeitung von öffentlichen Informationen"
+msgstr "Bearbeitung von ??ffentlichen Informationen"
 
 #: savane/svmain/templatetags/svtopmenu.py:65
 msgid "Homepage"
@@ -633,7 +636,7 @@ msgstr "Startseite"
 
 #: savane/svmain/templatetags/svtopmenu.py:67
 msgid "Browse project homepage (outside of Savane)"
-msgstr "Projekt-Startseite (außerhalb von Savannah) durchsuchen"
+msgstr "Projekt-Startseite (au??erhalb von Savannah) durchsuchen"
 
 #: savane/svmain/templatetags/svtopmenu.py:70
 msgid "Download"
@@ -726,7 +729,7 @@ msgstr "Jobs"
 #: templates/my/ssh.html:30
 #: templates/svmain/group_admin_members_add.html:34
 msgid "Add"
-msgstr "Hinzufügen"
+msgstr "Hinzuf??gen"
 
 #: savane/svnews/models.py:81
 msgid "[Read more]"
@@ -744,11 +747,11 @@ msgstr "Lebenslauf"
 
 #: savane/svpeople/models.py:30
 msgid "Open"
-msgstr "Öffnen"
+msgstr "??ffnen"
 
 #: savane/svpeople/models.py:31
 msgid "Filled"
-msgstr "Gefüllt"
+msgstr "Gef??llt"
 
 #: savane/svpeople/models.py:36
 #: templates/svmain/group_list.html:14
@@ -823,7 +826,7 @@ msgstr "Tester"
 
 #: savane/svpeople/models.py:89
 msgid "Support manager"
-msgstr "Unterstützungsverwalter"
+msgstr "Unterst??tzungsverwalter"
 
 #: savane/svpeople/models.py:90
 msgid "Graphic/other designer"
@@ -831,7 +834,7 @@ msgstr "Grafik/andere Designer"
 
 #: savane/svpeople/models.py:91
 msgid "Translator"
-msgstr "Übersetzer"
+msgstr "??bersetzer"
 
 #: savane/svpeople/models.py:94
 msgid "Base knowledge"
@@ -859,19 +862,19 @@ msgstr "(< 6 Monate)"
 
 #: savane/svpeople/models.py:102
 msgid "6 Mo - 2 yr"
-msgstr "6 Monate–2 Jahre"
+msgstr "6 Monate???2 Jahre"
 
 #: savane/svpeople/models.py:103
 msgid "2 yr - 5 yr"
-msgstr "2–5 Jahre"
+msgstr "2???5 Jahre"
 
 #: savane/svpeople/models.py:104
 msgid "5 yr - 10 yr"
-msgstr "5–10 Jahre"
+msgstr "5???10 Jahre"
 
 #: savane/svpeople/models.py:105
 msgid "> 10 years"
-msgstr "> 10 Jahre"
+msgstr "> 10 years"
 
 #: savane/svpeople/models.py:110
 msgid "job inventory"
@@ -883,19 +886,19 @@ msgstr "Job-Angebote"
 
 #: savane/svpeople/models.py:122
 msgid "Publicly viewable"
-msgstr "Öffentlich sichtbar"
+msgstr "??ffentlich sichtbar"
 
 #: savane/svpeople/models.py:126
 msgid "skill inventory"
-msgstr "Fähigkeiten-Angebot"
+msgstr "F??higkeiten-Angebot"
 
 #: savane/svpeople/models.py:127
 msgid "skill inventories"
-msgstr "Fähigkeiten-Angebote"
+msgstr "F??higkeiten-Angebote"
 
 #: savane/svpeople/urls.py:35
 msgid "Projects needing help"
-msgstr "Projekte, die Hilfe benötigen"
+msgstr "Projekte, die Hilfe ben??tigen"
 
 #: savane/svpeople/urls.py:41
 msgid "Project help wanted"
@@ -911,7 +914,7 @@ msgstr "Einen Job anzeigen"
 
 #: savane/svpeople/urls.py:52
 msgid "Edit a job for your project"
-msgstr "Einen Job für Ihr Projekt bearbeiten"
+msgstr "Einen Job f??r Ihr Projekt bearbeiten"
 
 #: savane/svpeople/urls.py:53
 #: templates/my/contact.html:14
@@ -923,7 +926,7 @@ msgstr "Aktualisierung"
 
 #: savane/svpeople/urls.py:58
 msgid "Create a job for your project"
-msgstr "Einen Job für Ihr Projekt erstellen"
+msgstr "Einen Job f??r Ihr Projekt erstellen"
 
 #: savane/svpeople/urls.py:60
 msgid "Continue >>"
@@ -1030,11 +1033,11 @@ msgstr "Die Person, der der Eintrag zugewiesen wurde"
 
 #: savane/tracker/models.py:67
 msgid "CC"
-msgstr "CC-Verteiler"
+msgstr "CC"
 
 #: savane/tracker/models.py:67
 msgid "The person who is in the CC list"
-msgstr "Die Person, die im CC-Verteiler ist"
+msgstr "Die Person, die in der CC-Liste ist"
 
 #: savane/tracker/models.py:68
 msgid "A person who once posted a follow-up comment"
@@ -1042,11 +1045,11 @@ msgstr "Eine Person, die einmal ein Wiedervorlage-Kommentar sendete"
 
 #: savane/tracker/models.py:72
 msgid "Role has changed"
-msgstr "Rolle hat sich verändert"
+msgstr "Rolle hat sich ver??ndert"
 
 #: savane/tracker/models.py:73
 msgid "I'm added to or removed from this role"
-msgstr "Ich bin hinzugefügt oder aus dieser Rolle entfernt"
+msgstr "Ich bin hinzugef??gt oder aus dieser Rolle entfernt"
 
 #: savane/tracker/models.py:74
 msgid "New comment"
@@ -1054,7 +1057,7 @@ msgstr "Neuer Kommentar"
 
 #: savane/tracker/models.py:75
 msgid "A new followup comment is added"
-msgstr "Ein neuer Wiedervorlage-Kommentar wurde hinzugefügt"
+msgstr "Ein neuer Wiedervorlage-Kommentar wurde hinzugef??gt"
 
 #: savane/tracker/models.py:76
 msgid "New attachment"
@@ -1062,15 +1065,15 @@ msgstr "Neuer Anhang"
 
 #: savane/tracker/models.py:77
 msgid "A new file attachment is added"
-msgstr "Ein neuer Dateianhang wurde hinzugefügt"
+msgstr "Ein neuer Dateianhang wurde hinzugef??gt"
 
 #: savane/tracker/models.py:78
 msgid "CC Change"
-msgstr "CC-Verteiler geändert"
+msgstr "CC ge??ndert"
 
 #: savane/tracker/models.py:79
 msgid "A new CC address is added/removed"
-msgstr "Eine neue CC-Adresse wurde hinzugefügt/entfernt"
+msgstr "Eine neue CC-Adresse wurde hinzugef??gt/entfernt"
 
 #: savane/tracker/models.py:80
 msgid "Item closed"
@@ -1082,19 +1085,19 @@ msgstr "Der Eintrag ist geschlossen"
 
 #: savane/tracker/models.py:82
 msgid "PSS change"
-msgstr "PSS geändert"
+msgstr "PSS ge??ndert"
 
 #: savane/tracker/models.py:83
 msgid "Priority,Status,Severity changes"
-msgstr "Priorität, Status, Schweregrad geändert"
+msgstr "Priorit??t, Status, Schweregrad ge??ndert"
 
 #: savane/tracker/models.py:84
 msgid "Any other change"
-msgstr "Sonstige Änderungen"
+msgstr "Sonstige ??nderungen"
 
 #: savane/tracker/models.py:85
 msgid "Any change not mentioned above"
-msgstr "Jede nicht oben genannte Änderung"
+msgstr "Jede nicht oben genannte ??nderung"
 
 #: savane/tracker/models.py:86
 msgid "I did it"
@@ -1102,7 +1105,7 @@ msgstr "Ich tat es"
 
 #: savane/tracker/models.py:87
 msgid "I am the author of the change"
-msgstr "Ich bin der Autor der Änderung"
+msgstr "Ich bin der Autor der ??nderung"
 
 #: savane/tracker/models.py:88
 msgid "New Item"
@@ -1124,7 +1127,7 @@ msgstr "Korrekturen"
 
 #: savane/tracker/models.py:103
 msgid "Support"
-msgstr "Unterstützung"
+msgstr "Unterst??tzung"
 
 #: savane/tracker/models.py:104
 msgid "Tasks"
@@ -1140,7 +1143,7 @@ msgstr "Feld-Overlays"
 
 #: savane/tracker/models.py:166
 msgid "mandatory only if it was presented to the original submitter"
-msgstr "nur obligatorisch, wenn es dem ursprüngliche Absender vorgelegt wurde"
+msgstr "nur obligatorisch, wenn es dem urspr??ngliche Absender vorgelegt wurde"
 
 #: savane/tracker/models.py:167
 msgid "optional (empty values are accepted)"
@@ -1165,7 +1168,7 @@ msgstr "verboten"
 #: savane/tracker/models.py:174
 #: savane/tracker/models.py:251
 msgid "NULL == default for all groups"
-msgstr "NULL – standardmäßig für alle Gruppen"
+msgstr "NULL ??? standardm????ig f??r alle Gruppen"
 
 #: savane/tracker/models.py:182
 msgid "used"
@@ -1173,15 +1176,15 @@ msgstr "verwendet"
 
 #: savane/tracker/models.py:184
 msgid "show to anonymous users"
-msgstr "für anonyme Benutzer anzeigen"
+msgstr "f??r anonyme Benutzer anzeigen"
 
 #: savane/tracker/models.py:185
 msgid "show to connected users"
-msgstr "für verbundene Benutzer anzeigen"
+msgstr "f??r verbundene Benutzer anzeigen"
 
 #: savane/tracker/models.py:186
 msgid "show to project members"
-msgstr "für Projektmitglieder anzeigen"
+msgstr "f??r Projektmitglieder anzeigen"
 
 #: savane/tracker/models.py:193
 msgid "display rank"
@@ -1189,7 +1192,7 @@ msgstr "Rang anzeigen"
 
 #: savane/tracker/models.py:206
 msgid "keep field value changes in history"
-msgstr "Feldwertänderungen in Historie behalten"
+msgstr "Feldwert??nderungen in Historie behalten"
 
 #: savane/tracker/models.py:246
 msgid "active"
@@ -1205,7 +1208,7 @@ msgstr "permanent"
 
 #: savane/tracker/models.py:264
 msgid "comma-separated list of e-mail addresses to notify when an item is created or modified in this category"
-msgstr "Kommagetrennte Liste von E-Mail-Adressen, um zu Benachrichtigen, wenn ein Eintrag in dieser Kategorie erstellt oder geändert wurde ,"
+msgstr "Kommagetrennte Liste von E-Mail-Adressen, um zu Benachrichtigen, wenn ein Eintrag in dieser Kategorie erstellt oder ge??ndert wurde ,"
 
 #: savane/tracker/models.py:265
 msgid "send on all updates"
@@ -1217,11 +1220,11 @@ msgstr "Keine"
 
 #: savane/tracker/models.py:397
 msgid "open/closed"
-msgstr "geöffnet/geschlossen"
+msgstr "ge??ffnet/geschlossen"
 
 #: savane/tracker/models.py:404
 msgid "item group"
-msgstr "Gruppe"
+msgstr "Eintraggruppe"
 
 #: savane/tracker/models.py:566
 #: savane/tracker/views.py:44
@@ -1284,7 +1287,7 @@ msgstr "Einfaches Markup"
 
 #: savane/utils/markup.py:49
 msgid "Only basic text tags are available in this input field."
-msgstr "In diesem Eingabefeld sind nur einfache Text-Tags verfügbar."
+msgstr "In diesem Eingabefeld sind nur einfache Text-Tags verf??gbar."
 
 #: savane/utils/markup.py:51
 msgid "Rich markup"
@@ -1292,15 +1295,15 @@ msgstr "Erweitertes Markup"
 
 #: savane/utils/markup.py:52
 msgid "Rich and basic text tags are available in this input field."
-msgstr "In diesem Eingabefeld sind erweiterte und einfache Text-Tags verfügbar."
+msgstr "In diesem Eingabefeld sind erweiterte und einfache Text-Tags verf??gbar."
 
 #: savane/utils/markup.py:54
 msgid "Full markup"
-msgstr "Vollständiges Markup"
+msgstr "Vollst??ndiges Markup"
 
 #: savane/utils/markup.py:55
 msgid "Every tags are available in this input field."
-msgstr "In diesem Eingabefeld sind alle Text-Tags verfügbar."
+msgstr "In diesem Eingabefeld sind alle Text-Tags verf??gbar."
 
 #: savane/utils/markup.py:57
 msgid "No markup"
@@ -1308,15 +1311,15 @@ msgstr "Kein Markup"
 
 #: savane/utils/markup.py:58
 msgid "No tags are available in this input field."
-msgstr "In diesem Eingabefeld sind keine Text-Tags verfügbar."
+msgstr "In diesem Eingabefeld sind keine Text-Tags verf??gbar."
 
 #: savane/utils/markup.py:61
 msgid "Check the markup reminder in related documentation for a description of these tags."
-msgstr "Überprüfen Sie die Markup-Erinnerung in der dazugehörenden Dokumentation, um eine Beschreibung dieser Tags zu erhalten."
+msgstr "??berpr??fen Sie die Markup-Erinnerung in der dazugeh??renden Dokumentation, um eine Beschreibung dieser Tags zu erhalten."
 
 #: templates/base.html:18
 msgid "Back to homepage"
-msgstr "Zurück zur Startseite"
+msgstr "Zur??ck zur Startseite"
 
 #: templates/base.html:22
 #, python-format
@@ -1338,7 +1341,7 @@ msgstr "Abmeldung"
 
 #: templates/base.html:32
 msgid "Superuser rights are required to perform site admin tasks"
-msgstr "Superuser-Rechte sind für Site Admin Aufgaben erforderlich"
+msgstr "Superuser-Rechte sind f??r Site Admin Aufgaben erforderlich"
 
 #: templates/base.html:32
 msgid "Become superuser"
@@ -1346,11 +1349,11 @@ msgstr "Superuser werden"
 
 #: templates/base.html:34
 msgid "Impersonate this user"
-msgstr "Identität dieses Benutzers annehmen"
+msgstr "Identit??t dieses Benutzers annehmen"
 
 #: templates/base.html:40
 msgid "End the Superuser session, go back to normal user session"
-msgstr "Superuser-Sitzung beenden, zurück zur normalen Benutzersitzung"
+msgstr "Superuser-Sitzung beenden, zur??ck zur normalen Benutzersitzung"
 
 #: templates/base.html:40
 msgid "Logout Superuser"
@@ -1374,7 +1377,7 @@ msgstr "Neuer Benutzer"
 
 #: templates/base.html:49
 msgid "Set language"
-msgstr "Sprachauswahl"
+msgstr "Sprache ausw??hlen"
 
 #: templates/base.html:51
 #: templates/svmain/group_admin_members_add.html:20
@@ -1386,7 +1389,7 @@ msgstr "Suchen"
 
 #: templates/base.html:54
 msgid "Contributors wanted"
-msgstr "Mitwirkende erwünscht"
+msgstr "Mitwirkende erw??nscht"
 
 #: templates/base.html:56
 msgid "Trackers"
@@ -1394,7 +1397,7 @@ msgstr "Verfolgungssysteme"
 
 #: templates/base.html:59
 msgid "Site help"
-msgstr "Hilfe"
+msgstr "Seitenhilfe"
 
 #: templates/base.html:60
 msgid "Contact us"
@@ -1406,11 +1409,11 @@ msgstr "Willkommen"
 
 #: templates/my/contact.html:9
 msgid "Change e-mail"
-msgstr "E-Mail ändern"
+msgstr "E-Mail ??ndern"
 
 #: templates/my/contact.html:17
 msgid "Change name"
-msgstr "Name ändern"
+msgstr "Name ??ndern"
 
 #: templates/my/index.html:6
 msgid "Account configuration"
@@ -1418,7 +1421,7 @@ msgstr "Kontokonfiguration"
 
 #: templates/my/index.html:10
 msgid "SSH public keys"
-msgstr "Öffentlicher SSH-Schlüssel"
+msgstr "SSH ??? ??ffentlicher Schl??ssel"
 
 #: templates/my/index.html:11
 msgid "Edit resume and skills"
@@ -1426,15 +1429,15 @@ msgstr "Lebenslauf und Qualifikationen bearbeiten"
 
 #: templates/my/index.html:12
 msgid "Change password"
-msgstr "Passwort ändern"
+msgstr "Passwort ??ndern"
 
 #: templates/my/index.html:17
 msgid "Public information"
-msgstr "Öffentliche Information"
+msgstr "??ffentliche Information"
 
 #: templates/my/index.html:20
 msgid "View your public profile"
-msgstr "Ihr öffentliches Profil anzeigen"
+msgstr "Ihr ??ffentliches Profil anzeigen"
 
 #: templates/my/index.html:25
 msgid "My groups"
@@ -1447,21 +1450,21 @@ msgstr "Keine Gruppen."
 
 #: templates/my/ssh.html:9
 msgid "Working SSH Keys"
-msgstr "SSH-Schlüssel wird verarbeitet"
+msgstr "SSH-Schl??ssel wird verarbeitet"
 
 #: templates/my/ssh.html:19
 #: templates/svpeople/skill_inventory_edit.inc:9
 #: templates/webmail_locmem/mail_detail.html:28
 msgid "Delete"
-msgstr "Löschen"
+msgstr "L??schen"
 
 #: templates/my/ssh.html:24
 msgid "No SSH keys yet."
-msgstr "Noch keine SSH-Schlüssel."
+msgstr "Noch keine SSH-Schl??ssel."
 
 #: templates/my/ssh.html:27
 msgid "SSH keys"
-msgstr "SSH-Schlüssel"
+msgstr "SSH-Schl??ssel"
 
 #: templates/registration/activate.html:8
 msgid "Your account activation failed."
@@ -1504,7 +1507,7 @@ msgstr "Lizenz:"
 
 #: templates/svmain/group_admin_info.html:23
 msgid "License changes are moderated by the site administrators. Please contact them to change your project license."
-msgstr "Lizenzänderungen werden von den Webseiten-Administratoren moderiert. Bitte nehmen Sie Kontakt auf, um Ihre Projektlizenz zu ändern."
+msgstr "Lizenz??nderungen werden von den Webseiten-Administratoren moderiert. Bitte nehmen Sie Kontakt auf, um Ihre Projektlizenz zu ??ndern."
 
 #: templates/svmain/group_admin_members.html:17
 msgid "Members"
@@ -1523,11 +1526,11 @@ msgstr "Entfernen?"
 
 #: templates/svmain/group_admin_members.html:30
 msgid "You are Admin"
-msgstr "Sie sind Verwalter"
+msgstr "Sie sind Administrator"
 
 #: templates/svmain/group_admin_members.html:45
 msgid "Requests for inclusion"
-msgstr "Anträge auf Aufnahme"
+msgstr "Antr??ge auf Aufnahme"
 
 #: templates/svmain/group_admin_members.html:48
 msgid "Approve"
@@ -1539,7 +1542,7 @@ msgstr "Ablehnen"
 
 #: templates/svmain/group_admin_members.html:58
 msgid "No requests for inclusion"
-msgstr "Es liegen keine Anfragen für Aufnahme vor"
+msgstr "Es liegen keine Anfragen f??r Aufnahme vor"
 
 #: templates/svmain/group_admin_members.html:61
 msgid "OK"
@@ -1547,13 +1550,13 @@ msgstr "OK"
 
 #: templates/svmain/group_admin_members.html:64
 msgid "Add users to group"
-msgstr "Benutzer zur Gruppe hinzufügen"
+msgstr "Benutzer zur Gruppe hinzuf??gen"
 
 #: templates/svmain/group_admin_members_add.html:25
 #: templates/svmain/group_list.html:14
 #: templates/svmain/user_list.html:14
 msgid "Full name"
-msgstr "Vollständiger Name"
+msgstr "Vollst??ndiger Name"
 
 #: templates/svmain/group_admin_members_add.html:25
 #: templates/svmain/user_list.html:14
@@ -1582,7 +1585,7 @@ msgstr "Informationen zur Mitgliedschaft"
 
 #: templates/svmain/group_detail.html:21
 msgid "Project admins:"
-msgstr "Projektverwalter:"
+msgstr "Projekt-Administratoren:"
 
 #: templates/svmain/group_detail.html:28
 msgid "No members!"
@@ -1623,7 +1626,7 @@ msgstr "Dieses Projekt ist derzeit nicht zugelassen und wartet auf Moderation."
 #: templates/svmain/group_detail.html:56
 #, python-format
 msgid "This project has not yet submitted a short description. You can %(begin_link)ssubmit it%(end_link)s now."
-msgstr "Dieses Projekt hat noch keine Kurzbeschreibung abgegeben. Sie können sie jetzt %(begin_link)ssenden%(end_link)s."
+msgstr "Dieses Projekt hat noch keine kurze Beschreibung abgegeben. Sie k??nnen sie jetzt %(begin_link)ssenden%(end_link)s."
 
 #: templates/svmain/group_detail.html:59
 msgid "Registration date"
@@ -1644,16 +1647,16 @@ msgstr "An diesem Projekt teilnehmen"
 
 #: templates/svmain/group_gpgkeyring.html:18
 msgid "Below is the content of this project's keyring. These are the successfully registered keys of project members."
-msgstr "Nachfolgend der Inhalt des Projekt-Schlüsselbundes. Dies sind die erfolgreich registrierten Schlüssel der Projektmitglieder."
+msgstr "Nachfolgend der Inhalt des Projekt-Schl??sselbundes. Dies sind die erfolgreich registrierten Schl??ssel der Projektmitglieder."
 
 #: templates/svmain/group_gpgkeyring.html:22
 #, python-format
 msgid "You can %(begin_link)sdownload the keyring%(end_link)s and import it with the command %(command)s"
-msgstr "Sie können das %(begin_link)sSchlüsselbund herunterladen%(end_link)s und mit dem Befehl „%(command)s‟ importieren"
+msgstr "Sie k??nnen das %(begin_link)sSchl??sselbund herunterladen%(end_link)s und mit dem Befehl ???%(command)s??? importieren"
 
 #: templates/svmain/group_gpgkeyring.html:25
 msgid "They GPG Keyring of the project is empty, no keys were registered"
-msgstr "Das GPG-Schlüsselbund des Projektes wurde nicht angegeben, es sind keine Schlüssel registriert"
+msgstr "Das GPG-Schl??sselbund des Projektes wurde nicht angegeben, es sind keine Schl??ssel registriert"
 
 #: templates/svmain/group_list.html:14
 msgid "Unix name"
@@ -1672,26 +1675,26 @@ msgstr "Um die Aufstellung vorheriger Nachrichten anzuzeigen, siehe die %(begin_
 #: templates/svmain/group_mailinglist.html:29
 #, python-format
 msgid "To post a message to all the list members, write to %(list_address)s"
-msgstr "Um eine Nachricht an alle Mitglieder zu senden, schreiben Sie an %(list_address)s"
+msgstr "Um eine Nachricht an alle Listenmitglieder zu senden, schreiben Sie an %(list_address)s"
 
 #: templates/svmain/group_mailinglist.html:31
 #, python-format
 msgid "You can (un)subscribe to the list by following instructions on the %(begin_link)slist information page%(end_link)s"
-msgstr "Sie können sich zur Mailingliste mit Hilfe der folgenden Anweisungen auf der %(begin_link)sMailinglisten Informationen%(end_link)s-Seite an-/abmelden "
+msgstr "Sie k??nnen sich zur Mailingliste mit Hilfe der folgenden Anweisungen auf der %(begin_link)sMailinglisten Informationen%(end_link)s-Seite an-/abmelden "
 
 #: templates/svmain/group_mailinglist.html:33
 #, python-format
 msgid "Project administrators can use the %(begin_link)sadministrative interface%(end_link)s to manage the list."
-msgstr "Projektadministratoren können die %(begin_link)sAdministrationsoberfläche%(end_link)s verwenden, um die Liste zu verwalten."
+msgstr "Projektadministratoren k??nnen die %(begin_link)sAdministrationsoberfl??che%(end_link)s verwenden, um die Liste zu verwalten."
 
 #: templates/svmain/group_mailinglist.html:37
 #, python-format
 msgid "No Lists found for %(group_name)s"
-msgstr "Keine Listen für %(group_name)s gefunden"
+msgstr "Keine Listen f??r %(group_name)s gefunden"
 
 #: templates/svmain/group_mailinglist.html:38
 msgid "Project administrators can add mailing lists using the admin interface."
-msgstr "Projektadministratoren können Mailinglisten über die Administratoroberfläche hinzufügen."
+msgstr "Projektadministratoren k??nnen Mailinglisten ??ber die Administratoroberfl??che hinzuf??gen."
 
 #: templates/svmain/group_memberlist.html:18
 msgid "Member"
@@ -1712,7 +1715,7 @@ msgstr "Projektmitglied"
 #: templates/svmain/group_memberlist.html:40
 #, python-format
 msgid "You may also be interested in the %(begin_link)sGPG Keyring of this project%(end_link)s"
-msgstr "Möglicherweise sind Sie auch am %(begin_link)sGPG-Schlüsselbund des Projektes%(end_link)s interessiert"
+msgstr "M??glicherweise sind Sie auch am %(begin_link)sGPG-Schl??sselbund des Projektes%(end_link)s interessiert"
 
 #: templates/svmain/group_vcs_arch.html:17
 #: templates/svmain/group_vcs_bzr.html:17
@@ -1732,7 +1735,7 @@ msgstr "Das %(type)s-Projektarchiv durchsuchen"
 #: templates/svmain/group_vcs_svn.html:19
 #, python-format
 msgid "You can browse the %(type)s repository of this project with your web browser. This gives you a good picture of the current status of the source files. You may also view the complete histories of any file in the repository as well as differences among two versions."
-msgstr "Sie können das %(type)s-Projektarchiv mit Ihrem Webbrowser durchsuchen. Dies gibt Ihnen ein gutes Bild über den aktuellen Stand der Quelldateien. Sie können auch den vollständigen Verlauf jeder Datei im Projektarchiv sowie Unterschiede zwischen zwei Versionen anzeigen."
+msgstr "Sie k??nnen das %(type)s-Projektarchiv mit Ihrem Webbrowser durchsuchen. Dies gibt Ihnen ein gutes Bild ??ber den aktuellen Stand der Quelldateien. Sie k??nnen auch den vollst??ndigen Verlauf jeder Datei im Projektarchiv sowie Unterschiede zwischen zwei Versionen anzeigen."
 
 #: templates/svmain/group_vcs_arch_custom.html:2
 #: templates/svmain/group_vcs_bzr_custom.html:2
@@ -1746,7 +1749,7 @@ msgstr "Weitere Informationen"
 #: templates/svmain/homepage.html:13
 #, python-format
 msgid "%(site_name)s statistics"
-msgstr "%(site_name)s–Statistiken"
+msgstr "%(site_name)s???Statistiken"
 
 #: templates/svmain/homepage.html:16
 #, python-format
@@ -1766,8 +1769,8 @@ msgstr[1] "%(html)s gehostete Projekte"
 #, python-format
 msgid "%(count)s registration pending"
 msgid_plural "%(count)s registrations pending"
-msgstr[0] "%(count)s Anmeldung anhängig"
-msgstr[1] "%(count)s Anmeldungen anhängig"
+msgstr[0] "%(count)s Anmeldung anh??ngig"
+msgstr[1] "%(count)s Anmeldungen anh??ngig"
 
 #: templates/svmain/homepage.html:33
 msgid "Help wanted"
@@ -1775,7 +1778,7 @@ msgstr "Hilfe gesucht"
 
 #: templates/svmain/homepage.html:45
 msgid "Most popular items"
-msgstr "Beliebteste Einträge"
+msgstr "Beliebteste Eintr??ge"
 
 #: templates/svmain/homepage.html:49
 #: templates/svmain/homepage.html.py:53
@@ -1818,7 +1821,7 @@ msgstr "Lizenzen"
 #: templates/svmain/pagination.inc.html:10
 #: templates/svmain/pagination.inc.html:12
 msgid "previous"
-msgstr "Zurück"
+msgstr "Zur??ck"
 
 #: templates/svmain/pagination.inc.html:24
 #: templates/svmain/pagination.inc.html:26
@@ -1839,7 +1842,7 @@ msgstr[1] "%(count)s Elemente"
 
 #: templates/svmain/user_detail.html:7
 msgid "Real name:"
-msgstr "Bürgerlicher Name:"
+msgstr "B??rgerlicher Name:"
 
 #: templates/svmain/user_detail.html:8
 msgid "Login name:"
@@ -1867,11 +1870,11 @@ msgstr "Einen neuen Thread starten"
 
 #: templates/svnews/news_detail.html:43
 msgid "You could post if you were logged in"
-msgstr "Sie können Nachrichten senden, wenn Sie angemeldet sind"
+msgstr "Sie k??nnen Nachrichten senden, wenn Sie angemeldet sind"
 
 #: templates/svnews/news_list.html:13
 msgid "Latest approved news - with summaries"
-msgstr "Aktuelle genehmigte Nachrichten – mit Zusammenfassungen"
+msgstr "Aktuelle genehmigte Nachrichten ??? mit Zusammenfassungen"
 
 #: templates/svnews/news_list.html:18
 msgid "No news items found"
@@ -1879,7 +1882,7 @@ msgstr "Keine Nachrichten gefunden"
 
 #: templates/svnews/news_list.html:27
 msgid "Older approved news"
-msgstr "Ältere genehmigte Nachrichten"
+msgstr "??ltere genehmigte Nachrichten"
 
 #: templates/svnews/news_list.inc:9
 #: templates/svnews/news_list_short.inc:8
@@ -1900,7 +1903,7 @@ msgstr[1] "%(count)s Kommentare"
 #: templates/tracker/item_form.html:135
 #: templates/tracker/item_form.html:181
 msgid "Invalid user ID"
-msgstr "Ungültige Benutzer-ID"
+msgstr "Ung??ltige Benutzer-ID"
 
 #: templates/svnews/user_submitted_by_link.inc:12
 #: templates/tracker/item_form.html:40
@@ -1926,20 +1929,20 @@ msgstr "Projekttyp"
 
 #: templates/svpeople/index_custom.html:2
 msgid "Browse through the category menu to find projects looking for your help."
-msgstr "Durchsuchen Sie das Kategorie-Menü, um Projekte zu finden, die Ihre Hilfe suchen."
+msgstr "Durchsuchen Sie das Kategorie-Men??, um Projekte zu finden, die Ihre Hilfe suchen."
 
 #: templates/svpeople/index_custom.html:3
 #, python-format
 msgid "If you're a project admin, log in, enter your project page, follow the project admin link (in the navigation bar) and you will find a %(begin_em)sPost Jobs%(end_em)s section where you can submit help wanted requests to appear in this list."
-msgstr "Sind Sie ein Projektverwalter, melden Sie sich an, wählen Ihre Projektseite, folgen dem Verweis „Projektverwalter‟ (in der Navigationsleiste) und Sie erhalten einen %(begin_em)sJobs senden%(end_em)s-Bereich, in dem „Hilfe gesucht‟-Anfragen angezeigt werden."
+msgstr "Sind Sie ein Projekt-Administrator, melden Sie sich an, w??hlen Ihre Projekt-Seite, folgen dem Verweis ???Projekt-Administrator??? (in der Navigationsleiste) und Sie erhalten einen %(begin_em)sJobs senden%(end_em)s-Bereich, in dem ???Hilfe gesucht???-Anfragen angezeigt werden."
 
 #: templates/svpeople/index_custom.html:4
 msgid "To suggest new job categories, visit the support manager."
-msgstr "Um neue Job-Kategorien vorschlagen, besuchen Sie den Unterstützungsverwalter."
+msgstr "Um neue Job-Kategorien vorschlagen, besuchen Sie den Support-Verwalter."
 
 #: templates/svpeople/job_detail.html:15
 msgid "wanted for"
-msgstr "gesucht für"
+msgstr "gesucht f??r"
 
 #: templates/svpeople/job_detail.html:18
 msgid "Edit"
@@ -1959,7 +1962,7 @@ msgstr "Stand:"
 
 #: templates/svpeople/job_detail.html:39
 msgid "Details (job description, contact ...):"
-msgstr "Details (Jobbeschreibung, Kontakt, …):"
+msgstr "Details (Jobbeschreibung, Kontakt, ???):"
 
 #: templates/svpeople/job_detail.html:45
 msgid "Required Skills:"
@@ -1967,15 +1970,15 @@ msgstr "Erforderliche Qualifikationen:"
 
 #: templates/svpeople/job_form.html:21
 msgid "Start by filling in the fields below. When you click continue, you will be shown a list of skills and experience levels that this job requires."
-msgstr "Starten Sie mit dem Ausfüllen der Felder. Beim Klicken auf „Weiter‟ werden Qualifikationen und Erfahrungen angezeigt, die dieser Job erfordert."
+msgstr "Starten Sie mit dem Ausf??llen der Felder. Beim Klicken auf ???Weiter??? werden Qualifikationen und Erfahrungen angezeigt, die dieser Job erfordert."
 
 #: templates/svpeople/job_form.html:23
 msgid "Now you can edit/change the list of skills attached to this posting."
-msgstr "Nun können Sie die Qualifikationen im Anhang zu diesem Beitrag bearbeiten/ändern."
+msgstr "Nun k??nnen Sie die Qualifikationen im Anhang zu diesem Beitrag bearbeiten/??ndern."
 
 #: templates/svpeople/job_form.html:24
 msgid "Developers will be able to match their skills with your requirements."
-msgstr "Entwickler können ihre Qualifikationen mit Ihren Anforderungen abstimmen."
+msgstr "Entwickler k??nnen ihre Qualifikationen mit Ihren Anforderungen abstimmen."
 
 #: templates/svpeople/job_form.html:26
 msgid "All postings are automatically closed after two weeks."
@@ -2006,7 +2009,7 @@ msgstr "Titel"
 
 #: templates/svpeople/job_list.inc:6
 msgid "Date opened"
-msgstr "Datum geöffnet"
+msgstr "Datum ge??ffnet"
 
 #: templates/svpeople/job_list.inc:7
 msgid "Project"
@@ -2023,11 +2026,11 @@ msgstr "Projekte, auf der Suche nach %(category_label)s"
 
 #: templates/svpeople/job_list_by_group.html:12
 msgid "Here is a list of positions available for this project."
-msgstr "Hier ist eine Liste der Positionen für dieses Projekt."
+msgstr "Hier ist eine Liste der Positionen f??r dieses Projekt."
 
 #: templates/svpeople/userinfo_form.html:12
 msgid "Resume - Description of experience"
-msgstr "Lebenslauf – Beschreibung der Erfahrung"
+msgstr "Lebenslauf ??? Beschreibung der Erfahrung"
 
 #: templates/svpeople/userinfo_form.html:18
 msgid "Skills"
@@ -2039,7 +2042,7 @@ msgstr "Gesendet von"
 
 #: templates/tracker/item_form.html:44
 msgid "Submit changes and browse items"
-msgstr "Änderungen senden und Einträge durchsuchen"
+msgstr "??nderungen senden und Eintr??ge durchsuchen"
 
 #: templates/tracker/item_form.html:48
 msgid "Submitted on"
@@ -2047,7 +2050,7 @@ msgstr "Gesendet am"
 
 #: templates/tracker/item_form.html:50
 msgid "Submit changes and return to this item"
-msgstr "Änderungen senden und zu diesem Eintrag zurückkehren"
+msgstr "??nderungen senden und zu diesem Eintrag zur??ckkehren"
 
 #: templates/tracker/item_form.html:66
 msgid "Post a comment"
@@ -2055,7 +2058,7 @@ msgstr "Einen Kommentar senden"
 
 #: templates/tracker/item_form.html:68
 msgid "Add a new comment"
-msgstr "Einen neuen Kommentar hinzufügen"
+msgstr "Einen neuen Kommentar hinzuf??gen"
 
 #: templates/tracker/item_form.html:71
 msgid "Comment type & canned response"
@@ -2063,7 +2066,7 @@ msgstr "Kommentartyp & gespeicherte Antwort"
 
 #: templates/tracker/item_form.html:83
 msgid "No canned response available"
-msgstr "Keine vordefinierte Antwort verfügbar"
+msgstr "Keine vordefinierte Antwort verf??gbar"
 
 #: templates/tracker/item_form.html:86
 msgid "Or define a new canned response"
@@ -2084,15 +2087,15 @@ msgstr "Originalvorlage"
 
 #: templates/tracker/item_form.html:145
 msgid "Attached files"
-msgstr "Angehängte Dateien"
+msgstr "Angeh??ngte Dateien"
 
 #: templates/tracker/item_form.html:147
 msgid "Dependencies"
-msgstr "Abhängigkeiten"
+msgstr "Abh??ngigkeiten"
 
 #: templates/tracker/item_form.html:149
 msgid "Mail notification carbon-copy list"
-msgstr "Benachrichtigung an CC-Verteiler senden"
+msgstr "Weitere Benachrichtigung an Empf??nger (CC)"
 
 #: templates/tracker/item_form.html:151
 msgid "Votes"
@@ -2100,7 +2103,7 @@ msgstr "Stimmen"
 
 #: templates/tracker/item_form.html:153
 msgid "Submit changes"
-msgstr "Änderungen senden"
+msgstr "??nderungen senden"
 
 #: templates/tracker/item_form.html:156
 msgid "History"
@@ -2110,8 +2113,8 @@ msgstr "Verlauf"
 #, python-format
 msgid "Follows %(count)s latest change."
 msgid_plural "Follow %(count)s latest changes."
-msgstr[0] "%(count)s neueste Änderung."
-msgstr[1] "%(count)s neueste Änderungen."
+msgstr[0] "%(count)s neueste ??nderung."
+msgstr[1] "%(count)s neueste ??nderungen."
 
 #: templates/tracker/item_list.html:16
 #: templates/webmail_locmem/mail_list.html:13
@@ -2120,7 +2123,7 @@ msgstr "ID"
 
 #: templates/tracker/item_list.html:25
 msgid "No items."
-msgstr "Keine Einträge."
+msgstr "Keine Eintr??ge."
 
 #: templates/webmail_locmem/mail_detail.html:13
 #: templates/webmail_locmem/mail_list.html:14
@@ -2147,11 +2150,11 @@ msgstr "Nachricht"
 
 #: templates/webmail_locmem/mail_detail.html:18
 msgid "Attachments"
-msgstr "Anhänge"
+msgstr "Anh??nge"
 
 #: templates/webmail_locmem/mail_detail.html:24
 msgid "Full message"
-msgstr "Ausführliche Meldung"
+msgstr "Ausf??hrliche Meldung"
 
 #: templates/webmail_locmem/mail_list.html:9
 msgid "No mail yet."
@@ -2174,5 +2177,5 @@ msgstr "Nachricht #%d"
 #: webmail_locmem/views.py:86
 #, python-format
 msgid "Delete message #%d?"
-msgstr "Nachricht #%d löschen?"
+msgstr "Nachricht #%d l??schen?"
 
