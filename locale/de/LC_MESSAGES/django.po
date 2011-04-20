@@ -33,20 +33,18 @@
 # ###    repository = Projektarchiv
 # ###    squad  = Team
 # ###    user   = Benutzer
-# ###    you    = Sie (nicht „Du‟. Wenn möglich unpersönlich, keine Ich-Form)
+# ###    you    = Sie (nicht „Du“. Wenn möglich unpersönlich, keine Ich-Form)
 # ###
-# ###    Anführungszeichen = „…‟ (statt "...") [(&#8222;) und (&#8223;)]
+# ###    Anführungszeichen = „…“ (statt "...") [(&#8222;) und (&#8220;)]
 # ###                        KEINE Gänsefüße!!!
-# ###    GNU xyz = GNU xyz (generell ohne Bindestrich,
-# ###              evtl.geschütztes Leerzeichen (&nbsp;)
-# ###              z. B. „GNU Savannah‟, „GNU Projekt‟, „GNU Betriebssystem‟
+# ###    GNU xyz = (generell ohne Bindestrich, z. B. „GNU Savannah“, „GNU Projekt“, „GNU Betriebssystem“
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Savane \n"
+"Project-Id-Version: Savane\n"
 "Report-Msgid-Bugs-To: savane-dev@gna.org\n"
 "POT-Creation-Date: 2011-01-04 21:11+0000\n"
-"PO-Revision-Date: 2011-01-14 15:29+0100\n"
+"PO-Revision-Date: 2011-04-21 01:15+0200\n"
 "Last-Translator: Joerg Kohne <joeko (AT) online (PUNKT) de>\n"
 "Language-Team: German <>\n"
 "Language: de\n"
@@ -85,7 +83,7 @@ msgstr "GPG-Schlüssel"
 #: savane/my/forms.py:32
 #: savane/svmain/models.py:140
 msgid "You can write down here your (ASCII) public key (gpg --export --armor keyid)"
-msgstr "Sie können hier Ihren öffentlichen Schlüssel (ASCII) eintragen (gpg --export --armor keyid)"
+msgstr "Tragen Sie hier Ihren öffentlichen Schlüssel (ASCII) ein (gpg --export --armor keyid)"
 
 #: savane/my/forms.py:36
 msgid "Key file"
@@ -120,7 +118,7 @@ msgstr "Meine Kontokonfiguration"
 #: savane/my/urls.py:38
 #: templates/my/index.html:9
 msgid "Contact info"
-msgstr "Kontaktinformationen"
+msgstr "Kontaktinformation"
 
 #: savane/my/urls.py:45
 msgid "Change authorized keys"
@@ -200,12 +198,12 @@ msgstr "E-Mail-Adresse aktualisiert."
 
 #: savane/my/views.py:148
 msgid "Confirm Email change"
-msgstr "Bestätigung der E-Mail-Adressänderung "
+msgstr "E-Mail-Adressänderung bestätigen"
 
 #: savane/my/views.py:149
 #, python-format
 msgid "Confirm your e-mail change to %s?"
-msgstr "Bestätigung Ihrer E-Mail-Adressänderung in %s?"
+msgstr "Ihre E-Mail-Adressänderung bei %s bestätigen?"
 
 #: savane/my/views.py:151
 #: savane/my/views.py:167
@@ -223,7 +221,7 @@ msgstr "E-Mail-Änderung abgebrochen"
 #: savane/my/views.py:165
 #, python-format
 msgid "Cancel your e-mail change to %s?"
-msgstr "Ihre E-Mail-Adressänderung in %s abbrechen?"
+msgstr "Ihre E-Mail-Adressänderung bei %s abbrechen?"
 
 #: savane/my/views.py:217
 #, python-format
@@ -238,12 +236,12 @@ msgstr "Fehler bei der Registrierung der Schlüssel aufgetreten"
 
 #: savane/my/views.py:247
 msgid "Cannot remove the selected key"
-msgstr "Der ausgewählte Schlüssel kann nicht entfernt werden"
+msgstr "Ausgewählter Schlüssel kann nicht entfernt werden"
 
 #: savane/my/views.py:272
 #, python-format
 msgid "Language set to %s"
-msgstr "Ausgewählte Sprache ist %s"
+msgstr "Ausgewählte Sprache ist „%s“"
 
 #: savane/svmain/admin.py:52
 msgid "General Settings"
@@ -300,7 +298,7 @@ msgstr "Nachrichtenverwalter"
 
 #: savane/svmain/admin.py:86
 msgid "Project Menu Settings"
-msgstr "Projektmenü - Einstellungen"
+msgstr "Menü-Einstellungen"
 
 #: savane/svmain/models.py:116
 #: savane/svmain/models.py:393
@@ -337,15 +335,15 @@ msgstr "Wird auf jeder Projekt-Hauptseite hinzugefügt"
 
 #: savane/svmain/models.py:229
 msgid "would be %LIST@gnu.org for GNU projects at sv.gnu.org"
-msgstr "wäre „%LIST@gnu.org‟ für GNU Projekte auf sv.gnu.org"
+msgstr "wäre „%LIST@gnu.org“ für GNU Projekte auf sv.gnu.org"
 
 #: savane/svmain/models.py:231
 msgid "would be lists.gnu.org or lists.nongnu.org at sv.gnu.org [BACKEND SPECIFIC]"
-msgstr "wäre „lists.gnu.org‟ oder „lists.nongnu.org‟ auf sv.gnu.org [BACKEND-SPEZIFISCH]"
+msgstr "wäre „lists.gnu.org“ oder „lists.nongnu.org“ auf sv.gnu.org [BACKEND-SPEZIFISCH]"
 
 #: savane/svmain/models.py:233
 msgid "With this, you can force projects to follow a specific policy for the name of the %LIST. Here you should use the special wildcard %NAME, which is the part of the mailing list name that the project admin can define (would be %PROJECT-%NAME for non-GNU projects at sv.gnu.org). Do no add any @hostname here! You can specify multiple formats separated by a \",\" comma."
-msgstr "Hiermit Sie Projekte zwingen, eine bestimmte Richtlinie für den Namen der „%LIST‟ zu befolgen. Hier sollten Sie spezielle Platzhalter „%NAME‟ verwenden, welcher Teil des Mailinglistennamens ist, dass der Projekt-Administrator festlegen kann (wäre „%PROJECT-%NAME‟ für Nicht-GNU-Projekte auf sv.gnu.org). Bitte verwenden Sie hier keinen @hostnamen! Sie können mehrere Formate durch „,‟ (Komma) trennen."
+msgstr "Projekte zwingen, eine bestimmte Richtlinie für den %LIST-Namen zu befolgen. Hier sollten Sie spezielle Platzhalter „%NAME‟ verwenden, welcher Teil des Mailinglisten-Namens ist, den der Projektverwalter festlegen kann (wäre „%PROJECT-%NAME‟ für non-GNU-Projekte auf sv.gnu.org). Bitte verwenden Sie hier keinen @hostnamen! Sie können mehrere Formate durch „,‟ (Komma) trennen."
 
 #: savane/svmain/models.py:239
 msgid "This is useful if you provide directly download areas (created by the backend) or if you want to allow projects to configure the related menu entry (see below)."
@@ -442,11 +440,11 @@ msgstr "Unvollständig (Fehler bei der Registrierung)"
 
 #: savane/svmain/models.py:402
 msgid "short description"
-msgstr "Kurze Beschreibung"
+msgstr "Kurzbeschreibung"
 
 #: savane/svmain/models.py:403
 msgid "long description"
-msgstr "Lange Beschreibung"
+msgstr "Beschreibung"
 
 #: savane/svmain/models.py:404
 msgid "license"
@@ -463,7 +461,7 @@ msgstr "Entwicklungsstand"
 #: savane/svmain/models.py:604
 #: templates/svmain/group_admin_members.html:20
 msgid "Admin"
-msgstr "Administrator"
+msgstr "Verwalter"
 
 #: savane/svmain/models.py:607
 msgid "Pending moderation"
@@ -483,11 +481,11 @@ msgstr "Entfernen Sie das Häkchen, um verdienstvolle Mitglieder von der Projekt
 
 #: savane/svmain/models.py:711
 msgid "To be created"
-msgstr "Wird erstellt werden"
+msgstr "Wird erstellt"
 
 #: savane/svmain/models.py:712
 msgid "To be reconfigured"
-msgstr "Wird rekonfiguriert werden"
+msgstr "Wird rekonfiguriert"
 
 #: savane/svmain/models.py:713
 msgid "Created"
@@ -546,7 +544,7 @@ msgstr "Bazaar-Projektarchive"
 
 #: savane/svmain/urls.py:162
 msgid "Editing public info"
-msgstr "Bearbeitung von öffentlichen Informationen"
+msgstr "Öffentliche Informationen bearbeiten"
 
 #: savane/svmain/urls.py:165
 #: savane/svmain/templatetags/svtopmenu.py:59
@@ -578,7 +576,7 @@ msgstr "Antrag auf Aufnahme an Projekt-Administratoren gesendet"
 #: savane/svmain/views.py:186
 #, python-format
 msgid "GPG Keyring of the project %s"
-msgstr "GPG-Schlüsselbund des Projekts %s"
+msgstr "GPG-Schlüsselbund des %s-Projekts"
 
 #: savane/svmain/views.py:216
 #: savane/svmain/views.py:242
@@ -591,19 +589,19 @@ msgstr "%s gespeichert."
 #: savane/svmain/views.py:281
 #, python-format
 msgid "Permissions of %s updated."
-msgstr "Berechtigungen von %s aktualisiert."
+msgstr "Berechtigungen von „%s“ aktualisiert."
 
 #: savane/svmain/views.py:285
 #: savane/svmain/views.py:294
 #, python-format
 msgid "User %s deleted from the project."
-msgstr "Benutzer %s aus dem Projekt gelöscht."
+msgstr "Benutzer „%s“ aus dem Projekt gelöscht."
 
 #: savane/svmain/views.py:291
 #: savane/svmain/views.py:312
 #, python-format
 msgid "User %s added to the project."
-msgstr "Benutzer %s zum Projekt hinzugefügt."
+msgstr "Benutzer „%s“ zum Projekt hinzugefügt."
 
 #: savane/svmain/templatetags/svtopmenu.py:43
 #: savane/svmain/templatetags/svtopmenu.py:47
@@ -633,7 +631,7 @@ msgstr "Startseite"
 
 #: savane/svmain/templatetags/svtopmenu.py:67
 msgid "Browse project homepage (outside of Savane)"
-msgstr "Projekt-Startseite (außerhalb von Savannah) durchsuchen"
+msgstr "Projektseite durchsuchen (außerhalb von Savannah)"
 
 #: savane/svmain/templatetags/svtopmenu.py:70
 msgid "Download"
@@ -720,7 +718,7 @@ msgstr "CVS verwenden"
 
 #: savane/svmain/templatetags/svtopmenu.py:154
 msgid "Jobs"
-msgstr "Jobs"
+msgstr "Aufgaben"
 
 #: savane/svmain/templatetags/svtopmenu.py:161
 #: templates/my/ssh.html:30
@@ -753,11 +751,11 @@ msgstr "Gefüllt"
 #: savane/svpeople/models.py:36
 #: templates/svmain/group_list.html:14
 msgid "Short description"
-msgstr "Kurze Beschreibung"
+msgstr "Kurzbeschreibung"
 
 #: savane/svpeople/models.py:37
 msgid "Long description"
-msgstr "Lange Beschreibung"
+msgstr "Beschreibung"
 
 #: savane/svpeople/models.py:39
 msgid "Status"
@@ -815,7 +813,7 @@ msgstr "Unix-Administrator"
 
 #: savane/svpeople/models.py:87
 msgid "Doc writer"
-msgstr "Schriftsteller"
+msgstr "Dokument-Autor"
 
 #: savane/svpeople/models.py:88
 msgid "Tester"
@@ -843,11 +841,11 @@ msgstr "Gute Kenntnisse"
 
 #: savane/svpeople/models.py:96
 msgid "Master"
-msgstr "Meister"
+msgstr "Master"
 
 #: savane/svpeople/models.py:97
 msgid "Master apprentice"
-msgstr "Meister (Auszubildende)"
+msgstr "Master (Ausbildung)"
 
 #: savane/svpeople/models.py:98
 msgid "Expert"
@@ -875,11 +873,11 @@ msgstr "> 10 Jahre"
 
 #: savane/svpeople/models.py:110
 msgid "job inventory"
-msgstr "Job-Angebot"
+msgstr "Aufgabe"
 
 #: savane/svpeople/models.py:111
 msgid "job inventories"
-msgstr "Job-Angebote"
+msgstr "Aufgaben"
 
 #: savane/svpeople/models.py:122
 msgid "Publicly viewable"
@@ -887,11 +885,11 @@ msgstr "Öffentlich sichtbar"
 
 #: savane/svpeople/models.py:126
 msgid "skill inventory"
-msgstr "Fähigkeiten-Angebot"
+msgstr "Qualifikation"
 
 #: savane/svpeople/models.py:127
 msgid "skill inventories"
-msgstr "Fähigkeiten-Angebote"
+msgstr "Qualifikationen"
 
 #: savane/svpeople/urls.py:35
 msgid "Projects needing help"
@@ -903,15 +901,15 @@ msgstr "Projekthilfe gesucht"
 
 #: savane/svpeople/urls.py:44
 msgid "Looking for a job to edit"
-msgstr "Einen Job zum Bearbeiten suchen"
+msgstr "Auftrag zum Bearbeiten suchen"
 
 #: savane/svpeople/urls.py:48
 msgid "View a job"
-msgstr "Einen Job anzeigen"
+msgstr "Auftrag anzeigen"
 
 #: savane/svpeople/urls.py:52
 msgid "Edit a job for your project"
-msgstr "Einen Job für Ihr Projekt bearbeiten"
+msgstr "Auftrag für Projekt bearbeiten"
 
 #: savane/svpeople/urls.py:53
 #: templates/my/contact.html:14
@@ -923,7 +921,7 @@ msgstr "Aktualisierung"
 
 #: savane/svpeople/urls.py:58
 msgid "Create a job for your project"
-msgstr "Einen Job für Ihr Projekt erstellen"
+msgstr "Auftrag für Projekt erstellen"
 
 #: savane/svpeople/urls.py:60
 msgid "Continue >>"
@@ -931,11 +929,11 @@ msgstr "Weiter >>"
 
 #: savane/svpeople/urls.py:65
 msgid "Edit your resume & skills"
-msgstr "Ihren Lebenslauf & Qualifikationen bearbeiten"
+msgstr "Lebenslauf & Qualifikationen bearbeiten"
 
 #: savane/svpeople/views.py:137
 msgid "Job description saved."
-msgstr "Job-Beschreibung gespeichert."
+msgstr "Aufgabenbeschreibung gespeichert."
 
 #: savane/svpeople/views.py:148
 #: savane/svpeople/views.py:192
@@ -980,7 +978,7 @@ msgstr "Anonym"
 
 #: savane/tracker/models.py:53
 msgid "logged-in user"
-msgstr "Angemeldeter Benutzer"
+msgstr "Angemeldetes Mitglied"
 
 #: savane/tracker/models.py:54
 msgid "project member"
@@ -997,11 +995,11 @@ msgstr "keine"
 
 #: savane/tracker/models.py:57
 msgid "technician"
-msgstr "Techniker"
+msgstr "TechnikerIn"
 
 #: savane/tracker/models.py:58
 msgid "manager"
-msgstr "Verwalter"
+msgstr "VerwalterIn"
 
 #: savane/tracker/models.py:59
 msgid "technician & manager"
@@ -1042,11 +1040,11 @@ msgstr "Eine Person, die einmal ein Wiedervorlage-Kommentar sendete"
 
 #: savane/tracker/models.py:72
 msgid "Role has changed"
-msgstr "Rolle hat sich verändert"
+msgstr "Aufgabe hat sich verändert"
 
 #: savane/tracker/models.py:73
 msgid "I'm added to or removed from this role"
-msgstr "Ich bin hinzugefügt oder aus dieser Rolle entfernt"
+msgstr "Zur Aufgabe hinzugefügt oder entfernt"
 
 #: savane/tracker/models.py:74
 msgid "New comment"
@@ -1070,7 +1068,7 @@ msgstr "CC-Verteiler geändert"
 
 #: savane/tracker/models.py:79
 msgid "A new CC address is added/removed"
-msgstr "Eine neue CC-Adresse wurde hinzugefügt/entfernt"
+msgstr "Neue CC-Verteiler-Adresse wurde hinzugefügt/entfernt"
 
 #: savane/tracker/models.py:80
 msgid "Item closed"
@@ -1098,7 +1096,7 @@ msgstr "Jede nicht oben genannte Änderung"
 
 #: savane/tracker/models.py:86
 msgid "I did it"
-msgstr "Ich tat es"
+msgstr "Erledigt"
 
 #: savane/tracker/models.py:87
 msgid "I am the author of the change"
@@ -1205,7 +1203,7 @@ msgstr "permanent"
 
 #: savane/tracker/models.py:264
 msgid "comma-separated list of e-mail addresses to notify when an item is created or modified in this category"
-msgstr "Kommagetrennte Liste von E-Mail-Adressen, um zu Benachrichtigen, wenn ein Eintrag in dieser Kategorie erstellt oder geändert wurde ,"
+msgstr "Kommagetrennte E-Mail-Adressen, um zu Benachrichtigen, wann ein Eintrag in dieser Kategorie erstellt oder geändert wurde"
 
 #: savane/tracker/models.py:265
 msgid "send on all updates"
@@ -1358,7 +1356,7 @@ msgstr "Abmeldung Superuser"
 
 #: templates/base.html:44
 msgid "Login status"
-msgstr "Anmeldung-Status"
+msgstr "Anmeldestatus"
 
 #: templates/base.html:45
 msgid "Not connected"
@@ -1386,7 +1384,7 @@ msgstr "Suchen"
 
 #: templates/base.html:54
 msgid "Contributors wanted"
-msgstr "Mitwirkende erwünscht"
+msgstr "Mitglieder gesucht"
 
 #: templates/base.html:56
 msgid "Trackers"
@@ -1434,7 +1432,7 @@ msgstr "Öffentliche Information"
 
 #: templates/my/index.html:20
 msgid "View your public profile"
-msgstr "Ihr öffentliches Profil anzeigen"
+msgstr "Offentliches Profil anzeigen"
 
 #: templates/my/index.html:25
 msgid "My groups"
@@ -1491,7 +1489,7 @@ msgstr "Ja"
 #: templates/svmain/group_admin_members.html:6
 #: templates/svmain/group_admin_members_add.html:6
 msgid "Administration summary"
-msgstr "Administration Zusammenfassung"
+msgstr "Verwaltungsübersicht"
 
 #: templates/svmain/group_admin_features.html:22
 #: templates/svmain/group_admin_info.html:26
@@ -1504,7 +1502,7 @@ msgstr "Lizenz:"
 
 #: templates/svmain/group_admin_info.html:23
 msgid "License changes are moderated by the site administrators. Please contact them to change your project license."
-msgstr "Lizenzänderungen werden von den Webseiten-Administratoren moderiert. Bitte nehmen Sie Kontakt auf, um Ihre Projektlizenz zu ändern."
+msgstr "Lizenzänderungen werden von den Webseiten-Systemverwaltern moderiert. Bitte nehmen Sie Kontakt auf, um Ihre Projektlizenz zu ändern."
 
 #: templates/svmain/group_admin_members.html:17
 msgid "Members"
@@ -1566,7 +1564,7 @@ msgstr "anzeigen"
 
 #: templates/svmain/group_admin_members_add.html:41
 msgid "All other users are members of your group!"
-msgstr "Alle anderen Benutzer sind Mitglieder Ihrer Gruppe!"
+msgstr "Alle anderen Benutzer sind Gruppenmitglieder!"
 
 #: templates/svmain/group_detail.html:7
 #: templates/svmain/group_gpgkeyring.html:6
@@ -1578,7 +1576,7 @@ msgstr "Zusammenfassung"
 
 #: templates/svmain/group_detail.html:18
 msgid "Membership info"
-msgstr "Informationen zur Mitgliedschaft"
+msgstr "Mitgliederinformation"
 
 #: templates/svmain/group_detail.html:21
 msgid "Project admins:"
@@ -1627,7 +1625,7 @@ msgstr "Dieses Projekt hat noch keine Kurzbeschreibung abgegeben. Sie können si
 
 #: templates/svmain/group_detail.html:59
 msgid "Registration date"
-msgstr "Registrierungsdatum"
+msgstr "Registrierung"
 
 #: templates/svmain/group_detail.html:61
 #: templates/svpeople/job_detail.html:33
@@ -1662,12 +1660,12 @@ msgstr "Unix-Name"
 #: templates/svmain/group_mailinglist.html:24
 #, python-format
 msgid "To see the collection of prior posting to the list, visit the %(begin_link)s%(list_name)s archives%(end_link)s"
-msgstr "Um die Aufstellung vorheriger Nachrichten anzuzeigen, siehe die %(begin_link)s%(list_name)s-Archive%(end_link)s"
+msgstr "Um vorherige Nachrichten anzuzeigen, siehe das %(begin_link)s%(list_name)s-Archiv%(end_link)s"
 
 #: templates/svmain/group_mailinglist.html:26
 #, python-format
 msgid "To see the collection of prior posting to the list, visit the %(begin_link)s%(list_name)s archives%(end_link)s (authorization required)."
-msgstr "Um die Aufstellung vorheriger Nachrichten anzuzeigen, siehe die %(begin_link)s%(list_name)s-Archive%(end_link)s (Genehmigung erforderlich)."
+msgstr "Um vorherige Nachrichten anzuzeigen, siehe das %(begin_link)s%(list_name)s-Archiv%(end_link)s (Genehmigung erforderlich)."
 
 #: templates/svmain/group_mailinglist.html:29
 #, python-format
@@ -1682,7 +1680,7 @@ msgstr "Sie können sich zur Mailingliste mit Hilfe der folgenden Anweisungen au
 #: templates/svmain/group_mailinglist.html:33
 #, python-format
 msgid "Project administrators can use the %(begin_link)sadministrative interface%(end_link)s to manage the list."
-msgstr "Projektadministratoren können die %(begin_link)sAdministrationsoberfläche%(end_link)s verwenden, um die Liste zu verwalten."
+msgstr "Projektverwalter können die %(begin_link)sVerwaltungsoberfläche%(end_link)s verwenden, um die Liste zu verwalten."
 
 #: templates/svmain/group_mailinglist.html:37
 #, python-format
@@ -1691,7 +1689,7 @@ msgstr "Keine Listen für %(group_name)s gefunden"
 
 #: templates/svmain/group_mailinglist.html:38
 msgid "Project administrators can add mailing lists using the admin interface."
-msgstr "Projektadministratoren können Mailinglisten über die Administratoroberfläche hinzufügen."
+msgstr "Projektverwalter können Mailinglisten über die Verwaltungsoberfläche hinzufügen."
 
 #: templates/svmain/group_memberlist.html:18
 msgid "Member"
@@ -1703,7 +1701,7 @@ msgstr "Lebenslauf und Qualifikationen"
 
 #: templates/svmain/group_memberlist.html:24
 msgid "Project Administrator"
-msgstr "Projektadministrator"
+msgstr "Projektverwalter"
 
 #: templates/svmain/group_memberlist.html:28
 msgid "Project Member"
@@ -1722,7 +1720,7 @@ msgstr "Möglicherweise sind Sie auch am %(begin_link)sGPG-Schlüsselbund des Pr
 #: templates/svmain/group_vcs_svn.html:17
 #, python-format
 msgid "Browsing the %(type)s repository"
-msgstr "Das %(type)s-Projektarchiv durchsuchen"
+msgstr "%(type)s-Projektarchiv durchsuchen"
 
 #: templates/svmain/group_vcs_arch.html:19
 #: templates/svmain/group_vcs_bzr.html:19
@@ -1808,8 +1806,8 @@ msgstr "Projekte, die es benutzen:"
 #, python-format
 msgid "1 project use this license"
 msgid_plural "%(count)s projects use this license"
-msgstr[0] "%(count)s Projekt mit dieser Lizenz"
-msgstr[1] "%(count)s Projekte mit diesen Lizenzen"
+msgstr[0] "1 Projekt verwendet diese Lizenz"
+msgstr[1] "%(count)s Projekte verwenden diese Lizenzen"
 
 #: templates/svmain/license_detail.html:20
 msgid "Go to license list"
@@ -1843,7 +1841,7 @@ msgstr "Bürgerlicher Name:"
 
 #: templates/svmain/user_detail.html:8
 msgid "Login name:"
-msgstr "Anmeldename:"
+msgstr "Benutzername:"
 
 #: templates/svmain/user_list.html:24
 msgid "No users."
@@ -1863,7 +1861,7 @@ msgstr "Kommentare"
 
 #: templates/svnews/news_detail.html:40
 msgid "Start a new thread"
-msgstr "Einen neuen Thread starten"
+msgstr "Einen neue Diskussion starten"
 
 #: templates/svnews/news_detail.html:43
 msgid "You could post if you were logged in"
@@ -1871,7 +1869,7 @@ msgstr "Sie können Nachrichten senden, wenn Sie angemeldet sind"
 
 #: templates/svnews/news_list.html:13
 msgid "Latest approved news - with summaries"
-msgstr "Aktuelle genehmigte Nachrichten – mit Zusammenfassungen"
+msgstr "Aktuell genehmigte Nachrichten – mit Zusammenfassungen"
 
 #: templates/svnews/news_list.html:18
 msgid "No news items found"
@@ -1926,16 +1924,16 @@ msgstr "Projekttyp"
 
 #: templates/svpeople/index_custom.html:2
 msgid "Browse through the category menu to find projects looking for your help."
-msgstr "Durchsuchen Sie das Kategorie-Menü, um Projekte zu finden, die Ihre Hilfe suchen."
+msgstr "Durchsuchen Sie das Menü „Kategorie“, um Projekte zu finden, die nach Hilfe suchen."
 
 #: templates/svpeople/index_custom.html:3
 #, python-format
 msgid "If you're a project admin, log in, enter your project page, follow the project admin link (in the navigation bar) and you will find a %(begin_em)sPost Jobs%(end_em)s section where you can submit help wanted requests to appear in this list."
-msgstr "Sind Sie ein Projektverwalter, melden Sie sich an, wählen Ihre Projektseite, folgen dem Verweis „Projektverwalter‟ (in der Navigationsleiste) und Sie erhalten einen %(begin_em)sJobs senden%(end_em)s-Bereich, in dem „Hilfe gesucht‟-Anfragen angezeigt werden."
+msgstr "Wenn Sie ein Projektverwalter sind, melden Sie sich an, wählen Ihre Projektseite, folgen dem Verweis „Projektverwaltung‟ (in der Navigationsleiste) und Sie erhalten einen %(begin_em)sAufgaben senden%(end_em)s-Bereich, in dem „Hilfe gesucht‟-Anfragen angezeigt werden."
 
 #: templates/svpeople/index_custom.html:4
 msgid "To suggest new job categories, visit the support manager."
-msgstr "Um neue Job-Kategorien vorschlagen, besuchen Sie den Unterstützungsverwalter."
+msgstr "Um neue Aufgaben-Kategorien vorschlagen, besuchen Sie den Unterstützungsverwalter."
 
 #: templates/svpeople/job_detail.html:15
 msgid "wanted for"
@@ -1959,7 +1957,7 @@ msgstr "Stand:"
 
 #: templates/svpeople/job_detail.html:39
 msgid "Details (job description, contact ...):"
-msgstr "Details (Jobbeschreibung, Kontakt, …):"
+msgstr "Details (Aufgabenbeschreibung, Kontakt, …):"
 
 #: templates/svpeople/job_detail.html:45
 msgid "Required Skills:"
@@ -2023,7 +2021,7 @@ msgstr "Projekte, auf der Suche nach %(category_label)s"
 
 #: templates/svpeople/job_list_by_group.html:12
 msgid "Here is a list of positions available for this project."
-msgstr "Hier ist eine Liste der Positionen für dieses Projekt."
+msgstr "Positionen dieses Projekts."
 
 #: templates/svpeople/userinfo_form.html:12
 msgid "Resume - Description of experience"
@@ -2159,7 +2157,7 @@ msgstr "Keine Nachricht vorhanden."
 
 #: webmail_locmem/urls.py:28
 msgid "Savane hacker's mailbox"
-msgstr "Mailbox der Savannah-Hacker"
+msgstr "Postfach der Savane-Hacker"
 
 #: webmail_locmem/views.py:61
 #: webmail_locmem/views.py:76
