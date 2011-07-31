@@ -13,10 +13,10 @@
 	{% blocktrans %}{{site_name}} statistics{% endblocktrans %}</a></div>
     <div class="smaller">
       <div class="{% cycle 'boxitemalt' 'boxitem' as rowcolor %}">
-        {% blocktrans count nb_users as count and '<strong>'|add:nb_users|add:'</strong>'|safe as html %}{{html}} registered user{% plural %}{{html}} registered users{% endblocktrans %}
+        {% blocktrans with html='<strong>'|add:nb_users|add:'</strong>'|safe count count=nb_users %}{{html}} registered user{% plural %}{{html}} registered users{% endblocktrans %}
       </div>
       <div class="{% cycle rowcolor %}">
-        {% blocktrans count nb_groups as count and '<strong>'|add:nb_groups|add:'</strong>'|safe as html %}{{html}} hosted project{% plural %}{{html}} hosted projects{% endblocktrans %}
+        {% blocktrans with html='<strong>'|add:nb_groups|add:'</strong>'|safe count count=nb_groups %}{{html}} hosted project{% plural %}{{html}} hosted projects{% endblocktrans %}
       </div>
       {% for conf in group_confs %}
       <div class="{% cycle rowcolor %}">
